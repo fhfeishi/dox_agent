@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>资料库概览 · 改版 demo</title>
+<style>
+:root{
+  --paper:#EDF3F5; --surface:#FFFFFF; --surface2:#F7FAFB; --surface3:#FBFCFD;
+  --ink:#173A50; --ink2:#42647A; --ink3:#7D919B; --ink4:#A9BAC4;
+  --line:#D9E5E8; --line2:#E9F0F2;
+  --g1:#2E8B7A; --g1s:#E7F3EF;
+  --g3:#B59A62; --g3s:#FBF4E5;
+  --warn:#B4653C; --warns:#FBF1EC;
+  --b1:#0D2131; --b2:#173A50; --b3:#1E4E63;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:400 13px/1.62 "Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",sans-serif;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 28px;height:54px;display:flex;align-items:center;gap:26px}
+.brand{font-family:var(--serif);font-size:20px;letter-spacing:1.4px}
+.brand i{font-style:normal;color:var(--ink3)}
+.nav-links{display:flex;gap:20px;font-size:12.5px;color:var(--ink2);margin-left:6px}
+.nav-links span{cursor:default}
+.nav-links span.on{color:var(--ink);font-weight:500;box-shadow:inset 0 -2px 0 var(--g1);padding-bottom:3px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.tag-demo{font-size:10.5px;color:#8A6A2F;background:var(--g3s);padding:4px 9px;border-radius:5px;letter-spacing:.2px;white-space:nowrap}
+.who{width:28px;height:28px;border-radius:50%;background:var(--g1s);color:var(--g1);display:grid;place-items:center;font-size:12px;font-weight:500}
+
+.banner{position:relative;overflow:hidden;margin-top:22px;border-radius:14px;background:linear-gradient(125deg,var(--b1) 0%,var(--b2) 52%,var(--b3) 100%);color:#fff;padding:26px 30px 24px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr);gap:34px;align-items:center}
+.banner::after{content:"";position:absolute;right:-90px;top:-110px;width:320px;height:320px;border-radius:50%;background:rgba(94,168,194,.10)}
+.b-eyebrow{font-size:10px;letter-spacing:2px;color:#8FA9BC}
+.b-title{font-size:23px;font-weight:500;letter-spacing:.2px;margin-top:9px}
+.b-num{display:flex;align-items:baseline;gap:8px;margin-top:12px}
+.b-num b{font-family:var(--serif);font-size:38px;font-weight:400;line-height:1;letter-spacing:-.5px}
+.b-num span{font-size:12px;color:#C2D2DF}
+.b-insight{display:inline-flex;align-items:center;gap:7px;margin-top:13px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:4px 11px;font-size:11.5px;color:#EAF1F6}
+.b-insight i{width:5px;height:5px;border-radius:50%;background:#7CC4FF;flex:none}
+.b-note{margin-top:11px;font-size:10.5px;color:#7F97AB;line-height:1.6;max-width:29em}
+.b-bars{position:relative;z-index:1;border-left:1px solid rgba(255,255,255,.12);padding-left:26px}
+.b-row{display:grid;grid-template-columns:6.6em minmax(0,1fr) 2.7em;gap:9px;align-items:center;font-size:11.5px;margin-bottom:5px}
+.b-row u{text-decoration:none;color:#C3D3E0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-track{position:relative;height:9px;border-radius:2px;background:rgba(255,255,255,.11);min-width:0}
+.b-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;min-width:3px}
+.b-val{font-family:var(--serif);font-size:11.5px;color:#AFC2D1;text-align:right;font-variant-numeric:tabular-nums}
+
+.sec{margin-top:34px}
+.sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.sechead em{font-style:normal;font-family:var(--serif);font-size:11px;letter-spacing:1.6px;color:var(--ink4)}
+.sechead h2{font-size:15.5px;font-weight:600;letter-spacing:.1px}
+.sechead small{font-size:11px;color:var(--ink3)}
+
+.works{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.wcard{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 17px;min-height:132px;display:flex;flex-direction:column;text-align:left;transition:border-color .16s,box-shadow .16s}
+.wcard:hover{border-color:#B9CFD6;box-shadow:0 3px 14px rgba(23,58,80,.06)}
+.wcard b{font-size:14px;font-weight:600;margin-top:10px}
+.wcard p{font-size:11.5px;color:var(--ink3);line-height:1.6;margin-top:5px}
+.wcard u{text-decoration:none;margin-top:auto;padding-top:12px;font-size:11px;color:var(--g1)}
+.wico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none}
+.wico svg{width:17px;height:17px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cardhead{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:15px 18px 13px;border-bottom:1px solid var(--line2)}
+.cardhead h3{font-size:14.5px;font-weight:600}
+.cardhead p{font-size:10.5px;color:var(--ink3);margin-top:4px;line-height:1.6}
+.caliber{display:flex;gap:8px;flex-wrap:wrap;font-size:10.5px;color:var(--ink3);margin-top:6px}
+.caliber b{font-weight:500;color:var(--ink2)}
+.cal{font:inherit;font-size:10.5px;color:var(--ink3);background:none;border:0;border-bottom:1px dashed #C6D5DA;
+  padding:0 0 1px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:3px}
+.cal b{font-weight:500;color:var(--ink2)}
+.cal:hover{color:var(--g1);border-bottom-color:var(--g1)}
+.cal:hover b{color:var(--g1)}
+.cal::after{content:"i";width:10px;height:10px;line-height:10px;text-align:center;font-size:7.5px;font-weight:700;
+  color:#fff;background:#B4C6CE;border-radius:50%;font-style:normal;transition:.15s}
+.cal:hover::after{background:var(--g1)}
+.ch-right{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tbtn{border:1px solid var(--line);background:transparent;border-radius:6px;font-size:11.5px;color:var(--ink2);padding:5px 11px;line-height:1.3;transition:.15s}
+.tbtn:hover{border-color:#B9CFD6;color:var(--ink)}
+.tbtn.on{background:var(--g1);border-color:var(--g1);color:#fff}
+
+.obody{display:grid;grid-template-columns:minmax(0,1fr) 308px;gap:0;align-items:stretch}
+.chartwrap{position:relative;padding:8px 6px 2px 10px;min-width:0}
+#map{display:block;width:100%;height:auto}
+.pt{cursor:pointer}
+.pt circle.dot{transition:r .16s ease,fill .16s ease}
+.pt:hover circle.dot{fill:#1F6B5E}
+.pt text{font-size:11.5px;fill:#2C4657;transition:fill .16s}
+.pt:hover text{fill:#173A50;font-weight:500}
+.pt.sel text{font-weight:600;fill:#173A50}
+.qzlabel{font-size:11px;fill:#93A7B2}
+.qz-tip{cursor:pointer;transition:opacity .2s}
+.qz-tip text{transition:fill .15s}
+.qz-tip:hover text{fill:var(--g1)}
+.qz-tip:hover rect{stroke:#9CC9BC}
+.qz-tip rect{pointer-events:all}
+.qzlabel b{font-weight:600;fill:#6E8794}
+.qzlabel.empty{fill:#BFCBD1}
+.axis{font-size:11px;fill:#8DA2AC}
+.axis-t{font-size:11px;fill:#5E7885;font-weight:500}
+.grid{stroke:#E4EDEF;stroke-width:.6}
+.sep{stroke:#AFC2CA;stroke-width:.8;stroke-dasharray:4 5}
+
+#tip{position:absolute;z-index:20;pointer-events:none;opacity:0;transition:opacity .1s;background:#12293A;color:#fff;border-radius:6px;padding:9px 11px;font-size:11px;line-height:1.65;max-width:230px;box-shadow:0 6px 20px rgba(18,41,58,.22)}
+#tip b{font-size:12px;font-weight:600;display:block;margin-bottom:3px}
+#tip i{font-style:normal;color:#9FB6C4}
+#tip em{font-style:normal;font-family:var(--serif);font-size:11.5px;color:#8FD9C6}
+
+.detail{background:var(--surface2);border-left:1px solid var(--line2);padding:16px 18px 18px;display:flex;flex-direction:column;min-width:0}
+.d-eyebrow{font-size:9.5px;letter-spacing:1.5px;color:var(--ink4)}
+.d-name{font-size:19px;font-weight:600;letter-spacing:-.2px;line-height:1.35;margin-top:5px}
+.d-sub{font-size:11px;color:var(--ink3);margin-top:3px}
+.d-stats{display:flex;gap:26px;margin:14px 0 4px}
+.d-stat{min-width:0}
+.d-stat b{display:block;font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.2;letter-spacing:-.3px}
+.d-stat span{font-size:10px;color:var(--ink3);display:block;margin-top:2px}
+.d-stat.hi b{color:var(--g1)}
+.d-stat.lo b{color:var(--warn)}
+
+.d-block{margin-top:15px}
+.d-block-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:11px;color:var(--ink2);margin-bottom:7px}
+.d-block-h i{font-style:normal;font-size:9.5px;color:var(--ink4)}
+.stair{position:relative;height:15px;background:var(--line2);border-radius:3px}
+.stair-in{display:flex;height:100%}
+.stair-in span:first-child{border-radius:3px 0 0 3px}
+.stair-in span:last-child{border-radius:0 3px 3px 0}
+.stair span{display:block;height:100%;position:relative;cursor:pointer;
+  transition:transform .2s cubic-bezier(.16,1,.3,1),opacity .16s}
+.stair span + span{box-shadow:inset 1px 0 0 #fff}
+.stair:hover span{opacity:.4}
+.stair span:hover{opacity:1;transform:scaleY(1.28);z-index:2}
+#hint{position:fixed;z-index:140;pointer-events:none;background:#12293A;color:#fff;
+  font-size:10.5px;line-height:1.4;padding:5px 9px;border-radius:5px;white-space:nowrap;
+  box-shadow:0 8px 20px rgba(18,41,58,.24);opacity:0;transform:translate(-50%,4px) scale(.96);
+  transition:opacity .15s,transform .22s cubic-bezier(.16,1,.3,1);font-variant-numeric:tabular-nums}
+#hint.on{opacity:1;transform:translate(-50%,0) scale(1)}
+#hint b{font-weight:600;color:#8FD9C6;margin-right:2px}
+#hint i{font-style:normal;color:#9FB6C4;margin:0 3px}
+.stair-x{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink4);margin-top:4px;font-variant-numeric:tabular-nums}
+.stair-x{transition:opacity .16s}
+.stair-x.off{opacity:.16}
+.stair-x span{cursor:pointer;transition:color .14s}
+.stair-x span:hover{color:var(--g1)}
+
+.dim{display:grid;grid-template-columns:2.4em minmax(0,1fr) 3.6em;gap:8px;align-items:center;font-size:10.5px;
+  margin:0 -6px 5px;padding:3px 6px;color:var(--ink2);border-radius:5px;cursor:pointer;transition:background .15s}
+.dim:hover{background:#EEF4F6}
+.dim:hover .dim-num{color:var(--ink2)}
+.dim-bar{height:6px;border-radius:3px;background:var(--line2);overflow:hidden}
+.dim-bar i{display:block;height:100%;background:var(--g1);border-radius:3px}
+.dim.low .dim-bar i{background:var(--warn)}
+.dim-num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink3);font-size:10px}
+.dim.low .dim-num{color:var(--warn);font-weight:500}
+
+.d-warn{margin-top:8px;background:var(--warns);border-left:2px solid var(--warn);padding:8px 10px;font-size:10.5px;line-height:1.65;color:#8C4A2E;border-radius:0 4px 4px 0}
+.d-open{margin-top:auto;padding-top:16px;display:flex;gap:8px}
+.d-open button{flex:1;font-size:11.5px;padding:8px 0;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--ink2);transition:.15s}
+.d-open button:hover{border-color:#B9CFD6;color:var(--ink)}
+.d-open button.primary{background:var(--g1);border-color:var(--g1);color:#fff}
+.d-open button.primary:hover{background:#26766A}
+
+/* ---------- 交互式说明层 ---------- */
+#pop{position:fixed;left:0;top:0;z-index:130;opacity:0;pointer-events:none;transition:opacity .17s ease}
+#pop.on{opacity:1;pointer-events:auto}
+.pcard{position:relative;max-width:calc(100vw - 24px);
+  background:#fff;border:1px solid #DEE9EB;border-radius:13px;
+  box-shadow:0 22px 48px -14px rgba(16,42,58,.3),0 2px 8px rgba(16,42,58,.05);
+  padding:15px 17px 14px;transform:scale(.93) translateY(6px);
+  transform-origin:var(--ox,50%) var(--oy,0);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+#pop.on .pcard{transform:none}
+.parrow{position:absolute;width:10px;height:10px;margin-left:-5px;left:var(--ax,50%);top:-5.5px;
+  background:#fff;border-left:1px solid #CFDDE1;border-top:1px solid #CFDDE1;transform:rotate(45deg);
+  box-shadow:-1px -1px 3px rgba(16,42,58,.04)}
+.parrow.up{top:auto;bottom:-5.5px;transform:rotate(225deg)}
+.anchor-on{background:#E7F2EE !important;box-shadow:0 0 0 3px #E7F2EE;border-radius:5px}
+.cal.anchor-on,.inf.anchor-on,.qmark.anchor-on{background:#E7F2EE !important;border-color:var(--g1) !important;
+  color:var(--g1) !important;box-shadow:0 0 0 2px #E7F2EE}
+.qmark.anchor-on::after{background:var(--g1)}
+.pop-h{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.1px;display:flex;align-items:center;gap:6px}
+.pop-h em{font-style:normal;font-size:9px;letter-spacing:.6px;color:var(--ink4);
+  border:1px solid var(--line);border-radius:3px;padding:1px 4px;font-weight:400}
+.pop-s{font-size:10px;color:var(--ink4);margin-top:3px;line-height:1.55}
+.pop-list{margin-top:9px}
+.mstep{display:grid;grid-template-columns:17px minmax(0,1fr) auto;gap:9px;padding:6.5px 0;
+  border-bottom:1px solid var(--line2);align-items:start;transition:background .14s;border-radius:4px}
+@keyframes mIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+#pop.on .mstep{animation:mIn .38s cubic-bezier(.16,1,.3,1) both}
+#pop.on .mstep:nth-child(1){animation-delay:.02s}
+#pop.on .mstep:nth-child(2){animation-delay:.05s}
+#pop.on .mstep:nth-child(3){animation-delay:.08s}
+#pop.on .mstep:nth-child(4){animation-delay:.11s}
+#pop.on .mstep:nth-child(5){animation-delay:.14s}
+#pop.on .mstep:nth-child(6){animation-delay:.17s}
+.mstep:last-child{border-bottom:0}
+.mstep.on{background:#EAF5F1;box-shadow:-5px 0 0 #EAF5F1,5px 0 0 #EAF5F1;position:relative}
+.mstep.on::before{content:"";position:absolute;left:-17px;top:5px;bottom:5px;width:2px;
+  background:var(--g1);border-radius:1px}
+.mnum{width:17px;height:17px;border-radius:4px;font-size:9px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;margin-top:1px}
+.mname{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.45}
+.mdesc{font-size:10.5px;color:var(--ink3);line-height:1.62;margin-top:2px}
+.mcnt{font-size:10px;color:var(--ink3);text-align:right;line-height:1.5;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.mcnt b{display:block;font-family:var(--serif);font-size:11.5px;color:var(--ink2);font-weight:400}
+.pop-def{margin-top:9px}
+.pop-def > div{padding:6px 0;border-bottom:1px solid var(--line2)}
+.pop-def > div:last-child{border-bottom:0}
+.pop-def u{text-decoration:none;font-size:11px;font-weight:600;color:var(--ink)}
+.pop-def p{font-size:10.5px;color:var(--ink3);line-height:1.7;margin-top:3px}
+.pop-note{margin-top:9px;padding:8px 10px;background:#FBF4E6;border-radius:5px;
+  font-size:10px;color:#8A6A2F;line-height:1.68}
+.pop-note b{font-weight:600}
+.pop code{font-family:ui-monospace,Menlo,monospace;font-size:9px;background:#F0F4F5;
+  padding:1px 4px;border-radius:3px;color:#5A7280}
+.meg{color:#A8B7BF;font-size:10px}
+.meg::before{content:"· ";color:#C6D3D8}
+.mstep.on .mname{color:var(--g1)}
+.qmark{font:inherit;font-size:9.5px;color:var(--ink3);background:#F1F5F6;border:1px solid var(--line);
+  border-radius:10px;padding:1px 7px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:3px}
+.qmark:hover{background:var(--g1);border-color:var(--g1);color:#fff}
+.qmark::after{content:"?";font-size:8px;font-weight:700}
+
+.readout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line2);background:var(--surface3)}
+.ro{padding:12px 18px 13px;border-left:1px solid var(--line2);min-width:0}
+.ro:first-child{border-left:0}
+.ro u{text-decoration:none;display:block;font-size:9.5px;letter-spacing:1.2px;color:var(--ink4);margin-bottom:5px}
+.ro p{font-size:11.5px;line-height:1.65;color:var(--ink2)}
+.ro p b{font-family:var(--serif);font-size:14px;font-weight:400;color:var(--ink);letter-spacing:-.2px}
+.ro p em{font-style:normal;color:var(--warn);font-weight:500}
+
+.mine{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 18px 8px}
+.mrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line2);font-size:12px;color:var(--ink2)}
+.mrow:last-child{border-bottom:0}
+.mrow b{font-weight:500;color:var(--ink)}
+.mrow span{margin-left:auto;font-size:11px;color:var(--ink4)}
+
+footer{margin-top:32px;padding:14px 0 32px;border-top:1px solid var(--line);
+  font-size:10.5px;color:var(--ink4);line-height:1.8;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+footer b{font-weight:500;color:var(--ink3)}
+.inf{font:inherit;font-size:10.5px;color:var(--ink3);background:none;border:0;
+  border-bottom:1px dashed #C6D5DA;padding:0 0 1px;cursor:pointer;transition:.15s}
+.inf:hover{color:var(--g1);border-bottom-color:var(--g1)}
+
+@media (max-width:980px){
+  .obody{grid-template-columns:minmax(0,1fr)}
+  .detail{border-left:0;border-top:1px solid var(--line2)}
+  .banner{grid-template-columns:minmax(0,1fr);gap:20px}
+  .b-bars{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+  .works{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .readout{grid-template-columns:minmax(0,1fr)}
+  .ro{border-left:0;border-top:1px solid var(--line2)}
+  .ro:first-child{border-top:0}
+}
+@media (max-width:640px){
+  .wrap,.nav-in{padding:0 16px}
+  .works{grid-template-columns:minmax(0,1fr)}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand">dox <i>agent</i></div>
+    <div class="nav-links">
+      <span class="on">首页</span><span>知识库</span><span>任务</span><span>成果</span><span>形式审查</span>
+    </div>
+    <div class="nav-right">
+      <span class="tag-demo">改版 demo · 真实数据</span>
+      <span class="who">张</span>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="banner" aria-label="研究版图">
+    <div>
+      <div class="b-eyebrow">研究版图 · 项目分布</div>
+      <div class="b-title">11 个领域资料库</div>
+      <div class="b-num"><b>1,119</b><span>个项目</span></div>
+      <div class="b-insight"><i></i>医疗、机器人自动化两库占 91.5%</div>
+      <p class="b-note">项目在各库内按批准号去重，跨库合计未去重；1,122 份文件识别出 1,119 个项目。</p>
+    </div>
+    <div class="b-bars" id="bannerBars"></div>
+  </section>
+
+  <section class="sec" aria-label="工作台">
+    <div class="sechead"><em>01</em><h2>工作台</h2></div>
+    <div class="works" id="works"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="ovTitle">
+    <div class="sechead">
+      <em>02</em><h2 id="ovTitle">资料库概览</h2>
+      <small>点一个库看它的积累厚度与结构缺口；点“打开资料库”进入</small>
+    </div>
+
+    <div class="card">
+      <div class="cardhead">
+        <div>
+          <h3>资料库积累分布</h3>
+          <div class="caliber">
+            <button class="cal" data-cal="x">横轴 <b>技术条目数</b>（对数）</button>
+            <button class="cal" data-cal="y">纵轴 <b>平均成熟度</b> 0–5</button>
+            <button class="cal" data-cal="r">圆面积 <b>覆盖项目数</b></button>
+          </div>
+        </div>
+        <div class="ch-right">
+          <button class="tbtn on" id="btnAll">全部 11 库</button>
+          <button class="tbtn" id="btnGap">只看待补</button>
+        </div>
+      </div>
+
+      <div class="obody">
+        <div class="chartwrap" id="chartwrap">
+          <svg id="map" viewBox="0 0 720 430" role="img" aria-label="11 个资料库按技术条目数与平均成熟度的分布，圆大小代表覆盖项目数"></svg>
+          <div id="tip" role="status" aria-live="polite"></div>
+        </div>
+        <aside class="detail" id="detail" aria-live="polite"></aside>
+      </div>
+
+      <div class="readout">
+        <div class="ro">
+          <u>全库成熟度</u>
+          <p>2,693 条技术中，<em>76% 停在算法验证及以下</em>，12% 做出原型样机，<b>11.7%</b>（316 条）进入真实场景或转化。</p>
+        </div>
+        <div class="ro">
+          <u>体量与沉淀</u>
+          <p>医疗 + 机器人占 <b>87.7%</b> 技术条目，高成熟条目只占 82%；<em>没有库同时做到量大与深</em>。</p>
+        </div>
+        <div class="ro">
+          <u>最需注意</u>
+          <p>机器人自动化 <b>1,025</b> 条技术，<em>80.8% 停在理论与未判定</em>；问题维仅 48% 的项目有归纳。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="我的工作">
+    <div class="sechead"><em>03</em><h2>我的工作</h2><small>本账户发起的对话、报告与审查</small></div>
+    <div class="mine">
+      <div class="mrow"><b>医疗资料库四维抽取复核</b><span>今天 09:12</span></div>
+      <div class="mrow"><b>机器人自动化技术谱系重建</b><span>昨天 16:40</span></div>
+      <div class="mrow"><b>2026 年度结题报告形式审查</b><span>10 月 18 日</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span><b>数据</b>　11 个库 · 2,693 条技术 · 1,119 个项目，取自各库 <code>lineage.json</code> 与已抽取文档。</span>
+    <button class="inf" id="btnCaliber">口径与边界</button>
+    <button class="inf" id="btnMaturity">成熟度 6 档怎么分</button>
+  </footer>
+</main>
+
+<div id="pop" aria-live="polite"></div>
+
+<script>
+var LIB = [
+  {id:"med", name:"医疗", items:1336, projects:514, docs:517, systems:5, avg:2.28, hi:237, hipct:17.7, dist:[38,278,609,174,155,82], dims:[517,516,517,470]},
+  {id:"robo", name:"机器人自动化", items:1025, projects:510, docs:510, systems:8, avg:1.15, hi:22, hipct:2.1, dist:[169,659,96,79,17,5], dims:[510,246,510,510]},
+  {id:"fin", name:"金融经济", items:66, projects:20, docs:20, systems:5, avg:1.94, hi:3, hipct:4.5, dist:[3,14,39,7,0,3], dims:[20,20,20,20]},
+  {id:"agri", name:"农业", items:48, projects:13, docs:13, systems:8, avg:2.17, hi:8, hipct:16.7, dist:[0,16,18,6,6,2], dims:[13,13,13,13]},
+  {id:"mat", name:"材料", items:46, projects:14, docs:14, systems:4, avg:2.48, hi:7, hipct:15.2, dist:[0,8,18,13,4,3], dims:[14,14,14,14]},
+  {id:"bioi", name:"生物识别", items:40, projects:10, docs:10, systems:4, avg:2.95, hi:11, hipct:27.5, dist:[0,2,13,14,7,4], dims:[10,10,10,10]},
+  {id:"priv", name:"隐私保护", items:36, projects:10, docs:10, systems:5, avg:1.56, hi:0, hipct:0, dist:[0,22,8,6,0,0], dims:[10,10,10,10]},
+  {id:"bio", name:"生物医药", items:32, projects:9, docs:9, systems:5, avg:3.06, hi:7, hipct:21.9, dist:[0,1,10,14,0,7], dims:[9,9,9,9]},
+  {id:"big", name:"大数据", items:31, projects:10, docs:10, systems:6, avg:2.45, hi:7, hipct:22.6, dist:[1,5,14,4,4,3], dims:[10,10,10,10]},
+  {id:"ai", name:"信息智能", items:17, projects:5, docs:5, systems:4, avg:3.18, hi:6, hipct:35.3, dist:[1,0,4,6,2,4], dims:[5,5,5,5]},
+  {id:"soc", name:"社会治理", items:16, projects:4, docs:4, systems:5, avg:3.5, hi:8, hipct:50, dist:[0,0,4,4,4,4], dims:[4,4,4,4]}
+];
+var DIM_NAME = ["场景","问题","技术","成果"];
+function shortPct(v) { return (Math.round(v * 10) / 10).toString().replace(/\.0$/, "") + "%"; }
+var MCOL = ["#D2DBDE","#C0D6D4","#A2CAC1","#7CB8A9","#4CA391","#2E8B7A"];
+var TOTAL = {items:2693, projects:1119, hi:316, dist:[212,1005,833,327,199,117]};
+
+/* 档位名称取自 src/lineage.py 的 MATURITY；read / eg 是为汇报补充的判据，不改变原始标注 */
+var MAT = [
+  {n:0, name:"未判定", read:"看不出技术路线，或标注未完成。", eg:"只出现技术名词", txt:"#4A5E6B"},
+  {n:1, name:"理论与方法研究", read:"有框架或论证，没跑过真实数据。", eg:"提出架构 · 给出约束", txt:"#3A6270"},
+  {n:2, name:"算法与模型验证", read:"在数据集上跑通并给出指标，尚非可运行系统。", eg:"准确率 92% · AUC 0.81", txt:"#2C5E5A"},
+  {n:3, name:"原型与样机验证", read:"做成原型或样机，实验室里能重复演示。", eg:"原型系统 · 原理样机", txt:"#22544D"},
+  {n:4, name:"系统集成与场景试验", read:"接进真实场景，做过小规模试验。", eg:"产线试点 3 个月", txt:"#1B4842"},
+  {n:5, name:"示范应用与转化", read:"形成可复制的示范，或已完成转化。", eg:"推广运行 · 专利转化", txt:"#fff"}
+];
+
+var CAL = {
+  x: {t:"横轴 · 技术条目数", s:"衡量这个库沉淀出多少条技术线索",
+      d:"取 lineage.json 的 items 计数。同一技术在多个项目下出现会各计一次，所以它不等于「会多少种技术」，而是「攒了多少条可追踪的技术记录」。",
+      n:"用对数刻度是因为条目数从 16 到 1,336，相差 80 倍。线性轴会把 9 个小库全压在左边缘，看不出差别。"},
+  y: {t:"纵轴 · 平均成熟度", s:"衡量这些条目整体走到哪一步",
+      d:"对该库全部条目的 maturity 取算术平均（0–5）。它受长尾影响——条目越多，越容易混进大量低成熟条目，均值会被拖低。",
+      n:"所以纵轴低不等于做得差，要配合右侧的 6 档分布一起看：同样 2.0，可能是「均匀分布在 2 档」，也可能是「一半 0 档一半 4 档」。"},
+  r: {t:"圆面积 · 覆盖项目数", s:"衡量这个库压住了多少个项目",
+      d:"把条目里出现过的项目编号去重后计数。它一定小于等于该库的项目总数，差额就是还没归入任何技术条目的项目。",
+      n:"半径按覆盖项目数开方换算，让面积正比于数量；否则大库在视觉上会被放大数倍。"}
+};
+
+var DIM_DEF = [
+  {t:"场景", d:"项目应用在什么场合（如住院、产线、田块）。分母是已抽取文档数，分子是归纳出场景的文档数。"},
+  {t:"问题", d:"这个场合里卡在哪一步（如风险分层无据）。这一维最容易缺，因为它要求文档里真的写了困难点。"},
+  {t:"技术", d:"用了什么方法、模型或工艺。基本每份文档都能归纳出来，所以这一维通常接近 100%。"},
+  {t:"成果", d:"最后交付了什么（样机、数据集、规范、验证报告）。写在结题材料里的成果描述。"}
+];
+
+var sel = "med", mode = "all";
+var byId = function (id) { for (var i = 0; i < LIB.length; i++) if (LIB[i].id === id) return LIB[i]; return null; };
+var needFix = function (d) {
+  var minDim = Math.min.apply(null, d.dims) / d.docs;
+  return d.hipct < 20 || minDim < .95;
+};
+
+var svg = document.getElementById("map");
+var tip = document.getElementById("tip");
+var wrap = document.getElementById("chartwrap");
+
+var G = {l:60, r:700, t:44, b:372};
+var XMIN = 1.0, XMAX = 3.22, YMIN = 0.85, YMAX = 3.80;
+function px(v) { return G.l + (Math.log(v) / Math.LN10 - XMIN) / (XMAX - XMIN) * (G.r - G.l); }
+function py(v) { return G.b - (v - YMIN) / (YMAX - YMIN) * (G.b - G.t); }
+function radius(p) { return 6.5 + Math.sqrt(p) / Math.sqrt(514) * 10.5; }
+
+function renderMap() {
+  var s = "";
+  s += '<rect x="' + G.l + '" y="' + G.t + '" width="' + (G.r - G.l) + '" height="' + (G.b - G.t) + '" fill="#FCFDFD"/>';
+  s += '<rect x="' + G.l + '" y="' + G.t + '" width="' + (px(100) - G.l) + '" height="' + (py(2.5) - G.t) + '" fill="#F5F8FA"/>';
+  s += '<rect x="' + G.l + '" y="' + py(2.5) + '" width="' + (px(100) - G.l) + '" height="' + (G.b - py(2.5)) + '" fill="#F7F6F3"/>';
+
+  [30, 100, 300, 1000].forEach(function (v) {
+    s += '<line class="grid" x1="' + px(v) + '" y1="' + G.t + '" x2="' + px(v) + '" y2="' + G.b + '"/>';
+    s += '<text class="axis" x="' + px(v) + '" y="' + (G.b + 17) + '" text-anchor="middle">' + v + '</text>';
+  });
+  [1.0, 1.5, 2.0, 2.5, 3.0, 3.5].forEach(function (v) {
+    s += '<line class="grid" x1="' + G.l + '" y1="' + py(v) + '" x2="' + G.r + '" y2="' + py(v) + '"/>';
+    s += '<text class="axis" x="' + (G.l - 10) + '" y="' + (py(v) + 4) + '" text-anchor="end">' + v.toFixed(1) + '</text>';
+  });
+
+  s += '<line class="sep" x1="' + px(100) + '" y1="' + G.t + '" x2="' + px(100) + '" y2="' + G.b + '"/>';
+  s += '<line class="sep" x1="' + G.l + '" y1="' + py(2.5) + '" x2="' + G.r + '" y2="' + py(2.5) + '"/>';
+
+  var ex = px(100), ey = py(2.5), qc = (ex + G.r) / 2, qm = (G.t + ey) / 2;
+  s += '<g class="qz-tip" data-q="br" tabindex="0" role="button">' +
+    '<rect x="' + ex + '" y="' + G.t + '" width="' + (G.r - ex) + '" height="' + (ey - G.t) +
+    '" fill="none" stroke="#C4D4DA" stroke-width="1" stroke-dasharray="6 6"/>' +
+    '<text x="' + qc + '" y="' + (qm - 4) + '" text-anchor="middle" font-size="11.5" fill="#9FB2BB">没有资料库</text>' +
+    '<text x="' + qc + '" y="' + (qm + 13) + '" text-anchor="middle" font-size="11.5" fill="#B6C4CB">既铺得开又沉得深</text></g>';
+
+  s += '<text class="axis-t" x="' + (G.r) + '" y="' + (G.b + 36) + '" text-anchor="end">技术条目数（对数）→</text>';
+  s += '<text class="axis-t" x="' + G.l + '" y="' + (G.t - 16) + '">平均成熟度 ↑</text>';
+
+  s += '<g class="qz-tip" data-q="tl" tabindex="0" role="button"><text class="qzlabel" x="' + (G.l + 9) + '" y="' + (G.t + 118) + '"><tspan x="' + (G.l + 9) + '" font-weight="600">小而精</tspan><tspan x="' + (G.l + 9) + '" dy="14">条目少 · 成熟高</tspan></text></g>';
+  s += '<g class="qz-tip" data-q="bl" tabindex="0" role="button"><text class="qzlabel" x="' + (G.l + 9) + '" y="' + (G.b - 34) + '"><tspan x="' + (G.l + 9) + '" font-weight="600">少且浅</tspan><tspan x="' + (G.l + 9) + '" dy="14">条目少 · 成熟低</tspan></text></g>';
+  s += '<g class="qz-tip" data-q="brr" tabindex="0" role="button"><text class="qzlabel" x="' + (px(100) + 24) + '" y="' + (G.b - 46) + '"><tspan x="' + (px(100) + 24) + '" font-weight="600">铺得宽 · 沉不下去</tspan><tspan x="' + (px(100) + 24) + '" dy="14">条目多 · 成熟低</tspan></text></g>';
+
+  LIB.forEach(function (d) {
+    var cx = px(d.items), cy = py(d.avg), r = radius(d.projects);
+    var isSel = d.id === sel;
+    var dim = (mode === "gap" && !needFix(d));
+    var g = '<g class="pt' + (isSel ? " sel" : "") + '" data-id="' + d.id + '" tabindex="0" role="button" aria-label="' + d.name + '，' + d.items + ' 条技术，平均成熟度 ' + d.avg + '">';
+    if (isSel) g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + 7) + '" fill="' + (dim ? "#C7D6DB" : "#2E8B7A") + '" opacity=".16"/>';
+    g += '<circle class="dot" cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (isSel ? "#2E8B7A" : "#3B5D70") + '" fill-opacity="' + (dim ? ".26" : ".92") + '"/>';
+    if (d.id === "robo") g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + 4) + '" fill="none" stroke="#B59A62" stroke-width="1" stroke-dasharray="3 3"/>';
+    g += '</g>';
+    s += g;
+  });
+
+  LIB.forEach(function (d) {
+    var cx = px(d.items), cy = py(d.avg), r = radius(d.projects);
+    var dim = (mode === "gap" && !needFix(d));
+    var lx, ly = cy + 4, anchor = "start";
+    if (d.id === "big") { lx = cx - r - 8; anchor = "end"; }
+    else if (d.id === "ai") { lx = cx - r - 8; anchor = "end"; }
+    else if (d.id === "med") { lx = cx - r - 9; anchor = "end"; }
+    else if (d.id === "bio") { lx = cx; ly = cy - r - 7; anchor = "middle"; }
+    else if (d.id === "robo") { lx = cx; ly = cy - r - 10; anchor = "middle"; }
+    else { lx = cx + r + 8; }
+    var cls = "pt" + (d.id === sel ? " sel" : "");
+    s += '<text class="' + cls + '" data-id="' + d.id + '" x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '" opacity="' + (dim ? ".3" : "1") + '">' + d.name + '</text>';
+  });
+
+  svg.innerHTML = s;
+
+  Array.prototype.forEach.call(svg.querySelectorAll(".qz-tip"), function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openQuad(this, this.getAttribute("data-q"));
+    });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); this.dispatchEvent(new MouseEvent("click", { bubbles: true })); }
+    });
+  });
+
+  Array.prototype.forEach.call(svg.querySelectorAll(".pt"), function (el) {
+    var id = el.getAttribute("data-id");
+    el.addEventListener("mouseenter", function (e) { showTip(e, byId(id)); });
+    el.addEventListener("mousemove", function (e) { moveTip(e); });
+    el.addEventListener("mouseleave", hideTip);
+    el.addEventListener("click", function () { select(id); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(id); }
+    });
+  });
+}
+
+function showTip(e, d) {
+  if (!d) return;
+  tip.innerHTML = '<b>' + d.name + '</b>' +
+    '<i>技术条目</i> <em>' + d.items.toLocaleString() + '</em> · <i>覆盖项目</i> ' + d.projects + '<br>' +
+    '<i>平均成熟度</i> <em>' + d.avg.toFixed(2) + '</em> · <i>成熟 4 以上</i> ' + d.hipct + '%<br>' +
+    '<i>技术体系</i> ' + d.systems + ' 个';
+  tip.style.opacity = "1";
+  moveTip(e);
+}
+function moveTip(e) {
+  var r = wrap.getBoundingClientRect();
+  var x = e.clientX - r.left + 14, y = e.clientY - r.top + 14;
+  if (x + 240 > r.width) x = e.clientX - r.left - 240;
+  tip.style.left = x + "px";
+  tip.style.top = y + "px";
+}
+function hideTip() { tip.style.opacity = "0"; }
+
+function select(id) {
+  POP.close();
+  sel = id;
+  renderMap();
+  renderDetail();
+}
+
+function renderDetail() {
+  var d = byId(sel);
+  var minDim = Math.min.apply(null, d.dims) / d.docs;
+  var h = "";
+  h += '<div class="d-eyebrow">当前资料库</div>';
+  h += '<div class="d-name">' + d.name + '</div>';
+  h += '<div class="d-sub">' + d.projects + ' 个项目 · ' + d.docs + ' 份已抽取文档</div>';
+
+  h += '<div class="d-stats">';
+  h += '<div class="d-stat"><b>' + d.items.toLocaleString() + '</b><span>技术条目</span></div>';
+  h += '<div class="d-stat ' + (d.hipct >= 20 ? "hi" : "lo") + '"><b>' + d.hipct + '%</b><span>成熟 4 以上</span></div>';
+  h += '<div class="d-stat"><b>' + d.systems + '</b><span>技术体系</span></div>';
+  h += '</div>';
+
+  h += '<div class="d-block"><div class="d-block-h"><span>成熟度分布</span>' +
+    '<button class="qmark" data-mhelp="1">0–5 怎么分</button></div>';
+  h += '<div class="stair"><div class="stair-in">';
+  d.dist.forEach(function (n, i) {
+    var w = n / d.items * 100;
+    if (w > 0) {
+      h += '<span data-m="' + i + '" style="width:' + w + '%;background:' + MCOL[i] + '" data-tip="' +
+        i + ' ' + MAT[i].name + ' · ' + n + ' 条 · ' + Math.round(w) + '%"></span>';
+    }
+  });
+  h += '</div></div>';
+  h += '<div class="stair-x"><span data-m="0">0 未判定 ' + d.dist[0] + '</span>' +
+    '<span data-m="2">2 算法验证 ' + d.dist[2] + '</span>' +
+    '<span data-m="5">5 转化 ' + d.dist[5] + '</span></div></div>';
+
+  h += '<div class="d-block"><div class="d-block-h"><span>四维覆盖</span><i>点一行看口径</i></div>';
+  DIM_NAME.forEach(function (nm, i) {
+    var v = d.dims[i] / d.docs * 100;
+    var low = v < 95;
+    h += '<div class="dim' + (low ? " low" : "") + '" data-dim="' + i + '" role="button" tabindex="0" ' +
+      'aria-label="' + nm + '维覆盖 ' + Math.round(v) + '%"><span>' + nm + '</span>' +
+      '<span class="dim-bar"><i style="width:' + v.toFixed(1) + '%"></i></span>' +
+      '<span class="dim-num">' + shortPct(v) + '</span></div>';
+  });
+  h += '</div>';
+
+  var warns = [];
+  if (d.hipct === 0) warns.push(d.items + ' 条技术里没有一条达到成熟度 4，全部停在理论与算法验证。');
+  else if (d.hipct < 10) warns.push('高成熟条目仅 ' + d.hi + ' 条（' + d.hipct + '%），几乎都停在理论与算法验证。');
+  if (minDim < .95) {
+    var wi = d.dims.indexOf(Math.min.apply(null, d.dims));
+    warns.push('「' + DIM_NAME[wi] + '」维只覆盖 ' + d.dims[wi] + ' / ' + d.docs + ' 份文档（' + Math.round(minDim * 100) + '%），' + (d.docs - d.dims[wi]) + ' 份没有归纳出内容。');
+  }
+  warns.forEach(function (t) { h += '<div class="d-warn">' + t + '</div>'; });
+
+  h += '<div class="d-open"><button id="btnOpen" class="primary">打开资料库 →</button></div>';
+  document.getElementById("detail").innerHTML = h;
+  document.getElementById("btnOpen").addEventListener("click", function () {
+    var b = this;
+    b.textContent = "demo 不跳转";
+    setTimeout(function () { b.textContent = "打开资料库 →"; }, 1400);
+  });
+
+  var box = document.getElementById("detail");
+  Array.prototype.forEach.call(box.querySelectorAll(".stair span[data-tip]"), function (el) {
+    el.addEventListener("mouseenter", function () { showHint(this, this.getAttribute("data-tip")); });
+    el.addEventListener("mouseleave", hideHint);
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("[data-m]"), function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openMaturity(this, +this.getAttribute("data-m"), true);
+    });
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("[data-mhelp]"), function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openMaturity(this, -1);
+    });
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("[data-dim]"), function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openDim(this, +this.getAttribute("data-dim"));
+    });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); this.click(); }
+    });
+  });
+}
+
+function renderBanner() {
+  var max = 514;
+  var rows = LIB.slice().sort(function (a, b) { return b.projects - a.projects; });
+  document.getElementById("bannerBars").innerHTML = rows.map(function (d) {
+    var w = Math.max(2, d.projects / max * 100);
+    var hot = d.id === "med" || d.id === "robo";
+    return '<div class="b-row" title="' + d.name + '：' + d.projects + ' 个项目">' +
+      '<u>' + d.name + '</u>' +
+      '<span class="b-track"><span class="b-fill" style="width:' + w + '%;background:' + (hot ? "#7CC4FF" : "#5F8CA8") + '"></span></span>' +
+      '<span class="b-val">' + d.projects + '</span></div>';
+  }).join("");
+}
+
+var ICONS = {
+  lib:'<path d="M3 4.5h6a2 2 0 012 2V16a2 2 0 00-2-2H3z"/><path d="M17 4.5H11a2 2 0 00-2 2V16a2 2 0 012-2h6z"/>',
+  check:'<path d="M4 9l4 4 8-8"/><path d="M3 15.5h14"/>',
+  doc:'<path d="M5 3h6l5 5v10a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M11 3v5h5"/>',
+  task:'<path d="M4 5h12M4 10h12M4 15h8"/>'
+};
+function renderWorks() {
+  var items = [
+    {icon:"lib", t:"知识库", d:"11 个领域资料库，2,693 条技术", c:"#2E8B7A"},
+    {icon:"check", t:"形式审查", d:"报告与材料的形式合规检查", c:"#4E8FA6"},
+    {icon:"doc", t:"报告生成", d:"由资料库证据起草报告", c:"#B08A50"},
+    {icon:"task", t:"任务", d:"运行中与待处理的导入、抽取", c:"#7F8AA8"}
+  ];
+  document.getElementById("works").innerHTML = items.map(function (w) {
+    return '<button class="wcard">' +
+      '<span class="wico" style="color:' + w.c + ';background:' + w.c + '14">' +
+      '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' + ICONS[w.icon] + '</svg></span>' +
+      '<b>' + w.t + '</b><p>' + w.d + '</p><u>进入 →</u></button>';
+  }).join("");
+}
+
+document.getElementById("btnAll").addEventListener("click", function () {
+  mode = "all"; this.classList.add("on");
+  document.getElementById("btnGap").classList.remove("on");
+  renderMap();
+});
+document.getElementById("btnGap").addEventListener("click", function () {
+  mode = "gap"; this.classList.add("on");
+  document.getElementById("btnAll").classList.remove("on");
+  renderMap();
+});
+
+/* ---------- 阶梯段悬停浮层 ---------- */
+var hintEl = null;
+function showHint(a, text) {
+  if (!hintEl) {
+    hintEl = document.createElement("div");
+    hintEl.id = "hint";
+    document.body.appendChild(hintEl);
+  }
+  hintEl.innerHTML = text.replace(/^(\d) /, "<b>$1</b>").replace(/ · /g, "<i>·</i>");
+  hintEl.classList.add("on");
+  var r = a.getBoundingClientRect();
+  var w = hintEl.offsetWidth;
+  var left = Math.max(8 + w / 2, Math.min(r.left + r.width / 2, window.innerWidth - 8 - w / 2));
+  hintEl.style.left = left + "px";
+  hintEl.style.top = (r.bottom + 5) + "px";
+  var blk = a.closest ? a.closest(".d-block") : null;
+  var x = blk && blk.querySelector(".stair-x");
+  if (x) x.classList.add("off");
+}
+function hideHint() {
+  if (hintEl) hintEl.classList.remove("on");
+  Array.prototype.forEach.call(document.querySelectorAll(".stair-x.off"), function (x) {
+    x.classList.remove("off");
+  });
+}
+
+/* ---------- 轻量弹窗：点开、点旁边关 ---------- */
+var POP = (function () {
+  var root = document.getElementById("pop");
+  var card = null, arrow = null, body = null, cur = null, isOpen = false;
+
+  function ensure() {
+    if (card) return;
+    root.innerHTML = '<div class="pcard" role="dialog"><div class="parrow"></div><div class="pbody"></div></div>';
+    card = root.firstChild;
+    arrow = card.querySelector(".parrow");
+    body = card.querySelector(".pbody");
+  }
+
+  function place(a) {
+    var r = a.getBoundingClientRect();
+    var w = card.offsetWidth, h = card.offsetHeight;
+    var vw = window.innerWidth, vh = window.innerHeight, gap = 12;
+    var below = r.bottom + gap + h < vh - 10;
+    if (!below && r.top - gap - h < 10) below = true;
+    var top = below ? r.bottom + gap : r.top - gap - h;
+    top = Math.max(10, Math.min(top, vh - h - 10));
+    var left = r.left + r.width / 2 - w / 2;
+    left = Math.max(12, Math.min(left, vw - w - 12));
+    root.style.left = left + "px";
+    root.style.top = top + "px";
+    var ax = Math.max(16, Math.min(r.left + r.width / 2 - left, w - 16));
+    arrow.style.left = ax + "px";
+    arrow.classList.toggle("up", !below);
+    card.style.setProperty("--ox", ax + "px");
+    card.style.setProperty("--oy", below ? "0px" : "100%");
+  }
+
+  function open(a, html, opts) {
+    ensure();
+    var was = isOpen;
+    if (cur && cur !== a) cur.classList.remove("anchor-on");
+    cur = a;
+    cur.classList.add("anchor-on");
+    body.innerHTML = html;
+    card.style.width = ((opts && opts.w) || 320) + "px";
+    place(a);
+    if (!was) { root.classList.add("on"); isOpen = true; }
+  }
+
+  function close() {
+    if (!isOpen) return;
+    root.classList.remove("on");
+    isOpen = false;
+    if (cur) cur.classList.remove("anchor-on");
+    cur = null;
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!isOpen) return;
+    if (root.contains(e.target)) return;
+    if (cur && cur.contains(e.target)) return;
+    close();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+
+  var raf = null;
+  function follow() {
+    if (!isOpen || !cur) return;
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      raf = null;
+      if (!isOpen || !cur) return;
+      var r = cur.getBoundingClientRect();
+      if (!r.width && !r.height) { close(); return; }
+      if (r.bottom < 4 || r.top > window.innerHeight - 4) { close(); return; }
+      place(cur);
+    });
+  }
+  window.addEventListener("scroll", function (e) {
+    if (root.contains(e.target)) return;
+    follow();
+  }, true);
+  window.addEventListener("resize", follow);
+
+  return { open: open, close: close, isOpen: function () { return isOpen; } };
+})();
+
+/* ---------- 成熟度 6 档 ---------- */
+function openMaturity(a, hi) {
+  var sum = TOTAL.items;
+  var rows = MAT.map(function (m) {
+    var c = TOTAL.dist[m.n], p = Math.round(c / sum * 100);
+    return '<div class="mstep' + (m.n === hi ? " on" : "") + '">' +
+      '<span class="mnum" style="background:' + MCOL[m.n] + ';color:' + m.txt + '">' + m.n + '</span>' +
+      '<div><div class="mname">' + m.name + '</div>' +
+      '<div class="mdesc">' + m.read + '<span class="meg">' + m.eg + '</span></div></div>' +
+      '<span class="mcnt"><b>' + c.toLocaleString() + '</b>' + p + '%</span></div>';
+  }).join("");
+
+  POP.open(a,
+    '<div class="pop-h">技术成熟度 6 档 <em>0–5</em></div>' +
+    '<div class="pop-s">右列是全库 2,693 条的分布 · 点右栏阶梯条可定位到该档</div>' +
+    '<div class="pop-list">' + rows + '</div>' +
+    '<div class="pop-note"><b>档位名称</b>取自 <code>src/lineage.py</code> 的 MATURITY 常量；灰色小字是本页补充的判据，用于统一口径。级别由模型判定、需人工核对。</div>',
+    { w: 396 });
+}
+
+/* ---------- 三项口径 ---------- */
+function openCal(a, kind) {
+  var c = CAL[kind];
+  POP.open(a,
+    '<div class="pop-h">' + c.t + '</div>' +
+    '<div class="pop-s">' + c.s + '</div>' +
+    '<div class="pop-def">' +
+      '<div><u>怎么算</u><p>' + c.d + '</p></div>' +
+      '<div><u>为什么这样画</u><p>' + c.n + '</p></div>' +
+    '</div>', { w: 352 });
+}
+
+/* ---------- 四维覆盖 ---------- */
+function openDim(a, i) {
+  var d = byId(sel), v = DIM_DEF[i];
+  var pct = shortPct(d.dims[i] / d.docs * 100);
+  POP.open(a,
+    '<div class="pop-h">' + v.t + '维 · ' + pct + '</div>' +
+    '<div class="pop-s">' + d.name + '　' + d.dims[i] + ' / ' + d.docs + ' 份文档归纳出内容</div>' +
+    '<div class="pop-def"><div><u>这一维在问什么</u><p>' + v.d + '</p></div></div>' +
+    (pct < 95
+      ? '<div class="pop-note">还有 <b>' + (d.docs - d.dims[i]) + ' 份</b>文档没能归纳出「' + v.t + '」，这部分内容在数据里是空的，不代表没有，只代表还没抽出来。</div>'
+      : '<div class="pop-note">这一维基本抽全了，可作为其他维度抽取质量的参照。</div>'),
+    { w: 336 });
+}
+
+/* ---------- 象限与分割线 ---------- */
+var QUAD = {
+  tl: { t:"小而精 · 左上", s:"条目不破百，平均成熟度高于 2.5",
+        d:"摊子不大，但沉淀得比多数库深。生物识别（40 条 / 2.95）、生物医药（32 条 / 3.06）、信息智能（17 条 / 3.18）、社会治理（16 条 / 3.50）都在这里。",
+        n:"这一类最适合当模板：做法已经跑通，把它们的方法迁移到别的库，成本最低。" },
+  bl: { t:"少且浅 · 左下", s:"条目不破百，平均成熟度低于 2.5",
+        d:"规模本来就小，沉淀也还没起来。金融经济、农业、材料、大数据、隐私保护在这一区。",
+        n:"这里不宜再摊新方向，先把已有的条目往原型推，否则扩量只会放大低成熟条目。" },
+  brr: { t:"铺得宽 · 沉不下去 · 右下", s:"条目破百，平均成熟度低于 2.5",
+        d:"机器人自动化 1,025 条 / 1.15，是全库最典型的一例：条目占了 38%，八成停在理论与未判定。",
+        n:"条目多而成熟低，通常意味着抽取时把大量方法描述都算作了技术条目。先查口径，再谈投入。" },
+  br: { t:"右上象限为什么是空的", s:"条目破百 且 平均成熟度高于 2.5",
+        d:"没有任何一个库同时做到两件事。医疗有 1,336 条但均值 2.28，机器人 1,025 条但均值 1.15；成熟度高的几个库，条目都不超过 40。",
+        n:"这不是巧合：条目越多，混进来的低成熟条目越多，均值就越难抬高。所以「量大且深」需要先控制条目质量，不是靠继续加量。" }
+};
+
+function openQuad(a, k) {
+  var q = QUAD[k];
+  if (!q) return;
+  POP.open(a,
+    '<div class="pop-h">' + q.t + '</div>' +
+    '<div class="pop-s">' + q.s + '</div>' +
+    '<div class="pop-def">' +
+      '<div><u>谁在这里</u><p>' + q.d + '</p></div>' +
+      '<div><u>该怎么读</u><p>' + q.n + '</p></div>' +
+      '<div><u>分割线怎么定</u><p>横轴切在 100 条：11 个库里只有医疗、机器人超过 100，其余 9 个落在 16–66 之间，100 正好在断层上。纵轴切在 2.5：这是 6 档里「算法验证」与「原型样机」的中点，越过它意味着平均做出过可运行的东西。</p></div>' +
+    '</div>', { w: 344 });
+}
+
+/* ---------- 口径与边界 ---------- */
+function openCaliber(a) {
+  POP.open(a,
+    '<div class="pop-h">这张图的口径与边界</div>' +
+    '<div class="pop-s">数据取各库 lineage.json 与已抽取文档，共 11 个库</div>' +
+    '<div class="pop-def">' +
+      '<div><u>技术条目</u><p>lineage.json 的 items 计数。同一技术在多个项目下各计一次，衡量的是技术线索的厚度。</p></div>' +
+      '<div><u>覆盖项目</u><p>条目里出现过的项目编号去重后计数，一定小于等于该库项目总数。</p></div>' +
+      '<div><u>成熟度</u><p>0–5 六档，由模型逐条判定并附依据文本，取算术平均作为纵轴。</p></div>' +
+      '<div><u>四维覆盖</u><p>分母为已抽取文档数，分子为归纳出该维内容的文档数。</p></div>' +
+    '</div>' +
+    '<div class="pop-note"><b>三条边界</b>　① 成熟度为模型标注，需人工核对，不作质量评级；② 项目数在各库内去重、跨库未去重；③ 本页只做横向比较，绝对值不可对外引用。</div>',
+    { w: 388 });
+}
+
+/* ---------- 绑定 ---------- */
+Array.prototype.forEach.call(document.querySelectorAll("[data-cal]"), function (b) {
+  b.addEventListener("click", function (e) {
+    e.stopPropagation();
+    openCal(this, this.getAttribute("data-cal"));
+  });
+});
+document.getElementById("btnCaliber").addEventListener("click", function (e) {
+  e.stopPropagation(); openCaliber(this);
+});
+document.getElementById("btnMaturity").addEventListener("click", function (e) {
+  e.stopPropagation(); openMaturity(this, -1);
+});
+
+renderBanner();
+renderWorks();
+renderMap();
+renderDetail();
+</script>
+</body>
+</html>

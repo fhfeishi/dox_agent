@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>资料库概览 · 原版（2026-10-21 之前）</title>
+<style>
+  /* Design tokens copied from frontend/src/styles/globals.css so the demo reads as the product. */
+  :root {
+    --canvas: #fff;
+    --page-cool: #f5f7fa;
+    --surface-cool: #f6f8fb;
+    --surface-soft: #fafaf9;
+    --surface: #f6f5f4;
+    --track: #edf1f5;
+    --line-cool: #e2e7ee;
+    --line-cool-soft: #edf0f4;
+    --line-cool-strong: #b4c1d2;
+    --selected-cool: #eef3f9;
+    --heading: #1f3147;
+    --ink: #1a1a1a;
+    --slate: #5d5b54;
+    --steel: #787671;
+    --stone: #777e87;
+    --muted-cool: #8a98aa;
+    --muted-cool-soft: #b4bdc9;
+    --bar: #7f97b1;
+    --bar-soft: #9fb3c8;
+    --primary: #345a78;
+    --banner-1: #172a40;
+    --banner-2: #1f3a57;
+    --banner-3: #2c5373;
+    --link: #2f6690;
+    --red: #a02e6d;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--page-cool);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+      "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1200px; margin: 0 auto; padding: 28px 32px 56px; }
+  .head { margin-bottom: 14px; }
+  .head-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+  .idx { font-size: 12px; font-weight: 600; color: var(--muted-cool); font-variant-numeric: tabular-nums; }
+  h1 { margin: 0; font-size: 18px; line-height: 28px; font-weight: 600; color: var(--heading); }
+  .head-line .note { font-size: 12px; color: var(--steel); }
+  .lede { margin: 8px 0 0; max-width: 78ch; font-size: 12px; line-height: 20px; color: var(--stone); }
+  .lede b { font-weight: 600; color: var(--slate); }
+
+  /* ---- the block itself ---- */
+  .card {
+    display: grid; gap: 16px; padding: 20px;
+    border: 1px solid var(--line-cool); border-radius: 16px; background: var(--canvas);
+  }
+  @media (min-width: 900px) { .card { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } }
+
+  .card h2 { margin: 0; font-size: 14px; font-weight: 600; color: var(--heading); }
+  .hint { margin: 0 0 12px; font-size: 12px; color: var(--stone); }
+
+  .bars { list-style: none; margin: 0; padding: 0; }
+  .bars li + li { margin-top: 4px; }
+  .bar-row {
+    display: grid; grid-template-columns: minmax(96px, 9.5em) 1fr 40px;
+    align-items: center; gap: 12px; width: 100%; padding: 6px 8px;
+    border: 0; border-radius: 8px; background: transparent; cursor: pointer;
+    font: inherit; font-size: 14px; color: var(--slate); text-align: left;
+    transition: background-color 140ms ease;
+  }
+  .bar-row:hover { background: var(--surface-cool); }
+  .bar-row[aria-pressed="true"] { background: var(--selected-cool); }
+  .bar-row .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-row[aria-pressed="true"] .name { font-weight: 600; color: var(--heading); }
+  .bar-row .track { height: 8px; overflow: hidden; border-radius: 999px; background: var(--track); }
+  .bar-row .fill { display: block; height: 100%; border-radius: 999px; background: var(--bar-soft); transition: width 300ms ease; }
+  .bar-row[aria-pressed="true"] .fill { background: var(--banner-3); }
+  .bar-row .count { text-align: right; color: var(--steel); font-variant-numeric: tabular-nums; }
+
+  .detail { display: flex; flex-direction: column; padding: 16px; border-radius: 12px; background: var(--surface-cool); }
+  .detail-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .detail-head h3 { margin: 0; font-size: 18px; line-height: 28px; font-weight: 600; color: var(--heading); }
+  .detail-head .meta { font-size: 12px; color: var(--steel); }
+  .radar-wrap { flex: 1; padding: 8px 0; }
+  .radar-wrap svg { display: block; width: 100%; max-width: 460px; margin: 0 auto; }
+  .cap { margin: 0; text-align: center; font-size: 12px; color: var(--stone); }
+  .cap b { font-weight: 600; color: var(--slate); font-variant-numeric: tabular-nums; }
+  .note { margin: 4px 0 0; text-align: center; font-size: 12px; line-height: 18px; color: var(--muted-cool); }
+
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+  @media (min-width: 900px) { .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 1180px) { .cards { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .lib {
+    display: flex; flex-direction: column; padding: 10px 12px; text-align: left; cursor: pointer;
+    border: 1px solid var(--line-cool); border-radius: 12px; background: var(--canvas);
+    font: inherit; transition: border-color 140ms ease, box-shadow 140ms ease;
+  }
+  .lib:hover { border-color: var(--line-cool-strong); box-shadow: 0 1px 2px rgb(15 15 15 / 6%); }
+  .lib[aria-pressed="true"] { border-color: var(--bar); }
+  .lib-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .lib-top b:first-child { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 400; color: var(--heading); }
+  .lib-top b:last-child { flex: none; font-size: 16px; font-weight: 600; color: var(--heading); font-variant-numeric: tabular-nums; }
+  .lib .track { display: block; height: 4px; margin-top: 6px; overflow: hidden; border-radius: 999px; background: var(--track); }
+  .lib .fill { display: block; height: 100%; border-radius: 999px; background: var(--bar); }
+  .lib small { margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: var(--stone); }
+
+  footer { margin-top: 18px; font-size: 12px; line-height: 20px; color: var(--muted-cool); }
+  footer code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--steel); }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <div class="head-line">
+      <span class="idx">02</span>
+      <h1>资料库概览</h1>
+      <span class="note">点领域切换图表；点卡片在右侧查看资料库</span>
+    </div>
+    <p class="lede">改版前的形态：左边是各领域项目数的排行条，右边是所选领域的<b>应用方向雷达</b>，下方一排资料库小卡。
+      2026-10-21 起，这一块被下一份 demo 里的「积累分布图」取代——原因是项目数在顶部横幅里已经排过一次，雷达的口径也待核。</p>
+  </header>
+
+  <section class="card">
+    <div>
+      <h2>各领域项目数</h2>
+      <p class="hint">按库内识别的项目计；点一个领域查看其应用方向</p>
+      <ul class="bars" id="bars" role="group" aria-label="各领域项目数"></ul>
+    </div>
+    <div class="detail">
+      <div class="detail-head">
+        <h3 id="dname"></h3>
+        <span class="meta" id="dmeta"></span>
+      </div>
+      <div class="radar-wrap"><svg id="radar" role="img" aria-label="应用方向分布"></svg></div>
+      <p class="cap" id="dcap"></p>
+      <p class="note">有技术服务于该方向的项目数，一个项目可计入多个方向；方向由模型归纳，需人工核对</p>
+    </div>
+  </section>
+
+  <div class="cards" id="cards" aria-label="资料库卡片"></div>
+
+  <footer id="foot"></footer>
+</main>
+
+<script>
+const DATA = [{"corpus_id":"自然科学基金-AI与信息智能-56b2bbdb","name":"自然科学基金-AI与信息智能","files":5,"projects":5,"dimensions":{"场景":5,"问题":5,"技术":5,"成果":5},"dimension_evidence":{"场景":5,"问题":5,"技术":5,"成果":5},"start_years":[2022,2023],"by_year":{"2023":4,"2022":1},"hierarchy":{"generated_at":"2026-10-10T01:20:12.034638+00:00","scenes":6,"issues":10,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:18.654445+00:00","items":17,"systems":4,"state":"ready","stale_reason":"","unplaced":0,"maturity":[1,0,4,6,2,4],"avg_maturity":3.18,"high_maturity":6,"high_share":35.3,"top":[{"name":"法律知识图谱结构化表达与质量控制","field":"司法与法律智能服务","maturity":5,"basis":"法律知识图谱结构化表示"},{"name":"知识增强类型约束与语法引导生成","field":"司法与法律智能服务","maturity":5,"basis":"语法引导生成落地法衡模型"},{"name":"软模板与反事实推理难度可控生成","field":"司法与法律智能服务","maturity":5,"basis":"难度可控生成落地法衡模型"}],"systems_detail":[{"name":"生成式人工智能","plain":"让机器自动生成和改写图像文字，类似智能作画写作。","items":6,"sample":"问答生成模块化对偶协同学习"},{"name":"光学与光电计算","plain":"用光代替部分电子计算，做成更快更省电的智能计算芯片。","items":5,"sample":"衍射深度神经网络与光电混合架构"},{"name":"知识工程与语言智能","plain":"把资料整理成机器可用的知识，并帮助生成可靠文字和问答。","items":3,"sample":"法律知识图谱结构化表达与质量控制"},{"name":"数据与评价治理","plain":"把数据整理好、评价智能系统好不好，并管理研究项目。","items":3,"sample":"主客观结合的评价体系"}]},"pending_identity":0,"fields":[["人工智能战略研究管理",1],["中国画与美育智能",1],["非遗与设计智能协同",1],["司法与法律智能服务",1],["光学智能计算",1]],"funding":{"total_yuan":"4480000.0","projects":5,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2023":3900000.0,"2022":580000.0}},{"corpus_id":"自然科学基金-AI与农业-1b5ff5aa","name":"自然科学基金-AI与农业","files":13,"projects":13,"dimensions":{"场景":13,"问题":13,"技术":13,"成果":13},"dimension_evidence":{"场景":12,"问题":12,"技术":13,"成果":13},"start_years":[2021,2022,2023],"by_year":{"2021":7,"2022":5,"2023":1},"hierarchy":{"generated_at":"2026-10-10T01:21:07.897606+00:00","scenes":6,"issues":14,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:21.002206+00:00","items":48,"systems":8,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,16,18,6,6,2],"avg_maturity":2.17,"high_maturity":8,"high_share":16.7,"top":[{"name":"多模态表型平台与智能分析系统","field":"粮食作物设计育种","maturity":5,"basis":"平台推广117套且专利转化"},{"name":"完整实例挖掘弱监督叶片分割","field":"农业智能信息与生态监测","maturity":5,"basis":"弱监督实例分割完成专利转化"},{"name":"DeepLabV3+作物行语义分割","field":"作物机械化导航","maturity":4,"basis":"车载系统导航精度0.03m"}],"systems_detail":[{"name":"计算机视觉","plain":"让计算机像人一样看图和视频，识别物体、动作和结构。","items":10,"sample":"完整实例挖掘弱监督叶片分割"},{"name":"遥感与地理信息","plain":"从卫星和无人机影像中分析地块、环境和变化，是遥感的智能化延伸。","items":10,"sample":"无人机影像组合算法模型"},{"name":"生物信息与遗传育种","plain":"用数据和分子工具读基因、改基因、找关联，是遗传学的计算化延伸。","items":9,"sample":"基因编辑创制功能变异组合"},{"name":"机器学习","plain":"让计算机从大量样本中自动找规律，用于识别、预测和决策。","items":6,"sample":"注意力机制领域自适应识别"},{"name":"传感与检测","plain":"用传感器采集气味、颜色、位置等信号，再判断状态。","items":5,"sample":"GNSS/IMU卡尔曼滤波融合"},{"name":"数据融合与知识工程","plain":"把不同来源的数据拼在一起，组织成机器能用的知识，支撑查询和推理。","items":4,"sample":"多模态表型平台与智能分析系统"},{"name":"建模与仿真","plain":"用数学公式和计算机模拟系统变化，做预测和风险评估。","items":3,"sample":"关键生育期与日变化规律研究"},{"name":"控制与决策","plain":"让机器按目标自动调整动作和路径，是经典控制与强化学习的结合。","items":1,"sample":"LQR与DDQN路径跟踪控制器"}]},"pending_identity":0,"fields":[["农业智能信息与生态监测",5],["粮食作物设计育种",4],["小麦质量与长势监测",1],["家禽健康智能监测",1],["作物机械化导航",1],["马铃薯与农田水分管理",1]],"funding":{"total_yuan":"300000.0","projects":1,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2021":0.0,"2022":0.0,"2023":300000.0}},{"corpus_id":"自然科学基金-AI与医疗-8e4aeeec","name":"自然科学基金-AI与医疗","files":517,"projects":514,"dimensions":{"场景":514,"问题":514,"技术":514,"成果":514},"dimension_evidence":{"场景":514,"问题":513,"技术":514,"成果":467},"start_years":[2018,2019,2020,2021,2022,2023,2024],"by_year":{"2022":187,"2023":126,"2020":66,"2021":102,"2024":2,"2019":24,"2018":7},"hierarchy":{"generated_at":"2026-10-10T01:21:14.028163+00:00","scenes":6,"issues":18,"state":"ready"},"lineage":{"generated_at":"2026-10-10T08:32:53.530163+00:00","items":1336,"systems":5,"state":"ready","stale_reason":"","unplaced":1,"maturity":[38,278,609,174,155,82],"avg_maturity":2.28,"high_maturity":237,"high_share":17.7,"top":[{"name":"AI自动后处理与狭窄诊断","field":"心血管疾病","maturity":5,"basis":"与公司合作开发并临床验证"},{"name":"CT与SPECT影像互相转化的SPECT高分辨率增强","field":"","maturity":5,"basis":"第三方测评认证满足临床需求"},{"name":"CT与病理切片融合深度学习预后模型","field":"消化系统肿瘤","maturity":5,"basis":"预后模型验证AUC0.809，已转化"}],"systems_detail":[{"name":"医学影像分析","plain":"重建影像、定位病变、测量结构","items":525,"sample":"广义混合去噪扩散模型医学影像合成"},{"name":"临床决策支持","plain":"评估风险、比较方案、辅助判断","items":371,"sample":"CT与病理切片融合深度学习预后模型"},{"name":"生物医学信号处理","plain":"采集身体信号，改善质量并提取信息","items":199,"sample":"RAMS拉曼激活微流控分选系统"},{"name":"组学分析","plain":"从大量特征中研究疾病差异与关联","items":182,"sample":"多组学多模态融合预测模型与一站式人工智能辅助决策系统"},{"name":"数据治理与隐私计算","plain":"整理数据，支持可靠共享与协作","items":58,"sample":"多中心磁共振影像规范化系统"}]},"pending_identity":0,"fields":[["神经系统疾病与精神障碍",95],["乳腺癌与妇科肿瘤",45],["肺癌与肺结节",43],["消化系统肿瘤",41],["肝脏与胆道疾病",36],["心血管疾病",35]],"funding":{"total_yuan":"266830000.0","projects":499,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2022":93610000.0,"2023":38300000.0,"2020":47260000.0,"2021":58170000.0,"2024":700000.0,"2019":23190000.0,"2018":5600000.0}},{"corpus_id":"自然科学基金-AI与大数据-bffa8b27","name":"自然科学基金-AI与大数据","files":10,"projects":10,"dimensions":{"场景":10,"问题":10,"技术":10,"成果":10},"dimension_evidence":{"场景":10,"问题":10,"技术":10,"成果":10},"start_years":[2022,2023,2025],"by_year":{"2022":4,"2025":1,"2023":5},"hierarchy":{"generated_at":"2026-10-10T01:20:11.595518+00:00","scenes":6,"issues":15,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:31:49.692813+00:00","items":31,"systems":6,"state":"ready","stale_reason":"","unplaced":0,"maturity":[1,5,14,4,4,3],"avg_maturity":2.45,"high_maturity":7,"high_share":22.6,"top":[{"name":"UMAP降维与高斯混合聚类","field":"临床精准诊疗与药物研发","maturity":5,"basis":"磐安县示范项目与改善率"},{"name":"智能治未病调体方案框架","field":"公共卫生与基层健康","maturity":5,"basis":"磐安县示范项目与改善率"},{"name":"混合权重计算框架","field":"公共卫生与基层健康","maturity":5,"basis":"磐安县示范，体质改善率"}],"systems_detail":[{"name":"统计与因果推断","plain":"用统计和因果模型把数据中的相关规律变成可信结论。","items":9,"sample":"DAC与EIS等边际似然计算方法"},{"name":"机器学习与数据挖掘","plain":"让计算机从数据中自动找规律，用于预测、分组和解释。","items":7,"sample":"UMAP降维与高斯混合聚类"},{"name":"网络与图分析","plain":"用点和连线表示复杂关系，找关键节点和群体。","items":4,"sample":"复杂疾病相似性网络框架"},{"name":"建模与仿真","plain":"用数学模型模拟事物怎么变化，并评估风险。","items":4,"sample":"高保真数字孪生模型"},{"name":"数据科学与大数据","plain":"把数据采好、管好、连起来，并让团队共享使用。","items":4,"sample":"边缘计算实时采集与预处理"},{"name":"优化与决策","plain":"在多个指标和限制下做权衡，给出评价和选择。","items":3,"sample":"混合权重计算框架"}]},"pending_identity":0,"fields":[["统计方法与大数据分析",3],["临床精准诊疗与药物研发",3],["公共卫生与基层健康",2],["矿山智能化安全生产",1],["网络谣言治理与辟谣",1],["企业绿色创新与气候金融",1]],"funding":{"total_yuan":"0","projects":0,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2022":0.0,"2025":0.0,"2023":0.0}},{"corpus_id":"自然科学基金-AI与机器人自动化-2eba783a","name":"自然科学基金-AI与机器人自动化","files":510,"projects":510,"dimensions":{"场景":510,"问题":510,"技术":510,"成果":510},"dimension_evidence":{"场景":510,"问题":246,"技术":510,"成果":510},"start_years":[2017,2018,2019,2020,2021,2022,2023,2024],"by_year":{"2020":83,"2022":131,"2023":93,"2021":114,"2019":54,"2017":2,"2018":31,"2024":2},"hierarchy":{"generated_at":"2026-10-10T02:05:43.681416+00:00","scenes":6,"issues":18,"state":"ready"},"lineage":{"generated_at":"2026-10-10T02:04:17.201792+00:00","items":1025,"systems":8,"state":"stale","stale_reason":"场景归纳已重新生成，应用领域需要随之更新","unplaced":2,"maturity":[169,659,96,79,17,5],"avg_maturity":1.15,"high_maturity":22,"high_share":2.1,"top":[{"name":".相关研究成果已成功应用于我国首次空间仿生操控任务\"试验二十四号C\"卫星主载荷的研制任务，为方案设计、控制边界确定以及多","field":"","maturity":5,"basis":"成果应用于卫星主载荷研制"},{"name":"5）高铁接触网点云识别、分割方法设计及实现；","field":"工业制造与机器人作业","maturity":5,"basis":"已在CPS例化产品实现"},{"name":"7）高铁巡检机器人平台上的视觉感知方法设计；","field":"工业制造与机器人作业","maturity":5,"basis":"已在巡检机器人实现"}],"systems_detail":[{"name":"控制理论与方法","plain":"让机器人按期望稳定精准运动，并能安全地接触和协作。","items":242,"sample":"1）自主研发了集成多模态智能感知、智能规划决策和智能控制等功能的无驾驶舱原生集成式智能无人碾压机，实现了复杂条件下碾压过"},{"name":"机器学习","plain":"让机器从数据中学会识别、预测和决策，而非只靠人工规则。","items":229,"sample":"本项目针对月基机器人装配面临的场景复杂多变、装配定位精度高、多任务复合、少训练样本等难题，系统开展了基于深度强化学习的机"},{"name":"运动规划与导航","plain":"让机器人知道往哪走、怎么走，以及怎么完成抓取和操作。","items":138,"sample":"搭建了包括组合导航、激光雷达、整车CAN网络、TX2控制器在内的线控无人平台，对所提出的算法实时性进行了实车验证，结果表"},{"name":"机构与驱动","plain":"设计机器人的身体、关节和肌肉，让它能灵活安全地动。","items":119,"sample":"设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、"},{"name":"计算机视觉与感知","plain":"让机器看懂图像和三维环境，知道有什么、在哪里、怎么动。","items":105,"sample":"7）高铁巡检机器人平台上的视觉感知方法设计；"},{"name":"传感与检测","plain":"给机器人装上感觉，让它知道力、触觉和身体状态。","items":91,"sample":"为应对这一挑战，本项目在情感因素对运动控制表现的影响规律、人机情感交互的神经电信号特征解析与识别建模方法、人机情感交互技"},{"name":"优化与决策","plain":"在多个目标和约束下，帮机器人找到最好或最稳的方案。","items":50,"sample":"然后考虑环境扰动、约束等复杂情况，提出了基于视-触融合的人机博弈控制策略，实现任务驱动下人和机器人控制决策的智能分配，提"},{"name":"建模与仿真","plain":"用数学模型和仿真环境提前验证机器人怎么动、怎么控。","items":49,"sample":".相关研究成果已成功应用于我国首次空间仿生操控任务\"试验二十四号C\"卫星主载荷的研制任务，为方案设计、控制边界确定以及多"}]},"pending_identity":0,"fields":[["工业制造与机器人作业",103],["医疗康复与手术机器人",92],["多智能体/群体智能与服务机器人",76],["空中机器人与无人机集群",57],["海洋与水下无人系统",56],["智能驾驶与地面无人车",51]],"funding":{"total_yuan":"314960000.0","projects":500,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2020":52920000.0,"2022":72260000.0,"2023":34180000.0,"2021":68140000.0,"2019":33460000.0,"2017":5450000.0,"2018":48150000.0,"2024":400000.0}},{"corpus_id":"自然科学基金-AI与材料-e7d0139e","name":"自然科学基金-AI与材料","files":14,"projects":14,"dimensions":{"场景":14,"问题":14,"技术":14,"成果":14},"dimension_evidence":{"场景":14,"问题":14,"技术":14,"成果":14},"start_years":[2021,2022,2023],"by_year":{"2022":4,"2023":9,"2021":1},"hierarchy":{"generated_at":"2026-10-10T02:01:34.797596+00:00","scenes":6,"issues":16,"state":"ready"},"lineage":{"generated_at":"2026-10-10T02:09:08.129216+00:00","items":46,"systems":4,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,8,18,13,4,3],"avg_maturity":2.48,"high_maturity":7,"high_share":15.2,"top":[{"name":"人工蜂群复杂结构演化","field":"光电与晶体材料设计","maturity":5,"basis":"结构预测软件集成CALYPSO"},{"name":"机器学习势能计算","field":"光电与晶体材料设计","maturity":5,"basis":"结构预测软件集成CALYPSO"},{"name":"深度学习生成结构模型","field":"光电与晶体材料设计","maturity":5,"basis":"结构预测软件集成CALYPSO"}],"systems_detail":[{"name":"机器学习与数据驱动","plain":"让计算机从数据中自动找规律，做预测和识别。","items":17,"sample":"深度学习生成结构模型"},{"name":"计算物理与化学","plain":"用计算机从电子和原子尺度算物质性质与变化。","items":13,"sample":"机器学习势能计算"},{"name":"优化与智能决策","plain":"在大量方案中自动搜索最优或均衡方案。","items":9,"sample":"人工蜂群复杂结构演化"},{"name":"传感与信号处理","plain":"用传感器采集信号，再分析波形和振动判断对象状态。","items":7,"sample":"随机子空间自动运营模态识别"}]},"pending_identity":0,"fields":[["金属与高分子材料先进制造",3],["土木与交通基础设施安全",3],["催化材料与能源转化",3],["光电与晶体材料设计",3],["脑科学与连接组学",1],["人居环境与建筑智能",1]],"funding":{"total_yuan":"1480000.0","projects":4,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2022":580000.0,"2023":900000.0,"2021":0.0}},{"corpus_id":"自然科学基金-AI与生物医药-e6e81920","name":"自然科学基金-AI与生物医药","files":9,"projects":9,"dimensions":{"场景":9,"问题":9,"技术":9,"成果":9},"dimension_evidence":{"场景":9,"问题":9,"技术":9,"成果":9},"start_years":[2021,2022,2023],"by_year":{"2022":3,"2023":4,"2021":2},"hierarchy":{"generated_at":"2026-10-10T01:26:25.575082+00:00","scenes":6,"issues":14,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:47.464051+00:00","items":32,"systems":5,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,1,10,14,0,7],"avg_maturity":3.06,"high_maturity":7,"high_share":21.9,"top":[{"name":"DeepLigbuilder分子生成","field":"药物分子智能设计与抗病毒研发","maturity":5,"basis":"分子生成方法用户超10万人次"},{"name":"DeepRLI打分函数与DiffBindFR对接","field":"药物分子智能设计与抗病毒研发","maturity":5,"basis":"方法与数据库用户超10万人次"},{"name":"ProBEiT与ProStab精准AI模型","field":"工业酶制剂与生物催化","maturity":5,"basis":"AI模型支撑关键酶突变体转化"}],"systems_detail":[{"name":"计算生物学","plain":"把生物数据变成计算问题，预测结构和相互作用。","items":12,"sample":"DeepLigbuilder分子生成"},{"name":"传感与检测","plain":"用仪器和算法把微弱信号读出来，并让结果更清楚可靠。","items":11,"sample":"星状分形金纳米颗粒SERS阵列"},{"name":"建模与仿真","plain":"在计算机里模拟事物如何运动和相互作用，减少试错实验。","items":6,"sample":"DeepRLI打分函数与DiffBindFR对接"},{"name":"实验自动化","plain":"让机器自动做实验、记数据，并用模型决定下一轮。","items":2,"sample":"高通量筛选与数据构建体系"},{"name":"优化与决策","plain":"在众多可能做法中自动挑较好方案，并根据结果不断修正。","items":1,"sample":"多目标遗传算法与强化学习闭环"}]},"pending_identity":0,"fields":[["工业酶制剂与生物催化",2],["药物分子智能设计与抗病毒研发",2],["活体细胞与组织成像监测",2],["抗肿瘤药物研发与精准用药",1],["临床联合用药与新疗法开发",1],["微流控芯片设计与研发自动化",1]],"funding":{"total_yuan":"8950000.0","projects":9,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2022":1800000.0,"2023":1200000.0,"2021":5950000.0}},{"corpus_id":"自然科学基金-AI与生物识别-5d9941c1","name":"自然科学基金-AI与生物识别","files":10,"projects":10,"dimensions":{"场景":10,"问题":10,"技术":10,"成果":10},"dimension_evidence":{"场景":10,"问题":10,"技术":10,"成果":10},"start_years":[2020,2021,2022,2023],"by_year":{"2023":2,"2022":3,"2020":3,"2021":2},"hierarchy":{"generated_at":"2026-10-10T01:23:56.732084+00:00","scenes":6,"issues":17,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:40.155628+00:00","items":40,"systems":4,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,2,13,14,7,4],"avg_maturity":2.95,"high_maturity":11,"high_share":27.5,"top":[{"name":"个体全息化数字肝脏","field":"肝脏肿瘤外科","maturity":5,"basis":"临床应用并多中心研究验证"},{"name":"垂体瘤七型分类系统与放疗预测模型","field":"垂体腺瘤与临床预测","maturity":5,"basis":"分类系统预测模型及软件平台"},{"name":"多任务深度学习分割与侵袭识别","field":"垂体腺瘤与临床预测","maturity":5,"basis":"分割识别模型及软件平台"}],"systems_detail":[{"name":"统计遗传与组学","plain":"从大量基因和分子数据中找疾病线索和个体特征。","items":15,"sample":"衰老组学多维数据分析平台"},{"name":"机器学习与智能预测","plain":"让计算机从大量资料中自动找规律，辅助判断疾病和分型。","items":11,"sample":"多任务深度学习分割与侵袭识别"},{"name":"分子探针与生物传感","plain":"做能专一识别疾病分子的“分子钥匙”和检测工具。","items":9,"sample":"人工智能结合定向进化与截短"},{"name":"医学影像与信号分析","plain":"把医学图像处理得更清楚，并提取可量化的影像特征。","items":5,"sample":"多中心数据库与多组学整合"}]},"pending_identity":0,"fields":[["法医与公共卫生安全",3],["衰老与老年健康",2],["肝脏肿瘤外科",2],["神经系统遗传病",1],["垂体腺瘤与临床预测",1],["肿瘤免疫与糖抗体",1]],"funding":{"total_yuan":"0","projects":0,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2023":0.0,"2022":0.0,"2020":0.0,"2021":0.0}},{"corpus_id":"自然科学基金-AI与社会治理-1efca308","name":"自然科学基金-AI与社会治理","files":4,"projects":4,"dimensions":{"场景":4,"问题":4,"技术":4,"成果":4},"dimension_evidence":{"场景":4,"问题":4,"技术":4,"成果":4},"start_years":[2022],"by_year":{"2022":4},"hierarchy":{"generated_at":"2026-10-10T01:28:30.346234+00:00","scenes":6,"issues":9,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:15.542192+00:00","items":16,"systems":5,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,0,4,4,4,4],"avg_maturity":3.5,"high_maturity":8,"high_share":50.0,"top":[{"name":"人工智能属性量表与元分析框架","field":"开放创新价值共创","maturity":5,"basis":"设计原则已被企业采纳，获领导批示"},{"name":"多情景对照实验设计","field":"企业产品设计智能化","maturity":5,"basis":"设计原则已被企业采纳，获领导批示"},{"name":"用户价值共创四象限模型","field":"开放创新价值共创","maturity":5,"basis":"设计原则已被企业采纳，获领导批示"}],"systems_detail":[{"name":"优化与决策","plain":"设计规则和方案，让多方参与时更容易达成目标。","items":5,"sample":"用户价值共创四象限模型"},{"name":"数据科学与可信计算","plain":"把数据管好、保护好，支持多方协作。","items":4,"sample":"社会自我信息标签降隐私担忧"},{"name":"社会测量与评估","plain":"把抽象概念变成可测量题项和模型，用于评估。","items":3,"sample":"人工智能属性量表与元分析框架"},{"name":"机器学习与智能感知","plain":"让机器从数据中找规律，用于识别、分类和预测。","items":2,"sample":"LDA情境感知与情感分析测评"},{"name":"建模与仿真","plain":"建立数学模型，模拟和预测系统怎么变。","items":2,"sample":"注意力机制LSTM能耗建模"}]},"pending_identity":0,"fields":[["乡村教师队伍建设",1],["开放创新价值共创",1],["企业产品设计智能化",1],["旅游者幸福提升",1],["文旅数字化转型",1],["民族地区舆情治理",1]],"funding":{"total_yuan":"1740000.0","projects":4,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2022":1740000.0}},{"corpus_id":"自然科学基金-AI与金融经济-3e383353","name":"自然科学基金-AI与金融经济","files":20,"projects":20,"dimensions":{"场景":20,"问题":20,"技术":20,"成果":20},"dimension_evidence":{"场景":20,"问题":20,"技术":20,"成果":20},"start_years":[2020,2021,2022,2023],"by_year":{"2023":6,"2021":7,"2022":6,"2020":1},"hierarchy":{"generated_at":"2026-10-10T01:28:13.441235+00:00","scenes":6,"issues":18,"state":"ready"},"lineage":{"generated_at":"2026-10-10T01:32:45.864823+00:00","items":66,"systems":5,"state":"ready","stale_reason":"","unplaced":0,"maturity":[3,14,39,7,0,3],"avg_maturity":1.94,"high_maturity":3,"high_share":4.5,"top":[{"name":"Meta回归与空间面板模型","field":"双碳治理与民生","maturity":5,"basis":"成果被民盟北京市委采纳"},{"name":"多目标优化算法改进","field":"","maturity":5,"basis":"成果被民盟北京市委员会采纳"},{"name":"金融风险动态空间溢出效应","field":"金融安全与监管","maturity":5,"basis":"成果被民盟北京市委员会采纳"}],"systems_detail":[{"name":"优化、决策与博弈","plain":"像运筹学和博弈论那样，帮人在复杂局面中选最优方案。","items":16,"sample":"多目标优化算法改进"},{"name":"网络、行为与可信治理","plain":"把机构关系看成网络，用实验和可信工具辅助风险与治理。","items":16,"sample":"风险共振集聚传染预警建模"},{"name":"机器学习与智能计算","plain":"让计算机从数据中自动找规律并做判断，像统计模型加上自适应学习。","items":14,"sample":"机器学习与复杂网络结合测度"},{"name":"计量经济与因果推断","plain":"从经济数据中找因果和相互影响，像自然实验与统计检验。","items":13,"sample":"Meta回归与空间面板模型"},{"name":"自然语言与知识工程","plain":"让机器自动阅读文字、提取要点并织成关系网，像智能速读与归档。","items":7,"sample":"假新闻检测系统"}]},"pending_identity":0,"fields":[["金融机构与投资",8],["企业数智化经营",5],["金融安全与监管",4],["双碳治理与民生",3],["外贸海运与供应链",2],["医疗临床决策支持",1]],"funding":{"total_yuan":"2560000.0","projects":8,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2023":1800000.0,"2021":0.0,"2022":760000.0,"2020":0.0}},{"corpus_id":"自然科学基金-AI与隐私保护-227d40cf","name":"自然科学基金-AI与隐私保护","files":10,"projects":10,"dimensions":{"场景":10,"问题":10,"技术":10,"成果":10},"dimension_evidence":{"场景":10,"问题":10,"技术":10,"成果":10},"start_years":[2022,2023],"by_year":{"2023":4,"2022":6},"hierarchy":{"generated_at":"2026-10-10T02:03:59.621146+00:00","scenes":6,"issues":18,"state":"ready"},"lineage":{"generated_at":"2026-10-10T02:09:02.547942+00:00","items":36,"systems":5,"state":"ready","stale_reason":"","unplaced":0,"maturity":[0,22,8,6,0,0],"avg_maturity":1.56,"high_maturity":0,"high_share":0.0,"top":[],"systems_detail":[{"name":"优化与可信协同","plain":"在多方协作中优化计算资源，用竞价、共识和上链来建立信任。","items":9,"sample":"区块链驱动联邦学习原型系统"},{"name":"联邦学习与隐私计算","plain":"让多个机构各自保留数据，只交换加密或中间结果来共同训练模型。","items":8,"sample":"多阶段自适应差分隐私异步联邦学习"},{"name":"模型安全与遗忘","plain":"让模型按请求删除特定数据影响，并检查删除后是否安全可信。","items":8,"sample":"抗恶意敌手预测训练框架"},{"name":"图学习与对抗安全","plain":"针对关系网络数据，学习节点和子图表示，并识别和抵御恶意干扰。","items":6,"sample":"隐私漏斗与变分学习图表示优化"},{"name":"差分隐私与隐私度量","plain":"给数据或模型加可控噪声，让别人难以反推出具体个体信息。","items":5,"sample":"差分隐私训练框架"}]},"pending_identity":0,"fields":[["联邦学习与模型遗忘服务",5],["社交网络与图隐私应用",3],["车路云与边缘协同服务",2],["商务智能与数据要素流通",1]],"funding":{"total_yuan":"0","projects":0,"scope":"awarded","label":"批准资助金额"},"funding_by_year":{"2023":0.0,"2022":0.0}}];
+</script>
+<script>
+const short = (n) => n.replace(/^自然科学基金-/, "");
+const fmt = (n) => Number(n).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
+const rows = DATA.filter((r) => r.projects > 0).sort((a, b) => b.projects - a.projects);
+const most = Math.max(1, ...rows.map((r) => r.projects));
+const years = (r) => (r.start_years && r.start_years.length ? `${r.start_years[0]}–${r.start_years.at(-1)}` : "年份待核对");
+const money = (r) => (r.funding && r.funding.projects ? `${fmt(Number(r.funding.total_yuan) / 10000)} 万元（${r.funding.projects} 个项目）` : "");
+let chosen = rows[0];
+
+const $ = (id) => document.getElementById(id);
+
+/* --- left: ranked bars --- */
+$("bars").innerHTML = rows.map((r) => `
+  <li>
+    <button type="button" class="bar-row" data-id="${r.corpus_id}" aria-pressed="${r.corpus_id === chosen.corpus_id}">
+      <span class="name" title="${short(r.name)}">${short(r.name)}</span>
+      <span class="track"><span class="fill" style="width:${Math.max(2, (r.projects / most) * 100)}%"></span></span>
+      <span class="count">${r.projects}</span>
+    </button>
+  </li>`).join("");
+
+/* --- bottom: small library cards --- */
+$("cards").innerHTML = rows.map((r) => `
+  <button type="button" class="lib" data-id="${r.corpus_id}" aria-pressed="${r.corpus_id === chosen.corpus_id}">
+    <span class="lib-top"><b title="${short(r.name)}">${short(r.name)}</b><b>${r.projects}</b></span>
+    <span class="track"><span class="fill" style="width:${Math.max(2, (r.projects / most) * 100)}%"></span></span>
+    <small>${years(r)}${money(r) ? ` · ${fmt(Number(r.funding.total_yuan) / 10000)} 万元` : ""}</small>
+  </button>`).join("");
+
+/* --- right: the radar, geometry straight from components/Charts.tsx --- */
+const ceiling = (v) => {
+  if (v <= 1) return 1;
+  const p = 10 ** Math.floor(Math.log10(v));
+  return [1, 2, 2.5, 5, 10].map((m) => m * p).find((c) => c >= v);
+};
+const clip = (text, n) => (text.length > n ? text.slice(0, n - 1) + "…" : text);
+
+function radar(fields, total) {
+  const n = fields.length;
+  const c = 150, r = 100;
+  const top = Math.max(...fields.map(([, v]) => v), 0);
+  const max = Math.max(top, 1, Math.min(total, ceiling(top * 1.25)));
+  const point = (i, v) => {
+    const a = -Math.PI / 2 + (2 * Math.PI * i) / n;
+    return [c + Math.cos(a) * r * v, c + Math.sin(a) * r * v];
+  };
+  const ring = (f) => fields.map((_, i) => point(i, f).join(",")).join(" ");
+  const spokes = fields.map((_, i) => {
+    const [x, y] = point(i, 1);
+    return `<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="var(--line-cool)" />`;
+  }).join("");
+  const rings = [0.25, 0.5, 0.75, 1].map((f) =>
+    `<polygon points="${ring(f)}" fill="none" stroke="var(--line-cool)" />`).join("");
+  const scale = [0.5, 1].map((f) =>
+    `<text x="${c + 4}" y="${c - r * f + 10}" font-size="9" fill="var(--stone)">${Number((max * f).toFixed(1))}</text>`).join("");
+  const shape = `<polygon points="${fields.map(([, v], i) => point(i, v / max).join(",")).join(" ")}"
+    fill="var(--primary)" fill-opacity=".22" stroke="var(--primary)" stroke-width="2" />`;
+  const dots = fields.map(([label, v], i) => {
+    const [x, y] = point(i, v / max);
+    return `<circle cx="${x}" cy="${y}" r="3" fill="var(--primary)"><title>${label}：${v} 个项目</title></circle>`;
+  }).join("");
+  const labels = fields.map(([label, v], i) => {
+    const [x, y] = point(i, 1.22);
+    const anchor = Math.abs(x - c) < 8 ? "middle" : x > c ? "start" : "end";
+    return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle" font-size="11" fill="var(--slate)">${clip(label, 10)} ${v}</text>`;
+  }).join("");
+  return `<svg id="radar" viewBox="-90 -6 480 312" class="mx-auto" role="img" aria-label="应用方向分布">
+    ${rings}${spokes}${scale}${shape}${dots}${labels}</svg>`;
+}
+
+function paint() {
+  const r = chosen;
+  $("dname").textContent = short(r.name);
+  const fund = money(r);
+  $("dmeta").textContent = `${r.projects} 个项目 · 立项 ${years(r)}${fund ? ` · 已知经费 ${fund}` : ""}`;
+  const fields = (r.fields || []).slice(0, 8);
+  if (fields.length >= 3) {
+    $("radar").outerHTML = radar(fields, r.projects);
+    const top = Math.max(...fields.map(([, v]) => v), 0);
+    const max = Math.max(top, 1, Math.min(r.projects, ceiling(top * 1.25)));
+    $("dcap").innerHTML = `外圈为 <b>${max}</b> 个项目${max === r.projects ? "，即全部" : `，共 ${r.projects}`}`;
+  } else {
+    // Fewer than three directions: the real chart falls back to bars rather than drawing a sliver.
+    $("radar").outerHTML = `<svg id="radar" viewBox="0 0 320 ${fields.length * 30 + 20}" role="img" aria-label="应用方向分布">
+      ${fields.map(([label, v], i) => `<g transform="translate(0 ${i * 30 + 14})">
+        <text x="0" y="4" font-size="11" fill="var(--slate)">${clip(label, 12)}</text>
+        <rect x="110" y="-6" width="${Math.max(2, (v / Math.max(1, ...fields.map(([, n]) => n))) * 150)}" height="12" rx="6" fill="var(--primary)" fill-opacity=".35"/>
+        <text x="270" y="4" font-size="11" fill="var(--steel)">${v}</text></g>`).join("")}
+    </svg>`;
+    $("dcap").innerHTML = `该领域只归纳出 <b>${fields.length}</b> 个应用方向，不足以画雷达`;
+  }
+  document.querySelectorAll(".bar-row, .lib").forEach((el) => {
+    el.setAttribute("aria-pressed", String(el.dataset.id === r.corpus_id));
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const hit = event.target.closest(".bar-row, .lib");
+  if (!hit) return;
+  chosen = rows.find((r) => r.corpus_id === hit.dataset.id) || chosen;
+  paint();
+});
+
+const items = rows.reduce((n, r) => n + r.lineage.items, 0);
+const projects = rows.reduce((n, r) => n + r.projects, 0);
+const dates = rows.flatMap((r) => r.start_years || []);
+$("foot").innerHTML = `数据来自 <code>.knowledge/自然科学基金-*</code> 的 lineage 与项目索引：${rows.length} 个资料库 ·
+  ${fmt(items)} 条技术 · ${fmt(projects)} 个项目 · 立项 ${Math.min(...dates)}–${Math.max(...dates)}。
+  项目在各库内按批准号去重，跨库合计未去重；经费只统计报告里给出的金额。demo 生成于 2026-10-21。`;
+
+paint();
+</script>
+</body>
+</html>

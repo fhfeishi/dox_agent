@@ -1,5 +1,11 @@
 # DECISIONS — dox_agent 关键决策
 
+## 索引
+
+- D-20261021-1 采用 aevum/projection_dox 文档体系（规则、检查与基线）｜文档制度、规则检查、基线｜现行
+- D-20261021-2 引入 baoyu-design skill，安装产物不入库｜skill、依赖安装、版本控制｜现行
+- D-20261022-1 工作文档名称不强制带日期｜工作文档命名、check_rules C8｜现行
+
 ## 预览以原始文件为准（2026-09-22）
 
 - 采用：文档预览对 PDF 直接展示原始文件（浏览器原生 `/file` + `#page=`，沿用 D6 降级），不再把抽取文本整篇拼接渲染；Markdown / txt / Word 才走规范化正文预览。
@@ -812,3 +818,26 @@
 
 - 用户指示：连接 DeepSeek 务必不走系统代理、直连。取消 `MODEL_USE_PROXY`，问答、报告、四维提取、审查与连接检查的 HTTP 客户端一律 `trust_env=False`；`.env` 中残留的该项被忽略。替代 2026-10-09 “经 `.env` 可选代理”的做法。代价：本机代理软件以 fake-ip 接管 DNS 时直连不可达，须在该软件中放行模型地址；启动检查会识别 198.18.0.0/15 并给出这一提示。
 - 用户确认：档案字段“资助金额”（supportNum）未写单位，按万元计入批准资助金额。替代 2026-10-19 “首页经费图只用直接经费”：首页与概览改为对所有库统一取给出金额项目最多的口径，并写明口径名与覆盖项目数，仍不混用不同口径。
+
+## D-20261021-1 采用 aevum/projection_dox 文档体系（规则、检查与基线）
+
+- 决定与范围：把 `projection_dox` 的规则与检查机制并入本项目：`AGENTS.md` 换成该模板正文（保留本项目 `check.sh` 与验证入口的既有事实，不改工程行为）；`.agents/DOCUMENTS.md` 按本项目载体登记“项目映射”（PROJECTION → `PROJECT.md`、INTERACTION → `ITERATION.md`）；`.agents/rules/` 四份方法文档、`.agents/skills/ui-component-sourcing/`、`.agents/verifier/check_rules.py` 与 `test_check_rules.py` 一并纳入。用户选择“只接入规则与检查，历史用基线兼容”（A 方案），不整改既有 2000+ 记录。
+- 理由与代价：此前 `.agents/DOCUMENTS.md` 只有信息归属和映射，缺记录格式、状态表、载体上限、检查与回归测试，规则靠人工遵守且无法定位违规。代价：既有 `.logsdev/` 记录大量不符合新结构（命名、状态行、DECISIONS 编号、载体行数），需要基线登记；`.agents/` 与 `AGENTS.md` 目前仍被 `.gitignore` 忽略，规则文件未纳入版本控制，与模板要求不符，待用户决定是否解除忽略。
+- 未采用：整改全部历史记录（B 方案）——会移动大量历史文件、改写已确认的决策标题，收益低于风险；只合并说明文档、不装检查（C 方案）——规则仍无法执行，等于没有接入。
+- 依据：用户 2026-10-21 选择 A 方案；`python3 .agents/verifier/check_rules.py` 退出码 0（基线 144 条，0 个新增错误、0 个警告）；`python3 .agents/verifier/test_check_rules.py` 15 个用例全部通过。
+- 适配与偏离模板之处：`test_check_rules.py` 不再复制真实 `.logsdev`（265 MB，且历史记录按基线收口），改为内置最小记录样本 `FIXTURE`，并按本项目映射使用 `PROJECT.md`/`ITERATION.md`；`check_rules.py` 的 `read()` 对图片等二进制附件直接返回 None，修掉“读 png 失败再记一条 C9”的自身误报；`.logsdev/README.md` 中与 `.agents/` 重复的规则书（原第 59–140 行）改为指向 `.agents/` 的入口说明，保留文档索引。
+- 基线：首次接入以 `--write-baseline` 初始化 `.agents/verifier/check_rules.baseline`（144 条），之后只减不增；历史记录按 DOCUMENTS 的“载体上限与出口”逐步收口，不一次性重写。
+
+## D-20261021-2 引入 baoyu-design skill，安装产物不入库
+
+- 决定与范围：用 `npx skills add JimLiu/baoyu-design -s baoyu-design -y --copy` 安装设计类 skill（界面原型、演示页、PPT、图表、视觉探索），装到 `.agents/skills/baoyu-design`（同时被复制到 `.claude/skills/`、`.hermes/`），并在 AGENTS 的阅读路由登记。按用户 2026-10-21 指令，安装产物不纳入 git：`.claude/skills/`、`.hermes/`、`skills-lock.json` 加入 `.gitignore`（`.agents/` 原本已忽略）。
+- 理由与代价：该 skill 自带 199 个文件、约 7 MB，并被复制进每个 agent 目录，入库会明显撑大仓库且随上游更新频繁变动。代价：换机器或 clone 后需要重新执行安装命令，命令写进 `.gitignore` 的注释里；`skills-lock.json` 不入库，无法用它固定版本。
+- 未采用：只装 `baoyu-design` 而不装同仓库的 `release-skills`——后者是发版流程，与本项目当前需要无关；用 `--copy` 而非符号链接——链接指向全局目录，换机器后失效。
+- 依据：`npx skills add` 输出显示安装到 `.agents/skills/baoyu-design` 等三处；`git check-ignore` 确认四个路径均已忽略；`python3 .agents/verifier/check_rules.py` 在本改动范围内无新增错误（`.logsdev/_tmp` 一项见下）。
+- 已知未决：检查当前报 C8 `.logsdev/_tmp/README.md:1 工作文档目录缺少入口 README.md`。该目录不是本次改动产生的，同一工作目录下另有进程正在修改 `src/api/structure.py`（11:50 仍在写入），按“不得覆盖他人未提交修改”保留原状，待其结束后再按 DOCUMENTS 处理。
+
+## D-20261022-1 工作文档名称不强制带日期
+
+- 决定与范围：工作文档和设计载体的名称只要求看得出主题（如 `owner-问答-design`），日期后缀可加可不加；创建日期以开头的 `日期：` 行为准，该行仍必填。名称带日期时须是真实日期，并与 `日期：` 一致。改动见 `.agents/DOCUMENTS.md` 的“工作文档开头”和“工作文档”节的位置与命名一条，以及 `check_rules.py` 的 C8、C5。
+- 理由与代价：用户 2026-10-22 指出原规则不合适。用户自己按 `owner-<页面>-design` 组织设计试验目录，强制加日期会让同一页面的持续设计每天换一个目录名，链接也跟着失效；日期本来已写在开头行里，名称里再写一遍是重复。代价是从名称上看不出新旧，需要看开头日期或 git 记录。
+- 依据：`test_check_rules.py` 15 个用例通过，新增“名称不带日期通过”“名称日期不真实”“名称日期与开头不一致”三项；`check_rules.py` 退出码 0，基线因 3 条命名错误消失而收缩。

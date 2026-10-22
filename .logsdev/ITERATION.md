@@ -36,12 +36,24 @@
 | U4a | 3 | B4核对、U1、U2 | 已完成：计数与库色已随 B4 核对；年度图为当年往前 10 年（现 2017—2026）；轮播增加“暂停/继续播放”按钮（悬停、聚焦之外，触屏与键盘读者也能停住），`browser_library_documents` 断言按下后经过一个 7 秒周期仍停在原页，并以去掉暂停逻辑的反证确认会失败；1366×768、1920×1080、150% 缩放（911×512）三档截图可读，`verification/upgrade-U4a/` |
 | U4b | 3 | U1、U2、U3 | 已完成：管理员首页为“需要处理 → 资料处理 → 开始一项工作 → 最近报告 → 我的工作”，待办每项直达相关资料；与概览共用 `useAdminTodos`；截图 `verification/upgrade-U4b/` |
 | U5 | 3 | U1–U3 | 已完成（按全站一次做，不逐页）：① 字号——530 处 Tailwind 自带字号改为 7 级令牌，令牌配上原对应行高，`tokens.test.mts` 拒绝自带字号；21 页前后截图页高不变，文字最多移动 1–2px；② 按钮——17 个手写的实心/描边按钮改用 `Button`（`Button` 透传 aria 属性，删去与 primary 重复的 solid），链接、标签、页签、图标按钮按用途保留自有样式；截图 `verification/upgrade-U5/`。截图脚本资料库页改为等列表出现再拍。规划中的“细节池”无条目清单，未单列 |
+| H1 | 3 | U1、B4 | 已完成：首页 02「资料库概览」换成积累分布图（对数条目数 × 平均成熟度 × 开方面积），删除与横幅重复的项目数条形与口径待核的应用方向雷达；后端 `library_overview` 增 `maturity` 6 档、`avg_maturity`、`high_maturity`、`high_share`、`top`、`systems_detail` 与 `dimension_evidence`（原 `dimensions` 是「全部文件处理完」，四维全 100% 读不出缺口，保留不动以免其他页回归）；右栏改为「身份—主指标—阶梯—四维环—诊断」，跳转改为右侧滑出预览；口径、6 档标尺、四维、象限四类说明改为锚点浮层（滚动跟随、点外部/Esc 关闭）。`npm test` 57 通过、tsc 与构建通过、后端 overview 用例 1 passed；真实数据 11 库 2,693 条与 demo 一致；截图 `verification/query-20261021-terrain/`；同日第二轮按反馈重排右栏与抽屉（规模前置、四维改横条、抽屉改年度+体系+成熟度+条目四卡），截图 `query-20261021-terrain/v2/` 与设计说明 §10 |
+| H2 | 3 | U1、H1 | 已完成：对话工作台「点选提问」由内联面板改为输入框上方浮层（不重排页面，点外部 / Esc / ✕ / 工具条按钮四条关闭路径，`aria-expanded` 同步）；附带问题 5 → 10 条（最多选 3），场景超 8 个折叠；新增时间维度（不限 / 近 3 年 / 近 3–5 年 / 近 5–10 年 / 15 年内，年份按当年计算并写出具体区间），区间随 `period` 进入生成问题，沿用 `select_reports` 的项目年份筛选；窗口内无项目时放宽为全量检索并标注 `year_relaxed`，检索过程与回答都说明未做时间筛选。修复真实交互 bug：外部点击监听会把同一次点击里的「打开」再关掉，按钮无法重开。tsc、构建、`npm test` 57、相关 pytest 33 通过；截图 `verification/query-20261021-quickask/`；说明 `owner-问答-design/点选提问.md` |
 | A1 | 4 | 本轮G2范围（不含B5） | 待验收 |
 
 ## 3. 最近完成
 
 | 提交 | 内容 | 依据 |
 |---|---|---|
+| 本轮（工作区） | query 2026-1021 1619：生成问题以已输入文字为核心、少选时借本库名称补专业角度、换角度与翻回；修复年份补回 | `test_compose_question_context` 7 例；真实模型探针与浏览器实测，`verification/query-20261021-1619/` |
+| 本轮（工作区） | query 2026-1021 1629 第 4 条：模版统一用词；审查模版上传生成、应用/取消应用、工作台默认使用；修复生成草稿无法启用 | `test_review_flows`、`test_review_guideline_draft`；真实模型上传实测，`verification/query-20261021-1629-review/` |
+| 本轮（工作区） | query 2026-1022 1706：01 加十字准线、象限筛选、缩放、对比基准、共用体系连接；03 改为缺口页签 + 机会象限 + 候选池；02 补全未归入体系、项目条目与原文、逐级展开；结论可点 | `test_domains_overview` 5 例；截图 `verification/query-20261022-1706/` |
+| 本轮（工作区） | 用户 2026-10-22 追加：01 图与信息左右并排（`LibraryTerrain` 自带容器查询）；删除立体时间柱及评价分数；页头精简为标题 + 四数字 + 三句结论；全景去掉“分析视角”栏，单领域视图从 01 右栏进入并可返回 | `test_domains_overview` 5 例、`browser_library_documents`；截图 `verification/query-20261022-1606/v2/` |
+| 本轮（工作区） | query 2026-1022 1606：首页概览恢复原版；领域分析 01 积累分布图（时间柱为试验切换）、02 放射状谱系路网、03 候选池 + 导出 / 立项建议预览；右侧滑出统一为 SlideOver | `test_domains_overview` 6 例、`browser_library_documents`；截图 `verification/query-20261022-1606/` |
+| 本轮（工作区） | query 2026-1021 1629 第 1–3 条：领域分析“全景”实施到产品（点阵时间柱、技术谱系总览、缺口与机会 + 机会清单 / 立项建议） | `test_domains_overview` 5 例；真实数据浏览器实测，`verification/query-20261021-1629-atlas/` |
+| 本轮（工作区） | 工作文档名称不强制带日期（D-20261022-1） | `test_check_rules` 15 例；`check_rules` 退出码 0 |
+| 本轮（工作区） | query 2026-1021 1629：领域分析三块重做 demo（三维研究群岛 + 领域×场景矩阵 + 缺口机会与右侧滑出清单/立项建议），见 `.logsdev/owner-领域分析-design/pi-design/` | Chromium 实测 1440/1024/390 无溢出、控制台 0 错误、无外部请求；缺口计数 63/30/18；清单与建议导出实测；记录 `pi-design/verification/result.json` |
+| 本轮（工作区） | query 2026-1021：点选提问浮层化 + 可选词扩充 + 时间维度（H2），说明见 `.logsdev/owner-问答-design/点选提问.md` | tsc、vite 构建、`npm test` 57、`pytest test_quickask_period/test_compose_question_period/test_retrieval` 33 passed；playwright 实测三条关闭路径与开合无位移；截图 `verification/query-20261021-quickask/` |
+| 本轮（工作区） | query 2026-1021：首页资料库概览改版（H1），demo 见 `.logsdev/owner-首页-design/`，实施记录见其设计说明 §9 | tsc、`npm test` 57、vite 构建、`test_app` overview 用例通过；真实 `.knowledge` 数据核对；截图 `verification/query-20261021-terrain/`（10 张） |
 | `ede107b` | query 2026-1019 2021：导航顺序、存量分析▾ 与资料审查▾、“成果”改名“报告中心”、1200 px 内容列；Q1 检查入口；启动脚本提示代理 | `scripts/check.sh full` 通过（ruff、pytest 309、npm 47、tsc、构建、8 项冒烟）；截图 `verification/query-20261019-2021/` |
 | `852f2db` | B4：横幅库色按项目数排名固定，“其他领域”列出成员；截图脚本补管理员页与年度轮播页 | tsc、npm test 47 通过；`leader-01b-year-slide.png` |
 | `2aa79fe` | Q2 文档收口（本文件、PROJECT §0、目录归位、链接改写） | `check.sh quick` 通过；链接检查只剩既有断链与 query 中用户粘贴的绝对路径 |

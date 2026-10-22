@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>资料库概览 · 改版 demo</title>
+<style>
+:root{
+  --paper:#EDF3F5; --surface:#FFFFFF; --surface2:#F7FAFB; --surface3:#FBFCFD;
+  --ink:#173A50; --ink2:#42647A; --ink3:#7D919B; --ink4:#A9BAC4;
+  --line:#D9E5E8; --line2:#E9F0F2;
+  --g1:#2E8B7A; --g1s:#E7F3EF;
+  --g3:#B59A62; --g3s:#FBF4E5;
+  --warn:#B4653C; --warns:#FBF1EC;
+  --b1:#0D2131; --b2:#173A50; --b3:#1E4E63;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:400 13px/1.62 "Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",sans-serif;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 28px;height:54px;display:flex;align-items:center;gap:26px}
+.brand{font-family:var(--serif);font-size:20px;letter-spacing:1.4px}
+.brand i{font-style:normal;color:var(--ink3)}
+.nav-links{display:flex;gap:20px;font-size:12.5px;color:var(--ink2);margin-left:6px}
+.nav-links span{cursor:default}
+.nav-links span.on{color:var(--ink);font-weight:500;box-shadow:inset 0 -2px 0 var(--g1);padding-bottom:3px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.tag-demo{font-size:10.5px;color:#8A6A2F;background:var(--g3s);padding:4px 9px;border-radius:5px;letter-spacing:.2px;white-space:nowrap}
+.who{width:28px;height:28px;border-radius:50%;background:var(--g1s);color:var(--g1);display:grid;place-items:center;font-size:12px;font-weight:500}
+
+.banner{position:relative;overflow:hidden;margin-top:22px;border-radius:14px;background:linear-gradient(125deg,var(--b1) 0%,var(--b2) 52%,var(--b3) 100%);color:#fff;padding:26px 30px 24px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr);gap:34px;align-items:center}
+.banner::after{content:"";position:absolute;right:-90px;top:-110px;width:320px;height:320px;border-radius:50%;background:rgba(94,168,194,.10)}
+.b-eyebrow{font-size:10px;letter-spacing:2px;color:#8FA9BC}
+.b-title{font-size:23px;font-weight:500;letter-spacing:.2px;margin-top:9px}
+.b-num{display:flex;align-items:baseline;gap:8px;margin-top:12px}
+.b-num b{font-family:var(--serif);font-size:38px;font-weight:400;line-height:1;letter-spacing:-.5px}
+.b-num span{font-size:12px;color:#C2D2DF}
+.b-insight{display:inline-flex;align-items:center;gap:7px;margin-top:13px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:4px 11px;font-size:11.5px;color:#EAF1F6}
+.b-insight i{width:5px;height:5px;border-radius:50%;background:#7CC4FF;flex:none}
+.b-note{margin-top:11px;font-size:10.5px;color:#7F97AB;line-height:1.6;max-width:29em}
+.b-bars{position:relative;z-index:1;border-left:1px solid rgba(255,255,255,.12);padding-left:26px}
+.b-row{display:grid;grid-template-columns:6.6em minmax(0,1fr) 2.7em;gap:9px;align-items:center;font-size:11.5px;margin-bottom:5px}
+.b-row u{text-decoration:none;color:#C3D3E0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-track{position:relative;height:9px;border-radius:2px;background:rgba(255,255,255,.11);min-width:0}
+.b-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;min-width:3px}
+.b-val{font-family:var(--serif);font-size:11.5px;color:#AFC2D1;text-align:right;font-variant-numeric:tabular-nums}
+
+.sec{margin-top:34px}
+.sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.sechead em{font-style:normal;font-family:var(--serif);font-size:11px;letter-spacing:1.6px;color:var(--ink4)}
+.sechead h2{font-size:15.5px;font-weight:600;letter-spacing:.1px}
+.sechead small{font-size:11px;color:var(--ink3)}
+
+.works{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.wcard{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 17px;min-height:132px;display:flex;flex-direction:column;text-align:left;transition:border-color .16s,box-shadow .16s}
+.wcard:hover{border-color:#B9CFD6;box-shadow:0 3px 14px rgba(23,58,80,.06)}
+.wcard b{font-size:14px;font-weight:600;margin-top:10px}
+.wcard p{font-size:11.5px;color:var(--ink3);line-height:1.6;margin-top:5px}
+.wcard u{text-decoration:none;margin-top:auto;padding-top:12px;font-size:11px;color:var(--g1)}
+.wico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none}
+.wico svg{width:17px;height:17px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cardhead{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:15px 18px 13px;border-bottom:1px solid var(--line2)}
+.cardhead h3{font-size:14.5px;font-weight:600}
+.cardhead p{font-size:10.5px;color:var(--ink3);margin-top:4px;line-height:1.6}
+.caliber{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--ink3);margin-top:6px}
+.caliber b{font-weight:500;color:var(--ink2)}
+.ch-right{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tbtn{border:1px solid var(--line);background:transparent;border-radius:6px;font-size:11.5px;color:var(--ink2);padding:5px 11px;line-height:1.3;transition:.15s}
+.tbtn:hover{border-color:#B9CFD6;color:var(--ink)}
+.tbtn.on{background:var(--g1);border-color:var(--g1);color:#fff}
+
+.obody{display:grid;grid-template-columns:minmax(0,1fr) 308px;gap:0;align-items:stretch}
+.chartwrap{position:relative;padding:8px 6px 2px 10px;min-width:0}
+#map{display:block;width:100%;height:auto}
+.pt{cursor:pointer}
+.pt circle.dot{transition:r .16s ease,fill .16s ease}
+.pt:hover circle.dot{fill:#1F6B5E}
+.pt text{font-size:11.5px;fill:#2C4657;transition:fill .16s}
+.pt:hover text{fill:#173A50;font-weight:500}
+.pt.sel text{font-weight:600;fill:#173A50}
+.qzlabel{font-size:11px;fill:#93A7B2}
+.qzlabel b{font-weight:600;fill:#6E8794}
+.qzlabel.empty{fill:#BFCBD1}
+.axis{font-size:11px;fill:#8DA2AC}
+.axis-t{font-size:11px;fill:#5E7885;font-weight:500}
+.grid{stroke:#E4EDEF;stroke-width:.6}
+.sep{stroke:#AFC2CA;stroke-width:.8;stroke-dasharray:4 5}
+
+#tip{position:absolute;z-index:20;pointer-events:none;opacity:0;transition:opacity .1s;background:#12293A;color:#fff;border-radius:6px;padding:9px 11px;font-size:11px;line-height:1.65;max-width:230px;box-shadow:0 6px 20px rgba(18,41,58,.22)}
+#tip b{font-size:12px;font-weight:600;display:block;margin-bottom:3px}
+#tip i{font-style:normal;color:#9FB6C4}
+#tip em{font-style:normal;font-family:var(--serif);font-size:11.5px;color:#8FD9C6}
+
+.detail{background:var(--surface2);border-left:1px solid var(--line2);padding:16px 18px 18px;display:flex;flex-direction:column;min-width:0}
+.d-eyebrow{font-size:9.5px;letter-spacing:1.5px;color:var(--ink4)}
+.d-name{font-size:19px;font-weight:600;letter-spacing:-.2px;line-height:1.35;margin-top:5px}
+.d-sub{font-size:11px;color:var(--ink3);margin-top:3px}
+.d-stats{display:flex;gap:26px;margin:14px 0 4px}
+.d-stat{min-width:0}
+.d-stat b{display:block;font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.2;letter-spacing:-.3px}
+.d-stat span{font-size:10px;color:var(--ink3);display:block;margin-top:2px}
+.d-stat.hi b{color:var(--g1)}
+.d-stat.lo b{color:var(--warn)}
+
+.d-block{margin-top:15px}
+.d-block-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:11px;color:var(--ink2);margin-bottom:7px}
+.d-block-h i{font-style:normal;font-size:9.5px;color:var(--ink4)}
+.stair{display:flex;height:15px;border-radius:3px;overflow:hidden;background:var(--line2)}
+.stair span + span{box-shadow:inset 1px 0 0 #fff}
+.stair span{display:block;height:100%}
+.stair-x{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink4);margin-top:4px;font-variant-numeric:tabular-nums}
+
+.dim{display:grid;grid-template-columns:2.4em minmax(0,1fr) 3.6em;gap:8px;align-items:center;font-size:10.5px;margin-bottom:5px;color:var(--ink2)}
+.dim-bar{height:6px;border-radius:3px;background:var(--line2);overflow:hidden}
+.dim-bar i{display:block;height:100%;background:var(--g1);border-radius:3px}
+.dim.low .dim-bar i{background:var(--warn)}
+.dim-num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink3);font-size:10px}
+.dim.low .dim-num{color:var(--warn);font-weight:500}
+
+.d-warn{margin-top:8px;background:var(--warns);border-left:2px solid var(--warn);padding:8px 10px;font-size:10.5px;line-height:1.65;color:#8C4A2E;border-radius:0 4px 4px 0}
+.d-open{margin-top:auto;padding-top:16px;display:flex;gap:8px}
+.d-open button{flex:1;font-size:11.5px;padding:8px 0;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--ink2);transition:.15s}
+.d-open button:hover{border-color:#B9CFD6;color:var(--ink)}
+.d-open button.primary{background:var(--g1);border-color:var(--g1);color:#fff}
+.d-open button.primary:hover{background:#26766A}
+
+.readout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line2);background:var(--surface3)}
+.ro{padding:12px 18px 13px;border-left:1px solid var(--line2);min-width:0}
+.ro:first-child{border-left:0}
+.ro u{text-decoration:none;display:block;font-size:9.5px;letter-spacing:1.2px;color:var(--ink4);margin-bottom:5px}
+.ro p{font-size:11.5px;line-height:1.65;color:var(--ink2)}
+.ro p b{font-family:var(--serif);font-size:14px;font-weight:400;color:var(--ink);letter-spacing:-.2px}
+.ro p em{font-style:normal;color:var(--warn);font-weight:500}
+
+.mine{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 18px 8px}
+.mrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line2);font-size:12px;color:var(--ink2)}
+.mrow:last-child{border-bottom:0}
+.mrow b{font-weight:500;color:var(--ink)}
+.mrow span{margin-left:auto;font-size:11px;color:var(--ink4)}
+
+footer{margin-top:32px;padding:16px 0 34px;border-top:1px solid var(--line);font-size:10.5px;color:var(--ink4);line-height:1.8}
+footer b{font-weight:500;color:var(--ink3)}
+
+@media (max-width:980px){
+  .obody{grid-template-columns:minmax(0,1fr)}
+  .detail{border-left:0;border-top:1px solid var(--line2)}
+  .banner{grid-template-columns:minmax(0,1fr);gap:20px}
+  .b-bars{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+  .works{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .readout{grid-template-columns:minmax(0,1fr)}
+  .ro{border-left:0;border-top:1px solid var(--line2)}
+  .ro:first-child{border-top:0}
+}
+@media (max-width:640px){
+  .wrap,.nav-in{padding:0 16px}
+  .works{grid-template-columns:minmax(0,1fr)}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand">dox <i>agent</i></div>
+    <div class="nav-links">
+      <span class="on">首页</span><span>知识库</span><span>任务</span><span>成果</span><span>形式审查</span>
+    </div>
+    <div class="nav-right">
+      <span class="tag-demo">改版 demo · 真实数据</span>
+      <span class="who">张</span>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="banner" aria-label="研究版图">
+    <div>
+      <div class="b-eyebrow">研究版图 · 项目分布</div>
+      <div class="b-title">11 个领域资料库</div>
+      <div class="b-num"><b>1,119</b><span>个项目</span></div>
+      <div class="b-insight"><i></i>医疗、机器人自动化两库占 91.5%</div>
+      <p class="b-note">项目在各库内按批准号去重，跨库合计未去重；1,122 份文件识别出 1,119 个项目。</p>
+    </div>
+    <div class="b-bars" id="bannerBars"></div>
+  </section>
+
+  <section class="sec" aria-label="工作台">
+    <div class="sechead"><em>01</em><h2>工作台</h2></div>
+    <div class="works" id="works"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="ovTitle">
+    <div class="sechead">
+      <em>02</em><h2 id="ovTitle">资料库概览</h2>
+      <small>点一个库看它的积累厚度与结构缺口；点“打开资料库”进入</small>
+    </div>
+
+    <div class="card">
+      <div class="cardhead">
+        <div>
+          <h3>资料库积累分布</h3>
+          <div class="caliber">
+            <span>横轴 <b>技术条目数</b>（对数）</span>
+            <span>纵轴 <b>平均成熟度</b> 0–5</span>
+            <span>圆面积 <b>覆盖项目数</b></span>
+          </div>
+        </div>
+        <div class="ch-right">
+          <button class="tbtn on" id="btnAll">全部 11 库</button>
+          <button class="tbtn" id="btnGap">只看待补</button>
+        </div>
+      </div>
+
+      <div class="obody">
+        <div class="chartwrap" id="chartwrap">
+          <svg id="map" viewBox="0 0 720 430" role="img" aria-label="11 个资料库按技术条目数与平均成熟度的分布，圆大小代表覆盖项目数"></svg>
+          <div id="tip" role="status" aria-live="polite"></div>
+        </div>
+        <aside class="detail" id="detail" aria-live="polite"></aside>
+      </div>
+
+      <div class="readout">
+        <div class="ro">
+          <u>全库成熟度</u>
+          <p>2,693 条技术中，<em>76% 停在算法验证及以下</em>，12% 做出原型样机，<b>11.7%</b>（316 条）进入真实场景或转化。</p>
+        </div>
+        <div class="ro">
+          <u>体量与沉淀</u>
+          <p>医疗 + 机器人占 <b>87.7%</b> 技术条目，高成熟条目只占 82%；<em>没有库同时做到量大与深</em>。</p>
+        </div>
+        <div class="ro">
+          <u>最需注意</u>
+          <p>机器人自动化 <b>1,025</b> 条技术，<em>80.8% 停在理论与未判定</em>；问题维仅 48% 的项目有归纳。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="我的工作">
+    <div class="sechead"><em>03</em><h2>我的工作</h2><small>本账户发起的对话、报告与审查</small></div>
+    <div class="mine">
+      <div class="mrow"><b>医疗资料库四维抽取复核</b><span>今天 09:12</span></div>
+      <div class="mrow"><b>机器人自动化技术谱系重建</b><span>昨天 16:40</span></div>
+      <div class="mrow"><b>2026 年度结题报告形式审查</b><span>10 月 18 日</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <b>口径</b>　技术条目与成熟度取各库 <code>lineage.json</code>；覆盖项目为条目中出现过的项目编号去重；四维覆盖按已抽取文档计。
+    成熟度分 6 档：0 未判定 · 1 理论与方法 · 2 算法与模型验证 · 3 原型与样机 · 4 系统集成与场景试验 · 5 示范应用与转化。
+    级别为模型标注、需人工核对，本页只做横向比较，不作质量评级。
+  </footer>
+</main>
+
+<script>
+var LIB = [
+  {id:"med", name:"医疗", items:1336, projects:514, docs:517, systems:5, avg:2.28, hi:237, hipct:17.7, dist:[38,278,609,174,155,82], dims:[517,516,517,470]},
+  {id:"robo", name:"机器人自动化", items:1025, projects:510, docs:510, systems:8, avg:1.15, hi:22, hipct:2.1, dist:[169,659,96,79,17,5], dims:[510,246,510,510]},
+  {id:"fin", name:"金融经济", items:66, projects:20, docs:20, systems:5, avg:1.94, hi:3, hipct:4.5, dist:[3,14,39,7,0,3], dims:[20,20,20,20]},
+  {id:"agri", name:"农业", items:48, projects:13, docs:13, systems:8, avg:2.17, hi:8, hipct:16.7, dist:[0,16,18,6,6,2], dims:[13,13,13,13]},
+  {id:"mat", name:"材料", items:46, projects:14, docs:14, systems:4, avg:2.48, hi:7, hipct:15.2, dist:[0,8,18,13,4,3], dims:[14,14,14,14]},
+  {id:"bioi", name:"生物识别", items:40, projects:10, docs:10, systems:4, avg:2.95, hi:11, hipct:27.5, dist:[0,2,13,14,7,4], dims:[10,10,10,10]},
+  {id:"priv", name:"隐私保护", items:36, projects:10, docs:10, systems:5, avg:1.56, hi:0, hipct:0, dist:[0,22,8,6,0,0], dims:[10,10,10,10]},
+  {id:"bio", name:"生物医药", items:32, projects:9, docs:9, systems:5, avg:3.06, hi:7, hipct:21.9, dist:[0,1,10,14,0,7], dims:[9,9,9,9]},
+  {id:"big", name:"大数据", items:31, projects:10, docs:10, systems:6, avg:2.45, hi:7, hipct:22.6, dist:[1,5,14,4,4,3], dims:[10,10,10,10]},
+  {id:"ai", name:"信息智能", items:17, projects:5, docs:5, systems:4, avg:3.18, hi:6, hipct:35.3, dist:[1,0,4,6,2,4], dims:[5,5,5,5]},
+  {id:"soc", name:"社会治理", items:16, projects:4, docs:4, systems:5, avg:3.5, hi:8, hipct:50, dist:[0,0,4,4,4,4], dims:[4,4,4,4]}
+];
+var DIM_NAME = ["场景","问题","技术","成果"];
+var MCOL = ["#D2DBDE","#C0D6D4","#A2CAC1","#7CB8A9","#4CA391","#2E8B7A"];
+var TOTAL = {items:2693, projects:1119, hi:316, dist:[212,1005,833,327,199,117]};
+
+var sel = "med", mode = "all";
+var byId = function (id) { for (var i = 0; i < LIB.length; i++) if (LIB[i].id === id) return LIB[i]; return null; };
+var needFix = function (d) {
+  var minDim = Math.min.apply(null, d.dims) / d.docs;
+  return d.hipct < 20 || minDim < .95;
+};
+
+var svg = document.getElementById("map");
+var tip = document.getElementById("tip");
+var wrap = document.getElementById("chartwrap");
+
+var G = {l:60, r:700, t:44, b:372};
+var XMIN = 1.0, XMAX = 3.22, YMIN = 0.85, YMAX = 3.80;
+function px(v) { return G.l + (Math.log(v) / Math.LN10 - XMIN) / (XMAX - XMIN) * (G.r - G.l); }
+function py(v) { return G.b - (v - YMIN) / (YMAX - YMIN) * (G.b - G.t); }
+function radius(p) { return 6.5 + Math.sqrt(p) / Math.sqrt(514) * 10.5; }
+
+function renderMap() {
+  var s = "";
+  s += '<rect x="' + G.l + '" y="' + G.t + '" width="' + (G.r - G.l) + '" height="' + (G.b - G.t) + '" fill="#FCFDFD"/>';
+  s += '<rect x="' + G.l + '" y="' + G.t + '" width="' + (px(100) - G.l) + '" height="' + (py(2.5) - G.t) + '" fill="#F5F8FA"/>';
+  s += '<rect x="' + G.l + '" y="' + py(2.5) + '" width="' + (px(100) - G.l) + '" height="' + (G.b - py(2.5)) + '" fill="#F7F6F3"/>';
+
+  [30, 100, 300, 1000].forEach(function (v) {
+    s += '<line class="grid" x1="' + px(v) + '" y1="' + G.t + '" x2="' + px(v) + '" y2="' + G.b + '"/>';
+    s += '<text class="axis" x="' + px(v) + '" y="' + (G.b + 17) + '" text-anchor="middle">' + v + '</text>';
+  });
+  [1.0, 1.5, 2.0, 2.5, 3.0, 3.5].forEach(function (v) {
+    s += '<line class="grid" x1="' + G.l + '" y1="' + py(v) + '" x2="' + G.r + '" y2="' + py(v) + '"/>';
+    s += '<text class="axis" x="' + (G.l - 10) + '" y="' + (py(v) + 4) + '" text-anchor="end">' + v.toFixed(1) + '</text>';
+  });
+
+  s += '<line class="sep" x1="' + px(100) + '" y1="' + G.t + '" x2="' + px(100) + '" y2="' + G.b + '"/>';
+  s += '<line class="sep" x1="' + G.l + '" y1="' + py(2.5) + '" x2="' + G.r + '" y2="' + py(2.5) + '"/>';
+
+  var ex = px(100), ey = py(2.5), qc = (ex + G.r) / 2, qm = (G.t + ey) / 2;
+  s += '<rect x="' + ex + '" y="' + G.t + '" width="' + (G.r - ex) + '" height="' + (ey - G.t) + '" fill="none" stroke="#C4D4DA" stroke-width="1" stroke-dasharray="6 6"/>';
+  s += '<text x="' + qc + '" y="' + (qm - 4) + '" text-anchor="middle" font-size="11.5" fill="#9FB2BB">没有资料库</text>';
+  s += '<text x="' + qc + '" y="' + (qm + 13) + '" text-anchor="middle" font-size="11.5" fill="#B6C4CB">既铺得开又沉得深</text>';
+
+  s += '<text class="axis-t" x="' + (G.r) + '" y="' + (G.b + 36) + '" text-anchor="end">技术条目数（对数）→</text>';
+  s += '<text class="axis-t" x="' + G.l + '" y="' + (G.t - 16) + '">平均成熟度 ↑</text>';
+
+  s += '<text class="qzlabel" x="' + (G.l + 9) + '" y="' + (G.t + 118) + '"><tspan x="' + (G.l + 9) + '" font-weight="600">小而精</tspan><tspan x="' + (G.l + 9) + '" dy="14">条目少 · 成熟高</tspan></text>';
+  s += '<text class="qzlabel" x="' + (G.l + 9) + '" y="' + (G.b - 34) + '"><tspan x="' + (G.l + 9) + '" font-weight="600">少且浅</tspan><tspan x="' + (G.l + 9) + '" dy="14">条目少 · 成熟低</tspan></text>';
+  s += '<text class="qzlabel" x="' + (px(100) + 24) + '" y="' + (G.b - 46) + '"><tspan x="' + (px(100) + 24) + '" font-weight="600">铺得宽 · 沉不下去</tspan><tspan x="' + (px(100) + 24) + '" dy="14">条目多 · 成熟低</tspan></text>';
+
+  LIB.forEach(function (d) {
+    var cx = px(d.items), cy = py(d.avg), r = radius(d.projects);
+    var isSel = d.id === sel;
+    var dim = (mode === "gap" && !needFix(d));
+    var g = '<g class="pt' + (isSel ? " sel" : "") + '" data-id="' + d.id + '" tabindex="0" role="button" aria-label="' + d.name + '，' + d.items + ' 条技术，平均成熟度 ' + d.avg + '">';
+    if (isSel) g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + 7) + '" fill="' + (dim ? "#C7D6DB" : "#2E8B7A") + '" opacity=".16"/>';
+    g += '<circle class="dot" cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (isSel ? "#2E8B7A" : "#3B5D70") + '" fill-opacity="' + (dim ? ".26" : ".92") + '"/>';
+    if (d.id === "robo") g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + 4) + '" fill="none" stroke="#B59A62" stroke-width="1" stroke-dasharray="3 3"/>';
+    g += '</g>';
+    s += g;
+  });
+
+  LIB.forEach(function (d) {
+    var cx = px(d.items), cy = py(d.avg), r = radius(d.projects);
+    var dim = (mode === "gap" && !needFix(d));
+    var lx, ly = cy + 4, anchor = "start";
+    if (d.id === "big") { lx = cx - r - 8; anchor = "end"; }
+    else if (d.id === "ai") { lx = cx - r - 8; anchor = "end"; }
+    else if (d.id === "med") { lx = cx - r - 9; anchor = "end"; }
+    else if (d.id === "bio") { lx = cx; ly = cy - r - 7; anchor = "middle"; }
+    else if (d.id === "robo") { lx = cx; ly = cy - r - 10; anchor = "middle"; }
+    else { lx = cx + r + 8; }
+    var cls = "pt" + (d.id === sel ? " sel" : "");
+    s += '<text class="' + cls + '" data-id="' + d.id + '" x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '" opacity="' + (dim ? ".3" : "1") + '">' + d.name + '</text>';
+  });
+
+  svg.innerHTML = s;
+
+  Array.prototype.forEach.call(svg.querySelectorAll(".pt"), function (el) {
+    var id = el.getAttribute("data-id");
+    el.addEventListener("mouseenter", function (e) { showTip(e, byId(id)); });
+    el.addEventListener("mousemove", function (e) { moveTip(e); });
+    el.addEventListener("mouseleave", hideTip);
+    el.addEventListener("click", function () { select(id); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(id); }
+    });
+  });
+}
+
+function showTip(e, d) {
+  if (!d) return;
+  tip.innerHTML = '<b>' + d.name + '</b>' +
+    '<i>技术条目</i> <em>' + d.items.toLocaleString() + '</em> · <i>覆盖项目</i> ' + d.projects + '<br>' +
+    '<i>平均成熟度</i> <em>' + d.avg.toFixed(2) + '</em> · <i>成熟 4 以上</i> ' + d.hipct + '%<br>' +
+    '<i>技术体系</i> ' + d.systems + ' 个';
+  tip.style.opacity = "1";
+  moveTip(e);
+}
+function moveTip(e) {
+  var r = wrap.getBoundingClientRect();
+  var x = e.clientX - r.left + 14, y = e.clientY - r.top + 14;
+  if (x + 240 > r.width) x = e.clientX - r.left - 240;
+  tip.style.left = x + "px";
+  tip.style.top = y + "px";
+}
+function hideTip() { tip.style.opacity = "0"; }
+
+function select(id) {
+  sel = id;
+  renderMap();
+  renderDetail();
+}
+
+function renderDetail() {
+  var d = byId(sel);
+  var minDim = Math.min.apply(null, d.dims) / d.docs;
+  var h = "";
+  h += '<div class="d-eyebrow">当前资料库</div>';
+  h += '<div class="d-name">' + d.name + '</div>';
+  h += '<div class="d-sub">' + d.projects + ' 个项目 · ' + d.docs + ' 份已抽取文档</div>';
+
+  h += '<div class="d-stats">';
+  h += '<div class="d-stat"><b>' + d.items.toLocaleString() + '</b><span>技术条目</span></div>';
+  h += '<div class="d-stat ' + (d.hipct >= 20 ? "hi" : "lo") + '"><b>' + d.hipct + '%</b><span>成熟 4 以上</span></div>';
+  h += '<div class="d-stat"><b>' + d.systems + '</b><span>技术体系</span></div>';
+  h += '</div>';
+
+  h += '<div class="d-block"><div class="d-block-h"><span>成熟度分布</span><i>0 → 5</i></div>';
+  h += '<div class="stair">';
+  d.dist.forEach(function (n, i) {
+    var w = n / d.items * 100;
+    if (w > 0) h += '<span style="width:' + w + '%;background:' + MCOL[i] + '" title="成熟度 ' + i + '：' + n + ' 条"></span>';
+  });
+  h += '</div>';
+  h += '<div class="stair-x"><span>0 未判定 ' + d.dist[0] + '</span><span>2 算法验证 ' + d.dist[2] + '</span><span>5 转化 ' + d.dist[5] + '</span></div></div>';
+
+  h += '<div class="d-block"><div class="d-block-h"><span>四维覆盖</span><i>已抽取文档</i></div>';
+  DIM_NAME.forEach(function (nm, i) {
+    var v = d.dims[i] / d.docs * 100;
+    var low = v < 95;
+    h += '<div class="dim' + (low ? " low" : "") + '"><span>' + nm + '</span>' +
+      '<span class="dim-bar"><i style="width:' + v.toFixed(1) + '%"></i></span>' +
+      '<span class="dim-num">' + Math.round(v) + '%</span></div>';
+  });
+  h += '</div>';
+
+  var warns = [];
+  if (d.hipct === 0) warns.push(d.items + ' 条技术里没有一条达到成熟度 4，全部停在理论与算法验证。');
+  else if (d.hipct < 10) warns.push('高成熟条目仅 ' + d.hi + ' 条（' + d.hipct + '%），几乎都停在理论与算法验证。');
+  if (minDim < .95) {
+    var wi = d.dims.indexOf(Math.min.apply(null, d.dims));
+    warns.push('「' + DIM_NAME[wi] + '」维只覆盖 ' + d.dims[wi] + ' / ' + d.docs + ' 份文档（' + Math.round(minDim * 100) + '%），' + (d.docs - d.dims[wi]) + ' 份没有归纳出内容。');
+  }
+  warns.forEach(function (t) { h += '<div class="d-warn">' + t + '</div>'; });
+
+  h += '<div class="d-open"><button id="btnOpen" class="primary">打开资料库 →</button></div>';
+  document.getElementById("detail").innerHTML = h;
+  document.getElementById("btnOpen").addEventListener("click", function () {
+    var b = this;
+    b.textContent = "demo 不跳转";
+    setTimeout(function () { b.textContent = "打开资料库 →"; }, 1400);
+  });
+}
+
+function renderBanner() {
+  var max = 514;
+  var rows = LIB.slice().sort(function (a, b) { return b.projects - a.projects; });
+  document.getElementById("bannerBars").innerHTML = rows.map(function (d) {
+    var w = Math.max(2, d.projects / max * 100);
+    var hot = d.id === "med" || d.id === "robo";
+    return '<div class="b-row" title="' + d.name + '：' + d.projects + ' 个项目">' +
+      '<u>' + d.name + '</u>' +
+      '<span class="b-track"><span class="b-fill" style="width:' + w + '%;background:' + (hot ? "#7CC4FF" : "#5F8CA8") + '"></span></span>' +
+      '<span class="b-val">' + d.projects + '</span></div>';
+  }).join("");
+}
+
+var ICONS = {
+  lib:'<path d="M3 4.5h6a2 2 0 012 2V16a2 2 0 00-2-2H3z"/><path d="M17 4.5H11a2 2 0 00-2 2V16a2 2 0 012-2h6z"/>',
+  check:'<path d="M4 9l4 4 8-8"/><path d="M3 15.5h14"/>',
+  doc:'<path d="M5 3h6l5 5v10a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M11 3v5h5"/>',
+  task:'<path d="M4 5h12M4 10h12M4 15h8"/>'
+};
+function renderWorks() {
+  var items = [
+    {icon:"lib", t:"知识库", d:"11 个领域资料库，2,693 条技术", c:"#2E8B7A"},
+    {icon:"check", t:"形式审查", d:"报告与材料的形式合规检查", c:"#4E8FA6"},
+    {icon:"doc", t:"报告生成", d:"由资料库证据起草报告", c:"#B08A50"},
+    {icon:"task", t:"任务", d:"运行中与待处理的导入、抽取", c:"#7F8AA8"}
+  ];
+  document.getElementById("works").innerHTML = items.map(function (w) {
+    return '<button class="wcard">' +
+      '<span class="wico" style="color:' + w.c + ';background:' + w.c + '14">' +
+      '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' + ICONS[w.icon] + '</svg></span>' +
+      '<b>' + w.t + '</b><p>' + w.d + '</p><u>进入 →</u></button>';
+  }).join("");
+}
+
+document.getElementById("btnAll").addEventListener("click", function () {
+  mode = "all"; this.classList.add("on");
+  document.getElementById("btnGap").classList.remove("on");
+  renderMap();
+});
+document.getElementById("btnGap").addEventListener("click", function () {
+  mode = "gap"; this.classList.add("on");
+  document.getElementById("btnAll").classList.remove("on");
+  renderMap();
+});
+
+renderBanner();
+renderWorks();
+renderMap();
+renderDetail();
+</script>
+</body>
+</html>

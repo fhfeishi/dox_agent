@@ -21,6 +21,44 @@ from .common import (
 )
 
 
+def lineage_metrics(tree: dict) -> dict:
+    """Maturity spread, high-maturity samples and the systems that hold the items (首页 地形图, query
+    2026-1021). Every number here counts stored items; nothing is inferred.
+
+    Maturity is the model's own 0–5 rating per item (src/lineage.py MATURITY): 0 = not determinable,
+    5 = demonstrated application. The mean includes 0, so a library that extracted many method names
+    reads lower — the six-level spread next to it is what tells a long tail from a genuinely shallow one.
+    """
+    items = tree.get("items") or {}
+    levels = [0] * 6
+    for item in items.values():
+        level = item.get("maturity")
+        levels[level if isinstance(level, int) and 0 <= level <= 5 else 0] += 1
+    total = sum(levels)
+    high = sum(levels[4:])
+    top = sorted((i for i in items.values() if (i.get("maturity") or 0) >= 4),
+                 key=lambda i: (-(i.get("maturity") or 0), i.get("name") or ""))[:3]
+    systems = []
+    for category in tree.get("categories") or []:
+        if category.get("unplaced"):
+            continue
+        members = [key for child in category.get("children") or [] for theme in child.get("themes") or []
+                   for key in theme.get("items") or []]
+        sample = max((items.get(key) or {} for key in members), key=lambda i: i.get("maturity") or 0, default={})
+        systems.append({"name": category.get("name") or "", "plain": category.get("plain") or "",
+                        "items": len(members), "sample": sample.get("name") or ""})
+    systems.sort(key=lambda s: -s["items"])
+    return {
+        "maturity": levels,
+        "avg_maturity": round(sum(level * count for level, count in enumerate(levels)) / total, 2) if total else 0.0,
+        "high_maturity": high,
+        "high_share": round(high / total * 100, 1) if total else 0.0,
+        "top": [{"name": i.get("name") or "", "field": i.get("field") or "", "maturity": i.get("maturity") or 0,
+                 "basis": i.get("basis") or ""} for i in top],
+        "systems_detail": systems,
+    }
+
+
 def install(app, ctx):
     find_corpus = ctx.find_corpus
     knowledge_for = ctx.knowledge_for
@@ -62,6 +100,9 @@ def install(app, ctx):
         return {
             "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
             "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
+            # Projects whose material yielded something in that dimension (首页 地形图, query 2026-1021):
+            # the map asks "is this dimension represented", not "was every file processed".
+            "dimension_evidence": {key: value["evidence_projects"] for key, value in coverage["dimensions"].items()},
             "start_years": sorted({p["start_year"] for p in library["projects"] if p.get("start_year")}),
             # Per start year, for the leader's yearly charts (query 2026-1019 1458): identified projects.
             "by_year": per_year(library, lambda p: 1),
@@ -93,6 +134,9 @@ def install(app, ctx):
             row["lineage"].update(state=tree.get("state"), stale_reason=tree.get("stale_reason", ""),
                                   unplaced=sum(len(t["items"]) for c in tree.get("categories") or [] if c.get("unplaced")
                                                for d in c.get("children") or [] for t in d.get("themes") or []))
+            # 首页地形图 (query 2026-1021): the maturity spread the axes need, and the systems the
+            # preview drawer lists. Counted from the same lineage record, so no extra disk read.
+            row["lineage"].update(lineage_metrics(tree))
             row["hierarchy"]["state"] = scenes.get("state")
             row["pending_identity"] = library["coverage"]["pending_identity_records"]
             # Where the projects concentrate, for the leader's table: projects per application field,

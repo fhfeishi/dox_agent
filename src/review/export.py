@@ -40,15 +40,15 @@ def export_report(run,path:Path):
     doc.add_paragraph(run['document']['metadata']['title'])
     levels=run['reader_report']['levels']; pending=len(run['reader_report']['pending'])
     doc.add_paragraph(f'本次预审修改建议：高 {levels["high"]} 项、中 {levels["medium"]} 项、低 {levels["low"]} 项；{pending} 项待核实。以下为内部预审结果，尚未覆盖的资格与政策要求仍需人工审核。')
-    rows=[('审查模板',f'{run["rule"]["name"]} · v{run["rule"]["version"]}'),('生成时间',run['created_at'])]
+    rows=[('审查模版',f'{run["rule"]["name"]} · v{run["rule"]["version"]}'),('生成时间',run['created_at'])]
     if run['request'].get('kind')=='professional':
         rows.append(('评价方式',f'历史评价 · 评价时点 {run["request"]["cutoff_date"]}' if run['request']['mode']=='historical' else '更新建议'))
     for label,value in rows: doc.add_paragraph(f'{label}：{value}')
-    doc.add_heading('审核范围',1); doc.add_paragraph(run['rule']['scope_note'] or '依据所选模板开展审查，结果表示是否符合本模板要求。')
+    doc.add_heading('审核范围',1); doc.add_paragraph(run['rule']['scope_note'] or '依据所选模版开展审查，结果表示是否符合本模版要求。')
     revised=[c for c in run['rule']['checks'] if c.get('enabled',True) and c.get('revised')]
     if revised:
-        doc.add_heading('模板人工修订',2)
-        for c in revised: doc.add_paragraph(f'{c["title"]}：原文要求“{c["original"].get("requirement","")}”；本模板人工修订为“{c["requirement"]}”，按修订后要求执行。')
+        doc.add_heading('模版人工修订',2)
+        for c in revised: doc.add_paragraph(f'{c["title"]}：原文要求“{c["original"].get("requirement","")}”；本模版人工修订为“{c["requirement"]}”，按修订后要求执行。')
     doc.add_paragraph('PDF 使用文件物理页码；DOCX 使用文本块编号。报告固定保存当次规则、文档信息与证据快照。')
     reader=run.get('reader_report',{})
     doc.add_heading('审核结论与修改清单',1)
@@ -78,7 +78,7 @@ def export_report(run,path:Path):
     if run['request'].get('kind') != 'formal':
         doc.add_heading('技术分析与修改建议',1)
         for row in run['technical'].get('coverage',[]):
-            if row['state']=='missing': doc.add_paragraph(f'未完成评价：{row["title"]}（本次模板启用，模型未给出有效意见）')
+            if row['state']=='missing': doc.add_paragraph(f'未完成评价：{row["title"]}（本次模版启用，模型未给出有效意见）')
     tech=run['technical']; doc.add_paragraph(tech['summary'])
     if tech.get('error'): doc.add_paragraph('模型评议未完成：'+tech['error'])
     for card in tech['cards']:

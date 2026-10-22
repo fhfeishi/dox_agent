@@ -5,7 +5,7 @@ import { Link, useLocation, useSearchParams } from "react-router";
 const TABS: { to: string; label: string; keep?: boolean }[] = [
   { to: "/review/formal", label: "形式审查", keep: true },
   { to: "/review/professional", label: "专业审查", keep: true },
-  { to: "/review/templates", label: "审查模板" },
+  { to: "/review/templates", label: "审查模版" },
   { to: "/review/evidence", label: "技术证据库" },
 ];
 export function ReviewPageShell({ title, description = "", children }: { title: string; description?: string; children: ReactNode }) {

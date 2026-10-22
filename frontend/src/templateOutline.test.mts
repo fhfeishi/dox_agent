@@ -19,7 +19,7 @@ test('an uploaded report becomes a template outline with chapters, sub-sections 
 });
 
 test('markdown headings keep their level, and text without headings is kept as it is', () => {
-  const md = extractTemplate('# 模板\n## 研究范围\n### 资料来源\n正文', '模板');
+  const md = extractTemplate('# 模版\n## 研究范围\n### 资料来源\n正文', '模版');
   assert.deepEqual([md.sections, md.content.includes('## 研究范围\n\n### 资料来源')], [2, true]);
   const plain = extractTemplate('只有一段说明文字，没有任何标题。', '说明');
   assert.deepEqual(plain, { content: '只有一段说明文字，没有任何标题。', sections: 0, extracted: false });

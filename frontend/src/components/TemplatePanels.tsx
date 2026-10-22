@@ -169,10 +169,10 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
       <label className="block text-caption text-[var(--slate)]">一句话用途<input aria-label="任务用途" value={draft.description} onChange={(e) => setDraft({ ...draft, description: e.target.value })} className={field} /></label>
       <OutlineEditor label="任务大纲" value={draft.outline ?? ""} onChange={(outline) => setDraft({ ...draft, outline })} />
       <p className="text-caption leading-[1.6] text-[var(--stone)]">用“## 标题 + 要点”写清目标、输出结构和要求即可。引用来源、资料不足时说明缺口等内置规则始终生效，大纲只能细化不能放宽。</p>
-      {report ? <label className="block text-caption text-[var(--slate)]">报告模板（来自模板库）
-        <select aria-label="报告模板" value={draft.report_template_id ? `${draft.report_template_id}|${draft.report_template_version ?? 0}` : ""} className={field}
+      {report ? <label className="block text-caption text-[var(--slate)]">报告模版（来自模版库）
+        <select aria-label="报告模版" value={draft.report_template_id ? `${draft.report_template_id}|${draft.report_template_version ?? 0}` : ""} className={field}
           onChange={(e) => { const [id, version] = e.target.value.split("|"); setDraft({ ...draft, report_template_id: id || undefined, report_template_version: id ? Number(version) || 0 : undefined }); }}>
-          <option value="">请选择已发布模板</option>
+          <option value="">请选择已发布模版</option>
           {published.map((t) => { const version = t.kind === "custom" ? t.version ?? 0 : 0;
             return <option key={`${t.id}|${version}`} value={`${t.id}|${version}`}>{t.name} · {t.kind === "custom" ? `我的 v${version}` : "内置"}</option>; })}
         </select>
@@ -205,12 +205,12 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
     <div className="mt-[14px] text-caption font-semibold tracking-[0.5px] text-[var(--stone)]">任务大纲</div>
     <Outline text={outline} />
     {report ? <div className="mt-[12px] text-caption text-[var(--slate)]">
-      <div className="text-caption font-semibold tracking-[0.5px] text-[var(--stone)]">报告模板</div>
+      <div className="text-caption font-semibold tracking-[0.5px] text-[var(--stone)]">报告模版</div>
       <div className="mt-[6px] flex flex-wrap gap-[6px]">
         {(task.kind === "custom" ? (bound ? [bound] : []) : library.filter((t) => t.kind !== "custom")).map((t) =>
           <button key={t.id} type="button" onClick={() => showInspector({ kind: "template", templateId: t.id })}
             className="rounded-[6px] border border-[var(--hairline)] px-[8px] py-[5px] text-caption text-[var(--link)] hover:bg-[var(--primary-soft)]">{t.name}</button>)}
-        {task.kind === "custom" && !bound ? <span className="text-[var(--stone)]">未绑定，编辑时从模板库选择</span> : null}
+        {task.kind === "custom" && !bound ? <span className="text-[var(--stone)]">未绑定，编辑时从模版库选择</span> : null}
       </div>
     </div> : null}
     {task.parameters?.length ? <p className="mt-[10px] text-caption text-[var(--slate)]">运行时填写：{task.parameters.map((p) => p.label).join("、")}</p> : null}
@@ -241,7 +241,7 @@ export function ReportTemplatePanel({ templateId, edit }: { templateId: string; 
     if (edit && template && !draft) setDraft({ name: custom ? template.name : `${template.name}（我的）`, purpose: template.purpose ?? "", content: template.content });
   }, [edit, template, draft, custom]);
 
-  if (!template) return <Card>{message || "正在读取模板…"}</Card>;
+  if (!template) return <Card>{message || "正在读取模版…"}</Card>;
   const archived = archivedOf(template);
 
   async function act(work: () => Promise<void>) {
@@ -260,7 +260,7 @@ export function ReportTemplatePanel({ templateId, edit }: { templateId: string; 
   });
 
   const remove = () => act(async () => {
-    if (!window.confirm(`删除未发布的模板草稿“${template.name}”？`)) return;
+    if (!window.confirm(`删除未发布的模版草稿“${template.name}”？`)) return;
     await deleteCustomTemplate(template.id);
     announce();
     toggleInspector();  // the deleted item has nothing left to show
@@ -274,10 +274,10 @@ export function ReportTemplatePanel({ templateId, edit }: { templateId: string; 
   if (edit && draft) {
     const unknown = variablesIn(draft.content).filter((v) => !VARIABLES.includes(v));
     return <Card>
-      <p className="text-caption text-[var(--stone)]">{custom ? `编辑“${template.name}”· 发布为新版本，旧报告不受影响` : `基于内置“${template.name}”编辑 · 保存后加入模板库“我的模板”`}</p>
+      <p className="text-caption text-[var(--stone)]">{custom ? `编辑“${template.name}”· 发布为新版本，旧报告不受影响` : `基于内置“${template.name}”编辑 · 保存后加入模版库“我的模版”`}</p>
       <div className="mt-[10px] space-y-[10px]">
-        <label className="block text-caption text-[var(--slate)]">名称<input aria-label="模板名称" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} className={field} /></label>
-        <label className="block text-caption text-[var(--slate)]">一句话用途<input aria-label="模板用途" value={draft.purpose} onChange={(e) => setDraft({ ...draft, purpose: e.target.value })} className={field} /></label>
+        <label className="block text-caption text-[var(--slate)]">名称<input aria-label="模版名称" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} className={field} /></label>
+        <label className="block text-caption text-[var(--slate)]">一句话用途<input aria-label="模版用途" value={draft.purpose} onChange={(e) => setDraft({ ...draft, purpose: e.target.value })} className={field} /></label>
         <OutlineEditor label="章节大纲" rows={16} value={draft.content} onChange={(content) => setDraft({ ...draft, content })} />
         <p className="text-caption leading-[1.6] text-[var(--stone)]">每个“## 章节”下用一两句写该节要写什么即可，报告按此顺序生成。可插入 {VARIABLES.map((v) => `{{${v}}}`).join(" ")}，生成时替换为本次参数。</p>
         {unknown.length ? <p role="alert" className="text-caption text-[var(--red)]">不支持的变量：{unknown.join("、")}</p> : null}
@@ -299,7 +299,7 @@ export function ReportTemplatePanel({ templateId, edit }: { templateId: string; 
     {template.purpose ? <p className="mt-[6px] text-body text-[var(--steel)]">{template.purpose}</p> : null}
     {archived ? <p className="mt-[6px] text-caption text-[var(--orange-fg)]">已归档，不能绑定到新任务；已绑定的任务版本仍可运行。</p> : null}
     <div className="mt-[10px] flex flex-wrap gap-[6px]">
-      {!archived ? <Button size="sm" disabled={busy} onClick={() => showInspector({ kind: "template", templateId: template.id, edit: true })}>{custom ? "编辑大纲" : "编辑（另存为我的模板）"}</Button> : null}
+      {!archived ? <Button size="sm" disabled={busy} onClick={() => showInspector({ kind: "template", templateId: template.id, edit: true })}>{custom ? "编辑大纲" : "编辑（另存为我的模版）"}</Button> : null}
       <Lifecycle item={template} busy={busy} onDelete={() => void remove()} onArchive={(value) => void archive(value)} />
     </div>
     {message ? <p role="status" className="mt-[6px] text-caption text-[var(--steel)]">{message}</p> : null}

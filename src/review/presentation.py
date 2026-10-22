@@ -75,5 +75,5 @@ def present_report(run):
             + (f"{len(missing)} 个评价问题未完成：{'、'.join(missing)}。" if missing else "")
             + "检索未命中不等于原创，当前资料不足的意见须复核。")
     elif (run.get("request") or {}).get("kind") == "formal":
-        result["reader_report"]["summary"] = f"按所选模板核对，修改建议{spoken}，{len(pending)} 项待核实；结果表示是否符合本模板要求，本次未执行专业技术评议。"
+        result["reader_report"]["summary"] = f"按所选模版核对，修改建议{spoken}，{len(pending)} 项待核实；结果表示是否符合本模版要求，本次未执行专业技术评议。"
     return result

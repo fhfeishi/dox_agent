@@ -59,12 +59,12 @@ async def main():
                 assert await navigation.locator("a, button").all_text_contents() == nav_before
                 assert await navigation.locator("a, button").evaluate_all("(buttons) => buttons.map(b => Math.round(b.getBoundingClientRect().x))") == nav_positions
                 # Minimal workbench: template, application and start; details open on click.
-                await page.get_by_role("button", name=re.compile("形式审查模板")).click()
-                await expect(page.get_by_role("region", name="审查模板预览")).to_be_visible()
+                await page.get_by_role("button", name=re.compile("形式审查模版")).click()
+                await expect(page.get_by_role("region", name="审查模版预览")).to_be_visible()
                 await expect(page).to_have_url(origin + "/review/formal")
                 await expect(page.get_by_role("complementary", name="预览面板")).to_be_focused()
                 await page.keyboard.press("Escape")
-                await expect(page.get_by_role("button", name=re.compile("形式审查模板"))).to_be_focused()
+                await expect(page.get_by_role("button", name=re.compile("形式审查模版"))).to_be_focused()
                 assert await page.locator('aside[aria-label="预览面板"]').evaluate("el => el.inert")
                 body = "# 项目摘要\n" + "甲"*300 + "\n# 项目背景\n" + "乙"*201 + "\n# 项目方案\n" + "丙"*100
                 await page.get_by_label("上传申请书文件", exact=True).set_input_files({

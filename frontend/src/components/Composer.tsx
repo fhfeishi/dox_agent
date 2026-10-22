@@ -263,7 +263,8 @@ export function Composer() {
 
   return (
     <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[10px]">
-      <div className="mx-auto w-full max-w-[820px]">
+      {/* 点选提问 anchors to this column: it opens above the composer instead of pushing the page. */}
+      <div className="relative mx-auto w-full max-w-[820px]">
         {!scopeReady ? (
           <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <span className="min-w-0 flex-1">
@@ -484,7 +485,7 @@ export function Composer() {
               editing
                 ? "修改后按 Enter 重新发送…"
                 : taskId === "task4"
-                  ? "描述报告需求：领域、年份范围、模板（成果/热点/未来/综合）…"
+                  ? "描述报告需求：领域、年份范围、模版（成果/热点/未来/综合）…"
                   : "基于当前知识库提问，或点击 + 选择一项任务…"
             }
             className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-body leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
@@ -581,9 +582,13 @@ export function Composer() {
               </span>
             ) : null}
 
-            {!editing && !quickOpen ? (
-              <button type="button" onClick={() => setQuickOpen(true)}
-                className="font-app inline-flex h-[30px] items-center rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
+            {!editing ? (
+              <button type="button" onClick={() => setQuickOpen((open) => !open)}
+                aria-expanded={quickOpen} aria-controls="quick-ask-panel"
+                className={`font-app inline-flex h-[30px] items-center gap-[5px] rounded-[6px] px-[9px] text-body transition-colors ${quickOpen
+                  ? "bg-[var(--primary-soft)] font-medium text-[var(--primary-pressed)]"
+                  : "text-[var(--slate)] hover:bg-[var(--surface)]"}`}>
+                <Icon name="checklist" size={15} />
                 点选提问
               </button>
             ) : null}

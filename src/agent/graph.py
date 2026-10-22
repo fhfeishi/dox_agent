@@ -137,7 +137,7 @@ def build_report_brief(messages: list[dict], corpus_domain: str = "", *, today: 
             brief["fund_type"] = label
             sources["fund_type"] = "user"
         for keyword, template in _TEMPLATE_KEYWORDS:
-            if keyword in content and (keyword != "成果" or "成果模板" in content):
+            if keyword in content and (keyword != "成果" or "成果模版" in content):
                 brief["template_id"] = template
                 sources["template_id"] = "user"
     brief["sources"] = sources
@@ -157,7 +157,7 @@ def intake_reply(params: dict) -> tuple[str, bool]:
     else:
         known.append("基金类别：不限")
     if params.get("template_id"):
-        known.append(f"模板：{params['template_id']}")
+        known.append(f"模版：{params['template_id']}")
     known_text = "；".join(known)
     if not params.get("domain"):
         prefix = f"已记录：{known_text}。\n" if known_text else ""
@@ -193,6 +193,7 @@ def retrieval_trace(result, round_: int, limited: int | None) -> dict:
         })
     return {"kind": "search", "round": round_, "terms": list(result.specific), "considered": result.candidates,
             "limited": limited, "year_window": list(result.year_window) if result.year_window else None,
+            "year_relaxed": result.year_relaxed,
             "reports": reports, "partial": result.partial, "reason": result.reason}
 
 
@@ -372,6 +373,10 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
                     f"{key}={value}" for key, value in custom_task["parameters"].items())
             if custom_task.get("skill_instruction"):
                 instruction += "\n已发布 Skill 补充（不得扩大运行工具或资料范围）：\n" + custom_task["skill_instruction"]
+        if retrieval is not None and retrieval.year_relaxed:
+            instruction += (
+                "\n所选时间范围内没有任何项目，已改在全部年份中检索；回答开头须说明这一点，"
+                "不得暗示已按时间筛选。")
         if retrieval is not None and retrieval.year_window:
             start, end = retrieval.year_window
             instruction += (

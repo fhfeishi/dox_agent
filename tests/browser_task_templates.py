@@ -82,7 +82,7 @@ async def main():
                 await expect(mine).to_have_count(1)
 
                 # Template library: edit a built-in outline, preview it, save as my draft, delete it.
-                library = page.get_by_role("region", name="报告模板库")
+                library = page.get_by_role("region", name="报告模版库")
                 # Analysis excludes the intelligence template (query 2026-1014 1820).
                 await expect(library.locator("article")).to_have_count(4)
                 await library.locator("article").filter(has_text="热点报告").get_by_role("button", name="修改").click()
@@ -98,8 +98,8 @@ async def main():
 
                 # A report task picks its template from the library while editing.
                 await cards.filter(has_text="专项报告").get_by_role("button", name="修改").click()
-                await expect(inspector.get_by_label("报告模板").locator("option")).to_have_count(5)
-                await expect(inspector.get_by_label("报告模板").get_by_role("option",name=re.compile("情报"))).to_have_count(0)
+                await expect(inspector.get_by_label("报告模版").locator("option")).to_have_count(5)
+                await expect(inspector.get_by_label("报告模版").get_by_role("option",name=re.compile("情报"))).to_have_count(0)
                 assert not errors, errors
                 await browser.close()
         finally:

@@ -54,7 +54,7 @@ def builtins():
                     source="内置评价问题", evidence_need=need))
         rule = RulePack(id="builtin-" + kind, kind=kind, name="通用形式审查示例" if kind == "formal" else "通用专业审查",
                         source_kind="builtin", checks=checks, confirmed=True,
-                        scope_note=("示例数值来自本项目需求纪要，可复制后按实际要求修改；结果表示是否符合本模板要求，不代表官方合规。"
+                        scope_note=("示例数值来自本项目需求纪要，可复制后按实际要求修改；结果表示是否符合本模版要求，不代表官方合规。"
                                     if kind == "formal" else
                                     "围绕研究目标与技术方案评议合理性、必要性、可行性与论证充分性；比较已有工作需选择对照资料。")
                         ).model_dump(mode="json")
@@ -121,9 +121,18 @@ def preserve_origins(data, old=None, known=()):
 UPPER = r"(?:不超过|不多于|不得超过|至多|最多|≤|<=|以内|以下)"
 
 
+DATE = r"((?:19|20)\d{2})\s*(?:年|[-./])\s*(\d{1,2})\s*(?:月|[-./])\s*(\d{1,2})\s*日?"
+
+
 def suggest_execution(check):
     """Program-aligned numeric suggestion for an uploaded clause; a person still confirms it."""
     text = check["requirement"]
+    # 执行期 2027-01-01 至 2029-12-31 (query 2026-1021 1629): two full dates are the plan-interval check.
+    dates = re.findall(DATE, text)
+    if len(dates) == 2 and not check.get("execution"):
+        start, end = (f"{y}-{int(m):02d}-{int(d):02d}" for y, m, d in dates)
+        if start <= end:
+            return {"field": "plan_interval", "operator": "within", "value": start, "unit": "日期", "section": "项目进度计划", "end": end}
     match = re.search(r"(\d+(?:\.\d+)?)\s*(万元|个?字符|字|家|个单位)", text)
     if not match or not re.search(UPPER, text) or check.get("execution"):
         return None

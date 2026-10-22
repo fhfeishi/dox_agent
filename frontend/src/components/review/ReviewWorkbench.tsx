@@ -1,7 +1,7 @@
 import { GenerationProgress } from "../GenerationProgress";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
-import { createReviewRun, fetchReviewDocument, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth, fetchReviewMappings, fetchReviewRules, fetchReviewRuns, patchReviewDocument, reextractReviewDocument, saveReviewMappings, testReviewModel, uploadReviewDocument, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL, type ReviewDoc, type ReviewEvidence, type ReviewHealth, type ReviewKind, type ReviewMappingState, type ReviewMetadata, type ReviewRule, type ReviewRun } from "../../reviewApi";
+import { createReviewRun, fetchReviewApplied, fetchReviewDocument, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth, fetchReviewMappings, fetchReviewRules, fetchReviewRuns, patchReviewDocument, reextractReviewDocument, saveReviewMappings, testReviewModel, uploadReviewDocument, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL, type ReviewApplied, type ReviewDoc, type ReviewEvidence, type ReviewHealth, type ReviewKind, type ReviewMappingState, type ReviewMetadata, type ReviewRule, type ReviewRun } from "../../reviewApi";
 import { useApp } from "../../store";
 import { Button, Pill } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
@@ -92,7 +92,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
         {field("application_budget", "number")}
       </div>
       <details className="mt-[10px] text-caption">
-        <summary className="cursor-pointer text-[var(--steel)]">更多字段（基金、类别、年度、学历等，按模板需要填写）</summary>
+        <summary className="cursor-pointer text-[var(--steel)]">更多字段（基金、类别、年度、学历等，按模版需要填写）</summary>
         <div className="mt-2 grid grid-cols-1 gap-[10px] sm:grid-cols-4">
           {field("fund")}
           {field("category")}
@@ -152,7 +152,7 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
   useEffect(() => onSummary({ confirmed, total: state?.mappings.length ?? 0, dirty }), [confirmed, state, dirty]);
   if (error) return <Notice text={error} error />;
   if (!state) return <p className="text-body text-[var(--steel)]">正在识别章节…</p>;
-  if (!state.mappings.length) return <p className="text-body text-[var(--steel)]">本模板没有需要按章节定位的条目。</p>;
+  if (!state.mappings.length) return <p className="text-body text-[var(--steel)]">本模版没有需要按章节定位的条目。</p>;
   const index = new Map(state.blocks.map((block, i) => [block.id, i]));
   const label = (id: string) => {
     const block = state.blocks[index.get(id) ?? 0];
@@ -275,9 +275,9 @@ function LatestRun({ runs }: { runs: ReviewRun[] }) {
 }
 
 const CARD_TEXT: Record<ReviewKind, { label: string; lead: string; note: string }> = {
-  formal: { label: "形式审查模板", lead: "按所选要求检查申请书的章节完整性、字数、金额、日期和文字规范，定位需要修改或核对的位置。",
+  formal: { label: "形式审查模版", lead: "按所选要求检查申请书的章节完整性、字数、金额、日期和文字规范，定位需要修改或核对的位置。",
     note: "错别字提供校对建议；字体、版式等仅对已支持的格式检查，不把无法读取当成通过。" },
-  professional: { label: "专业审查模板", lead: "围绕研究目标与技术方案，评议合理性、开展必要性、可行性和论证充分性；结合所选资料比较已有工作，给出有依据的修改建议。",
+  professional: { label: "专业审查模版", lead: "围绕研究目标与技术方案，评议合理性、开展必要性、可行性和论证充分性；结合所选资料比较已有工作，给出有依据的修改建议。",
     note: "需选择一个对照资料库，默认取其中最相近的 3 篇报告全文作为参考；检索未命中不等于原创。" },
 };
 
@@ -290,6 +290,7 @@ export function ReviewWorkbench() {
   const sheetId = search.get("sheet") ?? "";
   const [health, setHealth] = useState<ReviewHealth | null>(null);
   const [rules, setRules] = useState<ReviewRule[]>([]);
+  const [applied, setApplied] = useState<ReviewApplied>({ formal: null, professional: null });
   const [docs, setDocs] = useState<ReviewDoc[]>([]);
   const [runs, setRuns] = useState<ReviewRun[]>([]);
   const [evidence, setEvidence] = useState<ReviewEvidence[]>([]);
@@ -315,6 +316,7 @@ export function ReviewWorkbench() {
     void fetchReviewHealth().then(setHealth).catch((cause) => setError((cause as Error).message));
     void reload().catch((cause) => setError((cause as Error).message));
     void fetchReviewEvidence().then(setEvidence).catch(() => undefined);
+    void fetchReviewApplied().then(setApplied).catch(() => undefined);
   }, []);
   useEffect(() => () => { if (poller.current) window.clearInterval(poller.current); }, []);
   useEffect(() => {
@@ -350,7 +352,9 @@ export function ReviewWorkbench() {
   }
 
   const usable = rules.filter((rule) => rule.kind === reviewKind && !rule.archived);
+  // A choice made for this review wins; otherwise the template an administrator applied, then the built-in one.
   const template = usable.find((rule) => rule.id === search.get("template") && rule.confirmed)
+    ?? usable.find((rule) => rule.id === applied[reviewKind] && rule.confirmed)
     ?? usable.find((rule) => rule.id === "builtin-" + reviewKind && rule.confirmed) ?? usable.find((rule) => rule.confirmed) ?? null;
   const enabled = template?.checks.filter((check) => check.enabled) ?? [];
 
@@ -388,7 +392,7 @@ export function ReviewWorkbench() {
     : available.find((item) => corpusIds.includes(item.id))?.id ?? available[0]?.id ?? "";
   const blockers = [
     !health?.model_configured ? "审查模型未配置" : "",
-    !template ? "没有可用的已启用模板" : "",
+    !template ? "没有可用的已启用模版" : "",
     !doc ? "尚未上传申请书" : "",
     mapping.dirty ? "章节对应有未保存修改" : "",
     reviewKind === "professional" && mode === "historical" && !cutoff ? "历史评价需填写评价时点" : "",
@@ -423,7 +427,7 @@ export function ReviewWorkbench() {
       {/* query 2026-1013 1133: three steps, details hidden until clicked. */}
       <div className="grid items-center gap-3 md:grid-cols-[1fr_1fr_auto]">
         <StepTile step={1} label={text.label} open={panel === "template"}
-          value={template ? `${template.name} · v${template.version}` : "尚无可用模板"}
+          value={template ? `${template.id === applied[reviewKind] ? "应用中 · " : ""}${template.name} · v${template.version}` : "尚无可用模版"}
           onClick={() => { setPanel(panel === "template" ? "" : "template"); if (template && panel !== "template") showInspector({ kind: "review-template", templateId: template.id }); }} />
         <StepTile step={2} label="申请书" open={panel === "upload"} value={busy === "读取申请书" ? "读取中…" : doc ? doc.filename : "上传申请书"}
           onClick={() => { if (!doc && !busy) fileInput.current?.click(); else setPanel(panel === "upload" ? "" : "upload"); }}
@@ -442,17 +446,18 @@ export function ReviewWorkbench() {
           <p>{text.lead}</p>
           {template ? <p className="mt-1">本次启用 <b>{enabled.length}</b> 项：{enabled.slice(0, 6).map((c) => c.title).join("、")}{enabled.length > 6 ? "…" : ""}</p> : null}
           <p className="mt-1 text-caption text-[var(--steel)]">{text.note} 完整条款已在右侧预览。</p>
-          <p className="mt-3 text-caption font-semibold text-[var(--steel)]">更换模板</p>
+          <p className="mt-3 text-caption font-semibold text-[var(--steel)]">更换模版</p>
           <div className="mt-1">{usable.map((rule) => (
             <button key={rule.id} type="button" disabled={!rule.confirmed} onClick={() => { remember("template", rule.id); showInspector({ kind: "review-template", templateId: rule.id }); }}
               className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-body disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--canvas)]"}`}>
               <span className="min-w-0 flex-1 truncate">{rule.name} · v{rule.version}</span>
+              {rule.id === applied[reviewKind] ? <Pill tone="sky">应用中</Pill> : null}
               <Pill tone="gray">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
               {!rule.confirmed ? <Pill tone="yellow">草稿</Pill> : null}
             </button>))}</div>
           <div className="mt-2 flex flex-wrap gap-3 border-t border-[var(--hairline)] pt-2">
-            {template ? <Link className="text-caption text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模板编辑</Link> : null}
-            <Link className="text-caption text-[var(--link)]" to="/review/templates">新建或上传模板</Link>
+            {template ? <Link className="text-caption text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模版编辑</Link> : null}
+            <Link className="text-caption text-[var(--link)]" to="/review/templates">新建或上传模版</Link>
           </div>
         </div>
       ) : null}
@@ -480,7 +485,7 @@ export function ReviewWorkbench() {
           <summary className="cursor-pointer text-body font-medium">补充信息与高级选项（可选）</summary>
           <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3 text-body">
             <strong className="mr-2">准备核对</strong>
-            <Pill tone={template ? "mint" : "rose"}>{template ? "模板已保存" : "缺少模板"}</Pill>
+            <Pill tone={template ? "mint" : "rose"}>{template ? "模版已保存" : "缺少模版"}</Pill>
             <Pill tone="mint">正文可读 · {doc.page_count} {doc.kind === "pdf" ? "页" : "块"}</Pill>
             <Pill tone={doc.confirmed_at ? "mint" : "yellow"}>{doc.confirmed_at ? "基本信息已确认" : "待核对字段"}</Pill>
             {reviewKind === "formal" ? <Pill tone={mapping.total && mapping.confirmed === mapping.total ? "mint" : "yellow"}>章节对应 {mapping.confirmed}/{mapping.total} 已确认</Pill> : null}
@@ -498,7 +503,7 @@ export function ReviewWorkbench() {
           {reviewKind === "formal" && template ? (
             <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
               <strong className="text-body">章节对应核对</strong>
-              <p className="mb-3 mt-1 text-caption text-[var(--steel)]">模板中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
+              <p className="mb-3 mt-1 text-caption text-[var(--steel)]">模版中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
               <SectionMapping doc={doc} rule={template} onSummary={setMapping} />
             </div>
           ) : null}
@@ -570,7 +575,7 @@ function RunList({ runs }: { runs: ReviewRun[] }) {
             className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption hover:border-[var(--primary)]">
             <span className="block text-body font-semibold text-[var(--ink)]">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
             <span className="mt-[3px] block text-[var(--steel)]">
-              {REVIEW_STATUS_LABEL[run.status] ?? run.status} · {run.rule?.name ?? "模板"} v{run.rule?.version ?? "-"}
+              {REVIEW_STATUS_LABEL[run.status] ?? run.status} · {run.rule?.name ?? "模版"} v{run.rule?.version ?? "-"}
               {run.levels ? ` · 修改建议 高 ${run.levels.high} / 中 ${run.levels.medium} / 低 ${run.levels.low} · 待核实 ${run.levels.pending}` : ""} · {run.created_at?.slice(0, 10)}
             </span>
           </Link>

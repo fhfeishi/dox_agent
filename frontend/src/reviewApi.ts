@@ -310,10 +310,20 @@ export function saveReviewRule(rule: ReviewRule): Promise<ReviewRule> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(rule),
-  }, "模板保存失败");
+  }, "模版保存失败");
+}
+/** Which template new reviews of each kind start with (应用); null = the built-in one. */
+export type ReviewApplied = Record<ReviewKind, string | null>;
+export function fetchReviewApplied(): Promise<ReviewApplied> {
+  return request("/applied", undefined, "应用中的模版读取失败");
+}
+export function applyReviewRule(kind: ReviewKind, ruleId: string | null): Promise<ReviewApplied> {
+  return request("/applied", {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, rule_id: ruleId }),
+  }, ruleId ? "应用模版失败" : "取消应用失败");
 }
 export function fetchReviewRules(): Promise<ReviewRule[]> {
-  return request("/rules", undefined, "模板列表读取失败");
+  return request("/rules", undefined, "模版列表读取失败");
 }
 export function fetchReviewMappings(documentId: string, ruleId: string): Promise<ReviewMappingState> {
   return request(`/documents/${encodeURIComponent(documentId)}/mappings?rule_id=${encodeURIComponent(ruleId)}`, undefined, "章节对应读取失败");
@@ -401,5 +411,5 @@ export const REVIEW_EVIDENCE_NEED_LABEL: Record<string, string> = {
 
 /** Remove a template from the list (query 2026-1014 1737); past reviews keep their version. */
 export function deleteReviewRule(id: string): Promise<{ id: string; archived: boolean }> {
-  return request(`/rules/${encodeURIComponent(id)}`, { method: "DELETE" }, "模板删除失败");
+  return request(`/rules/${encodeURIComponent(id)}`, { method: "DELETE" }, "模版删除失败");
 }

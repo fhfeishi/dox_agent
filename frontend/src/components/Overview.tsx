@@ -14,14 +14,17 @@ import { LineageTree } from "./LineageTree";
 import { ProjectGraph } from "./ProjectGraph";
 import { YearDistribution } from "./YearDistribution";
 import { useLayout } from "../layout";
+import { DomainAtlas } from "./atlas/DomainAtlas";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
 export type OverviewArea = "build" | "domains";
 export const OVERVIEW_AREAS: { key: OverviewArea; label: string }[] = [
   { key: "build", label: "资料库建设" }, { key: "domains", label: "领域分析" }];
-type View = "overview" | "lineage" | "roadmap" | "relations" | "years" | "tech";
-const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "overview", label: "总览" }, { key: "lineage", label: "技术谱系" },
+type View = "panorama" | "overview" | "lineage" | "roadmap" | "relations" | "years" | "tech";
+// 全景 spans every library (query 2026-1021 1629) and is where 领域分析 opens; the rest read one domain.
+const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "panorama", label: "全景" },
+  { key: "overview", label: "领域总览" }, { key: "lineage", label: "技术谱系" },
   { key: "roadmap", label: "路网形式" }, { key: "relations", label: "项目关系" }, { key: "years", label: "年度分布" },
   { key: "tech", label: "关键技术", admin: true }];
 
@@ -46,7 +49,7 @@ export function Overview() {
     .sort((a, b) => (b.indexed_count ?? 0) - (a.indexed_count ?? 0));
   const current = domains.find((c) => c.id === search.get("domain")) ?? domains[0];
   const views = VIEWS.filter((v) => !v.admin || admin);
-  const view = views.find((v) => v.key === search.get("view"))?.key ?? "overview";
+  const view = views.find((v) => v.key === search.get("view"))?.key ?? "panorama";
   const set = (next: Record<string, string>) => setSearch((old) => {
     const value = new URLSearchParams(old);
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
@@ -55,16 +58,19 @@ export function Overview() {
   // A leader's 资料库建设 is the top of 首页 (query 2026-1016); 概览 keeps 领域分析 for them.
   if (!admin && area === "build") return <Navigate to="/home" replace />;
   return <main className="min-h-0 flex-1 overflow-y-auto">
-    {area === "domains" ? <div className="sticky top-0 z-10 border-b border-[var(--hairline)] bg-[var(--canvas)]/95 backdrop-blur">
+    {/* 全景 needs no toolbar (query 2026-1022): it covers every domain. One domain's views keep theirs. */}
+    {area === "domains" && view !== "panorama" ? <div className="sticky top-0 z-10 border-b border-[var(--hairline)] bg-[var(--canvas)]/95 backdrop-blur">
       {/* The toolbar sits on the page's content column, not the window edge (query 2026-1019 2021). */}
       <div className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center gap-4 px-5 py-2.5 sm:px-8">
+      <button type="button" onClick={() => setSearch({}, { replace: false })}
+        className="rounded-lg px-2 py-1.5 text-body text-[var(--link)] hover:bg-[var(--surface)]">← 返回全景</button>
       <label className="flex items-center gap-2 text-body text-[var(--steel)]">领域
         <select aria-label="选择领域" value={current?.id ?? ""} onChange={(e) => set({ domain: e.target.value })}
           className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body font-semibold text-[var(--ink)]">
           {domains.map((c) => <option key={c.id} value={c.id}>{short(c.name)}</option>)}
         </select></label>
       <label className="flex items-center gap-2 text-body text-[var(--steel)]">分析视角
-        <select aria-label="分析视角" value={view} onChange={(e) => set({ view: e.target.value === "overview" ? "" : e.target.value })}
+        <select aria-label="分析视角" value={view} onChange={(e) => set({ view: e.target.value === "panorama" ? "" : e.target.value })}
           className="max-w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body text-[var(--ink)]">
           {views.map((v) => <option key={v.key} value={v.key}>{v.label}</option>)}
         </select>
@@ -77,6 +83,7 @@ export function Overview() {
       <LeaderConstruction onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} />
     </>
       : !current ? <p className="p-8 text-body text-[var(--steel)]">还没有可浏览的领域资料。</p>
+      : view === "panorama" ? <DomainAtlas />
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
       : view === "tech" ? <KeyTechnology key={current.id} corpusId={current.id} name={short(current.name)} />
       // The lineage takes the full width (query 2026-1014 1642); other views keep a reading width.

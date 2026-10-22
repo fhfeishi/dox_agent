@@ -19,6 +19,7 @@ from .agent.corpora import (
 from .agent.graph import build_graph
 from .api import assets as api_assets
 from .api import chat as api_chat
+from .api import domains as api_domains
 from .api import library as api_library
 from .api import reports as api_reports
 from .api import structure as api_structure
@@ -184,7 +185,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     # share from here travels in ctx.
     ctx = SimpleNamespace(settings=settings, knowledge=knowledge, graph_factory=graph_factory,
                           find_corpus=find_corpus, knowledge_for=knowledge_for, knowledge_for_request=knowledge_for_request)
-    for domain in (api_system, api_assets, api_library, api_web, api_chat, api_structure, api_reports):
+    for domain in (api_system, api_assets, api_library, api_web, api_chat, api_structure, api_domains, api_reports):
         domain.install(app, ctx)
 
     @app.get("/{asset_path:path}")

@@ -232,7 +232,7 @@ def require_admin(request: Request):
     open: 情报分析 lets anyone save their own. Each such endpoint declares ``ADMIN_ONLY`` (card B2), and
     scripts/permission_matrix.py measures the result against design/系统.md §5."""
     if request.state.user[1] != "admin":
-        raise HTTPException(403, "资料库结构重新生成与共享模板维护需要管理员账户")
+        raise HTTPException(403, "资料库结构重新生成与共享模版维护需要管理员账户")
 
 
 ADMIN_ONLY = [Depends(require_admin)]

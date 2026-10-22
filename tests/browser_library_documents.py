@@ -167,17 +167,26 @@ async def main():
                 # 成果 is a main-bar entry (query 2026-1019 1458).
                 await expect(page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True)).to_be_visible()
                 await expect(page.get_by_role("region",name="我的工作")).to_be_visible()
+                # 资料库概览 is back to bars, radar and library cards (query 2026-1022 1606); a card opens the
+                # shared right-hand slide-out, and a leader sees no admin to-do list there.
                 await expect(page.get_by_role("group",name="各领域项目数").get_by_role("button")).to_have_count(1)
                 await page.get_by_label("资料库卡片").get_by_role("button").first.click()
-                await expect(page.locator("aside[aria-hidden='false']").get_by_text("已知经费")).to_be_visible()
-                await expect(page.locator("aside[aria-hidden='false']").get_by_text("需要处理")).to_have_count(0)
-                await page.get_by_role("button",name="关闭预览面板").click()
+                drawer=page.get_by_role("dialog",name=re.compile("资料库预览"))
+                await expect(drawer.get_by_role("button",name=re.compile("进入资料库"))).to_be_visible()
+                await expect(drawer.get_by_text("需要处理")).to_have_count(0)
+                await page.keyboard.press("Escape")
+                await expect(page.get_by_role("dialog",name=re.compile("资料库预览"))).to_have_count(0)
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await page.screenshot(path=str(shots/"leader.png"))
                 # The per-domain jump button is gone (query 2026-1019 2021); 领域分析 is the leader top entry.
                 await page.get_by_role("navigation",name="主导航").get_by_role("link",name="领域分析",exact=True).click()
-                await expect(page.get_by_label("分析视角")).to_be_visible()
+                # 全景 opens first, with no toolbar (query 2026-1022); a library without a lineage says why it
+                # is empty and still opens its own views.
+                await expect(page.get_by_role("alert")).to_contain_text("还没有可浏览的领域资料")
+                await expect(page.get_by_label("分析视角")).to_have_count(0)
+                await page.get_by_text("按资料库查看").get_by_role("button").first.click()
+                await expect(page.get_by_label("分析视角")).to_have_value("overview")
                 history = await page.evaluate("history.length")
                 await page.get_by_label("分析视角").select_option("years")
                 await page.get_by_label("分析视角").select_option("relations")

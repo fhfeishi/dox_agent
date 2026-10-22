@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from ..agent.corpora import default_corpus_info
 from ..agent.models import check_model
 from ..compose_question import compose as compose_question
+from ..compose_question import library_vocabulary, vocabulary_slice
 from .common import (
     ComposeRequest,
     logger,
@@ -44,22 +45,34 @@ def install(app, ctx):
     async def compose_question_text(payload: ComposeRequest):
         if not settings.model_api_key:
             raise HTTPException(503, "模型未配置，无法生成问题；可直接在输入框中填写")
-        names = []
+        names, libraries = [], []
         for corpus_id in payload.corpus_ids:
             info = await asyncio.to_thread(find_corpus, corpus_id)
             if info is None:
                 raise HTTPException(404, "知识库不存在")
             names.append(info.name)
+            libraries.append(info)
+        # The first library's own scene / problem / system names: material for a thin selection, drawn
+        # differently on each new attempt so asking again starts from other names.
+        vocabulary = {}
+        if libraries and not libraries[0].missing:
+            vocabulary = vocabulary_slice(await asyncio.to_thread(library_vocabulary, libraries[0].root),
+                                          len(payload.avoid))
         try:
             question = await compose_question(settings, payload.task, payload.elements, payload.intents,
-                                              names, payload.scene.strip(), payload.note.strip())
+                                              names, payload.scene.strip(), payload.note.strip(), payload.period,
+                                              vocabulary, payload.avoid)
         except TimeoutError as exc:
             raise HTTPException(504, "生成问题超时，请重试或直接填写") from exc
         except Exception as exc:  # provider/network errors surface as one readable message
             logger.warning("compose question failed: %s: %s", type(exc).__name__, str(exc)[:300])
             reason = model_failure_message(exc, "生成问题超时")
             raise HTTPException(502, f"生成问题失败：{reason}" if reason else f"生成问题失败（{type(exc).__name__}），请重试或直接填写") from exc
-        return {"question": question}
+        # Which library names the question took up, so the panel can say what was added and that it
+        # came from this library, not from the model's memory.
+        added = [name for names_ in vocabulary.values() for name in names_
+                 if name in question and name != payload.scene.strip()]
+        return {"question": question, "added": added}
 
     @router.get("/api/model")
     async def model_info():

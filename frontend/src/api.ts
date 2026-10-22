@@ -37,7 +37,21 @@ export type LibraryOverview = {
   /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
   funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];
   hierarchy: { generated_at?: string | null; scenes: number; issues: number; state?: string };
-  lineage: { generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number };
+  /** 技术谱系 record: how many technique items it holds and how far they have travelled.
+   *  `maturity` is the six-level spread (0 未判定 … 5 示范转化), `avg_maturity` its mean including 0,
+   *  `high_maturity`/`high_share` the items at 4 or 5, `top` the three highest with the basis they
+   *  quoted, and `systems_detail` one row per technology system with its own item count. All of it
+   *  is counted from the stored lineage record (query 2026-1021 首页地形图); a library without one
+   *  leaves these out. */
+  lineage: {
+    generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number;
+    maturity?: number[]; avg_maturity?: number; high_maturity?: number; high_share?: number;
+    top?: { name: string; field: string; maturity: number; basis: string }[];
+    systems_detail?: { name: string; plain: string; items: number; sample: string }[];
+  };
+  /** Projects whose material yielded something in that dimension — the map asks whether the
+   *  dimension is represented, not whether every file was processed. */
+  dimension_evidence?: Record<string, number>;
   pending_identity?: number;
   /** Projects per application field, largest first. */
   fields?: [string, number][];
@@ -379,7 +393,8 @@ export type TraceReport = { doc_id: string; corpus_id: string; title: string; pr
   matched: string[]; cover: number; where: { page: number; heading: string }[] };
 export type TraceItem =
   | { kind: "search"; round: number; terms: string[]; considered: number; limited: number | null; year_window: number[] | null;
-      reports: TraceReport[]; partial: boolean; reason: string }
+      /** The picked window held no project, so the search ran over every year instead (query 2026-1021). */
+      year_relaxed?: boolean; reports: TraceReport[]; partial: boolean; reason: string }
   | { kind: "coverage"; missing: string[]; retry: boolean }
   | { kind: "answer"; basis: string; sources: number; web: number; characters: number };
 
@@ -475,14 +490,14 @@ export const templateLabel = (t: Pick<TemplateSummary, "name" | "kind" | "status
 export async function fetchTemplates(signal?: AbortSignal, includeArchived = false): Promise<TemplateSummary[]> {
   const query = includeArchived ? "?include_archived=true" : "";
   const response = await fetch(`/api/templates${query}`, signal ? { signal } : undefined);
-  if (!response.ok) throw new Error("输出模板列表不可用（" + response.status + "）");
+  if (!response.ok) throw new Error("输出模版列表不可用（" + response.status + "）");
   return response.json();
 }
 
 export async function fetchTemplate(templateId: string, version?: number): Promise<TemplateInfo> {
   const query = version === undefined ? "" : `?version=${version}`;
   const response = await fetch(`/api/templates/${encodeURIComponent(templateId)}${query}`);
-  return jsonOrThrow(response, "输出模板不可用") as Promise<TemplateInfo>;
+  return jsonOrThrow(response, "输出模版不可用") as Promise<TemplateInfo>;
 }
 
 export type CustomTemplate = { id: string; kind: string; status: string; archived?: boolean; revision: number; version: number;
@@ -494,12 +509,12 @@ export async function copyTemplate(sourceTemplateId: string): Promise<CustomTemp
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ source_template_id: sourceTemplateId }),
   });
-  return jsonOrThrow(response, "复制模板失败") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "复制模版失败") as Promise<CustomTemplate>;
 }
 
 export async function fetchCustomTemplate(templateId: string): Promise<CustomTemplate> {
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}`);
-  return jsonOrThrow(response, "模板不可用") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "模版不可用") as Promise<CustomTemplate>;
 }
 
 export async function saveTemplateDraft(templateId: string, revision: number,
@@ -507,29 +522,29 @@ export async function saveTemplateDraft(templateId: string, revision: number,
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/draft`, {
     method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision, ...changes }),
   });
-  return jsonOrThrow(response, "保存模板草稿失败") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "保存模版草稿失败") as Promise<CustomTemplate>;
 }
 
 export async function publishTemplate(templateId: string, revision: number): Promise<CustomTemplate> {
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/publish`, {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision }),
   });
-  return jsonOrThrow(response, "发布模板失败") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "发布模版失败") as Promise<CustomTemplate>;
 }
 
 export async function deleteCustomTemplate(templateId: string): Promise<void> {
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}`, { method: "DELETE" });
-  if (!response.ok) await jsonOrThrow(response, "删除模板失败");
+  if (!response.ok) await jsonOrThrow(response, "删除模版失败");
 }
 
 export async function archiveCustomTemplate(templateId: string): Promise<CustomTemplate> {
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/archive`, { method: "POST" });
-  return jsonOrThrow(response, "归档模板失败") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "归档模版失败") as Promise<CustomTemplate>;
 }
 
 export async function restoreCustomTemplate(templateId: string): Promise<CustomTemplate> {
   const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/restore`, { method: "POST" });
-  return jsonOrThrow(response, "恢复模板失败") as Promise<CustomTemplate>;
+  return jsonOrThrow(response, "恢复模版失败") as Promise<CustomTemplate>;
 }
 
 export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: ChatRequestOptions): Promise<void>;
@@ -632,12 +647,21 @@ export async function checkModel(): Promise<ModelCheck> {
   return jsonOrThrow(await fetch("/api/model/check", { method: "POST" }), "连接测试失败") as Promise<ModelCheck>;
 }
 
-export type ComposeInput = { task: string; elements: string[]; intents: string[]; corpus_ids: string[]; scene?: string; note?: string };
+/**
+ * 点选提问: `period` is the picked year span as "2021—2026" — the same phrase the retriever filters on;
+ * `note` is what is already typed in the input box; `avoid` lists earlier drafts for the same picks, so
+ * the next one takes another angle (query 2026-1021 1619).
+ */
+export type ComposeInput = { task: string; elements: string[]; intents: string[]; corpus_ids: string[]; scene?: string; note?: string;
+  period?: string; avoid?: string[] };
+/** The question, and the library's own scene / problem / system names it took up to be specific. */
+export type ComposedQuestion = { question: string; added: string[] };
 
 /** Click-to-ask: the model turns clicked keywords into one editable question. */
-export async function composeQuestion(input: ComposeInput): Promise<string> {
+export async function composeQuestion(input: ComposeInput): Promise<ComposedQuestion> {
   const payload = await jsonOrThrow(await fetch("/api/compose-question", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }), "生成问题失败");
-  return (payload as { question: string }).question;
+  const { question, added } = payload as Partial<ComposedQuestion> & { question: string };
+  return { question, added: added ?? [] };
 }
 
 

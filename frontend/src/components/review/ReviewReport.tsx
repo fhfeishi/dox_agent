@@ -157,7 +157,7 @@ export function ReviewRunPage() {
       <Notice text={error} error />
       <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div><p className="text-caption text-[var(--steel)]">{formal ? "形式审查" : "专业审查"} · 模板 {run.rule?.name} v{run.rule?.version}</p><h2 className="mt-2 text-group font-semibold">{doc.metadata.title || doc.filename}</h2></div>
+          <div><p className="text-caption text-[var(--steel)]">{formal ? "形式审查" : "专业审查"} · 模版 {run.rule?.name} v{run.rule?.version}</p><h2 className="mt-2 text-group font-semibold">{doc.metadata.title || doc.filename}</h2></div>
           <Pill tone={run.status === "completed" ? "mint" : run.status === "failed" ? "rose" : "sky"}>{run.status === "completed" ? "已生成" : REVIEW_STATUS_LABEL[run.status] ?? run.status}</Pill>
         </div>
         <p className="mt-4 text-body leading-7">{run.reader_report?.summary || run.stage_label}</p>
@@ -310,12 +310,12 @@ function BasisPanel({ run }: { run: ReviewRun }) {
   return (
     <section className="space-y-4">
       <div className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-5">
-        <h3 className="font-semibold">模板条目与执行情况 · {enabled.length} 项启用</h3>
+        <h3 className="font-semibold">模版条目与执行情况 · {enabled.length} 项启用</h3>
         {enabled.map((check) => (
           <div key={check.id} className="mt-3 border-t border-[var(--hairline)] pt-3 text-body">
             <div className="flex flex-wrap items-center gap-2"><b className="flex-1">{check.title}</b>{results.has(check.id) ? <Mark item={results.get(check.id)!} /> : run.request.kind === "professional" ? null : <Pill tone="gray">未生成结果</Pill>}</div>
             <p className="mt-1">{check.requirement}</p>
-            {check.revised && check.original ? <p className="mt-1 text-caption text-[var(--warn-fg)]">原文要求：{check.original.requirement}／本模板人工修订为上述要求</p> : null}
+            {check.revised && check.original ? <p className="mt-1 text-caption text-[var(--warn-fg)]">原文要求：{check.original.requirement}／本模版人工修订为上述要求</p> : null}
             <p className="mt-1 text-caption text-[var(--steel)]">来源：{check.source}</p>
           </div>
         ))}

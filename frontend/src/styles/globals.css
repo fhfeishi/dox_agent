@@ -289,3 +289,458 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ------------------------------------------------------------------
+   资料库地形图 (首页 02, query 2026-1021)
+
+   One palette for the map and the two panels beside it: the maturity ramp doubles as the legend,
+   and the four dimension hues stay the same in the ring, the legend and the drawer. Data colours,
+   like the charts in projects.ts, so they live here rather than being scattered through the components.
+   ------------------------------------------------------------------ */
+:root {
+  --terrain-empty: #f5f8fa;
+  --terrain-shallow: #f7f6f3;
+  --terrain-plot: #fcfdfd;
+  --terrain-grid: #e4edef;
+  --terrain-sep: #afc2ca;
+  --terrain-dot: #3b5d70;
+  --terrain-dot-on: #2e8b7a;
+  --terrain-halo: #2e8b7a;
+  --terrain-warn: #b4553c;
+  --terrain-warn-deep: #8c4a2e;
+  --terrain-warn-soft: #fbf1ec;
+  --terrain-amber: #b59a62;
+  --terrain-amber-soft: #fbf4e5;
+  --terrain-amber-ink: #8a6a2f;
+  --dim-scene: #4e8fa6;
+  --dim-issue: #2e8b7a;
+  --dim-tech: #75af98;
+  --dim-outcome: #b08a50;
+  --m-0: #d2dbde;
+  --m-1: #c0d6d4;
+  --m-2: #a2cac1;
+  --m-3: #7cb8a9;
+  --m-4: #4ca391;
+  --m-5: #2e8b7a;
+}
+
+.terrain-serif {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- the map --- */
+.terrain-dot { transition: r 160ms ease, fill 160ms ease, fill-opacity 160ms ease; }
+.terrain-hit { cursor: pointer; }
+.terrain-hit:hover .terrain-dot { fill: var(--terrain-dot-on); }
+.terrain-label {
+  font-size: 12px;
+  fill: var(--slate);
+  pointer-events: none;
+  transition: fill 160ms ease;
+}
+.terrain-hit:hover + .terrain-label,
+.terrain-label[data-on="true"] { fill: var(--heading); font-weight: 600; }
+.terrain-tick { font-size: 11px; fill: var(--muted-cool); font-variant-numeric: tabular-nums; }
+.terrain-axis-title { font-size: 12px; fill: var(--steel); }
+.terrain-quad { cursor: pointer; }
+.terrain-quad text { transition: fill 160ms ease; }
+.terrain-quad:hover text { fill: var(--terrain-dot-on); }
+.terrain-quad:hover rect { stroke: var(--terrain-dot-on); }
+.terrain-quad-label { font-size: 11px; fill: var(--muted-cool); }
+.terrain-quad-empty { font-size: 12px; fill: var(--muted-cool-soft); }
+
+
+/* The default focus ring on an SVG <g> is a black box around the whole group; keyboard readers get
+   a ring on the mark itself instead (query 2026-1021). */
+.terrain-hit:focus { outline: none; }
+.terrain-quad:focus { outline: none; }
+.terrain-hit:focus-visible circle.dot { stroke: var(--terrain-dot-on); stroke-width: 2.5; }
+.terrain-quad:focus-visible text { fill: var(--terrain-dot-on); }
+.terrain-quad:focus-visible rect { stroke: var(--terrain-dot-on); }
+
+.terrain-tip {
+  position: absolute;
+  z-index: 20;
+  max-width: 250px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: var(--banner-1);
+  color: #ffffff;
+  box-shadow: 0 8px 24px -8px rgb(9 28 40 / 45%);
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+/* --- the maturity stair in the detail panel --- */
+.terrain-bars { display: flex; align-items: flex-end; gap: 6px; height: 52px; }
+.terrain-bar {
+  flex: 1;
+  position: relative;
+  border: 0;
+  padding: 0;
+  border-radius: 3px 3px 1px 1px;
+  transform-origin: bottom;
+  animation: terrain-bar-in 520ms cubic-bezier(.16, 1, .3, 1) both;
+  transition: filter 140ms ease, transform 160ms ease;
+}
+.terrain-bar:hover { filter: brightness(1.07); transform: scaleY(1.05); }
+.terrain-bar[data-zero="true"] { background: var(--line-cool-soft); }
+.terrain-bar-axis { display: flex; gap: 6px; margin-top: 2px; }
+.terrain-bar-axis > * { flex: 1; text-align: center; }
+
+/* --- the four-dimension ring --- */
+.terrain-ring { flex: none; overflow: visible; }
+.terrain-ring-value { font-family: Georgia, "Times New Roman", serif; font-size: 17px; fill: var(--heading); }
+.terrain-ring-key { font-size: 9px; letter-spacing: 1.2px; fill: var(--muted-cool); }
+.terrain-arc { animation: terrain-arc-in 720ms cubic-bezier(.16, 1, .3, 1) both; }
+
+/* --- the anchored explanation card --- */
+.terrain-pop {
+  position: fixed;
+  z-index: 130;
+  transition: opacity 160ms ease;
+}
+.terrain-pop-card {
+  position: relative;
+  max-width: calc(100vw - 24px);
+  border: 1px solid var(--line-cool);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 22px 48px -16px rgb(16 42 58 / 28%), 0 2px 8px rgb(16 42 58 / 5%);
+  padding: 14px 16px;
+  transform-origin: var(--ox, 50%) var(--oy, 0);
+  animation: terrain-pop-in 300ms cubic-bezier(.16, 1, .3, 1) both;
+}
+.terrain-arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: var(--ax, 50%);
+  margin-left: -5px;
+  top: -5.5px;
+  background: #ffffff;
+  border-left: 1px solid var(--line-cool);
+  border-top: 1px solid var(--line-cool);
+  transform: rotate(45deg);
+}
+.terrain-arrow[data-up="true"] { top: auto; bottom: -5.5px; transform: rotate(225deg); }
+.terrain-anchor {
+  background: var(--selected-cool) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 0 3px var(--selected-cool);
+}
+.terrain-step { border-bottom: 1px solid var(--line-cool-soft); animation: terrain-step-in 380ms cubic-bezier(.16, 1, .3, 1) both; }
+.terrain-step:last-child { border-bottom: 0; }
+
+/* --- the preview drawer --- */
+.terrain-sweep { transform-origin: left center; animation: terrain-sweep 650ms cubic-bezier(.16, 1, .3, 1) both; }
+
+/* Drawer header inks: kept as colour roles, so the component never carries a hex value. */
+
+
+@keyframes terrain-bar-in { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes terrain-arc-in { from { stroke-dashoffset: var(--arc-len, 200); } to { stroke-dashoffset: 0; } }
+@keyframes terrain-pop-in { from { opacity: 0; transform: scale(.94) translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes terrain-step-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+@keyframes terrain-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes terrain-rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes terrain-sweep { from { transform: scaleX(0); } to { transform: none; } }
+
+/* ------------------------------------------------------------------
+   资料库概览 · 第二轮版式（2026-10-21 下午）
+
+   The right panel stops being a grey column beside a white chart: it becomes a panel tinted like
+   the map's own plot, with the library's size set in the serif face at the top. The drawer keeps a
+   dark head, but its body becomes a stack of white cards on the page tint, so four sections read as
+   four blocks instead of one long column.
+   ------------------------------------------------------------------ */
+:root {
+  --terrain-panel: #f4f8f9;
+  --terrain-card-line: #e7eef1;
+  --terrain-ink-soft: #5b7383;
+}
+
+/* Four dimensions as bars: same baseline, same length scale, so the short one is visible at a glance. */
+.terrain-gap {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--terrain-warn) 40%, transparent) 0 2px,
+    transparent 2px 5px
+  );
+}
+
+/* Maturity as one stacked bar: the proportions add up in one look, the legend carries the counts. */
+.terrain-stack { display: flex; gap: 2px; height: 13px; }
+.terrain-stack > * { height: 100%; }
+.terrain-stack > *:first-child { border-radius: 4px 0 0 4px; }
+.terrain-stack > *:last-child { border-radius: 0 4px 4px 0; }
+
+/* Projects per start year: thin bars, the count over the tallest only. */
+.terrain-year { display: flex; align-items: flex-end; gap: 3px; height: 74px; }
+.terrain-year > * { flex: 1; min-width: 0; }
+.terrain-year-fill {
+  border-radius: 3px 3px 0 0;
+  background: var(--terrain-dot);
+  transform-origin: bottom;
+  animation: terrain-bar-in 520ms cubic-bezier(.16, 1, .3, 1) both;
+  transition: background 140ms ease;
+}
+.terrain-year > *:hover .terrain-year-fill { background: var(--terrain-dot-on); }
+
+.terrain-card {
+  border: 1px solid var(--terrain-card-line);
+  border-radius: 12px;
+  background: var(--canvas);
+}
+
+/* ------------------------------------------------------------------
+   点选提问浮层（2026-10-21）
+
+   It rises out of the composer instead of pushing the page: the panel is anchored above the input
+   column, so opening it never reflows the conversation behind it.
+   ------------------------------------------------------------------ */
+.quick-ask {
+  transform-origin: bottom center;
+  animation: quick-ask-in 200ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes quick-ask-in {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------ 领域分析 · 全景 (query 2026-1021 1629)
+   Same quiet palette as the 首页 地形图: maturity roles --m-*, amber for money, slate for projects. */
+.atlas-page { color: var(--ink); }
+.atlas-hero { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1024px) { .atlas-hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; } }
+.atlas-hero h1 { margin-top: 8px; font-size: var(--text-page); line-height: var(--text-page--line-height); font-weight: 600; color: var(--heading); }
+.atlas-totals { display: flex; flex-wrap: wrap; gap: 14px 26px; margin-top: 20px; }
+.atlas-totals dt { font-size: var(--text-caption); color: var(--steel); }
+.atlas-totals dd { font-size: var(--text-stat); line-height: var(--text-stat--line-height); color: var(--heading); font-variant-numeric: tabular-nums; }
+.atlas-findings { display: grid; align-content: center; gap: 8px; border-radius: 16px; padding: 16px 20px; background: linear-gradient(135deg, var(--banner-1), var(--banner-2)); color: var(--canvas); }
+.atlas-findings li { position: relative; padding-left: 14px; font-size: var(--text-body); font-weight: 500; line-height: 22px; }
+.atlas-findings button { text-align: left; color: inherit; }
+.atlas-findings button i { font-style: normal; margin-left: 6px; opacity: 0; transition: opacity 150ms; }
+.atlas-findings button:hover i, .atlas-findings button:focus-visible i { opacity: 0.8; }
+.atlas-findings button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.atlas-findings li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--terrain-amber); }
+.atlas-section { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 14px; font-size: var(--text-group); font-weight: 600; color: var(--heading); }
+.atlas-section span { font-size: var(--text-caption); color: var(--muted-cool); font-weight: 400; }
+.atlas-section small { font-size: var(--text-caption); color: var(--steel); font-weight: 400; }
+
+
+
+.atlas-key { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 12px; font-size: 11px; color: var(--steel); }
+.atlas-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+
+.atlas-note { display: grid; gap: 4px; font-size: var(--text-caption); color: var(--steel); }
+.atlas-note textarea { border: 1px solid var(--line-cool-strong); border-radius: 8px; padding: 6px 8px; font-size: var(--text-body); color: var(--ink); }
+@media (max-width: 720px) {
+}
+
+/* ------------------------------------------------------------------ SlideOver (query 2026-1022 1606)
+   The single right-hand slide-out for 首页 and 领域分析: same width, scrim, head and motion everywhere. */
+.slide-mask { position: fixed; inset: 0; z-index: 105; background: rgb(24 38 52 / 22%); opacity: 0; pointer-events: none; transition: opacity 260ms; }
+.slide-mask.is-open { opacity: 1; pointer-events: auto; }
+.slide-over { position: fixed; top: 0; right: 0; bottom: 0; z-index: 110; width: 452px; max-width: 92vw; display: none; flex-direction: column;
+  background: var(--canvas); border-left: 1px solid var(--line-cool); box-shadow: -30px 0 60px -30px rgb(9 28 40 / 35%); outline: none; }
+.slide-over.is-open { display: flex; animation: slide-in 320ms cubic-bezier(.16, 1, .3, 1) both; }
+@keyframes slide-in { from { transform: translateX(100%); } to { transform: none; } }
+.slide-head { padding: 22px 24px 16px; border-bottom: 1px solid var(--line-cool); }
+.slide-top { display: flex; align-items: flex-start; gap: 12px; }
+.slide-eyebrow { font-size: var(--text-caption); letter-spacing: 0.14em; color: var(--muted-cool); margin-bottom: 6px; }
+.slide-title { font-size: var(--text-group); line-height: var(--text-group--line-height); font-weight: 600; color: var(--heading); }
+.slide-meta { margin-top: 2px; font-size: var(--text-caption); color: var(--steel); }
+.slide-x { margin-left: auto; flex: none; width: 28px; height: 28px; border: 1px solid var(--line-cool); border-radius: 6px; color: var(--steel); font-size: 16px; line-height: 1; }
+.slide-x:hover { color: var(--heading); border-color: var(--line-cool-strong); }
+.slide-stats { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 14px; }
+.slide-stats div { display: flex; flex-direction: column-reverse; }
+.slide-stats dt { font-size: var(--text-caption); color: var(--steel); }
+.slide-stats dd { font-size: var(--text-group); font-weight: 600; color: var(--heading); font-variant-numeric: tabular-nums; }
+.slide-stats dd.is-warn { color: var(--terrain-warn); }
+.slide-stats dd.is-ok { color: var(--terrain-dot-on); }
+.slide-warn { margin-top: 14px; padding: 9px 11px; border-left: 2px solid var(--terrain-amber); background: var(--terrain-amber-soft); color: var(--terrain-amber-ink);
+  font-size: var(--text-caption); line-height: 18px; }
+.slide-body { flex: 1; overflow-y: auto; padding: 16px 24px 24px; background: var(--page-cool); }
+.slide-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 24px; border-top: 1px solid var(--line-cool); background: var(--canvas); }
+.slide-action { margin-left: auto; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line-cool-strong); font-size: var(--text-caption); color: var(--slate); }
+.slide-action + .slide-action { margin-left: 0; }
+.slide-action:hover { border-color: var(--heading); color: var(--heading); }
+.slide-action.primary { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
+.slide-action.primary:hover { background: var(--primary-pressed); }
+.slide-action:disabled { opacity: 0.45; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .slide-over.is-open { animation: none; } }
+
+/* 01 switch, 02 road map, 03 pool and the previews (query 2026-1022 1606) */
+
+.roads { border: 1px solid var(--line-cool); border-radius: 18px; background: radial-gradient(closest-side, var(--canvas), var(--page-cool)); overflow: hidden; }
+.roads-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line-cool-soft); }
+.roads-path { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; font-size: var(--text-caption); }
+.roads-path i { font-style: normal; color: var(--muted-cool); margin: 0 4px; }
+.roads-path button { color: var(--steel); padding: 2px 4px; border-radius: 4px; }
+.roads-path button[aria-current="true"] { color: var(--heading); font-weight: 600; }
+.roads-path .roads-detail { margin-left: 8px; color: var(--link); }
+.roads-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-caption); color: var(--muted-cool); }
+.roads-tools button { padding: 3px 10px; border-radius: 6px; border: 1px solid var(--line-cool); background: var(--canvas); color: var(--slate); }
+.roads-tools button:hover { border-color: var(--heading); color: var(--heading); }
+.roads-svg { display: block; width: 100%; height: min(78vh, 820px); cursor: grab; touch-action: none; }
+.roads-svg:active { cursor: grabbing; }
+.roads-ring { fill: none; stroke: var(--line-cool); stroke-dasharray: 2 5; }
+.roads-road { fill: none; stroke-linecap: round; opacity: 0.32; transition: opacity 200ms; animation: roads-in 520ms 180ms both; }
+.roads-road.is-lit { opacity: 0.85; }
+.roads-road.is-dim { opacity: 0.08; }
+@keyframes roads-in { from { opacity: 0; } }
+.roads-node { cursor: pointer; transition: transform 620ms cubic-bezier(.16, 1, .3, 1), opacity 200ms; }
+.roads-node.is-dim { opacity: 0.3; }
+.roads-node circle { stroke-width: 1.5; transition: r 300ms; }
+.roads-node circle.is-closed { stroke-dasharray: 3 2; }
+.roads-node.is-active circle { stroke-width: 3; }
+.roads-node:hover circle, .roads-node:focus-visible circle { stroke-width: 3; }
+.roads-node:focus-visible { outline: none; }
+.roads-core { fill: var(--heading); stroke: var(--canvas) !important; stroke-width: 4; }
+.roads-core-text { fill: var(--canvas); font-size: 14px; font-weight: 600; pointer-events: none; }
+.roads-label { font-size: 11px; fill: var(--slate); paint-order: stroke; stroke: var(--canvas); stroke-width: 3px; pointer-events: none; }
+.roads-label.is-library { font-size: 14px; font-weight: 600; fill: var(--heading); }
+.roads-label.is-system { font-size: 12px; fill: var(--heading); }
+.roads-plus { fill: var(--canvas); font-size: 11px; font-weight: 700; pointer-events: none; }
+.roads-list { display: grid; gap: 8px; }
+.roads-list li { display: grid; gap: 2px; padding: 10px 12px; border-radius: 10px; background: var(--canvas); border: 1px solid var(--line-cool-soft); }
+.roads-list b { font-size: var(--text-body); font-weight: 500; color: var(--heading); }
+.roads-list small { font-size: var(--text-caption); color: var(--muted-cool); }
+
+.atlas-pool { margin-top: 14px; padding: 14px 16px; border-radius: 14px; border: 1px dashed var(--line-cool-strong); background: var(--canvas); }
+.atlas-pool-head { display: flex; align-items: baseline; gap: 10px; font-size: var(--text-caption); color: var(--steel); }
+.atlas-pool-head b { font-size: var(--text-body); color: var(--heading); }
+.atlas-pool-head button { margin-left: auto; color: var(--muted-cool); }
+.atlas-pool-items { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; min-height: 28px; }
+.atlas-pool-items span { display: inline-flex; align-items: center; gap: 6px; padding: 3px 4px 3px 10px; border-radius: 6px; border: 1px solid var(--line-cool); font-size: var(--text-caption); color: var(--heading); background: var(--page-cool); }
+.atlas-pool-items small { color: var(--muted-cool); }
+.atlas-pool-items span button { padding: 0 5px; color: var(--muted-cool); }
+.atlas-pool-items em { font-style: normal; font-size: var(--text-caption); color: var(--muted-cool); }
+.atlas-pool-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.atlas-pool-actions button { padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line-cool-strong); font-size: var(--text-body); color: var(--slate); background: var(--canvas); }
+.atlas-pool-actions button.primary { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
+.atlas-pool-actions button:disabled { opacity: 0.45; }
+
+.slide-seg { display: inline-flex; padding: 2px; border-radius: 8px; background: var(--line-cool-soft); }
+.slide-seg button { padding: 3px 10px; border-radius: 6px; font-size: var(--text-caption); color: var(--slate); }
+.slide-seg button[aria-checked="true"] { background: var(--canvas); color: var(--heading); font-weight: 600; }
+.slide-group + .slide-group { margin-top: 16px; }
+.slide-group h3 { margin-bottom: 8px; font-size: var(--text-caption); letter-spacing: 0.1em; color: var(--muted-cool); }
+.slide-card { display: grid; gap: 3px; padding: 12px 14px; border-radius: 10px; background: var(--canvas); border: 1px solid var(--line-cool-soft); }
+.slide-card + .slide-card { margin-top: 8px; }
+.slide-card small { font-size: var(--text-caption); color: var(--muted-cool); }
+.slide-card b { font-size: var(--text-body); font-weight: 600; color: var(--heading); }
+.slide-card p { font-size: var(--text-caption); color: var(--slate); line-height: 18px; }
+.slide-card p.basis { color: var(--terrain-dot-on); }
+.slide-card.proposal dl { display: grid; gap: 6px; margin-top: 6px; }
+.slide-card.proposal dt { font-size: 11px; letter-spacing: 0.08em; color: var(--muted-cool); }
+.slide-card.proposal dd { font-size: var(--text-caption); line-height: 18px; color: var(--slate); }
+.proposal-top { display: flex; align-items: baseline; gap: 8px; }
+.proposal-top span { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--muted-cool); }
+.slide-body .atlas-note { margin-top: 14px; }
+
+/* 研究地形图 interactions in the accumulation map (query 2026-1022 1706) */
+.terrain-cross line { stroke: var(--terrain-dot-on); stroke-width: 0.9; stroke-dasharray: 3 3; }
+.terrain-cross rect { fill: var(--terrain-dot-on); }
+.terrain-cross text { fill: var(--canvas); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+.terrain-link { stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
+.terrain-zoom { position: absolute; right: 14px; bottom: 34px; display: flex; border: 1px solid var(--line-cool); border-radius: 8px; overflow: hidden; background: var(--canvas); }
+.terrain-zoom button { min-width: 30px; padding: 3px 8px; font-size: var(--text-caption); color: var(--slate); }
+.terrain-zoom button + button { border-left: 1px solid var(--line-cool); }
+.terrain-zoom button:disabled { opacity: 0.35; }
+.terrain-hint { margin: 2px 8px 4px; font-size: var(--text-caption); color: var(--muted-cool); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; min-height: 20px; }
+.terrain-hint button { color: var(--link); }
+.terrain-tip-top { display: grid; gap: 1px; margin-top: 6px; padding-top: 5px; border-top: 1px solid rgb(255 255 255 / 18%); }
+.terrain-tip-top em { font-style: normal; opacity: 0.7; }
+.terrain-tip-hint { display: block; margin-top: 5px; opacity: 0.55; font-size: 11px; }
+.terrain-compare { margin-top: 12px; padding: 8px 10px; border-left: 2px solid var(--terrain-amber); background: var(--terrain-amber-soft); }
+.terrain-compare p { display: flex; align-items: baseline; gap: 6px; font-size: var(--text-caption); color: var(--terrain-amber-ink); }
+.terrain-compare p b { color: var(--heading); }
+.terrain-compare p button { margin-left: auto; color: var(--terrain-amber-ink); }
+.terrain-compare table { width: 100%; margin-top: 4px; font-size: var(--text-caption); font-variant-numeric: tabular-nums; }
+.terrain-compare th { text-align: left; font-weight: 400; color: var(--muted-cool); padding: 2px 0; }
+.terrain-compare td { text-align: right; color: var(--heading); padding: 2px 0 2px 8px; }
+.terrain-compare td + td { color: var(--terrain-amber-ink); }
+.terrain-bridge { display: flex; width: 100%; align-items: center; gap: 6px; margin-top: 4px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line-cool);
+  background: var(--canvas); text-align: left; font-size: var(--text-caption); color: var(--heading); }
+.terrain-bridge span { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.terrain-bridge i { font-style: normal; color: var(--terrain-amber-ink); margin-left: 4px; }
+.terrain-bridge b { color: var(--terrain-amber); font-weight: 400; }
+.terrain-bridge[aria-pressed="true"] { border-color: var(--terrain-halo); background: var(--selected-cool); }
+
+/* 03 缺口与机会 after the 研究地形图 demo (query 2026-1022 1706) */
+.gap-board { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1024px) { .gap-board { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.gap-card { border: 1px solid var(--line-cool); border-radius: 16px; background: var(--canvas); padding: 16px 18px; }
+.gap-card > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 12px; }
+.gap-card > header h3 { font-size: var(--text-emphasis); font-weight: 600; color: var(--heading); }
+.gap-card > header small { font-size: var(--text-caption); color: var(--muted-cool); }
+.gap-card > header > span { margin-left: auto; font-size: var(--text-caption); color: var(--steel); }
+.gap-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.gap-tabs button { display: grid; justify-items: start; gap: 1px; padding: 9px 11px; border-radius: 10px; border: 1px solid var(--line-cool); text-align: left;
+  font-size: var(--text-body); font-weight: 600; color: var(--heading); background: var(--page-cool); }
+.gap-tabs button b { font-size: var(--text-group); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gap-tabs button small { font-size: 11px; font-weight: 400; color: var(--muted-cool); line-height: 15px; }
+.gap-tabs button[aria-selected="true"] { border-color: var(--terrain-dot-on); background: var(--canvas); box-shadow: inset 0 0 0 1px var(--terrain-dot-on); }
+.gap-dist { display: flex; height: 4px; margin: 10px 0 8px; border-radius: 2px; overflow: hidden; background: var(--line-cool-soft); }
+.gap-dist .is-blank { background: var(--terrain-warn); }
+.gap-dist .is-issue { background: var(--terrain-amber); }
+.gap-dist .is-combo { background: var(--terrain-dot); }
+.gap-note { font-size: var(--text-caption); color: var(--muted-cool); margin: 2px 0 8px; }
+.gap-list { display: grid; gap: 6px; max-height: 470px; overflow-y: auto; padding-right: 2px; }
+.gap-list li { border: 1px solid var(--line-cool); border-radius: 10px; background: var(--canvas); }
+.gap-list li.is-open { border-color: var(--terrain-dot-on); }
+.gap-list li.is-in { background: color-mix(in srgb, var(--terrain-halo) 8%, var(--canvas)); }
+.gap-row { display: flex; width: 100%; align-items: center; gap: 8px; padding: 8px 10px; text-align: left; }
+.gap-row b { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-body); font-weight: 500; color: var(--heading); }
+.gap-row small { flex: none; padding: 1px 6px; border-radius: 4px; background: var(--page-cool); font-size: 11px; color: var(--steel); }
+.gap-row i { font-style: normal; color: var(--muted-cool); }
+.gap-kind { flex: none; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.gap-kind.is-blank { background: var(--terrain-warn-soft); color: var(--terrain-warn-deep); }
+.gap-kind.is-issue { background: var(--terrain-amber-soft); color: var(--terrain-amber-ink); }
+.gap-kind.is-combo { background: var(--selected-cool); color: var(--terrain-dot); }
+.gap-body { padding: 0 12px 10px; border-top: 1px solid var(--line-cool-soft); font-size: var(--text-caption); line-height: 19px; color: var(--slate); }
+.gap-body p { margin-top: 8px; }
+.gap-body p.basis { color: var(--terrain-dot-on); }
+.gap-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.gap-acts button { padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line-cool-strong); color: var(--slate); }
+.gap-acts button.primary { background: var(--terrain-dot-on); border-color: var(--terrain-dot-on); color: var(--canvas); }
+.gap-more { padding: 14px 0; text-align: center; font-size: var(--text-caption); color: var(--muted-cool); border: none !important; }
+.gap-domains { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line-cool); font-size: var(--text-caption); color: var(--muted-cool); }
+.gap-domains button { padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line-cool); color: var(--slate); }
+.gap-domains button i { font-style: normal; margin-left: 4px; color: var(--muted-cool); }
+.gap-domains button[aria-pressed="true"] { background: var(--heading); border-color: var(--heading); color: var(--canvas); }
+.gap-mode { margin-left: auto; display: inline-flex; padding: 2px; border-radius: 8px; background: var(--line-cool-soft); }
+.gap-mode button { padding: 3px 10px; border-radius: 6px; font-size: var(--text-caption); color: var(--slate); }
+.gap-mode button[aria-selected="true"] { background: var(--heading); color: var(--canvas); }
+.opp-map { display: block; width: 100%; }
+.opp-plot { fill: var(--page-cool); }
+.opp-best { fill: var(--selected-cool); }
+.opp-best-label { font-size: 10.5px; fill: var(--terrain-dot-on); }
+.opp-mid { stroke: var(--line-cool); stroke-dasharray: 3 4; }
+.opp-axis { font-size: 10.5px; fill: var(--muted-cool); }
+.opp-pt { cursor: pointer; }
+.opp-pt .halo { fill: var(--terrain-dot-on); opacity: 0; transition: opacity 150ms; }
+.opp-pt .dot { fill: var(--terrain-dot-on); stroke: var(--canvas); stroke-width: 1.5; }
+.opp-pt text { font-size: 11px; fill: var(--heading); paint-order: stroke; stroke: var(--page-cool); stroke-width: 3px; }
+.opp-pt:hover .halo, .opp-pt:focus-visible .halo { opacity: 0.16; }
+.opp-pt:focus-visible { outline: none; }
+.opp-pt.is-in .dot { fill: var(--terrain-amber); }
+.opp-list { display: grid; gap: 4px; max-height: 330px; overflow-y: auto; }
+.opp-list li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr) 150px auto; align-items: center; gap: 8px; padding: 6px 4px; border-bottom: 1px solid var(--line-cool-soft); font-size: var(--text-caption); }
+.opp-list .rank { color: var(--muted-cool); font-variant-numeric: tabular-nums; }
+.opp-list .name { display: grid; min-width: 0; }
+.opp-list .name b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; color: var(--heading); }
+.opp-list .name small { color: var(--muted-cool); }
+.opp-list .bars { display: grid; gap: 2px; color: var(--muted-cool); }
+.opp-list .bars > span { display: grid; grid-template-columns: 2.2em 1fr 2.4em; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+.opp-list .bars i { display: block; height: 4px; border-radius: 2px; background: var(--line-cool-soft); overflow: hidden; }
+.opp-list .bars i i { height: 100%; background: var(--terrain-dot-on); }
+.opp-list button { padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line-cool-strong); color: var(--slate); }
+.opp-list button[aria-pressed="true"] { border-color: var(--terrain-amber); color: var(--terrain-amber-ink); }
+.gap-card .atlas-pool { margin-top: 12px; }
+.roads-node.is-unplaced circle { stroke-dasharray: 2 2 !important; fill: var(--m-0) !important; }
+.roads-swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }

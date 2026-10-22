@@ -2,6 +2,7 @@
 
 import json
 import logging
+import re
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -196,7 +197,25 @@ class ComposeRequest(BaseModel):
     intents: list[str] = Field(default_factory=list, max_length=8)
     corpus_ids: list[str] = Field(min_length=1, max_length=6)
     scene: str = Field(default="", max_length=60)
-    note: str = Field(default="", max_length=200)
+    # What is already typed in the input box: the core the picks are built around (query 2026-1021 1619).
+    note: str = Field(default="", max_length=300)
+    # Questions this panel already produced for the same picks; the next one must take another angle.
+    avoid: list[str] = Field(default_factory=list, max_length=5)
+    # The year span picked in 点选提问 (query 2026-1021), written as "2021—2026": the same phrase the
+    # retriever reads as a project-year filter, so the question and the search agree.
+    period: str = Field(default="", max_length=32)
+
+    @field_validator("period")
+    @classmethod
+    def _year_span(cls, value: str):
+        """Empty, or two years with start ≤ end; normalised to the em dash the UI writes."""
+        text = value.strip()
+        if not text:
+            return ""
+        match = re.fullmatch(r"((?:19|20)\d{2})[—–~～至到-]((?:19|20)\d{2})", text)
+        if match is None or int(match.group(1)) > int(match.group(2)):
+            raise ValueError("时间范围须为「起始年—结束年」，且起始年不晚于结束年")
+        return f"{match.group(1)}—{match.group(2)}"
 
     @field_validator("elements", "intents")
     @classmethod
@@ -204,6 +223,11 @@ class ComposeRequest(BaseModel):
         if any(not v.strip() or len(v) > 60 for v in values):
             raise ValueError("关键词须为 1–60 字")
         return [v.strip() for v in values]
+
+    @field_validator("avoid")
+    @classmethod
+    def _earlier(cls, values: list[str]) -> list[str]:
+        return [v.strip()[:400] for v in values if v.strip()]
 
 
 class ArtifactCreate(BaseModel):

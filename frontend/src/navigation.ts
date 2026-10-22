@@ -37,7 +37,7 @@ export const TASK_PAGES: NavPage[] = [
 export const REVIEW_PAGES: NavPage[] = [
   { to: "/review/formal", label: "形式审查" },
   { to: "/review/professional", label: "专业审查" },
-  { to: "/review/templates", label: "审查模板" },
+  { to: "/review/templates", label: "审查模版" },
   { to: "/review/evidence", label: "技术证据库" },
 ];
 
@@ -53,7 +53,7 @@ export const NAV: NavEntry[] = [
   { key: "tasks", label: TERMS.tasks.name, pages: TASK_PAGES, hint: "任务模版：精准问答、对比分析、技术研判、专项报告", roles: ALL, workbench: true,
     card: { title: TERMS.tasks.name, text: "对比项目、研判趋势、形成报告", to: "/tasks", icon: "tasks", accent: "var(--area-analysis)" } },
   { key: "review", label: TERMS.review.name, pages: REVIEW_PAGES, roles: ALL, workbench: true,
-    card: { title: TERMS.review.name, text: "按模板核对申请书、开展技术评议", to: "/review/formal", icon: "review", accent: "var(--area-review)" } },
+    card: { title: TERMS.review.name, text: "按模版核对申请书、开展技术评议", to: "/review/formal", icon: "review", accent: "var(--area-review)" } },
   { key: "intelligence", label: TERMS.intelligence.name, to: "/intelligence", hint: "上传外部材料进行分析", roles: ALL, workbench: true,
     card: { title: TERMS.intelligence.name, text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
   // 报告中心 (named 成果 until query 2026-1019 2021) is a page of its own after the work areas.

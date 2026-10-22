@@ -59,7 +59,7 @@ class CustomTaskOfflineGraph(OfflineGraph):
 
 
 async def offline_report(knowledge, settings, params, *, llm=None, **kwargs):
-    return "# 实测专项报告\n\n绑定模板与任务参数已用于生成。\n"
+    return "# 实测专项报告\n\n绑定模版与任务参数已用于生成。\n"
 
 
 async def main():
@@ -107,14 +107,14 @@ async def main():
                 await page.get_by_role("button",name="发送 ↑",exact=True).click()
                 await page.get_by_role("button",name="保存到报告中心",exact=True).click()
                 await expect(page.get_by_text(re.compile("已保存到报告中心"))).to_be_visible()
-                custom_template=await publish("templates","comprehensive",{"name":"绑定模板","purpose":"验收固定模板","content":"# 实测专项报告\n\n## 方法\n"})
-                report_task=await publish("tasks","task4",{"name":"绑定自定义模板的专项报告","report_template_id":custom_template["id"],"report_template_version":1,"parameters":[{"key":"audience","label":"报告受众","type":"text"}]})
+                custom_template=await publish("templates","comprehensive",{"name":"绑定模版","purpose":"验收固定模版","content":"# 实测专项报告\n\n## 方法\n"})
+                report_task=await publish("tasks","task4",{"name":"绑定自定义模版的专项报告","report_template_id":custom_template["id"],"report_template_version":1,"parameters":[{"key":"audience","label":"报告受众","type":"text"}]})
                 await start_task(report_task["name"])
                 await page.get_by_role("textbox", name="报告受众").fill("项目评审专家")
                 await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="生成报告")).to_be_visible()
-                fixed_template = page.get_by_role("combobox", name="报告模板")
+                fixed_template = page.get_by_role("combobox", name="报告模版")
                 await expect(fixed_template).to_be_disabled()
                 await expect(fixed_template).to_have_value(custom_template["id"])
                 await page.get_by_role("combobox", name="报告知识库").select_option(corpus_id)
@@ -133,8 +133,8 @@ async def main():
                 latest_template = next(item for item in templates if item["id"] == custom_template["id"])
                 template_v2 = await (await page.request.put(
                     f"{origin}/api/templates/custom/{custom_template['id']}/draft",
-                    data={"revision": latest_template["revision"], "name": "绑定模板 v2",
-                          "content": "# 绑定模板 v2\n\n## 新章节\n"})).json()
+                    data={"revision": latest_template["revision"], "name": "绑定模版 v2",
+                          "content": "# 绑定模版 v2\n\n## 新章节\n"})).json()
                 assert (await page.request.post(
                     f"{origin}/api/templates/custom/{custom_template['id']}/publish",
                     data={"revision": template_v2["revision"]})).status == 200
@@ -166,7 +166,7 @@ async def main():
                 assert session["data"]["task_version"] == 2
                 assert session["data"]["options"].get("task_params", {}) == {}
                 # The old intake keeps its v1 template after the session moves to v2.
-                await expect(page.get_by_role("combobox", name="报告模板").first).to_have_value(custom_template["id"])
+                await expect(page.get_by_role("combobox", name="报告模版").first).to_have_value(custom_template["id"])
                 await page.get_by_role("combobox", name="报告知识库").first.select_option(corpus_id)
                 async with page.expect_response(lambda response: response.url.endswith("/api/reports")
                                                 and response.request.method == "POST") as old_report_response:
@@ -188,17 +188,17 @@ async def main():
                                                               data={"source_task_id": "task4"})).json()
                 builtin_draft = await (await page.request.put(
                     f"{origin}/api/tasks/custom/{builtin_task['id']}/draft",
-                    data={"revision": builtin_task["revision"], "name": "内置模板专项报告",
+                    data={"revision": builtin_task["revision"], "name": "内置模版专项报告",
                           "report_template_id": "comprehensive", "report_template_version": 0})).json()
                 assert (await page.request.post(
                     f"{origin}/api/tasks/custom/{builtin_task['id']}/publish",
                     data={"revision": builtin_draft["revision"]})).status == 200
                 await page.reload()
-                await start_task("内置模板专项报告")
+                await start_task("内置模版专项报告")
                 await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="生成报告")).to_be_visible()
-                await expect(page.get_by_role("combobox", name="报告模板")).to_have_value("comprehensive")
+                await expect(page.get_by_role("combobox", name="报告模版")).to_have_value("comprehensive")
                 await page.get_by_role("combobox", name="报告知识库").select_option(corpus_id)
                 async with page.expect_response(lambda response: response.url.endswith("/api/reports")
                                                 and response.request.method == "POST") as response_info:
@@ -216,7 +216,7 @@ async def main():
                 await page.goto(f"{origin}/library/{quote(corpus_id)}/documents?workspace=1&task=task4")
                 work=page.get_by_role("region",name="分析工作区")
                 await work.get_by_role("button",name="生成报告…").click()
-                await expect(work.get_by_role("combobox",name="报告模板").locator("option",has_text=re.compile(r"（已发布 v\d+，另有草稿）"))).to_have_count(1)
+                await expect(work.get_by_role("combobox",name="报告模版").locator("option",has_text=re.compile(r"（已发布 v\d+，另有草稿）"))).to_have_count(1)
                 await browser.close()
         finally:
             server.should_exit = True

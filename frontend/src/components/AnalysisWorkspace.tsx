@@ -215,8 +215,8 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
         <label className="block text-caption text-[var(--steel)]">报告要回答的问题
           <textarea aria-label="报告主题" value={form.topic} rows={3} onChange={(e) => setForm({ ...form, topic: e.target.value })}
             className="mt-1 w-full resize-y rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-body text-[var(--ink)] outline-none focus:border-[var(--primary)]" /></label>
-        <label className="block text-caption text-[var(--steel)]">报告模板
-          <select aria-label="报告模板" value={form.template || templates.data?.[0]?.id || ""} onChange={(e) => setForm({ ...form, template: e.target.value })}
+        <label className="block text-caption text-[var(--steel)]">报告模版
+          <select aria-label="报告模版" value={form.template || templates.data?.[0]?.id || ""} onChange={(e) => setForm({ ...form, template: e.target.value })}
             className="mt-1 w-full rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-body text-[var(--ink)]">
             {(templates.data ?? []).map((t) => <option key={t.id} value={t.id}>{templateLabel(t)}</option>)}
           </select></label>

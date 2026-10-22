@@ -61,10 +61,10 @@ export function IntelligenceView() {
     finally { setBusy(""); }
   }
   async function saveTemplate() {
-    setBusy("保存我的报告模板"); setError("");
+    setBusy("保存我的报告模版"); setError("");
     try {
       const copied = await copyTemplate("intelligence");
-      const draft = await saveTemplateDraft(copied.id, copied.revision, { name: "我的情报报告模板", content: template, variables: [] });
+      const draft = await saveTemplateDraft(copied.id, copied.revision, { name: "我的情报报告模版", content: template, variables: [] });
       const published = await publishTemplate(draft.id, draft.revision);
       setTemplateId(published.id); setTemplateVersion(published.version);
       await templates.refetch();
@@ -82,7 +82,7 @@ export function IntelligenceView() {
         </section>
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
           <h2 className="font-semibold">2 · 选择分析目的</h2>
-          <p className="mt-1 text-caption text-[var(--steel)]">每个目的有自己的报告模板：展开的尺度、维度与方向不同。</p>
+          <p className="mt-1 text-caption text-[var(--steel)]">每个目的有自己的报告模版：展开的尺度、维度与方向不同。</p>
           <div className="my-4 grid grid-cols-1 gap-2 sm:grid-cols-2">{(purposes.data ?? []).map((item) => <button key={item.key} aria-pressed={purpose === item.key} disabled={Boolean(busy)} onClick={() => void choosePurpose(item.key)}
             className="rounded-xl border p-3 text-left" style={{ borderColor: purpose === item.key ? "var(--primary)" : "var(--hairline)", background: purpose === item.key ? "var(--primary-soft)" : "transparent" }}>
             <span className="block text-body font-medium">{item.label}</span>
@@ -92,19 +92,19 @@ export function IntelligenceView() {
           <p className="mt-3 text-caption leading-6 text-[var(--steel)]">本次材料自述与库内证据分别呈现。没有国外资料或相近项目时会明确提示，不据此判断原创或领先。</p>
         </section>
       </div>
-      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模板</h2><label className="cursor-pointer text-body text-[var(--primary)]">上传自己的模板<input aria-label="上传情报报告模板" className="sr-only" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
+      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模版</h2><label className="cursor-pointer text-body text-[var(--primary)]">上传自己的模版<input aria-label="上传情报报告模版" className="sr-only" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
         <div className="my-4 flex flex-wrap gap-3">
-          <select aria-label="选择报告模板" className="rounded border p-2 text-body" value={templateId} disabled={Boolean(busy)} onChange={(e) => {
-            const ident = e.target.value; if (!ident) return; setBusy("读取报告模板");
+          <select aria-label="选择报告模版" className="rounded border p-2 text-body" value={templateId} disabled={Boolean(busy)} onChange={(e) => {
+            const ident = e.target.value; if (!ident) return; setBusy("读取报告模版");
             void fetchTemplate(ident).then((value) => { setTemplateId(value.id); setTemplateVersion(value.version); setTemplate(value.content); setTemplateInput(null); })
               .catch((error) => setError(error.message)).finally(() => setBusy(""));
           }}><option value="">本次临时章节</option>{(templates.data ?? []).filter((item) => item.status === "published" && templateArea(item) === "intelligence").map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
-          <Button size="sm" variant="ghost" disabled={Boolean(busy) || !template.trim()} onClick={() => void saveTemplate()}>保存为我的模板</Button>
+          <Button size="sm" variant="ghost" disabled={Boolean(busy) || !template.trim()} onClick={() => void saveTemplate()}>保存为我的模版</Button>
         </div>
-        <p className="my-3 text-caption text-[var(--steel)]">{templateInput ? templateInput.filename : templateName ?? (templateId ? templateId : "本次临时章节")} · {template.split("\n").filter((line) => line.startsWith("## ")).length} 节 · 正文与模板版本随本次结果保存。</p>
-        <details><summary className="cursor-pointer text-body text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body" /></details>
+        <p className="my-3 text-caption text-[var(--steel)]">{templateInput ? templateInput.filename : templateName ?? (templateId ? templateId : "本次临时章节")} · {template.split("\n").filter((line) => line.startsWith("## ")).length} 节 · 正文与模版版本随本次结果保存。</p>
+        <details><summary className="cursor-pointer text-body text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模版" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body" /></details>
         {/* 情报分析's own template library, kept apart from 存量分析's (query 2026-1014 1820). */}
-        <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-body text-[var(--primary)]">管理情报分析模板（新建、上传提取、修改、删除）</summary>
+        <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-body text-[var(--primary)]">管理情报分析模版（新建、上传提取、修改、删除）</summary>
           <div className="mt-3"><TemplateLibrary area="intelligence" /></div></details>
       </section>
       {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-body text-red-800">{error}</p> : null}

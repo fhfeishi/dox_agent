@@ -54,7 +54,7 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
     cfg = client.settings
     require(kind in ("formal", "professional"), "请选择形式或专业审查任务。")
     active_checks = [c for c in rule.get("checks", []) if c.get("enabled", True)]
-    require(bool(active_checks), "模板没有启用的检查项。")
+    require(bool(active_checks), "模版没有启用的检查项。")
     require(
         sum(len(p["text"]) for p in all_pages)
         + sum(len(p["text"]) for g in guides for p in g["pages"]) <= cfg["max_chars"],
@@ -157,7 +157,7 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
                 "两个文件的确认值不同；本项没有用最新文件覆盖。", "材料一致性核对", suggestion="分别查看两份原文并修正输入。"))
         if not doc.get("information_sheet_present") and any("信息表" in m for c in active_checks for m in c.get("needed_materials", [])):
             calculations.append(finding("missing-sheet", "structure", "缺少申报信息表", "pending",
-                "模板中有条目需要信息表；仅对已提供正文开展核对，不能声明完整申报材料通过。", "申报材料完整性", suggestion="补充申报信息表。"))
+                "模版中有条目需要信息表；仅对已提供正文开展核对，不能声明完整申报材料通过。", "申报材料完整性", suggestion="补充申报信息表。"))
         tools = {f["id"]: f for f in calculations}
         authorities = {c["id"]: c for c in clauses}
         # Program-executed checks are owned by the executor; the model only reads the rest.
@@ -178,7 +178,7 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
                 "calculations": calculations,
                 "metadata": doc["metadata"],
                 "document_kind": doc["kind"],
-                "instruction": "逐条回答本批次每个 clause，判断适用/不适用/待核实。不要添加模板未载明的数值限制。文字规范类条目逐条列出原句（quote 使用原文）、位置和建议改法，作为校对建议而非资格结论。",
+                "instruction": "逐条回答本批次每个 clause，判断适用/不适用/待核实。不要添加模版未载明的数值限制。文字规范类条目逐条列出原句（quote 使用原文）、位置和建议改法，作为校对建议而非资格结论。",
             }
             result = client.ask("03_compliance", payload)
             result = attach_sources(result, "findings")
@@ -285,7 +285,7 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
                 "技术条目正文格式无效。",
             )
             if card.get("check_id") not in questions:
-                technical_warnings.append(f"技术条目 {i + 1} 未对应本模板启用的评价问题，未计入结果。")
+                technical_warnings.append(f"技术条目 {i + 1} 未对应本模版启用的评价问题，未计入结果。")
                 continue
             try:
                 clean = validate_model_result({"summary": result["summary"], "cards": [card]}, safe_doc, selected)["cards"][0]

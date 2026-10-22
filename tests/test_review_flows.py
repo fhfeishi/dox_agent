@@ -258,7 +258,7 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
                 + "\n## 技术路线\n" + "丁" * 10 + "\n# 项目进度计划\n2026年10月至2027年9月完成原型；2028.10.1 验收。")
         doc = client.post("/api/review/documents", files={"file": ("proposal.md", body.encode())}).json()
         assert client.patch("/api/review/documents/" + doc["id"], json={
-            "title": "通用模板申请", "organizations": ["甲大学", "甲大学 ", "乙公司", "丙研究院"],
+            "title": "通用模版申请", "organizations": ["甲大学", "甲大学 ", "乙公司", "丙研究院"],
             "total_budget": 300.01, "plan_start": "2026-10-01", "plan_end": "2028-09-30"}).status_code == 200
         formal = {"document_id": doc["id"], "kind": "formal", "rule_id": builtin["id"], "rule_version": builtin["version"]}
 
@@ -280,7 +280,7 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
         assert results["check-budget"]["status"] == "issue"
         assert results["check-schedule"]["status"] == "issue" and "2028.10.1" in results["check-schedule"]["detail"]
 
-        custom = {**builtin, "id": "my-template", "name": "我的模板", "source_kind": "manual", "version": 1}
+        custom = {**builtin, "id": "my-template", "name": "我的模版", "source_kind": "manual", "version": 1}
         custom["checks"][1]["execution"]["value"] = "500"
         custom["checks"][1]["requirement"] = "项目摘要不超过500字符"
         created = client.post("/api/review/rules", json=custom)
@@ -478,8 +478,37 @@ def test_review_templates_can_be_deleted_but_built_in_ones_stay(tmp_path, monkey
     with TestClient(create_app(settings)) as client:
         rules = client.get("/api/review/rules").json()
         builtin = next(rule for rule in rules if rule["id"].startswith("builtin-"))
-        storage.save("rule", {**builtin, "id": "mine", "name": "我的模板", "source_kind": "manual"})
+        storage.save("rule", {**builtin, "id": "mine", "name": "我的模版", "source_kind": "manual"})
         assert client.delete("/api/review/rules/mine").json() == {"id": "mine", "archived": True}
         assert next(rule for rule in client.get("/api/review/rules").json() if rule["id"] == "mine")["archived"]
         assert client.delete(f"/api/review/rules/{builtin['id']}").status_code == 403
         assert client.delete("/api/review/rules/none").status_code == 404
+
+
+def test_an_applied_template_is_what_new_reviews_start_with(tmp_path, monkeypatch):
+    """query 2026-1021 1629: 应用 makes a template the starting choice for that review kind, 不应用 goes
+    back to the built-in one, and a template that stops being usable stops being applied."""
+    monkeypatch.setattr(storage, "DATA", tmp_path / "review")
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
+    with TestClient(create_app(settings)) as client:
+        assert client.get("/api/review/applied").json() == {"formal": None, "professional": None}
+        formal = next(rule for rule in client.get("/api/review/rules").json() if rule["id"] == "builtin-formal")
+        storage.save("rule", {**formal, "id": "mine", "name": "按指南生成", "source_kind": "upload"})
+        storage.save("rule", {**formal, "id": "draft", "name": "草稿", "source_kind": "upload", "confirmed": False})
+
+        # Given a confirmed template, applying it makes it the formal starting choice only
+        assert client.put("/api/review/applied", json={"kind": "formal", "rule_id": "mine"}).json() == \
+            {"formal": "mine", "professional": None}
+        # A draft, a template of the other kind and an unknown one are refused
+        assert client.put("/api/review/applied", json={"kind": "formal", "rule_id": "draft"}).status_code == 422
+        assert client.put("/api/review/applied", json={"kind": "professional", "rule_id": "mine"}).status_code == 422
+        assert client.put("/api/review/applied", json={"kind": "formal", "rule_id": "none"}).status_code == 404
+
+        # Deleting the applied template quietly returns the kind to the built-in one
+        client.delete("/api/review/rules/mine")
+        assert client.get("/api/review/applied").json()["formal"] is None
+
+        # 不应用 clears the choice
+        storage.save("rule", {**formal, "id": "again", "name": "再生成", "source_kind": "upload"})
+        client.put("/api/review/applied", json={"kind": "formal", "rule_id": "again"})
+        assert client.put("/api/review/applied", json={"kind": "formal", "rule_id": None}).json()["formal"] is None

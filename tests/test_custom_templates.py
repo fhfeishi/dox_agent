@@ -43,7 +43,7 @@ def test_custom_template_draft_publish_and_report_binding(tmp_path, monkeypatch)
     with TestClient(app) as client:
         template_id = copy_template(client)
         draft = client.put(f"/api/templates/custom/{template_id}/draft", json={
-            "revision": 1, "name": "我的报告模板",
+            "revision": 1, "name": "我的报告模版",
             "content": "# 报告\n\n领域：{{domain}}\n\n## 一、背景\n", "variables": ["domain"]})
         assert draft.status_code == 200
         published = client.post(f"/api/templates/custom/{template_id}/publish",
@@ -89,7 +89,7 @@ def test_report_type_custom_task_records_task_and_template_versions(tmp_path, mo
     with TestClient(app) as client:
         template_id = copy_template(client)
         client.put(f"/api/templates/custom/{template_id}/draft", json={
-            "revision": 1, "name": "报告模板", "content": "# 报告\n\n## 一、背景\n", "variables": []})
+            "revision": 1, "name": "报告模版", "content": "# 报告\n\n## 一、背景\n", "variables": []})
         client.post(f"/api/templates/custom/{template_id}/publish", json={"revision": 2})
 
         task = client.post("/api/tasks/custom", json={"source_task_id": "task4"}).json()
@@ -116,7 +116,7 @@ def test_report_type_custom_task_records_task_and_template_versions(tmp_path, mo
 def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_path, monkeypatch):
     # Given a published report task bound to the built-in comprehensive template
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
-        return "# 内置模板报告"
+        return "# 内置模版报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)

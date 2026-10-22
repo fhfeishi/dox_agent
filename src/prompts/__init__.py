@@ -45,7 +45,7 @@ TASKS: tuple[dict, ...] = (
      "example": "这个领域有哪些研究路线，已经实现了哪些工作，还有哪些工作可以做？",
      "output_hint": "事实/研判分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_assess.md",
      "artifacts": {"default": "text", "allowed": ["text"]}, "templates": []},
-    {"id": "task4", "name": "专项报告", "description": "按模板生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
+    {"id": "task4", "name": "专项报告", "description": "按模版生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
      "example": "生成一份面上项目成果报告。",
      "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md",
      "intake_file": "task4_intake.md",
@@ -101,7 +101,7 @@ def task_prompt(task_id: str) -> str:
 def report_template(template_id: str) -> str:
     """Report section structure from ``src/templates/<id>.md`` (single authority, §9.3)."""
     if template_id not in REPORT_TEMPLATES:
-        raise UnknownTaskError(f"未知报告模板：{template_id}")
+        raise UnknownTaskError(f"未知报告模版：{template_id}")
     return (TEMPLATES_DIR / f"{template_id}.md").read_text(encoding="utf-8").strip()
 
 

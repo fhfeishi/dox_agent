@@ -298,6 +298,6 @@ def install(app, ctx):
         try:
             return await asyncio.to_thread(app.state.custom_templates.version, template_id, version)
         except TemplateMissing as exc:
-            raise HTTPException(404, "报告模板不存在") from exc
+            raise HTTPException(404, "报告模版不存在") from exc
 
     app.include_router(router)

@@ -66,6 +66,13 @@ class RulePack(BaseModel):
     confirmed: bool = False
 
 
+class AppliedChoice(BaseModel):
+    """Which template new reviews of one kind start with; None means the built-in one."""
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["formal", "professional"]
+    rule_id: str | None = Field(default=None, pattern=r"^[a-zA-Z0-9_-]{1,80}$")
+
+
 class ReviewRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     rule_version: int = Field(ge=1)

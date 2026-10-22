@@ -202,18 +202,18 @@ class CustomTaskStore:
         template_id = task.get("report_template_id")
         version = task.get("report_template_version")
         if not isinstance(template_id, str) or not template_id.strip() or type(version) is not int:
-            raise TaskInvalid("报告型任务必须绑定显式报告模板 id 和 version")
+            raise TaskInvalid("报告型任务必须绑定显式报告模版 id 和 version")
         if template_id in REPORT_TEMPLATES:
             if version != 0:
-                raise TaskInvalid("内置报告模板的 version 必须为 0")
+                raise TaskInvalid("内置报告模版的 version 必须为 0")
             return
         store = TemplateStore(self.path.parent / "artifacts" / "templates.sqlite3")
         try:
             if store.get(template_id)["archived"]:
-                raise TaskInvalid("已归档模板不能绑定到新任务")
+                raise TaskInvalid("已归档模版不能绑定到新任务")
             store.version(template_id, version)
         except TemplateMissing as exc:
-            raise TaskInvalid("报告模板尚未发布指定 version") from exc
+            raise TaskInvalid("报告模版尚未发布指定 version") from exc
 
     def publish(self, task_id: str, revision: int) -> dict:
         with self.connect() as db:

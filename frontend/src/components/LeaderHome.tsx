@@ -6,7 +6,8 @@ import { Icon } from "./Icons";
 import { MyWorkSection } from "./MyWorkSection";
 import { HeroCarousel } from "./HeroCarousel";
 import { libraryOverviewQuery } from "../libraryQueries";
-import { useLayout } from "../layout";
+import { LibraryPreviewDrawer } from "./LibraryPreviewDrawer";
+import { useState } from "react";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -26,19 +27,20 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
  * the landscape banner, then 工作台, the libraries at a glance and 我的工作. The overview
  * pairs projects per domain (ranked bars: two domains hold most projects, so a radar across domains
  * would show only two spikes) with a radar of the chosen domain's application directions. Choosing a
- * domain or a library card stays on this page: the panel follows the choice and the library opens
- * on the right. No report or library counts and no recent progress (1142 / 1518); every number
+ * domain or a library card stays on this page: the panel follows the choice and the library slides
+ * out on the right (query 2026-1022 1606 restored this overview after the 积累分布图 moved to 领域分析). No report or library counts and no recent progress (1142 / 1518); every number
  * names its basis (机关界面设计语言 “口径可信”).
  */
 export function LeaderHome() {
-  const { showInspector } = useLayout();
+  // Library cards open the same right-hand slide-out as 领域分析 (query 2026-1022 1606), not the docked panel.
+  const [preview, setPreview] = useState("");
   const [search, setSearch] = useSearchParams();
   const overview = useQuery({ ...libraryOverviewQuery() });
   const rows = [...(overview.data ?? [])].filter((r) => r.projects > 0).sort((a, b) => b.projects - a.projects);
   const chosen = rows.find((r) => r.corpus_id === search.get("domain")) ?? rows[0];
   // The choice lives in the address, replaced rather than added, so a refresh keeps it and Back leaves the page.
   const choose = (id: string) => setSearch((old) => { const next = new URLSearchParams(old); next.set("domain", id); return next; }, { replace: true });
-  const openLibrary = (id: string) => { choose(id); showInspector({ kind: "corpus", corpusId: id }); };
+  const openLibrary = (id: string) => { choose(id); setPreview(id); };
   const most = Math.max(1, ...rows.map((r) => r.projects));
   const fields = (chosen?.fields ?? []).slice(0, 8);
 
@@ -112,6 +114,8 @@ export function LeaderHome() {
             </div>
           </>}
       </section>
+
+      <LibraryPreviewDrawer row={rows.find((r) => r.corpus_id === preview) ?? null} onClose={() => setPreview("")} />
 
       <div>
         <SectionHead index="03" title="我的工作" note="本账户发起的对话、报告与审查" />

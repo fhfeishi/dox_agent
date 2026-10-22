@@ -119,7 +119,7 @@ export function TasksView() {
         
       </>}
     >
-      <input ref={upload} type="file" accept=".md,.markdown,.txt,.docx,.pdf" className="hidden" aria-label="上传模板文件"
+      <input ref={upload} type="file" accept=".md,.markdown,.txt,.docx,.pdf" className="hidden" aria-label="上传模版文件"
         onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void uploaded(file); }} />
       {tasksError ? <p role="alert" className="col-span-full text-body text-[var(--red)]">{tasksError}</p> : null}
       {message ? <p role="status" className="col-span-full text-body text-[var(--steel)]">{message}</p> : null}

@@ -110,6 +110,7 @@ function Trace({ attempt, live, corpusName, onOpenSource, technical }: {
                   范围：{scopeIds.length ? scopeIds.map(corpusName).join("、") : "所选资料库"}
                   {searches[0]?.limited ? ` · 限定 ${searches[0].limited} 份资料` : " · 全部已入库资料"}
                   {searches[0]?.year_window ? ` · ${searches[0].year_window[0]}–${searches[0].year_window[1]} 年` : ""}
+                  {searches[0]?.year_relaxed ? " · 所选时间范围内没有项目，已按全部年份检索" : ""}
                 </p>
               </TraceNode>
               {searches.map((round, r) => (
@@ -452,7 +453,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   }, [reportTask?.report_template_id, boundReportTask, params?.template_id, templateId]);
   const boundTemplate = templateOptions.find((item) => item.id === reportTask?.report_template_id);
   const availableTemplates = boundReportTask
-    ? [{ id: reportTask?.report_template_id ?? "", name: boundTemplate?.name ?? reportTask?.report_template_id ?? "固定模板",
+    ? [{ id: reportTask?.report_template_id ?? "", name: boundTemplate?.name ?? reportTask?.report_template_id ?? "固定模版",
         kind: boundTemplate?.kind ?? "custom", status: "published", version: reportTask?.report_template_version ?? 0 }]
     : templateOptions;
   const ready = Boolean((!taskId?.startsWith("custom-") || reportTask) && domain.trim() && yearFrom >= 1900 && yearTo <= 2100 && yearFrom <= yearTo && templateId && scopeIds.includes(corpusId));
@@ -551,8 +552,8 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           </select>
         </label>
         <label className="text-caption text-[var(--slate)]">
-          报告模板
-          <select aria-label="报告模板" value={templateId} disabled={busy || boundReportTask}
+          报告模版
+          <select aria-label="报告模版" value={templateId} disabled={busy || boundReportTask}
             onChange={(event) => setTemplateId(event.target.value)}
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
             {availableTemplates.map((item) => (

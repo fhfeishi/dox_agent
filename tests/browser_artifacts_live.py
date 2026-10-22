@@ -138,8 +138,8 @@ async def main():
                     data={"source_template_id": "comprehensive"})).json()
                 template_draft = await (await page.request.put(
                     f"{origin}/api/templates/custom/{template['id']}/draft",
-                    data={"revision": template["revision"], "name": "实测模板",
-                          "content": "# 实测模板\n\n## 章节\n"})).json()
+                    data={"revision": template["revision"], "name": "实测模版",
+                          "content": "# 实测模版\n\n## 章节\n"})).json()
                 template_publish = await page.request.post(
                     f"{origin}/api/templates/custom/{template['id']}/publish",
                     data={"revision": template_draft["revision"]})

@@ -330,9 +330,9 @@ def guideline_checks(doc, rule):
 
 
 def program_finding(check, status, detail, actual, extra):
-    revised = "（本模板人工修订，原始要求：" + check["original"]["requirement"] + "）" if check.get("revised") and check.get("original") else ""
+    revised = "（本模版人工修订，原始要求：" + check["original"]["requirement"] + "）" if check.get("revised") and check.get("original") else ""
     return {**finding("check-" + check["id"], "guideline", check["title"], status, detail,
                       check["source"] + revised, page=next(iter((extra.get("location") or {}).get("pages", [])), None),
-                      suggestion="结合模板要求与原文核对；修改后上传新版本重新审查。"),
+                      suggestion="结合模版要求与原文核对；修改后上传新版本重新审查。"),
             "clause_ids": [check["id"]], "origin": "program", "actual": actual,
             "requirement": check["requirement"], **extra}

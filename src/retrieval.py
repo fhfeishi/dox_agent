@@ -116,6 +116,8 @@ class RetrievalResult:
     partial: bool = False  # 命中但不足该任务的 MIN_REPORTS（D-L4 coverage_partial 场景）
     candidates: int = 0
     year_window: tuple[int, int] | None = None
+    # The chosen window held no project, so the search ran over every year instead (query 2026-1021).
+    year_relaxed: bool = False
     specific: tuple[str, ...] = ()  # D-L10 净化后的实词，供 L6 覆盖缺口判定
 
 
@@ -309,10 +311,18 @@ def select_reports(
     search_query = query[:period.start()] + query[period.end():] if period else query
     terms = _query_terms(search_query)
     docs = [doc for doc in reports if allowed_doc_ids is None or doc.doc_id in allowed_doc_ids]
+    relaxed = False
     if period:
         start, end = map(int, period.groups())
-        docs = [doc for doc in docs if doc.year_from is not None and doc.year_to is not None
-                and doc.year_from <= end and doc.year_to >= start]
+        windowed = [doc for doc in docs if doc.year_from is not None and doc.year_to is not None
+                    and doc.year_from <= end and doc.year_to >= start]
+        if windowed:
+            docs = windowed
+        else:
+            # 点选提问的时间维度 (query 2026-1021): a window with no project would end the turn with
+            # "没有匹配的报告" for a library whose projects simply ended earlier. Search every year
+            # instead and let the answer say the window came up empty.
+            relaxed = True
     if not terms:
         return RetrievalResult(reports=[], matched=False, reason="direct")
     if not docs:
@@ -483,7 +493,8 @@ def select_reports(
         title_terms = set(tokens(best.doc.title))
         uncovered -= {topic for topic in uncovered if set(tokens(topic)) <= title_terms}
     return RetrievalResult(reports=chosen, matched=True, partial=partial, candidates=len(scored),
-                           year_window=tuple(map(int, period.groups())) if period else None, specific=tuple(specific))
+                           year_window=tuple(map(int, period.groups())) if period and not relaxed else None,
+                           year_relaxed=relaxed, specific=tuple(specific))
 
 
 def estimate_tokens(text: str) -> int:
@@ -629,4 +640,5 @@ def retrieve_multi(sources, query: str, *, task_id: str = "task1", allowed_doc_i
     partial = len(kept) < minimum or any(result.partial for _, result in results)
     return RetrievalResult(reports=kept[:limit], matched=True, partial=partial,
                            year_window=results[0][1].year_window,
+                           year_relaxed=any(result.year_relaxed for _, result in results),
                            candidates=sum(result.candidates for _, result in results), specific=specific)

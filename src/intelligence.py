@@ -171,16 +171,16 @@ async def analyze(payload: AnalysisRequest, request: Request):
             else:
                 current = await asyncio.to_thread(request.app.state.custom_templates.get, payload.template_id)
                 if current.get("archived"):
-                    raise HTTPException(409, "模板已归档，请重新选择")
+                    raise HTTPException(409, "模版已归档，请重新选择")
                 published = await asyncio.to_thread(
                     request.app.state.custom_templates.version, payload.template_id, payload.template_version
                 )
                 trusted_template = published["content"]
                 payload.template_version = published["version"]
             if payload.template.strip() != trusted_template.strip():
-                raise HTTPException(409, "报告章节与所选发布版本不同，请保存新模板或使用本次临时章节")
+                raise HTTPException(409, "报告章节与所选发布版本不同，请保存新模版或使用本次临时章节")
         except TemplateMissing as exc:
-            raise HTTPException(404, "已发布模板不存在") from exc
+            raise HTTPException(404, "已发布模版不存在") from exc
 
     inputs = [await asyncio.to_thread(store.get_input, ident) for ident in payload.input_ids]
     if any(item["removed"] for item in inputs):
@@ -229,7 +229,7 @@ async def analyze(payload: AnalysisRequest, request: Request):
         if payload.input_template_id:
             template_input = await asyncio.to_thread(store.get_input, payload.input_template_id)
             if template_input["removed"]:
-                raise ValueError("报告模板已移除")
+                raise ValueError("报告模版已移除")
             params["input_template_version"] = template_input["version"]
         sources = [
             {
@@ -282,7 +282,7 @@ async def analyze(payload: AnalysisRequest, request: Request):
                "可以解释这些条目，但不得改写其名称、状态或数量。\n" if hierarchy_section else "")
             + "\n分析目的："
             + PURPOSES[payload.purpose]
-            + "\n报告模板（仅章节要求）：\n"
+            + "\n报告模版（仅章节要求）：\n"
             + payload.template
         )
         async with asyncio.timeout(settings.answer_timeout):

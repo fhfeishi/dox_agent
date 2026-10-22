@@ -309,7 +309,7 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
               f"资助类别命中 {preflight['category_hits']}、缺失/歧义 {preflight['total'] - preflight['excluded']['stale'] - preflight['category_hits']}\n"
               f"项目区间缺失资料（未纳入，所选范围内）：{preflight['excluded']['period']}\n"
               f"资助类别缺失资料（所选范围内）：{preflight['total'] - preflight['excluded']['stale'] - preflight['category_hits']}\n"
-              f"模板：{template_id}\n基金类别：{params.get('fund_type') or '不限'}\n"
+              f"模版：{template_id}\n基金类别：{params.get('fund_type') or '不限'}\n"
               f"分析重点：{params.get('focus') or '无'}")
     brief = (f"写作目的：{params.get('purpose') or '研究进展梳理'}\n"
              f"目标读者：{params.get('audience') or '专业研究人员'}\n"
@@ -360,7 +360,7 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                            "但不得改写其名称、状态或数量，也不得声称库里没有它列出的条目。"
                            if hierarchy_section else "")
                         + "没有足够资料的结论写明资料不足，推断明确标注。提交前核对引用编号。"
-                      + "\n\n模板章节：\n" + (template_content if template_content is not None
+                      + "\n\n模版章节：\n" + (template_content if template_content is not None
                                               else report_template(template_id))),
         HumanMessage(content=brief + "\n\n已核定范围：\n" + header + "\n\n可引用原文证据：\n" + reports_text),
     ]

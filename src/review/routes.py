@@ -23,7 +23,15 @@ from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
 from .export import export_report
 from .model_client import Client, ModelError, config, model_configured
-from .models import EvidenceInput, MappingUpdate, MetadataUpdate, ResearchQuery, ReviewRequest, RulePack
+from .models import (
+    AppliedChoice,
+    EvidenceInput,
+    MappingUpdate,
+    MetadataUpdate,
+    ResearchQuery,
+    ReviewRequest,
+    RulePack,
+)
 from .parser import parse_document
 from .presentation import LEVELS, present_report, suggestion_level
 from .research import redact, search_crossref
@@ -266,10 +274,10 @@ def rules():
 def save_rule(rule: RulePack):
     data = rule.model_dump(mode="json")
     if data["id"].startswith("builtin-") or data["source_kind"] == "builtin":
-        raise HTTPException(403, "内置模板只读，请复制后编辑。")
+        raise HTTPException(403, "内置模版只读，请复制后编辑。")
     old = db.get("rule", rule.id)
     if old and old.get("kind") and old["kind"] != data["kind"]:
-        raise HTTPException(422, "已保存模板不能改变审查类型，请另存为新模板。")
+        raise HTTPException(422, "已保存模版不能改变审查类型，请另存为新模版。")
     known = [c["original"] for v in db.all_items("rule_version") for c in v.get("checks", []) if c.get("original")]
     templates.preserve_origins(data, old, known)
     if data["confirmed"]:
@@ -286,10 +294,45 @@ def delete_rule(id: str):
     keep the version they used. Built-in templates are read only. Administrators only (auth)."""
     rule = require("rule", id)
     if id.startswith("builtin-") or rule.get("source_kind") == "builtin":
-        raise HTTPException(403, "内置模板不能删除。")
+        raise HTTPException(403, "内置模版不能删除。")
     rule["archived"] = True
     db.save("rule", rule)
     return {"id": id, "archived": True}
+
+
+def applied_rules():
+    """The template each review kind starts from (query 2026-1021 1629 应用): set by an administrator
+    for everyone. A choice that is no longer usable — deleted, back to draft, or another kind — reads
+    as none, so the workbench falls back to the built-in template instead of offering a broken one."""
+    stored = db.get("applied", "default") or {}
+    result = {}
+    for kind in ("formal", "professional"):
+        rule = db.get("rule", stored.get(kind) or "")
+        result[kind] = rule["id"] if rule and rule.get("kind") == kind and rule.get("confirmed") and not rule.get("archived") else None
+    return result
+
+
+@router.get("/applied")
+def applied():
+    return applied_rules()
+
+
+@router.put("/applied", dependencies=ADMIN_ONLY)
+def apply_rule(choice: AppliedChoice):
+    """应用 / 不应用: from now on new reviews of this kind start with the template; reviews already
+    run keep the version they used. ``rule_id`` null returns the kind to the built-in template."""
+    if choice.rule_id:
+        rule = require("rule", choice.rule_id)
+        if rule.get("kind") != choice.kind:
+            raise HTTPException(422, "模版类型与审查类型不一致。")
+        if rule.get("archived"):
+            raise HTTPException(422, "模版已删除，不能应用。")
+        if not rule.get("confirmed"):
+            raise HTTPException(422, "草稿模版需先核对并启用，才能应用。")
+    stored = db.get("applied", "default") or {"id": "default"}
+    stored[choice.kind] = choice.rule_id
+    db.save("applied", stored)
+    return applied_rules()
 
 
 @router.get("/rules/{id}/versions/{version}")
@@ -324,7 +367,7 @@ def save_mappings(id: str, update: MappingUpdate):
     if update.revision != saved.get("revision", 0):
         raise HTTPException(409, "章节对应已在其他页面修改，请刷新后再保存。")
     if update.rule_version != rule["version"]:
-        raise HTTPException(409, "模板已更新，请刷新后重新核对章节。")
+        raise HTTPException(409, "模版已更新，请刷新后重新核对章节。")
     targets = {c["id"]: c["execution"]["section"] for c in sections.section_checks(rule)}
     for row in update.mappings:
         if row.check_id not in targets or not set(row.block_ids) <= blocks or (row.missing and row.block_ids):
@@ -362,7 +405,7 @@ async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form(
         documents.append(guide)
     try:
         if kind not in ("formal", "professional"):
-            raise HTTPException(422, "请选择形式或专业模板。")
+            raise HTTPException(422, "请选择形式或专业模版。")
         draft = await run_in_threadpool(guidelines.generate, documents, kind)
         return publish(draft, None)
     except ModelError as e:
@@ -577,12 +620,12 @@ def new_run(req: ReviewRequest, request: Request):
         raise HTTPException(422, "正文和信息表须分别指定，不能用同一文件冒充两份材料")
     current = require("rule", req.rule_id)
     if current.get("kind") != req.kind:
-        raise HTTPException(422, "模板类型与审查任务不一致，请选择对应类型的模板")
+        raise HTTPException(422, "模版类型与审查任务不一致，请选择对应类型的模版")
     if req.rule_version != current["version"]:
-        raise HTTPException(409, "模板已更新，请刷新后确认使用最新保存的版本")
+        raise HTTPException(409, "模版已更新，请刷新后确认使用最新保存的版本")
     rule = {**require("rule_version", f"{req.rule_id}-v{req.rule_version}"), "id": req.rule_id}
     if not rule.get("confirmed"):
-        raise HTTPException(400, "请先保存并启用模板")
+        raise HTTPException(400, "请先保存并启用模版")
     try:
         templates.validate_enabled(rule)
     except ValueError as e:

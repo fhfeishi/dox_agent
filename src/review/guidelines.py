@@ -57,6 +57,11 @@ def generate(guides,kind='formal',client=None):
             if kind=='formal' and check['method']=='calculation' and (spec:=suggest_execution(check)):
                 check['execution']=spec
                 notes.append(f'“{check["title"]}”的数值由程序按原文识别为可执行规则，请核对对象、上限和单位后再启用。')
+            elif check['method']=='calculation' and not check.get('execution'):
+                # Nothing the program can count (e.g. a cost ratio): left as calculation it blocks enabling
+                # the whole draft with no measure to pick (found 2026-1021 1629), so a person checks it.
+                check['method']='manual'
+                notes.append(f'“{check["title"]}”没有可由程序计算的对象，已改为人工核查；如需程序核对，可在条目中选择检查对象。')
             checks.append(check)
     if not checks: raise ModelError('未识别出可审核要求，请确认上传的是指南或填写说明。')
     if len(checks)>100: raise ModelError('检查清单超过100项，请按项目类别拆分指南。')

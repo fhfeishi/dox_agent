@@ -192,7 +192,7 @@ export function SidePanel() {
 
         {nav === "tasks" && (
           <>
-            <GroupLabel className="pt-[2px]">任务模板</GroupLabel>
+            <GroupLabel className="pt-[2px]">任务模版</GroupLabel>
             {tasksError ? (
               <p role="alert" className="px-[10px] py-2 text-caption text-[var(--red)]">
                 {tasksError}

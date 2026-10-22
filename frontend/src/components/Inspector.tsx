@@ -306,14 +306,14 @@ export function Inspector() {
     >
       <PanelHeader
         onBack={inspectorCanGoBack ? backInspector : undefined}
-        title={inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
-            : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
+        title={inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模版" : "任务模版")
+            : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模版" : "报告模版")
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "资料库预览"
             : inspectorTarget.kind === "year" ? "年度资料"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "project" ? "项目详情"
-            : inspectorTarget.kind === "review-template" ? "审查模板"
+            : inspectorTarget.kind === "review-template" ? "审查模版"
             : inspectorTarget.kind === "review-source" ? "审查原文"
             : inspectorTarget.kind === "input" ? "外部原始材料"
             : inspectorTarget.kind === "web" ? "网页快照"
@@ -347,7 +347,7 @@ export function Inspector() {
 
         {inspectorTarget.kind === "task" ? (
           <>
-            <SectionTitle>任务模板</SectionTitle>
+            <SectionTitle>任务模版</SectionTitle>
             <TaskTemplatePanel key={`${inspectorTarget.taskId}:${Boolean(inspectorTarget.edit)}`} taskId={inspectorTarget.taskId} edit={Boolean(inspectorTarget.edit)} />
           </>
         ) : null}
@@ -404,7 +404,7 @@ export function Inspector() {
                 </p>
                 <dl className="mt-[7px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[3px] text-caption">
                   <dt className="text-[var(--stone)]">生成人</dt><dd>{artifact.created_by || "未记录"}</dd><dt className="text-[var(--stone)]">任务 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.task_id || "未记录"} / {artifact.task_version ? `v${artifact.task_version}` : "未记录"}</dd>
-                  <dt className="text-[var(--stone)]">模板 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
+                  <dt className="text-[var(--stone)]">模版 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
                 </details>
                 {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-body">
@@ -499,7 +499,7 @@ export function Inspector() {
 
         {inspectorTarget.kind === "template" ? (
           <>
-            <SectionTitle>报告模板</SectionTitle>
+            <SectionTitle>报告模版</SectionTitle>
             <ReportTemplatePanel key={`${inspectorTarget.templateId}:${Boolean(inspectorTarget.edit)}`} templateId={inspectorTarget.templateId} edit={Boolean(inspectorTarget.edit)} />
           </>
         ) : null}

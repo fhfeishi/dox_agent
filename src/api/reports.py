@@ -200,7 +200,7 @@ def install(app, ctx):
                 bound_template_version = task_definition.get("report_template_version")
                 requested_template_version = payload.template_version if payload.template_id not in REPORT_TEMPLATES else 0
                 if payload.template_id != bound_template_id or requested_template_version != bound_template_version:
-                    raise HTTPException(422, "请求报告模板与发布任务绑定不一致")
+                    raise HTTPException(422, "请求报告模版与发布任务绑定不一致")
                 try:
                     task_values, task_sources = resolve_task_params(task_definition, payload.task_params)
                 except ValueError as exc:
@@ -212,18 +212,18 @@ def install(app, ctx):
 
         if payload.template_id in REPORT_TEMPLATES:
             if payload.template_version not in (None, 0):
-                raise HTTPException(422, "内置报告模板版本只能为 0")
+                raise HTTPException(422, "内置报告模版版本只能为 0")
         else:
             if payload.template_version == 0:
-                raise HTTPException(422, "自定义报告模板必须使用已发布版本")
+                raise HTTPException(422, "自定义报告模版必须使用已发布版本")
             try:
                 current_template = await asyncio.to_thread(app.state.custom_templates.get, payload.template_id)
                 if task_definition is None and current_template.get("archived"):
-                    raise HTTPException(422, "已归档模板不能用于新的报告运行")
+                    raise HTTPException(422, "已归档模版不能用于新的报告运行")
                 definition = await asyncio.to_thread(app.state.custom_templates.version,
                                                       payload.template_id, payload.template_version)
             except TemplateMissing as exc:
-                raise HTTPException(422, "自定义报告模板不存在或尚未发布") from exc
+                raise HTTPException(422, "自定义报告模版不存在或尚未发布") from exc
             template_version = int(definition.get("version", 0))
             template_content = render_template(definition["content"], {
                 "domain": payload.domain, "year_range": f"{payload.year_from}–{payload.year_to}",

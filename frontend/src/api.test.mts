@@ -161,7 +161,7 @@ test('user task draft sends every editor field and fixed report binding', async 
 test('templates belong to 情报分析 when they are the intelligence template or copies of it', async () => {
   const { templateArea } = await import('./api.ts');
   assert.equal(templateArea({ id: 'intelligence', name: '情报' }), 'intelligence');
-  assert.equal(templateArea({ id: 'custom-1', name: '我的情报模板', kind: 'custom', source_template_id: 'intelligence' }), 'intelligence');
+  assert.equal(templateArea({ id: 'custom-1', name: '我的情报模版', kind: 'custom', source_template_id: 'intelligence' }), 'intelligence');
   assert.equal(templateArea({ id: 'comprehensive', name: '综合' }), 'analysis');
-  assert.equal(templateArea({ id: 'custom-2', name: '上传的模板', kind: 'custom', source_template_id: 'comprehensive' }), 'analysis');
+  assert.equal(templateArea({ id: 'custom-2', name: '上传的模版', kind: 'custom', source_template_id: 'comprehensive' }), 'analysis');
 });

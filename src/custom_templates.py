@@ -44,17 +44,17 @@ class OutputTemplate(BaseModel):
     @model_validator(mode="after")
     def check_definition(self):
         if len(self.variables) != len(set(self.variables)):
-            raise ValueError("模板变量不能重复")
+            raise ValueError("模版变量不能重复")
         unknown = set(self.variables) - set(TEMPLATE_VARIABLES)
         if unknown:
-            raise ValueError(f"模板只能引用已声明的报告参数：{', '.join(sorted(unknown))}")
+            raise ValueError(f"模版只能引用已声明的报告参数：{', '.join(sorted(unknown))}")
         used = set(re.findall(r"\{\{\s*([a-z_]+)\s*\}\}", self.content))
         if used - set(self.variables):
-            raise ValueError(f"模板正文引用了未声明的变量：{', '.join(sorted(used - set(self.variables)))}")
+            raise ValueError(f"模版正文引用了未声明的变量：{', '.join(sorted(used - set(self.variables)))}")
         if set(self.variables) - used:
             raise ValueError(f"声明但未使用的变量：{', '.join(sorted(set(self.variables) - used))}")
         if not re.search(r"^#{1,6}\s+\S", self.content, re.MULTILINE):
-            raise ValueError("模板正文至少需要一个章节标题")
+            raise ValueError("模版正文至少需要一个章节标题")
         return self
 
 
@@ -117,7 +117,7 @@ class TemplateStore:
         with self.connect() as db:
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
         if row is None:
-            raise TemplateMissing("模板不存在")
+            raise TemplateMissing("模版不存在")
         return normalize_template(json.loads(row[0]))
 
     def list(self, *, include_archived: bool = False) -> list[dict]:
@@ -131,10 +131,10 @@ class TemplateStore:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
-                raise TemplateMissing("模板不存在")
+                raise TemplateMissing("模版不存在")
             template = normalize_template(json.loads(row[0]))
             if template["archived"]:
-                raise TemplateConflict("已归档模板不能编辑")
+                raise TemplateConflict("已归档模版不能编辑")
             if template["revision"] != revision:
                 raise TemplateConflict("草稿已由其他编辑更新，请刷新后重试")
             template.update(changes)
@@ -150,10 +150,10 @@ class TemplateStore:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
-                raise TemplateMissing("模板不存在")
+                raise TemplateMissing("模版不存在")
             template = normalize_template(json.loads(row[0]))
             if template["archived"]:
-                raise TemplateConflict("已归档模板不能发布")
+                raise TemplateConflict("已归档模版不能发布")
             if template["revision"] != revision:
                 raise TemplateConflict("草稿已由其他编辑更新，请刷新后重试")
             OutputTemplate.model_validate({k: template[k] for k in ("name", "purpose", "content", "variables")})
@@ -171,9 +171,9 @@ class TemplateStore:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
-                raise TemplateMissing("模板不存在")
+                raise TemplateMissing("模版不存在")
             if normalize_template(json.loads(row[0]))["version"]:
-                raise TemplateConflict("已发布的模板可能被任务或报告引用，只能归档")
+                raise TemplateConflict("已发布的模版可能被任务或报告引用，只能归档")
             db.execute("DELETE FROM templates WHERE id=?", (template_id,))
 
     def archive(self, template_id: str) -> dict:
@@ -187,7 +187,7 @@ class TemplateStore:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
-                raise TemplateMissing("模板不存在")
+                raise TemplateMissing("模版不存在")
             template = normalize_template(json.loads(row[0]))
             template["archived"] = archived
             db.execute("UPDATE templates SET draft=? WHERE id=?",
@@ -203,5 +203,5 @@ class TemplateStore:
                 row = db.execute("SELECT definition FROM versions WHERE template_id=? AND version=?",
                                  (template_id, version)).fetchone()
         if row is None:
-            raise TemplateMissing("模板尚未发布或版本不存在")
+            raise TemplateMissing("模版尚未发布或版本不存在")
         return normalize_template(json.loads(row[0]))

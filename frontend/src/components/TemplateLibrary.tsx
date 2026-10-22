@@ -51,7 +51,7 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
   const uploaded = (file: File) => run(async () => {
     const raw = await readText(file);
     if (!raw) throw new Error("上传的文件没有可读取的文字");
-    const name = stripExtension(file.name) || "上传的模板";
+    const name = stripExtension(file.name) || "上传的模版";
     const extracted = extractTemplate(raw, name);
     if (extracted.content.length > LIMIT) throw new Error(`提取后约 ${extracted.content.length} 字，超过 ${LIMIT} 字上限，请精简后上传`);
     const copy = await copyTemplate(BASE[area]);
@@ -59,13 +59,13 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
     const saved = await saveTemplateDraft(copy.id, copy.revision, { name, content: extracted.content, purpose: `上传自 ${file.name}`, variables });
     await load();
     showInspector({ kind: "template", templateId: saved.id, edit: true });
-    setMessage(extracted.extracted ? `已从“${file.name}”提取 ${extracted.sections} 个章节，生成模板草稿“${saved.name}”，请在右侧核对后发布`
-      : `“${file.name}”中没有识别出章节标题，已保留全文为模板草稿“${saved.name}”，请在右侧整理章节后发布`);
+    setMessage(extracted.extracted ? `已从“${file.name}”提取 ${extracted.sections} 个章节，生成模版草稿“${saved.name}”，请在右侧核对后发布`
+      : `“${file.name}”中没有识别出章节标题，已保留全文为模版草稿“${saved.name}”，请在右侧整理章节后发布`);
   });
   const remove = (template: TemplateSummary) => run(async () => {
-    if (!window.confirm(`删除模板“${template.name}”？${template.version ? "已生成的报告仍保留所用版本，可在“已删除”中恢复。" : ""}`)) return;
+    if (!window.confirm(`删除模版“${template.name}”？${template.version ? "已生成的报告仍保留所用版本，可在“已删除”中恢复。" : ""}`)) return;
     if (template.version) await archiveCustomTemplate(template.id); else await deleteCustomTemplate(template.id);
-    setMessage(`已删除模板“${template.name}”`);
+    setMessage(`已删除模版“${template.name}”`);
     await load();
   });
   const restore = (template: TemplateSummary) => run(async () => {
@@ -76,15 +76,15 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
   const live = templates.filter((t) => !archived(t));
   const gone = templates.filter(archived);
   const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
-  return <section aria-label={area === "analysis" ? "报告模板库" : "情报分析模板库"} className="space-y-[10px]">
+  return <section aria-label={area === "analysis" ? "报告模版库" : "情报分析模版库"} className="space-y-[10px]">
     <div className="flex flex-wrap items-center gap-[8px]">
-      <h2 className="text-emphasis font-semibold text-[var(--ink)]">{area === "analysis" ? "报告模板" : "情报分析模板"} · {live.length}</h2>
-      <span className="text-caption text-[var(--stone)]">{area === "analysis" ? "专项报告按所选模板的章节大纲生成" : "情报分析报告按所选模板的章节生成"}</span>
+      <h2 className="text-emphasis font-semibold text-[var(--ink)]">{area === "analysis" ? "报告模版" : "情报分析模版"} · {live.length}</h2>
+      <span className="text-caption text-[var(--stone)]">{area === "analysis" ? "专项报告按所选模版的章节大纲生成" : "情报分析报告按所选模版的章节生成"}</span>
       <span className="flex-1" />
-      <button type="button" className={action} disabled={busy} onClick={() => void create()}>新建模板</button>
-      <button type="button" className={action} disabled={busy} title="支持 Word、PDF、Markdown、文本；自动提取章节大纲" onClick={() => input.current?.click()}>上传文档提取模板</button>
+      <button type="button" className={action} disabled={busy} onClick={() => void create()}>新建模版</button>
+      <button type="button" className={action} disabled={busy} title="支持 Word、PDF、Markdown、文本；自动提取章节大纲" onClick={() => input.current?.click()}>上传文档提取模版</button>
       {gone.length ? <button type="button" className={action} onClick={() => setShowArchived(!showArchived)}>{showArchived ? "收起已删除" : `已删除 · ${gone.length}`}</button> : null}
-      <input ref={input} type="file" accept=".md,.markdown,.txt,.docx,.pdf" className="hidden" aria-label={area === "analysis" ? "上传报告模板文件" : "上传情报分析模板文件"}
+      <input ref={input} type="file" accept=".md,.markdown,.txt,.docx,.pdf" className="hidden" aria-label={area === "analysis" ? "上传报告模版文件" : "上传情报分析模版文件"}
         onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void uploaded(file); }} />
     </div>
     {message ? <p role="status" className="text-body text-[var(--steel)]">{message}</p> : null}
@@ -101,12 +101,12 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
             <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id })}>预览</button>
             <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id, edit: true })}>修改</button>
             {custom ? <button type="button" className="rounded-[6px] px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45" disabled={busy} onClick={() => void remove(t)}>删除</button>
-              : <span className="text-caption text-[var(--stone)]">内置，不可删除；修改时另存为新模板</span>}
+              : <span className="text-caption text-[var(--stone)]">内置，不可删除；修改时另存为新模版</span>}
           </div>
         </article>;
       })}
     </div>
-    {showArchived && gone.length ? <ul aria-label="已删除的模板" className="space-y-[6px] rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[12px] text-body">
+    {showArchived && gone.length ? <ul aria-label="已删除的模版" className="space-y-[6px] rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[12px] text-body">
       {gone.map((t) => <li key={t.id} className="flex items-center gap-[8px]">
         <button type="button" className="text-left text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "template", templateId: t.id })}>{t.name}</button>
         <span className="text-[var(--stone)]">v{t.version}</span>

@@ -1,4 +1,4 @@
-import { useEffect, useState, type DragEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type DragEvent } from "react";
 import { useNavigate } from "react-router";
 import { downloadText } from "../../exportFormat";
 import { useApp } from "../../store";
@@ -95,57 +95,180 @@ function splitter(values: number[]) {
   return { mid, high: (v: number) => (above ? v > mid : v >= mid && mid > 0) };
 }
 
-const CELLS = [
-  { key: "lift", label: "补基础", note: "影响大、已有基础少", hiBase: false, hiReach: true },
-  { key: "first", label: "先做", note: "影响大、已有基础多", hiBase: true, hiReach: true },
+const QUADS = [
+  { key: "lift", label: "补基础", note: "影响大、已有基础少：先补上基础再做", hiBase: false, hiReach: true },
+  { key: "first", label: "先做", note: "影响大、已有基础多：优先投入", hiBase: true, hiReach: true },
   { key: "later", label: "暂缓", note: "影响小、已有基础少", hiBase: false, hiReach: false },
-  { key: "easy", label: "顺手做", note: "影响小、已有基础多", hiBase: true, hiReach: false },
+  { key: "easy", label: "顺手做", note: "影响小、已有基础多：成本低，可顺带推进", hiBase: true, hiReach: false },
 ] as const;
 
+type Group = { key: string; base: number; reach: number; items: Opportunity[]; cx: number; cy: number; r: number };
+export type DragHandlers = { start: (items: Opportunity[]) => void; move: (x: number, y: number) => void; end: (x: number, y: number) => boolean };
+
 /**
- * The openings sorted into four cells by two counts — 已有基础 (projects already on it) and 影响面
- * (projects in the scene it serves) — split at their medians. Cards replace the earlier scatter, whose
- * equal counts stacked dots on top of each other (query 2026-1022: "很差劲"). A card is clicked into the
- * 候选池 or dragged onto it.
+ * 下一步可以先做什么 as a static four-quadrant chart, like 01 (query 2026-1022 1809, after the 研究地形图
+ * demo): x = 已有基础, y = 影响面, both project counts on square-root scales, split at their medians.
+ * Openings with the same two counts share one point that shows how many it holds — equal counts used
+ * to stack dots on one spot. A point is clicked (one opening: into the pool; several: a list to pick
+ * from) or dragged onto the 候选池; the best-ranked points carry a label where it does not collide.
  */
-function OppBoard({ items, pool, onPick, onDrag }: {
-  items: Opportunity[]; pool: Set<string>; onPick: (o: Opportunity) => void; onDrag: (on: boolean) => void;
+function OppChart({ items, pool, onPick, onPickAll, drag }: {
+  items: Opportunity[]; pool: Set<string>; onPick: (o: Opportunity) => void; onPickAll: (list: Opportunity[]) => void; drag: DragHandlers;
 }) {
-  const [more, setMore] = useState<string[]>([]);
+  // Drawn at the card's own size (one unit = one pixel), so it fills the space and text stays sharp.
+  const [size, setSize] = useState({ w: 540, h: 380 });
+  const W = size.w, H = size.h, L = 46, R = W - 12, T = 26, B = H - 34;
+  const [hover, setHover] = useState<{ g: Group; left: number; top: number } | null>(null);
+  const [menu, setMenu] = useState<{ g: Group; left: number; top: number } | null>(null);
+  const frame = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const node = frame.current;
+    if (!node) return;
+    const observer = new ResizeObserver(() => {
+      const box = node.getBoundingClientRect();
+      if (box.width > 0 && box.height > 0) setSize({ w: Math.round(box.width), h: Math.round(box.height) });
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  const press = useRef<{ g: Group; x: number; y: number; moved: boolean } | null>(null);
+  const maxBase = Math.max(1, ...items.map((o) => o.base)), maxReach = Math.max(1, ...items.map((o) => o.reach));
+  // 已有基础 is a handful of small whole numbers: one column per value reads better than a stretched axis.
+  const columns = [...new Set(items.map((o) => o.base))].sort((a, b) => a - b);
+  const colW = (R - L) / Math.max(1, columns.length);
+  const sx = (v: number) => L + colW * (columns.indexOf(v) + 0.5);
+  const sy = (v: number) => B - Math.sqrt(v / maxReach) * (B - T - 16) - 8;
   const base = splitter(items.map((o) => o.base)), reach = splitter(items.map((o) => o.reach));
-  const ranked = [...items].sort((a, b) => (b.base + b.reach) - (a.base + a.reach));
-  return <div className="opp-board">
-    <span className="opp-y">影响面 ↑</span>
-    <div className="opp-grid">
-      {CELLS.map((cell) => {
-        const list = ranked.filter((o) => base.high(o.base) === cell.hiBase && reach.high(o.reach) === cell.hiReach);
-        const open = more.includes(cell.key);
-        return <section key={cell.key} className={`opp-cell is-${cell.key}`} aria-label={`${cell.label}：${list.length} 项`}>
-          <header><b title={cell.note}>{cell.label}</b><i>{list.length}</i></header>
-          <div className="opp-cards">
-            {(open ? list : list.slice(0, 5)).map((o) => <OppCard key={o.key} o={o} on={pool.has(o.key)} onPick={onPick} onDrag={onDrag} />)}
-            {list.length > 5 ? <button type="button" className="opp-more" onClick={() => setMore(open ? more.filter((k) => k !== cell.key) : [...more, cell.key])}>
-              {open ? "收起" : `另 ${list.length - 5} 项`}</button> : null}
-            {!list.length ? <p className="opp-empty">没有</p> : null}
-          </div>
-        </section>;
+  // The median lines sit between the highest "low" value and the lowest "high" one.
+  const lowCols = columns.filter((v) => !base.high(v)).length;
+  const cx = lowCols === 0 ? L : lowCols === columns.length ? R : L + colW * lowCols;
+  const lows = items.map((o) => o.reach).filter((v) => !reach.high(v)), highs = items.map((o) => o.reach).filter(reach.high);
+  const cy = !highs.length ? T : !lows.length ? B : (sy(Math.max(...lows)) + sy(Math.min(...highs))) / 2;
+  const yTicks = [...new Set([0, Math.round(maxReach / 4), Math.round(maxReach / 2), maxReach].filter((v) => v >= 0))];
+
+  const groups = useMemo(() => {
+    const map = new Map<string, Opportunity[]>();
+    for (const o of items) map.set(`${o.base}|${o.reach}`, [...(map.get(`${o.base}|${o.reach}`) ?? []), o]);
+    return [...map.entries()].map(([key, list]) => ({ key, base: list[0].base, reach: list[0].reach, items: list,
+      cx: sx(list[0].base), cy: sy(list[0].reach), r: 7 + Math.sqrt(list.length) * 3.2 }))
+      .sort((a, b) => (b.base / maxBase + b.reach / maxReach) - (a.base / maxBase + a.reach / maxReach));
+  }, [items, W, H]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Within a column, points that would touch move sideways (a small swarm), never off their height.
+  const placed = useMemo(() => {
+    const done: Group[] = [];
+    for (const g of [...groups].sort((a, b) => a.cy - b.cy)) {
+      const home = g.cx, limit = colW / 2 - g.r - 2;
+      let best = home;
+      for (let step = 0; step < 40; step++) {
+        const offset = Math.ceil(step / 2) * (g.r * 0.9) * (step % 2 ? 1 : -1);
+        if (Math.abs(offset) > limit) break;
+        const x = home + offset;
+        if (!done.some((d) => Math.hypot(d.cx - x, d.cy - g.cy) < d.r + g.r + 2)) { best = x; break; }
+        best = x;
+      }
+      done.push({ ...g, cx: best });
+    }
+    return done;
+  }, [groups, colW]);
+
+  // Labels: best-ranked first, skipped where they would overlap a label already placed or the frame edge.
+  const labels = new Map<string, { x: number; y: number; anchor: "start" | "end"; text: string }>();
+  const boxes: { x0: number; x1: number; y0: number; y1: number }[] = [];
+  for (const g of placed.slice(0, 10)) {
+    const text = g.items.length > 1 ? `${short(g.items[0].title, 9)} 等 ${g.items.length} 项` : short(g.items[0].title, 12);
+    const width = text.length * 11;
+    for (const anchor of ["start", "end"] as const) {
+      const x = anchor === "start" ? g.cx + g.r + 5 : g.cx - g.r - 5;
+      const box = { x0: anchor === "start" ? x : x - width, x1: anchor === "start" ? x + width : x, y0: g.cy - 8, y1: g.cy + 6 };
+      if (box.x0 < L || box.x1 > R) continue;
+      if (boxes.some((b) => b.x0 < box.x1 && box.x0 < b.x1 && b.y0 < box.y1 && box.y0 < b.y1)) continue;
+      boxes.push(box); labels.set(g.key, { x, y: g.cy + 4, anchor, text }); break;
+    }
+  }
+
+  const local = (event: { clientX: number; clientY: number }) => {
+    const box = frame.current!.getBoundingClientRect();
+    return { left: event.clientX - box.left, top: event.clientY - box.top, width: box.width };
+  };
+  useEffect(() => {
+    const move = (event: PointerEvent) => {
+      const p = press.current;
+      if (!p) return;
+      if (!p.moved && Math.hypot(event.clientX - p.x, event.clientY - p.y) < 6) return;
+      if (!p.moved) { p.moved = true; setHover(null); setMenu(null); drag.start(p.g.items); }
+      drag.move(event.clientX, event.clientY);
+    };
+    const up = (event: PointerEvent) => {
+      const p = press.current;
+      press.current = null;
+      if (p?.moved) drag.end(event.clientX, event.clientY);
+    };
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
+    return () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); };
+  }, [drag]);
+  useEffect(() => {
+    if (!menu) return;
+    const close = (event: MouseEvent) => { if (!(event.target as Element).closest?.(".opp-menu, .opp-pt")) setMenu(null); };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [menu]);
+
+  function click(g: Group, event: { clientX: number; clientY: number }) {
+    if (g.items.length === 1) { onPick(g.items[0]); return; }
+    const at = local(event);
+    setMenu({ g, left: Math.min(at.left, at.width - 280), top: at.top + 10 });
+  }
+
+  return <div ref={frame} className="opp-chart">
+    <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label="下一步可以先做什么：横轴已有基础，纵轴影响面">
+      {QUADS.map((q) => {
+        const x0 = q.hiBase ? cx : L, x1 = q.hiBase ? R : cx, y0 = q.hiReach ? T : cy, y1 = q.hiReach ? cy : B;
+        const n = items.filter((o) => base.high(o.base) === q.hiBase && reach.high(o.reach) === q.hiReach).length;
+        return <g key={q.key} className={`opp-quad is-${q.key}`}>
+          <rect x={x0} y={y0} width={Math.max(0, x1 - x0)} height={Math.max(0, y1 - y0)} />
+          <text x={q.hiBase ? x1 - 8 : x0 + 8} y={q.hiReach ? y0 + 17 : y1 - 8} textAnchor={q.hiBase ? "end" : "start"}>
+            <title>{q.note}</title>{q.label}<tspan dx="5" className="n">{n}</tspan></text>
+        </g>;
       })}
-    </div>
-    <span className="opp-x">已有基础 →</span>
+      <line x1={cx} y1={T} x2={cx} y2={B} className="opp-cut" /><line x1={L} y1={cy} x2={R} y2={cy} className="opp-cut" />
+      {columns.map((v) => <text key={`x${v}`} x={sx(v)} y={B + 16} textAnchor="middle" className="opp-tick">{v}</text>)}
+      {yTicks.map((v) => <g key={`y${v}`}><line x1={L} x2={R} y1={sy(v)} y2={sy(v)} className="opp-grid" />
+        <text x={L - 6} y={sy(v) + 4} textAnchor="end" className="opp-tick">{v}</text></g>)}
+      <text x={R} y={B + 30} textAnchor="end" className="opp-axis">已有基础（相关项目数）→</text>
+      <text x={L} y={T - 10} className="opp-axis">影响面（场景项目数）↑</text>
+      {[...placed].reverse().map((g) => {
+        const inside = g.items.filter((o) => pool.has(o.key)).length, label = labels.get(g.key);
+        return <g key={g.key} className={`opp-pt${inside === g.items.length ? " is-in" : inside ? " is-some" : ""}`} role="button" tabIndex={0}
+          aria-label={`${g.items.length > 1 ? `${g.items.length} 项：` : ""}${g.items.map((o) => o.title).join("、")}，已有基础 ${g.base}，影响面 ${g.reach}`}
+          onPointerDown={(e) => { press.current = { g, x: e.clientX, y: e.clientY, moved: false }; }}
+          onClick={(e) => { if (!press.current?.moved) click(g, e); }}
+          onKeyDown={(e) => { if (e.key === "Enter") { const box = (e.currentTarget as Element).getBoundingClientRect(); click(g, { clientX: box.left, clientY: box.bottom }); } }}
+          onMouseEnter={(e) => { const at = local(e); setHover({ g, left: Math.min(at.left + 14, at.width - 250), top: at.top + 14 }); }}
+          onMouseLeave={() => setHover(null)}>
+          <circle cx={g.cx} cy={g.cy} r={g.r + 6} className="halo" />
+          <circle cx={g.cx} cy={g.cy} r={g.r} className="dot" />
+          {g.items.length > 1 ? <text x={g.cx} y={g.cy + 4} textAnchor="middle" className="count">{g.items.length}</text>
+            : inside ? <text x={g.cx} y={g.cy + 4} textAnchor="middle" className="count">✓</text> : null}
+          {label ? <text x={label.x} y={label.y} textAnchor={label.anchor} className="label">{label.text}</text> : null}
+        </g>;
+      })}
+    </svg>
+    {hover && !menu ? <div className="opp-tip" style={{ left: hover.left, top: hover.top }} aria-hidden="true">
+      {hover.g.items.slice(0, 3).map((o) => <b key={o.key}>{o.title}<small>{o.domain.replace(/^AI与/, "")}</small></b>)}
+      {hover.g.items.length > 3 ? <span>另 {hover.g.items.length - 3} 项</span> : null}
+      <span>已有基础 {hover.g.base} 个项目 · 影响面 {hover.g.reach} 个项目</span>
+      <em>{hover.g.items.length > 1 ? "点开逐项加入 · 拖到候选池加入全部" : "点击或拖到候选池加入"}</em>
+    </div> : null}
+    {menu ? <div className="opp-menu" style={{ left: Math.max(0, menu.left), top: menu.top }} role="dialog" aria-label="同一位置的机会">
+      <header><b>{menu.g.items.length} 项 · 基础 {menu.g.base} · 影响 {menu.g.reach}</b>
+        <button type="button" onClick={() => { onPickAll(menu.g.items); setMenu(null); }}>全部加入</button></header>
+      <ul>{menu.g.items.map((o) => <li key={o.key}><span>{o.title}<small>{o.domain.replace(/^AI与/, "")}</small></span>
+        <button type="button" aria-pressed={pool.has(o.key)} onClick={() => onPick(o)}>{pool.has(o.key) ? "✓" : "+"}</button></li>)}</ul>
+    </div> : null}
   </div>;
 }
 
-function OppCard({ o, on, onPick, onDrag }: { o: Opportunity; on: boolean; onPick: (o: Opportunity) => void; onDrag: (on: boolean) => void }) {
-  return <button type="button" draggable className={`opp-card${on ? " is-in" : ""}`} aria-pressed={on}
-    title={`${o.domain} · ${o.title}\n${o.basis}`}
-    onClick={() => onPick(o)}
-    onDragStart={(e) => { e.dataTransfer.setData("text/plain", o.key); e.dataTransfer.effectAllowed = "copy"; onDrag(true); }}
-    onDragEnd={() => onDrag(false)}>
-    <b>{o.title}</b>
-    <small>{o.domain.replace(/^AI与/, "")} · 基础 {o.base} · 影响 {o.reach}</small>
-    <i aria-hidden="true">{on ? "✓" : "+"}</i>
-  </button>;
-}
+const short = (text: string, n: number) => (text.length > n ? `${text.slice(0, n - 1)}…` : text);
 
 export function GapBoard({ data, onLocate, onReveal }: {
   data: DomainsOverview; onLocate: (domainId: string) => void; onReveal: (domainId: string, system?: string) => void;
@@ -175,10 +298,35 @@ export function GapBoard({ data, onLocate, onReveal }: {
   const inPool = new Set(pool.map((o) => o.key));
   const flip = (item: Opportunity) => setPool(inPool.has(item.key) ? pool.filter((o) => o.key !== item.key) : [...pool, item]);
   const add = (item: Opportunity) => { if (!inPool.has(item.key)) setPool([...pool, item]); };
-  const proposal = pool.slice(0, MAX_PROPOSAL);
+  // Both buttons always work (query 2026-1022 1809): with an empty pool the previews start from the best-ranked
+  // openings of what is on screen, marked as a suggestion, and one click puts them in the pool.
+  const suggested = [...shown].sort((a, b) => (b.base + b.reach) - (a.base + a.reach)).slice(0, 6);
+  const fromPool = pool.length > 0;
+  const subject = fromPool ? pool : suggested;
+  const proposal = subject.slice(0, MAX_PROPOSAL);
+  const [saved, setSaved] = useState("");
+  const save = (text: string, name: string) => { downloadText(text, name); setSaved(name); window.setTimeout(() => setSaved(""), 2400); };
+  const suggestion = fromPool ? null : <>候选池还是空的，下面是当前「{KINDS.find((k) => k.key === tab)!.label}」里已有基础与影响面最高的 {suggested.length} 项，可直接使用。
+    <button type="button" className="slide-inline" onClick={() => addAll(suggested)}>全部加入候选池</button></>;
   const ranked = [...shown].sort((a, b) => (b.base + b.reach) - (a.base + a.reach));
   const byKey = new Map([...all.blank, ...all.issue, ...all.combo].map((o) => [o.key, o]));
   const toggleIn = (o: Opportunity) => (inPool.has(o.key) ? flip(o) : add(o));
+  const addAll = (list: Opportunity[]) => setPool((old) => [...old, ...list.filter((o) => !old.some((p) => p.key === o.key))]);
+  // Points in the chart are SVG, where native drag-and-drop is unreliable: they drag by pointer, with a ghost.
+  const [ghost, setGhost] = useState<{ items: Opportunity[]; x: number; y: number } | null>(null);
+  const carried = useRef<Opportunity[]>([]);
+  const overTarget = (x: number, y: number) => Boolean(document.elementFromPoint(x, y)?.closest(".atlas-pool, .pool-dropbar"));
+  const drag = useMemo<DragHandlers>(() => ({
+    start: (items) => { carried.current = items; setDragging(true); setGhost({ items, x: -999, y: -999 }); },
+    move: (x, y) => { setGhost((g) => (g ? { ...g, x, y } : g)); setOver(overTarget(x, y)); },
+    end: (x, y) => {
+      const hit = overTarget(x, y);
+      if (hit) addAll(carried.current);
+      carried.current = []; setGhost(null);
+      setDragging(false); setOver(false);
+      return hit;
+    },
+  }), []); // eslint-disable-line react-hooks/exhaustive-deps
   const dropProps = {
     onDragOver: (e: DragEvent) => { e.preventDefault(); e.dataTransfer.dropEffect = "copy"; setOver(true); },
     onDragLeave: () => setOver(false),
@@ -232,12 +380,12 @@ export function GapBoard({ data, onLocate, onReveal }: {
     <section className="gap-card" aria-label="下一步可以先做什么">
       <header><h3>下一步可以先做什么</h3>
         <span role="tablist" aria-label="展示方式" className="gap-mode">
-          <button role="tab" type="button" aria-selected={mode === "map"} onClick={() => setMode("map")}>四象限</button>
+          <button role="tab" type="button" aria-selected={mode === "map"} onClick={() => setMode("map")}>象限图</button>
           <button role="tab" type="button" aria-selected={mode === "list"} onClick={() => setMode("list")}>排序列表</button>
         </span></header>
-      <p className="gap-note"><Hint align="start" text={<>按两个项目计数的中位数分成四格：已有基础 = 已在做的相关项目数，影响面 = 所在场景的项目数。点卡片加入候选池，或拖过去。</>}>四格怎么分</Hint>
+      <p className="gap-note"><Hint align="start" text={<>横轴已有基础 = 已在做的相关项目数，纵轴影响面 = 所在场景的项目数，按各自中位数分成四区。两个数相同的机会合成一个点，点上的数字是项数。点一下加入候选池（多项时逐项选），或把点拖到候选池。</>}>怎么读</Hint>
         <span> · {KINDS.find((k) => k.key === tab)!.label}{domain ? ` · ${data.domains.find((d) => d.id === domain)?.name.replace(/^AI与/, "")}` : ""} {shown.length} 项</span></p>
-      {mode === "map" ? (shown.length ? <OppBoard items={shown} pool={inPool} onPick={toggleIn} onDrag={setDragging} /> : <p className="gap-more">这一类没有</p>)
+      {mode === "map" ? (shown.length ? <OppChart items={shown} pool={inPool} onPick={toggleIn} onPickAll={addAll} drag={drag} /> : <p className="gap-more">这一类没有</p>)
         : <ol className="opp-list">{ranked.slice(0, 20).map((o, i) => <li key={o.key}>
           <span className="rank">{i + 1}</span>
           <span className="name"><b>{o.title}</b><small>{o.domain.replace(/^AI与/, "")}</small></span>
@@ -255,26 +403,31 @@ export function GapBoard({ data, onLocate, onReveal }: {
             : <em>{dragging ? "松手加入" : "空"}</em>}
         </div>
         <div className="atlas-pool-actions">
-          <button type="button" disabled={!pool.length} onClick={() => setPanel("export")}>导出机会清单</button>
-          <button type="button" className="primary" disabled={!pool.length} onClick={() => setPanel("proposal")}>生成立项建议 →</button>
+          <button type="button" onClick={() => setPanel("export")}>导出机会清单</button>
+          <button type="button" className="primary" onClick={() => setPanel("proposal")}>生成立项建议 →</button>
         </div>
       </div>
     </section>
+    {ghost && ghost.x > -999 ? <div className="opp-ghost" style={{ left: ghost.x + 12, top: ghost.y + 12 }} aria-hidden="true">
+      {ghost.items.length > 1 ? `${ghost.items.length} 项` : ghost.items[0].title}</div> : null}
     {/* While dragging, a drop bar stays at the bottom of the window: the pool itself may be scrolled out of view. */}
     {dragging ? <div className={`pool-dropbar${over ? " is-over" : ""}`} role="region" aria-label="拖到这里加入候选池" {...dropProps}>
       <b>拖到这里，加入候选池</b><span>已有 {pool.length} 项</span>
     </div> : null}
 
     <SlideOver open={panel === "export"} onClose={() => setPanel("")} eyebrow="导出预览" title="机会清单" label="导出机会清单"
-      stats={KINDS.map((k) => ({ value: pool.filter((o) => o.kind === k.key).length, label: k.label }))}
+      stats={KINDS.map((k) => ({ value: subject.filter((o) => o.kind === k.key).length, label: k.label }))}
+      warn={suggestion}
       footer={<>
         <span role="radiogroup" aria-label="导出格式" className="slide-seg">
           {(["md", "csv"] as const).map((f) => <button key={f} type="button" role="radio" aria-checked={format === f} onClick={() => setFormat(f)}>{f === "md" ? "Markdown" : "CSV（Excel）"}</button>)}
         </span>
-        <button type="button" className="slide-action primary" onClick={() => downloadText(format === "md" ? asMarkdown(pool) : asCsv(pool), format === "md" ? "机会清单.md" : "机会清单.csv")}>下载 {pool.length} 项</button>
+        {saved.startsWith("机会清单") ? <span role="status" className="slide-saved">已下载 {saved}</span> : null}
+        <button type="button" className="slide-action primary" disabled={!subject.length}
+          onClick={() => save(format === "md" ? asMarkdown(subject) : asCsv(subject), format === "md" ? "机会清单.md" : "机会清单.csv")}>下载 {subject.length} 项</button>
       </>}>
       {KINDS.map((k) => {
-        const items = pool.filter((o) => o.kind === k.key);
+        const items = subject.filter((o) => o.kind === k.key);
         return items.length ? <section key={k.key} className="slide-group">
           <h3>{k.label}</h3>
           {items.map((o) => <article key={o.key} className="slide-card">
@@ -282,14 +435,16 @@ export function GapBoard({ data, onLocate, onReveal }: {
           </article>)}
         </section> : null;
       })}
+      {!subject.length ? <p className="text-body text-[var(--steel)]">这一类没有可导出的机会，换一个缺口类型试试。</p> : null}
     </SlideOver>
 
     <SlideOver open={panel === "proposal"} onClose={() => setPanel("")} eyebrow="立项建议 · 草稿" title="立项建议（草稿）" label="生成立项建议"
       stats={[{ value: proposal.length, label: "候选方向" }, { value: new Set(proposal.map((o) => o.domain)).size, label: "涉及领域" }]}
-      warn={<>“已有基础”由资料库计数得出；“首步验证”是按缺口类型给的起步建议，尚未做可行性与经费评估。{pool.length > MAX_PROPOSAL ? `一次最多 ${MAX_PROPOSAL} 条，其余请下次生成。` : ""}</>}
+      warn={<>{suggestion ? <>{suggestion}<br /></> : null}“已有基础”由资料库计数得出；“首步验证”是按缺口类型给的起步建议，尚未做可行性与经费评估。{subject.length > MAX_PROPOSAL ? `一次最多 ${MAX_PROPOSAL} 条，其余请下次生成。` : ""}</>}
       footer={<>
-        <button type="button" className="slide-action" onClick={() => downloadText(proposalMarkdown(proposal), "立项建议-草稿.md")}>导出草稿</button>
-        <button type="button" className="slide-action primary" onClick={() => {
+        {saved.startsWith("立项建议") ? <span role="status" className="slide-saved">已下载 {saved}</span> : null}
+        <button type="button" className="slide-action" disabled={!proposal.length} onClick={() => save(proposalMarkdown(proposal), "立项建议-草稿.md")}>导出草稿</button>
+        <button type="button" className="slide-action primary" disabled={!proposal.length} onClick={() => {
           void askInTask("task3", proposalQuestion(proposal, note)).then(() => { setPanel(""); navigate("/chat"); });
         }}>交给对话工作台写完整建议 →</button>
       </>}>
@@ -302,6 +457,7 @@ export function GapBoard({ data, onLocate, onReveal }: {
           <div><dt>首步验证</dt><dd>{KINDS.find((k) => k.key === o.kind)!.first}</dd></div>
         </dl>
       </article>)}
+      {!proposal.length ? <p className="text-body text-[var(--steel)]">这一类没有可用的机会，换一个缺口类型试试。</p> : null}
       <label className="atlas-note">交给对话工作台时的补充要求（可选）
         <textarea rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder="例如：面向 2027 年度申报，经费 300 万元以内" />
       </label>

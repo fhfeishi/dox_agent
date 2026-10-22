@@ -729,33 +729,6 @@
 .roads-zoom button + button { border-left: 1px solid var(--line-cool) !important; }
 
 /* 03 四象限 cards and the 候选池 drop target (query 2026-1022) */
-.opp-board { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; gap: 6px 8px; }
-.opp-y { grid-row: 1; grid-column: 1; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; color: var(--muted-cool); text-align: center; }
-.opp-x { grid-row: 2; grid-column: 2; font-size: 11px; color: var(--muted-cool); text-align: right; }
-.opp-grid { grid-row: 1; grid-column: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.opp-cell { min-height: 150px; padding: 10px; border-radius: 12px; border: 1px solid var(--line-cool); background: var(--page-cool); }
-.opp-cell.is-first { background: color-mix(in srgb, var(--terrain-halo) 10%, var(--canvas)); border-color: color-mix(in srgb, var(--terrain-halo) 45%, var(--line-cool)); }
-.opp-cell.is-lift { background: color-mix(in srgb, var(--terrain-amber) 9%, var(--canvas)); }
-.opp-cell.is-easy { background: var(--canvas); }
-.opp-cell header { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
-.opp-cell header b { font-size: var(--text-body); font-weight: 600; color: var(--heading); }
-.opp-cell.is-first header b { color: var(--terrain-dot-on); }
-.opp-cell.is-lift header b { color: var(--terrain-amber-ink); }
-.opp-cell header small { font-size: 11px; color: var(--muted-cool); }
-.opp-cell header i { margin-left: auto; font-style: normal; font-size: var(--text-caption); color: var(--steel); font-variant-numeric: tabular-nums; }
-.opp-cards { display: grid; gap: 5px; }
-.opp-card { position: relative; display: grid; gap: 1px; padding: 6px 28px 6px 9px; border-radius: 8px; border: 1px solid var(--line-cool); background: var(--canvas);
-  text-align: left; cursor: grab; transition: border-color 150ms, box-shadow 150ms, transform 150ms; }
-.opp-card:hover { border-color: var(--terrain-dot-on); box-shadow: 0 6px 14px -10px rgb(9 28 40 / 40%); transform: translateY(-1px); }
-.opp-card:active { cursor: grabbing; }
-.opp-card b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-caption); font-weight: 600; color: var(--heading); }
-.opp-card small { font-size: 11px; color: var(--muted-cool); font-variant-numeric: tabular-nums; }
-.opp-card i { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; display: grid; place-items: center;
-  border-radius: 50%; border: 1px solid var(--line-cool-strong); font-style: normal; font-size: 12px; color: var(--steel); }
-.opp-card.is-in { border-color: var(--terrain-amber); background: var(--terrain-amber-soft); }
-.opp-card.is-in i { background: var(--terrain-amber); border-color: var(--terrain-amber); color: var(--canvas); }
-.opp-more { justify-self: start; padding: 2px 6px; font-size: 11px; color: var(--link); }
-.opp-empty { font-size: 11px; color: var(--muted-cool); }
 .gap-row[draggable="true"] { cursor: grab; }
 .atlas-pool { transition: border-color 150ms, background 150ms, box-shadow 150ms; }
 .atlas-pool.is-target { border-color: var(--terrain-dot-on); border-style: dashed; background: color-mix(in srgb, var(--terrain-halo) 6%, var(--canvas)); }
@@ -834,17 +807,59 @@
 @media (min-width: 1024px) {
   .gap-card { height: 680px; display: flex; flex-direction: column; }
   .gap-card .gap-list { flex: 1; max-height: none; min-height: 0; }
-  .gap-card .opp-board, .gap-card .opp-list { flex: 1; min-height: 0; overflow-y: auto; }
   .gap-card .opp-list { max-height: none; }
 }
 .gap-tabs button { flex-direction: row; display: flex; align-items: baseline; gap: 6px; }
 .gap-note { display: flex; align-items: baseline; gap: 2px; }
-.opp-cell { min-height: 0; }
-.opp-board { grid-template-rows: minmax(0, 1fr) auto; }
-.opp-grid { grid-auto-rows: minmax(0, 1fr); }
-.opp-cell { overflow-y: auto; scrollbar-width: thin; }
 .hint-swatch { display: inline-flex; align-items: center; gap: 3px; margin-right: 8px; white-space: nowrap; }
 .hint-swatch i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
 .gap-card .atlas-pool { flex: none; padding: 10px 12px; }
 .gap-card .atlas-pool-items { max-height: 58px; overflow-y: auto; margin-top: 6px; min-height: 0; }
 .gap-card .atlas-pool-actions { margin-top: 8px; }
+
+/* 03 象限图 like 01 (query 2026-1022 1809) */
+.opp-chart { position: relative; flex: 1; min-height: 0; }
+.opp-chart svg { display: block; width: 100%; height: 100%; user-select: none; }
+.opp-quad rect { stroke: none; }
+.opp-quad.is-first rect { fill: color-mix(in srgb, var(--terrain-halo) 12%, var(--canvas)); }
+.opp-quad.is-lift rect { fill: color-mix(in srgb, var(--terrain-amber) 10%, var(--canvas)); }
+.opp-quad.is-easy rect { fill: var(--terrain-plot); }
+.opp-quad.is-later rect { fill: var(--terrain-shallow); }
+.opp-quad text { font-size: 12px; font-weight: 600; fill: var(--slate); cursor: help; }
+.opp-quad.is-first text { fill: var(--terrain-dot-on); }
+.opp-quad.is-lift text { fill: var(--terrain-amber-ink); }
+.opp-quad text .n { font-weight: 400; fill: var(--muted-cool); }
+.opp-cut { stroke: var(--terrain-sep); stroke-dasharray: 4 5; }
+.opp-axis { font-size: 11px; fill: var(--muted-cool); }
+.opp-pt { cursor: grab; touch-action: none; }
+.opp-pt .halo { fill: var(--terrain-dot-on); opacity: 0; transition: opacity 150ms; }
+.opp-pt .dot { fill: var(--terrain-dot); stroke: var(--canvas); stroke-width: 1.5; transition: fill 150ms; }
+.opp-pt .count { font-size: 10px; font-weight: 600; fill: var(--canvas); pointer-events: none; }
+.opp-pt .label { font-size: 11px; fill: var(--heading); paint-order: stroke; stroke: var(--canvas); stroke-width: 3px; pointer-events: none; }
+.opp-pt:hover .halo, .opp-pt:focus-visible .halo { opacity: 0.16; }
+.opp-pt:hover .dot { fill: var(--terrain-dot-on); }
+.opp-pt:focus { outline: none; }
+.opp-pt.is-some .dot { fill: color-mix(in srgb, var(--terrain-amber) 60%, var(--terrain-dot)); }
+.opp-pt.is-in .dot { fill: var(--terrain-amber); }
+.opp-tip { position: absolute; z-index: 20; max-width: 250px; display: grid; gap: 3px; padding: 8px 11px; border-radius: 8px; pointer-events: none;
+  background: var(--heading); color: var(--canvas); font-size: var(--text-caption); line-height: 17px; box-shadow: 0 10px 26px -12px rgb(9 28 40 / 45%); }
+.opp-tip b { font-weight: 600; }
+.opp-tip b small { font-weight: 400; opacity: 0.6; margin-left: 6px; }
+.opp-tip span { opacity: 0.85; }
+.opp-tip em { font-style: normal; opacity: 0.55; font-size: 11px; }
+.opp-menu { position: absolute; z-index: 25; width: 280px; max-height: 260px; display: flex; flex-direction: column; border-radius: 10px; border: 1px solid var(--line-cool);
+  background: var(--canvas); box-shadow: 0 16px 36px -16px rgb(9 28 40 / 40%); }
+.opp-menu header { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid var(--line-cool-soft); font-size: var(--text-caption); color: var(--heading); }
+.opp-menu header button { margin-left: auto; padding: 2px 8px; border-radius: 6px; background: var(--terrain-dot-on); color: var(--canvas); }
+.opp-menu ul { overflow-y: auto; padding: 4px 0; }
+.opp-menu li { display: flex; align-items: center; gap: 8px; padding: 5px 10px; font-size: var(--text-caption); color: var(--heading); }
+.opp-menu li span { min-width: 0; flex: 1; display: grid; }
+.opp-menu li small { color: var(--muted-cool); }
+.opp-menu li button { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-cool-strong); color: var(--steel); }
+.opp-menu li button[aria-pressed="true"] { background: var(--terrain-amber); border-color: var(--terrain-amber); color: var(--canvas); }
+.opp-ghost { position: fixed; z-index: 130; max-width: 220px; padding: 4px 10px; border-radius: 999px; background: var(--terrain-dot-on); color: var(--canvas);
+  font-size: var(--text-caption); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; box-shadow: 0 8px 20px -8px rgb(9 28 40 / 40%); }
+.opp-tick { font-size: 10.5px; fill: var(--muted-cool); font-variant-numeric: tabular-nums; }
+.gap-card .opp-chart { min-height: 300px; }
+.slide-inline { margin-left: 6px; padding: 1px 8px; border-radius: 6px; background: var(--terrain-amber); color: var(--canvas); font-size: var(--text-caption); }
+.slide-saved { font-size: var(--text-caption); color: var(--terrain-dot-on); }

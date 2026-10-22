@@ -647,29 +647,12 @@
 .terrain-cross rect { fill: var(--terrain-dot-on); }
 .terrain-cross text { fill: var(--canvas); font-size: 10.5px; font-variant-numeric: tabular-nums; }
 .terrain-link { stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
-.terrain-zoom { position: absolute; right: 14px; bottom: 34px; display: flex; border: 1px solid var(--line-cool); border-radius: 8px; overflow: hidden; background: var(--canvas); }
+.terrain-zoom { position: static; display: flex; border: 1px solid var(--line-cool); border-radius: 8px; overflow: hidden; background: var(--canvas); }
 .terrain-zoom button { min-width: 30px; padding: 3px 8px; font-size: var(--text-caption); color: var(--slate); }
 .terrain-zoom button + button { border-left: 1px solid var(--line-cool); }
 .terrain-zoom button:disabled { opacity: 0.35; }
-.terrain-hint { margin: 2px 8px 4px; font-size: var(--text-caption); color: var(--muted-cool); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; min-height: 20px; }
-.terrain-hint button { color: var(--link); }
 .terrain-tip-top { display: grid; gap: 1px; margin-top: 6px; padding-top: 5px; border-top: 1px solid rgb(255 255 255 / 18%); }
 .terrain-tip-top em { font-style: normal; opacity: 0.7; }
-.terrain-tip-hint { display: block; margin-top: 5px; opacity: 0.55; font-size: 11px; }
-.terrain-compare { margin-top: 12px; padding: 8px 10px; border-left: 2px solid var(--terrain-amber); background: var(--terrain-amber-soft); }
-.terrain-compare p { display: flex; align-items: baseline; gap: 6px; font-size: var(--text-caption); color: var(--terrain-amber-ink); }
-.terrain-compare p b { color: var(--heading); }
-.terrain-compare p button { margin-left: auto; color: var(--terrain-amber-ink); }
-.terrain-compare table { width: 100%; margin-top: 4px; font-size: var(--text-caption); font-variant-numeric: tabular-nums; }
-.terrain-compare th { text-align: left; font-weight: 400; color: var(--muted-cool); padding: 2px 0; }
-.terrain-compare td { text-align: right; color: var(--heading); padding: 2px 0 2px 8px; }
-.terrain-compare td + td { color: var(--terrain-amber-ink); }
-.terrain-bridge { display: flex; width: 100%; align-items: center; gap: 6px; margin-top: 4px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line-cool);
-  background: var(--canvas); text-align: left; font-size: var(--text-caption); color: var(--heading); }
-.terrain-bridge span { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.terrain-bridge i { font-style: normal; color: var(--terrain-amber-ink); margin-left: 4px; }
-.terrain-bridge b { color: var(--terrain-amber); font-weight: 400; }
-.terrain-bridge[aria-pressed="true"] { border-color: var(--terrain-halo); background: var(--selected-cool); }
 
 /* 03 缺口与机会 after the 研究地形图 demo (query 2026-1022 1706) */
 .gap-board { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
@@ -716,19 +699,6 @@
 .gap-mode { margin-left: auto; display: inline-flex; padding: 2px; border-radius: 8px; background: var(--line-cool-soft); }
 .gap-mode button { padding: 3px 10px; border-radius: 6px; font-size: var(--text-caption); color: var(--slate); }
 .gap-mode button[aria-selected="true"] { background: var(--heading); color: var(--canvas); }
-.opp-map { display: block; width: 100%; }
-.opp-plot { fill: var(--page-cool); }
-.opp-best { fill: var(--selected-cool); }
-.opp-best-label { font-size: 10.5px; fill: var(--terrain-dot-on); }
-.opp-mid { stroke: var(--line-cool); stroke-dasharray: 3 4; }
-.opp-axis { font-size: 10.5px; fill: var(--muted-cool); }
-.opp-pt { cursor: pointer; }
-.opp-pt .halo { fill: var(--terrain-dot-on); opacity: 0; transition: opacity 150ms; }
-.opp-pt .dot { fill: var(--terrain-dot-on); stroke: var(--canvas); stroke-width: 1.5; }
-.opp-pt text { font-size: 11px; fill: var(--heading); paint-order: stroke; stroke: var(--page-cool); stroke-width: 3px; }
-.opp-pt:hover .halo, .opp-pt:focus-visible .halo { opacity: 0.16; }
-.opp-pt:focus-visible { outline: none; }
-.opp-pt.is-in .dot { fill: var(--terrain-amber); }
 .opp-list { display: grid; gap: 4px; max-height: 330px; overflow-y: auto; }
 .opp-list li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr) 150px auto; align-items: center; gap: 8px; padding: 6px 4px; border-bottom: 1px solid var(--line-cool-soft); font-size: var(--text-caption); }
 .opp-list .rank { color: var(--muted-cool); font-variant-numeric: tabular-nums; }
@@ -744,3 +714,137 @@
 .gap-card .atlas-pool { margin-top: 12px; }
 .roads-node.is-unplaced circle { stroke-dasharray: 2 2 !important; fill: var(--m-0) !important; }
 .roads-swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+/* 02 road map: hit areas, hover card and zoom (query 2026-1022, "非常难交互") */
+.roads { position: relative; }
+.roads-hit { fill: transparent; stroke: none !important; }
+.roads-card { position: absolute; z-index: 5; max-width: 270px; display: grid; gap: 2px; padding: 9px 12px; border-radius: 10px; pointer-events: none;
+  background: var(--heading); color: var(--canvas); font-size: var(--text-caption); line-height: 18px; box-shadow: 0 12px 30px -12px rgb(9 28 40 / 45%); }
+.roads-card small { opacity: 0.65; font-size: 11px; }
+.roads-card b { font-size: var(--text-body); font-weight: 600; }
+.roads-card span { opacity: 0.88; }
+.roads-card em { font-style: normal; opacity: 0.55; font-size: 11px; margin-top: 2px; }
+.roads-zoom { display: inline-flex; border: 1px solid var(--line-cool); border-radius: 6px; overflow: hidden; }
+.roads-zoom button { border: none !important; border-radius: 0 !important; padding: 3px 9px !important; }
+.roads-zoom button + button { border-left: 1px solid var(--line-cool) !important; }
+
+/* 03 四象限 cards and the 候选池 drop target (query 2026-1022) */
+.opp-board { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; gap: 6px 8px; }
+.opp-y { grid-row: 1; grid-column: 1; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; color: var(--muted-cool); text-align: center; }
+.opp-x { grid-row: 2; grid-column: 2; font-size: 11px; color: var(--muted-cool); text-align: right; }
+.opp-grid { grid-row: 1; grid-column: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.opp-cell { min-height: 150px; padding: 10px; border-radius: 12px; border: 1px solid var(--line-cool); background: var(--page-cool); }
+.opp-cell.is-first { background: color-mix(in srgb, var(--terrain-halo) 10%, var(--canvas)); border-color: color-mix(in srgb, var(--terrain-halo) 45%, var(--line-cool)); }
+.opp-cell.is-lift { background: color-mix(in srgb, var(--terrain-amber) 9%, var(--canvas)); }
+.opp-cell.is-easy { background: var(--canvas); }
+.opp-cell header { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+.opp-cell header b { font-size: var(--text-body); font-weight: 600; color: var(--heading); }
+.opp-cell.is-first header b { color: var(--terrain-dot-on); }
+.opp-cell.is-lift header b { color: var(--terrain-amber-ink); }
+.opp-cell header small { font-size: 11px; color: var(--muted-cool); }
+.opp-cell header i { margin-left: auto; font-style: normal; font-size: var(--text-caption); color: var(--steel); font-variant-numeric: tabular-nums; }
+.opp-cards { display: grid; gap: 5px; }
+.opp-card { position: relative; display: grid; gap: 1px; padding: 6px 28px 6px 9px; border-radius: 8px; border: 1px solid var(--line-cool); background: var(--canvas);
+  text-align: left; cursor: grab; transition: border-color 150ms, box-shadow 150ms, transform 150ms; }
+.opp-card:hover { border-color: var(--terrain-dot-on); box-shadow: 0 6px 14px -10px rgb(9 28 40 / 40%); transform: translateY(-1px); }
+.opp-card:active { cursor: grabbing; }
+.opp-card b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-caption); font-weight: 600; color: var(--heading); }
+.opp-card small { font-size: 11px; color: var(--muted-cool); font-variant-numeric: tabular-nums; }
+.opp-card i { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; display: grid; place-items: center;
+  border-radius: 50%; border: 1px solid var(--line-cool-strong); font-style: normal; font-size: 12px; color: var(--steel); }
+.opp-card.is-in { border-color: var(--terrain-amber); background: var(--terrain-amber-soft); }
+.opp-card.is-in i { background: var(--terrain-amber); border-color: var(--terrain-amber); color: var(--canvas); }
+.opp-more { justify-self: start; padding: 2px 6px; font-size: 11px; color: var(--link); }
+.opp-empty { font-size: 11px; color: var(--muted-cool); }
+.gap-row[draggable="true"] { cursor: grab; }
+.atlas-pool { transition: border-color 150ms, background 150ms, box-shadow 150ms; }
+.atlas-pool.is-target { border-color: var(--terrain-dot-on); border-style: dashed; background: color-mix(in srgb, var(--terrain-halo) 6%, var(--canvas)); }
+.atlas-pool.is-over { border-style: solid; box-shadow: 0 0 0 3px color-mix(in srgb, var(--terrain-halo) 25%, transparent); }
+.pool-dropbar { position: fixed; left: 50%; bottom: 24px; z-index: 120; transform: translateX(-50%); display: flex; align-items: center; gap: 14px;
+  padding: 14px 28px; border-radius: 14px; border: 2px dashed var(--terrain-dot-on); background: color-mix(in srgb, var(--canvas) 92%, transparent);
+  box-shadow: 0 18px 40px -18px rgb(9 28 40 / 45%); animation: dropbar-in 180ms ease-out both; }
+.pool-dropbar b { font-size: var(--text-body); color: var(--terrain-dot-on); }
+.pool-dropbar span { font-size: var(--text-caption); color: var(--muted-cool); }
+.pool-dropbar.is-over { border-style: solid; background: color-mix(in srgb, var(--terrain-halo) 14%, var(--canvas)); }
+@keyframes dropbar-in { from { opacity: 0; transform: translate(-50%, 10px); } }
+.roads-svg { user-select: none; }
+.roads-node:focus { outline: none; }
+.roads-node:focus-visible circle:not(.roads-hit) { stroke-width: 3.5; stroke: var(--heading); }
+
+/* 01 laid out to stay still (query 2026-1022): a fixed-height row, overlays on the chart, a scrolling panel. */
+.terrain-body { display: grid; grid-template-columns: minmax(0, 1fr); }
+.terrain-chart { position: relative; height: 440px; padding: 6px 8px 4px; }
+.terrain-panel { position: relative; height: 380px; border-top: 1px solid var(--line-cool); background: var(--terrain-panel); display: flex; flex-direction: column; }
+@container (min-width: 48rem) {
+  .terrain-body { grid-template-columns: minmax(0, 1fr) 300px; grid-template-rows: 470px; height: 470px; }
+  .terrain-chart { min-height: 0; overflow: hidden; }
+  .terrain-panel { min-height: 0; }
+  .terrain-chart { height: 100%; }
+  .terrain-panel { height: 100%; border-top: none; border-left: 1px solid var(--line-cool); }
+}
+.terrain-panel-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 16px 10px; scrollbar-width: thin; }
+.terrain-overlay { position: absolute; left: 14px; right: 14px; top: 8px; display: flex; align-items: center; gap: 10px; pointer-events: none; font-size: var(--text-caption); }
+.terrain-overlay > * { pointer-events: auto; }
+.terrain-state { display: inline-flex; align-items: center; gap: 6px; padding: 2px 4px 2px 10px; border-radius: 999px; background: var(--heading); color: var(--canvas); }
+.terrain-state button { width: 18px; height: 18px; border-radius: 50%; color: var(--canvas); opacity: 0.7; }
+.terrain-axis-title.is-key { cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; }
+.terrain-axis-title.is-key:hover { fill: var(--terrain-dot-on); }
+.terrain-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; margin: 12px 0 4px; }
+.terrain-stats dt { font-size: 11px; color: var(--muted-cool); }
+.terrain-stats dd { font-size: var(--text-group); font-weight: 600; color: var(--heading); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.terrain-stats dd.is-ok { color: var(--terrain-dot-on); }
+.terrain-stats dd.is-warn { color: var(--terrain-warn); }
+.terrain-stats small { display: block; font-size: 11px; color: var(--terrain-amber-ink); font-variant-numeric: tabular-nums; }
+.terrain-vs { display: flex; gap: 6px; font-size: 11px; color: var(--terrain-amber-ink); }
+.terrain-vs button { margin-left: auto; color: var(--link); }
+.terrain-block { margin-top: 12px; font-size: var(--text-caption); color: var(--slate); }
+.terrain-block > .hint, .terrain-key { display: inline-block; margin-bottom: 4px; }
+.terrain-key { font-size: var(--text-caption); color: var(--slate); text-decoration: underline dotted; text-underline-offset: 3px; }
+.terrain-dims { display: grid; gap: 2px; }
+.terrain-dims button { display: grid; grid-template-columns: 2.6em minmax(0, 1fr) 3em; align-items: center; gap: 8px; padding: 3px 0; border-radius: 4px; font-size: var(--text-caption); color: var(--slate); }
+.terrain-dims button:hover { background: var(--selected-cool); }
+.terrain-dims i { display: block; height: 6px; border-radius: 3px; background: var(--track); overflow: hidden; }
+.terrain-dims i i { height: 100%; }
+.terrain-dims b { text-align: right; font-weight: 400; font-variant-numeric: tabular-nums; }
+.terrain-dims b.is-warn { color: var(--terrain-warn); }
+.terrain-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.terrain-chips button { padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line-cool); background: var(--canvas); font-size: var(--text-caption); color: var(--heading); }
+.terrain-chips button i { font-style: normal; margin-left: 4px; color: var(--terrain-amber-ink); }
+.terrain-chips button[aria-pressed="true"] { border-color: var(--terrain-halo); background: var(--selected-cool); }
+.terrain-actions { display: flex; gap: 6px; padding: 10px 16px; border-top: 1px solid var(--line-cool); background: var(--terrain-panel); }
+.terrain-actions button { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line-cool-strong); background: var(--canvas); font-size: var(--text-caption); color: var(--slate); white-space: nowrap; }
+.terrain-actions button.primary { flex: 1; background: var(--terrain-dot-on); border-color: var(--terrain-dot-on); color: var(--canvas); }
+.terrain-actions button[aria-pressed="true"] { border-color: var(--terrain-amber); color: var(--terrain-amber-ink); }
+
+/* Keyword hints: the explanation appears on hover / focus, pinned on click. */
+.hint { position: relative; display: inline-block; }
+.hint-word { font: inherit; color: inherit; text-decoration: underline dotted; text-decoration-color: var(--muted-cool); text-underline-offset: 3px; cursor: help; }
+.hint-word:hover, .hint-word[aria-expanded="true"] { color: var(--terrain-dot-on); text-decoration-color: currentColor; }
+.hint-card { position: absolute; left: 50%; z-index: 60; width: max-content; max-width: 260px; transform: translateX(-50%); padding: 8px 11px; border-radius: 8px;
+  background: var(--heading); color: var(--canvas); font-size: var(--text-caption); font-weight: 400; line-height: 18px; text-align: left; white-space: normal;
+  box-shadow: 0 10px 26px -12px rgb(9 28 40 / 45%); animation: hint-in 120ms ease-out both; }
+.hint-card.is-bottom { top: calc(100% + 6px); }
+.hint-card.is-top { bottom: calc(100% + 6px); }
+.hint-link { margin-left: 6px; color: var(--terrain-amber); text-decoration: underline; }
+@keyframes hint-in { from { opacity: 0; } }
+.hint-card.is-start { left: 0; transform: none; }
+.hint-card.is-end { left: auto; right: 0; transform: none; }
+
+/* 03 at fixed height: rows open inside their own scroll, the page does not move (query 2026-1022). */
+@media (min-width: 1024px) {
+  .gap-card { height: 680px; display: flex; flex-direction: column; }
+  .gap-card .gap-list { flex: 1; max-height: none; min-height: 0; }
+  .gap-card .opp-board, .gap-card .opp-list { flex: 1; min-height: 0; overflow-y: auto; }
+  .gap-card .opp-list { max-height: none; }
+}
+.gap-tabs button { flex-direction: row; display: flex; align-items: baseline; gap: 6px; }
+.gap-note { display: flex; align-items: baseline; gap: 2px; }
+.opp-cell { min-height: 0; }
+.opp-board { grid-template-rows: minmax(0, 1fr) auto; }
+.opp-grid { grid-auto-rows: minmax(0, 1fr); }
+.opp-cell { overflow-y: auto; scrollbar-width: thin; }
+.hint-swatch { display: inline-flex; align-items: center; gap: 3px; margin-right: 8px; white-space: nowrap; }
+.hint-swatch i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+.gap-card .atlas-pool { flex: none; padding: 10px 12px; }
+.gap-card .atlas-pool-items { max-height: 58px; overflow-y: auto; margin-top: 6px; min-height: 0; }
+.gap-card .atlas-pool-actions { margin-top: 8px; }

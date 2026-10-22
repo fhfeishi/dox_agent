@@ -4,6 +4,7 @@ import { domainTreeQuery, maturityVar, MATURITY_NAMES, type DomainsOverview, typ
 import { libraryOverviewQuery } from "../../libraryQueries";
 import { libraryColor } from "../../libraryColors";
 import { useLayout } from "../../layout";
+import { Hint } from "../Hint";
 import { SlideOver } from "../SlideOver";
 
 /**
@@ -184,18 +185,26 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     return () => cancelAnimationFrame(frame);
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  /**
+   * A click opens one branch and folds its siblings' (query 2026-1022: the map was hard to work), then
+   * the view glides to the opened node; a second click folds it and steps back to its parent.
+   */
   function toggle(node: Node) {
     setActive(node.id);
     if (node.kind === "project") { setDetail(node); return; }
-    if (node.kind === "more") { setFull((old) => new Set([...old, node.parent!])); setActive(node.parent!); return; }
+    if (node.kind === "more") { setFull((old) => new Set([...old, node.parent!])); setActive(node.parent!); focusOn.current = node.parent!; return; }
     if (!node.expandable) return;
+    const closing = open.has(node.id) && node.kind !== "root";
+    const siblings = [...layout.values()].filter((p) => p.node.parent === node.parent && p.node.id !== node.id).map((p) => p.node.id);
     setOpen((old) => {
       const next = new Set(old);
-      if (next.has(node.id)) { for (const id of [...next]) if (id === node.id || id.startsWith(node.id + "/")) next.delete(id); }
-      else next.add(node.id);
-      if (node.kind === "root" && !next.has("root")) next.add("root");
+      const fold = (id: string) => { for (const k of [...next]) if (k === id || k.startsWith(id + "/")) next.delete(k); };
+      if (closing) fold(node.id);
+      else { next.add(node.id); siblings.forEach(fold); }
+      next.add("root");
       return next;
     });
+    focusOn.current = closing ? (node.parent ?? "root") : node.id;
   }
 
   const lineage = (id: string) => { const out = new Set<string>(); let at: string | null = id; while (at) { out.add(at); at = layout.get(at)?.node.parent ?? null; } return out; };
@@ -204,11 +213,47 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
 
   // Drag pans, the wheel zooms at the pointer; a double click on the background recentres.
   const svg = useRef<SVGSVGElement>(null);
+  const focusOn = useRef("");
+  const glide = useRef(0);
+  const [pixels, setPixels] = useState(1100);
+  useEffect(() => {
+    const node = svg.current;
+    if (!node) return;
+    const observer = new ResizeObserver(() => setPixels(node.getBoundingClientRect().width || 1100));
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  function glideTo(target: { x: number; y: number; k: number }) {
+    cancelAnimationFrame(glide.current);
+    const from = view, start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / 480), e = 1 - Math.pow(1 - t, 3);
+      setView({ x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, k: from.k + (target.k - from.k) * e });
+      if (t < 1) glide.current = requestAnimationFrame(step);
+    };
+    glide.current = requestAnimationFrame(step);
+  }
   const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
   // The view fits the outermost ring on show, plus room for its spoke labels; it grows as levels open.
   const outermost = Math.max(...[...layout.values()].map((p) => p.r));
   const SIZE = 2 * (outermost + (outermost > 300 ? 170 : 110));
-  const unit = () => SIZE / (svg.current?.getBoundingClientRect().width || SIZE);
+  const sizeRef = useRef(SIZE);
+  sizeRef.current = SIZE;
+  const unit = () => sizeRef.current / (svg.current?.getBoundingClientRect().width || sizeRef.current);
+  // Labels and hit areas keep the same size on screen at any zoom.
+  const px = SIZE / pixels / view.k;
+  // After a click, centre the opened node at a zoom that suits its level.
+  useEffect(() => {
+    const id = focusOn.current;
+    if (!id) return;
+    focusOn.current = "";
+    const p = layout.get(id);
+    if (!p || p.node.kind === "root") { glideTo({ x: 0, y: 0, k: 1 }); return; }
+    const k = { library: 1.25, system: 1.6, direction: 2, theme: 2.4, project: 2.4, more: 2.4, root: 1 }[p.node.kind];
+    // Centre between the node and the ring of its children, so the new fan is in view.
+    const reach = (p.r + Math.min(p.r + 110, 600)) / 2;
+    glideTo({ x: -Math.cos(p.angle) * reach * k, y: -Math.sin(p.angle) * reach * k, k });
+  }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
   function down(event: ReactPointerEvent<SVGSVGElement>) { drag.current = { x: event.clientX, y: event.clientY, moved: false }; }
   useEffect(() => {
     const move = (event: PointerEvent) => {
@@ -229,7 +274,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const wheel = (event: WheelEvent) => {
       event.preventDefault();
       const box = node.getBoundingClientRect();
-      const px = ((event.clientX - box.left) / box.width - 0.5) * SIZE, py = ((event.clientY - box.top) / box.height - 0.5) * SIZE;
+      const px = ((event.clientX - box.left) / box.width - 0.5) * sizeRef.current, py = ((event.clientY - box.top) / box.height - 0.5) * sizeRef.current;
       setView((v) => { const k = Math.max(0.5, Math.min(4, v.k * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
         return { k, x: px - ((px - v.x) / v.k) * k, y: py - ((py - v.y) / v.k) * k }; });
     };
@@ -247,6 +292,15 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const onPath = new Set(path.map((n) => n.id));
 
   const activeNode = layout.get(active)?.node;
+  const [card, setCard] = useState<{ left: number; top: number } | null>(null);
+  function moveCard(event: { clientX: number; clientY: number }) {
+    const frame = box.current?.getBoundingClientRect();
+    if (!frame || drag.current?.moved) return;
+    const left = event.clientX - frame.left + 16;
+    setCard({ left: left + 260 > frame.width ? left - 290 : left, top: event.clientY - frame.top + 14 });
+  }
+  const hovered = hover ? layout.get(hover)?.node : undefined;
+  const KIND_NAME: Record<Kind, string> = { root: "全部领域", library: "资料库", system: "技术体系", direction: "研究方向", theme: "主题", project: "项目", more: "其余项目" };
   return <div className="roads" ref={box}>
     <div className="roads-bar">
       <nav aria-label="当前位置" className="roads-path">
@@ -258,15 +312,22 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             : activeNode.kind === "direction" ? "展开到项目" : "显示全部项目"}</button> : null}
       </nav>
       <div className="roads-tools">
-        {loading ? <span role="status">正在读取谱系…</span> : null}
+        {loading ? <span role="status">读取中…</span> : null}
+        <Hint align="end" text={<>点节点展开（同级其他分支自动收起），再点收起；双击看详情<br />路宽 = 技术条目数 · 路色 = 资料库<br />节点颜色 = 平均成熟度：
+          {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
+          <br />拖动平移 · 滚轮缩放 · 双击空白复位</>}>图例与操作</Hint>
         <button type="button" onClick={expandSystems}>展开全部技术体系</button>
         <button type="button" onClick={() => { setOpen(new Set(["root"])); setActive("root"); }}>全部收起</button>
-        <button type="button" onClick={() => setView({ x: 0, y: 0, k: 1 })}>复位</button>
+        <span className="roads-zoom" role="group" aria-label="缩放">
+          <button type="button" aria-label="缩小" onClick={() => glideTo({ ...view, k: Math.max(0.5, view.k / 1.3), x: view.x / 1.3, y: view.y / 1.3 })}>−</button>
+          <button type="button" onClick={() => glideTo({ x: 0, y: 0, k: 1 })}>{Math.abs(view.k - 1) < 0.02 && !view.x && !view.y ? "全景" : `${Math.round(view.k * 100)}% · 复位`}</button>
+          <button type="button" aria-label="放大" onClick={() => glideTo({ k: Math.min(4, view.k * 1.3), x: view.x * 1.3, y: view.y * 1.3 })}>+</button>
+        </span>
       </div>
     </div>
     <svg ref={svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
-      onPointerDown={down} onDoubleClick={(e) => { if (e.target === svg.current) setView({ x: 0, y: 0, k: 1 }); }}>
+      onPointerDown={down} onDoubleClick={(e) => { if (e.target === svg.current) glideTo({ x: 0, y: 0, k: 1 }); }}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
           ? <circle key={k} r={RADII[k]} className="roads-ring" /> : null)}
@@ -291,25 +352,30 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             aria-expanded={n.expandable ? isOpen : undefined}
             onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) toggle(n); }}
             onKeyDown={(e) => { if (e.key === "Enter") toggle(n); }}
-            onMouseEnter={() => setHover(n.id)} onMouseLeave={() => setHover("")}>
-            <title>{n.name}{n.plain ? `：${n.plain}` : ""}{n.kind !== "project" && n.kind !== "more" ? `（${n.items} 条技术，平均 ${n.maturity ?? "—"} 档）` : ""}</title>
+            onDoubleClick={(e) => { e.stopPropagation(); if (n.kind !== "root") setDetail(n); }}
+            onMouseEnter={(e) => { setHover(n.id); moveCard(e); }} onMouseMove={moveCard} onMouseLeave={() => { setHover(""); setCard(null); }}>
+            <circle r={Math.max(r, 11 * px)} className="roads-hit" />
             {n.kind === "root" ? <circle r={r} className="roads-core" />
               : <circle r={r} style={{ fill: n.kind === "library" ? hue(n.library) : maturityVar(n.maturity), stroke: hue(n.library) }}
                 className={n.expandable && !isOpen ? "is-closed" : ""} />}
             {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text>
               : outer && crowded && n.kind === "project" && !lit?.has(n.id) && !onPath.has(n.id) ? null
-              : outer ? <text className="roads-label" transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 6) : r + 6} dy="4"
-                textAnchor={flip ? "end" : "start"}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
-              : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 7)}>{n.name}</text>}
-            {n.expandable && !isOpen && n.kind !== "root" ? <text className="roads-plus" textAnchor="middle" dy="3.5">+</text> : null}
+              : outer ? <text className="roads-label" transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 5 * px) : r + 5 * px} dy={4 * px}
+                textAnchor={flip ? "end" : "start"} style={{ fontSize: 11.5 * px, strokeWidth: 3 * px }}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
+              : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 6 * px)} style={{ fontSize: 13.5 * px, strokeWidth: 3.5 * px }}>{n.name}</text>}
+            {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
           </g>;
         })}
       </g>
     </svg>
-    <p className="atlas-key">点节点逐级展开、再点收起；路宽 = 技术条目数，路色 = 资料库，节点颜色 = 平均成熟度：
-      {MATURITY_NAMES.slice(1).map((name, i) => <span key={name}><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
-      · 拖动平移、滚轮缩放</p>
-
+    {hovered && card ? <div className="roads-card" style={{ left: card.left, top: card.top }} aria-hidden="true">
+      <small>{hovered.unplaced ? "未归入体系" : KIND_NAME[hovered.kind]}{hovered.kind !== "root" && hovered.kind !== "library" ? ` · ${short(data.domains.find((d) => d.id === hovered.library)?.name ?? "")}` : ""}</small>
+      <b>{hovered.name}</b>
+      {hovered.project ? <span>{[hovered.project.number, hovered.project.unit, hovered.project.year].filter(Boolean).join(" · ")}<br />本主题 {hovered.project.items.length} 条技术 · 最高 {hovered.project.maturity || "—"} 档</span>
+        : hovered.kind === "more" ? <span>点一下，在原处展开其余项目</span>
+        : <span>{hovered.items} 条技术 · 平均 {hovered.maturity ?? "—"} 档{hovered.plain ? <><br />{hovered.plain}</> : null}</span>}
+      <em>{hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起 · 双击看详情" : "点击展开 · 双击看详情") : "双击看详情"}</em>
+    </div> : null}
     <SlideOver open={Boolean(detail)} onClose={() => setDetail(null)}
       eyebrow={detail ? { root: "全部领域", library: "资料库", system: detail.unplaced ? "未归入体系" : "技术体系", direction: "研究方向", theme: "主题", project: "项目", more: "主题下的其他项目" }[detail.kind] : ""}
       title={detail?.name ?? ""}

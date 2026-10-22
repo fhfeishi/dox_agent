@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type DragEvent } from "react";
 import { useNavigate } from "react-router";
 import { downloadText } from "../../exportFormat";
 import { useApp } from "../../store";
 import type { Domain, DomainsOverview } from "../../domains";
+import { Hint } from "../Hint";
 import { SlideOver } from "../SlideOver";
 
 /**
@@ -82,47 +83,68 @@ function proposalMarkdown(list: Opportunity[]) {
     `- 已有基础：${o.basis}`, `- 缺口：${o.detail || o.title}`, `- 首步验证：${KINDS.find((k) => k.key === o.kind)!.first}`, ""])].join("\n");
 }
 
-/** 已有基础 × 影响面 on square-root scales: two libraries hold most projects, the rest would sit on the axis. */
-function OppMap({ items, pool, onPick }: { items: Opportunity[]; pool: Set<string>; onPick: (o: Opportunity) => void }) {
-  const W = 460, H = 300, L = 48, R = 440, T = 26, B = 258;
-  const maxBase = Math.max(1, ...items.map((o) => o.base)), maxReach = Math.max(1, ...items.map((o) => o.reach));
-  const x = (v: number) => L + Math.sqrt(v / maxBase) * (R - L), y = (v: number) => B - Math.sqrt(v / maxReach) * (B - T);
-  const ranked = [...items].sort((a, b) => (b.base / maxBase + b.reach / maxReach) - (a.base / maxBase + a.reach / maxReach));
-  // Many openings share the same two counts: equal points fan out a few pixels, and a label is drawn
-  // only where it does not collide with one already placed (best-ranked first).
-  const seen = new Map<string, number>();
-  const at = new Map(ranked.map((o) => {
-    const key = `${o.base}|${o.reach}`, n = seen.get(key) ?? 0;
-    seen.set(key, n + 1);
-    return [o.key, { cx: x(o.base) + (n ? ((n % 2 ? 1 : -1) * Math.ceil(n / 2) * 7) : 0), cy: y(o.reach) }];
-  }));
-  const placed: { x: number; y: number; w: number }[] = [];
-  const labelled = new Set<string>();
-  for (const o of ranked.slice(0, 12)) {
-    const p = at.get(o.key)!, w = Math.min(14, o.title.length) * 11;
-    if (placed.some((q) => Math.abs(q.y - p.cy) < 15 && Math.abs(q.x - p.cx) < (q.w + w) / 2 + 10)) continue;
-    placed.push({ x: p.cx, y: p.cy, w }); labelled.add(o.key);
-  }
-  const midX = (L + R) / 2, midY = (T + B) / 2;
-  return <svg viewBox={`0 0 ${W} ${H}`} className="opp-map" role="group" aria-label="机会象限：横轴已有基础，纵轴影响面">
-    <rect x={L} y={T} width={R - L} height={B - T} className="opp-plot" />
-    <rect x={midX} y={T} width={R - midX} height={midY - T} className="opp-best" />
-    <text x={R - 6} y={midY - 6} textAnchor="end" className="opp-best-label">有基础、影响大：先做</text>
-    <line x1={midX} y1={T} x2={midX} y2={B} className="opp-mid" /><line x1={L} y1={midY} x2={R} y2={midY} className="opp-mid" />
-    <text x={R} y={B + 18} textAnchor="end" className="opp-axis">已有基础（相关项目数）→</text>
-    <text x={L} y={T - 10} className="opp-axis">影响面（涉及项目数）↑</text>
-    {ranked.slice().reverse().map((o) => {
-      const { cx, cy } = at.get(o.key)!, on = pool.has(o.key), right = cx < R - 140;
-      return <g key={o.key} className={`opp-pt${on ? " is-in" : ""}`} role="button" tabIndex={0}
-        aria-label={`${o.title}，已有基础 ${o.base}，影响面 ${o.reach}${on ? "，已在候选池" : ""}`}
-        onClick={() => onPick(o)} onKeyDown={(e) => { if (e.key === "Enter") onPick(o); }}>
-        <title>{`${o.domain} · ${o.title}\n已有基础 ${o.base} 个项目 · 影响面 ${o.reach} 个项目`}</title>
-        <circle cx={cx} cy={cy} r="11" className="halo" /><circle cx={cx} cy={cy} r="4.5" className="dot" />
-        {labelled.has(o.key) ? <text x={right ? cx + 9 : cx - 9} y={cy + 4} textAnchor={right ? "start" : "end"}>
-          {o.title.length > 14 ? `${o.title.slice(0, 13)}…` : o.title}{on ? " ✓" : ""}</text> : null}
-      </g>;
-    })}
-  </svg>;
+const median = (values: number[]) => {
+  const sorted = [...values].sort((x, y) => x - y);
+  return sorted.length ? sorted[Math.floor((sorted.length - 1) / 2)] : 0;
+};
+
+/** "High" means above the median; when everything ties at the median, the median itself counts as high. */
+function splitter(values: number[]) {
+  const mid = median(values);
+  const above = values.some((v) => v > mid);
+  return { mid, high: (v: number) => (above ? v > mid : v >= mid && mid > 0) };
+}
+
+const CELLS = [
+  { key: "lift", label: "补基础", note: "影响大、已有基础少", hiBase: false, hiReach: true },
+  { key: "first", label: "先做", note: "影响大、已有基础多", hiBase: true, hiReach: true },
+  { key: "later", label: "暂缓", note: "影响小、已有基础少", hiBase: false, hiReach: false },
+  { key: "easy", label: "顺手做", note: "影响小、已有基础多", hiBase: true, hiReach: false },
+] as const;
+
+/**
+ * The openings sorted into four cells by two counts — 已有基础 (projects already on it) and 影响面
+ * (projects in the scene it serves) — split at their medians. Cards replace the earlier scatter, whose
+ * equal counts stacked dots on top of each other (query 2026-1022: "很差劲"). A card is clicked into the
+ * 候选池 or dragged onto it.
+ */
+function OppBoard({ items, pool, onPick, onDrag }: {
+  items: Opportunity[]; pool: Set<string>; onPick: (o: Opportunity) => void; onDrag: (on: boolean) => void;
+}) {
+  const [more, setMore] = useState<string[]>([]);
+  const base = splitter(items.map((o) => o.base)), reach = splitter(items.map((o) => o.reach));
+  const ranked = [...items].sort((a, b) => (b.base + b.reach) - (a.base + a.reach));
+  return <div className="opp-board">
+    <span className="opp-y">影响面 ↑</span>
+    <div className="opp-grid">
+      {CELLS.map((cell) => {
+        const list = ranked.filter((o) => base.high(o.base) === cell.hiBase && reach.high(o.reach) === cell.hiReach);
+        const open = more.includes(cell.key);
+        return <section key={cell.key} className={`opp-cell is-${cell.key}`} aria-label={`${cell.label}：${list.length} 项`}>
+          <header><b title={cell.note}>{cell.label}</b><i>{list.length}</i></header>
+          <div className="opp-cards">
+            {(open ? list : list.slice(0, 5)).map((o) => <OppCard key={o.key} o={o} on={pool.has(o.key)} onPick={onPick} onDrag={onDrag} />)}
+            {list.length > 5 ? <button type="button" className="opp-more" onClick={() => setMore(open ? more.filter((k) => k !== cell.key) : [...more, cell.key])}>
+              {open ? "收起" : `另 ${list.length - 5} 项`}</button> : null}
+            {!list.length ? <p className="opp-empty">没有</p> : null}
+          </div>
+        </section>;
+      })}
+    </div>
+    <span className="opp-x">已有基础 →</span>
+  </div>;
+}
+
+function OppCard({ o, on, onPick, onDrag }: { o: Opportunity; on: boolean; onPick: (o: Opportunity) => void; onDrag: (on: boolean) => void }) {
+  return <button type="button" draggable className={`opp-card${on ? " is-in" : ""}`} aria-pressed={on}
+    title={`${o.domain} · ${o.title}\n${o.basis}`}
+    onClick={() => onPick(o)}
+    onDragStart={(e) => { e.dataTransfer.setData("text/plain", o.key); e.dataTransfer.effectAllowed = "copy"; onDrag(true); }}
+    onDragEnd={() => onDrag(false)}>
+    <b>{o.title}</b>
+    <small>{o.domain.replace(/^AI与/, "")} · 基础 {o.base} · 影响 {o.reach}</small>
+    <i aria-hidden="true">{on ? "✓" : "+"}</i>
+  </button>;
 }
 
 export function GapBoard({ data, onLocate, onReveal }: {
@@ -134,6 +156,9 @@ export function GapBoard({ data, onLocate, onReveal }: {
   const [domain, setDomain] = useState("");
   const [open, setOpen] = useState("");
   const [mode, setMode] = useState<"map" | "list">("map");
+  // While a card or a gap row is being dragged, the 候选池 lights up as the place to drop it.
+  const [dragging, setDragging] = useState(false);
+  const [over, setOver] = useState(false);
   const [pool, setPool] = useState<Opportunity[]>(load);
   const [panel, setPanel] = useState<"" | "export" | "proposal">("");
   const [format, setFormat] = useState<"md" | "csv">("md");
@@ -152,23 +177,34 @@ export function GapBoard({ data, onLocate, onReveal }: {
   const add = (item: Opportunity) => { if (!inPool.has(item.key)) setPool([...pool, item]); };
   const proposal = pool.slice(0, MAX_PROPOSAL);
   const ranked = [...shown].sort((a, b) => (b.base + b.reach) - (a.base + a.reach));
+  const byKey = new Map([...all.blank, ...all.issue, ...all.combo].map((o) => [o.key, o]));
+  const toggleIn = (o: Opportunity) => (inPool.has(o.key) ? flip(o) : add(o));
+  const dropProps = {
+    onDragOver: (e: DragEvent) => { e.preventDefault(); e.dataTransfer.dropEffect = "copy"; setOver(true); },
+    onDragLeave: () => setOver(false),
+    onDrop: (e: DragEvent) => { e.preventDefault(); setOver(false); setDragging(false); const o = byKey.get(e.dataTransfer.getData("text/plain")); if (o) add(o); },
+  };
   const maxBase = Math.max(1, ...shown.map((o) => o.base)), maxReach = Math.max(1, ...shown.map((o) => o.reach));
 
   return <div className="gap-board">
     <section className="gap-card" aria-label="哪里有缺口">
-      <header><h3>哪里有缺口</h3><small>点一行看判断依据</small><span>共 <b>{total}</b> 项</span></header>
+      <header><h3>哪里有缺口</h3><span>共 <b>{total}</b> 项</span></header>
       <div role="tablist" aria-label="缺口类型" className="gap-tabs">
         {KINDS.map((k) => <button key={k.key} role="tab" type="button" aria-selected={tab === k.key}
           onClick={() => { setTab(k.key); setOpen(""); setDomain(""); }}>
-          <b>{all[k.key].length}</b>{k.label}<small>{k.reads}</small></button>)}
+          <b>{all[k.key].length}</b><span title={k.reads}>{k.label}</span></button>)}
       </div>
       <div className="gap-dist" aria-hidden="true">{KINDS.map((k) => <i key={k.key} className={`is-${k.key}`} style={{ width: `${(all[k.key].length / total) * 100}%` }} />)}</div>
-      {tab === "blank" && unchecked ? <p className="gap-note">{unchecked} 个领域还没做谱系核对，这一栏只来自做过核对的库。</p> : null}
+      <p className="gap-note"><Hint align="start" text={<>{KINDS.find((k) => k.key === tab)!.reads}。点一行看判断依据，也可以把它拖到右侧候选池。{tab === "blank" && unchecked ? <><br />{unchecked} 个领域还没做谱系核对，这一栏只来自做过核对的库。</> : null}</>}>
+        {KINDS.find((k) => k.key === tab)!.label}是什么</Hint></p>
       <ul className="gap-list">
         {shown.slice(0, 60).map((o) => {
           const isOpen = open === o.key;
           return <li key={o.key} className={`${isOpen ? "is-open" : ""}${inPool.has(o.key) ? " is-in" : ""}`}>
-            <button type="button" className="gap-row" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? "" : o.key)}>
+            {/* The row's own button is the drag handle: Chrome starts no drag on a draggable parent from inside a button. */}
+            <button type="button" className="gap-row" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? "" : o.key)} draggable
+              onDragStart={(e) => { e.dataTransfer.setData("text/plain", o.key); e.dataTransfer.effectAllowed = "copy"; setDragging(true); }}
+              onDragEnd={() => setDragging(false)}>
               <span className={`gap-kind is-${o.kind}`}>{KINDS.find((k) => k.key === o.kind)!.label.slice(0, 2)}</span>
               <b>{o.title}</b><small>{o.domain.replace(/^AI与/, "")}</small><i aria-hidden="true">{isOpen ? "▾" : "▸"}</i>
             </button>
@@ -187,20 +223,21 @@ export function GapBoard({ data, onLocate, onReveal }: {
         {!shown.length ? <li className="gap-more">这一类没有</li> : null}
       </ul>
       {perDomain.length > 1 ? <div className="gap-domains" role="group" aria-label="本类按领域">
-        <span>本类按领域：</span>
+        <span>按领域</span>
         {perDomain.map(({ d, n }) => <button key={d.id} type="button" aria-pressed={domain === d.id} onClick={() => setDomain(domain === d.id ? "" : d.id)}>
           {d.name.replace(/^AI与/, "")}<i>{n}</i></button>)}
       </div> : null}
     </section>
 
     <section className="gap-card" aria-label="下一步可以先做什么">
-      <header><h3>下一步可以先做什么</h3><small>点一项加入候选池</small>
+      <header><h3>下一步可以先做什么</h3>
         <span role="tablist" aria-label="展示方式" className="gap-mode">
-          <button role="tab" type="button" aria-selected={mode === "map"} onClick={() => setMode("map")}>象限图</button>
+          <button role="tab" type="button" aria-selected={mode === "map"} onClick={() => setMode("map")}>四象限</button>
           <button role="tab" type="button" aria-selected={mode === "list"} onClick={() => setMode("list")}>排序列表</button>
         </span></header>
-      <p className="gap-note">当前：{KINDS.find((k) => k.key === tab)!.label}{domain ? ` · ${data.domains.find((d) => d.id === domain)?.name.replace(/^AI与/, "")}` : ""} {shown.length} 项。两个轴都是项目计数，右上角“有基础、影响大”优先考虑。</p>
-      {mode === "map" ? (shown.length ? <OppMap items={shown} pool={inPool} onPick={add} /> : <p className="gap-more">这一类没有</p>)
+      <p className="gap-note"><Hint align="start" text={<>按两个项目计数的中位数分成四格：已有基础 = 已在做的相关项目数，影响面 = 所在场景的项目数。点卡片加入候选池，或拖过去。</>}>四格怎么分</Hint>
+        <span> · {KINDS.find((k) => k.key === tab)!.label}{domain ? ` · ${data.domains.find((d) => d.id === domain)?.name.replace(/^AI与/, "")}` : ""} {shown.length} 项</span></p>
+      {mode === "map" ? (shown.length ? <OppBoard items={shown} pool={inPool} onPick={toggleIn} onDrag={setDragging} /> : <p className="gap-more">这一类没有</p>)
         : <ol className="opp-list">{ranked.slice(0, 20).map((o, i) => <li key={o.key}>
           <span className="rank">{i + 1}</span>
           <span className="name"><b>{o.title}</b><small>{o.domain.replace(/^AI与/, "")}</small></span>
@@ -209,13 +246,13 @@ export function GapBoard({ data, onLocate, onReveal }: {
           <button type="button" aria-pressed={inPool.has(o.key)} onClick={() => flip(o)}>{inPool.has(o.key) ? "已加入" : "加入"}</button>
         </li>)}</ol>}
 
-      <div className="atlas-pool" aria-label="候选池" role="region">
+      <div className={`atlas-pool${dragging ? " is-target" : ""}${over ? " is-over" : ""}`} aria-label="候选池" role="region" {...dropProps}>
         <div className="atlas-pool-head"><b>候选池</b><span>{pool.length} 项</span>
           {pool.length ? <button type="button" onClick={() => setPool([])}>清空</button> : null}</div>
         <div className="atlas-pool-items">
           {pool.length ? pool.map((o) => <span key={o.key}><small>{o.domain.replace(/^AI与/, "")}</small>{o.title}
             <button type="button" aria-label={`移出：${o.title}`} onClick={() => flip(o)}>×</button></span>)
-            : <em>从左侧展开一条“加入候选池”，或点右侧象限图里的点</em>}
+            : <em>{dragging ? "松手加入" : "空"}</em>}
         </div>
         <div className="atlas-pool-actions">
           <button type="button" disabled={!pool.length} onClick={() => setPanel("export")}>导出机会清单</button>
@@ -223,6 +260,11 @@ export function GapBoard({ data, onLocate, onReveal }: {
         </div>
       </div>
     </section>
+    {/* While dragging, a drop bar stays at the bottom of the window: the pool itself may be scrolled out of view. */}
+    {dragging ? <div className={`pool-dropbar${over ? " is-over" : ""}`} role="region" aria-label="拖到这里加入候选池" {...dropProps}>
+      <b>拖到这里，加入候选池</b><span>已有 {pool.length} 项</span>
+    </div> : null}
+
     <SlideOver open={panel === "export"} onClose={() => setPanel("")} eyebrow="导出预览" title="机会清单" label="导出机会清单"
       stats={KINDS.map((k) => ({ value: pool.filter((o) => o.kind === k.key).length, label: k.label }))}
       footer={<>

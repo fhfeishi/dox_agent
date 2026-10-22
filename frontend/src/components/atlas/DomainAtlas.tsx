@@ -68,18 +68,18 @@ export function DomainAtlas() {
     </header>
 
     <section aria-labelledby="atlas-01">
-      <h2 id="atlas-01" className="atlas-section"><span>01</span>研究领域总览<small>点一个库，右侧看它的结构与缺口</small></h2>
+      <h2 id="atlas-01" className="atlas-section"><span>01</span>研究领域总览</h2>
       {chosen ? <LibraryTerrain rows={rows} chosen={chosen} onChoose={setChosenId} onAnalyse={analyse} />
         : <p role="status" className="text-body text-[var(--steel)]">{libraries.error ? (libraries.error as Error).message : "正在读取资料库概况…"}</p>}
     </section>
 
     <section aria-labelledby="atlas-02">
-      <h2 id="atlas-02" className="atlas-section"><span>02</span>技术谱系总览<small>点节点逐级展开</small></h2>
+      <h2 id="atlas-02" className="atlas-section"><span>02</span>技术谱系总览</h2>
       <LineageRoads data={data} reveal={reveal} />
     </section>
 
     <section aria-labelledby="atlas-03">
-      <h2 id="atlas-03" className="atlas-section"><span>03</span>缺口与机会<small>加入候选池，可导出清单、生成立项建议</small></h2>
+      <h2 id="atlas-03" className="atlas-section"><span>03</span>缺口与机会</h2>
       <GapBoard data={data} onLocate={locate} onReveal={(library, system) => setReveal({ library, system, at: Date.now() })} />
     </section>
   </div>;

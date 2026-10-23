@@ -35,3 +35,11 @@ export const INDEX_COPY = {
   preparing: "资料正在整理，请稍后刷新",
   retry: "重试",
 } as const;
+
+export const CORPORA_COPY = {
+  loading: "正在读取资料库…",
+  error: "资料库列表读取失败",
+  emptyDomains: "还没有可浏览的领域资料。",
+  emptyHome: "尚无可浏览的资料库。",
+  retry: "重试",
+} as const;

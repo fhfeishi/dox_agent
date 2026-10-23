@@ -97,7 +97,9 @@ R1两处冲突已由用户明确统一：冷缓存只调度后台并等待，数
 
 验收阻塞已关闭：报告图片保存的迟到刷新覆盖了刚选择的历史版本，用户授权定位后修复，单独提交72d7e47（T0），原图片/DOCX/ZIP断言及最终整套通过。测试基线也在不改原断言的前提下修正：旧总览导航明确进入view=overview、资料库“就此提问”等待异步操作指南、沿用用户已批准的离线问答显式时序。直接写入测试夹具改为等待后台发布后执行原内容断言。
 
-R1提交209ddae已推送main。R2的WSL契约、直链打开/刷新浏览器旅程与完整回归均通过：有效库返回页面，无效库/未知子路由/API/缺失资源保持404。截图 `.logsdev/verification/收尾-R2/direct-refresh.png`，完整结果同目录check-full.log（362后端/57前端/9条冒烟）。Ego在本轮R2手动走查时报权限中继错误（Explorer未运行于普通权限），未升级或绕过；改由项目既有浏览器旅程实际打开并刷新、保存截图，已人工查看。R3核对发现Composer现有corporaLoaded守卫已经正确，无需再加分支；Overview及WorkspaceHome已用5秒延迟复现误报空库/0，待修复。
+R1提交209ddae、R2提交0f08967均已推送main。R2的WSL契约、直链打开/刷新浏览器旅程与完整回归通过：有效库返回页面，无效库/未知子路由/API/缺失资源保持404；截图 `.logsdev/verification/收尾-R2/direct-refresh.png`，完整结果同目录check-full.log。Ego在R2手动走查时报权限中继错误（Explorer未运行于普通权限），未升级或绕过；改由项目既有浏览器旅程实际打开并刷新、保存截图，已人工查看。
+
+R3的WSL实施与验收通过：Overview区分加载/错误可重试/真正空库；WorkspaceHome加载中数量为“—”，领域资料卡也不误报空；Composer原有corporaLoaded守卫已正确，只统一提示文案。原有browser_review_simple扩展5秒延迟、500错误→重试、真实空列表、对话加载中无新建入口及普通用户首页计数；截图已查看。单条与最终check.sh full均退出0（362后端/57前端/9条冒烟）；证据 `.logsdev/verification/收尾-R3/`。首次启动构建因WSL会话超时未运行，非登录shell又误选Windows npm；恢复WSL登录环境的Linux npm后构建与检查通过，无产品断言放宽。下一项为R4共享模型状态，Windows复测仍待全部推送后执行。
 
 §8六项债务未改；新增index作业未加入全局recover的KINDS。project_vectors的INSERT OR REPLACE不随R1替换。共享数据库迁移器并发启动迁移不在本卡新增行为中，测试先完成迁移再并发启动。测试服务8012只使用 `/tmp/dox-r1-real-jzgev4pd` 副本，浏览器入口 `http://r1.localhost:8012`；没有配置模型密钥，不调用真实模型。Windows副本干净、main，待WSL完成并推送后再拉取复测。
 

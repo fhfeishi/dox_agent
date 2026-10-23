@@ -14,6 +14,56 @@ from tests.browser_artifacts_live import start_server
 from tests.test_review_flows import FixtureReviewClient
 
 
+async def check_corpora_states(browser, origin):
+    """R3: delayed data is not empty data; errors remain retryable without changing content assertions."""
+    shots = Path(".logsdev/verification/收尾-R3")
+    shots.mkdir(parents=True, exist_ok=True)
+    pattern = re.compile(r".*/api/corpora(?:\?.*)?$")
+
+    async def delayed(route):
+        await asyncio.sleep(5)
+        await route.continue_()
+
+    context = await browser.new_context(viewport={"width": 1440, "height": 1000})
+    await context.request.post(origin+"/api/auth/login", data={"username": "admin", "password": "123456"})
+    page = await context.new_page()
+    await page.route(pattern, delayed)
+    await page.goto(origin+"/overview/domains")
+    await expect(page.get_by_text("正在读取资料库…", exact=True)).to_be_visible()
+    await expect(page.get_by_text("还没有可浏览的领域资料。", exact=True)).to_have_count(0)
+    await page.screenshot(path=str(shots/"overview-loading.png"), full_page=True)
+    await expect(page.get_by_text("还没有可浏览的领域资料。", exact=True)).to_be_visible(timeout=10000)
+    await page.unroute(pattern, delayed)
+    await page.route(pattern, lambda route: route.fulfill(status=500, json={"detail": "fixture list failure"}))
+    await page.reload()
+    await expect(page.locator("main").get_by_role("alert")).to_contain_text("资料库列表读取失败", timeout=10000)
+    await page.screenshot(path=str(shots/"overview-error.png"), full_page=True)
+    await page.unroute(pattern)
+    await page.route(pattern, lambda route: route.fulfill(json=[]))
+    await page.locator("main").get_by_role("button", name="重试", exact=True).click()
+    await expect(page.get_by_text("还没有可浏览的领域资料。", exact=True)).to_be_visible()
+    await page.unroute(pattern)
+    await page.route(pattern, delayed)
+    await page.goto(origin+"/chat")
+    await expect(page.get_by_text("正在读取资料库…", exact=True)).to_be_visible()
+    await expect(page.get_by_role("button", name="新建知识库", exact=True)).to_have_count(0)
+    await expect(page.get_by_role("button", name="新建知识库", exact=True)).to_be_visible(timeout=10000)
+    await context.close()
+
+    context = await browser.new_context(viewport={"width": 1440, "height": 1000})
+    await context.request.post(origin+"/api/auth/login", data={"username": "user", "password": "123456"})
+    page = await context.new_page()
+    await page.route(pattern, delayed)
+    await page.goto(origin+"/home")
+    counts = page.get_by_role("region", name="工作概况")
+    await expect(counts).to_contain_text("资料库 —")
+    await expect(page.get_by_text("尚无可浏览的资料库。", exact=True)).to_have_count(0)
+    await page.screenshot(path=str(shots/"home-loading.png"), full_page=True)
+    await expect(counts).to_contain_text("资料库 0", timeout=10000)
+    await expect(page.get_by_text("尚无可浏览的资料库。", exact=True)).to_be_visible()
+    await context.close()
+
+
 async def main():
     gate = threading.Event()
     class Model(FixtureReviewClient):
@@ -169,6 +219,7 @@ async def main():
                 await expect(page.get_by_role("heading", name="登录")).to_be_visible()
                 assert (await page.request.get(origin + export_url)).status == 401
                 assert not errors, errors
+                await check_corpora_states(browser, origin)
                 await browser.close()
             print("PASS: default admin login/logout, protected export, template inspector, three queued reports, leave/reload/return, status feedback, homepage, mobile")
         finally:

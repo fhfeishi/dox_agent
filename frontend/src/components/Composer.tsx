@@ -9,6 +9,7 @@ import { ScopeSelector } from "./ScopeSelector";
 import { useAuth } from "../auth";
 import { useLayout } from "../layout";
 import { Button } from "./ui";
+import { CORPORA_COPY } from "../copy";
 
 function PopItem({
   title,
@@ -271,7 +272,7 @@ export function Composer() {
               {corporaError
                 ? `知识库列表读取失败：${corporaError}`
                 : !corporaLoaded
-                  ? "正在读取知识库列表…"
+                  ? CORPORA_COPY.loading
                   : !corpora.length
                   ? "尚无知识库，可新建知识库或刷新列表。"
                   : !corpusIds.length

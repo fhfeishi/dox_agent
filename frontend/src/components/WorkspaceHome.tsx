@@ -23,6 +23,7 @@ import { MyWorkSection } from "./MyWorkSection";
 import { LeaderHome } from "./LeaderHome";
 import { AdminTodoList, LibraryHealth, libraryProblems, useAdminTodos } from "./AdminTodos";
 import { useLayout } from "../layout";
+import { CORPORA_COPY } from "../copy";
 
 
 export function WorkspaceHome() {
@@ -33,7 +34,7 @@ export function WorkspaceHome() {
 /** 首页 for administrators and users: report counts, starting work, 我的工作 and recent reports. */
 function WorkHome() {
   const { role } = useAuth();
-  const { corpora, corporaError } = useApp();
+  const { corpora, corporaError, corporaLoaded } = useApp();
   const { showInspector, openCorpus } = useLayout();
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery());
@@ -84,7 +85,7 @@ function WorkHome() {
           <LibraryHealth />
         </section>
       </> : <section aria-label="工作概况" className="flex flex-wrap gap-x-6 gap-y-2 text-body text-[var(--steel)]">
-        <span>资料库 <b className="text-[var(--ink)]">{corporaError ? "—" : corpora.length}</b></span>
+        <span>资料库 <b className="text-[var(--ink)]">{corporaError || !corporaLoaded ? "—" : corpora.length}</b></span>
         <button onClick={() => navigate("/results")} className="hover:text-[var(--primary)]">已完成报告 <b>{total?.completed.total ?? "—"}</b></button>
         <button onClick={() => navigate("/results?status=active")} className="hover:text-[var(--primary)]">生成中 <b>{total?.active ?? "—"}</b></button>
         <button onClick={() => navigate("/results?status=failed")} className="hover:text-[var(--primary)]">未完成 <b>{total?.failed ?? "—"}</b></button>
@@ -123,7 +124,7 @@ function WorkHome() {
         </section>
         {admin ? null : <section aria-label="领域资料" className="rounded-xl border border-[var(--line-cool)] bg-white p-5">
           <div className="mb-4 flex items-center justify-between"><h2 className="text-emphasis font-semibold">领域资料</h2><Link to="/library" className="text-caption text-[var(--link)] hover:underline">全部资料库 →</Link></div>
-          {!fields.length ? <p className="py-4 text-body text-[var(--steel)]">尚无可浏览的资料库。</p> : <ul className="space-y-1">{fields.map((c) => <li key={c.id}>
+          {!fields.length ? <p role="status" className="py-4 text-body text-[var(--steel)]">{corporaError ? `${CORPORA_COPY.error}：${corporaError}` : !corporaLoaded ? CORPORA_COPY.loading : CORPORA_COPY.emptyHome}</p> : <ul className="space-y-1">{fields.map((c) => <li key={c.id}>
             <button onClick={() => openCorpus(c.id)} className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-3 text-left text-body hover:bg-[var(--surface-cool)]">
               <span className="min-w-0 truncate">{c.name.replace(/^自然科学基金-/, "")}</span>
               <span className="shrink-0 text-caption tabular-nums text-[var(--steel)]">{c.indexed_count?.toLocaleString() ?? "—"} 份</span>

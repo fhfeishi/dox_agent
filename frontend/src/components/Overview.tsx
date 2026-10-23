@@ -15,6 +15,8 @@ import { ProjectGraph } from "./ProjectGraph";
 import { YearDistribution } from "./YearDistribution";
 import { useLayout } from "../layout";
 import { DomainAtlas } from "./atlas/DomainAtlas";
+import { CORPORA_COPY } from "../copy";
+import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -39,7 +41,7 @@ const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "panorama
 export function Overview() {
   const { area: requestedArea = "build" } = useParams();
   const { role } = useAuth();
-  const { corpora } = useApp();
+  const { corpora, corporaLoaded, corporaError, refreshCorpora } = useApp();
   const { showInspector } = useLayout();
   const [search, setSearch] = useSearchParams();
   const admin = role === "admin";
@@ -57,6 +59,11 @@ export function Overview() {
   }, { replace: true });
   // A leader's 资料库建设 is the top of 首页 (query 2026-1016); 概览 keeps 领域分析 for them.
   if (!admin && area === "build") return <Navigate to="/home" replace />;
+  if (area === "domains" && (corporaError || !corporaLoaded)) return <main className="min-h-0 flex-1 overflow-y-auto p-8">
+    {corporaError ? <div role="alert" className="flex items-center gap-3 text-body text-[var(--red)]">
+      <span>{CORPORA_COPY.error}：{corporaError}</span><Button size="sm" variant="ghost" onClick={refreshCorpora}>{CORPORA_COPY.retry}</Button>
+    </div> : <p role="status" className="text-body text-[var(--steel)]">{CORPORA_COPY.loading}</p>}
+  </main>;
   return <main className="min-h-0 flex-1 overflow-y-auto">
     {/* 全景 needs no toolbar (query 2026-1022): it covers every domain. One domain's views keep theirs. */}
     {area === "domains" && view !== "panorama" ? <div className="sticky top-0 z-10 border-b border-[var(--hairline)] bg-[var(--canvas)]/95 backdrop-blur">
@@ -82,7 +89,7 @@ export function Overview() {
       <Work />
       <LeaderConstruction onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} />
     </>
-      : !current ? <p className="p-8 text-body text-[var(--steel)]">还没有可浏览的领域资料。</p>
+      : !current ? <p className="p-8 text-body text-[var(--steel)]">{CORPORA_COPY.emptyDomains}</p>
       : view === "panorama" ? <DomainAtlas />
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
       : view === "tech" ? <KeyTechnology key={current.id} corpusId={current.id} name={short(current.name)} />

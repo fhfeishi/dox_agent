@@ -113,7 +113,7 @@ Ego因权限中继故障不能操作，未升级或绕过；改用项目既有�
 
 本地证据目录 `.logsdev/verification/收尾-R1/`、`收尾-R2/`、`收尾-R3/`、`收尾-R4/`、`收尾-R6-R7/`、`收尾-Windows/`，包含完整回归、并发结果、截图与原生计时；交付时保留到Windows副本相同目录。复现入口为 `scripts/check.sh full`、四个Windows定向测试文件（test_project_index_concurrency、test_model_status、test_app、test_core_db）及本地Windows verify.py/profile.py/smoke.cjs；测量配置在copy.json/ready.json。
 
-待办：R5按§6另行实施；W1仍在原工作区、未提交/合并，本轮main的验收不替代W1验收；A1及真实触屏、投屏、首次阅读仍由用户验收。测试服务与临时副本在证据保留后清理，用户服务保持。
+待办：R5按§6另行实施；W1仍在原工作区、未提交/合并，本轮main的验收不替代W1验收；A1及真实触屏、投屏、首次阅读仍由用户验收。本轮8010/8012测试服务已关闭；Windows停止前journal/运行任务/租约均0。116个证据文件已保留到Windows相同目录并逐一校验哈希一致。Windows临时副本删除被自动审批以“策略阻止”拒绝，未绕过；`C:/Users/User/AppData/Local/Temp/dox-fixes-win-y7vvf_p8` 与WSL `/tmp/dox-r1-real-jzgev4pd` 暂留，各约3.4GB。原8000/8011服务未执行停止操作。
 
 ## 6. R5 性能后续工作
 

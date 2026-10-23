@@ -21,6 +21,7 @@ async def main():
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     sessions = [session(i) for i in range(30)]
+    model_status = {"status": "connected", "checked_at": "2026-10-24T00:00:00Z", "latency_ms": 1, "error": ""}
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
@@ -29,7 +30,29 @@ async def main():
             page.on("pageerror", lambda error: errors.append(str(error)))
             # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
             await page.route("**/api/auth/session", lambda r: r.fulfill(json={"authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
-            await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
+            await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test",
+                "model_status": model_status}))
+            await page.route("**/api/model", lambda r: r.fulfill(json={"model": "offline-test", "base_url": "https://fixture.test", "api_key_configured": True, "review_override": {}}))
+            await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), lambda r: r.fulfill(json=[]))
+
+            async def model_check(route):
+                model_status.update(status="connected", checked_at="2026-10-24T00:01:00Z", error="")
+                await route.fulfill(json={"ok": True, "latency_ms": 1, "model_status": model_status})
+
+            async def review_api(route):
+                if route.request.url.endswith("/health"):
+                    await route.fulfill(json={"ok": True, "model_configured": True, "model_name": "offline-test", "model_status": model_status})
+                elif route.request.url.endswith("/model/test"):
+                    await model_check(route)
+                else:
+                    await route.fulfill(json={} if route.request.url.endswith("/applied") else [])
+
+            await page.route("**/api/review/**", review_api)
+            await page.route("**/api/model/check", model_check)
+            # This offline fixture is a static server: mirror the real application's SPA shell
+            # for the review deep link before checking failure/recovery and a full reload.
+            await page.route(re.compile(r".*/review/formal(?:\?.*)?$"),
+                             lambda route: route.fulfill(path=str(root / "frontend/dist/index.html"), content_type="text/html"))
             await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
 
@@ -64,6 +87,27 @@ async def main():
             await expect(page.get_by_text("已断开连接", exact=False)).to_have_count(0)
             await expect(status).to_have_accessible_name("模型状态：正常")
 
+            # R4: both check entry points update the same status. A successful check removes
+            # the review's old failure without reloading or inventing "healthy" from a saved key.
+            model_status.update(status="failed", error="fixture connection failed")
+            await page.goto(origin + "/review/formal")
+            await expect(page.get_by_text(re.compile("上次检测.*失败：fixture connection failed"))).to_be_visible()
+            await expect(status).to_have_accessible_name("模型状态：检测失败")
+            shots = root / ".logsdev/verification/收尾-R4"
+            shots.mkdir(parents=True, exist_ok=True)
+            await page.screenshot(path=str(shots / "review-failed.png"), full_page=True)
+            await page.get_by_role("button", name="重新测试", exact=True).click()
+            await expect(page.get_by_text(re.compile("上次检测.*失败："))).to_have_count(0)
+            await expect(status).to_have_accessible_name("模型状态：正常")
+            model_status.update(status="failed", error="fixture connection failed")
+            await page.reload()
+            await expect(page.get_by_text(re.compile("上次检测.*失败：fixture connection failed"))).to_be_visible()
+            await page.get_by_role("banner").get_by_role("button", name="设置", exact=True).click()
+            await page.get_by_role("button", name="测试连接", exact=True).click()
+            await expect(status).to_have_accessible_name("模型状态：正常")
+            await page.keyboard.press("Escape")
+            await expect(page.get_by_text(re.compile("上次检测.*失败："))).to_have_count(0)
+            await page.screenshot(path=str(shots / "review-recovered.png"), full_page=True)
             assert not errors, errors
             print("PASS: U6 power button (disconnect/disabled) + U8 sticky status footer")
             await browser.close()

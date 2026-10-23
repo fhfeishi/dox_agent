@@ -1,14 +1,57 @@
 """One replacement point for model providers and optional LangSmith tracing."""
 
+import hashlib
+import json
 import time
 from contextlib import contextmanager
+from datetime import UTC, datetime
 from functools import lru_cache
 
 import httpx
 from langchain_openai import ChatOpenAI
 from langsmith import Client, tracing_context
 
+from ..core.db import connect, migrate
 from .config import Settings
+
+
+def _connection(settings: Settings, connection=None):
+    cfg = connection or {"base": settings.model_base_url, "model": settings.model_name,
+                         "key": settings.model_api_key.get_secret_value() if settings.model_api_key else ""}
+    identity = json.dumps([cfg["base"].rstrip("/"), cfg["model"], cfg["key"]])
+    return hashlib.sha256(identity.encode()).hexdigest(), cfg["key"]
+
+
+def read_model_status(settings: Settings, *, connection=None) -> dict:
+    """Read the shared record; app startup owns the workspace migration, never a GET."""
+    path = settings.state_dir / "workspace.sqlite3"
+    if path.exists():
+        ident, _ = _connection(settings, connection)
+        with connect(path, readonly=True) as db:
+            row = db.execute("SELECT status,checked_at,latency_ms,error,source FROM model_checks WHERE connection=?",
+                             (ident,)).fetchone()
+        if row:
+            return dict(zip(("status", "checked_at", "latency_ms", "error", "source"), row, strict=True))
+    return {"status": "untested", "checked_at": None, "latency_ms": None, "error": "", "source": None}
+
+
+def record_model_status(settings: Settings, result: dict, *, source: str, connection=None) -> dict:
+    # Launcher checks run before app startup. Use exactly the schema all workspace stores use.
+    from ..workspace import SCHEMA
+    path = settings.state_dir / "workspace.sqlite3"
+    migrate(path, SCHEMA)
+    ident, key = _connection(settings, connection)
+    error = str(result.get("error") or "")
+    if key:
+        error = error.replace(key, "[redacted]")
+    state = {"status": "connected" if result.get("ok") else "failed", "checked_at": datetime.now(UTC).isoformat(),
+             "latency_ms": result.get("latency_ms"), "error": error, "source": source}
+    with connect(path) as db:
+        db.execute("INSERT INTO model_checks(connection,status,latency_ms,error,checked_at,source) VALUES (?,?,?,?,?,?) "
+                   "ON CONFLICT(connection) DO UPDATE SET status=excluded.status,latency_ms=excluded.latency_ms,"
+                   "error=excluded.error,checked_at=excluded.checked_at,source=excluded.source",
+                   (ident, state["status"], state["latency_ms"], error, state["checked_at"], source))
+    return state
 
 
 @lru_cache(maxsize=1)
@@ -18,7 +61,14 @@ def _http_clients():
     return httpx.Client(trust_env=False, timeout=60), httpx.AsyncClient(trust_env=False, timeout=60)
 
 
-def check_model(settings: Settings) -> dict:
+def check_model(settings: Settings, *, source: str = "system") -> dict:
+    result = _check_model(settings)
+    state = record_model_status(settings, result, source=source)
+    # Never persist or return a provider error that echoes the configured credential.
+    return {**result, **({"error": state["error"]} if "error" in result else {}), "model_status": state}
+
+
+def _check_model(settings: Settings) -> dict:
     """One minimal completion; proves address, key and model name together.
 
     A model-list request is not enough: a retired or misspelled model name still lists fine but fails

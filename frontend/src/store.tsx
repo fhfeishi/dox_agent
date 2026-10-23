@@ -12,6 +12,7 @@ import {
 } from "react";
 import {
   ApiError,
+  MODEL_STATUS_EVENT,
   createArtifact,
   fetchCorpora,
   fetchHealth,
@@ -24,6 +25,7 @@ import {
   cancelRun,
   type ChatRequestOptions,
   type CorpusInfo,
+  type ModelStatus,
   type Options,
   type Source,
   type TaskInfo,
@@ -187,6 +189,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [corpusReady, setCorpusReady] = useState(false);
   const [model, setModel] = useState("");
+  const [modelStatus, setModelStatus] = useState<ModelStatus["status"]>("untested");
   const [preparation, setPreparation] = useState("running");
   const [connected, setConnected] = useState(true);
   const [editing, setEditing] = useState<EditState>(null);
@@ -329,6 +332,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setCorpusReady(state.corpus);
         setProgress(data.index_progress ?? null);
         setModel(typeof data.model === "string" ? data.model : "");
+        setModelStatus(data.model_status?.status ?? "untested");
         setPreparation(typeof data.preparation === "string" ? data.preparation : "running");
         setHealth(
           !state.ready
@@ -357,8 +361,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     void refresh().then(() => {
       if (!stopped) schedule();
     });
+    const modelChanged = () => { void refresh(); };
+    window.addEventListener(MODEL_STATUS_EVENT, modelChanged);
     return () => {
       stopped = true;
+      window.removeEventListener(MODEL_STATUS_EVENT, modelChanged);
       if (timer) clearTimeout(timer);
       controller.current?.abort();
     };
@@ -1023,11 +1030,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const llm = !connected
     ? { tone: "bg-stone-400", text: "已断开" }
-    : !ready || preparation === "error"
-      ? { tone: "bg-[var(--red)]", text: "异常" }
-      : preparation === "ready"
-        ? { tone: "bg-[var(--green)]", text: "正常" }
-        : { tone: "bg-[var(--warn-dot)]", text: "知识库准备中" };
+    : preparation === "offline" ? { tone: "bg-[var(--warn-dot)]", text: "服务未连接" }
+    : !ready ? { tone: "bg-[var(--warn-dot)]", text: "未配置" }
+    : modelStatus === "failed" ? { tone: "bg-[var(--red)]", text: "检测失败" }
+    : modelStatus === "connected" ? { tone: "bg-[var(--green)]", text: "正常" }
+    : { tone: "bg-stone-400", text: "未检测" };
 
   const value = useMemo<AppValue>(
     () => ({
@@ -1125,6 +1132,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       preparation,
       health,
       model,
+      modelStatus,
       progress,
       corpora,
       corporaError,

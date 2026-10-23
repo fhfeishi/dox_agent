@@ -804,7 +804,7 @@ def test_folder_upload_preserves_paths_and_body_search_stays_in_library(tmp_path
         assert len(client.get(f"/api/corpora/{one}/search", params={"q": "量子传感"}).json()["hits"]) == 3
 
 
-def test_model_calls_never_use_the_system_proxy(monkeypatch):
+def test_model_calls_never_use_the_system_proxy(monkeypatch, tmp_path):
     """User, 2026-10-20: DeepSeek is reached directly even when the machine sets a proxy."""
     from pathlib import Path
 
@@ -817,7 +817,7 @@ def test_model_calls_never_use_the_system_proxy(monkeypatch):
     for name in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
         monkeypatch.setenv(name, "http://127.0.0.1:9")
     models._http_clients.cache_clear()
-    settings = Settings(_env_file=None, model_api_key=SecretStr("fixture"))
+    settings = Settings(_env_file=None, model_api_key=SecretStr("fixture"), state_dir=tmp_path / "state")
     chat = models.model_for(settings)
     for client in (chat.http_client, chat.http_async_client, *models._http_clients()):
         assert client.trust_env is False and not client._mounts

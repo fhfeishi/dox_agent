@@ -6,6 +6,7 @@ import { useApp } from "../../store";
 import { Button, Pill } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
 import { useLayout } from "../../layout";
+import { MODEL_STATUS_EVENT } from "../../api";
 
 const ACCEPT = ".pdf,.doc,.docx,.md,.txt";
 function MetadataFields({ doc, onSave, onRetry }: {
@@ -289,6 +290,7 @@ export function ReviewWorkbench() {
   const [search, setSearch] = useSearchParams();
   const sheetId = search.get("sheet") ?? "";
   const [health, setHealth] = useState<ReviewHealth | null>(null);
+  const [testingModel, setTestingModel] = useState(false);
   const [rules, setRules] = useState<ReviewRule[]>([]);
   const [applied, setApplied] = useState<ReviewApplied>({ formal: null, professional: null });
   const [docs, setDocs] = useState<ReviewDoc[]>([]);
@@ -313,10 +315,13 @@ export function ReviewWorkbench() {
     setRules(nextRules); setDocs(nextDocs); setRuns(nextRuns);
   };
   useEffect(() => {
-    void fetchReviewHealth().then(setHealth).catch((cause) => setError((cause as Error).message));
+    const refreshHealth = () => { void fetchReviewHealth().then(setHealth).catch((cause) => setError((cause as Error).message)); };
+    refreshHealth();
+    window.addEventListener(MODEL_STATUS_EVENT, refreshHealth);
     void reload().catch((cause) => setError((cause as Error).message));
     void fetchReviewEvidence().then(setEvidence).catch(() => undefined);
     void fetchReviewApplied().then(setApplied).catch(() => undefined);
+    return () => window.removeEventListener(MODEL_STATUS_EVENT, refreshHealth);
   }, []);
   useEffect(() => () => { if (poller.current) window.clearInterval(poller.current); }, []);
   useEffect(() => {
@@ -420,9 +425,9 @@ export function ReviewWorkbench() {
       <Notice text={error} error />
       <Notice text={notice} />
       {health && !health.model_configured ? <Notice text="审查模型未配置：请先配置 MODEL_API_KEY（或 REVIEW_MODEL_*），未配置时不能发起审查。" error /> : null}
-      {health?.model_connection === "failed" ? <div className="mb-3 flex flex-wrap items-center gap-2"><Notice text="最近一次模型连接测试失败，请检查密钥与接口地址。" error />
-        <Button size="sm" variant="ghost" onClick={() => void testReviewModel().then(() => { setNotice("模型连接及 JSON 输出测试成功。"); void fetchReviewHealth().then(setHealth); })
-          .catch((cause) => setError((cause as Error).message))}>重新测试</Button></div> : null}
+      {health?.model_configured && health.model_status?.status === "failed" ? <div className="mb-3 flex flex-wrap items-center gap-2"><Notice text={`上次检测（${health.model_status.checked_at ? new Date(health.model_status.checked_at).toLocaleString("zh-CN") : "时间未记录"}）失败：${health.model_status.error || "请检查密钥与接口地址。"}`} error />
+        <Button size="sm" variant="ghost" disabled={testingModel} onClick={() => { setTestingModel(true);setError("");setNotice("");void testReviewModel()
+          .catch((cause) => setError((cause as Error).message)).finally(() => setTestingModel(false)); }}>{testingModel ? "检测中…" : "重新测试"}</Button></div> : null}
 
       {/* query 2026-1013 1133: three steps, details hidden until clicked. */}
       <div className="grid items-center gap-3 md:grid-cols-[1fr_1fr_auto]">

@@ -18,6 +18,7 @@ DATA: Path | None = None
 # Schema steps for review/workspace.sqlite3, append-only (src/core/db.py).
 SCHEMA = [
     "CREATE TABLE IF NOT EXISTS objects (kind TEXT NOT NULL,id TEXT NOT NULL,payload TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(kind,id))",
+    "DELETE FROM objects WHERE kind='model_connection'",
 ]
 
 

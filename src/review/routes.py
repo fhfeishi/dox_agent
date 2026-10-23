@@ -10,6 +10,7 @@ import hashlib
 import json
 import logging
 import threading
+import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,6 +19,7 @@ from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
+from ..agent.models import read_model_status, record_model_status
 from ..auth import ADMIN_ONLY, CURRENT_USER, visible_owners
 from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
@@ -150,20 +152,11 @@ def ingest(path, name, id=None):
     return start_metadata(id)
 
 
-def connection_id(settings):
-    return hashlib.sha256(json.dumps([settings["base"], settings["model"], settings["key"]]).encode()).hexdigest()
-
-
-def connection_state(settings):
-    record = db.get("model_connection", connection_id(settings)) or {}
-    return {"model_connection": record.get("status", "untested"), "model_tested_at": record.get("tested_at")}
-
-
 @router.get("/health")
-def health():
+def health(request: Request):
     settings = config()
     return {
-        **connection_state(settings),
+        "model_status": read_model_status(request.app.state.settings, connection=settings),
         "ok": True,
         "app_id": "dox-agent-review",
         "model_configured": model_configured(),
@@ -173,20 +166,25 @@ def health():
 
 
 @router.post("/model/test")
-def test_connection():
+def test_connection(request: Request):
     if not model_configured():
         raise HTTPException(400, "请先配置 MODEL_API_KEY（或 REVIEW_MODEL_*）。")
     client = Client()
+    started = time.monotonic()
     try:
         client.ask("00_plan", {
             "sources": [],
             "note": "连接测试，不包含指南。返回 JSON：空 checks 数组、空 notes 数组。",
         })
-        db.save("model_connection", {"id": connection_id(client.settings), "status": "connected", "tested_at": db.now()})
-        return {"ok": True, **connection_state(client.settings), "model": client.settings["model"], "message": "模型连接及 JSON 输出测试成功。"}
+        state = record_model_status(request.app.state.settings,
+                                    {"ok": True, "latency_ms": round((time.monotonic()-started)*1000)},
+                                    source="review", connection=client.settings)
+        return {"ok": True, "model_status": state, "model": client.settings["model"], "message": "模型连接及 JSON 输出测试成功。"}
     except ModelError as e:
-        db.save("model_connection", {"id": connection_id(client.settings), "status": "failed", "tested_at": db.now()})
-        raise HTTPException(502, str(e)) from e
+        state = record_model_status(request.app.state.settings,
+                                    {"ok": False, "error": str(e), "latency_ms": round((time.monotonic()-started)*1000)},
+                                    source="review", connection=client.settings)
+        raise HTTPException(502, state["error"]) from e
 
 
 @router.get("/documents")

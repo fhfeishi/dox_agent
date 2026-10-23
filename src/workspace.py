@@ -20,6 +20,8 @@ router = APIRouter(prefix="/api")
 SCHEMA = [
     "CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, kind TEXT, revision INTEGER, payload TEXT);"
     "CREATE TABLE IF NOT EXISTS corpus_groups (id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER, payload TEXT)",
+    "CREATE TABLE IF NOT EXISTS model_checks (connection TEXT PRIMARY KEY,status TEXT NOT NULL,latency_ms INTEGER,"
+    " error TEXT,checked_at TEXT,source TEXT)",
 ]
 
 

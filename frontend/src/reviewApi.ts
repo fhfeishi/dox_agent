@@ -1,4 +1,4 @@
-import type { Scope } from "./api";
+import { MODEL_STATUS_EVENT, type ModelStatus, type Scope } from "./api";
 /** 形式审查（W8）：对接 /api/review/*，与主应用 /api/* 互相独立。
  * 审查上传的指南与申请书是工作材料，不进入知识库、不参与检索。 */
 
@@ -207,7 +207,7 @@ export type ReviewHealth = {
   model_configured: boolean;
   model_name: string;
   provider: string;
-  model_connection?: "untested" | "connected" | "failed";
+  model_status?: ModelStatus;
 };
 
 export class ReviewApiError extends Error {
@@ -279,8 +279,9 @@ export const REVIEW_FIELD_LABEL: Record<string, string> = {
 export function fetchReviewHealth(): Promise<ReviewHealth> {
   return request("/health", undefined, "审查服务不可用");
 }
-export function testReviewModel(): Promise<{ ok: boolean; message?: string; model_connection?: string }> {
-  return request("/model/test", { method: "POST" }, "模型连接测试失败");
+export async function testReviewModel(): Promise<{ ok: boolean; message?: string; model_status?: ModelStatus }> {
+  try { return await request("/model/test", { method: "POST" }, "模型连接测试失败"); }
+  finally { window.dispatchEvent(new Event(MODEL_STATUS_EVENT)); }
 }
 export function fetchReviewDocument(id: string): Promise<ReviewDoc> {
   return request(`/documents/${encodeURIComponent(id)}`, undefined, "申请书状态读取失败");

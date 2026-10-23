@@ -101,7 +101,7 @@ def model_check() -> int:
 
     settings = get_settings()
     print(f"模型：{settings.model_name} @ {settings.model_base_url}（直连，不使用系统代理）")
-    result = check_model(settings)
+    result = check_model(settings, source="launcher")
     if result.get("ok"):
         print(f"模型连接正常（{result.get('latency_ms')} ms）")
         return 0

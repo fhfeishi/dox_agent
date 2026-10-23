@@ -662,14 +662,18 @@ export async function changeArtifactLifecycle(item: ArtifactSummary, action: "tr
 }
 
 export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean; review_override: Record<string, string> };
-export type ModelCheck = { ok: boolean; latency_ms?: number; error?: string };
+export type ModelStatus = { status: "untested" | "connected" | "failed"; checked_at: string | null;
+  latency_ms: number | null; error: string; source?: string | null };
+export const MODEL_STATUS_EVENT = "dox-model-status-changed";
+export type ModelCheck = { ok: boolean; latency_ms?: number; error?: string; model_status?: ModelStatus };
 
 export async function fetchModelInfo(): Promise<ModelInfo> {
   return jsonOrThrow(await fetch("/api/model"), "模型信息读取失败") as Promise<ModelInfo>;
 }
 
 export async function checkModel(): Promise<ModelCheck> {
-  return jsonOrThrow(await fetch("/api/model/check", { method: "POST" }), "连接测试失败") as Promise<ModelCheck>;
+  try { return await jsonOrThrow(await fetch("/api/model/check", { method: "POST" }), "连接测试失败") as ModelCheck; }
+  finally { window.dispatchEvent(new Event(MODEL_STATUS_EVENT)); }
 }
 
 /**
@@ -738,7 +742,7 @@ export async function routeCorpora(q: string): Promise<{ corpus_id: string; name
   return response.ok ? response.json() : [];
 }
 
-export type Health = { api_key_configured?: boolean; preparation?: string; index_progress?: { stage: string; completed: number; total: number } | null; model?: string; docs_count?: number;
+export type Health = { api_key_configured?: boolean; model_status?: ModelStatus; preparation?: string; index_progress?: { stage: string; completed: number; total: number } | null; model?: string; docs_count?: number;
   web_provider?: string; [key: string]: unknown };
 export async function fetchHealth(signal?: AbortSignal): Promise<Health> {
   const response = await fetch("/api/health", { signal });

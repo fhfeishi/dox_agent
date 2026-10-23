@@ -6,7 +6,7 @@ import os
 from fastapi import APIRouter, HTTPException, Request
 
 from ..agent.corpora import default_corpus_info
-from ..agent.models import check_model
+from ..agent.models import check_model, read_model_status
 from ..compose_question import compose as compose_question
 from ..compose_question import library_vocabulary, vocabulary_slice
 from .common import (
@@ -33,7 +33,7 @@ def install(app, ctx):
             "model": settings.model_name,
             "docs_count": docs_count,
             "api_key_configured": bool(settings.model_api_key),
-            "model_verified": False,
+            "model_status": await asyncio.to_thread(read_model_status, settings),
             "web_provider": settings.web_provider,
             "preparation": (request.app.state.preparation if default_info is None or active_knowledge is request.app.state.knowledge
                             else default_info.preparation),

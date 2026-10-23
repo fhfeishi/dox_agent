@@ -102,4 +102,4 @@
 
 ## 2026-1023 1156
 - owner - 领域分析 界面  03 导出机会清单、生成立项建议 这里的右侧滑出窗口也需要20% 40% 60% 调整，然后就统一设计成一个  ○--○--○ 这样可以左右滑动的按钮，依次表示 占60% 40% 20% ，然后一个关闭 X 按钮；此外，下一步可以先做什么，现在只显示点点按钮、不显示点点对应的文字描述了，那么可以优化一下四象限的布局，现在大小不一看着有点奇怪；在就是导出机会清单，还是导出word文档吧，csv、markdown老板不愿意看的。。
-→ 去向：已实施，未提交（src/api/reports.py、frontend/src 中 Panel、panelSize、GapBoard、Inspector、Icons、globals.css，tests/test_app.py）；证据 `.logsdev/verification/query-20261023-1156/`
+→ 去向：已实施 fa50469；证据 `.logsdev/verification/query-20261023-1156/`

@@ -1,4 +1,6 @@
 import type { DocumentInfo } from "./useDocuments";
+import type { IndexState } from "./api";
+import { queryOptions } from "@tanstack/react-query";
 /**
  * 领域分析 · 全景 (query 2026-1021 1629): every library as one research domain, read in one call from
  * /api/domains/overview. See src/api/domains.py for what each number counts.
@@ -13,6 +15,7 @@ export type OpenIssue = { scene: string; name: string; state: string; summary: s
 export type Blank = { name: string; plain: string; reason: string };
 export type Combo = { scene: string; system: string; used_in: number; scenes: number };
 export type Domain = {
+  index?: IndexState;
   id: string; name: string; projects: number; items: number; levels: number[]; maturity: number | null;
   achievements: number; achievements_per_project: number; funding: number; funded_projects: number;
   by_year: YearRow[]; systems: TechSystem[];
@@ -28,7 +31,7 @@ export type DomainsOverview = {
   domains: Domain[];
 };
 
-export const domainsOverviewQuery = {
+export const domainsOverviewQuery = queryOptions({
   queryKey: ["domains", "overview"],
   queryFn: async ({ signal }: { signal: AbortSignal }): Promise<DomainsOverview> => {
     const response = await fetch("/api/domains/overview", { signal });
@@ -36,7 +39,8 @@ export const domainsOverviewQuery = {
     return response.json();
   },
   staleTime: 60_000,
-};
+  refetchInterval: (query) => query.state.data?.domains.some(r => r.index?.state === "refreshing") ? 2000 : false,
+});
 
 /** 万元 → the way a leader reads money: 亿 above ten thousand 万. */
 export function money(wan: number): string {

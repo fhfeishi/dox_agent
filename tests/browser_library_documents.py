@@ -91,8 +91,9 @@ async def main():
                 await expect(card.get_by_role("link", name="下载原文")).to_have_attribute("href", re.compile(r"/api/documents/.+/file\?corpus="))
                 await card.get_by_role("button", name="就此提问").click()
                 await expect(page).to_have_url(re.compile(r"/chat$"))
-                for guide in await page.get_by_role("dialog", name=re.compile("操作指南")).all():
-                    await guide.get_by_role("button", name="知道了").click()
+                # First entry mounts the guide after route navigation; wait for it rather than
+                # taking an immediate empty locator snapshot and later clicking through it.
+                await page.get_by_role("dialog", name="对话工作台 操作指南").get_by_role("button", name="知道了").click()
                 await expect(page.get_by_role("textbox", name="问题", exact=True)).to_have_value(re.compile("请概括这份资料"))
                 async with page.expect_request(lambda r: r.url.endswith("/api/chat") and r.method == "POST") as asked:
                     await page.get_by_role("button", name="发送 ↑").click()

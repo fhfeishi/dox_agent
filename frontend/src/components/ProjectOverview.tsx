@@ -6,6 +6,7 @@ import { ProjectGraph } from "./ProjectGraph";
 import { SceneHierarchy } from "./SceneHierarchy";
 import { YearDistribution } from "./YearDistribution";
 import { useLayout } from "../layout";
+import { IndexNotice } from "./IndexNotice";
 
 const SCOPES: Record<string, string> = { awarded: "批准资助金额", direct: "直接费用", total: "总经费" };
 
@@ -23,10 +24,11 @@ export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; co
   });
   const data = result.data;
   if (result.isPending) return <p role="status" className="p-6">正在按项目整理资料…</p>;
-  if (result.error || !data) return <p role="alert" className="p-6">{result.error?.message}</p>;
+  if (result.error || !data) return <IndexNotice error={result.error} retry={() => { void result.refetch(); }} />;
   const identified = data.projects.filter((p) => p.identity_status === "identified");
   const years = [...new Set(identified.map((p) => p.start_year).filter((y): y is number => y !== null))].sort();
   return <div className="mt-5 space-y-5" aria-label="项目归纳">
+    <IndexNotice state={data.index} />
     {/* The library header switches views (query 2026-1013 2012); one is shown at a time. */}
     {!view ? <SceneHierarchy corpusId={corpusId} /> : null}
     {view === "timeline" ? <div aria-label="年度筛选" className="flex flex-wrap items-center gap-2">

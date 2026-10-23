@@ -32,7 +32,9 @@ export type CorpusInfo = {
 
 /** GET /api/corpora: corpus registry (H1). Read-only disk scan + config overrides. */
 /** What each library holds and how far it is organised (`/api/overview/libraries`). */
+export type IndexState = { state: "ready" | "refreshing"; revision: number; stale_docs: number };
 export type LibraryOverview = {
+  index?: IndexState;
   corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
   /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
   funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];

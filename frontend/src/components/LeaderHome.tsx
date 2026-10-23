@@ -8,6 +8,7 @@ import { HeroCarousel } from "./HeroCarousel";
 import { libraryOverviewQuery } from "../libraryQueries";
 import { LibraryPreviewDrawer } from "./LibraryPreviewDrawer";
 import { useState } from "react";
+import { IndexNotice } from "./IndexNotice";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -70,10 +71,10 @@ export function LeaderHome() {
       {/* Columns follow the section's own width, so the layout holds when the right-hand panel is open. */}
       <section aria-label="资料库概览" className="@container">
         <SectionHead index="02" title="资料库概览" note="点领域切换图表；点卡片在右侧查看资料库" />
-        {overview.error ? <p role="alert" className="text-body text-[var(--red)]">{(overview.error as Error).message}</p>
+        {overview.error ? <IndexNotice error={overview.error} retry={() => { void overview.refetch(); }} />
           : !overview.data ? <p role="status" className="text-body text-[var(--steel)]">正在读取资料库概况…</p>
           : !chosen ? <p className="text-body text-[var(--steel)]">尚无已入库资料。</p>
-          : <>
+          : <><IndexNotice state={rows.find(r => r.index?.state === "refreshing")?.index} />
             <div className="grid gap-4 rounded-2xl border border-[var(--line-cool)] bg-white p-5 @3xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
               <div aria-label="各领域项目数" role="group">
                 <h3 className="text-body font-semibold text-[var(--heading)]">各领域项目数</h3>

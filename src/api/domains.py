@@ -146,6 +146,7 @@ def domain_payload(info, library: dict, tree: dict, scenes_record: dict, blanks:
     name = info.name.removeprefix(PREFIX)
     return {
         "id": info.id, "name": name, "projects": len(projects), "items": len(items), "levels": counts,
+        "index": library.get("index"),
         "maturity": judged_mean(counts), "achievements": achievements,
         "achievements_per_project": round(share(achievements, len(projects)), 2),
         "funding": round(sum(value for value, _ in funded if value is not None), 1),

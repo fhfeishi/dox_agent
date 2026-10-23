@@ -29,3 +29,9 @@ export const TERMS = {
 } as const satisfies Record<string, { name: string; retired: readonly string[] }>;
 
 export const RETIRED: readonly string[] = Object.values(TERMS).flatMap((term) => term.retired);
+
+export const INDEX_COPY = {
+  updating: "资料正在更新，当前显示的是上次整理的结果",
+  preparing: "资料正在整理，请稍后刷新",
+  retry: "重试",
+} as const;

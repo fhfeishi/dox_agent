@@ -60,8 +60,14 @@ async def main():
             await page.add_init_script("""(() => {
                 const realFetch = window.fetch.bind(window);
                 window.requests = [];
+                window.savedSessionWrites = [];
                 window.mode = 'success';
                 window.fetch = async (url, options) => {
+                    if (typeof url === 'string' && url.startsWith('/api/workspace/sessions/') && options?.method === 'PUT') {
+                        const response = await realFetch(url, options);
+                        if (response.ok) window.savedSessionWrites.push(JSON.parse(options.body));
+                        return response;
+                    }
                     if (url !== '/api/chat') return realFetch(url, options);
                     window.requests.push(JSON.parse(options.body));
                     const mode = window.mode;
@@ -80,6 +86,16 @@ async def main():
                                 title: '引用资料', snippet: '引用正文', page: 1, url: ''
                             })));
                             if (mode === 'cancel') return;
+                            // Hold the first token until the test has observed the waiting state.
+                            // A fixed 180ms window disappears on a busy machine before the panels open.
+                            if (window.requests.length === 1) {
+                                window.releaseFirstToken = () => {
+                                    window.releaseFirstToken = null;
+                                    send('token', {text});
+                                    timers.push(setTimeout(() => send('done', {ok: true}), 320));
+                                };
+                                return;
+                            }
                             timers.push(setTimeout(() => send('token', {text}), 180));
                             timers.push(setTimeout(() => {
                                 if (mode === 'failure') controller.close();
@@ -98,6 +114,7 @@ async def main():
             # Timings and tokens sit in the folded 技术信息 of the 资料检索 panel (2026-10-20).
             await show_technical(page)
             await expect(page.get_by_text("首 token / Think 等待：等待中", exact=False)).to_be_visible()
+            await page.evaluate("window.releaseFirstToken()")
             await expect(page.get_by_role("button", name="重新生成").last).to_be_enabled()
             article = page.locator("article").last
             await expect(article.get_by_text("答案版本1", exact=True)).to_be_visible()
@@ -117,10 +134,16 @@ async def main():
             await article.get_by_text("之前的回答 · 1 个版本", exact=True).click()
             await expect(article.get_by_text("答案版本1", exact=True)).to_be_visible()
             await expect(article.get_by_text("答案版本2", exact=True)).to_be_visible()
+            # Follow-up is a new user action after the completed regenerated answer is persisted.
+            await page.wait_for_function("window.savedSessionWrites.some(s => s.data?.turns?.[0]?.complete && s.data.turns[0].answer.includes('答案版本2'))")
             await field.fill("追问")
             await page.get_by_role("button", name="发送 ↑").click()
             # Sending first asks which library fits the question, so wait for the request itself.
-            await page.wait_for_function("window.requests.length === 3")
+            try:
+                await page.wait_for_function("window.requests.length === 3")
+            except Exception:
+                print("Follow-up diagnostic:", await page.evaluate("({requests: window.requests.length, body: document.body.innerText})"))
+                raise
             await expect(page.get_by_role("button", name="重新生成").last).to_be_enabled()
             messages = await page.evaluate("window.requests.at(-1).messages")
             assert messages[1]["content"].startswith("**答案版本2**")

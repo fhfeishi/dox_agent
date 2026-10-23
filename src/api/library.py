@@ -359,6 +359,7 @@ def install(app, ctx):
                 kn = knowledge_for(info)
                 result = await asyncio.to_thread(import_defaults, kn, settings, root=info.source_dir,
                                                  force=force, parsed_root=info.root / "parsed")
+            request.app.state.project_index.request_refresh(info, kn)
             return {"total": result["scanned"], "completed": result["scanned"], "imported": len(result["imported"]),
                     "changed": result["added"] + result["updated"], "added": result["added"],
                     "updated": result["updated"], "skipped": result["skipped"], "deleted": result["deleted"],
@@ -427,6 +428,7 @@ def install(app, ctx):
                     logger.exception("Target extraction failed for %s", doc_id)
                     job["errors"].append({"doc_id": doc_id, "error": type(exc).__name__})
                 report(completed=job["completed"], errors=job["errors"])
+            request.app.state.project_index.request_refresh(info, knowledge)
             return {"status": "done" if not job["errors"] else "partial" if job["completed"] else "error"}
 
         try:

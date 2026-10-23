@@ -7,6 +7,7 @@ import { useApp } from "../../store";
 import { LibraryTerrain } from "../LibraryTerrain";
 import { GapBoard } from "./GapBoard";
 import { LineageRoads } from "./LineageRoads";
+import { IndexNotice } from "../IndexNotice";
 
 /**
  * 领域分析 · 全景 (query 2026-1021 1629, 2026-1022 1606): all libraries as research domains on one page —
@@ -31,7 +32,7 @@ export function conclusions(data: DomainsOverview): { text: string; library?: st
 }
 
 export function DomainAtlas() {
-  const { data, error, isLoading } = useQuery(domainsOverviewQuery);
+  const { data, error, isLoading, refetch } = useQuery(domainsOverviewQuery);
   const libraries = useQuery({ ...libraryOverviewQuery() });
   const [, setSearch] = useSearchParams();
   const corpora = useApp().corpora.filter((c) => !c.missing && (c.indexed_count ?? 0) > 0);
@@ -46,12 +47,13 @@ export function DomainAtlas() {
   if (isLoading) return <p role="status" className="p-8 text-body text-[var(--steel)]">正在汇总各领域资料…</p>;
   // Without any lineage there is no 全景 yet, but each library's own views still open from here.
   if (error || !data) return <div className="mx-auto max-w-[var(--page-max)] space-y-3 px-5 py-7 sm:px-8">
-    <p role="alert" className="text-body text-[var(--red)]">{(error as Error)?.message ?? "研究领域全景暂不可读"}</p>
+    <IndexNotice error={error ?? new Error("研究领域全景暂不可读")} retry={() => { void refetch(); }} />
     {corpora.length ? <p className="flex flex-wrap items-center gap-2 text-body text-[var(--steel)]">按资料库查看：
       {corpora.map((c) => <button key={c.id} type="button" onClick={() => analyse(c.id)}
         className="rounded-full border border-[var(--hairline-strong)] px-3 py-1 text-caption text-[var(--slate)] hover:border-[var(--primary)]">{c.name.replace(/^自然科学基金-/, "")}</button>)}</p> : null}
   </div>;
   return <div className="atlas-page mx-auto w-full max-w-[var(--page-max)] space-y-10 px-5 py-7 sm:px-8">
+    <IndexNotice state={data.domains.find(r => r.index?.state === "refreshing")?.index} />
     <header className="atlas-hero">
       <div>
         <h1>{data.totals.domains} 个领域的家底、深度与缺口</h1>

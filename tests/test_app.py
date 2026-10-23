@@ -1,3 +1,4 @@
+import time
 from io import BytesIO
 
 import pytest
@@ -8,6 +9,19 @@ from src.api import library as library_api
 from src.api import web as web_api
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+
+
+def fresh_projects(client, corpus_id):
+    """R1 reads may briefly be stale: wait for publication, then keep all content assertions."""
+    deadline = time.monotonic() + 5
+    while True:
+        response = client.get(f"/api/corpora/{corpus_id}/projects")
+        assert response.status_code == 200
+        result = response.json()
+        if result["index"]["state"] == "ready":
+            return result
+        assert time.monotonic() < deadline, result["index"]
+        time.sleep(.01)
 
 
 def setup(tmp_path, graph_factory=None):
@@ -272,7 +286,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         extra = store.put(Document(title="申请摘要", origin="2021_2025_P1_张三_abstract.md",
                                    kind="text", parser="markdown", pages=[Page(number=1, text="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。")],
                                    markdown="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。"))
-        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        summary = fresh_projects(client, corpus_id)
         assert summary["coverage"]["identified_projects"] == 1
         assert len(summary["projects"][0]["files"]) == 2
         assert summary["coverage"]["dimensions"]["场景"]["evidence_projects"] == 1
@@ -285,7 +299,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
             if client.get(f"/api/corpora/{corpus_id}/target/jobs/{second['job_id']}").json()["status"] != "running":
                 break
             time.sleep(.01)
-        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        summary = fresh_projects(client, corpus_id)
         outcomes = summary["projects"][0]["facets"]["成果"]["items"]
         assert {item["status"] for item in outcomes} == {"预期", "已取得"}
         assert {item["doc_id"] for item in outcomes} == {saved["doc_id"], extra["doc_id"]}
@@ -334,7 +348,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert stale.json()["detail"]["message"] == "资料已更新"
         refreshed = next(item for item in client.get(f"/api/corpora/{corpus_id}/reports").json() if item["doc_id"] == saved["doc_id"])
         assert refreshed["stale"] and not refreshed["facets"]["场景"]["items"]
-        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        summary = fresh_projects(client, corpus_id)
         assert summary["coverage"]["dimensions"]["场景"]["evidence_projects"] == 1
         assert {item["status"] for item in summary["projects"][0]["facets"]["成果"]["items"]} == {"预期"}
         assert summary["coverage"]["identified_projects"] == 1
@@ -344,7 +358,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         rename = next(m for m in client.get(topics).json()["merges"] if m["dimension"] == "问题")
         assert client.post(f"{topics}/{rename['id']}/undo").status_code == 200
         assert client.post(f"{topics}/{rename['id']}/undo").status_code == 409
-        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        summary = fresh_projects(client, corpus_id)
         assert summary["coverage"]["dimensions"]["问题"]["items"][0]["name"] == "识别困难"
         # G2: the report's change made only its own topic stale; failure keeps the readable version.
         assert client.get(digest, params={"dimension": "场景", "name": "临床诊疗"}).json()["state"] == "stale"
@@ -356,10 +370,20 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
 
 
         store.record_file("2021_2025_P1_张三_report.md", 0, 0, "", saved["doc_id"], "error", last_error="parse failed")
-        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        summary = fresh_projects(client, corpus_id)
         assert summary["coverage"]["identified_projects"] == 1
         assert len(summary["projects"][0]["files"]) == 2
         assert any(item["state"] == "unavailable" for item in summary["projects"][0]["files"])
+        # A cold build deadline is a retryable HTTP response, not a 500 or an empty library.
+        from src.project_index import IndexPreparing
+
+        def preparing(*args):
+            raise IndexPreparing("资料正在整理，请稍后刷新")
+
+        monkeypatch.setattr(app.state.project_index, "library", preparing)
+        waiting = client.get(f"/api/corpora/{corpus_id}/projects")
+        assert waiting.status_code == 503 and waiting.headers["Retry-After"] == "5"
+        assert waiting.json()["detail"] == "资料正在整理，请稍后刷新"
 
 
 def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_path, monkeypatch):

@@ -2,10 +2,15 @@
 
 import hashlib
 import json
+import logging
+import os
 import re
+import socket
+import threading
+import time
 import uuid
 from collections import defaultdict
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
@@ -35,7 +40,19 @@ SCHEMA = [
     " members TEXT, replaces TEXT, created TEXT, undone TEXT);"
     "CREATE TABLE IF NOT EXISTS project_vectors (corpus TEXT, dim TEXT, project TEXT, digest TEXT,"
     " vector BLOB, PRIMARY KEY(corpus, dim, project))",
+    "CREATE TABLE IF NOT EXISTS index_state (corpus TEXT PRIMARY KEY, revision INTEGER NOT NULL DEFAULT 0,"
+    " built_at TEXT, lease_owner TEXT, lease_until TEXT)",
 ]
+
+logger = logging.getLogger(__name__)
+
+
+class IndexPreparing(RuntimeError):
+    """No published snapshot became available within the cold-read deadline."""
+
+
+class IndexLeaseLost(RuntimeError):
+    pass
 
 
 class ProjectIndex:
@@ -43,6 +60,11 @@ class ProjectIndex:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         migrate(self.path, SCHEMA)
+        self.schedule = None  # the application's Jobs runner, when attached
+        self._cache = {}  # at most one aggregate per corpus; shared revision is authoritative
+        self._cache_lock = threading.RLock()
+        self._pending = set()
+        self._pending_lock = threading.Lock()
 
     def merges(self, corpus):
         with self.connect() as db:
@@ -95,6 +117,7 @@ class ProjectIndex:
                   json.dumps(replaces), datetime.now(UTC).isoformat(), None)
         with self.connect() as db:
             db.execute("INSERT INTO topic_merges VALUES (?,?,?,?,?,?,?,?)", record)
+            self._bump_revision(db, corpus)
         return record[0]
 
     def undo(self, corpus, merge_id):
@@ -105,27 +128,117 @@ class ProjectIndex:
             raise ValueError("该整理已撤销或已被后续合并包含，请先撤销后续合并")
         with self.connect() as db:
             db.execute("UPDATE topic_merges SET undone=? WHERE id=?", (datetime.now(UTC).isoformat(), merge_id))
+            self._bump_revision(db, corpus)
 
-    def connect(self):
-        return connect(self.path)
+    def connect(self, *, readonly=False):
+        return connect(self.path, readonly=readonly)
+
+    @staticmethod
+    def _bump_revision(db, corpus):
+        db.execute("INSERT INTO index_state(corpus,revision) VALUES (?,1) "
+                   "ON CONFLICT(corpus) DO UPDATE SET revision=index_state.revision+1", (corpus,))
+
+    def _state(self, corpus):
+        with self.connect(readonly=True) as db:
+            return db.execute("SELECT revision,built_at,lease_owner,lease_until FROM index_state WHERE corpus=?",
+                              (corpus,)).fetchone() or (0, None, None, None)
+
+    def _acquire(self, corpus):
+        owner = f"{socket.gethostname()}:{os.getpid()}:{uuid.uuid4().hex}"
+        now = datetime.now(UTC)
+        with self.connect() as db:
+            db.execute("INSERT INTO index_state(corpus,revision) VALUES (?,0) ON CONFLICT(corpus) DO NOTHING", (corpus,))
+            changed = db.execute("UPDATE index_state SET lease_owner=?,lease_until=? WHERE corpus=? "
+                                 "AND (lease_until IS NULL OR lease_until < ?)",
+                                 (owner, (now + timedelta(minutes=10)).isoformat(), corpus, now.isoformat())).rowcount
+        return owner if changed else None
+
+    def _renew(self, corpus, owner):
+        now = datetime.now(UTC)
+        with self.connect() as db:
+            changed = db.execute("UPDATE index_state SET lease_until=? WHERE corpus=? AND lease_owner=? AND lease_until>=?",
+                                 ((now + timedelta(minutes=10)).isoformat(), corpus, owner, now.isoformat())).rowcount
+        if not changed:
+            raise IndexLeaseLost("项目索引租约已过期或被接管，未发布旧写入方的结果")
+
+    def _release(self, corpus, owner):
+        with self.connect() as db:
+            db.execute("UPDATE index_state SET lease_owner=NULL,lease_until=NULL WHERE corpus=? AND lease_owner=?",
+                       (corpus, owner))
+
+    def request_refresh(self, info, knowledge):
+        """Schedule only; request threads never parse documents or publish index rows."""
+        if self.schedule is not None:
+            self.schedule(info, knowledge)
+            return
+        # Standalone callers (outside an application Jobs runner) still rebuild off the reader.
+        # This set only avoids redundant local threads; the database lease is the write guard.
+        with self._pending_lock:
+            if info.id in self._pending:
+                return
+            self._pending.add(info.id)
+
+        def run():
+            try:
+                self.refresh(info, knowledge)
+            except Exception:
+                logger.exception("project index rebuild failed for %s", info.id)
+            finally:
+                with self._pending_lock:
+                    self._pending.discard(info.id)
+
+        threading.Thread(target=run, name=f"project-index-{info.id}", daemon=True).start()
 
     def library(self, info, knowledge):
+        deadline = time.monotonic() + 60
+        state = self._state(info.id)
+        if not state[1]:
+            self.request_refresh(info, knowledge)
+            while not state[1]:
+                if time.monotonic() >= deadline:
+                    raise IndexPreparing("资料正在整理，请稍后刷新")
+                time.sleep(.05)
+                state = self._state(info.id)
+        _, _, signatures = self._snapshot(info, knowledge)
+        # Never wait for an in-process lock while holding a SQLite read transaction:
+        # a writer waiting to commit could otherwise block the aggregator's next read.
+        with self._cache_lock:
+            cached = self._cache.get(info.id)
+        # Revision and document rows are read from one SQLite snapshot. No request writes.
+        with self.connect(readonly=True) as db:
+            db.execute("BEGIN")
+            revision = db.execute("SELECT revision FROM index_state WHERE corpus=?", (info.id,)).fetchone()[0]
+            stored = dict(db.execute("SELECT doc,signature FROM project_documents WHERE corpus=?", (info.id,)))
+            if cached is None or cached[0] != revision:
+                payloads = db.execute("SELECT payload FROM project_documents WHERE corpus=? ORDER BY doc", (info.id,)).fetchall()
+            else:
+                payloads = None
+        stale = sum(stored.get(doc) != signature for doc, signature in signatures.items()) + len(stored.keys() - signatures.keys())
+        if stale:
+            self.request_refresh(info, knowledge)
+        with self._cache_lock:
+            cached = self._cache.get(info.id)
+            if cached is None or cached[0] != revision:
+                # An overlapping publication is handled on the next read by its shared revision.
+                if payloads is None:
+                    return self.library(info, knowledge)
+                rows = [json.loads(row[0]) for row in payloads]
+                result = self.aggregate(info.id, rows)
+                self._cache[info.id] = (revision, result)
+            else:
+                result = cached[1]
+        return {**result, "index": {"state": "refreshing" if stale else "ready", "revision": revision, "stale_docs": stale}}
+
+    def _snapshot(self, info, knowledge):
         eligible = {doc["doc_id"]: doc for doc in knowledge.current()}
         current = knowledge.all()
-        with self.connect() as db:
-            cached = {
-                row[0]: (row[1], json.loads(row[2]))
-                for row in db.execute(
-                    "SELECT doc,signature,payload FROM project_documents WHERE corpus=?", (info.id,)
-                )
-            }
-        rows = []
+        signatures = {}
         for doc in current:
             target_path = info.root / "target" / (doc["doc_id"] + ".json")
             stamp = (
                 (target_path.stat().st_mtime_ns, target_path.stat().st_size) if target_path.exists() else None
             )
-            signature = hashlib.sha256(
+            signatures[doc["doc_id"]] = hashlib.sha256(
                 json.dumps(
                     [
                         INDEX_VERSION,
@@ -139,10 +252,24 @@ class ProjectIndex:
                     ensure_ascii=False,
                 ).encode()
             ).hexdigest()
-            old = cached.get(doc["doc_id"])
-            if old and old[0] == signature:
-                row = old[1]
-            else:
+        return current, eligible, signatures
+
+    def refresh(self, info, knowledge):
+        """Only the lease owner parses; all index changes and revision publish together."""
+        owner = self._acquire(info.id)
+        if owner is None:
+            return self._state(info.id)[0]
+        released = False
+        try:
+            current, eligible, signatures = self._snapshot(info, knowledge)
+            with self.connect(readonly=True) as db:
+                cached = dict(db.execute("SELECT doc,signature FROM project_documents WHERE corpus=?", (info.id,)))
+            changed = []
+            for number, doc in enumerate(current, 1):
+                if number % 50 == 0:
+                    self._renew(info.id, owner)
+                if cached.get(doc["doc_id"]) == signatures[doc["doc_id"]]:
+                    continue
                 text = knowledge.read_markdown(doc["doc_id"], doc["version"])
                 row = self.document(info, eligible.get(doc["doc_id"], doc), text)
                 if doc["doc_id"] not in eligible:
@@ -154,18 +281,29 @@ class ProjectIndex:
                     )
                     for facet in row["facets"].values():
                         facet.update(items=[], completed=False, state="unavailable")
-                with self.connect() as db:
-                    db.execute(
-                        "INSERT OR REPLACE INTO project_documents VALUES (?,?,?,?)",
-                        (info.id, doc["doc_id"], signature, json.dumps(row, ensure_ascii=False)),
-                    )
-            rows.append(row)
-        # Only current source rows contribute; cached stale rows are removed independently.
-        with self.connect() as db:
-            keep = {doc["doc_id"] for doc in current}
-            for doc_id in cached.keys() - keep:
-                db.execute("DELETE FROM project_documents WHERE corpus=? AND doc=?", (info.id, doc_id))
-        return self.aggregate(info.id, rows)
+                changed.append((info.id, doc["doc_id"], signatures[doc["doc_id"]], json.dumps(row, ensure_ascii=False)))
+            removed = cached.keys() - signatures.keys()
+            if not changed and not removed and self._state(info.id)[1]:
+                return self._state(info.id)[0]
+            self._renew(info.id, owner)
+            with self.connect() as db:
+                # A conditional UPDATE is the first statement acquiring a write lock: no
+                # read→write lock upgrade, and no SQLite-only BEGIN IMMEDIATE syntax.
+                now = datetime.now(UTC).isoformat()
+                claimed = db.execute("UPDATE index_state SET revision=revision+1,built_at=? WHERE corpus=? "
+                                     "AND lease_owner=? AND lease_until>=?", (now, info.id, owner, now)).rowcount
+                if not claimed:
+                    raise IndexLeaseLost("项目索引租约已失效，未发布结果")
+                db.executemany("INSERT INTO project_documents(corpus,doc,signature,payload) VALUES (?,?,?,?) "
+                               "ON CONFLICT(corpus,doc) DO UPDATE SET signature=excluded.signature,payload=excluded.payload", changed)
+                db.executemany("DELETE FROM project_documents WHERE corpus=? AND doc=?", [(info.id, doc) for doc in removed])
+                db.execute("UPDATE index_state SET lease_owner=NULL,lease_until=NULL WHERE corpus=?", (info.id,))
+                revision = db.execute("SELECT revision FROM index_state WHERE corpus=?", (info.id,)).fetchone()[0]
+            released = True
+            return revision
+        finally:
+            if not released:
+                self._release(info.id, owner)
 
     def document(self, info, doc, text):
         header = text[:12000]

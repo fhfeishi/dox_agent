@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { libraryOverviewQuery } from "../libraryQueries";
 import type { LibraryOverview } from "../api";
+import { IndexNotice } from "./IndexNotice";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const day = (value?: string | null) => value ? value.slice(0, 10) : "未生成";
@@ -15,7 +16,7 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
   const result = useQuery({ ...libraryOverviewQuery() });
   // Waiting and failure sit in the same column as the page they stand in for.
   const column = "mx-auto max-w-[var(--page-max)] px-5 py-7 text-body sm:px-8";
-  if (result.error) return <p role="alert" className={`${column} text-[var(--red)]`}>{(result.error as Error).message}</p>;
+  if (result.error) return <div className={column}><IndexNotice error={result.error} retry={() => { void result.refetch(); }} /></div>;
   if (!result.data) return <p role="status" className={`${column} text-[var(--steel)]`}>正在读取资料库概况…</p>;
   const rows = [...result.data].sort((a, b) => b.projects - a.projects);
   const sum = (pick: (row: LibraryOverview) => number) => rows.reduce((n, row) => n + pick(row), 0);
@@ -26,6 +27,7 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
     ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出${rows[0]?.funding.label ?? "经费"}`],
   ];
   return <div className="mx-auto max-w-[var(--page-max)] space-y-6 px-5 py-7 sm:px-8">
+    <IndexNotice state={rows.find(row => row.index?.state === "refreshing")?.index} />
     <header>
       <p className="text-caption text-[var(--steel)]">资料覆盖与归纳状态</p>
       <h1 className="mt-2 text-page font-semibold">资料库建设情况</h1>

@@ -28,4 +28,5 @@ export const targetDetailQuery = (corpus: string, doc: string, version?: string)
 export const libraryOverviewQuery = () => queryOptions({
   queryKey: ["overview", "libraries"],
   queryFn: ({ signal }) => fetchLibraryOverview(signal),
+  refetchInterval: (query) => query.state.data?.some(r => r.index?.state === "refreshing") ? 2000 : false,
 });

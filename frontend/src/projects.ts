@@ -1,5 +1,6 @@
 import type { DocumentInfo } from "./useDocuments";
-import type { TargetItem } from "./api";
+import type { IndexState, TargetItem } from "./api";
+import { queryOptions } from "@tanstack/react-query";
 
 export const FACETS = ["场景", "问题", "技术", "成果"] as const;
 export const FACET_COLORS = ["#dc5b62", "#478bdb", "#2d9d7e", "#d9a92f"];
@@ -13,6 +14,7 @@ export type Project = {
   funding_conflicts: string[];
 };
 export type ProjectLibrary = {
+  index?: IndexState;
   corpus_id: string; projects: Project[];
   coverage: { files: number; identified_projects: number; pending_identity_records: number;
     dimensions: Record<string, { evidence_projects: number; fully_processed_projects: number; items: { name: string; count: number; project_ids: string[]; item_ids: string[]; members?: string[] }[] }>;
@@ -38,13 +40,14 @@ export type Hierarchy = {
     update_error?: string;
   };
 };
-export const projectQuery = (corpus: string) => ({
+export const projectQuery = (corpus: string) => queryOptions({
   queryKey: ["library", corpus, "projects"],
   queryFn: async ({ signal }: { signal: AbortSignal }): Promise<ProjectLibrary> => {
     const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/projects`, { signal });
     if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "无法读取项目归纳");
     return response.json();
   },
+  refetchInterval: (query) => query.state.data?.index?.state === "refreshing" ? 2000 : false,
 });
 export const hierarchyQuery = (corpus: string) => ({
   queryKey: ["library", corpus, "hierarchy"],

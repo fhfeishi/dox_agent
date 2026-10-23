@@ -8,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.corpora import (
@@ -41,7 +41,7 @@ from .custom_templates import (
 from .intelligence import router as intelligence_router
 from .jobs import Jobs
 from .knowledge import Knowledge
-from .project_index import ProjectIndex
+from .project_index import IndexPreparing, ProjectIndex
 from .project_similarity import ProjectSimilarity
 from .prompt_skills import (
     PromptSkillStore,
@@ -104,6 +104,37 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.corpus_knowledge = {}
         app.state.jobs = Jobs(app.state.runs)
         app.state.jobs.recover()
+        loop = asyncio.get_running_loop()
+
+        def start_index(info, kn):
+            # Local busy is only a queue optimisation. refresh() owns a shared, expiring lease.
+            if app.state.jobs.busy("index", info.id):
+                return
+
+            async def rebuild(progress, report):
+                worker = asyncio.create_task(asyncio.to_thread(app.state.project_index.refresh, info, kn))
+                try:
+                    revision = await asyncio.shield(worker)
+                except asyncio.CancelledError:
+                    # Let a synchronous publication finish/release its lease before closing stores.
+                    await worker
+                    raise
+                return {"status": "done", "revision": revision}
+
+            app.state.jobs.start("index", info.id, rebuild, {"status": "running"})
+
+        app.state.project_index.schedule = lambda info, kn: loop.call_soon_threadsafe(start_index, info, kn)
+
+        async def prepare_indexes():
+            for corpus in await asyncio.to_thread(scan_corpora, settings):
+                if not corpus.missing and corpus.sqlite is not None:
+                    try:
+                        kn = await asyncio.to_thread(knowledge_for, corpus)
+                        app.state.project_index.request_refresh(corpus, kn)
+                    except Exception:
+                        logger.exception("project index preparation failed for %s", corpus.id)
+
+        indexes_task = asyncio.create_task(prepare_indexes())
         app.state.answers = {}       # run_id → AnswerLog of an answer being written or just written
         app.state.answer_tasks = {}  # run_id → the task writing it
         app.state.preparation = "ready" if knowledge is not None else "running"
@@ -130,12 +161,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         with suppress(asyncio.CancelledError): await cleanup_task
         preparation_task.cancel()
         await asyncio.gather(preparation_task, return_exceptions=True)
+        indexes_task.cancel()
+        await asyncio.gather(indexes_task, return_exceptions=True)
         await app.state.jobs.shutdown()
         for task in list(app.state.answer_tasks.values()):
             task.cancel()
         await asyncio.gather(*app.state.answer_tasks.values(), return_exceptions=True)
 
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
+
+    @app.exception_handler(IndexPreparing)
+    async def index_preparing(request, exc):
+        return JSONResponse(status_code=503, content={"detail": str(exc)}, headers={"Retry-After": "5"})
     from .auth import install_auth
     install_auth(app, settings.user_dir)
 

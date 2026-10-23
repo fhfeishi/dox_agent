@@ -140,6 +140,7 @@ def install(app, ctx):
         identified = coverage["identified_projects"]
         return {
             "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
+            "index": library.get("index"),
             "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
             # Projects whose material yielded something in that dimension (首页 地形图, query 2026-1021):
             # the map asks "is this dimension represented", not "was every file processed".

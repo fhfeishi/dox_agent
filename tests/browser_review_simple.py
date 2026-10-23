@@ -154,6 +154,10 @@ async def main():
                 await page.get_by_role("menuitem", name="概览", exact=True).click()
                 await page.get_by_role("menuitem", name="领域分析", exact=True).click()
                 await page.get_by_role("dialog", name="概览 操作指南").get_by_role("button", name="知道了").click()
+                # The default panorama has no legacy view selector; this fixture has no indexed corpus.
+                # Keep the existing year-selector assertions on its explicit, still-supported deep link.
+                await expect(page.get_by_text("还没有可浏览的领域资料。", exact=True)).to_be_visible()
+                await page.goto(origin + "/overview/domains?view=overview")
                 await expect(page.get_by_role("combobox", name="分析视角", exact=True)).to_be_visible()
                 await page.get_by_role("combobox", name="分析视角", exact=True).select_option("years")
                 assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")

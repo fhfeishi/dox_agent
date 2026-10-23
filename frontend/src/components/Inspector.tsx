@@ -428,7 +428,7 @@ export function Inspector() {
                 </p> : null}
                 {artifactVersions.length > 1 ? <label className="mt-[9px] flex items-center gap-[8px] text-caption text-[var(--steel)]">
                   查看版本
-                  <select aria-label="报告版本" value={artifact.version} disabled={editingArtifact}
+                  <select aria-label="报告版本" value={artifact.version} disabled={editingArtifact || savingArtifact}
                     onChange={(event) => {
                       if (inspectorTarget.kind !== "artifact") return;
                       setArtifactSaveError("");

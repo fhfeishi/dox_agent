@@ -9,6 +9,7 @@
 - D-20261022-1 工作文档名称不强制带日期｜工作文档命名、check_rules C8｜现行
 - D-20261022-2 记录目录收口：专题目录、证据目录、载体出口与模板更新通道｜.logsdev 结构、owner-*-design、verification、query 与 DECISIONS 出口、设计载体、init.py --update｜现行
 - D-20261023-1 报告、审查与对话按账户归属列出｜可见范围、报告中心、周期总结、会话历史、visible_owners｜现行
+- D-20261023-2 WSL 与 Windows 同一技术栈与分支，先 WSL 后 Windows；Windows 副本可测试与改启动脚本；按需开分支｜WSL、Windows、launch.cmd、分支、main、worktree｜现行
 
 ## D-20261021-1 采用 aevum/projection_dox 文档体系（规则、检查与基线）
 
@@ -52,3 +53,9 @@
 - 理由与代价：用户 query 2026-1023 1044 要求报告中心显示当前登录用户的报告，周期总结要随记录即时更新；实测领导 10-23 生成的季度总结统计了全部 10 份报告（其中 9 份不是本人的），也漏掉了 41 秒前刚保存的回答。代价：早期无生成人的会话与报告对领导和普通用户不再可见，只在管理员处；这是可见性而非权限，未知 id 仍可读。
 - 未采用：把早期记录按会话内容推断归属（无依据，可能错归）；按 id 读取也做归属校验（会使已分享的报告链接与跨页引用失效，需另行决定）。
 - 依据：`tests/test_period_summary.py`、`tests/test_workspace.py` 中的归属断言；浏览器检查 `.logsdev/verification/query-20261023-1044/`。
+
+## D-20261023-2 WSL 与 Windows 同一技术栈与分支，先 WSL 后 Windows；Windows 副本可测试与改启动脚本；按需开分支
+
+- 决定与范围：WSL（`/home/mvr/wslcodespace/dox_agent`）与 Windows（`D:\chyCodespace\dox_agent`）使用同一技术栈、同一分支和同一套流程，不分平台维护代码或文档。先在 WSL 开发与验证，推送后 Windows 拉取同一提交再测；两端都跟随 `main`，功能分支验证后合并 `main`，Windows 不单独跟踪功能分支。Agent 可以在 Windows 副本上启动、测试，并可在实测后修改启动脚本（`launch.cmd` 等）；取消此前“不改 Windows 副本”的约束（ITERATION §1）。日常在 `main` 一条线上工作，需要并行尝试多个方案时再临时开分支，用完合并或删除；已并入的 `quality-pilot` 分支与 worktree 已删除。
+- 理由与代价：2026-10-23 Windows 端两次出问题都来自两端不同步：启动修复只在 WSL 本地 `main` 未推送，Windows 启动报 `Attribute "app" not found`；领域分析新版只在功能分支，Windows 拉 `main` 后看到旧界面。代价：Windows 测试要等 WSL 先推送；Agent 在 Windows 副本上的操作（切分支、重建 `.venv`、启动服务）会影响用户正在用的环境，结束服务前须确认没有正在写库（强制结束写库进程会留下 hot journal 使下次启动失败，见 [收尾规划](tasks/收尾规划-20261023/README.md) §3）。
+- 依据：用户 2026-10-23 对收尾规划 §4 第 3、4、5 项的答复（“windows、wsl我们使用的技术栈不区分，就一起就好，wsl优先，然后windows”；“允许经过实践后进行启动脚本的修改”；“删除，有必要的时候在开分支尝试多种方案”）。

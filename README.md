@@ -55,6 +55,8 @@ launch.cmd
 
 默认地址：<http://127.0.0.1:8000>。
 
+WSL 与 Windows 使用同一技术栈并跟随同一 `main` 分支：先在 WSL 开发、验证并提交推送，再在 Windows 执行 `git pull origin main`、运行 `launch.cmd` 复测。临时功能分支验证后先合并到 `main`，Windows 再拉取；不要让 Windows 单独跟踪尚未合并的功能分支。两端的 Python 虚拟环境分别安装，源码与验证流程保持一致。
+
 Windows 的 `launch.cmd` 为一键启动：
 
 - 缺少 uv 时自动用官方脚本安装，缺少 Node.js 时自动下载便携版 LTS（依次尝试 `NODE_MIRROR`、nodejs.org、npmmirror），都装在 `%LOCALAPPDATA%\dox_agent`（可用 `DOX_TOOLS_DIR` 改），不需要管理员权限、不修改系统 PATH；缺少 Python 3.12 时由 uv 自动下载。

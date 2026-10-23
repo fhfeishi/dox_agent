@@ -101,7 +101,9 @@ R1提交209ddae、R2提交0f08967均已推送main。R2的WSL契约、直链打�
 
 R3提交586c694已推送main：Overview区分加载/错误可重试/真正空库；WorkspaceHome加载中数量为“—”，领域资料卡也不误报空；Composer原有corporaLoaded守卫已正确，只统一提示文案。原有browser_review_simple扩展5秒延迟、500错误→重试、真实空列表、对话加载中无新建入口及普通用户首页计数；截图已查看。单条与最终check.sh full均退出0（362后端/57前端/9条冒烟）；证据 `.logsdev/verification/收尾-R3/`。首次启动构建因WSL会话超时未运行，非登录shell又误选Windows npm；恢复WSL登录环境的Linux npm后构建与检查通过，无产品断言放宽。
 
-R4的WSL实施与验收通过：workspace.sqlite3的model_checks按连接摘要共享，启动/系统/审查JSON检测均写此表；审查旧model_connection记录迁移删除，主health不再返回model_verified。前端只读model_status，未检测不再凭已配密钥显示正常；两种检测入口均触发共享状态重新读取，审查失败显示检测时间及原因，恢复后去除提示。两项HTTP/持久化集成覆盖失败→成功、launcher结果读取、独立审查连接、错误脱敏、旧记录清理及旧工作区笔记迁移保留；43项定向检查通过。check.sh full退出0（364后端/57前端/9条冒烟），额外browser_status_power也通过并人工查看失败/恢复截图；证据 `.logsdev/verification/收尾-R4/`。新增UI脚本两次遇到测试环境问题（模型信息替身缺字段、静态服务直链404）后暂停；用户批准补齐替身并再验一次，status-power-authorized.log退出0，原断言未删。下一步为R6/R7文档收口，然后Windows复测及R5计时。
+R4提交847ff34已推送main：workspace.sqlite3的model_checks按连接摘要共享，启动/系统/审查JSON检测均写此表；审查旧model_connection记录迁移删除，主health不再返回model_verified。前端只读model_status，未检测不再凭已配密钥显示正常；两种检测入口均触发共享状态重新读取，审查失败显示检测时间及原因，恢复后去除提示。两项HTTP/持久化集成覆盖失败→成功、launcher结果读取、独立审查连接、错误脱敏、旧记录清理及旧工作区笔记迁移保留；43项定向检查通过。check.sh full退出0（364后端/57前端/9条冒烟），额外browser_status_power也通过并人工查看失败/恢复截图；证据 `.logsdev/verification/收尾-R4/`。新增UI脚本两次遇到测试环境问题（模型信息替身缺字段、静态服务直链404）后暂停；用户批准补齐替身并再验一次，status-power-authorized.log退出0，原断言未删。
+
+R6运行说明已补齐“两端同main、先WSL后Windows、功能分支先合入main再拉取”，并同步PROJECT中R4健康接口的现行口径。R7收口随后进行；纯文档共用最终完整回归及各自规范/链接检查，Windows复测及R5计时仍待后续执行。
 
 §8六项债务未改；新增index作业未加入全局recover的KINDS。project_vectors的INSERT OR REPLACE不随R1替换。共享数据库迁移器并发启动迁移不在本卡新增行为中，测试先完成迁移再并发启动。测试服务8012只使用 `/tmp/dox-r1-real-jzgev4pd` 副本，浏览器入口 `http://r1.localhost:8012`；没有配置模型密钥，不调用真实模型。Windows副本干净、main，待WSL完成并推送后再拉取复测。
 

@@ -50,8 +50,16 @@ async def main():
                 await page.request.post(origin+"/api/auth/login", data={"username":"admin","password":"123456"})
                 # File-level steps (paging, search, ticking files) use the by-file list; 按项目 is the default.
                 url=origin+"/library/"+quote(cid)+"/documents?by=file"
-                await page.goto(url)
+                # R2: direct entry and refresh must return the real application, not 404 JSON.
+                await page.goto(origin+"/library/"+quote(cid))
                 await page.get_by_role("dialog", name="资料库 操作指南").get_by_role("button",name="知道了").click()
+                await expect(page.get_by_role("combobox", name="切换资料库")).to_have_value(cid)
+                await page.reload()
+                await expect(page.get_by_role("combobox", name="切换资料库")).to_have_value(cid)
+                direct_shots = Path(".logsdev/verification/收尾-R2")
+                direct_shots.mkdir(parents=True, exist_ok=True)
+                await page.screenshot(path=str(direct_shots / "direct-refresh.png"), full_page=True)
+                await page.goto(url)
                 listing=page.get_by_role("list",name="资料列表",exact=True)
                 await expect(listing.get_by_role("listitem")).to_have_count(40)
                 await page.get_by_role("button",name="下一页",exact=True).click()

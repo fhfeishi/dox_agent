@@ -233,6 +233,9 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
                                pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
+        direct = client.get(f"/library/{corpus_id}")
+        assert direct.status_code == 200 and direct.text == "research shell"
+        assert client.get(f"/library/{corpus_id}/no-such").status_code == 404
         page = client.get(f"/library/{corpus_id}/targets/four-facets?scenario=临床诊疗")
         assert page.status_code == 200 and page.text == "research shell"
         assert "no-cache" in page.headers["cache-control"]

@@ -65,6 +65,7 @@ export const router = createBrowserRouter([{
     { path: "library", Component: Outlet, children: [
       // 资料库 opens on the library cards (query 2026-1013 2012); a card opens one in the same workspace.
       { index: true, lazy: async () => ({ Component: (await import("./components/LibraryHome")).LibraryHome }) },
+      // Server deep-link allowlist and existence check: src/main.py frontend().
       { path: ":corpusId", Component: LibraryPage, children: [
         { path: "documents" }, { path: "documents/:docId" }, { path: "targets/four-facets" },
       ] },

@@ -229,12 +229,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def frontend(asset_path: str):
         root = (DOX_AGENT_ROOT / "frontend/dist").resolve()
         path = (root / (asset_path or "index.html")).resolve()
+        # Keep library paths in sync with frontend/src/router.tsx (:corpusId children).
         # Only known application routes use the SPA entry; missing APIs/assets stay 404.
         page_route = re.fullmatch(
-            r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
+            r"(?:library(?:/(?P<corpus>[^/.]+)(?:/(?:documents(?:/[^/.]+)?|targets/four-facets))?)?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
             r"|home|results(?:/[^/.]+)?|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
+            corpus_id = page_route.group("corpus")
+            if corpus_id:
+                corpus = await asyncio.to_thread(find_corpus, corpus_id)
+                if corpus is None or corpus.missing:
+                    raise HTTPException(404, "资料库不存在或目录已缺失")
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():
             raise HTTPException(404, "页面未构建或资源不存在；请在 frontend 执行 npm run build")

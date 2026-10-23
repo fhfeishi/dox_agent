@@ -54,36 +54,54 @@ def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
     assert "- 本期无可写内容。" in body  # empty sections say so instead of being filled
 
 
-def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_path, monkeypatch):
+def test_summary_endpoint_counts_each_accounts_own_work_including_saved_answers(tmp_path, monkeypatch):
+    from src.auth import CURRENT_USER
+
     class Model:
         async def ainvoke(self, messages):
             facts = json.loads(messages[1].content)
-            assert facts["reports"][0]["title"] == "医疗研判"
+            assert [r["title"] for r in facts["reports"]] == ["保存的回答甲", "医疗研判"]
             return type("R", (), {"content": json.dumps({"headline": "本期以医疗为主。", "focus": ["《医疗研判》"], "suggestions": []})})()
 
     monkeypatch.setattr(reports_api, "model_for", lambda settings, **_: Model())
     app = main.create_app(Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
                                    user_dir=tmp_path / "usr", model_api_key="test"))
+    facts = lambda **params: client.get("/api/summaries/facts", params={"period": "week", **params})
+    titles = lambda response: [r["title"] for r in response.json()["reports"]]
     with TestClient(app) as client:
+        store = app.state.artifacts
+        token = CURRENT_USER.set("user")
+        store.create("a" * 32, type="report", title="医疗研判", markdown="正文", status="completed")
+        store.create("b" * 32, type="answer_snapshot", title="保存的回答甲", markdown="回答", status="completed")
+        CURRENT_USER.set("owner")
+        store.create("c" * 32, type="report", title="领导的报告", markdown="正文", status="completed")
+        CURRENT_USER.reset(token)
+        store.create("d" * 32, type="report", title="早期报告", markdown="正文", status="completed")  # no recorded author
+
+        # query 2026-1023 1044: each account counts its own reports and saved answers, and only they are listed.
         client.post("/api/auth/login", json={"username": "user", "password": "123456"})
-        app.state.artifacts.create("a" * 32, type="report", title="医疗研判", markdown="正文", status="completed")
-        # Publishing was removed (query 2026-1014 1516): no publish endpoint, every report counts.
-        assert client.post("/api/artifacts/" + "a" * 32 + "/publish", json={"published": True}).status_code in (404, 405)
-        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "week"}).json()["reports"]] == ["医疗研判"]
-        client.post("/api/auth/logout")
-        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
-        assert client.post("/api/summaries", json={"period": "decade"}).status_code == 422
+        assert titles(facts()) == ["保存的回答甲", "医疗研判"]
+        assert facts(scope="all").status_code == 403
+        assert {a["title"] for a in client.get("/api/artifacts").json()} == {"医疗研判", "保存的回答甲"}
+        assert client.get("/api/results/summary").json()["completed"]["analysis"] == 2
         created = client.post("/api/summaries", json={"period": "week"})
         assert created.status_code == 201, created.text
         saved = created.json()
-        assert saved["task_id"] == "period_summary" and saved["title"].startswith("工作总结 · 一周内")
-        # One report gives no chart and no empty chart heading.
-        assert "本期以医疗为主。" in saved["markdown"] and "数据概览" not in saved["markdown"] and "分析报告 1 份" in saved["markdown"]
+        assert saved["task_id"] == "period_summary" and saved["title"].startswith("工作总结 · 一周内") and saved["created_by"] == "user"
+        assert "本期以医疗为主。" in saved["markdown"] and "报告 2 份（含保存的回答）" in saved["markdown"] and "统计范围：账户 user" in saved["markdown"]
+        # The new summary is the user's, and the next read already lists it.
+        assert [s["id"] for s in facts().json()["summaries"]] == [saved["artifact_id"]]
         client.post("/api/auth/logout")
+
         client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
-        # A leader sees the same recent work as everyone else.
-        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "week"}).json()["reports"]] == ["医疗研判"]
-        assert client.post("/api/summaries", json={"period": "month"}).status_code == 201
+        assert titles(facts()) == ["领导的报告"] and facts().json()["summaries"] == []
+        client.post("/api/auth/logout")
+
+        # The administrator keeps the records from before authorship was recorded, and may look at everyone's.
+        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
+        assert titles(facts()) == ["早期报告"]
+        assert sorted(titles(facts(scope="all"))) == ["保存的回答甲", "医疗研判", "早期报告", "领导的报告"]
+        assert client.post("/api/summaries", json={"period": "decade"}).status_code == 422
         # A summary is a report record while it is written (card B1): a failure leaves it 未完成 with
         # its reason, never a silent loss or a record stuck at 生成中.
         class Broken:
@@ -91,9 +109,9 @@ def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_p
                 raise RuntimeError("model down")
         monkeypatch.setattr(reports_api, "model_for", lambda settings, **_: Broken())
         assert client.post("/api/summaries", json={"period": "year"}).status_code == 502
-        failed = [a for a in app.state.artifacts.list() if a.get("task_id") == "period_summary" and a["status"] == "failed"]
+        failed = [a for a in store.list() if a.get("task_id") == "period_summary" and a["status"] == "failed"]
         assert len(failed) == 1 and failed[0]["fail_reason"] == "模型调用失败", failed
-        assert not [a for a in app.state.artifacts.list() if a["status"] == "generating"]
+        assert not [a for a in store.list() if a["status"] == "generating"]
 
 
 def test_word_export_turns_chart_blocks_into_tables():

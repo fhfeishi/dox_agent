@@ -1,8 +1,9 @@
+import type { Scope } from "./api";
 /**
  * 成果周期总结 (query 2026-1013 1637; in 成果 since 2026-1015 1142): analysis reports and review tasks of a time period. The server
  * picks the items by their real dates over every record (节点审查 A5, `/api/summaries/facts`),
- * counts repeated reviews of one application once (A4), the same for every role (query 2026-1014
- * 1516); this module turns that into the lists, the one-line summary and the domain tally.
+ * counts repeated reviews of one application once (A4), each account its own work (query 2026-1023
+ * 1044); this module turns that into the lists, the one-line summary and the domain tally.
  */
 // One set of rolling windows ending today (query 2026-1014 1716); the server counts them.
 export type Period = "week" | "month" | "quarter" | "half" | "year";
@@ -14,7 +15,7 @@ export const PERIODS: { key: Period; label: string }[] = [
 type FactState = "已完成" | "未完成" | "进行中";
 export type Facts = {
   period: string; start: string; end: string;
-  reports: { id: string; title: string; domains: string[]; date: string; state: FactState }[];
+  reports: { id: string; title: string; kind: string; domains: string[]; date: string; state: FactState }[];
   reviews: { id: string; title: string; kind: string; domains: string[]; date: string; state: FactState; runs: number }[];
   summaries: { id: string; title: string; created_at: string }[];
 };
@@ -34,7 +35,7 @@ const STATE = { 已完成: "done", 未完成: "failed", 进行中: "active" } as
 /** The period's items newest first, with counts by kind, state and domain. */
 export function fromFacts(facts: Facts): WorkSummary {
   const items: WorkItem[] = [
-    ...facts.reports.map((r): WorkItem => ({ key: "a:" + r.id, kind: "report", id: r.id, title: r.title, type: "分析报告", date: r.date,
+    ...facts.reports.map((r): WorkItem => ({ key: "a:" + r.id, kind: "report", id: r.id, title: r.title, type: r.kind, date: r.date,
       state: STATE[r.state], domains: r.domains, runs: 1 })),
     ...facts.reviews.map((r): WorkItem => ({ key: "r:" + r.id, kind: "review", id: r.id, title: r.title, type: r.kind, date: r.date,
       state: STATE[r.state], domains: r.domains, runs: r.runs })),
@@ -52,23 +53,24 @@ export function fromFacts(facts: Facts): WorkSummary {
 /** One sentence for the period; it names counts and domains only, no judgement. */
 export function headline(summary: WorkSummary, label: string): string {
   if (!summary.items.length) return `${label}没有新的成果报告或审查任务。`;
-  const parts = [summary.reports ? `${summary.reports} 份分析报告` : "", summary.reviews ? `${summary.reviews} 份申请书的审查` : ""].filter(Boolean);
+  const parts = [summary.reports ? `${summary.reports} 份报告` : "", summary.reviews ? `${summary.reviews} 份申请书的审查` : ""].filter(Boolean);
   const where = summary.domains.slice(0, 3).map((d) => d.name).join("、");
   const open = summary.active.length ? `，${summary.active.length} 项仍在处理` : "";
   return `${label}共 ${parts.join("、")}${where ? `，主要涉及${where}` : ""}${open}。`;
 }
 
 /** The period counted on the server over every report and review (src/period_summary.py). */
-export async function fetchSummaryFacts(period: Period, signal?: AbortSignal): Promise<Facts> {
-  const response = await fetch(`/api/summaries/facts?period=${period}`, { signal });
+export async function fetchSummaryFacts(period: Period, scope: Scope, signal?: AbortSignal): Promise<Facts> {
+  const response = await fetch(`/api/summaries/facts?period=${period}${scope === "all" ? "&scope=all" : ""}`, { signal });
   if (!response.ok) throw new Error("周期总结暂不可读");
   return response.json();
 }
 
 /** Writes the period's summary as a report in 报告中心 and returns it. */
-export async function createSummary(period: Period): Promise<{ artifact_id: string }> {
-  const response = await fetch("/api/summaries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ period }) });
+export async function createSummary(period: Period, scope: Scope): Promise<{ artifact_id: string }> {
+  const response = await fetch("/api/summaries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ period, scope }) });
   const value = await response.json().catch(() => null);
+  window.dispatchEvent(new Event("dox-artifacts-changed"));  // a failed summary is a record too
   if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "总结未生成");
   return value;
 }

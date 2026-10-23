@@ -44,6 +44,12 @@ def _when(value: str | None) -> datetime | None:
     return parsed.astimezone()  # stored UTC times and naive local times both become local time
 
 
+def local_day(value: str | None) -> str:
+    """The local calendar day of a stored time; stored UTC times otherwise land on yesterday before 08:00."""
+    when = _when(value)
+    return when.date().isoformat() if when else ""
+
+
 def _excerpt(markdown: str, limit: int = 800) -> str:
     text = re.sub(r"```[\s\S]*?```", "", markdown)
     text = re.sub(r"\[\d+\]", "", text)
@@ -51,6 +57,13 @@ def _excerpt(markdown: str, limit: int = 800) -> str:
 
 
 KINDS = {"formal": "形式审查", "professional": "专业审查"}
+REPORT_KINDS = ("分析报告", "情报分析", "保存的回答")
+
+
+def report_kind(row: dict) -> str:
+    if row.get("type") == "answer_snapshot":
+        return "保存的回答"
+    return "情报分析" if row.get("task_id") == "intelligence" else "分析报告"
 
 
 def in_period(period: str, now: datetime, value: str | None) -> bool:
@@ -58,20 +71,32 @@ def in_period(period: str, now: datetime, value: str | None) -> bool:
     return (t := _when(value)) is not None and start <= t <= now
 
 
-def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], names: dict[str, str]) -> dict:
+def owned_runs(runs: list[dict], owners: list[str] | None) -> list[dict]:
+    return runs if owners is None else [r for r in runs if (r.get("created_by") or "") in owners]
+
+
+def owner_label(owners: list[str] | None) -> str:
+    if owners is None:
+        return "全部账户"
+    named = [o for o in owners if o]
+    return f"账户 {'、'.join(named)}" + ("（含未记录生成人的早期记录）" if "" in owners else "")
+
+
+def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], names: dict[str, str], owner: str = "全部账户") -> dict:
     """Facts of the period: reports (with body excerpts) and review tasks, newest first.
 
     节点审查 A4: repeated reviews of one application (same file content) in one kind count once (the
-    newest, with how many runs it took). Every role reads the same work (query 2026-1014 1516 removed
-    publishing).
+    newest, with how many runs it took). The caller passes one account's records (query 2026-1023
+    1044); an answer saved to 报告中心 is work of the period as much as a generated report.
     """
     start = period_start(period, now)
     inside = lambda value: in_period(period, now, value)
     short = lambda cid: names.get(cid, cid).replace("自然科学基金-", "")
     report_date = lambda r: r.get("updated_at") or r.get("created_at")
     run_date = lambda r: r.get("finished_at") or r.get("created_at")
-    picked_reports = [{"id": r.get("artifact_id", ""), "title": r.get("title") or "分析报告", "domains": [short(c) for c in r.get("corpus_ids") or []],
-                       "date": (report_date(r) or "")[:10],
+    picked_reports = [{"id": r.get("artifact_id", ""), "title": r.get("title") or "分析报告", "kind": report_kind(r),
+                       "domains": [short(c) for c in r.get("corpus_ids") or []],
+                       "date": local_day(report_date(r)),
                        "state": "已完成" if r.get("status") == "completed" else "未完成" if r.get("status") == "failed" else "进行中",
                        "excerpt": _excerpt(r.get("markdown") or "")}
                       for r in reports if r.get("task_id") != TASK_ID and inside(report_date(r))]
@@ -87,10 +112,10 @@ def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], na
             continue
         latest[key] = {"id": r.get("id", ""), "title": document.get("metadata", {}).get("title") or document.get("filename") or "申请书",
                        "kind": kind, "domains": [short(c) for c in (r.get("request") or {}).get("corpus_ids") or []],
-                       "date": (run_date(r) or "")[:10],
+                       "date": local_day(run_date(r)),
                        "state": {"completed": "已完成", "failed": "未完成"}.get(r.get("status"), "进行中"),
                        "issues": (r.get("summary") or {}).get("issue"), "runs": 1}
-    return {"period": PERIODS[period], "start": start.date().isoformat(), "end": now.date().isoformat(),
+    return {"period": PERIODS[period], "start": start.date().isoformat(), "end": now.date().isoformat(), "owner": owner,
             "reports": sorted(picked_reports, key=lambda r: r["date"], reverse=True),
             "reviews": sorted(latest.values(), key=lambda r: r["date"], reverse=True)}
 
@@ -107,7 +132,10 @@ def charts(facts: dict, scenes_of) -> list[dict]:
         ranked = sorted(by_domain.items(), key=lambda kv: (-kv[1], kv[0]))[:8]
         out.append({"type": "bar", "title": "各领域的工作量", "labels": [k for k, _ in ranked], "values": [v for _, v in ranked], "unit": " 项",
                     "note": "分析报告与审查任务按所涉资料库计；形式审查不关联资料库"})
-    kinds = [("分析报告", len(facts["reports"])), *[(k, sum(r["kind"] == k for r in facts["reviews"])) for k in ("形式审查", "专业审查")]]
+    # 分析报告 and the two review kinds always show; 情报分析 and saved answers only when there are some.
+    reported = [(k, sum(r["kind"] == k for r in facts["reports"])) for k in REPORT_KINDS]
+    kinds = [*[(k, v) for k, v in reported if v or k == "分析报告"],
+             *[(k, sum(r["kind"] == k for r in facts["reviews"])) for k in ("形式审查", "专业审查")]]
     if any(r["kind"] == "资料审查" for r in facts["reviews"]):
         kinds.append(("资料审查", sum(r["kind"] == "资料审查" for r in facts["reviews"])))
     if sum(1 for _, v in kinds if v) > 1:
@@ -146,23 +174,25 @@ def markdown(facts: dict, text: dict, figures: list[dict]) -> str:
     suggestions = [s for s in text.get("suggestions") or [] if isinstance(s, dict) and s.get("issue")]
     lines += ["## 问题与建议", ""] + ([f"- **{s['issue']}**：{s.get('proposal', '')}" for s in suggestions] or ["- 本期无。"]) + [""]
     lines += ["## 统计口径", "",
-              f"- 时间段按真实日期计：{facts['start']} 至 {facts['end']}；分析报告 {len(facts['reports'])} 份，审查任务 {len(facts['reviews'])} 项。",
+              f"- 时间段按真实日期计：{facts['start']} 至 {facts['end']}；报告 {len(facts['reports'])} 份（含保存的回答），审查任务 {len(facts['reviews'])} 项。",
+              f"- 统计范围：{facts['owner']}。",
               "- 图表数字由系统统计；文字部分由模型依据上述报告与任务撰写，需人工核对。", ""]
     return "\n".join(lines)
 
 
-def report_rows(store) -> list[dict]:
-    """Every active report row, page by page: a period count must not stop at a list limit (节点审查 A5)."""
+def report_rows(store, owners: list[str] | None) -> list[dict]:
+    """Every active report and saved answer of these accounts, page by page: a period count must not
+    stop at a list limit (节点审查 A5)."""
     rows, cursor = [], None
     while True:
-        page = store.list(type="report", limit=200, cursor=cursor)
+        page = store.list(limit=200, cursor=cursor, owners=owners)
         rows += page
         if len(page) < 200:
             return rows
         cursor = page[-1]["cursor"]
 
 
-async def generate(app, period: str, model) -> dict:
+async def generate(app, period: str, model, owners: list[str] | None) -> dict:
     """Gather, count, ask the model for the text, and save the summary as a report.
 
     The summary is a report record from the moment it starts (card B1): 报告中心 shows it as 生成中, a
@@ -175,10 +205,10 @@ async def generate(app, period: str, model) -> dict:
     infos = scan_corpora(settings)
     names = {info.id: info.name for info in infos}
     now = datetime.now().astimezone()
-    rows = [r for r in report_rows(store) if r["status"] == "completed"
+    rows = [r for r in report_rows(store, owners) if r["status"] == "completed"
             and in_period(period, now, r.get("updated_at") or r.get("created_at"))]
     reports = [store.get(row["artifact_id"]) for row in rows]  # bodies for the excerpts
-    facts = gather(period, now, reports, review_db.all_items("run"), names)
+    facts = gather(period, now, reports, owned_runs(review_db.all_items("run"), owners), names, owner_label(owners))
 
     def scenes_of(short_name: str) -> dict:
         info = next((i for i in infos if i.name.replace("自然科学基金-", "") == short_name), None)

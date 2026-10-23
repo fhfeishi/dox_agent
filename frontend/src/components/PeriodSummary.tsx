@@ -4,23 +4,28 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createSummary, fetchSummaryFacts, fromFacts, headline, PERIODS, type Period, type WorkItem } from "../recentWork";
 import { Chart, type ChartSpec } from "./Charts";
 import { useLayout } from "../layout";
+import type { Scope } from "../api";
 
 const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as const;
 
 /**
  * 成果周期总结 (query 2026-1013 1637; a section of the 成果 page since 2026-1015 1142/1553): analysis reports and review tasks in a chosen period — a one-line
  * summary first, then finished and unfinished work. The server counts the period over every record,
- * merges repeated reviews of one application (节点审查 A4/A5); every role sees the same work
- * (query 2026-1014 1516). Reports open in the right-hand panel, reviews on their own page.
+ * merges repeated reviews of one application (节点审查 A4/A5); each account counts its own reports, saved
+ * answers and reviews (query 2026-1023 1044). The facts are re-read whenever a report changes, every
+ * half minute (every five seconds while work is in progress) and when the window regains focus, so a
+ * window like 一周内 always ends now. Reports open in the right-hand panel, reviews on their own page.
  */
-export function PeriodSummary() {
+export function PeriodSummary({ scope }: { scope: Scope }) {
   const { showInspector } = useLayout();
   const navigate = useNavigate();
   const client = useQueryClient();
   const [period, setPeriod] = useState<Period>("week");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const facts = useQuery({ queryKey: ["recent", period], queryFn: ({ signal }) => fetchSummaryFacts(period, signal) });
+  const facts = useQuery({ queryKey: ["recent", period, scope], queryFn: ({ signal }) => fetchSummaryFacts(period, scope, signal),
+    refetchOnWindowFocus: true,
+    refetchInterval: (query) => query.state.data && fromFacts(query.state.data).active.length ? 5000 : 30000 });
   if (facts.error) return <p role="alert" className="p-8 text-body text-[var(--red)]">周期总结暂不可读，请稍后重试。</p>;
   if (!facts.data) return <p role="status" className="p-8 text-body text-[var(--steel)]">正在读取周期总结…</p>;
   const label = PERIODS.find((p) => p.key === period)!.label;
@@ -39,10 +44,10 @@ export function PeriodSummary() {
   async function generate() {
     setBusy(true); setError("");
     try {
-      const value = await createSummary(period);
+      const value = await createSummary(period, scope);
       await client.invalidateQueries({ queryKey: ["recent"] });
       showInspector({ kind: "artifact", artifactId: value.artifact_id });
-    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+    } catch (e) { setError((e as Error).message); await client.invalidateQueries({ queryKey: ["recent"] }); } finally { setBusy(false); }
   }
   const open = (item: WorkItem) => {
     if (item.kind === "report") showInspector({ kind: "artifact", artifactId: item.id });
@@ -92,6 +97,6 @@ export function PeriodSummary() {
         {list("未完成", summary.failed)}
       </div>
     </details> : null}
-    <p className="text-caption leading-5 text-[var(--stone)]">按报告更新时间与审查完成时间统计；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。</p>
+    <p className="text-caption leading-5 text-[var(--stone)]">统计 {facts.data.start} 至 {facts.data.end}（今天）{scope === "all" ? "全部账户" : "本账户"}的报告、保存的回答与审查，按报告更新时间与审查完成时间计，数字随报告变化即时更新；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。</p>
   </section>;
 }

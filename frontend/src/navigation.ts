@@ -57,7 +57,7 @@ export const NAV: NavEntry[] = [
   { key: "intelligence", label: TERMS.intelligence.name, to: "/intelligence", hint: "上传外部材料进行分析", roles: ALL, workbench: true,
     card: { title: TERMS.intelligence.name, text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
   // 报告中心 (named 成果 until query 2026-1019 2021) is a page of its own after the work areas.
-  { key: "results", label: TERMS.results.name, to: "/results", hint: "全部报告、周期总结与回收站", roles: ALL },
+  { key: "results", label: TERMS.results.name, to: "/results", hint: "我的报告、周期总结与回收站", roles: ALL },
 ];
 
 /** A bar item: an entry, or for a leader the one 工作台 menu that holds the work areas. */

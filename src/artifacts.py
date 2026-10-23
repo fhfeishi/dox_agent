@@ -723,8 +723,10 @@ class ArtifactStore:
         view: str = "active",
         cursor: str | None = None,
         created_by: str | None = None,
+        owners: list[str] | None = None,
     ) -> list[dict]:
         """Metadata-only list. ``session_key=None`` means global; ``""`` filters empty session.
+        ``owners`` keeps the records of those accounts (``""``: no recorded author), see auth.visible_owners.
 
         The distinction matters for the §16.15 cross-session semantics (omitted vs explicit empty).
         """
@@ -754,6 +756,9 @@ class ArtifactStore:
         if created_by is not None:
             clauses.append("created_by=?")
             args.append(created_by)
+        if owners is not None:
+            clauses.append(f"created_by IN ({','.join('?' * len(owners))})")
+            args.extend(owners)
         where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
         with self.connect() as db:
             rows = db.execute(

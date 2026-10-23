@@ -1,5 +1,14 @@
 import type { ReactNode } from "react";
 import { Icon } from "./Icons";
+import { PANEL_SIZES, type PanelSize } from "../panelSize";
+
+/** The 20 / 40 / 60 % choice in a panel's head; hidden on narrow screens, where panels take the full width. */
+export function PanelSizeSwitch({ value, onChange }: { value: PanelSize; onChange: (size: PanelSize) => void }) {
+  return <span role="group" aria-label="面板宽度" className="panel-size">
+    {PANEL_SIZES.map((size) => <button key={size} type="button" aria-pressed={value === size} title={`面板占窗口宽度的 ${size}%`}
+      onClick={() => onChange(size)}>{size}%</button>)}
+  </span>;
+}
 
 /**
  * The shared look of the right-hand panels (query 2026-1015 1553): the preview panel and the library

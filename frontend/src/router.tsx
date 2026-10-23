@@ -60,6 +60,7 @@ export const router = createBrowserRouter([{
     { path: "home", lazy: async () => ({ Component: (await import("./components/WorkspaceHome")).WorkspaceHome }) },
     { path: "overview/:area?", Component: OverviewPage },
     { path: "results", lazy: async () => ({ Component: (await import("./components/ResultsPage")).ResultsPage }) },
+    { path: "results/:artifactId", lazy: async () => ({ Component: (await import("./components/ReportPage")).ReportPage }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
       // 资料库 opens on the library cards (query 2026-1013 2012); a card opens one in the same workspace.

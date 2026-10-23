@@ -55,7 +55,7 @@ export function LibraryHome() {
 
   // Same column as 任务模版 and 成果, so list pages share one gutter (query 2026-1019 2021).
   return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8">
-    <div className="mx-auto max-w-[1200px] space-y-6">
+    <div className="mx-auto max-w-[var(--page-max)] space-y-6">
       <header className="flex flex-wrap items-center gap-3">
         <h1 className="text-page font-semibold">资料库</h1>
         {corporaLoaded ? <span className="text-body text-[var(--steel)]">{corpora.length} 个资料库</span> : null}

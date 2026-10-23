@@ -11,7 +11,7 @@ import { useApp } from "../store";
 import type { DocumentInfo } from "../useDocuments";
 import type { Project } from "../projects";
 import { Icon } from "./Icons";
-import { PANEL_SHELL, PanelButton, PanelHeader } from "./Panel";
+import { PANEL_SHELL, PanelButton, PanelHeader, PanelSizeSwitch } from "./Panel";
 import { GenerationProgress } from "./GenerationProgress";
 import { useLayout } from "../layout";
 import { Button } from "./ui";
@@ -68,6 +68,8 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
     inspectorOpen,
     setChatDocked,
     showInspector,
+    dockSize,
+    setDockSize,
   } = useLayout();
   const [, setParams] = useSearchParams();
   const [reports, setReports] = useState<Report[]>([]);
@@ -149,9 +151,10 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
   const right = inspectorOpen ? "xl:right-[calc(var(--inspector-width)+20px)]" : "";
 
   return <section aria-label="分析工作区"
-    className={`${PANEL_SHELL} fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[440px] ${right}`}>
+    className={`${PANEL_SHELL} panel-motion panel-enter fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--dock-width)] sm:max-w-[calc(100vw-20px)] ${right}`}>
     <PanelHeader title="分析工作区" subtitle={`${WORKSPACE_TASK_LABEL}${task && TASK_NAME[task] && task !== "task1" ? ` · ${TASK_NAME[task]}` : ""} · 记入会话历史`}
       actions={<>
+        <PanelSizeSwitch value={dockSize} onChange={setDockSize} />
         <PanelButton label="开始新的分析" disabled={busy || reporting || sessionBusy || !turns.length} onClick={() => void fresh()}><Icon name="refresh" size={14} /></PanelButton>
         <PanelButton label="收起工作区" onClick={onClose}><Icon name="close" size={14} strokeWidth={2} /></PanelButton>
       </>} />

@@ -14,7 +14,7 @@ const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh
 export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => void }) {
   const result = useQuery({ ...libraryOverviewQuery() });
   // Waiting and failure sit in the same column as the page they stand in for.
-  const column = "mx-auto max-w-[1200px] px-5 py-7 text-body sm:px-8";
+  const column = "mx-auto max-w-[var(--page-max)] px-5 py-7 text-body sm:px-8";
   if (result.error) return <p role="alert" className={`${column} text-[var(--red)]`}>{(result.error as Error).message}</p>;
   if (!result.data) return <p role="status" className={`${column} text-[var(--steel)]`}>正在读取资料库概况…</p>;
   const rows = [...result.data].sort((a, b) => b.projects - a.projects);
@@ -25,7 +25,7 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
     ["资料", `${sum((r) => r.files)} 份`, "当前文件，未跨库去重"],
     ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出${rows[0]?.funding.label ?? "经费"}`],
   ];
-  return <div className="mx-auto max-w-[1200px] space-y-6 px-5 py-7 sm:px-8">
+  return <div className="mx-auto max-w-[var(--page-max)] space-y-6 px-5 py-7 sm:px-8">
     <header>
       <p className="text-caption text-[var(--steel)]">资料覆盖与归纳状态</p>
       <h1 className="mt-2 text-page font-semibold">资料库建设情况</h1>

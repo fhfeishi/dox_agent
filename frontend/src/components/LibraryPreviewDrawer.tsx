@@ -1,5 +1,5 @@
-import { useState } from "react";
-import type { LibraryOverview } from "../api";
+import { useRef, useState } from "react";
+import { saveDomainReport, type ArtifactSummary, type LibraryOverview } from "../api";
 import { useLayout } from "../layout";
 import { MATURITY, shortPct } from "./CaliberPop";
 import { SlideOver } from "./SlideOver";
@@ -20,14 +20,30 @@ const clip = (text: string, length: number) => text.length > length ? `${text.sl
  * map where a gap changes what you do next, not repeated here where it adds a chart without adding a
  * decision. Everything else is still stored fact — the system summaries are the model's own `plain`
  * lines and each high-maturity item keeps the basis it quoted.
+ *
+ * It is the same right-hand panel as everywhere else (query 2026-1023 1044): the page stays visible,
+ * the width can be set to 20 / 40 / 60 %, and 导出报告 saves these figures to 报告中心 as a
+ * 专项报告 · 领域分析 of the signed-in account.
  */
-export function LibraryPreviewDrawer({ row, onClose }: { row: LibraryOverview | null; onClose: () => void }) {
-  const { openCorpus } = useLayout();
+export function LibraryPreviewDrawer({ row: current, onClose }: { row: LibraryOverview | null; onClose: () => void }) {
+  const { openCorpus, showInspector } = useLayout();
   // 八个体系全展开会把成熟度与高成熟条目推到首屏之外；先给前五个，其余一次点开。
   const [expanded, setExpanded] = useState(false);
-
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState<{ corpus: string; report?: ArtifactSummary; error?: string } | null>(null);
+  // The last library stays on the panel while it slides out.
+  const last = useRef(current);
+  if (current) last.current = current;
+  const row = last.current;
 
   if (!row) return null;
+  const outcome = saved?.corpus === row.corpus_id ? saved : null;
+  async function exportReport(corpus: string) {
+    setSaving(true);
+    try { setSaved({ corpus, report: await saveDomainReport(corpus) }); }
+    catch (e) { setSaved({ corpus, error: (e as Error).message }); }
+    finally { setSaving(false); }
+  }
   const systems = [...(row.lineage.systems_detail ?? [])];
   const top = row.lineage.top ?? [];
   const highest = systems.length ? systems[0].items : 1;
@@ -44,12 +60,17 @@ export function LibraryPreviewDrawer({ row, onClose }: { row: LibraryOverview | 
   const money = Number(row.funding.total_yuan) / 10000;
   const peakShare = row.lineage.high_share ?? 0;
 
-  return <SlideOver open={Boolean(row)} onClose={onClose} eyebrow="资料库预览" title={short(row.name)} label={`${short(row.name)} 资料库预览`}
+  return <SlideOver open={Boolean(current)} onClose={onClose} sizeKey="library-preview" eyebrow="资料库预览" title={short(row.name)} label={`${short(row.name)} 资料库预览`}
     meta={<>{row.start_years?.length ? `${row.start_years[0]}–${row.start_years.at(-1)} 年立项` : "立项年份待核对"} · {row.lineage.systems} 个技术体系</>}
     stats={[{ value: fmt(row.projects), label: "个项目" }, { value: fmt(row.files), label: "份资料" }, { value: fmt(row.lineage.items), label: "条技术" },
       { value: shortPct(peakShare), label: "成熟 4 以上", tone: peakShare >= 20 ? "ok" : "warn" }]}
     footer={<>
-      <span className="text-caption text-[var(--muted-cool)]">只读摘要 · 数据取技术谱系与项目索引</span>
+      {outcome?.report ? <span role="status" className="text-caption text-[var(--steel)]">已保存到报告中心 ·{" "}
+        <button type="button" className="text-[var(--link)] hover:underline" onClick={() => { onClose(); showInspector({ kind: "artifact", artifactId: outcome.report!.artifact_id }); }}>打开</button></span>
+        : outcome?.error ? <span role="alert" className="text-caption text-[var(--red)]">{outcome.error}</span>
+        : <span className="text-caption text-[var(--muted-cool)]">数据取技术谱系与项目索引</span>}
+      <button type="button" className="slide-action" disabled={saving} title="把这份预览的图表与数字保存到报告中心：专项报告 · 领域分析"
+        onClick={() => void exportReport(row.corpus_id)}>{saving ? "正在保存…" : "导出报告"}</button>
       <button type="button" className="slide-action primary" onClick={() => { onClose(); openCorpus(row.corpus_id); }}>进入资料库 →</button>
     </>}>
       <div className="space-y-3">

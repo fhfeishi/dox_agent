@@ -7,6 +7,7 @@ import { useApp } from "./store";
 import { lazy, Suspense } from "react";
 import type { CSSProperties } from "react";
 import { useLayout } from "./layout";
+import { panelWidth } from "./panelSize";
 
 const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((module) => ({ default: module.DocumentPreview })));
 const Inspector = lazy(() => import("./components/Inspector").then((module) => ({ default: module.Inspector })));
@@ -23,7 +24,8 @@ export function App() {
   const {
     inspectorOpen,
     chatDocked,
-    inspectorWidth,
+    inspectorSize,
+    dockSize,
     previewDoc,
     previewFocus,
     closeFullPreview,
@@ -31,7 +33,7 @@ export function App() {
   } = useLayout();
 
   return (
-    <div style={{ "--inspector-width": `${inspectorWidth}px` } as CSSProperties}
+    <div style={{ "--inspector-width": panelWidth(inspectorSize, 400), "--dock-width": panelWidth(dockSize, 440) } as CSSProperties}
       className="font-app flex h-screen w-full flex-col overflow-hidden bg-[var(--canvas)] text-[var(--charcoal)]">
       <TopNav />
       <StatusBanner />
@@ -43,11 +45,12 @@ export function App() {
         只有内容区让出右侧空间，避免被盖住。1024 px 以下不让位，直接覆盖。
       */}
       <div
-        className={`relative flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        className={`relative flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[var(--ease-panel)] ${
           // From 1024 px the page makes room instead of being covered (query 2026-1015 1639); below
-          // 1280 px a preview opened beside the library chat lies over the chat.
-          inspectorOpen && chatDocked ? "lg:pr-[448px] xl:pr-[calc(var(--inspector-width)+458px)]"
-            : inspectorOpen ? "lg:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "lg:pr-[448px]" : ""
+          // 1280 px a preview opened beside the library chat lies over the chat. Widths are the panels'
+          // 20 / 40 / 60 % choice (query 2026-1023 1044).
+          inspectorOpen && chatDocked ? "lg:pr-[calc(var(--dock-width)+18px)] xl:pr-[calc(var(--inspector-width)+var(--dock-width)+28px)]"
+            : inspectorOpen ? "lg:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "lg:pr-[calc(var(--dock-width)+18px)]" : ""
         }`}
       >
         <Suspense fallback={<div className="p-6 text-body text-[var(--muted)]">正在加载…</div>}>

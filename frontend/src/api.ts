@@ -63,6 +63,14 @@ export async function fetchLibraryOverview(signal?: AbortSignal): Promise<Librar
   return jsonOrThrow(await fetch("/api/overview/libraries", { signal }), "资料库概况暂不可读");
 }
 
+/** 资料库预览 → 导出报告: the preview's counted figures saved to 报告中心 as 专项报告 · 领域分析. */
+export async function saveDomainReport(corpusId: string): Promise<ArtifactSummary> {
+  const response = await fetch(`/api/domains/${encodeURIComponent(corpusId)}/report`, { method: "POST" });
+  const saved = await jsonOrThrow(response, "报告未保存") as ArtifactSummary;
+  window.dispatchEvent(new Event("dox-artifacts-changed"));
+  return saved;
+}
+
 export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
   const response = await fetch("/api/corpora", signal ? { signal } : undefined);
   if (!response.ok) throw new Error("知识库列表不可用（" + response.status + "）");
@@ -321,11 +329,17 @@ export async function changeArtifactFigure(artifactId: string, figureId: string,
 }
 
 /** W3-B: artifacts for one session (undefined = global list; "" filters empty session). */
+/**
+ * Whose records a list shows (query 2026-1023 1044): "mine" is the signed-in account's own (the
+ * administrator's also the older ones with no recorded author); "all", for the administrator, everyone's.
+ */
+export type Scope = "mine" | "all";
 /** 报告中心 records; `view: "trash"` lists the recycle bin, `created_by` one account's own. */
-export type ArtifactFilter = { session_key?: string; type?: string; limit?: number; view?: "trash"; created_by?: string };
+export type ArtifactFilter = { session_key?: string; type?: string; limit?: number; view?: "trash"; created_by?: string; scope?: Scope };
 
 export async function fetchArtifacts(filter: ArtifactFilter = {}, signal?: AbortSignal): Promise<ArtifactSummary[]> {
-  const query = new URLSearchParams(Object.entries(filter).flatMap(([key, value]) => value === undefined ? [] : [[key, String(value)]]));
+  // "mine" is the server's default, so only "all" goes on the address.
+  const query = new URLSearchParams(Object.entries(filter).flatMap(([key, value]) => value === undefined || (key === "scope" && value === "mine") ? [] : [[key, String(value)]]));
   const response = await fetch(`/api/artifacts${query.size ? `?${query}` : ""}`, { signal });
   if (!response.ok) throw new Error(`${filter.view === "trash" ? "回收站读取失败" : "报告列表不可用"}（${response.status}）`);
   return response.json();
@@ -355,7 +369,9 @@ export async function createArtifact(params: {
   const response = await fetch("/api/artifacts", {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(params),
   });
-  return jsonOrThrow(response, "保存成果失败") as Promise<ArtifactInfo>;
+  const saved = await jsonOrThrow(response, "保存成果失败") as ArtifactInfo;
+  window.dispatchEvent(new Event("dox-artifacts-changed"));
+  return saved;
 }
 
 /** W3-B: direct export URL (real .docx or .md); opening it triggers the download. */

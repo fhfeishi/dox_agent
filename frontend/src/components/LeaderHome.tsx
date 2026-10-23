@@ -45,7 +45,7 @@ export function LeaderHome() {
   const fields = (chosen?.fields ?? []).slice(0, 8);
 
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[var(--page-cool)]">
-    <div className="mx-auto max-w-[1200px] space-y-9 px-5 py-7 sm:px-8">
+    <div className="mx-auto max-w-[var(--page-max)] space-y-9 px-5 py-7 sm:px-8">
       {overview.data ? <HeroCarousel rows={rows} />
         : <div className="h-[300px] rounded-2xl bg-gradient-to-br from-[var(--banner-1)] via-[var(--banner-2)] to-[var(--banner-3)]" aria-hidden="true" />}
       <p className="-mt-6 text-caption text-[var(--stone)]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>

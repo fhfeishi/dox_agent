@@ -1,3 +1,4 @@
+import type { Scope } from "./api";
 /** 形式审查（W8）：对接 /api/review/*，与主应用 /api/* 互相独立。
  * 审查上传的指南与申请书是工作材料，不进入知识库、不参与检索。 */
 
@@ -380,8 +381,9 @@ export function createReviewRun(input: { kind: ReviewKind; information_sheet_id?
     body: JSON.stringify(input),
   }, "审核任务创建失败");
 }
-export function fetchReviewRuns(): Promise<ReviewRun[]> {
-  return request("/runs", undefined, "审核记录读取失败");
+/** The signed-in account's reviews; `scope: "all"` (administrator) every account's (query 2026-1023 1044). */
+export function fetchReviewRuns(scope: Scope = "mine"): Promise<ReviewRun[]> {
+  return request(scope === "all" ? "/runs?scope=all" : "/runs", undefined, "审核记录读取失败");
 }
 export function fetchReviewRun(id: string): Promise<ReviewRun> {
   return request(`/runs/${encodeURIComponent(id)}`, undefined, "报告读取失败");

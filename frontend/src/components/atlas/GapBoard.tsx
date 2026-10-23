@@ -110,7 +110,11 @@ export type DragHandlers = { start: (items: Opportunity[]) => void; move: (x: nu
  * demo): x = 已有基础, y = 影响面, both project counts on square-root scales, split at their medians.
  * Openings with the same two counts share one point that shows how many it holds — equal counts used
  * to stack dots on one spot. A point is clicked (one opening: into the pool; several: a list to pick
- * from) or dragged onto the 候选池; the best-ranked points carry a label where it does not collide.
+ * from) or dragged onto the 候选池.
+ *
+ * Points carry no names on the chart (query 2026-1023 1044: dots and their titles together were too
+ * busy): a name shows on hover or focus, the quadrants keep their two-to-three-character names and
+ * counts, and the axes say only what they measure; the full wording is in the hover card and 怎么读.
  */
 function OppChart({ items, pool, onPick, onPickAll, drag }: {
   items: Opportunity[]; pool: Set<string>; onPick: (o: Opportunity) => void; onPickAll: (list: Opportunity[]) => void; drag: DragHandlers;
@@ -144,7 +148,7 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
   const cx = lowCols === 0 ? L : lowCols === columns.length ? R : L + colW * lowCols;
   const lows = items.map((o) => o.reach).filter((v) => !reach.high(v)), highs = items.map((o) => o.reach).filter(reach.high);
   const cy = !highs.length ? T : !lows.length ? B : (sy(Math.max(...lows)) + sy(Math.min(...highs))) / 2;
-  const yTicks = [...new Set([0, Math.round(maxReach / 4), Math.round(maxReach / 2), maxReach].filter((v) => v >= 0))];
+  const yTicks = [...new Set([0, maxReach])];
 
   const groups = useMemo(() => {
     const map = new Map<string, Opportunity[]>();
@@ -170,21 +174,6 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
     }
     return done;
   }, [groups, colW]);
-
-  // Labels: best-ranked first, skipped where they would overlap a label already placed or the frame edge.
-  const labels = new Map<string, { x: number; y: number; anchor: "start" | "end"; text: string }>();
-  const boxes: { x0: number; x1: number; y0: number; y1: number }[] = [];
-  for (const g of placed.slice(0, 10)) {
-    const text = g.items.length > 1 ? `${short(g.items[0].title, 9)} 等 ${g.items.length} 项` : short(g.items[0].title, 12);
-    const width = text.length * 11;
-    for (const anchor of ["start", "end"] as const) {
-      const x = anchor === "start" ? g.cx + g.r + 5 : g.cx - g.r - 5;
-      const box = { x0: anchor === "start" ? x : x - width, x1: anchor === "start" ? x + width : x, y0: g.cy - 8, y1: g.cy + 6 };
-      if (box.x0 < L || box.x1 > R) continue;
-      if (boxes.some((b) => b.x0 < box.x1 && box.x0 < b.x1 && b.y0 < box.y1 && box.y0 < b.y1)) continue;
-      boxes.push(box); labels.set(g.key, { x, y: g.cy + 4, anchor, text }); break;
-    }
-  }
 
   const local = (event: { clientX: number; clientY: number }) => {
     const box = frame.current!.getBoundingClientRect();
@@ -234,22 +223,22 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
       {columns.map((v) => <text key={`x${v}`} x={sx(v)} y={B + 16} textAnchor="middle" className="opp-tick">{v}</text>)}
       {yTicks.map((v) => <g key={`y${v}`}><line x1={L} x2={R} y1={sy(v)} y2={sy(v)} className="opp-grid" />
         <text x={L - 6} y={sy(v) + 4} textAnchor="end" className="opp-tick">{v}</text></g>)}
-      <text x={R} y={B + 30} textAnchor="end" className="opp-axis">已有基础（相关项目数）→</text>
-      <text x={L} y={T - 10} className="opp-axis">影响面（场景项目数）↑</text>
+      <text x={R} y={B + 30} textAnchor="end" className="opp-axis"><title>已有基础：库中已在做这件事的项目数</title>已有基础 →</text>
+      <text x={L} y={T - 10} className="opp-axis"><title>影响面：它所服务场景的项目数</title>影响面 ↑</text>
       {[...placed].reverse().map((g) => {
-        const inside = g.items.filter((o) => pool.has(o.key)).length, label = labels.get(g.key);
+        const inside = g.items.filter((o) => pool.has(o.key)).length;
         return <g key={g.key} className={`opp-pt${inside === g.items.length ? " is-in" : inside ? " is-some" : ""}`} role="button" tabIndex={0}
           aria-label={`${g.items.length > 1 ? `${g.items.length} 项：` : ""}${g.items.map((o) => o.title).join("、")}，已有基础 ${g.base}，影响面 ${g.reach}`}
           onPointerDown={(e) => { press.current = { g, x: e.clientX, y: e.clientY, moved: false }; }}
           onClick={(e) => { if (!press.current?.moved) click(g, e); }}
           onKeyDown={(e) => { if (e.key === "Enter") { const box = (e.currentTarget as Element).getBoundingClientRect(); click(g, { clientX: box.left, clientY: box.bottom }); } }}
           onMouseEnter={(e) => { const at = local(e); setHover({ g, left: Math.min(at.left + 14, at.width - 250), top: at.top + 14 }); }}
-          onMouseLeave={() => setHover(null)}>
+          onMouseLeave={() => setHover(null)}
+          onFocus={() => setHover({ g, left: Math.min(g.cx + 14, W - 250), top: g.cy + 14 })} onBlur={() => setHover(null)}>
           <circle cx={g.cx} cy={g.cy} r={g.r + 6} className="halo" />
           <circle cx={g.cx} cy={g.cy} r={g.r} className="dot" />
           {g.items.length > 1 ? <text x={g.cx} y={g.cy + 4} textAnchor="middle" className="count">{g.items.length}</text>
             : inside ? <text x={g.cx} y={g.cy + 4} textAnchor="middle" className="count">✓</text> : null}
-          {label ? <text x={label.x} y={label.y} textAnchor={label.anchor} className="label">{label.text}</text> : null}
         </g>;
       })}
     </svg>
@@ -267,8 +256,6 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
     </div> : null}
   </div>;
 }
-
-const short = (text: string, n: number) => (text.length > n ? `${text.slice(0, n - 1)}…` : text);
 
 export function GapBoard({ data, onLocate, onReveal }: {
   data: DomainsOverview; onLocate: (domainId: string) => void; onReveal: (domainId: string, system?: string) => void;

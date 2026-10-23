@@ -12,6 +12,10 @@ def test_sessions_persist_and_reject_stale_writes(tmp_path):
     other, _ = setup(tmp_path)
     with TestClient(other) as client:
         assert client.get("/api/workspace/sessions").json()[0]["title"] == "会话"
+        # A conversation is its author's (query 2026-1023 1044): another account does not see it listed.
+        client.post("/api/auth/logout")
+        client.post("/api/auth/login", json={"username": "user", "password": "123456"})
+        assert client.get("/api/workspace/sessions").json() == []
 
 
 def test_notes_require_current_sources(tmp_path):

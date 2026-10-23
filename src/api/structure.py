@@ -59,6 +59,47 @@ def lineage_metrics(tree: dict) -> dict:
     }
 
 
+MATURITY_NAMES = ("未判定", "理论与方法研究", "算法与模型验证", "原型与样机验证", "系统集成与场景试验", "示范应用与转化")
+DOMAIN_TEMPLATE = "domain_analysis"  # 专项报告 · 领域分析: the tag 报告中心 shows next to the task
+
+
+def domain_report(row: dict, today: str) -> tuple[str, str]:
+    """领域分析 report from a library's 资料库预览 (query 2026-1023 1044): the same counted figures the
+    preview shows — yearly projects, technology systems, maturity spread, items in real scenes — as a
+    report with ```dox-chart blocks. Nothing is written by a model, so every line is a stored count."""
+    name = row["name"].replace("自然科学基金-", "")
+    lineage = row["lineage"]
+    years = row.get("start_years") or []
+    span = list(range(years[0], years[-1] + 1)) if years else []
+    funding = row.get("funding") or {}
+    chart = lambda spec: ["```dox-chart", json.dumps(spec, ensure_ascii=False), "```", ""]
+    lines = [f"# 领域分析 · {name}", "",
+             f"{name}资料库共 {row['projects']} 个项目、{row['files']} 份资料，技术谱系 {lineage.get('items', 0)} 条技术、"
+             f"{lineage.get('systems', 0)} 个技术体系；成熟度 4 档以上 {lineage.get('high_maturity', 0)} 条，占 {lineage.get('high_share', 0)}%。", ""]
+    if span:
+        lines += ["## 年度立项", ""] + chart({"type": "bar", "title": "年度立项项目数", "labels": [str(y) for y in span],
+                                            "values": [row.get("by_year", {}).get(str(y), 0) for y in span], "unit": " 个",
+                                            "note": "按项目立项年份计；空柱表示该年没有立项记录"})
+        if funding.get("projects"):
+            lines += [f"已知{funding.get('label') or '经费'} {round(float(funding.get('total_yuan') or 0) / 10000):,} 万元"
+                      f"（{funding['projects']} 个项目给出金额）。", ""]
+    systems = lineage.get("systems_detail") or []
+    if systems:
+        lines += ["## 技术体系构成", ""] + chart({"type": "bar", "title": "各技术体系的技术条目数", "labels": [s["name"] for s in systems],
+                                              "values": [s["items"] for s in systems], "unit": " 条"})
+        lines += [f"- **{s['name']}**（{s['items']} 条）{('：' + s['plain']) if s.get('plain') else ''}" for s in systems] + [""]
+    levels = lineage.get("maturity") or [0] * 6
+    lines += ["## 成熟度分布", ""] + chart({"type": "bar", "title": "技术条目成熟度", "labels": [f"{i} {n}" for i, n in enumerate(MATURITY_NAMES)],
+                                          "values": levels, "unit": " 条", "note": "0 未判定 → 5 示范转化，依据项目报告所述"})
+    top = lineage.get("top") or []
+    lines += ["## 进入场景试验或转化的条目", ""]
+    lines += [f"- {t['name']}（{t['maturity']} 档{'，' + t['field'] if t.get('field') else ''}）{('：' + t['basis']) if t.get('basis') else ''}" for t in top] \
+        or ["- 这个库还没有条目达到成熟度 4。"]
+    lines += ["", "## 统计口径", "",
+              f"- 数据取自 {today} 的技术谱系与项目索引，由系统统计，未经模型改写；成熟度为报告所述阶段，不是正式技术成熟度评定。", ""]
+    return f"领域分析 · {name}（{today}）", "\n".join(lines)
+
+
 def install(app, ctx):
     find_corpus = ctx.find_corpus
     knowledge_for = ctx.knowledge_for
@@ -156,6 +197,19 @@ def install(app, ctx):
                               "scope": scope, "label": FUNDING_LABELS[scope]}
             row["funding_by_year"] = chosen["by_year"]
         return result
+
+    @router.post("/api/domains/{corpus_id}/report", status_code=201)
+    async def save_domain_report(corpus_id: str):
+        """导出报告 from 资料库预览 (query 2026-1023 1044): saved to 报告中心 as the signed-in account's
+        专项报告, tagged 领域分析."""
+        from datetime import date
+        from uuid import uuid4
+        row = next((r for r in await libraries_overview() if r["corpus_id"] == corpus_id), None)
+        if row is None:
+            raise HTTPException(404, "资料库不存在或还没有资料")
+        title, markdown = domain_report(row, date.today().isoformat())
+        return await asyncio.to_thread(app.state.artifacts.create, uuid4().hex, type="report", title=title, markdown=markdown,
+                                       corpus_ids=[corpus_id], task_id="task4", template_id=DOMAIN_TEMPLATE)
 
     @router.get("/api/corpora/{corpus_id}/topics")
     async def topic_merges(corpus_id: str):

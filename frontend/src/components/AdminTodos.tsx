@@ -36,8 +36,9 @@ export function useAdminTodos(enabled = true) {
   const { openCorpus, showInspector } = useLayout();
   const navigate = useNavigate();
   const overview = useQuery({ ...libraryOverviewQuery(), enabled });
-  const reviews = useQuery({ queryKey: ["admin", "reviews"], queryFn: fetchReviewRuns, enabled });
-  const reports = useQuery({ queryKey: ["admin", "artifacts"], queryFn: () => fetchArtifacts(), enabled });
+  // The administrator's to-do list covers every account's unfinished work (query 2026-1023 1044).
+  const reviews = useQuery({ queryKey: ["admin", "reviews"], queryFn: () => fetchReviewRuns("all"), enabled });
+  const reports = useQuery({ queryKey: ["admin", "artifacts"], queryFn: () => fetchArtifacts({ scope: "all" }), enabled });
   const libs = overview.data ?? [];
   const todos: Todo[] = [
     ...corpora.filter((c) => libraryProblems(c).length).map((c) => ({ key: "lib" + c.id, group: "资料处理" as const,

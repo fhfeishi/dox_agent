@@ -6,9 +6,9 @@ four characters; new accounts default to ``123456``. Roles (query 2026-1013 1133
 the full system plus account management, ``user`` the full workbench. Leaders also use the workbench
 (query 1842). Enforced on the API: library maintenance (libraries, files, imports, generated
 structure, groups), shared analysis tasks and review templates, and account management are the
-administrator's. Stores record who created a report, review or session (``CURRENT_USER``); data is
-not yet separated per person or department. Each account also remembers which first-visit guides
-it has dismissed.
+administrator's. Stores record who created a report, review or session (``CURRENT_USER``), and
+lists show each account its own (``visible_owners``, query 2026-1023 1044). Each account also
+remembers which first-visit guides it has dismissed.
 """
 import hashlib
 import hmac
@@ -35,7 +35,7 @@ USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
 # The signed-in account for this request, so stores can record who created a report or review
-# (节点审查 Q2). It records authorship only; what each account may see is not separated yet.
+# (节点审查 Q2); lists filter on it through visible_owners.
 CURRENT_USER: ContextVar[str] = ContextVar("current_user", default="")
 # The backend sources this process started with; the launcher compares it to find a stale service.
 CODE_VERSION = code_version(Path(__file__).resolve().parents[1])
@@ -236,6 +236,21 @@ def require_admin(request: Request):
 
 
 ADMIN_ONLY = [Depends(require_admin)]
+
+
+def visible_owners(request: Request, scope: str = "mine") -> list[str] | None:
+    """Whose reports, reviews and conversations a list shows (query 2026-1023 1044): the signed-in
+    account's own. Records from before authorship was recorded have no author and are the
+    administrator's, as for deleting them; ``scope="all"`` lets the administrator see every account's.
+    ``None`` means no filter. A record opened by its id is not filtered here."""
+    username, role = request.state.user[:2]
+    if scope not in ("mine", "all"):
+        raise HTTPException(422, "未知的查看范围")
+    if role == "admin":
+        return None if scope == "all" else [username, ""]
+    if scope == "all":
+        raise HTTPException(403, "只有管理员可以查看全部账户的记录")
+    return [username]
 
 
 def install_auth(app, directory):

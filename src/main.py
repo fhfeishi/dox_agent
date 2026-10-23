@@ -196,7 +196,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|results|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|results(?:/[^/.]+)?|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useRef, useState, type Dispatch, 
 import { useLocation, useMatch, useNavigate } from "react-router";
 import { useAuth } from "./auth";
 import type { DocumentInfo } from "./useDocuments";
+import { usePanelSize, type PanelSize } from "./panelSize";
 
 export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence" | "results";
 /** What the right-hand panel shows. "answer" is the 对话工作台's own view of the latest answer and is shown only there. */
@@ -76,8 +77,11 @@ export interface LayoutValue {
   inspectorTarget: InspectorTarget;
   inspectorCanGoBack: boolean;
   inspectorPinned: boolean;
-  inspectorWidth: number;
-  setInspectorWidth: (width: number) => void;
+  /** Share of the window the preview panel and the docked 分析工作区 take (query 2026-1023 1044). */
+  inspectorSize: PanelSize;
+  setInspectorSize: (size: PanelSize) => void;
+  dockSize: PanelSize;
+  setDockSize: (size: PanelSize) => void;
   showInspector: (target: InspectorTarget) => void;
   backInspector: () => void;
   toggleInspectorPinned: () => void;
@@ -133,10 +137,8 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
   }
 
   const [inspectorPinned, setInspectorPinned] = useState(false);
-  const [inspectorWidth, setInspectorWidth] = useState(() => {
-    const saved = Number(localStorage.getItem("dox.inspector.width"));
-    return Number.isFinite(saved) && saved >= 400 && saved <= 520 ? saved : 404;
-  });
+  const [inspectorSize, setInspectorSize] = usePanelSize("inspector");
+  const [dockSize, setDockSize] = usePanelSize("workspace");
   const inspectorNav = useRef<NavKey>(nav);
   // U9.1: sidebar collapse survives a reload.
   const [sidebarCollapsed, setSidebarCollapsed] = useState(
@@ -152,10 +154,6 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (drawerOpen) setInspectorOpen(false);
   }, [drawerOpen]);
-
-  useEffect(() => {
-    localStorage.setItem("dox.inspector.width", String(inspectorWidth));
-  }, [inspectorWidth]);
 
   useEffect(() => {
     if (typeof localStorage === "undefined") return;
@@ -270,7 +268,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
     newCorpusOpen, setNewCorpusOpen, drawerOpen, setDrawerOpen,
     inspectorOpen: panelOpen, chatDocked, setChatDocked, toggleInspector, inspectorTarget: panelTarget,
     inspectorCanGoBack: Boolean(routeTarget) || (inspectorStack.length > 1 && (nav === "chat" || inspectorStack[inspectorStack.length - 2].kind !== "answer")),
-    inspectorPinned, inspectorWidth, setInspectorWidth, showInspector, backInspector,
+    inspectorPinned, inspectorSize, setInspectorSize, dockSize, setDockSize, showInspector, backInspector,
     toggleInspectorPinned: () => setInspectorPinned((pinned) => !pinned),
     sidebarCollapsed, toggleSidebar: () => setSidebarCollapsed((v) => !v),
   };

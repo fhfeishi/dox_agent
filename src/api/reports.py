@@ -19,6 +19,7 @@ from ..agent.corpora import (
 )
 from ..agent.models import model_for
 from ..artifacts import report_title
+from ..auth import visible_owners
 from ..custom_tasks import (
     TaskMissing,
     resolve_task_params,
@@ -72,17 +73,19 @@ def install(app, ctx):
 
     class SummaryRequest(BaseModel):
         period: Literal["week", "month", "quarter", "half", "year"]
+        scope: Literal["mine", "all"] = "mine"
 
     @router.post("/api/summaries", status_code=201)
-    async def create_summary(payload: SummaryRequest):
+    async def create_summary(payload: SummaryRequest, request: Request):
         """A period work summary (query 2026-1013 1801): counted charts plus model-written sections,
-        saved as a report. Runs only when someone asks for it."""
+        saved as a report. Runs only when someone asks for it, over the asking account's work."""
         from ..period_summary import generate
+        owners = visible_owners(request, payload.scope)
         if not settings.model_api_key:
             raise HTTPException(409, "分析模型尚未配置")
         try:
             async with asyncio.timeout(settings.answer_timeout):
-                return await generate(app, payload.period, model_for(settings))
+                return await generate(app, payload.period, model_for(settings), owners)
         except ValueError as exc:
             raise HTTPException(502, "总结未生成：" + str(exc)) from exc
         except Exception as exc:
@@ -90,38 +93,44 @@ def install(app, ctx):
             raise HTTPException(502, "总结未生成：模型调用失败，请重试") from exc
 
     @router.get("/api/summaries/facts")
-    async def summary_facts(period: str, request: Request):
-        """近期工作 counted on the server over every report and review (节点审查 A4/A5): repeated reviews
-        of one application count once. Every role sees the same reports (query 2026-1014 1516)."""
-        from ..period_summary import PERIODS, TASK_ID, gather, report_rows
+    async def summary_facts(period: str, request: Request, scope: str = "mine"):
+        """近期工作 counted on the server over every record of the period (节点审查 A4/A5): repeated
+        reviews of one application count once. Each account counts its own work (query 2026-1023 1044),
+        read fresh on every request, so a report saved a moment ago is already in."""
+        from ..period_summary import PERIODS, TASK_ID, gather, owned_runs, owner_label, report_rows
         from ..review import storage as review_db
         if period not in PERIODS:
             raise HTTPException(422, "未知时间段")
+        owners = visible_owners(request, scope)
         names = {info.id: info.name for info in await asyncio.to_thread(scan_corpora, settings)}
-        rows = await asyncio.to_thread(report_rows, app.state.artifacts)
-        runs = await asyncio.to_thread(review_db.all_items, "run")
-        facts = gather(period, datetime.now().astimezone(), rows, runs, names)
+        rows = await asyncio.to_thread(report_rows, app.state.artifacts, owners)
+        runs = owned_runs(await asyncio.to_thread(review_db.all_items, "run"), owners)
+        facts = gather(period, datetime.now().astimezone(), rows, runs, names, owner_label(owners))
         summaries = [{"id": r["artifact_id"], "title": r["title"], "created_at": r["created_at"]}
                      for r in rows if r["task_id"] == TASK_ID and r["status"] == "completed"][:6]
         return {**facts, "summaries": summaries}
 
     @router.get("/api/results/summary")
-    async def results_summary():
-        """Global report totals, independent of list pagination and user role."""
+    async def results_summary(request: Request, scope: str = "mine"):
+        """Report totals of the accounts the list shows (query 2026-1023 1044), independent of list
+        pagination. Saved answers count with 存量分析, as they are listed there."""
+        owners = visible_owners(request, scope)
         def count():
             from ..review import storage as review_storage
             completed = {"analysis": 0, "review": 0, "intelligence": 0}
             active = failed = recent = 0
+            mine, args = ("", []) if owners is None else (f" AND created_by IN ({','.join('?' * len(owners))})", owners)
             with app.state.artifacts.connect() as db:
                 rows = db.execute(
                     "SELECT CASE WHEN task_id='intelligence' THEN 'intelligence' ELSE 'analysis' END, "
-                    "status, COUNT(*), SUM(CASE WHEN julianday(created_at)>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
-                    "FROM artifacts WHERE type='report' AND trashed_at IS NULL GROUP BY 1,2").fetchall()
+                    "status, COUNT(*), SUM(CASE WHEN julianday(updated_at)>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
+                    "FROM artifacts WHERE type IN ('report','answer_snapshot') AND trashed_at IS NULL" + mine + " GROUP BY 1,2", args).fetchall()
+            mine = "" if owners is None else f" AND COALESCE(json_extract(payload,'$.created_by'),'') IN ({','.join('?' * len(owners))})"
             with review_storage.connect() as db:
                 rows += db.execute(
                     "SELECT 'review', json_extract(payload,'$.status'), COUNT(*), "
-                    "SUM(CASE WHEN julianday(json_extract(payload,'$.created_at'))>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
-                    "FROM objects WHERE kind='run' GROUP BY 2").fetchall()
+                    "SUM(CASE WHEN julianday(COALESCE(json_extract(payload,'$.finished_at'),json_extract(payload,'$.created_at')))>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
+                    "FROM objects WHERE kind='run'" + mine + " GROUP BY 2", args).fetchall()
             for group, status, amount, new in rows:
                 if status == "completed":
                     completed[group] += amount
@@ -421,10 +430,12 @@ def install(app, ctx):
         return {**item, "run_available": item.get("run_id", "") in available}
 
     @router.get("/api/artifacts")
-    async def list_artifacts(session_key: str | None = None, type: str | None = None, status: str | None = None, limit: int = 50, view: str = "active", cursor: str | None = None,
-                             created_by: str | None = None):
+    async def list_artifacts(request: Request, session_key: str | None = None, type: str | None = None, status: str | None = None, limit: int = 50, view: str = "active", cursor: str | None = None,
+                             created_by: str | None = None, scope: str = "mine"):
+        """报告中心 lists the signed-in account's reports and saved answers (query 2026-1023 1044)."""
         if view not in ("active","trash"): raise HTTPException(422,"未知的报告中心视图")
-        items=await asyncio.to_thread(app.state.artifacts.list,session_key=session_key,type=type,status=status,limit=limit,view=view,cursor=cursor,created_by=created_by)
+        owners = visible_owners(request, scope)
+        items=await asyncio.to_thread(app.state.artifacts.list,session_key=session_key,type=type,status=status,limit=limit,view=view,cursor=cursor,created_by=created_by,owners=owners)
         available=await asyncio.to_thread(app.state.runs.existing_ids,[item["run_id"] for item in items])
         return [{**item,"run_available":item["run_id"] in available} for item in items]
 

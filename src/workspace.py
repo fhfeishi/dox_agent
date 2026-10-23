@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
-from .auth import CURRENT_USER
+from .auth import CURRENT_USER, visible_owners
 from .core.db import connect, migrate
 from .knowledge import Document, Page
 
@@ -38,9 +38,11 @@ class Workspace:
     def connect(self):
         return connect(self.path)
 
-    def list(self, kind):
+    def list(self, kind, owners=None):
+        """Records newest first; ``owners`` keeps those accounts' (``""``: saved before authorship was recorded)."""
         with self.connect() as db:
-            return [json.loads(row[0]) for row in db.execute("SELECT payload FROM records WHERE kind=? ORDER BY rowid DESC", (kind,))]
+            items = [json.loads(row[0]) for row in db.execute("SELECT payload FROM records WHERE kind=? ORDER BY rowid DESC", (kind,))]
+        return items if owners is None else [item for item in items if item.get("created_by", "") in owners]
 
     def put(self, kind, key, record):
         if kind == "sessions": record.data = report_references(record.data)
@@ -87,7 +89,8 @@ def note_status(note, knowledge):
 def list_records(kind: str, request: Request):
     if kind not in ("sessions", "notes"):
         raise HTTPException(404)
-    records = request.app.state.workspace.list(kind)
+    # Conversations are their author's (query 2026-1023 1044); notes stay shared source navigation.
+    records = request.app.state.workspace.list(kind, visible_owners(request) if kind == "sessions" else None)
     if kind == "notes":
         for record in records:
             record["source_status"] = note_status(record, request.app.state.knowledge)

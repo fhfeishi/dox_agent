@@ -31,7 +31,7 @@ function ViewShell({
   return (
     <section className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[1200px] px-5 pt-7 sm:px-8">
+        <div className="mx-auto w-full max-w-[var(--page-max)] px-5 pt-7 sm:px-8">
           <div className="mb-[6px] flex flex-wrap items-center gap-[10px]">
             <h1 className="text-page font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
             <span className="flex-1" />
@@ -39,7 +39,7 @@ function ViewShell({
           </div>
           <p className="max-w-[680px] text-body leading-[1.6] text-[var(--steel)]">{description}</p>
         </div>
-        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 md:grid-cols-2 gap-[16px] px-5 sm:px-8 pt-[20px] pb-[40px]">
+        <div className="mx-auto grid w-full max-w-[var(--page-max)] grid-cols-1 md:grid-cols-2 gap-[16px] px-5 sm:px-8 pt-[20px] pb-[40px]">
           {children}
         </div>
       </div>

@@ -22,6 +22,26 @@
   --text-display--line-height: 1;
 }
 
+/* Large screens (query 2026-1023 1044): a 2K or 4K screen at 100–150 % scaling is 2200–3840 CSS px wide,
+   where the 14 px scale and a 1200 px column read as a small strip in a wide field. The page column
+   grows with the window (--page-max, used by every page's reading column), and from 2200 px the type
+   scale steps up once, from 3000 px twice. Up to 1920 px nothing changes. */
+:root { --page-max: clamp(1200px, 76vw, 2240px); }
+@media (min-width: 2200px) {
+  :root {
+    --text-caption: 13px; --text-caption--line-height: 18px; --text-body: 15px; --text-body--line-height: 22px;
+    --text-emphasis: 17px; --text-emphasis--line-height: 26px; --text-group: 19px; --text-group--line-height: 28px;
+    --text-page: 24px; --text-page--line-height: 32px; --text-stat: 30px; --text-stat--line-height: 38px; --text-display: 41px;
+  }
+}
+@media (min-width: 3000px) {
+  :root {
+    --text-caption: 14px; --text-caption--line-height: 20px; --text-body: 17px; --text-body--line-height: 26px;
+    --text-emphasis: 19px; --text-emphasis--line-height: 28px; --text-group: 21px; --text-group--line-height: 30px;
+    --text-page: 27px; --text-page--line-height: 36px; --text-stat: 34px; --text-stat--line-height: 42px; --text-display: 46px;
+  }
+}
+
 /* ------------------------------------------------------------------
    Design tokens — aligned with the DoxAgentWeb reference template.
    Single values only (colors / numbers / keywords).
@@ -540,13 +560,23 @@
 @media (max-width: 720px) {
 }
 
-/* ------------------------------------------------------------------ SlideOver (query 2026-1022 1606)
-   The single right-hand slide-out for 首页 and 领域分析: same width, scrim, head and motion everywhere. */
-.slide-mask { position: fixed; inset: 0; z-index: 105; background: rgb(24 38 52 / 22%); opacity: 0; pointer-events: none; transition: opacity 260ms; }
-.slide-mask.is-open { opacity: 1; pointer-events: auto; }
-.slide-over { position: fixed; top: 0; right: 0; bottom: 0; z-index: 110; width: 452px; max-width: 92vw; display: none; flex-direction: column;
-  background: var(--canvas); border-left: 1px solid var(--line-cool); box-shadow: -30px 0 60px -30px rgb(9 28 40 / 35%); outline: none; }
-.slide-over.is-open { display: flex; animation: slide-in 320ms cubic-bezier(.16, 1, .3, 1) both; }
+/* Right-hand panels (query 2026-1022 1606, unified 2026-1023 1044): the preview panel, the 分析工作区 and
+   every slide-out share one frame — below the top bar, inset 10 px, rounded — and one motion. None of
+   them dims or blurs the page behind; Escape or ✕ closes them. */
+:root { --ease-panel: cubic-bezier(.16, 1, .3, 1); }
+.panel-motion { transition: transform 320ms var(--ease-panel), width 240ms var(--ease-panel), right 240ms var(--ease-panel); }
+.panel-enter { animation: slide-in 320ms var(--ease-panel) both; }
+.panel-size { display: none; gap: 2px; padding: 2px; margin-right: 2px; border-radius: 7px; background: var(--surface); }
+.panel-size button { padding: 1px 6px; border-radius: 5px; font-size: var(--text-caption); line-height: 20px; color: var(--steel); font-variant-numeric: tabular-nums; }
+.panel-size button:hover { color: var(--ink); }
+.panel-size button[aria-pressed="true"] { background: var(--canvas); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgb(15 23 42 / 8%); }
+@media (min-width: 640px) { .panel-size { display: inline-flex; } }
+.slide-over { position: fixed; top: 52px; right: 0; bottom: 0; z-index: 72; width: 100%; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--canvas); border: 1px solid var(--line-cool); box-shadow: -8px 0 28px -12px rgb(15 23 42 / 18%); outline: none;
+  transform: translateX(calc(100% + 20px)); visibility: hidden; pointer-events: none;
+  transition: transform 320ms var(--ease-panel), width 240ms var(--ease-panel), visibility 0s 320ms; }
+@media (min-width: 640px) { .slide-over { top: 62px; right: 10px; bottom: 10px; width: var(--slide-width, 452px); max-width: calc(100vw - 20px); border-radius: 14px; } }
+.slide-over.is-open { transform: none; visibility: visible; pointer-events: auto; transition: transform 320ms var(--ease-panel), width 240ms var(--ease-panel), visibility 0s; }
 @keyframes slide-in { from { transform: translateX(100%); } to { transform: none; } }
 .slide-head { padding: 22px 24px 16px; border-bottom: 1px solid var(--line-cool); }
 .slide-top { display: flex; align-items: flex-start; gap: 12px; }
@@ -571,7 +601,7 @@
 .slide-action.primary { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
 .slide-action.primary:hover { background: var(--primary-pressed); }
 .slide-action:disabled { opacity: 0.45; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) { .slide-over.is-open { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .slide-over, .slide-over.is-open, .panel-motion { transition: none; } .panel-enter { animation: none; } }
 
 /* 01 switch, 02 road map, 03 pool and the previews (query 2026-1022 1606) */
 
@@ -585,7 +615,7 @@
 .roads-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-caption); color: var(--muted-cool); }
 .roads-tools button { padding: 3px 10px; border-radius: 6px; border: 1px solid var(--line-cool); background: var(--canvas); color: var(--slate); }
 .roads-tools button:hover { border-color: var(--heading); color: var(--heading); }
-.roads-svg { display: block; width: 100%; height: min(78vh, 820px); cursor: grab; touch-action: none; }
+.roads-svg { display: block; width: 100%; height: clamp(520px, 76vh, 1240px); cursor: grab; touch-action: none; }
 .roads-svg:active { cursor: grabbing; }
 .roads-ring { fill: none; stroke: var(--line-cool); stroke-dasharray: 2 5; }
 .roads-road { fill: none; stroke-linecap: round; opacity: 0.32; transition: opacity 200ms; animation: roads-in 520ms 180ms both; }
@@ -605,6 +635,11 @@
 .roads-label.is-library { font-size: 14px; font-weight: 600; fill: var(--heading); }
 .roads-label.is-system { font-size: 12px; fill: var(--heading); }
 .roads-plus { fill: var(--canvas); font-size: 11px; font-weight: 700; pointer-events: none; }
+.roads-chip { cursor: pointer; animation: roads-in 260ms 200ms both; }
+.roads-chip rect { fill: var(--canvas); stroke: var(--line-cool-strong); }
+.roads-chip text { fill: var(--link); font-size: 11px; }
+.roads-chip:hover rect, .roads-chip:focus-visible rect { stroke: var(--link); }
+.roads-chip:focus-visible { outline: none; }
 .roads-list { display: grid; gap: 8px; }
 .roads-list li { display: grid; gap: 2px; padding: 10px 12px; border-radius: 10px; background: var(--canvas); border: 1px solid var(--line-cool-soft); }
 .roads-list b { font-size: var(--text-body); font-weight: 500; color: var(--heading); }
@@ -749,7 +784,10 @@
 .terrain-chart { position: relative; height: 440px; padding: 6px 8px 4px; }
 .terrain-panel { position: relative; height: 380px; border-top: 1px solid var(--line-cool); background: var(--terrain-panel); display: flex; flex-direction: column; }
 @container (min-width: 48rem) {
-  .terrain-body { grid-template-columns: minmax(0, 1fr) 300px; grid-template-rows: 470px; height: 470px; }
+  /* Still one height whichever library is chosen; on a wide screen the row grows with the column so the
+     chart fills it instead of sitting in blank margins (query 2026-1023 1044). */
+  .terrain-body { --terrain-row: clamp(470px, 26vw, 820px); grid-template-columns: minmax(0, 1fr) clamp(300px, 15vw, 440px);
+    grid-template-rows: var(--terrain-row); height: var(--terrain-row); }
   .terrain-chart { min-height: 0; overflow: hidden; }
   .terrain-panel { min-height: 0; }
   .terrain-chart { height: 100%; }
@@ -835,7 +873,6 @@
 .opp-pt .halo { fill: var(--terrain-dot-on); opacity: 0; transition: opacity 150ms; }
 .opp-pt .dot { fill: var(--terrain-dot); stroke: var(--canvas); stroke-width: 1.5; transition: fill 150ms; }
 .opp-pt .count { font-size: 10px; font-weight: 600; fill: var(--canvas); pointer-events: none; }
-.opp-pt .label { font-size: 11px; fill: var(--heading); paint-order: stroke; stroke: var(--canvas); stroke-width: 3px; pointer-events: none; }
 .opp-pt:hover .halo, .opp-pt:focus-visible .halo { opacity: 0.16; }
 .opp-pt:hover .dot { fill: var(--terrain-dot-on); }
 .opp-pt:focus { outline: none; }

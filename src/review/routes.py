@@ -18,7 +18,7 @@ from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
-from ..auth import ADMIN_ONLY, CURRENT_USER
+from ..auth import ADMIN_ONLY, CURRENT_USER, visible_owners
 from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
 from .export import export_report
@@ -690,8 +690,10 @@ def _list_row(run: dict) -> dict:
 
 
 @router.get("/runs")
-def runs():
-    return [_list_row(r) for r in db.all_items("run")]
+def runs(request: Request, scope: str = "mine"):
+    """The signed-in account's reviews (query 2026-1023 1044), see auth.visible_owners."""
+    owners = visible_owners(request, scope)
+    return [_list_row(r) for r in db.all_items("run") if owners is None or (r.get("created_by") or "") in owners]
 
 
 @router.get("/runs/{id}")

@@ -14,6 +14,10 @@ import { SlideOver } from "../SlideOver";
  * folds them back. Roads are as wide as the technology they carry and take their library's colour (the
  * same hues as the 首页 banner); a node's fill is its mean maturity. Hovering lights the road back to
  * the centre; the path bar above names where you are and opens its details on the right.
+ *
+ * No double clicks (query 2026-1023 1044): a click already opens a branch and starts the glide, so a
+ * second click landed on a moving map and folded what had just opened. Details open from the 详情
+ * chip under the node that was clicked, or from 详情 → in the path bar; 全景 recentres the view.
  */
 
 type Kind = "root" | "library" | "system" | "direction" | "theme" | "project" | "more";
@@ -211,15 +215,17 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const lit = hover ? lineage(hover) : null;
   const path = [...lineage(active)].reverse().map((id) => layout.get(id)?.node).filter(Boolean) as Node[];
 
-  // Drag pans, the wheel zooms at the pointer; a double click on the background recentres.
+  // Drag pans, the wheel zooms at the pointer; 全景 recentres.
   const svg = useRef<SVGSVGElement>(null);
   const focusOn = useRef("");
   const glide = useRef(0);
+  // The square map is fitted to the shorter side of a wide, short frame: that side sets the scale.
+  const side = (box: DOMRect) => Math.min(box.width, box.height) || 1100;
   const [pixels, setPixels] = useState(1100);
   useEffect(() => {
     const node = svg.current;
     if (!node) return;
-    const observer = new ResizeObserver(() => setPixels(node.getBoundingClientRect().width || 1100));
+    const observer = new ResizeObserver(() => setPixels(side(node.getBoundingClientRect())));
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
@@ -239,7 +245,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const SIZE = 2 * (outermost + (outermost > 300 ? 170 : 110));
   const sizeRef = useRef(SIZE);
   sizeRef.current = SIZE;
-  const unit = () => sizeRef.current / (svg.current?.getBoundingClientRect().width || sizeRef.current);
+  const unit = () => sizeRef.current / (svg.current ? side(svg.current.getBoundingClientRect()) : sizeRef.current);
   // Labels and hit areas keep the same size on screen at any zoom.
   const px = SIZE / pixels / view.k;
   // After a click, centre the opened node at a zoom that suits its level.
@@ -274,7 +280,8 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const wheel = (event: WheelEvent) => {
       event.preventDefault();
       const box = node.getBoundingClientRect();
-      const px = ((event.clientX - box.left) / box.width - 0.5) * sizeRef.current, py = ((event.clientY - box.top) / box.height - 0.5) * sizeRef.current;
+      const scale = sizeRef.current / side(box);
+      const px = (event.clientX - box.left - box.width / 2) * scale, py = (event.clientY - box.top - box.height / 2) * scale;
       setView((v) => { const k = Math.max(0.5, Math.min(4, v.k * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
         return { k, x: px - ((px - v.x) / v.k) * k, y: py - ((py - v.y) / v.k) * k }; });
     };
@@ -313,9 +320,9 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
       </nav>
       <div className="roads-tools">
         {loading ? <span role="status">读取中…</span> : null}
-        <Hint align="end" text={<>点节点展开（同级其他分支自动收起），再点收起；双击看详情<br />路宽 = 技术条目数 · 路色 = 资料库<br />节点颜色 = 平均成熟度：
+        <Hint align="end" text={<>点节点展开（同级其他分支自动收起），再点收起；点节点下方的「详情」看说明与清单<br />路宽 = 技术条目数 · 路色 = 资料库<br />节点颜色 = 平均成熟度：
           {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
-          <br />拖动平移 · 滚轮缩放 · 双击空白复位</>}>图例与操作</Hint>
+          <br />拖动平移 · 滚轮缩放 · 「全景」复位</>}>图例与操作</Hint>
         <button type="button" onClick={expandSystems}>展开全部技术体系</button>
         <button type="button" onClick={() => { setOpen(new Set(["root"])); setActive("root"); }}>全部收起</button>
         <span className="roads-zoom" role="group" aria-label="缩放">
@@ -327,7 +334,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     </div>
     <svg ref={svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
-      onPointerDown={down} onDoubleClick={(e) => { if (e.target === svg.current) glideTo({ x: 0, y: 0, k: 1 }); }}>
+      onPointerDown={down}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
           ? <circle key={k} r={RADII[k]} className="roads-ring" /> : null)}
@@ -352,7 +359,6 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             aria-expanded={n.expandable ? isOpen : undefined}
             onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) toggle(n); }}
             onKeyDown={(e) => { if (e.key === "Enter") toggle(n); }}
-            onDoubleClick={(e) => { e.stopPropagation(); if (n.kind !== "root") setDetail(n); }}
             onMouseEnter={(e) => { setHover(n.id); moveCard(e); }} onMouseMove={moveCard} onMouseLeave={() => { setHover(""); setCard(null); }}>
             <circle r={Math.max(r, 11 * px)} className="roads-hit" />
             {n.kind === "root" ? <circle r={r} className="roads-core" />
@@ -364,6 +370,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
                 textAnchor={flip ? "end" : "start"} style={{ fontSize: 11.5 * px, strokeWidth: 3 * px }}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
               : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 6 * px)} style={{ fontSize: 13.5 * px, strokeWidth: 3.5 * px }}>{n.name}</text>}
             {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
+            {active === n.id && n.kind !== "root" && n.kind !== "more" && n.kind !== "project" ? <g className="roads-chip" role="button" tabIndex={0} aria-label={`${n.name} 详情`}
+              transform={`translate(0,${r + 6 * px}) scale(${px})`}
+              onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) setDetail(n); }}
+              onKeyDown={(e) => { if (e.key === "Enter") { e.stopPropagation(); setDetail(n); } }}>
+              <rect x={-22} y={0} width={44} height={19} rx={9.5} /><text x={0} y={13.5} textAnchor="middle">详情 ›</text>
+            </g> : null}
           </g>;
         })}
       </g>
@@ -374,7 +386,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
       {hovered.project ? <span>{[hovered.project.number, hovered.project.unit, hovered.project.year].filter(Boolean).join(" · ")}<br />本主题 {hovered.project.items.length} 条技术 · 最高 {hovered.project.maturity || "—"} 档</span>
         : hovered.kind === "more" ? <span>点一下，在原处展开其余项目</span>
         : <span>{hovered.items} 条技术 · 平均 {hovered.maturity ?? "—"} 档{hovered.plain ? <><br />{hovered.plain}</> : null}</span>}
-      <em>{hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起 · 双击看详情" : "点击展开 · 双击看详情") : "双击看详情"}</em>
+      <em>{hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起" : "点击展开") + " · 详情在节点下方" : "点击后在节点下方看详情"}</em>
     </div> : null}
     <SlideOver open={Boolean(detail)} onClose={() => setDetail(null)}
       eyebrow={detail ? { root: "全部领域", library: "资料库", system: detail.unplaced ? "未归入体系" : "技术体系", direction: "研究方向", theme: "主题", project: "项目", more: "主题下的其他项目" }[detail.kind] : ""}

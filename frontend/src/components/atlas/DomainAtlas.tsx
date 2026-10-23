@@ -45,13 +45,13 @@ export function DomainAtlas() {
   const locate = (id: string) => { setChosenId(id); document.getElementById("atlas-01")?.scrollIntoView({ behavior: "smooth", block: "start" }); };
   if (isLoading) return <p role="status" className="p-8 text-body text-[var(--steel)]">正在汇总各领域资料…</p>;
   // Without any lineage there is no 全景 yet, but each library's own views still open from here.
-  if (error || !data) return <div className="mx-auto max-w-[1200px] space-y-3 px-5 py-7 sm:px-8">
+  if (error || !data) return <div className="mx-auto max-w-[var(--page-max)] space-y-3 px-5 py-7 sm:px-8">
     <p role="alert" className="text-body text-[var(--red)]">{(error as Error)?.message ?? "研究领域全景暂不可读"}</p>
     {corpora.length ? <p className="flex flex-wrap items-center gap-2 text-body text-[var(--steel)]">按资料库查看：
       {corpora.map((c) => <button key={c.id} type="button" onClick={() => analyse(c.id)}
         className="rounded-full border border-[var(--hairline-strong)] px-3 py-1 text-caption text-[var(--slate)] hover:border-[var(--primary)]">{c.name.replace(/^自然科学基金-/, "")}</button>)}</p> : null}
   </div>;
-  return <div className="atlas-page mx-auto w-full max-w-[1200px] space-y-10 px-5 py-7 sm:px-8">
+  return <div className="atlas-page mx-auto w-full max-w-[var(--page-max)] space-y-10 px-5 py-7 sm:px-8">
     <header className="atlas-hero">
       <div>
         <h1>{data.totals.domains} 个领域的家底、深度与缺口</h1>

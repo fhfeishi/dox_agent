@@ -36,7 +36,7 @@ function WorkHome() {
   const { corpora, corporaError } = useApp();
   const { showInspector, openCorpus } = useLayout();
   const navigate = useNavigate();
-  const totals = useQuery(resultsSummaryQuery);
+  const totals = useQuery(resultsSummaryQuery());
   const recent = useQuery({
     queryKey: ["home", "recent"],
     queryFn: async ({ signal }) => {
@@ -65,7 +65,7 @@ function WorkHome() {
   const maintenance = useAdminTodos(admin);
   const troubled = corpora.filter((c) => libraryProblems(c).length).length;
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[var(--surface-cool)]">
-    <div className="mx-auto max-w-[1200px] space-y-7 px-5 py-7 sm:px-8">
+    <div className="mx-auto max-w-[var(--page-max)] space-y-7 px-5 py-7 sm:px-8">
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--hairline)] pb-5">
         <div><p className="text-caption text-[var(--steel)]">{admin ? "资料与运行维护" : "资料与研究工作台"}</p>
           <h1 className="mt-2 text-page font-semibold">{admin ? "今天的维护与工作" : "今天，从哪项工作开始？"}</h1>

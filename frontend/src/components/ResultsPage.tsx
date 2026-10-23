@@ -4,7 +4,7 @@ import { resultsSummaryQuery } from "../resultsSummary";
 import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { canDeleteArtifact, changeArtifactLifecycle, fetchArtifacts, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { canDeleteArtifact, changeArtifactLifecycle, fetchArtifacts, type ArtifactInfo, type ArtifactSummary, type Scope } from "../api";
 import { useAuth } from "../auth";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
@@ -19,22 +19,29 @@ type State = typeof STATES[number][0];
 const KIND_TONE = { analysis: "sky", review: "lav", intelligence: "mint" } as const;
 const KIND_LABEL: Record<Kind, string> = { analysis: "存量分析", review: "资料审查", intelligence: "情报分析" };
 const STATUS_LABEL: Record<string, string> = { completed: "已完成", draft: "草稿", failed: "未完成", generating: "生成中", running: "审查中", queued: "排队中" };
+// What produced a report, in 存量分析's task names; 领域分析 is a 专项报告 exported from 资料库预览 (query 2026-1023 1044).
+const TASK_LABEL: Record<string, string> = { task1: "精准问答", task2: "对比分析", task3: "技术研判", task4: "专项报告", period_summary: "工作总结" };
+const TEMPLATE_TAG: Record<string, string> = { domain_analysis: "领域分析" };
+export function reportTag(item: Pick<ArtifactSummary, "type" | "task_id" | "template_id">): string {
+  if (item.type === "answer_snapshot") return `保存的回答${TASK_LABEL[item.task_id] ? ` · ${TASK_LABEL[item.task_id]}` : ""}`;
+  return [TASK_LABEL[item.task_id], TEMPLATE_TAG[item.template_id]].filter(Boolean).join(" · ");
+}
 
 /** One report in the list, whichever tool produced it. */
 type Row = {
   key: string; kind: Kind; title: string; detail: string; status: string; date: string;
-  corpusIds: string[]; artifact?: ArtifactSummary; runId?: string;
+  corpusIds: string[]; artifact?: ArtifactSummary; runId?: string; author?: string;
 };
 
 const artifactRow = (item: ArtifactSummary): Row => ({
   key: item.artifact_id, kind: item.task_id === "intelligence" ? "intelligence" : "analysis",
-  title: item.title || "未命名报告", detail: item.type === "answer_snapshot" ? "保存的回答" : `第 ${item.current_version} 版`,
-  status: item.status, date: item.updated_at || item.created_at, corpusIds: item.corpus_ids, artifact: item,
+  title: item.title || "未命名报告", detail: [reportTag(item), item.type === "answer_snapshot" ? "" : `第 ${item.current_version} 版`].filter(Boolean).join(" · "),
+  status: item.status, date: item.updated_at || item.created_at, corpusIds: item.corpus_ids, artifact: item, author: item.created_by,
 });
 const reviewRow = (run: ReviewRun): Row => ({
   key: run.id, kind: "review", title: run.document?.metadata?.title || run.document?.filename || "未命名申请书",
   detail: run.request.kind === "professional" ? "专业审查" : "形式审查", status: run.status, date: run.finished_at || run.created_at,
-  corpusIds: run.request.corpus_ids ?? [], runId: run.id,
+  corpusIds: run.request.corpus_ids ?? [], runId: run.id, author: run.created_by,
 });
 
 /**
@@ -42,24 +49,27 @@ const reviewRow = (run: ReviewRun): Row => ({
  * squeezed into the right-hand panel. Counts by kind first, then what is still being produced, the
  * report list (by kind, title, source library; recycle bin last). The rolling period summary is the
  * page's second view, so it no longer trails every list (query 2026-1015 1639); both fit any width.
- * Every role sees the same reports (query 2026-1014 1516). Analysis and intelligence reports open in
- * the right-hand preview for reading, editing and export; a review report opens on its review page.
+ * Each account sees the reports it generated and the answers it saved (query 2026-1023 1044, replacing
+ * 2026-1014 1516's one list for everyone); the administrator can switch to every account's. Analysis and
+ * intelligence reports open in the right-hand preview for reading, editing and export; a review report
+ * opens on its review page.
  */
 export function ResultsPage() {
   const { username, role } = useAuth();
   const { corpora } = useApp();
   const { showInspector } = useLayout();
   const navigate = useNavigate();
-  const totals = useQuery(resultsSummaryQuery);
   const client = useQueryClient();
   const [search, setSearch] = useSearchParams();
+  const scope: Scope = role === "admin" && search.get("scope") === "all" ? "all" : "mine";
+  const totals = useQuery(resultsSummaryQuery(scope));
   // Reports and the period summary are two views of the page (query 2026-1015 1639).
   const view = search.get("view") === "period" ? "period" : "reports";
   // URL filters are committed synchronously so rapid typing/selection cannot overwrite a pending filter.
   const filter = (values: Record<string, string>) => setSearch((old) => {
     const next = new URLSearchParams(old);
     for (const [key, value] of Object.entries(values)) {
-      if (value && value !== "all" && value !== "reports") next.set(key, value);
+      if (value && value !== "reports" && (value !== "all" || key === "scope")) next.set(key, value);
       else next.delete(key);
     }
     return next;
@@ -94,11 +104,11 @@ export function ResultsPage() {
     let active = true;
     setError("");
     const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "报告读取失败"); };
-    fetchArtifacts({ limit: 200 }).then((items) => { if (active) setArtifacts(items); }, fail);
-    fetchArtifacts({ view: "trash", limit: 50 }).then((items) => { if (active) setTrash(items); }, fail);
-    fetchReviewRuns().then((items) => { if (active) setRuns(items); }, fail);
+    fetchArtifacts({ limit: 200, scope }).then((items) => { if (active) setArtifacts(items); }, fail);
+    fetchArtifacts({ view: "trash", limit: 50, scope }).then((items) => { if (active) setTrash(items); }, fail);
+    fetchReviewRuns(scope).then((items) => { if (active) setRuns(items); }, fail);
     return () => { active = false; };
-  }, [revision]);
+  }, [revision, scope]);
 
   async function lifecycle(item: ArtifactSummary, action: "trash" | "restore" | "purge") {
     if (action === "purge" && !window.confirm("永久删除全部版本与独占附件，不可恢复？")) return;
@@ -131,18 +141,22 @@ export function ResultsPage() {
 
   // The page scrolls on its own, like the other pages: the app frame is one screen high (query 2026-1015 1700).
   return <main className="min-h-0 flex-1 overflow-y-auto">
-  <div className="@container mx-auto w-full max-w-[1200px] space-y-5 px-5 py-7 sm:px-8">
+  <div className="@container mx-auto w-full max-w-[var(--page-max)] space-y-5 px-5 py-7 sm:px-8">
     <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
       <h1 className="text-page font-semibold text-[var(--ink)]">报告中心</h1>
       <div role="tablist" aria-label="报告中心视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
         {([["reports", "报告"], ["period", "周期总结"]] as const).map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={view === key}
           onClick={() => setView(key)} className={`rounded-lg px-4 py-1.5 text-body ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
       </div>
-      <p className="basis-full text-body text-[var(--steel)] @3xl:basis-auto">{view === "period"
-        ? "按一周至一年汇总期内完成与进行中的工作，可生成总结报告。" : "存量分析、资料审查、情报分析生成的全部报告；各角色看到的相同。"}</p>
+      {role === "admin" ? <div role="group" aria-label="查看范围" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
+        {([["mine", "我的"], ["all", "全部账户"]] as const).map(([key, label]) => <button key={key} type="button" aria-pressed={scope === key}
+          onClick={() => filter({ scope: key === "all" ? "all" : "" })} className={`rounded-lg px-3 py-1.5 text-body ${scope === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
+      </div> : null}
+      <p className="basis-full text-body text-[var(--steel)] @3xl:basis-auto">{scope === "all" ? "全部账户" : `账户 ${username}`}{view === "period"
+        ? "：按一周至一年汇总期内完成与进行中的工作，可生成总结报告。" : `：生成的报告与保存到报告中心的回答${role === "admin" && scope === "mine" ? "（含未记录生成人的早期报告）" : ""}。`}</p>
     </header>
 
-    {view === "period" ? <PeriodSummary /> : <>
+    {view === "period" ? <PeriodSummary scope={scope} /> : <>
     <section aria-label="报告统计" className="grid grid-cols-2 gap-3 @2xl:grid-cols-4">
       {stat("已完成报告", totals.data?.completed.total, totals.data ? `一周内新完成 ${totals.data.recent_completed}` : undefined)}
       {stat("存量分析", totals.data?.completed.analysis)}
@@ -199,7 +213,7 @@ export function ResultsPage() {
       {artifacts && artifacts.length >= 200 ? <p className="text-caption text-[var(--stone)]">分析与情报报告显示最近 200 份，顶部统计包含全部报告。</p> : null}
       {!loaded && error ? null : !loaded ? <p role="status" className="py-6 text-center text-body text-[var(--steel)]">正在读取报告…</p>
         : !shown.length ? <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] py-8 text-center text-body text-[var(--steel)]">
-          {needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成。"}</p>
+          {needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成，或把对话中的回答保存到报告中心。"}</p>
         : <ul className="divide-y divide-[var(--hairline)] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
           {shown.map((row) => <li key={row.key} className="px-4 py-3 hover:bg-[var(--surface)]">
             {/* Two lines that fit any width: title and actions, then what it is and when (query 2026-1015 1639). */}
@@ -221,6 +235,7 @@ export function ResultsPage() {
               <span className="tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
               <span>{row.detail}</span>
               {row.corpusIds.length ? <span className="min-w-0 max-w-full truncate">{corpusNames(row.corpusIds)}</span> : null}
+              {scope === "all" ? <span className="text-[var(--stone)]">生成人 {row.author || "未记录"}</span> : null}
             </p>
           </li>)}
         </ul>}

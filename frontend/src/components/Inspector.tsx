@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useAuth } from "../auth";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
-import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
+import { PANEL_SHELL, PanelButton, PanelHeader, PanelSizeSwitch, PanelTabs } from "./Panel";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
 import { DocumentCard } from "./DocumentCard";
@@ -87,8 +87,9 @@ export function Inspector() {
     inspectorPinned,
     backInspector,
     toggleInspectorPinned,
-    inspectorWidth,
-    setInspectorWidth,
+    inspectorSize,
+    setInspectorSize,
+    chatDocked,
     showInspector,
   } = useLayout();
   const panelRef = useRef<HTMLElement>(null);
@@ -300,7 +301,9 @@ export function Inspector() {
       inert={!inspectorOpen}
       aria-hidden={!inspectorOpen}
       aria-label="预览面板"
-      className={`${PANEL_SHELL} fixed top-[52px] bottom-0 right-0 z-[70] w-full transition-transform duration-150 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] ${
+      className={`${PANEL_SHELL} panel-motion fixed top-[52px] bottom-0 right-0 z-[70] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] sm:max-w-[calc(100vw-20px)] ${
+        // Beside the docked 分析工作区 it never runs off the left edge, whatever both widths are.
+        chatDocked ? "xl:max-w-[calc(100vw-var(--dock-width)-40px)] " : ""}${
         inspectorOpen ? "translate-x-0" : "pointer-events-none translate-x-[calc(100%+20px)]"
       }`}
     >
@@ -333,8 +336,10 @@ export function Inspector() {
         actions={<>
           <PanelButton label={inspectorPinned ? "取消固定预览面板" : "固定预览面板"} active={inspectorPinned} onClick={toggleInspectorPinned}>
             {inspectorPinned ? "●" : "○"}</PanelButton>
-          <span className="hidden sm:contents"><PanelButton label={inspectorWidth >= 520 ? "还原面板宽度" : "加宽面板"} active={inspectorWidth >= 520}
-            onClick={() => setInspectorWidth(inspectorWidth >= 520 ? 404 : 520)}>{inspectorWidth >= 520 ? "⇥" : "⇤"}</PanelButton></span>
+          <PanelSizeSwitch value={inspectorSize} onChange={setInspectorSize} />
+          {/* A report can also be read on a page of its own, in a new browser tab (query 2026-1023 1044). */}
+          {inspectorTarget.kind === "artifact" ? <PanelButton label="在新页面中打开此报告"
+            onClick={() => window.open(`/results/${encodeURIComponent(inspectorTarget.artifactId)}`, "_blank", "noopener")}><Icon name="external" size={14} /></PanelButton> : null}
           <PanelButton label="关闭预览面板" onClick={toggleInspector}><Icon name="close" size={14} strokeWidth={2} /></PanelButton>
         </>}
       />

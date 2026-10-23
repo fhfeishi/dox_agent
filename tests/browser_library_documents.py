@@ -201,11 +201,11 @@ async def main():
                 if await guide.count(): await guide.click()
                 await page.screenshot(path=str(shots/"admin.png"))
                 # Failure must not masquerade as an empty maintenance list.
-                await page.route("**/api/results/summary", lambda route: route.fulfill(status=503,json={"detail":"unavailable"}))
+                await page.route("**/api/results/summary*", lambda route: route.fulfill(status=503,json={"detail":"unavailable"}))
                 await page.reload()
                 await expect(page.get_by_role("alert").filter(has_text="部分数据读取失败")).to_be_visible(timeout=15000)
                 await expect(page.get_by_text("暂无需要处理的事项。",exact=True)).to_have_count(0)
-                await page.unroute("**/api/results/summary")
+                await page.unroute("**/api/results/summary*")
                 await page.request.post(origin+"/api/auth/logout")
                 await page.request.post(origin+"/api/auth/login",data={"username":"user","password":"123456"})
                 await page.goto(origin+"/home")

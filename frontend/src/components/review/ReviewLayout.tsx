@@ -16,7 +16,7 @@ export function ReviewPageShell({ title, description = "", children }: { title: 
   return (
     <section className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <header className="shrink-0 border-b border-[var(--hairline)]">
-        <div className="mx-auto flex min-h-[52px] w-full max-w-[1200px] flex-wrap items-center gap-[6px] px-5 py-2 sm:px-8">
+        <div className="mx-auto flex min-h-[52px] w-full max-w-[var(--page-max)] flex-wrap items-center gap-[6px] px-5 py-2 sm:px-8">
         <span className="text-body font-semibold text-[var(--ink)]">资料审查</span>
         <span className="flex-1" />
         {TABS.map((tab) => (
@@ -28,11 +28,11 @@ export function ReviewPageShell({ title, description = "", children }: { title: 
         </div>
       </header>
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[1200px] px-5 pt-7 sm:px-8">
+        <div className="mx-auto w-full max-w-[var(--page-max)] px-5 pt-7 sm:px-8">
           <h1 className="mb-[6px] text-stat font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
           {description ? <p className="max-w-[720px] text-body leading-[1.6] text-[var(--steel)]">{description}</p> : null}
         </div>
-        <div className="mx-auto w-full max-w-[1200px] px-5 pt-5 pb-10 sm:px-8">{children}</div>
+        <div className="mx-auto w-full max-w-[var(--page-max)] px-5 pt-5 pb-10 sm:px-8">{children}</div>
       </div>
     </section>
   );

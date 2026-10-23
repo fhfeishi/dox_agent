@@ -6,6 +6,7 @@ Background: Baha's review of 2026-10-18, findings F4/F6 and quick wins Q3/Q4.
 
 | Date | Removed | Old location | Why | Restore |
 |---|---|---|---|---|
+| 2026-10-24 | 过期的领域全景实施任务记录 | `.logsdev/tasks/task-领域分析全景实施-20261021.md` | R7：头部“已回退”与后续261560d等已上线实现不符，旧组件名与像素阈值会误导接续。统计边界与仍有效的触屏/投屏/首次阅读及首屏位置待验收转入PROJECT §1；当前实现由代码/测试承接。 | `git show 847ff34:.logsdev/tasks/task-领域分析全景实施-20261021.md` |
 | 2026-10-19 | `src/agent/quick.py` (`use_quick`, `verify`) | `src/agent/quick.py` | Imported `ResearchReport` / `validate_report`, which `evidence.py` no longer has, so importing it always failed. Nothing imported it; 0% coverage. | `git show 4ce4616:src/agent/quick.py` |
 | 2026-10-19 | Settings `max_research_steps`, `max_rounds`, `evidence_routing`, `max_searches`, `max_reads`, `model_context_tokens`, `answer_reserve_tokens`, `research_timeout` | `src/agent/config.py` (class `Settings`) | Left over from the old research loop; no code outside `config.py` read them, so changing them did nothing. Old values in a user's `.env` are ignored (`extra="ignore"`), so nothing breaks. | `git show 4ce4616:src/agent/config.py` |
 | 2026-10-19 | Dependency `deepagents>=0.7.8,<0.8` | `pyproject.toml` `[project].dependencies` (and `uv.lock`) | Never imported anywhere in `src/` or `tests/`. Also dropped "Deep Agents" from the project description. | `git show 4ce4616:pyproject.toml`, then `uv lock` |

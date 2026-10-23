@@ -31,7 +31,7 @@
 | R4 | 资料审查页常驻“最近一次模型连接测试失败” | 审查模块单独存 `model_connection` 记录（`src/review/routes.py:157`），启动检查与 `/api/model/check` 都不更新它；本次启动检查 797 ms 成功，页面仍报失败 | 误导用户以为模型不可用 |
 | R5 | `/api/corpora`、`/api/overview/libraries` 在 Windows 上 3–5 s | 测试脚本记录的慢请求；WSL 未对比 | 首屏慢，放大 R3 |
 | R6 | Windows 与开发分支不同步：功能分支未合并时，Windows 切到 `main` 或 `pull origin main` 就回到旧界面 | Windows reflog：16:48、18:10 两次切回 `main`；本日已把 `main` 快进到 `67d3656` | 用户误以为更新丢失 |
-| R7 | 记录与现状不符 | [领域分析全景实施](../task-领域分析全景实施-20261021.md) 开头写“已回退、不代表当前状态”，但其内容后来已随 `261560d` 等提交进入产品；ITERATION §1 约束写“不改 Windows 副本 `D:\chyCodespace\agents\dox_agent`”，该目录已不存在，现副本为 `D:\chyCodespace\dox_agent` | 接续者被过期记录误导 |
+| R7 | 记录与现状不符 | 旧记录 `.logsdev/tasks/task-领域分析全景实施-20261021.md`（847ff34可恢复）开头的“已回退”与后续261560d等实现不符；现已收口至PROJECT §1。ITERATION的Windows旧路径约束已更正 | 旧记录已删除并登记；后续用户验收未伪称完成 |
 
 ## 2. 工作安排
 
@@ -103,7 +103,9 @@ R3提交586c694已推送main：Overview区分加载/错误可重试/真正空库
 
 R4提交847ff34已推送main：workspace.sqlite3的model_checks按连接摘要共享，启动/系统/审查JSON检测均写此表；审查旧model_connection记录迁移删除，主health不再返回model_verified。前端只读model_status，未检测不再凭已配密钥显示正常；两种检测入口均触发共享状态重新读取，审查失败显示检测时间及原因，恢复后去除提示。两项HTTP/持久化集成覆盖失败→成功、launcher结果读取、独立审查连接、错误脱敏、旧记录清理及旧工作区笔记迁移保留；43项定向检查通过。check.sh full退出0（364后端/57前端/9条冒烟），额外browser_status_power也通过并人工查看失败/恢复截图；证据 `.logsdev/verification/收尾-R4/`。新增UI脚本两次遇到测试环境问题（模型信息替身缺字段、静态服务直链404）后暂停；用户批准补齐替身并再验一次，status-power-authorized.log退出0，原断言未删。
 
-R6运行说明已补齐“两端同main、先WSL后Windows、功能分支先合入main再拉取”，并同步PROJECT中R4健康接口的现行口径。R7收口随后进行；纯文档共用最终完整回归及各自规范/链接检查，Windows复测及R5计时仍待后续执行。
+R6提交12dd655已推送：运行说明补齐“两端同main、先WSL后Windows、功能分支先合入main再拉取”，并同步PROJECT中R4健康接口现行口径。R6/R7为纯文档，共用最终check.sh full（364后端/57前端/9条冒烟）及各自规范/链接检查，均退出0；证据 `.logsdev/verification/收尾-R6-R7/`。Windows复测及R5计时待下一步执行。
+
+R7已核对旧记录全文及261560d等提交：原候选组件与截图不是当前实现，统计边界由代码/测试承接，仍有效的用户验收项与未确认首屏选项转入PROJECT §1。旧记录已删除，索引/方案链接及cleanup-log同步；没有删除用户资料，也没有把未做的实机验收标为通过。
 
 §8六项债务未改；新增index作业未加入全局recover的KINDS。project_vectors的INSERT OR REPLACE不随R1替换。共享数据库迁移器并发启动迁移不在本卡新增行为中，测试先完成迁移再并发启动。测试服务8012只使用 `/tmp/dox-r1-real-jzgev4pd` 副本，浏览器入口 `http://r1.localhost:8012`；没有配置模型密钥，不调用真实模型。Windows副本干净、main，待WSL完成并推送后再拉取复测。
 

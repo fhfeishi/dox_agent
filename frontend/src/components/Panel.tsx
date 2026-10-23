@@ -1,12 +1,37 @@
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { Icon } from "./Icons";
-import { PANEL_SIZES, type PanelSize } from "../panelSize";
+import type { PanelSize } from "../panelSize";
 
-/** The 20 / 40 / 60 % choice in a panel's head; hidden on narrow screens, where panels take the full width. */
+// Left to right the stops read 60 %, 40 %, 20 %: pulling the knob towards the page widens the panel.
+const STOPS: readonly PanelSize[] = [60, 40, 20];
+
+/**
+ * The panel width as one ○──○──○ slider (query 2026-1023 1156), the same in every right-hand panel and
+ * always next to its ✕. Click a stop, drag along the line, or use ← → on the keyboard. Hidden on narrow
+ * screens, where panels take the full width.
+ */
 export function PanelSizeSwitch({ value, onChange }: { value: PanelSize; onChange: (size: PanelSize) => void }) {
-  return <span role="group" aria-label="面板宽度" className="panel-size">
-    {PANEL_SIZES.map((size) => <button key={size} type="button" aria-pressed={value === size} title={`面板占窗口宽度的 ${size}%`}
-      onClick={() => onChange(size)}>{size}%</button>)}
+  const track = useRef<HTMLSpanElement>(null);
+  const index = Math.max(0, STOPS.indexOf(value));
+  const set = (next: number) => { const size = STOPS[Math.min(STOPS.length - 1, Math.max(0, next))]; if (size !== value) onChange(size); };
+  const pick = (clientX: number) => {
+    const box = track.current?.getBoundingClientRect();
+    if (box?.width) set(Math.round(((clientX - box.left) / box.width) * (STOPS.length - 1)));
+  };
+  return <span role="slider" tabIndex={0} aria-label="面板宽度" aria-valuemin={20} aria-valuemax={60} aria-valuenow={value}
+    aria-valuetext={`窗口宽度的 ${value}%`} title={`面板宽度：窗口的 ${value}%（左宽右窄）`} className="panel-size"
+    onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); pick(event.clientX); }}
+    onPointerMove={(event) => { if (event.buttons) pick(event.clientX); }}
+    onKeyDown={(event) => {
+      const step = { ArrowLeft: -1, ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, Home: -9, End: 9 }[event.key];
+      if (step === undefined) return;
+      event.preventDefault();
+      set(index + step);
+    }}>
+    <span ref={track} className="panel-size-track" aria-hidden="true">
+      {STOPS.map((size, i) => <i key={size} className={i === index ? "is-on" : ""} style={{ left: `${(i / (STOPS.length - 1)) * 100}%` }} />)}
+    </span>
+    <span className="panel-size-value" aria-hidden="true">{value}%</span>
   </span>;
 }
 

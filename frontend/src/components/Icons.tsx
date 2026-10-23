@@ -24,6 +24,7 @@ export type IconName =
   | "doc"
   | "trash"
   | "external"
+  | "pin"
   | "grid"
   | "tree"
   | "book"
@@ -125,6 +126,7 @@ const PATHS: Record<IconName, ReactNode> = {
   ),
   trash: <path d="M5 7h14M9.5 7V5.5h5V7M7 7l1 12.5h8L17 7" />,
   external: <path d="M14 4.5h5.5V10M19 5l-7.5 7.5M17 14v4.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 015 18.5v-9A1.5 1.5 0 016.5 8H11" />,
+  pin: <path d="M9 4h6l-1 5.5 3 3V14H7v-1.5l3-3L9 4zM12 14v6" />,
   grid: (
     <>
       <rect x="4" y="4" width="7" height="7" rx="1.6" />

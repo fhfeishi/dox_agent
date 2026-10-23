@@ -1,7 +1,7 @@
 # ITERATION — dox_agent 当前工作
 
 - 更新时间：2026-10-20。当前批次：[升级方案 2026-10-19](tasks/dox_agent_升级方案-20261019/README.md)（目标 G2，进入 2-product-demo）。阶段门、推进顺序和任务卡正文见 [03 路线图与任务卡](tasks/dox_agent_升级方案-20261019/03_路线图与任务卡.md)，本文只维护状态、未决项和下一步。
-- 现行要求见 [PROJECT §0](PROJECT.md#0-现行产品要求截至-query-2026-1023-1044)；用户原文见 [query.md](query.md)；文档索引见 [README](README.md#索引)。
+- 现行要求见 [PROJECT §0](PROJECT.md#0-现行产品要求截至-query-2026-1023-1156)；用户原文见 [query.md](query.md)；文档索引见 [README](README.md#索引)。
 - 2026-10-19 之前的完整工作记录（§1–§16，含各阶段证据）见 [节点快照](archive/2026-10-19-节点/ITERATION.md) 与 git 历史；其中的“当前入口”和完成声明不代表本轮验收。
 
 ## 1. 目标与约束

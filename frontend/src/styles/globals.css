@@ -566,10 +566,14 @@
 :root { --ease-panel: cubic-bezier(.16, 1, .3, 1); }
 .panel-motion { transition: transform 320ms var(--ease-panel), width 240ms var(--ease-panel), right 240ms var(--ease-panel); }
 .panel-enter { animation: slide-in 320ms var(--ease-panel) both; }
-.panel-size { display: none; gap: 2px; padding: 2px; margin-right: 2px; border-radius: 7px; background: var(--surface); }
-.panel-size button { padding: 1px 6px; border-radius: 5px; font-size: var(--text-caption); line-height: 20px; color: var(--steel); font-variant-numeric: tabular-nums; }
-.panel-size button:hover { color: var(--ink); }
-.panel-size button[aria-pressed="true"] { background: var(--canvas); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgb(15 23 42 / 8%); }
+.panel-size { display: none; align-items: center; gap: 8px; margin-right: 4px; padding: 4px 6px; border-radius: 7px; cursor: pointer; touch-action: none; user-select: none; }
+.panel-size:hover, .panel-size:focus-visible { background: var(--surface); outline: none; }
+.panel-size-track { position: relative; width: 52px; height: 10px; }
+.panel-size-track::before { content: ""; position: absolute; left: 0; right: 0; top: 4.5px; border-top: 1px solid var(--line-cool-strong); }
+.panel-size-track i { position: absolute; top: 1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; border: 1.5px solid var(--line-cool-strong); background: var(--canvas);
+  transition: left 160ms var(--ease-panel), background 160ms, border-color 160ms, transform 160ms; }
+.panel-size-track i.is-on { border-color: var(--primary); background: var(--primary); transform: scale(1.25); }
+.panel-size-value { min-width: 28px; font-size: var(--text-caption); line-height: 16px; color: var(--steel); font-variant-numeric: tabular-nums; }
 @media (min-width: 640px) { .panel-size { display: inline-flex; } }
 .slide-over { position: fixed; top: 52px; right: 0; bottom: 0; z-index: 72; width: 100%; display: flex; flex-direction: column; overflow: hidden;
   background: var(--canvas); border: 1px solid var(--line-cool); box-shadow: -8px 0 28px -12px rgb(15 23 42 / 18%); outline: none;
@@ -659,9 +663,6 @@
 .atlas-pool-actions button.primary { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
 .atlas-pool-actions button:disabled { opacity: 0.45; }
 
-.slide-seg { display: inline-flex; padding: 2px; border-radius: 8px; background: var(--line-cool-soft); }
-.slide-seg button { padding: 3px 10px; border-radius: 6px; font-size: var(--text-caption); color: var(--slate); }
-.slide-seg button[aria-checked="true"] { background: var(--canvas); color: var(--heading); font-weight: 600; }
 .slide-group + .slide-group { margin-top: 16px; }
 .slide-group h3 { margin-bottom: 8px; font-size: var(--text-caption); letter-spacing: 0.1em; color: var(--muted-cool); }
 .slide-card { display: grid; gap: 3px; padding: 12px 14px; border-radius: 10px; background: var(--canvas); border: 1px solid var(--line-cool-soft); }

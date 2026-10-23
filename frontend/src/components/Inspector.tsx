@@ -335,7 +335,7 @@ export function Inspector() {
             : inspectorTarget.kind === "answer" ? (activeTask ? activeTask.name : "专业问答") : ""}
         actions={<>
           <PanelButton label={inspectorPinned ? "取消固定预览面板" : "固定预览面板"} active={inspectorPinned} onClick={toggleInspectorPinned}>
-            {inspectorPinned ? "●" : "○"}</PanelButton>
+            <Icon name="pin" size={14} /></PanelButton>
           <PanelSizeSwitch value={inspectorSize} onChange={setInspectorSize} />
           {/* A report can also be read on a page of its own, in a new browser tab (query 2026-1023 1044). */}
           {inspectorTarget.kind === "artifact" ? <PanelButton label="在新页面中打开此报告"

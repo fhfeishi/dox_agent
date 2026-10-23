@@ -235,6 +235,11 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert (exported["task_id"], exported["template_id"], exported["created_by"]) == ("task4", "domain_analysis", "admin")
         assert exported["title"].startswith("领域分析 · ") and "## 成熟度分布" in exported["markdown"]
         assert client.post("/api/domains/no-such-library/report").status_code == 404
+        # 03 机会清单 and 立项建议 download as Word (query 2026-1023 1156): a real .docx with the table in it.
+        from docx import Document as Docx
+        word = client.post("/api/export/docx", json={"markdown": "# 机会清单\n\n| 领域 | 机会 |\n|---|---|\n| 医疗 | 肺癌早筛 |"})
+        assert word.status_code == 200 and word.headers["content-type"].endswith("wordprocessingml.document")
+        assert Docx(BytesIO(word.content)).tables[0].cell(1, 1).text == "肺癌早筛"
         started = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [saved["doc_id"]]})
         assert started.status_code == 202
         job_id = started.json()["job_id"]

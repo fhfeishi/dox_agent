@@ -63,6 +63,13 @@ export async function fetchLibraryOverview(signal?: AbortSignal): Promise<Librar
   return jsonOrThrow(await fetch("/api/overview/libraries", { signal }), "资料库概况暂不可读");
 }
 
+/** Markdown written on the page as a real .docx (03 机会清单 and 立项建议, query 2026-1023 1156). */
+export async function markdownToWord(markdown: string): Promise<Blob> {
+  const response = await fetch("/api/export/docx", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ markdown }) });
+  if (!response.ok) await jsonOrThrow(response, "Word 文档未生成");
+  return response.blob();
+}
+
 /** 资料库预览 → 导出报告: the preview's counted figures saved to 报告中心 as 专项报告 · 领域分析. */
 export async function saveDomainReport(corpusId: string): Promise<ArtifactSummary> {
   const response = await fetch(`/api/domains/${encodeURIComponent(corpusId)}/report`, { method: "POST" });

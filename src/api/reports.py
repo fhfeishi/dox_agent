@@ -11,7 +11,7 @@ from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, Field, ValidationError
 
 from ..agent.corpora import (
     default_corpus_info,
@@ -629,6 +629,20 @@ def install(app, ctx):
             return Response(output.getvalue(), media_type="application/zip",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.zip"'})
         raise HTTPException(422, "可导出 md / docx；图文报告还可导出 zip")
+
+    class DocxRequest(BaseModel):
+        markdown: str = Field(min_length=1, max_length=500_000)
+
+    @router.post("/api/export/docx")
+    async def export_docx(payload: DocxRequest):
+        """A page's own Markdown as a Word file (query 2026-1023 1156: 机会清单 and 立项建议 are read in
+        Word, not as CSV or Markdown), through the same converter as report exports."""
+        try:
+            data = await asyncio.to_thread(markdown_to_docx, payload.markdown)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        headers={"Content-Disposition": 'attachment; filename="export.docx"'})
 
     @router.get("/api/artifacts/{artifact_id}/versions/{version}/figures/{figure_id}")
     async def artifact_figure(artifact_id: str, version: int, figure_id: str, include_trashed: bool = False):

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type DragEvent } from "react";
 import { useNavigate } from "react-router";
-import { downloadText } from "../../exportFormat";
+import { markdownToWord } from "../../api";
+import { downloadBlob } from "../../exportFormat";
 import { useApp } from "../../store";
 import type { Domain, DomainsOverview } from "../../domains";
 import { Hint } from "../Hint";
@@ -15,8 +16,8 @@ import { SlideOver } from "../SlideOver";
  * 在 01 定位 and 在 02 谱系中看; chips below narrow the tab to one library.
  * Right, 下一步可以先做什么: the tab's openings on two counted axes — 已有基础 (projects in the library
  * that already work on it) and 影响面 (projects in the scene it would serve) — as a quadrant or a ranked
- * list; a click puts it in the 候选池, whose two buttons open the export and proposal previews.
- * The pool is kept in this browser only.
+ * list; a click puts it in the 候选池, whose two buttons open the export and proposal previews; both
+ * download as Word (query 2026-1023 1156). The pool is kept in this browser only.
  */
 type Kind = "blank" | "issue" | "combo";
 export type Opportunity = { key: string; kind: Kind; domain: string; domainId: string; title: string; detail: string; basis: string;
@@ -73,10 +74,6 @@ function asMarkdown(list: Opportunity[]) {
       ...items.map((o) => `| ${o.domain} | ${o.title} | ${o.detail.replace(/\|/g, "／")} | ${o.basis.replace(/\|/g, "／")} |`), ""] : [];
   })].join("\n");
 }
-function asCsv(list: Opportunity[]) {
-  const cell = (v: string) => `"${v.replace(/"/g, '""')}"`;
-  return ["类型,领域,机会,说明,已有基础", ...list.map((o) => [KINDS.find((k) => k.key === o.kind)!.label, o.domain, o.title, o.detail, o.basis].map(cell).join(","))].join("\n");
-}
 function proposalMarkdown(list: Opportunity[]) {
   return ["# 立项建议（草稿）", "", "由机会清单生成，尚未做可行性与经费评估。", "", ...list.flatMap((o, i) => [
     `## ${i + 1}. ${o.title}（${o.domain} · ${KINDS.find((k) => k.key === o.kind)!.label}）`, "",
@@ -107,7 +104,10 @@ export type DragHandlers = { start: (items: Opportunity[]) => void; move: (x: nu
 
 /**
  * 下一步可以先做什么 as a static four-quadrant chart, like 01 (query 2026-1022 1809, after the 研究地形图
- * demo): x = 已有基础, y = 影响面, both project counts on square-root scales, split at their medians.
+ * demo): x = 已有基础, y = 影响面, both project counts, split at their medians into four equal quarters
+ * (query 2026-1023 1156: quarters sized by where the median fell looked uneven once points lost their
+ * names). Within each half the values spread over that half's own range — columns for 已有基础, a
+ * square-root scale for 影响面 — so order is kept on both sides of the split.
  * Openings with the same two counts share one point that shows how many it holds — equal counts used
  * to stack dots on one spot. A point is clicked (one opening: into the pool; several: a list to pick
  * from) or dragged onto the 候选池.
@@ -137,18 +137,21 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
   }, []);
   const press = useRef<{ g: Group; x: number; y: number; moved: boolean } | null>(null);
   const maxBase = Math.max(1, ...items.map((o) => o.base)), maxReach = Math.max(1, ...items.map((o) => o.reach));
-  // 已有基础 is a handful of small whole numbers: one column per value reads better than a stretched axis.
-  const columns = [...new Set(items.map((o) => o.base))].sort((a, b) => a - b);
-  const colW = (R - L) / Math.max(1, columns.length);
-  const sx = (v: number) => L + colW * (columns.indexOf(v) + 0.5);
-  const sy = (v: number) => B - Math.sqrt(v / maxReach) * (B - T - 16) - 8;
   const base = splitter(items.map((o) => o.base)), reach = splitter(items.map((o) => o.reach));
-  // The median lines sit between the highest "low" value and the lowest "high" one.
-  const lowCols = columns.filter((v) => !base.high(v)).length;
-  const cx = lowCols === 0 ? L : lowCols === columns.length ? R : L + colW * lowCols;
-  const lows = items.map((o) => o.reach).filter((v) => !reach.high(v)), highs = items.map((o) => o.reach).filter(reach.high);
-  const cy = !highs.length ? T : !lows.length ? B : (sy(Math.max(...lows)) + sy(Math.min(...highs))) / 2;
-  const yTicks = [...new Set([0, maxReach])];
+  const cx = (L + R) / 2, cy = (T + B) / 2;
+  // 已有基础 is a handful of small whole numbers: one column per value, low ones left of the median, high ones right.
+  const columns = [...new Set(items.map((o) => o.base))].sort((a, b) => a - b);
+  const lowCols = columns.filter((v) => !base.high(v)), highCols = columns.filter(base.high);
+  const colW = (v: number) => (base.high(v) ? R - cx : cx - L) / Math.max(1, (base.high(v) ? highCols : lowCols).length);
+  const sx = (v: number) => base.high(v) ? cx + colW(v) * (highCols.indexOf(v) + 0.5) : L + colW(v) * (lowCols.indexOf(v) + 0.5);
+  // 影响面 within its half, clear of the quarter names at the half's top and bottom.
+  const lowReach = items.map((o) => o.reach).filter((v) => !reach.high(v)), highReach = items.map((o) => o.reach).filter(reach.high);
+  const band = (v: number, list: number[], top: number, bottom: number) => {
+    const lo = Math.sqrt(Math.min(...list)), hi = Math.sqrt(Math.max(...list)), pad = 24;
+    return hi === lo ? (top + bottom) / 2 : bottom - pad - ((Math.sqrt(v) - lo) / (hi - lo)) * (bottom - top - 2 * pad);
+  };
+  const sy = (v: number) => reach.high(v) ? band(v, highReach, T, cy) : band(v, lowReach, cy, B);
+  const yTicks = [...new Set([lowReach, highReach].flatMap((list) => list.length ? [Math.min(...list), Math.max(...list)] : []))];
 
   const groups = useMemo(() => {
     const map = new Map<string, Opportunity[]>();
@@ -161,7 +164,7 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
   const placed = useMemo(() => {
     const done: Group[] = [];
     for (const g of [...groups].sort((a, b) => a.cy - b.cy)) {
-      const home = g.cx, limit = colW / 2 - g.r - 2;
+      const home = g.cx, limit = colW(g.base) / 2 - g.r - 2;
       let best = home;
       for (let step = 0; step < 40; step++) {
         const offset = Math.ceil(step / 2) * (g.r * 0.9) * (step % 2 ? 1 : -1);
@@ -173,7 +176,7 @@ function OppChart({ items, pool, onPick, onPickAll, drag }: {
       done.push({ ...g, cx: best });
     }
     return done;
-  }, [groups, colW]);
+  }, [groups]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const local = (event: { clientX: number; clientY: number }) => {
     const box = frame.current!.getBoundingClientRect();
@@ -271,7 +274,6 @@ export function GapBoard({ data, onLocate, onReveal }: {
   const [over, setOver] = useState(false);
   const [pool, setPool] = useState<Opportunity[]>(load);
   const [panel, setPanel] = useState<"" | "export" | "proposal">("");
-  const [format, setFormat] = useState<"md" | "csv">("md");
   const [note, setNote] = useState("");
   useEffect(() => { try { localStorage.setItem(STORE, JSON.stringify(pool)); } catch { /* private mode: the pool lives for this visit */ } }, [pool]);
 
@@ -291,8 +293,15 @@ export function GapBoard({ data, onLocate, onReveal }: {
   const fromPool = pool.length > 0;
   const subject = fromPool ? pool : suggested;
   const proposal = subject.slice(0, MAX_PROPOSAL);
+  // Both previews download as Word (query 2026-1023 1156: the people who read them work in Word).
   const [saved, setSaved] = useState("");
-  const save = (text: string, name: string) => { downloadText(text, name); setSaved(name); window.setTimeout(() => setSaved(""), 2400); };
+  const [saving, setSaving] = useState("");
+  async function save(markdown: string, name: string) {
+    setSaving(name);
+    try { downloadBlob(await markdownToWord(markdown), name); setSaved(name); window.setTimeout(() => setSaved(""), 2400); }
+    catch (e) { setSaved(`未生成：${(e as Error).message}`); }
+    finally { setSaving(""); }
+  }
   const suggestion = fromPool ? null : <>候选池还是空的，下面是当前「{KINDS.find((k) => k.key === tab)!.label}」里已有基础与影响面最高的 {suggested.length} 项，可直接使用。
     <button type="button" className="slide-inline" onClick={() => addAll(suggested)}>全部加入候选池</button></>;
   const ranked = [...shown].sort((a, b) => (b.base + b.reach) - (a.base + a.reach));
@@ -402,16 +411,14 @@ export function GapBoard({ data, onLocate, onReveal }: {
       <b>拖到这里，加入候选池</b><span>已有 {pool.length} 项</span>
     </div> : null}
 
-    <SlideOver open={panel === "export"} onClose={() => setPanel("")} eyebrow="导出预览" title="机会清单" label="导出机会清单"
+    <SlideOver open={panel === "export"} onClose={() => setPanel("")} sizeKey="atlas-preview" eyebrow="导出预览" title="机会清单" label="导出机会清单"
       stats={KINDS.map((k) => ({ value: subject.filter((o) => o.kind === k.key).length, label: k.label }))}
       warn={suggestion}
       footer={<>
-        <span role="radiogroup" aria-label="导出格式" className="slide-seg">
-          {(["md", "csv"] as const).map((f) => <button key={f} type="button" role="radio" aria-checked={format === f} onClick={() => setFormat(f)}>{f === "md" ? "Markdown" : "CSV（Excel）"}</button>)}
-        </span>
-        {saved.startsWith("机会清单") ? <span role="status" className="slide-saved">已下载 {saved}</span> : null}
-        <button type="button" className="slide-action primary" disabled={!subject.length}
-          onClick={() => save(format === "md" ? asMarkdown(subject) : asCsv(subject), format === "md" ? "机会清单.md" : "机会清单.csv")}>下载 {subject.length} 项</button>
+        {saved.startsWith("机会清单") ? <span role="status" className="slide-saved">已下载 {saved}</span>
+          : saved.startsWith("未生成") ? <span role="alert" className="slide-saved">{saved}</span> : null}
+        <button type="button" className="slide-action primary" disabled={!subject.length || Boolean(saving)}
+          onClick={() => void save(asMarkdown(subject), "机会清单.docx")}>{saving ? "正在生成…" : `下载 Word（${subject.length} 项）`}</button>
       </>}>
       {KINDS.map((k) => {
         const items = subject.filter((o) => o.kind === k.key);
@@ -425,12 +432,12 @@ export function GapBoard({ data, onLocate, onReveal }: {
       {!subject.length ? <p className="text-body text-[var(--steel)]">这一类没有可导出的机会，换一个缺口类型试试。</p> : null}
     </SlideOver>
 
-    <SlideOver open={panel === "proposal"} onClose={() => setPanel("")} eyebrow="立项建议 · 草稿" title="立项建议（草稿）" label="生成立项建议"
+    <SlideOver open={panel === "proposal"} onClose={() => setPanel("")} sizeKey="atlas-preview" eyebrow="立项建议 · 草稿" title="立项建议（草稿）" label="生成立项建议"
       stats={[{ value: proposal.length, label: "候选方向" }, { value: new Set(proposal.map((o) => o.domain)).size, label: "涉及领域" }]}
       warn={<>{suggestion ? <>{suggestion}<br /></> : null}“已有基础”由资料库计数得出；“首步验证”是按缺口类型给的起步建议，尚未做可行性与经费评估。{subject.length > MAX_PROPOSAL ? `一次最多 ${MAX_PROPOSAL} 条，其余请下次生成。` : ""}</>}
       footer={<>
         {saved.startsWith("立项建议") ? <span role="status" className="slide-saved">已下载 {saved}</span> : null}
-        <button type="button" className="slide-action" disabled={!proposal.length} onClick={() => save(proposalMarkdown(proposal), "立项建议-草稿.md")}>导出草稿</button>
+        <button type="button" className="slide-action" disabled={!proposal.length || Boolean(saving)} onClick={() => void save(proposalMarkdown(proposal), "立项建议-草稿.docx")}>{saving ? "正在生成…" : "导出 Word 草稿"}</button>
         <button type="button" className="slide-action primary" disabled={!proposal.length} onClick={() => {
           void askInTask("task3", proposalQuestion(proposal, note)).then(() => { setPanel(""); navigate("/chat"); });
         }}>交给对话工作台写完整建议 →</button>

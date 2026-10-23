@@ -18,7 +18,11 @@ export function sanitizeFileName(name: string): string {
 
 /** Download plain/Markdown text as a file. */
 export function downloadText(text: string, filename: string) {
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  downloadBlob(new Blob([text], { type: "text/plain;charset=utf-8" }), filename);
+}
+
+/** Download a file the page already holds, such as a Word document the server converted. */
+export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

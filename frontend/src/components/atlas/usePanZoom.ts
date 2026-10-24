@@ -17,12 +17,15 @@ export function usePanZoom(
   svg: RefObject<SVGSVGElement | null>,
   bounds: Bounds,
   resetKey = "",
+  constrain?: (next: MapView) => MapView,
 ) {
   const [view, render] = useState(HOME);
   const selection = useRef(resetKey);
   const current = useRef(view);
   const limits = useRef(bounds);
   limits.current = bounds;
+  const constraint = useRef(constrain);
+  constraint.current = constrain;
   const drag = useRef<{
     x: number;
     y: number;
@@ -43,7 +46,8 @@ export function usePanZoom(
     return () => media.removeEventListener("change", change);
   }, []);
   const setView = useCallback((next: MapView) => {
-    current.current = { ...next, k: Math.max(1, Math.min(8, next.k)) };
+    const clamped = { ...next, k: Math.max(1, Math.min(8, next.k)) };
+    current.current = constraint.current?.(clamped) ?? clamped;
     render(current.current);
   }, []);
   const stop = useCallback(() => cancelAnimationFrame(animation.current), []);

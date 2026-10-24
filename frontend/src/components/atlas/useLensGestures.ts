@@ -16,14 +16,22 @@ export function useLensGestures() {
     y2: number;
   } | null>(null);
   const suppress = useRef(0);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const drawerDrag = useRef<number | null>(null);
-  function cancelClick() {
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = null;
+  function cancelPreview() {
+    if (previewTimer.current) clearTimeout(previewTimer.current);
+    previewTimer.current = null;
   }
-  useEffect(() => cancelClick, []);
-  return { drag, trace, setTrace, suppress, timer, drawerDrag, cancelClick };
+  useEffect(() => cancelPreview, []);
+  return {
+    drag,
+    trace,
+    setTrace,
+    suppress,
+    previewTimer,
+    drawerDrag,
+    cancelPreview,
+  };
 }
 
 export function useAnnualGestures() {

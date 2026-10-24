@@ -19,6 +19,7 @@ import {
   NODE_KINDS,
   OUTPUT_MEANING,
   atlasLayout,
+  constrainAtlasView,
   atlasQuery,
   buildAtlas,
   type AnnualMetric,
@@ -126,6 +127,14 @@ function LensMap({
     [tip, setTip] = useState<Tip | null>(null),
     [preview, setPreview] = useState<LibraryOverview | null>(null),
     [open, setOpen] = useState(() => globalThis.innerWidth > 850);
+  const [compareFrom, setCompareFrom] = useState<string | null>(null);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const helpId = useId();
+  const blankSelection = useRef<{
+    search: string;
+    open: boolean;
+    at: number;
+  } | null>(null);
   const chosen =
     (!fixed && !base && hover && ids.includes(hover.id) ? hover.id : null) ??
     fixed ??
@@ -139,11 +148,20 @@ function LensMap({
     [size, setSize] = useState({ width: 760, height: 400, font: 16 }),
     [panelHeight, setPanelHeight] = useState(850);
   const dismissTip = () => setTip(null);
-  const { drag, trace, setTrace, suppress, timer, drawerDrag, cancelClick } =
-    useLensGestures();
+  const {
+    drag,
+    trace,
+    setTrace,
+    suppress,
+    drawerDrag,
+    previewTimer,
+    cancelPreview,
+  } = useLensGestures();
   const nextFocus = useRef<string | null>(null);
   const update = (values: Record<string, string | null>) => {
-    cancelClick();
+    cancelPreview();
+    setCompareFrom(null);
+
     drag.current = null;
     setTrace(null);
     setHover(null);
@@ -163,6 +181,11 @@ function LensMap({
   };
   const choose = (id: string) => {
     setOpen(true);
+    if (compareFrom) {
+      if (compareFrom !== id)
+        update({ compare: compareFrom, node: id, pin: null });
+      return;
+    }
     update({ node: id, pin: fixed === id ? null : id, compare: null });
   };
   const back = (restoreFocus = false) => {
@@ -173,8 +196,22 @@ function LensMap({
       update({ layer: model.nodes.get(scope)!.parent, node: scope, pin: null });
     } else setOpen(false);
   };
+  function navigateTo(layer: string | null) {
+    let node = scope;
+    while (node && model.nodes.get(node)?.parent !== layer)
+      node = model.nodes.get(node)?.parent ?? null;
+    update({ layer, node: node ?? ids[0], pin: null, compare: null });
+    setOpen(true);
+  }
+  function endPreview() {
+    cancelPreview();
+    previewTimer.current = setTimeout(() => setHover(null), 150);
+  }
+  function clearPreview() {
+    cancelPreview();
+    setHover(null);
+  }
   const enter = (id: string, restoreFocus = false) => {
-    cancelClick();
     const n = model.nodes.get(id)!;
     setOpen(true);
     if (n.children.length) {
@@ -190,20 +227,29 @@ function LensMap({
       const font =
         parseFloat(getComputedStyle(el).getPropertyValue("--text-emphasis")) ||
         16;
-      const width = Math.max(660, Math.floor(el.getBoundingClientRect().width)),
-        height = Math.round(
-          Math.max(340, Math.min(960, globalThis.innerHeight * 0.43)),
-        );
+      const matrix = main.querySelector(".lens-matrix");
+      const mainBox = main.getBoundingClientRect(),
+        plotBox = el.getBoundingClientRect();
+      const header = plotBox.top - mainBox.top;
+      const footer =
+        mainBox.bottom -
+        plotBox.bottom -
+        (matrix?.getBoundingClientRect().height ?? 0);
+      const available =
+        main.closest("main")?.clientHeight ?? globalThis.innerHeight - 60;
+      const width = Math.max(660, Math.floor(plotBox.width));
+      const height = Math.round(
+        Math.max(414, Math.min(1000, available - header - footer)),
+      );
       setSize((old) =>
         old.width === width && old.height === height && old.font === font
           ? old
           : { width, height, font },
       );
-      const matrix = main.querySelector(".lens-matrix"),
-        h = Math.ceil(
-          main.getBoundingClientRect().height -
-            (matrix?.getBoundingClientRect().height ?? 0),
-        );
+      const h = Math.ceil(
+        main.getBoundingClientRect().height -
+          (matrix?.getBoundingClientRect().height ?? 0),
+      );
       setPanelHeight((old) => (Math.abs(old - h) < 1 ? old : Math.max(440, h)));
     };
     const observer = new ResizeObserver(read);
@@ -216,12 +262,6 @@ function LensMap({
       globalThis.removeEventListener("resize", read);
     };
   }, []);
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-    },
-    [],
-  );
   useEffect(() => {
     setHover(null);
     setGuide(null);
@@ -269,6 +309,14 @@ function LensMap({
         drawerDrag.current = null;
         return;
       }
+      if (compareFrom) {
+        setCompareFrom(null);
+        return;
+      }
+      if (helpOpen) {
+        setHelpOpen(false);
+        return;
+      }
       if (tip) {
         setTip(null);
         return;
@@ -287,7 +335,7 @@ function LensMap({
     };
     document.addEventListener("keydown", key);
     return () => document.removeEventListener("keydown", key);
-  }, [base, fixed, preview, tip, setSearch]);
+  }, [base, fixed, preview, tip, setSearch, compareFrom, helpOpen]);
   const rows = useMemo(
     () =>
       ids.map((id) => model.measure(id, { from: window.from, to: window.to })),
@@ -301,6 +349,7 @@ function LensMap({
     svg,
     home,
     `${lens}|${scope}|${window.from}|${window.to}`,
+    (next) => constrainAtlasView(home, next),
   );
   const clip = useId();
   const target = useMemo(
@@ -354,7 +403,7 @@ function LensMap({
   const path: string[] = [];
   let ancestor = scope ? model.nodes.get(scope) : undefined;
   while (ancestor) {
-    path.unshift(ancestor.name);
+    path.unshift(ancestor.id);
     ancestor = ancestor.parent ? model.nodes.get(ancestor.parent) : undefined;
   }
   const asPoint = (e: PointerEvent<SVGSVGElement>) => {
@@ -388,23 +437,39 @@ function LensMap({
   const resetFromBlank: NonNullable<
     React.ComponentProps<"svg">["onDoubleClick"]
   > = (e) => {
-    if (!(e.target as Element).closest("[data-node]")) {
-      cancelClick();
+    if (!(e.target as Element).closest("[data-node],[data-explain]")) {
+      if (
+        blankSelection.current &&
+        performance.now() - blankSelection.current.at < 450
+      ) {
+        setSearch(new URLSearchParams(blankSelection.current.search), {
+          replace: true,
+        });
+        setOpen(blankSelection.current.open);
+        blankSelection.current = null;
+      }
       pan.reset();
     }
   };
-  const scheduleBlankReturn: NonNullable<
+  const clearBlankSelection: NonNullable<
     React.ComponentProps<"svg">["onClick"]
   > = (e) => {
     if (
-      !moving &&
-      !(e.target as Element).closest("[data-node],[data-explain]") &&
-      Date.now() > suppress.current &&
-      !pan.suppressClick()
-    ) {
-      cancelClick();
-      if (e.detail === 1) timer.current = setTimeout(() => back(), 230);
-    }
+      moving ||
+      (e.target as Element).closest("[data-node],[data-explain]") ||
+      Date.now() < suppress.current ||
+      pan.suppressClick() ||
+      e.detail !== 1
+    )
+      return;
+    blankSelection.current = {
+      search: search.toString(),
+      open,
+      at: performance.now(),
+    };
+    setCompareFrom(null);
+    if (base) update({ compare: null });
+    else if (fixed) update({ pin: null });
   };
   const moveComparison: NonNullable<
     React.ComponentProps<"svg">["onPointerMove"]
@@ -413,7 +478,6 @@ function LensMap({
     if (!a) return;
     if (Math.hypot(e.clientX - a.x, e.clientY - a.y) > 7) a.active = true;
     if (a.active) {
-      cancelClick();
       const current = asPoint(e),
         start = e.currentTarget.createSVGPoint();
       start.x = a.x;
@@ -508,6 +572,11 @@ function LensMap({
   const previewAnnualNode: NonNullable<
     React.ComponentProps<typeof YearBand>["onPreview"]
   > = (id, year) => {
+    if (year === null) {
+      endPreview();
+      return;
+    }
+    cancelPreview();
     if (!fixed && !base) {
       setHover({ id, year });
       setOpen(true);
@@ -569,31 +638,84 @@ function LensMap({
           })}
         </div>
         <div className="lens-head">
-          <div>
-            <nav aria-label="当前分析层级">
+          <nav aria-label="当前分析层级">
+            <button
+              type="button"
+              aria-current={!scope ? "page" : undefined}
+              onClick={() => navigateTo(null)}
+            >
               全部领域
-              {path.map((name, i) => {
-                return <span key={i}> › {name}</span>;
-              })}
-            </nav>
-            <h3>{v.question}</h3>
+            </button>
+            {path.map((id) => (
+              <span key={id}>
+                {" "}
+                ›{" "}
+                <button
+                  type="button"
+                  aria-current={scope === id ? "page" : undefined}
+                  onClick={() => navigateTo(id)}
+                >
+                  {model.nodes.get(id)?.name}
+                </button>
+              </span>
+            ))}
+          </nav>
+          <div className="lens-command-bar">
+            <div className="lens-command-title">
+              {scope ? (
+                <button
+                  type="button"
+                  className="lens-back"
+                  onClick={() =>
+                    navigateTo(model.nodes.get(scope)?.parent ?? null)
+                  }
+                >
+                  ‹ 返回{" "}
+                  {model.nodes.get(model.nodes.get(scope)?.parent ?? "")
+                    ?.name ?? "全部领域"}
+                </button>
+              ) : null}
+              <h3>{v.question}</h3>
+            </div>
+            <span className="lens-command-state" aria-live="polite">
+              {compareFrom
+                ? `选择要对比的${NODE_KINDS[d.node.kind]} · Esc 取消`
+                : moving
+                  ? "正在切换…"
+                  : base
+                    ? "蓝线对比中"
+                    : fixed
+                      ? "已固定 · 再点解除"
+                      : "悬停预览 · 单击固定"}
+            </span>
+            <div className="lens-plot-tools">
+              <PanZoomControls map={pan} className="lens-zoom" />
+              <span className="lens-operation">
+                <button
+                  type="button"
+                  aria-expanded={helpOpen}
+                  aria-controls={helpId}
+                  onClick={() => setHelpOpen(!helpOpen)}
+                >
+                  ? 操作
+                </button>
+                {helpOpen ? (
+                  <span
+                    id={helpId}
+                    className="lens-operation-card"
+                    role="tooltip"
+                  >
+                    单击固定，双击深入；拖动两点连线对比。
+                    <br />
+                    滚轮缩放，放大后空白拖动平移；双击空白或0复位。
+                    <br />+ / − 缩放，↓ 深入，Backspace返回，Esc取消。
+                    <br />
+                    点空白只退出对比或解除固定；虚线为当前层中位数。
+                  </span>
+                ) : null}
+              </span>
+            </div>
           </div>
-          <span>{windowLabel(window)}</span>
-        </div>
-        <div className="lens-status">
-          <span>圆面积＝项目数 · 虚线＝本层中位数</span>
-          <span aria-live="polite">
-            {moving
-              ? "正在切换视角与年份…"
-              : base
-                ? "蓝线对比中 · 点空白退出"
-                : fixed
-                  ? "已固定 · 再点解除"
-                  : "悬停预览 · 单击固定"}
-          </span>
-        </div>
-        <div className="lens-plot-tools">
-          <PanZoomControls map={pan} className="lens-zoom" />
         </div>
         <div ref={wrap} className="lens-plot-scroll">
           <svg
@@ -608,7 +730,7 @@ function LensMap({
             onPointerDown={beginPlotPan}
             onDoubleClick={resetFromBlank}
             className="lens-plot"
-            onClick={scheduleBlankReturn}
+            onClick={clearBlankSelection}
             onPointerMove={moveComparison}
             onPointerUp={finishComparison}
             onPointerCancel={cancelComparison}
@@ -682,7 +804,13 @@ function LensMap({
                         stroke="var(--terrain-grid)"
                       />
                       <text
-                        x={layout.left - 12}
+                        visibility={
+                          Math.abs(layout.py(y) - layout.medianY) <
+                          size.font * 1.6
+                            ? "hidden"
+                            : undefined
+                        }
+                        x={layout.left - 8}
                         y={layout.py(y) + 4}
                         textAnchor="end"
                         className="lens-axis"
@@ -711,6 +839,14 @@ function LensMap({
                         stroke="var(--terrain-grid)"
                       />
                       <text
+                        visibility={
+                          Math.abs(layout.px(x) - layout.medianX) <
+                          (fmt(x).length + fmt(layout.mx).length + 3) *
+                            size.font *
+                            0.4
+                            ? "hidden"
+                            : undefined
+                        }
                         x={layout.px(x)}
                         y={layout.bottom + 19}
                         textAnchor="middle"
@@ -746,16 +882,16 @@ function LensMap({
                   <text
                     className="lens-median"
                     x={layout.medianX}
-                    y={layout.bottom + 38}
+                    y={layout.bottom + 19}
                     textAnchor="middle"
                   >
                     中位 {fmt(layout.mx)}
                   </text>
                   <text
                     className="lens-median"
-                    x={layout.left - 7}
+                    x={layout.left + 8}
                     y={layout.medianY - 8}
-                    textAnchor="end"
+                    textAnchor="start"
                   >
                     中位 {fmt(layout.my)}
                   </text>
@@ -767,30 +903,15 @@ function LensMap({
                   const dismissQuadrant: NonNullable<
                     React.ComponentProps<"text">["onPointerLeave"]
                   > = () => setTip(null);
-                  const x0 =
-                    i % 2 ? Math.max(layout.left, layout.medianX) : layout.left;
-                  const x1 =
-                    i % 2
-                      ? layout.right
-                      : Math.min(layout.right, layout.medianX);
-                  const y0 =
-                    i < 2 ? layout.top : Math.max(layout.top, layout.medianY);
-                  const y1 =
-                    i < 2
-                      ? Math.min(layout.bottom, layout.medianY)
-                      : layout.bottom;
-                  if (
-                    x1 - x0 < name.length * size.font * 0.9 ||
-                    y1 - y0 < size.font * 2
-                  )
-                    return null;
+                  const quad = layout.quadSeats.get(i);
+                  if (!quad) return null;
                   return (
                     <text
                       key={name}
                       className="lens-quad"
-                      x={i % 2 ? x1 - 9 : x0 + 9}
-                      y={i < 2 ? y0 + size.font : y1 - 12}
-                      textAnchor={i % 2 ? "end" : "start"}
+                      x={quad.x}
+                      y={quad.y}
+                      textAnchor={quad.anchor}
                       data-explain="quad"
                       onPointerEnter={explainQuadrant}
                       onPointerLeave={dismissQuadrant}
@@ -842,6 +963,7 @@ function LensMap({
                 const previewNode: NonNullable<
                   React.ComponentProps<"g">["onPointerEnter"]
                 > = () => {
+                  cancelPreview();
                   setGuide(id);
                   if (!fixed && !base && !drag.current) {
                     setHover({ id, year: null });
@@ -852,10 +974,12 @@ function LensMap({
                   React.ComponentProps<"g">["onPointerLeave"]
                 > = () => {
                   setGuide(null);
+                  endPreview();
                 };
                 const focusNode: NonNullable<
                   React.ComponentProps<"g">["onFocus"]
                 > = () => {
+                  cancelPreview();
                   setGuide(id);
                   if (!fixed && !base && !drag.current) {
                     setHover({ id, year: null });
@@ -879,14 +1003,14 @@ function LensMap({
                   };
                   e.currentTarget.setPointerCapture(e.pointerId);
                 };
-                const scheduleNodeSelection: NonNullable<
+                const selectNode: NonNullable<
                   React.ComponentProps<"g">["onClick"]
                 > = (e) => {
                   e.stopPropagation();
                   if (Date.now() < suppress.current) return;
-                  cancelClick();
+
                   if (e.detail > 1) return;
-                  timer.current = setTimeout(() => choose(id), 230);
+                  choose(id);
                 };
                 const drillIntoNode: NonNullable<
                   React.ComponentProps<"g">["onDoubleClick"]
@@ -917,6 +1041,7 @@ function LensMap({
                   <g
                     key={id}
                     data-node={id}
+                    data-name={p.d.node.name}
                     tabIndex={0}
                     aria-label={`${p.d.node.name}，回车固定，向下展开`}
                     className="lens-node"
@@ -925,10 +1050,17 @@ function LensMap({
                     onFocus={focusNode}
                     onBlur={blurNode}
                     onPointerDown={beginComparison}
-                    onClick={scheduleNodeSelection}
+                    onClick={selectNode}
                     onDoubleClick={drillIntoNode}
                     onKeyDown={navigateNode}
                   >
+                    {seat?.leader ? (
+                      <line
+                        className="lens-label-leader"
+                        {...seat.leader}
+                        pointerEvents="none"
+                      />
+                    ) : null}
                     <circle
                       cx={p.cx}
                       cy={p.cy}
@@ -1006,62 +1138,59 @@ function LensMap({
             ) : null}
           </svg>
         </div>
-        <div className="lens-insufficient">
-          {absent.length ? (
-            <span
-              className="lens-absent"
-              tabIndex={0}
-              onPointerEnter={explainAbsentNodes}
-              onPointerLeave={dismissAbsentNodes}
-            >
-              {absent.length} 个{NODE_KINDS[rows[0]?.node.kind ?? "domain"]}
-              {window.from === null ? "没有可确认项目" : "在所选年份无立项"}
-            </span>
-          ) : null}
-          {insufficient.length ? (
-            <>
-              <span>数据不足</span>
-              {insufficient.map(({ d, value }) => {
-                const explainInsufficient: NonNullable<
-                  React.ComponentProps<"span">["onPointerEnter"]
-                > = (e) => {
-                  explain(e.currentTarget, d.node.name, value.reason!);
-                  if (!fixed && !base) {
-                    setHover({ id: d.node.id, year: null });
-                    setOpen(true);
-                  }
-                };
-                const dismissInsufficient: NonNullable<
-                  React.ComponentProps<"span">["onPointerLeave"]
-                > = () => setTip(null);
-                const focusInsufficient: NonNullable<
-                  React.ComponentProps<"span">["onFocus"]
-                > = (e) => explain(e.currentTarget, d.node.name, value.reason!);
-                return (
-                  <span
-                    key={d.node.id}
-                    tabIndex={0}
-                    onPointerEnter={explainInsufficient}
-                    onPointerLeave={dismissInsufficient}
-                    onFocus={focusInsufficient}
-                  >
-                    ◌ {d.node.name}
-                  </span>
-                );
-              })}
-            </>
-          ) : !absent.length ? (
-            <span>本层节点均可绘制</span>
-          ) : null}
-        </div>
-        <div className="lens-gestures">
-          <span>滚轮缩放 · 空白拖动平移</span>
-          <span>+ / − 缩放 · 0 / 双击空白复位</span>
-          <span>◎ 双击深入</span>
-          <span>○—○ 拖动两点对比</span>
-          <span>↶ 点空白逐步返回</span>
-          <span>┆ 悬停虚线看标准</span>
-        </div>
+        {absent.length || insufficient.length ? (
+          <div className="lens-insufficient">
+            {absent.length ? (
+              <span
+                className="lens-absent"
+                tabIndex={0}
+                onPointerEnter={explainAbsentNodes}
+                onPointerLeave={dismissAbsentNodes}
+              >
+                {absent.length} 个{NODE_KINDS[rows[0]?.node.kind ?? "domain"]}
+                {window.from === null ? "没有可确认项目" : "在所选年份无立项"}
+              </span>
+            ) : null}
+            {insufficient.length ? (
+              <>
+                <span>数据不足</span>
+                {insufficient.map(({ d, value }) => {
+                  const explainInsufficient: NonNullable<
+                    React.ComponentProps<"span">["onPointerEnter"]
+                  > = (e) => {
+                    cancelPreview();
+                    explain(e.currentTarget, d.node.name, value.reason!);
+                    if (!fixed && !base) {
+                      setHover({ id: d.node.id, year: null });
+                      setOpen(true);
+                    }
+                  };
+                  const dismissInsufficient: NonNullable<
+                    React.ComponentProps<"span">["onPointerLeave"]
+                  > = () => {
+                    setTip(null);
+                    endPreview();
+                  };
+                  const focusInsufficient: NonNullable<
+                    React.ComponentProps<"span">["onFocus"]
+                  > = (e) =>
+                    explain(e.currentTarget, d.node.name, value.reason!);
+                  return (
+                    <span
+                      key={d.node.id}
+                      tabIndex={0}
+                      onPointerEnter={explainInsufficient}
+                      onPointerLeave={dismissInsufficient}
+                      onFocus={focusInsufficient}
+                    >
+                      ◌ {d.node.name}
+                    </span>
+                  );
+                })}
+              </>
+            ) : null}
+          </div>
+        ) : null}
         <YearBand
           model={model}
           ids={ids}
@@ -1081,13 +1210,18 @@ function LensMap({
         />
       </div>
       <LensInspector
+        onEnter={() => enter(chosen)}
+        onCompare={() => {
+          clearPreview();
+          setCompareFrom(chosen);
+        }}
+        comparePending={compareFrom !== null}
+        onPreviewEnd={clearPreview}
         dismissTip={dismissTip}
         model={model}
         d={d}
-        years={data.years}
         base={base}
         selected={selected}
-        chosen={chosen}
         peek={peek}
         window={window}
         lens={lens}

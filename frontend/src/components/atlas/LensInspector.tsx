@@ -11,13 +11,15 @@ import {
 } from "../../domainAtlas";
 import { fmt, cash, windowLabel } from "./lensFormat";
 type Props = {
+  onEnter: () => void;
+  onCompare: () => void;
+  onPreviewEnd: () => void;
+  comparePending: boolean;
   dismissTip: () => void;
   model: AtlasModel;
   d: AtlasMeasure;
-  years: number[];
   base: string | null;
   selected: string;
-  chosen: string;
   peek: number | null;
   window: YearWindow;
   lens: Lens;
@@ -32,13 +34,15 @@ type Props = {
   };
 };
 export function LensInspector({
+  onEnter,
+  onCompare,
+  onPreviewEnd,
+  comparePending,
   dismissTip,
   model,
   d,
-  years,
   base,
   selected,
-  chosen,
   peek,
   window,
   lens,
@@ -52,6 +56,7 @@ export function LensInspector({
   const beginDrawerPull: NonNullable<
     React.ComponentProps<"div">["onPointerDown"]
   > = (e) => {
+    if ((e.target as Element).closest("button")) return;
     drawerDrag.current = e.clientX;
     e.currentTarget.setPointerCapture(e.pointerId);
   };
@@ -94,6 +99,7 @@ export function LensInspector({
       aria-label="研究详情"
       aria-hidden={!open}
       inert={!open}
+      onPointerEnter={onPreviewEnd}
     >
       <div
         className="lens-drawer-grip"
@@ -104,9 +110,30 @@ export function LensInspector({
         <span>
           {base ? "蓝线对比" : peek ? `${peek} 年预览` : windowLabel(window)}
         </span>
-        <span>← 预览资料库 · 收起 →</span>
+        <span className="lens-preview-actions">
+          <button type="button" onClick={showLibrary}>
+            预览资料库
+          </button>
+          <button type="button" onClick={() => setOpen(false)}>
+            收起
+          </button>
+        </span>
       </div>
       <div className="lens-detail-body">
+        <div className="lens-inspector-actions">
+          {d.node.children.length ? (
+            <button type="button" onClick={onEnter}>
+              进入研究方向 ›
+            </button>
+          ) : null}
+          <button
+            type="button"
+            aria-pressed={comparePending}
+            onClick={onCompare}
+          >
+            对比…
+          </button>
+        </div>
         {base ? (
           <>
             <h3>并排看两个{NODE_KINDS[d.node.kind]}</h3>
@@ -119,12 +146,6 @@ export function LensInspector({
             <Compare
               a={model.measure(base, window)}
               b={model.measure(selected, window)}
-            />
-            <ProjectYears
-              model={model}
-              ids={[base, selected]}
-              years={years}
-              window={window}
             />
             <Coverage d={model.measure(base, window)} />
             <Coverage d={model.measure(selected, window)} />
@@ -140,7 +161,6 @@ export function LensInspector({
             >
               {d.node.name}
             </h3>
-            <p className="lens-muted">向左拉动顶栏，预览资料库全库概况</p>
             <div className="lens-four">
               <div>
                 <b>{fmt(d.projects)}</b>
@@ -200,12 +220,6 @@ export function LensInspector({
                 );
               })()}
             </div>
-            <ProjectYears
-              model={model}
-              ids={[chosen]}
-              years={years}
-              window={peek ? { from: peek, to: peek } : window}
-            />
             <Coverage d={d} />
             {d.node.children.length ? (
               <>
@@ -276,73 +290,6 @@ export function LensInspector({
         )}
       </div>
     </aside>
-  );
-}
-function ProjectYears({
-  model,
-  ids,
-  years,
-  window,
-}: {
-  model: AtlasModel;
-  ids: string[];
-  years: number[];
-  window: YearWindow;
-}) {
-  const values = ids.map((id) =>
-      years.map((y) => model.measure(id, { from: y, to: y }).projects),
-    ),
-    peak = Math.max(1, ...values.flat());
-  if (!years.length) return null;
-  return (
-    <section className="lens-year-summary" aria-label="各年立项项目分布">
-      <h4>
-        各年立项项目{" "}
-        <small>
-          {years[0]}—{years.at(-1)}
-        </small>
-      </h4>
-      <div
-        className="lens-spark"
-        style={{ gridTemplateColumns: `repeat(${years.length},minmax(0,1fr))` }}
-      >
-        {years.map((y, i) => {
-          return (
-            <div
-              key={y}
-              title={ids
-                .map(
-                  (id, j) =>
-                    `${model.nodes.get(id)?.name} ${y}年 ${values[j][i]} 项目`,
-                )
-                .join("；")}
-              data-active={
-                window.from === null ||
-                (y >= window.from && y <= (window.to ?? window.from))
-              }
-            >
-              <div className="lens-spark-bars">
-                {ids.map((id, j) => {
-                  return (
-                    <i
-                      key={id}
-                      style={{
-                        height: `${(values[j][i] / peak) * 100}%`,
-                        background:
-                          ids.length === 1 || j
-                            ? "var(--terrain-dot-on)"
-                            : "var(--link)",
-                      }}
-                    />
-                  );
-                })}
-              </div>
-              <span>{String(y).slice(-2)}</span>
-            </div>
-          );
-        })}
-      </div>
-    </section>
   );
 }
 function Coverage({ d }: { d: AtlasMeasure }) {

@@ -61,7 +61,7 @@ export function useAtlasMotion(
         seats: new Map(
           [...target.seats].map(([id, b]) => {
             const a = start.seats.get(id) ?? b;
-            return [id, { x: mix(a.x, b.x, t), y: mix(a.y, b.y, t) }];
+            return [id, { ...b, x: mix(a.x, b.x, t), y: mix(a.y, b.y, t) }];
           }),
         ),
       };

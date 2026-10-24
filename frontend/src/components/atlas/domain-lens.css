@@ -34,35 +34,24 @@
   box-shadow: 0 1px 4px var(--line-cool);
 }
 .lens-head {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: clamp(18px, 1.1vw, 28px) var(--lens-pad) 10px;
   border-bottom: 1px solid var(--line-cool-soft);
-  margin-bottom: 12px;
   padding-bottom: 14px;
+  padding: 10px var(--lens-pad) 8px;
+  margin-bottom: 0;
 }
-.lens-head nav,
-.lens-head > span {
+.lens-head nav {
   font-size: var(--text-caption);
   color: var(--muted-cool);
+  margin-bottom: 6px;
 }
 .lens-head h3 {
   font-size: var(--text-group);
   font-weight: 600;
   margin-top: 5px;
-}
-.lens-status {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 var(--lens-pad);
-  font-size: var(--text-caption);
-  color: var(--steel);
-}
-.lens-status > span:last-child {
-  color: var(--link);
 }
 .lens-plot-scroll {
   overflow-x: auto;
@@ -156,19 +145,11 @@
   border-radius: 6px;
   cursor: help;
 }
-.lens-gestures {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 10px 15px 15px;
-  color: var(--muted-cool);
-  font-size: var(--text-caption);
-}
 .lens-year-band {
   border-top: 1px solid var(--line-cool-soft);
   padding: clamp(15px, 0.9vw, 24px) var(--lens-pad) 0;
   background: var(--terrain-empty);
+  padding-top: 10px;
 }
 .lens-year-head {
   display: flex;
@@ -198,6 +179,7 @@
   font-size: var(--text-caption);
   color: var(--muted-cool);
   margin: 10px 0 3px;
+  margin-top: 6px;
 }
 .lens-a {
   color: var(--link);
@@ -229,12 +211,12 @@
 }
 .lens-pull {
   text-align: center;
-  padding: 12px 0 18px;
   color: var(--muted-cool);
   font-size: var(--text-caption);
   touch-action: none;
   cursor: ns-resize;
   user-select: none;
+  padding: 8px 0 12px;
 }
 .lens-pull i {
   display: block;
@@ -481,17 +463,11 @@
   .lens-views button {
     padding: 8px 10px;
   }
-  .lens-status {
-    flex-wrap: wrap;
-  }
   .lens-detail-body {
     padding: 16px;
   }
   .lens-drawer-grip {
     flex-wrap: wrap;
-  }
-  .lens-gestures {
-    gap: 7px 12px;
   }
 }
 @media (max-width: 850px) {
@@ -513,9 +489,6 @@
   }
   .lens-head {
     padding: 15px 14px 8px;
-  }
-  .lens-status {
-    padding: 0 14px;
   }
   .lens-year-band {
     padding: 14px 14px 0;
@@ -562,56 +535,8 @@
   color: var(--primary);
   cursor: help;
 }
-.lens-year-summary {
-  margin: 24px 0;
-}
-.lens-year-summary h4 {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-.lens-year-summary h4 small {
-  font-size: var(--text-caption);
-  font-weight: 400;
-  color: var(--muted-cool);
-}
-.lens-spark {
-  display: grid;
-  gap: 5px;
-}
-.lens-spark-bars {
-  height: calc(var(--text-body) * 4.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 3px;
-}
-.lens-spark-bars i {
-  display: block;
-  width: 28%;
-  min-width: 3px;
-  max-width: 20px;
-  border-radius: 2px 2px 0 0;
-}
-.lens-spark > div[data-active="false"] {
-  opacity: 0.3;
-}
-.lens-spark > div > span {
-  display: block;
-  text-align: center;
-  font-size: var(--text-caption);
-  color: var(--muted-cool);
-  margin-top: 5px;
-}
 
 @media (max-width: 850px) {
-  .lens-status {
-    display: grid;
-    gap: 4px;
-  }
-  .lens-status > span:last-child {
-    text-align: left;
-  }
 }
 
 .lens-band-svg:not([data-selecting="true"])
@@ -621,10 +546,13 @@
 }
 
 .lens-plot-tools {
-  display: flex;
   justify-content: flex-end;
-  padding: 8px var(--lens-pad) 0;
   padding-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  flex-shrink: 0;
 }
 .lens-plot[data-panning="true"] {
   cursor: grabbing;
@@ -673,4 +601,124 @@
 .lens-year-tooltip b,
 .lens-year-tooltip span {
   display: block;
+}
+.lens-command-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  min-height: 38px;
+}
+.lens-command-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.lens-command-title h3 {
+  margin: 0;
+  white-space: nowrap;
+}
+.lens-command-state {
+  font-size: var(--text-caption);
+  color: var(--link);
+  min-width: 0;
+}
+.lens-head nav button {
+  border-radius: 4px;
+  color: var(--primary);
+  padding: 2px 3px;
+}
+.lens-head nav button:hover {
+  text-decoration: underline;
+}
+.lens-head nav button[aria-current="page"] {
+  color: var(--steel);
+}
+.lens-back {
+  font-size: var(--text-caption);
+  color: var(--primary);
+  white-space: nowrap;
+}
+.lens-head:has(.lens-back) h3 {
+  display: none;
+}
+.lens-operation {
+  position: relative;
+}
+.lens-operation > button {
+  font-size: var(--text-caption);
+  color: var(--primary);
+  min-height: 32px;
+}
+.lens-operation-card {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 40;
+  width: 320px;
+  padding: 14px;
+  background: var(--heading);
+  color: var(--canvas);
+  border-radius: 8px;
+  font-size: var(--text-caption);
+  line-height: 1.9;
+  box-shadow: 0 5px 18px var(--line-cool);
+}
+.lens-inspector-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+}
+.lens-inspector-actions button {
+  border: 1px solid var(--line-cool);
+  border-radius: 6px;
+  padding: 6px 10px;
+  min-height: 32px;
+  color: var(--primary);
+  font-size: var(--text-caption);
+  background: var(--canvas);
+}
+.lens-inspector-actions button[aria-pressed="true"] {
+  background: var(--selected-cool);
+  border-color: var(--link);
+}
+.lens-preview-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.lens-preview-actions button {
+  font-size: var(--text-caption);
+  color: var(--primary);
+  min-height: 28px;
+}
+.lens-label-leader {
+  stroke: var(--terrain-sep);
+  stroke-width: 1;
+  fill: none;
+}
+.lens-plot:focus:not(:focus-visible),
+.lens-node:focus:not(:focus-visible) {
+  outline: none;
+}
+.lens-plot:focus-visible {
+  outline: 2px solid var(--terrain-amber);
+  outline-offset: -3px;
+}
+@media (max-width: 1100px) {
+  .lens-command-bar {
+    gap: 6px;
+  }
+  .lens-command-title h3 {
+    font-size: var(--text-body);
+  }
+  .lens-command-state {
+    font-size: var(--text-caption);
+    max-width: 145px;
+  }
+  .lens-plot-tools {
+    gap: 6px;
+  }
 }

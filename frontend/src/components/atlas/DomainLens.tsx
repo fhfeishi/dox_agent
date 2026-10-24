@@ -308,13 +308,17 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           .querySelector(".lens-band-svg")
           ?.getAttribute("data-comparison-extra") ?? 0,
       );
+      const viewport = main!.closest("main");
+      const viewportBox = viewport?.getBoundingClientRect();
       const available =
-        main!.closest("main")?.clientHeight ?? globalThis.innerHeight - 60;
+        (viewportBox?.bottom ?? globalThis.innerHeight) -
+        Math.max(box.top, viewportBox?.top ?? 0) -
+        12;
       const next = {
         width: Math.max(660, Math.floor(plot.width)),
         height: Math.round(
           Math.max(
-            414,
+            globalThis.innerWidth > 850 ? 320 : 414,
             Math.min(1000, available - header - footer + comparisonExtra),
           ),
         ),
@@ -330,8 +334,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       const height = Math.ceil(
         box.height - (matrix?.getBoundingClientRect().height ?? 0),
       );
-      const viewport = main!.closest("main");
-      const viewportBox = viewport?.getBoundingClientRect();
       const limit = Math.max(
         200,
         (viewportBox?.bottom ?? globalThis.innerHeight) -
@@ -403,6 +405,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       data-testid="domain-lens"
       data-layer={scope ?? ""}
       data-moving={moving}
+      data-details={open ? "open" : "closed"}
       style={{ "--lens-stage-height": `${panelHeight}px` } as CSSProperties}
     >
       <div className="lens-main" ref={stage}>
@@ -428,7 +431,18 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
               </button>
             ))}
           </div>
-          <PanZoomControls map={pan} className="lens-zoom" />
+          <div className="lens-view-tools">
+            {!open && (
+              <button
+                type="button"
+                className="lens-secondary"
+                onClick={() => setOpen(true)}
+              >
+                展开详情
+              </button>
+            )}
+            <PanZoomControls map={pan} className="lens-zoom" />
+          </div>
         </div>
         <nav className="lens-crumbs" aria-label="当前分析层级">
           {scope ? (

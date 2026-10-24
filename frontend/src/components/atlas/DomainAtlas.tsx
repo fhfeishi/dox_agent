@@ -56,7 +56,7 @@ export function DomainAtlas() {
       {corpora.map((c) => <button key={c.id} type="button" onClick={() => analyse(c.id)}
         className="rounded-full border border-[var(--hairline-strong)] px-3 py-1 text-caption text-[var(--slate)] hover:border-[var(--primary)]">{c.name.replace(/^自然科学基金-/, "")}</button>)}</p> : null}
   </div>;
-  return <div className="atlas-page mx-auto w-full max-w-[var(--page-max)] space-y-10 px-5 py-7 sm:px-8">
+  return <div className="atlas-page mx-auto w-full max-w-[var(--page-max)] space-y-6 px-5 py-5 sm:px-8">
     <IndexNotice state={data.domains.find(r => r.index?.state === "refreshing")?.index} />
     <header className="atlas-hero">
       <div>

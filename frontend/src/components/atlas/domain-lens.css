@@ -1,6 +1,6 @@
 .domain-lens {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(340px, 26%, 560px);
+  grid-template-columns: minmax(0, 1fr) clamp(400px, 29%, 560px);
   align-items: start;
   border: 1px solid var(--line-cool);
   border-radius: 14px;
@@ -12,6 +12,18 @@
 }
 .lens-main {
   min-width: 0;
+}
+.domain-lens[data-details="closed"] {
+  grid-template-columns: minmax(0, 1fr) 0;
+}
+.domain-lens[data-details="closed"] .lens-inspector {
+  overflow: hidden;
+  border-left: 0;
+}
+.lens-view-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .lens-top {
   display: flex;
@@ -447,6 +459,7 @@
 }
 .lens-read-table th {
   color: var(--steel);
+  white-space: nowrap;
 }
 .lens-row-hit {
   cursor: pointer;

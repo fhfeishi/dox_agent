@@ -206,6 +206,14 @@ async def check_simplified(page,origin,shots):
         await page.locator('.lens-detail-body').evaluate('e=>e.scrollTop=e.scrollHeight')
         after=await button.bounding_box();assert abs(after['y']-before['y'])<1
         await page.screenshot(path=str(shots/f'{width}-selected.png'))
+        plot_width=await page.locator('.lens-plot').evaluate('e=>e.getBoundingClientRect().width')
+        await page.get_by_role('button',name='收起详情',exact=True).click()
+        await page.wait_for_function("w=>document.querySelector('.lens-plot').getBoundingClientRect().width>w*1.15",arg=plot_width)
+        await expect(page.locator('.lens-inspector')).to_have_attribute('aria-hidden','true')
+        await page.get_by_role('button',name='展开详情',exact=True).click()
+        await expect(status).to_contain_text('已选中')
+        await page.wait_for_function("w=>Math.abs(document.querySelector('.lens-plot').getBoundingClientRect().width-w)<2",arg=plot_width)
+        assert await page.evaluate("new URL(location.href).searchParams.get('node')")==domain
         await page.emulate_media(reduced_motion='reduce')
         await click_node(page.locator('.lens-node').first)
         await expect(lens).to_have_attribute('data-moving','false')

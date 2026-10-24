@@ -117,9 +117,19 @@ async def run_checks(page, origin, shots):
     await expect(page.locator(".lens-year-legend")).to_contain_text("批准资助金额")
     await money.press("ArrowRight")
     await expect(page.get_by_role("radio", name="技术（条）", exact=True)).to_have_attribute("aria-checked", "true")
+    await page.locator(".lens-zoom").get_by_role("button", name="放大", exact=True).click()
+    await page.locator(".domain-lens").evaluate("""el=>{
+        el.dataset.sawMotion='0';
+        const observer=new MutationObserver(()=>{
+            if(el.dataset.moving==='true')el.dataset.sawMotion='1';
+        });
+        observer.observe(el,{attributes:true,attributeFilter:['data-moving']});
+    }""")
     await page.locator(".lens-views").get_by_role("button", name="投入与产出").click()
     await expect(money).to_have_attribute("aria-checked", "true")
     await page.wait_for_timeout(500)
+    await expect(page.locator(".domain-lens")).to_have_attribute("data-saw-motion", "1")
+    await expect(page.locator(".lens-zoom")).to_contain_text("全景")
     await page.locator('.lens-band-svg [data-year="2021"]').click()
     assert await page.evaluate("new URL(location.href).searchParams.get('node')") == node_before
     await page.locator(".lens-pull").click()
@@ -136,6 +146,10 @@ async def run_checks(page, origin, shots):
     await page.wait_for_timeout(500)
     await page.locator(".lens-node").first.dblclick()
     await expect(page.locator(".lens-head nav")).to_contain_text("技术体系")
+    await page.emulate_media(reduced_motion="reduce")
+    await page.wait_for_timeout(50)
+    await page.locator(".lens-views").get_by_role("button", name="成果与落地").click()
+    await expect(page.locator(".domain-lens")).to_have_attribute("data-moving", "false")
     # At 1x an outward wheel gesture belongs to page scrolling.
     await plot.scroll_into_view_if_needed()
     box = await plot.bounding_box()

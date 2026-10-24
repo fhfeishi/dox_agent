@@ -19,6 +19,7 @@ export function usePanZoom(
   resetKey = "",
 ) {
   const [view, render] = useState(HOME);
+  const selection = useRef(resetKey);
   const current = useRef(view);
   const limits = useRef(bounds);
   limits.current = bounds;
@@ -50,7 +51,10 @@ export function usePanZoom(
     stop();
     setView(HOME);
   }, [setView, stop]);
-  useLayoutEffect(reset, [resetKey, reset]);
+  useLayoutEffect(() => {
+    selection.current = resetKey;
+    reset();
+  }, [resetKey, reset]);
   useEffect(() => stop, [stop]);
   function point(clientX: number, clientY: number) {
     const node = svg.current;
@@ -169,8 +173,14 @@ export function usePanZoom(
       else zoom(event.key === "-" ? 1 / 1.3 : 1.3);
     }
   }
+  const isHome =
+    Math.abs(view.k - 1) < 0.001 &&
+    Math.abs(view.x) < 0.1 &&
+    Math.abs(view.y) < 0.1;
   return {
-    view,
+    // Use a stable panorama in the selection's first render, so resetting a
+    // zoomed view cannot cancel the caller's 420ms data transition on rerender.
+    view: selection.current !== resetKey || isHome ? HOME : view,
     zoom,
     reset,
     glideTo,
@@ -178,9 +188,6 @@ export function usePanZoom(
     key,
     drag,
     suppressClick: () => Date.now() < suppressedUntil.current,
-    isHome:
-      Math.abs(view.k - 1) < 0.001 &&
-      Math.abs(view.x) < 0.1 &&
-      Math.abs(view.y) < 0.1,
+    isHome,
   };
 }

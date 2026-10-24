@@ -107,6 +107,7 @@ export function DomainPlot({
       preventScroll: true,
     });
   }
+  const hasData = home.points.length > 0;
   const visible = layout.points.filter((p) => !p.ghost);
   const counts = [0, 0, 0, 0];
   for (const p of home.points)
@@ -174,27 +175,31 @@ export function DomainPlot({
           fill="var(--terrain-plot)"
         />
         <g clipPath={`url(#${clip})`}>
-          <rect
-            x={layout.left}
-            y={layout.top}
-            width={Math.max(0, Math.min(layout.right, mx) - layout.left)}
-            height={Math.max(0, Math.min(layout.bottom, my) - layout.top)}
-            fill="var(--terrain-empty)"
-          />
-          <rect
-            x={Math.max(layout.left, mx)}
-            y={layout.top}
-            width={Math.max(0, layout.right - Math.max(layout.left, mx))}
-            height={Math.max(0, Math.min(layout.bottom, my) - layout.top)}
-            fill="var(--ok-bg)"
-          />
-          <rect
-            x={layout.left}
-            y={Math.max(layout.top, my)}
-            width={Math.max(0, Math.min(layout.right, mx) - layout.left)}
-            height={Math.max(0, layout.bottom - Math.max(layout.top, my))}
-            fill="var(--terrain-shallow)"
-          />
+          {hasData ? (
+            <>
+              <rect
+                x={layout.left}
+                y={layout.top}
+                width={Math.max(0, Math.min(layout.right, mx) - layout.left)}
+                height={Math.max(0, Math.min(layout.bottom, my) - layout.top)}
+                fill="var(--terrain-empty)"
+              />
+              <rect
+                x={Math.max(layout.left, mx)}
+                y={layout.top}
+                width={Math.max(0, layout.right - Math.max(layout.left, mx))}
+                height={Math.max(0, Math.min(layout.bottom, my) - layout.top)}
+                fill="var(--ok-bg)"
+              />
+              <rect
+                x={layout.left}
+                y={Math.max(layout.top, my)}
+                width={Math.max(0, Math.min(layout.right, mx) - layout.left)}
+                height={Math.max(0, layout.bottom - Math.max(layout.top, my))}
+                fill="var(--terrain-shallow)"
+              />
+            </>
+          ) : null}
           {Array.from({ length: 5 }, (_, i) => {
             const y = layout.yr[0] + ((layout.yr[1] - layout.yr[0]) * i) / 4;
             return (
@@ -205,10 +210,12 @@ export function DomainPlot({
               />
             );
           })}
-          <path
-            d={`M${mx} ${layout.top}V${layout.bottom}M${layout.left} ${my}H${layout.right}`}
-            className="lens-median-line"
-          />
+          {hasData ? (
+            <path
+              d={`M${mx} ${layout.top}V${layout.bottom}M${layout.left} ${my}H${layout.right}`}
+              className="lens-median-line"
+            />
+          ) : null}
           {baseline && selected
             ? (() => {
                 const a = visible.find((p) => p.d.node.id === baseline),
@@ -287,7 +294,7 @@ export function DomainPlot({
           })}
           {view.quads.map((name, i) => {
             const q = layout.quadSeats.get(i);
-            return q ? (
+            return hasData && q ? (
               <text
                 key={name}
                 className="lens-quad"
@@ -349,7 +356,7 @@ export function DomainPlot({
         >
           {view.x} →
         </text>
-        {mx >= layout.left && mx <= layout.right ? (
+        {hasData && mx >= layout.left && mx <= layout.right ? (
           <Tag
             font={size.font * 0.9}
             median
@@ -359,7 +366,7 @@ export function DomainPlot({
             text={`中位 ${fmt(home.mx)}${xUnit}`}
           />
         ) : null}
-        {my >= layout.top && my <= layout.bottom ? (
+        {hasData && my >= layout.top && my <= layout.bottom ? (
           <Tag
             font={size.font * 0.9}
             median
@@ -394,6 +401,16 @@ export function DomainPlot({
               text={`${fmt(focused.y)}${yUnit}`}
             />
           </>
+        ) : null}
+        {!hasData ? (
+          <text
+            className="lens-empty"
+            x={(layout.left + layout.right) / 2}
+            y={(layout.top + layout.bottom) / 2}
+            textAnchor="middle"
+          >
+            所选范围没有满足此视角统计条件的节点
+          </text>
         ) : null}
       </svg>
       {hovered && !moving ? (

@@ -303,12 +303,20 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           box.bottom -
           plot.bottom -
           (matrix?.getBoundingClientRect().height ?? 0);
+      const comparisonExtra = Number(
+        main!
+          .querySelector(".lens-band-svg")
+          ?.getAttribute("data-comparison-extra") ?? 0,
+      );
       const available =
         main!.closest("main")?.clientHeight ?? globalThis.innerHeight - 60;
       const next = {
         width: Math.max(660, Math.floor(plot.width)),
         height: Math.round(
-          Math.max(414, Math.min(1000, available - header - footer)),
+          Math.max(
+            414,
+            Math.min(1000, available - header - footer + comparisonExtra),
+          ),
         ),
         font,
       };

@@ -80,7 +80,9 @@ export function YearBand({
   }, [years.length]);
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
-    bandHeight = 180 * scale;
+    bandHeight = (baseline ? 270 : 180) * scale;
+  const baseY = (baseline ? 248 : 160) * scale,
+    barMax = (baseline ? 190 : 128) * scale;
   const focus: string[] = chosen
     ? baseline
       ? [baseline, chosen]
@@ -293,7 +295,8 @@ export function YearBand({
       <p className="lens-year-legend">
         {focus.map((id, i) => (
           <span key={id} className={baseline ? (i ? "lens-b" : "lens-a") : ""}>
-            ■ {model.nodes.get(id)?.name.replace(/^AI与/, "")}　
+            ■ {baseline ? (i ? "B / " : "A / ") : ""}
+            {model.nodes.get(id)?.name.replace(/^AI与/, "")}　
           </span>
         ))}
         灰柱 = 当年合计
@@ -307,6 +310,7 @@ export function YearBand({
           role="group"
           aria-label="选择立项年份，点选或拖动框选，Esc取消，方向键单年，Home恢复全部"
           className="lens-band-svg"
+          data-comparison-extra={baseline ? 90 * scale : 0}
           data-selecting={draft !== null}
           onPointerDown={beginYearSelection}
           onPointerMove={previewYearRange}
@@ -346,15 +350,15 @@ export function YearBand({
                   x={x}
                   y={3 * scale}
                   width={w}
-                  height={180 * scale}
+                  height={bandHeight}
                   fill={inWindow(y) ? "var(--terrain-empty)" : "transparent"}
                 />
                 <rect
                   className="lens-year-bar"
                   x={x + 12}
-                  y={(160 - (sums[i] / peak) * 128) * scale}
+                  y={baseY - (sums[i] / peak) * barMax}
                   width={w - 24}
-                  height={(sums[i] / peak) * 128 * scale}
+                  height={(sums[i] / peak) * barMax}
                   fill="var(--track)"
                 />
                 <text
@@ -368,7 +372,7 @@ export function YearBand({
                 </text>
                 {focus.map((id, j) => {
                   const d = model.measure(id, { from: y, to: y }),
-                    h = (d[metric] / peak) * 128 * scale,
+                    h = (d[metric] / peak) * barMax,
                     bx =
                       x +
                       w / 2 +
@@ -386,11 +390,14 @@ export function YearBand({
                     <g key={id}>
                       <text
                         x={bx + 7 * scale}
-                        y={160 * scale - h - 6 * scale}
+                        y={
+                          baseline
+                            ? (j ? 50 : 32) * scale
+                            : baseY - h - 6 * scale
+                        }
                         textAnchor="middle"
                         fill={color}
                       >
-                        {baseline ? (j ? "B " : "A ") : ""}
                         {!d.projects
                           ? ""
                           : known(d, metric)
@@ -400,7 +407,7 @@ export function YearBand({
                       {d.projects && !known(d, metric) ? (
                         <circle
                           cx={bx + 7 * scale}
-                          cy={152 * scale}
+                          cy={baseY - 8 * scale}
                           r={5 * scale}
                           fill="none"
                           stroke={color}
@@ -410,7 +417,7 @@ export function YearBand({
                         <rect
                           className="lens-year-bar"
                           x={bx}
-                          y={160 * scale - h}
+                          y={baseY - h}
                           width={14 * scale}
                           height={h}
                           fill={color}
@@ -422,7 +429,7 @@ export function YearBand({
                 })}
                 <text
                   x={x + w / 2}
-                  y={178 * scale}
+                  y={bandHeight - 6 * scale}
                   textAnchor="middle"
                   fill="var(--muted-cool)"
                 >

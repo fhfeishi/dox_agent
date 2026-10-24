@@ -112,7 +112,9 @@ export function LensInspector({
                 <b>{fmt(d.projects)}</b>
                 <span>
                   项目{" "}
-                  <Info text="当前层与所选立项年份内的可确认项目，各体系可能涉及相同项目。" />
+                  <Info
+                    text={`当前层与所选立项年份内的可确认项目，各体系可能涉及相同项目。${d.undated ? `含 ${d.undated} 项立项年份未确认，仅计累计，不进入年度柱图。` : ""}`}
+                  />
                 </span>
               </div>
               <div>

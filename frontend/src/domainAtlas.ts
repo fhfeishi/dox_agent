@@ -344,7 +344,7 @@ export function atlasLayout(
     w: p.r * 2 + 6,
     h: p.r * 2 + 6,
   }));
-  const medianX = px(mx || 1),
+  const medianX = valid.length ? px(mx) : left,
     medianY = py(my);
   if (medianY >= top && medianY <= bottom) {
     boxes.push({

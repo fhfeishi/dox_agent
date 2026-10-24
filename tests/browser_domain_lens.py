@@ -141,6 +141,17 @@ async def check_simplified(page,origin,shots):
         await page.get_by_role("button",name="⇄ 对比",exact=True).click()
         await click_node(page.locator(".lens-node").last)
         await expect(page.locator(".lens-pair-names")).to_be_visible()
+        map_height=(await page.locator('.lens-plot').bounding_box())['height']
+        await page.get_by_role('radio',name='资金（万元）',exact=True).click()
+        await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
+        colors=await page.locator('.lens-year-legend span').evaluate_all('es=>es.map(e=>getComputedStyle(e).color)')
+        assert len(set(colors))==2,colors
+        overlaps=await page.locator('.lens-band-svg [data-year]').evaluate_all("""gs=>gs.filter(g=>{
+            const ts=[...g.children].filter(n=>n.tagName.toLowerCase()==='g').flatMap(n=>[...n.querySelectorAll('text')]).filter(t=>t.textContent.trim());
+            if(ts.length<2)return false;const[a,b]=ts.map(t=>t.getBoundingClientRect());return a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;
+        }).length""")
+        assert overlaps==0,overlaps
+        assert abs((await page.locator('.lens-plot').bounding_box())['height']-map_height)<2
         await blank(page)
         await expect(page.locator(".lens-pair-names")).to_have_count(0)
         await blank(page)
@@ -222,6 +233,14 @@ async def check_retained(page,origin,shots):
     await expect(page.get_by_role('radio',name='技术（条）',exact=True)).to_have_attribute('aria-checked','true')
     await page.locator('.lens-views').first.get_by_role('button',name='投入与产出',exact=True).click()
     await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
+    await settle(page)
+    await page.locator('.lens-band-svg [data-year="2019"]').click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')==='2019'")
+    await settle(page)
+    await expect(page.locator('.lens-median-tag')).to_have_count(0)
+    await expect(page.locator('.lens-empty')).to_be_visible()
+    await page.get_by_role('button',name='清除年份范围').click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')===null")
     await settle(page)
     node=await page.evaluate("new URL(location.href).searchParams.get('node')")
     await page.locator('.lens-band-svg [data-year="2021"]').click()

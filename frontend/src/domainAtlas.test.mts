@@ -25,4 +25,8 @@ test("layer/window deduplication retains unknown years, listed-zero and judged m
   assert.equal(large.points[0].r,c.points[0].r);
   assert.ok(c.points.every(p=>p.r>=8&&p.r<=30));
   assert.ok([...large.seats.values()].every(p=>p.x>=large.left&&p.x<=large.right&&p.y>=large.top&&p.y<=large.bottom));
+  const zeros=buildAtlas({funding_label:"批准资助金额",years:[2021],domains:[{id:"zero",name:"零值",projects:[1,2,3].map(i=>({id:String(i),title:String(i),year:2021,amount:0,outputs:0})),items:[1,2,3].map(i=>({id:String(i),project_id:String(i),maturity:1})),systems:[]}]}).measure("zero");
+  const zeroPlot=atlasLayout([zeros],"money",720,414);
+  assert.equal(zeroPlot.mx,0);assert.equal(zeroPlot.my,0);
+  assert.equal(zeroPlot.medianX,zeroPlot.px(0));
 });

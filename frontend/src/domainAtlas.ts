@@ -135,18 +135,21 @@ export function lensValue(d: AtlasMeasure, lens: Lens): {
     return lens === "money" ? { x: d.avgFunding!, y: d.avgOutputs! } : { x: d.avgOutputs!, y: d.landed! };
 }
 export const median = (values: number[]) => { const s = values.slice().sort((a, b) => a - b); return s.length ? (s[Math.floor((s.length - 1) / 2)] + s[Math.ceil((s.length - 1) / 2)]) / 2 : 0; };
-export function atlasLayout(rows: AtlasMeasure[], lens: Lens, width: number, height: number, fontSize = 14) {
+export function atlasLayout(rows: AtlasMeasure[], lens: Lens, width: number, height: number, fontSize = 14,
+    view = { x: 0, y: 0, k: 1 }) {
     const measured = rows.map(d => ({ d, value: lensValue(d, lens) }));
     const valid = measured.filter(p => p.value.reason === undefined).map(p => ({ d: p.d, x: p.value.x!, y: p.value.y! }));
     const extent = (v: number[], log = false) => { const vs = log ? v.map(Math.log10) : v, min = Math.min(...vs), max = Math.max(...vs), pad = Math.max((max - min) * .14, log ? .08 : .2); return [log ? min - pad : Math.max(0, min - pad), max + pad]; };
-    const xr = valid.length ? extent(valid.map(p => p.x), lens === "base") : [0, 1], yr = valid.length ? extent(valid.map(p => p.y)) : [0, 1];
+    const fullX = valid.length ? extent(valid.map(p => p.x), lens === "base") : [0, 1], fullY = valid.length ? extent(valid.map(p => p.y)) : [0, 1];
     if (lens === "base")
-        yr[1] = Math.min(5, yr[1]);
+        fullY[1] = Math.min(5, fullY[1]);
     if (lens === "impact")
-        yr[1] = Math.min(100, yr[1]);
+        fullY[1] = Math.min(100, fullY[1]);
     const left = Math.ceil(fontSize * 7.5), right = width - fontSize * 1.8, top = fontSize * 3.4, bottom = height - fontSize * 5.6;
-    const px = (x: number) => left + ((lens === "base" ? Math.log10(x) : x) - xr[0]) / (xr[1] - xr[0]) * (right - left);
-    const py = (y: number) => bottom - (y - yr[0]) / (yr[1] - yr[0]) * (bottom - top);
+    const xr = [left, right].map(x => fullX[0] + ((x - view.x) / view.k - left) / (right - left) * (fullX[1] - fullX[0]));
+    const yr = [bottom, top].map(y => fullY[0] + (bottom - (y - view.y) / view.k) / (bottom - top) * (fullY[1] - fullY[0]));
+    const px = (x: number) => view.x + view.k * (left + ((lens === "base" ? Math.log10(x) : x) - fullX[0]) / (fullX[1] - fullX[0]) * (right - left));
+    const py = (y: number) => view.y + view.k * (bottom - (y - fullY[0]) / (fullY[1] - fullY[0]) * (bottom - top));
     const mx = median(valid.map(p => p.x)), my = median(valid.map(p => p.y)), max = Math.max(1, ...valid.map(p => p.d.projects));
     const points = valid.map(p => ({ ...p, cx: px(p.x), cy: py(p.y), r: Math.sqrt(p.d.projects / max) * fontSize * 1.65 }));
     const boxes = points.map(p => ({ x: p.cx - p.r - 3, y: p.cy - p.r - 3, w: p.r * 2 + 6, h: p.r * 2 + 6 }));
@@ -157,10 +160,12 @@ export function atlasLayout(rows: AtlasMeasure[], lens: Lens, width: number, hei
         y: number;
     }>();
     [...points].sort((a, b) => b.r - a.r).forEach(p => {
+        if (p.cx < left || p.cx > right || p.cy < top || p.cy > bottom) return;
         const w = [...p.d.node.name].reduce((s, c) => s + (/[\u3400-\u9fff]/.test(c) ? fontSize : fontSize * .58), 0), gap=fontSize*.65;
         const opts = [{ x: p.cx + p.r + gap, y: p.cy - fontSize*.6 }, { x: p.cx - p.r - w - gap, y: p.cy - fontSize*.6 }, { x: p.cx - w / 2, y: p.cy - p.r - fontSize*1.8 }, { x: p.cx - w / 2, y: p.cy + p.r + gap }, { x: p.cx - w / 2, y: p.cy - p.r - fontSize*3.2 }, { x: p.cx - w / 2, y: p.cy + p.r + fontSize*2 }].map(b => ({ ...b, x: Math.max(left, Math.min(right - w, b.x)), w, h: fontSize*1.3 }));
-        const cost = (b: typeof boxes[number]) => boxes.reduce((s, a) => s + overlap(a, b), 0) + (b.y < top + fontSize*1.5 || b.y > bottom - fontSize*1.3 ? 10000 : 0);
+        const cost = (b: typeof boxes[number]) => boxes.reduce((s, a) => s + overlap(a, {x:b.x-4,y:b.y-4,w:b.w+8,h:b.h+8}), 0) + (b.y < top + fontSize*1.5 || b.y > bottom - fontSize*1.3 ? 10000 : 0);
         opts.sort((a, b) => cost(a) - cost(b));
+        if (cost(opts[0]) > 0) return;
         boxes.push(opts[0]);
         seats.set(p.d.node.id, { x: opts[0].x + w / 2, y: opts[0].y + fontSize });
     });

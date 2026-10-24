@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { domainTreeQuery, maturityVar, MATURITY_NAMES, type DomainsOverview, type DomainTree, type TreeProject } from "../../domains";
 import { libraryOverviewQuery } from "../../libraryQueries";
@@ -6,6 +6,8 @@ import { libraryColor } from "../../libraryColors";
 import { useLayout } from "../../layout";
 import { Hint } from "../Hint";
 import { SlideOver } from "../SlideOver";
+import { usePanZoom } from "./usePanZoom";
+import { PanZoomControls } from "./PanZoomControls";
 
 /**
  * 02 技术谱系总览 as a radial road map (query 2026-1022 1606): 人工智能 at the centre, then each library,
@@ -118,7 +120,6 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const [active, setActive] = useState("root");
   const [hover, setHover] = useState("");
   const [detail, setDetail] = useState<Node | null>(null);
-  const [view, setView] = useState({ x: 0, y: 0, k: 1 });
   const overview = useQuery({ ...libraryOverviewQuery() });
   // A library's deeper levels are read only once it is opened.
   const libs = data.domains.filter((d) => open.has(d.id)).map((d) => d.id);
@@ -218,7 +219,6 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   // Drag pans, the wheel zooms at the pointer; 全景 recentres.
   const svg = useRef<SVGSVGElement>(null);
   const focusOn = useRef("");
-  const glide = useRef(0);
   // The square map is fitted to the shorter side of a wide, short frame: that side sets the scale.
   const side = (box: DOMRect) => Math.min(box.width, box.height) || 1100;
   const [pixels, setPixels] = useState(1100);
@@ -229,23 +229,11 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-  function glideTo(target: { x: number; y: number; k: number }) {
-    cancelAnimationFrame(glide.current);
-    const from = view, start = performance.now();
-    const step = (now: number) => {
-      const t = Math.min(1, (now - start) / 480), e = 1 - Math.pow(1 - t, 3);
-      setView({ x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, k: from.k + (target.k - from.k) * e });
-      if (t < 1) glide.current = requestAnimationFrame(step);
-    };
-    glide.current = requestAnimationFrame(step);
-  }
-  const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
   // The view fits the outermost ring on show, plus room for its spoke labels; it grows as levels open.
   const outermost = Math.max(...[...layout.values()].map((p) => p.r));
   const SIZE = 2 * (outermost + (outermost > 300 ? 170 : 110));
-  const sizeRef = useRef(SIZE);
-  sizeRef.current = SIZE;
-  const unit = () => sizeRef.current / (svg.current ? side(svg.current.getBoundingClientRect()) : sizeRef.current);
+  const pan = usePanZoom(svg, {left:-SIZE/2,right:SIZE/2,top:-SIZE/2,bottom:SIZE/2});
+  const {view, glideTo} = pan;
   // Labels and hit areas keep the same size on screen at any zoom.
   const px = SIZE / pixels / view.k;
   // After a click, centre the opened node at a zoom that suits its level.
@@ -260,34 +248,6 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const reach = (p.r + Math.min(p.r + 110, 600)) / 2;
     glideTo({ x: -Math.cos(p.angle) * reach * k, y: -Math.sin(p.angle) * reach * k, k });
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
-  function down(event: ReactPointerEvent<SVGSVGElement>) { drag.current = { x: event.clientX, y: event.clientY, moved: false }; }
-  useEffect(() => {
-    const move = (event: PointerEvent) => {
-      const d = drag.current;
-      if (!d) return;
-      const dx = event.clientX - d.x, dy = event.clientY - d.y;
-      if (!d.moved && Math.hypot(dx, dy) < 4) return;
-      d.moved = true; d.x = event.clientX; d.y = event.clientY;
-      setView((v) => ({ ...v, x: v.x + dx * unit(), y: v.y + dy * unit() }));
-    };
-    const up = () => { setTimeout(() => { drag.current = null; }, 0); };
-    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
-    return () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); };
-  }, []);
-  useEffect(() => {
-    const node = svg.current;
-    if (!node) return;
-    const wheel = (event: WheelEvent) => {
-      event.preventDefault();
-      const box = node.getBoundingClientRect();
-      const scale = sizeRef.current / side(box);
-      const px = (event.clientX - box.left - box.width / 2) * scale, py = (event.clientY - box.top - box.height / 2) * scale;
-      setView((v) => { const k = Math.max(0.5, Math.min(4, v.k * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
-        return { k, x: px - ((px - v.x) / v.k) * k, y: py - ((py - v.y) / v.k) * k }; });
-    };
-    node.addEventListener("wheel", wheel, { passive: false });
-    return () => node.removeEventListener("wheel", wheel);
-  }, []);
 
   function expandSystems() {
     setOpen(new Set(["root", ...data.domains.map((d) => d.id)]));
@@ -302,7 +262,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const [card, setCard] = useState<{ left: number; top: number } | null>(null);
   function moveCard(event: { clientX: number; clientY: number }) {
     const frame = box.current?.getBoundingClientRect();
-    if (!frame || drag.current?.moved) return;
+    if (!frame || pan.suppressClick()) return;
     const left = event.clientX - frame.left + 16;
     setCard({ left: left + 260 > frame.width ? left - 290 : left, top: event.clientY - frame.top + 14 });
   }
@@ -325,16 +285,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
           <br />拖动平移 · 滚轮缩放 · 「全景」复位</>}>图例与操作</Hint>
         <button type="button" onClick={expandSystems}>展开全部技术体系</button>
         <button type="button" onClick={() => { setOpen(new Set(["root"])); setActive("root"); }}>全部收起</button>
-        <span className="roads-zoom" role="group" aria-label="缩放">
-          <button type="button" aria-label="缩小" onClick={() => glideTo({ ...view, k: Math.max(0.5, view.k / 1.3), x: view.x / 1.3, y: view.y / 1.3 })}>−</button>
-          <button type="button" onClick={() => glideTo({ x: 0, y: 0, k: 1 })}>{Math.abs(view.k - 1) < 0.02 && !view.x && !view.y ? "全景" : `${Math.round(view.k * 100)}% · 复位`}</button>
-          <button type="button" aria-label="放大" onClick={() => glideTo({ k: Math.min(4, view.k * 1.3), x: view.x * 1.3, y: view.y * 1.3 })}>+</button>
-        </span>
+        <PanZoomControls map={pan} />
       </div>
     </div>
     <svg ref={svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
-      onPointerDown={down}>
+      tabIndex={0} onKeyDown={pan.key} onPointerDown={pan.down} onDoubleClick={e=>{if(!(e.target as Element).closest(".roads-node"))pan.reset();}}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
           ? <circle key={k} r={RADII[k]} className="roads-ring" /> : null)}
@@ -357,7 +313,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             style={{ transform: `translate(${at.x}px,${at.y}px)` }} role="button" tabIndex={0}
             aria-label={`${n.name}${n.kind === "project" ? "" : `，${n.items} 条技术`}${n.expandable ? (isOpen ? "，已展开" : "，可展开") : ""}`}
             aria-expanded={n.expandable ? isOpen : undefined}
-            onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) toggle(n); }}
+            onClick={(e) => { e.stopPropagation(); if (!pan.suppressClick()) toggle(n); }}
             onKeyDown={(e) => { if (e.key === "Enter") toggle(n); }}
             onMouseEnter={(e) => { setHover(n.id); moveCard(e); }} onMouseMove={moveCard} onMouseLeave={() => { setHover(""); setCard(null); }}>
             <circle r={Math.max(r, 11 * px)} className="roads-hit" />
@@ -372,7 +328,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
             {active === n.id && n.kind !== "root" && n.kind !== "more" && n.kind !== "project" ? <g className="roads-chip" role="button" tabIndex={0} aria-label={`${n.name} 详情`}
               transform={`translate(0,${r + 6 * px}) scale(${px})`}
-              onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) setDetail(n); }}
+              onClick={(e) => { e.stopPropagation(); if (!pan.suppressClick()) setDetail(n); }}
               onKeyDown={(e) => { if (e.key === "Enter") { e.stopPropagation(); setDetail(n); } }}>
               <rect x={-22} y={0} width={44} height={19} rx={9.5} /><text x={0} y={13.5} textAnchor="middle">详情 ›</text>
             </g> : null}

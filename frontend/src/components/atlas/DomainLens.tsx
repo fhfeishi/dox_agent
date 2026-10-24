@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { createPortal } from "react-dom";
@@ -7,6 +7,8 @@ import { ALL_YEARS, ANNUAL_METRICS, LENSES, NODE_KINDS, OUTPUT_MEANING, atlasLay
 import { LibraryPreviewDrawer } from "../LibraryPreviewDrawer";
 import { YearBand } from "./YearBand";
 import { useAtlasMotion } from "./useAtlasMotion";
+import { usePanZoom } from "./usePanZoom";
+import { PanZoomControls } from "./PanZoomControls";
 import { money } from "../../domains";
 import type { AtlasModel } from "../../domainAtlas";
 import "./domain-lens.css";
@@ -124,7 +126,10 @@ function LensMap({ data, libraries, reveal }: {
     else
         setOpen(false); setTip(null); }; document.addEventListener("keydown", key); return () => document.removeEventListener("keydown", key); }, [base, fixed, preview, tip, setSearch]);
     const rows = useMemo(()=>ids.map(id=>model.measure(id,{from:window.from,to:window.to})),[ids,model,window.from,window.to]);
-    const target = useMemo(()=>atlasLayout(rows,lens,size.width,size.height,size.font),[rows,lens,size]);
+    const home = useMemo(()=>atlasLayout(rows,lens,size.width,size.height,size.font),[rows,lens,size]);
+    const pan = usePanZoom(svg, home, `${lens}|${scope}|${window.from}|${window.to}`);
+    const clip = useId();
+    const target = useMemo(()=>atlasLayout(rows,lens,size.width,size.height,size.font,pan.view),[rows,lens,size,pan.view]);
     const {layout,moving}=useAtlasMotion(target,`${lens}|${window.from}|${window.to}`,scope??"root"),v=LENSES[lens];
     useLayoutEffect(()=>{if(!nextFocus.current||!svg.current||layout.points.some(p=>!ids.includes(p.d.node.id)))return;const nodes=[...svg.current.querySelectorAll<SVGGElement>("[data-node]")];const node=nodes.find(n=>n.getAttribute("data-node")===nextFocus.current)??nodes[0]??svg.current;node.focus({preventScroll:true});nextFocus.current=null;},[layout,ids]);
     const focused = moving?undefined:layout.points.find(p => p.d.node.id === (guide ?? fixed));
@@ -152,8 +157,7 @@ function LensMap({ data, libraries, reveal }: {
     return <div className="domain-lens" data-testid="domain-lens" data-moving={moving} style={{"--lens-stage-height":`${panelHeight}px` } as CSSProperties}><div ref={stage} className="lens-main"><div className="lens-views">{(Object.keys(LENSES) as Lens[]).map(k => <button key={k} type="button" aria-pressed={lens === k} onClick={() => update({ lens: k })}>{LENSES[k].name}</button>)}</div>
     <div className="lens-head"><div><nav aria-label="当前分析层级">全部领域{path.map((name, i) => <span key={i}> › {name}</span>)}</nav><h3>{v.question}</h3></div><span>{windowLabel(window)}</span></div>
     <div className="lens-status"><span>圆面积＝项目数 · 虚线＝本层中位数</span><span aria-live="polite">{moving?"正在切换视角与年份…":base ? "蓝线对比中 · 点空白退出" : fixed ? "已固定 · 再点解除" : "悬停预览 · 单击固定"}</span></div>
-    <div ref={wrap} className="lens-plot-scroll"><svg ref={svg} width={size.width} height={size.height} viewBox={`0 0 ${size.width} ${size.height}`} tabIndex={-1} role="group" aria-label="研究领域四象限图" className="lens-plot" onClick={e => { if (!moving&&!(e.target as Element).closest("[data-node],[data-explain]") && Date.now() > suppress.current)
-        back(); }} onPointerMove={e => { const a = drag.current; if (!a)
+    <div className="lens-plot-tools"><PanZoomControls map={pan} className="lens-zoom" /></div><div ref={wrap} className="lens-plot-scroll"><svg ref={svg} width={size.width} height={size.height} viewBox={`0 0 ${size.width} ${size.height}`} tabIndex={0} role="group" aria-label="研究领域四象限图" onKeyDown={pan.key} onPointerDown={e=>{suppress.current=0;pan.down(e);}} onDoubleClick={e => { if (!(e.target as Element).closest("[data-node]")) { cancelClick(); pan.reset(); } }} className="lens-plot" onClick={e => { if (!moving&&!(e.target as Element).closest("[data-node],[data-explain]") && Date.now() > suppress.current && !pan.suppressClick()) { cancelClick(); if(e.detail === 1) timer.current = setTimeout(() => back(), 230); } }} onPointerMove={e => { const a = drag.current; if (!a)
         return; if (Math.hypot(e.clientX - a.x, e.clientY - a.y) > 7)
         a.active = true; if (a.active) {
         cancelClick();
@@ -167,27 +171,36 @@ function LensMap({ data, libraries, reveal }: {
         setOpen(true);
         update({ compare: a.id, node: target, pin: null });
     } }} onPointerCancel={() => { drag.current = null; setTrace(null); }}>
-      <rect x={layout.left} y={layout.top} width={layout.right - layout.left} height={layout.bottom - layout.top} fill="var(--terrain-plot)"/>
+      <defs><clipPath id={clip}><rect x={layout.left} y={layout.top} width={layout.right-layout.left} height={layout.bottom-layout.top}/></clipPath></defs><rect data-plot-background="true" x={layout.left} y={layout.top} width={layout.right - layout.left} height={layout.bottom - layout.top} fill="var(--terrain-plot)"/>
       {layout.points.length ? <>
-        <rect x={layout.left} y={layout.top} width={layout.medianX - layout.left} height={layout.medianY - layout.top} fill="var(--terrain-empty)"/><rect x={layout.medianX} y={layout.top} width={layout.right - layout.medianX} height={layout.medianY - layout.top} fill="var(--ok-bg)"/><rect x={layout.left} y={layout.medianY} width={layout.medianX - layout.left} height={layout.bottom - layout.medianY} fill="var(--terrain-shallow)"/>
+        <rect x={layout.left} y={layout.top} width={Math.max(0,Math.min(layout.right,layout.medianX)-layout.left)} height={Math.max(0,Math.min(layout.bottom,layout.medianY)-layout.top)} fill="var(--terrain-empty)"/><rect x={Math.max(layout.left,layout.medianX)} y={layout.top} width={Math.max(0,layout.right-Math.max(layout.left,layout.medianX))} height={Math.max(0,Math.min(layout.bottom,layout.medianY)-layout.top)} fill="var(--ok-bg)"/><rect x={layout.left} y={Math.max(layout.top,layout.medianY)} width={Math.max(0,Math.min(layout.right,layout.medianX)-layout.left)} height={Math.max(0,layout.bottom-Math.max(layout.top,layout.medianY))} fill="var(--terrain-shallow)"/>
         {Array.from({ length: 5 }, (_, i) => { const y = layout.yr[0] + (layout.yr[1] - layout.yr[0]) * i / 4; return <g key={i}><path d={`M${layout.left} ${layout.py(y)}H${layout.right}`} stroke="var(--terrain-grid)"/><text x={layout.left - 12} y={layout.py(y) + 4} textAnchor="end" className="lens-axis">{fmt(y)}</text></g>; })}
         {(lens === "base" ? [1, 3, 10, 30, 100, 300, 1000, 3000].filter(x => Math.log10(x) >= layout.xr[0] && Math.log10(x) <= layout.xr[1]) : Array.from({ length: 4 }, (_, i) => layout.xr[0] + (layout.xr[1] - layout.xr[0]) * i / 3)).map(x => <g key={x}><path d={`M${layout.px(x)} ${layout.top}V${layout.bottom}`} stroke="var(--terrain-grid)"/><text x={layout.px(x)} y={layout.bottom + 19} textAnchor="middle" className="lens-axis">{fmt(x)}</text></g>)}
         <g data-explain="median" tabIndex={0} onPointerEnter={showMedian} onPointerLeave={() => setTip(null)} onFocus={showMedian} onBlur={() => setTip(null)} onClick={e => e.stopPropagation()}>
-          <path d={`M${layout.medianX} ${layout.top}V${layout.bottom}M${layout.left} ${layout.medianY}H${layout.right}`} stroke="var(--terrain-sep)" strokeDasharray="5 6"/><path d={`M${layout.medianX} ${layout.top}V${layout.bottom}M${layout.left} ${layout.medianY}H${layout.right}`} stroke="transparent" strokeWidth={16} fill="none"/>
+          <path clipPath={`url(#${clip})`} d={`M${layout.medianX} ${layout.top}V${layout.bottom}M${layout.left} ${layout.medianY}H${layout.right}`} stroke="var(--terrain-sep)" strokeDasharray="5 6"/><path clipPath={`url(#${clip})`} d={`M${layout.medianX} ${layout.top}V${layout.bottom}M${layout.left} ${layout.medianY}H${layout.right}`} stroke="transparent" strokeWidth={16} fill="none"/>
           <text className="lens-median" x={layout.medianX} y={layout.bottom + 38} textAnchor="middle">中位 {fmt(layout.mx)}</text><text className="lens-median" x={layout.left - 7} y={layout.medianY - 8} textAnchor="end">中位 {fmt(layout.my)}</text>
         </g>
-        {v.quads.map((name, i) => <text key={name} className="lens-quad" x={i % 2 ? layout.right - 9 : layout.left + 9} y={i < 2 ? layout.top + 16 : layout.bottom - 12} textAnchor={i % 2 ? "end" : "start"} data-explain="quad" onPointerEnter={e => explain(e.currentTarget, name, `${i % 2 ? "横轴高于" : "横轴不高于"}中位，${i < 2 ? "纵轴高于" : "纵轴不高于"}中位。${standard}`)} onPointerLeave={() => setTip(null)}>{name}</text>)}
+        {v.quads.map((name, i) => {
+          const x0=i%2?Math.max(layout.left,layout.medianX):layout.left;
+          const x1=i%2?layout.right:Math.min(layout.right,layout.medianX);
+          const y0=i<2?layout.top:Math.max(layout.top,layout.medianY);
+          const y1=i<2?Math.min(layout.bottom,layout.medianY):layout.bottom;
+          if(x1-x0<name.length*size.font*.9 || y1-y0<size.font*2) return null;
+          return <text key={name} className="lens-quad" x={i%2?x1-9:x0+9} y={i<2?y0+size.font:y1-12}
+            textAnchor={i%2?"end":"start"} data-explain="quad"
+            onPointerEnter={e=>explain(e.currentTarget,name,standard)} onPointerLeave={()=>setTip(null)}>{name}</text>;
+        })}
       </> : <text x={size.width / 2} y={size.height / 2} textAnchor="middle" className="lens-axis">当前范围没有满足此视角统计条件的节点</text>}
       <text x={layout.left} y="27" className="lens-axis-title" data-explain="axis" onPointerEnter={e => explain(e.currentTarget, "指标口径", lens === "base" ? "平均成熟度只计已判定条目；未判定不按0计。" : OUTPUT_MEANING)} onPointerLeave={() => setTip(null)}>{v.y} ↑</text>
       <text x={layout.right} y={size.height - 10} textAnchor="end" className="lens-axis-title" data-explain="axis" onPointerEnter={e => explain(e.currentTarget, "指标口径", lens === "base" ? "技术条目数为对数刻度，圆面积表示项目数。" : "均值只除以有记录项目数；不足3项不计算。" + OUTPUT_MEANING)} onPointerLeave={() => setTip(null)}>{v.x} →</text>
-      {ap && bp ? <path className="lens-compare-line" d={`M${ap.cx} ${ap.cy}L${bp.cx} ${bp.cy}`}/> : null}
+      <g clipPath={`url(#${clip})`}>{ap && bp ? <path className="lens-compare-line" d={`M${ap.cx} ${ap.cy}L${bp.cx} ${bp.cy}`}/> : null}
       {layout.points.map(p => {
-            const id = p.d.node.id, seat = layout.seats.get(id)!;
+            const id = p.d.node.id, seat = layout.seats.get(id);
             return <g key={id} data-node={id} tabIndex={0} aria-label={`${p.d.node.name}，回车固定，向下展开`} className="lens-node" onPointerEnter={() => { setGuide(id); if (!fixed && !base && !drag.current) {
                 setHover({ id, year: null });
                 setOpen(true);
             } }} onPointerLeave={() => { setGuide(null); }} onFocus={()=>{setGuide(id);if(!fixed&&!base&&!drag.current){setHover({id,year:null});setOpen(true);}}} onBlur={()=>setGuide(null)} onPointerDown={e => { if (e.button !== 0)
-                return; drag.current = { id, x: e.clientX, y: e.clientY, active: false }; e.currentTarget.setPointerCapture(e.pointerId); }} onClick={e => { e.stopPropagation(); if (Date.now() < suppress.current)
+                return; e.stopPropagation(); suppress.current=0; drag.current = { id, x: e.clientX, y: e.clientY, active: false }; e.currentTarget.setPointerCapture(e.pointerId); }} onClick={e => { e.stopPropagation(); if (Date.now() < suppress.current)
                 return; cancelClick(); if (e.detail > 1)
                 return; timer.current = setTimeout(() => choose(id), 230); }} onDoubleClick={e => { e.stopPropagation(); if (!moving && Date.now() >= suppress.current)
                 enter(id); }} onKeyDown={e => { if(moving)return; if (e.key === "Enter" || e.key === " ") {
@@ -200,17 +213,17 @@ function LensMap({ data, libraries, reveal }: {
                 e.preventDefault();
                 back(true);
             } }}>
-        <circle cx={p.cx} cy={p.cy} r={Math.max(12, p.r)} fill="transparent"/><circle className="lens-dot" cx={p.cx} cy={p.cy} r={p.r} fill={id === base ? "var(--link)" : id === chosen ? "var(--terrain-dot-on)" : "var(--terrain-dot)"}/><text className="lens-node-name" x={seat.x} y={seat.y} textAnchor="middle">{p.d.node.name}</text>
+        <circle cx={p.cx} cy={p.cy} r={Math.max(12, p.r)} fill="transparent"/><circle className="lens-dot" cx={p.cx} cy={p.cy} r={p.r} fill={id === base ? "var(--link)" : id === chosen ? "var(--terrain-dot-on)" : "var(--terrain-dot)"}/>{seat || guide === id || fixed === id ? <text className="lens-node-name" x={seat?.x ?? p.cx} y={seat?.y ?? p.cy - p.r - size.font} textAnchor="middle">{p.d.node.name}</text> : null}
       </g>;
         })}
       {focused ? <g pointerEvents="none"><path className="lens-guide" d={`M${layout.left} ${focused.cy}H${focused.cx}V${layout.bottom}`}/><text x={focused.cx} y={layout.bottom + 18} textAnchor="middle" className="lens-guide-value">{fmt(focused.x)}</text><text x={layout.left - 9} y={focused.cy + 4} textAnchor="end" className="lens-guide-value">{fmt(focused.y)}</text><text x={layout.left} y={layout.top - 7} className="lens-guide-value">{focused.d.node.name} · 横轴{focused.x > layout.mx ? "高于" : "不高于"}中位 / 纵轴{focused.y > layout.my ? "高于" : "不高于"}中位</text></g> : null}
       {trace ? <line className="lens-compare-line" {...trace} strokeDasharray="4 5"/> : null}
-    </svg></div>
+    </g></svg></div>
     <div className="lens-insufficient">{absent.length?<span className="lens-absent" tabIndex={0} onPointerEnter={e=>explain(e.currentTarget,"未绘入主图的节点",absent.map(d=>d.node.name).join("、"))} onPointerLeave={()=>setTip(null)}>{absent.length} 个{NODE_KINDS[rows[0]?.node.kind??"domain"]}{window.from===null?"没有可确认项目":"在所选年份无立项"}</span>:null}{insufficient.length ? <><span>数据不足</span>{insufficient.map(({ d, value }) => <span key={d.node.id} tabIndex={0} onPointerEnter={e => { explain(e.currentTarget, d.node.name, value.reason!); if (!fixed && !base) {
         setHover({ id: d.node.id, year: null });
         setOpen(true);
     } }} onPointerLeave={() => setTip(null)} onFocus={e => explain(e.currentTarget, d.node.name, value.reason!)}>◌ {d.node.name}</span>)}</> : !absent.length?<span>本层节点均可绘制</span>:null}</div>
-    <div className="lens-gestures"><span>◎ 双击深入</span><span>○—○ 拖动两点对比</span><span>↶ 点空白逐步返回</span><span>┆ 悬停虚线看标准</span></div>
+    <div className="lens-gestures"><span>滚轮缩放 · 空白拖动平移</span><span>+ / − 缩放 · 0 / 双击空白复位</span><span>◎ 双击深入</span><span>○—○ 拖动两点对比</span><span>↶ 点空白逐步返回</span><span>┆ 悬停虚线看标准</span></div>
     <YearBand model={model} ids={ids} scope={scope} years={data.years} window={window} metric={metric} expanded={expanded} chosen={chosen} baseline={base} onWindow={w => update({ from: w.from === null ? null : String(w.from), to: w.to === null ? null : String(w.to) })} onMetric={m => update({ annual: m })} onExpanded={e => update({ expanded: e ? "1" : null })} onPreview={(id, year) => { if (!fixed && !base) {
         setHover({ id, year });
         setOpen(true);

@@ -11,7 +11,7 @@ export function useAtlasMotion(target: Layout, selectionKey: string, layerKey: s
   useLayoutEffect(()=>{
     const old=previous.current;previous.current={selectionKey,layerKey};
     const start=shown.current;
-    if(reduced||old.layerKey!==layerKey||old.selectionKey===selectionKey||!start.points.length||!target.points.length){shown.current=target;setLayout(target);setMoving(false);return;}
+    if(reduced||(old.layerKey===layerKey&&old.selectionKey===selectionKey)||!start.points.length||!target.points.length){shown.current=target;setLayout(target);setMoving(false);return;}
     const points=new Map(start.points.map(p=>[p.d.node.id,p]));
     const mix=(a:number,b:number,t:number)=>a+(b-a)*t;
     let frame=0,begin:number|null=null;setMoving(true);

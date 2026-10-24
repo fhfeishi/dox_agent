@@ -961,47 +961,49 @@ function LensMap({
                   </g>
                 );
               })}
-              {focused ? (
-                <g pointerEvents="none">
-                  <path
-                    className="lens-guide"
-                    d={`M${layout.left} ${focused.cy}H${focused.cx}V${layout.bottom}`}
-                  />
-                  <text
-                    x={focused.cx}
-                    y={layout.bottom + 18}
-                    textAnchor="middle"
-                    className="lens-guide-value"
-                  >
-                    {fmt(focused.x)}
-                  </text>
-                  <text
-                    x={layout.left - 9}
-                    y={focused.cy + 4}
-                    textAnchor="end"
-                    className="lens-guide-value"
-                  >
-                    {fmt(focused.y)}
-                  </text>
-                  <text
-                    x={layout.left}
-                    y={layout.top - 7}
-                    className="lens-guide-value"
-                  >
-                    {focused.d.node.name} · 横轴
-                    {focused.x > layout.mx ? "高于" : "不高于"}中位 / 纵轴
-                    {focused.y > layout.my ? "高于" : "不高于"}中位
-                  </text>
-                </g>
-              ) : null}
-              {trace ? (
-                <line
-                  className="lens-compare-line"
-                  {...trace}
-                  strokeDasharray="4 5"
-                />
-              ) : null}
             </g>
+            {focused ? (
+              <g pointerEvents="none">
+                <path
+                  clipPath={`url(#${clip})`}
+                  className="lens-guide"
+                  d={`M${layout.left} ${focused.cy}H${focused.cx}V${layout.bottom}`}
+                />
+                <text
+                  x={focused.cx}
+                  y={layout.bottom + 18}
+                  textAnchor="middle"
+                  className="lens-guide-value"
+                >
+                  {fmt(focused.x)}
+                </text>
+                <text
+                  x={layout.left - 9}
+                  y={focused.cy + 4}
+                  textAnchor="end"
+                  className="lens-guide-value"
+                >
+                  {fmt(focused.y)}
+                </text>
+                <text
+                  x={layout.left}
+                  y={layout.top - 7}
+                  className="lens-guide-value"
+                >
+                  {focused.d.node.name} · 横轴
+                  {focused.x > layout.mx ? "高于" : "不高于"}中位 / 纵轴
+                  {focused.y > layout.my ? "高于" : "不高于"}中位
+                </text>
+              </g>
+            ) : null}
+            {trace ? (
+              <line
+                clipPath={`url(#${clip})`}
+                className="lens-compare-line"
+                {...trace}
+                strokeDasharray="4 5"
+              />
+            ) : null}
           </svg>
         </div>
         <div className="lens-insufficient">

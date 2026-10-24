@@ -67,6 +67,15 @@ async def run_checks(page, origin, shots):
     first = page.locator(".lens-node").first
     await first.click()
     await page.wait_for_timeout(300)
+    # The hover values must actually paint outside the plot clip, not merely
+    # exist as positive-size SVG text that is invisible to the reader.
+    axis_value = page.locator(".lens-guide-value").first
+    box = await axis_value.bounding_box()
+    painted = await page.screenshot(clip=box)
+    await axis_value.evaluate("el=>el.style.visibility='hidden'")
+    hidden = await page.screenshot(clip=box)
+    await axis_value.evaluate("el=>el.style.removeProperty('visibility')")
+    assert painted != hidden, "axis value was clipped"
     why = await page.locator(".lens-why").inner_text()
     before = await geometry(page)
     box = await plot.bounding_box()

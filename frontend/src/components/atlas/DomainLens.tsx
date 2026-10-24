@@ -257,6 +257,11 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
   useEffect(() => {
     function key(e: KeyboardEvent) {
       if (
+        !(e.target as Element).closest(".domain-lens") &&
+        e.target !== document.body
+      )
+        return;
+      if (
         preview ||
         (e.target as Element).closest(
           "input,textarea,select,[contenteditable=true]",

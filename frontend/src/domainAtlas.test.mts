@@ -21,6 +21,8 @@ test("layer/window deduplication retains unknown years, listed-zero and judged m
   assert.equal(c.points[0].x>c.mx,false);assert.equal(c.points[0].y>c.my,false);
   const large=atlasLayout([s],"base",1800,930,19);
   assert.equal(large.mx,c.mx);assert.equal(large.my,c.my);
-  assert.ok(large.points[0].r>c.points[0].r);
+  // Third-round contract: readable 8–30px markers keep their screen size.
+  assert.equal(large.points[0].r,c.points[0].r);
+  assert.ok(c.points.every(p=>p.r>=8&&p.r<=30));
   assert.ok([...large.seats.values()].every(p=>p.x>=large.left&&p.x<=large.right&&p.y>=large.top&&p.y<=large.bottom));
 });

@@ -7,7 +7,6 @@ The real HTTP app/session runs in temporary storage; only domain data is a fixtu
 import asyncio
 import json
 import os
-import re
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -144,7 +143,7 @@ async def check_simplified(page,origin,shots):
             const text=n.textContent.trim(),el=n.parentElement;if(!text||!el)continue;
             const c=getComputedStyle(el),r=el.getBoundingClientRect();
             if(!r.width||!r.height||c.visibility==='hidden'||c.display==='none'||el.closest('.lens-inspector-status'))continue;
-            if(el.closest('svg')&&/^[\d.,]+$/.test(text))continue;
+            if(el.closest('svg')&&/^[0-9.,]+$/.test(text))continue;
             if(parseFloat(c.fontSize)<14)out.push(text);
           }return out;
         }""")
@@ -180,6 +179,68 @@ async def check_simplified(page,origin,shots):
         reports.append({'width':width,'small_text':len(inventory),'geometry':geometry})
     return reports
 
+async def check_retained(page,origin,shots):
+    await page.goto(origin+'/overview/domains')
+    await page.locator('.lens-node').first.wait_for(timeout=60000)
+    await settle(page)
+    await click_node(page.locator('.lens-node').first)
+    await expect(page.locator('.lens-why')).to_be_visible()
+    before=await page.locator('.lens-why').inner_text()
+    plot=page.locator('.lens-plot');await plot.scroll_into_view_if_needed();box=await plot.bounding_box()
+    await page.mouse.move(box['x']+box['width']*.65,box['y']+box['height']*.6)
+    await page.mouse.wheel(0,-350)
+    await expect(page.locator('.lens-zoom')).to_contain_text('%')
+    assert await page.locator('.lens-why').inner_text()==before
+    await page.locator('.lens-zoom button').nth(1).click()
+    await plot.focus();await page.keyboard.press('0')
+    await expect(page.locator('.lens-zoom')).to_contain_text('全景')
+    await page.get_by_role('radio',name='资金（万元）',exact=True).click()
+    await page.get_by_role('radio',name='资金（万元）',exact=True).press('ArrowRight')
+    await expect(page.get_by_role('radio',name='技术（条）',exact=True)).to_have_attribute('aria-checked','true')
+    await page.locator('.lens-views').first.get_by_role('button',name='投入与产出',exact=True).click()
+    await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
+    await settle(page)
+    node=await page.evaluate("new URL(location.href).searchParams.get('node')")
+    await page.locator('.lens-band-svg [data-year="2021"]').click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')==='2021'")
+    await settle(page)
+    assert await page.evaluate("new URL(location.href).searchParams.get('node')")==node
+    await page.get_by_role('button',name='清除年份范围').click()
+    await page.locator('.lens-band-svg [data-year="2020"]').drag_to(page.locator('.lens-band-svg [data-year="2022"]'))
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')==='2020'&&new URL(location.href).searchParams.get('to')==='2022'")
+    await page.get_by_role('button',name='展开各领域 ▾',exact=True).click()
+    await expect(page.locator('.lens-matrix')).to_be_visible()
+    await expect(page.locator('.lens-matrix tbody tr').filter(has_text='AI与研究领域10').locator('td').last).to_have_text('未记录')
+    await expect(page.locator('.lens-band-svg [data-year="2019"] .lens-year-total')).to_have_text('0')
+    saved=page.url;await page.reload();await expect(page.locator('.lens-matrix')).to_be_visible();assert page.url==saved
+    # 02 uses the extracted hook too: zoom/pan must retain click-to-expand and glide.
+    road = page.locator(".roads-svg")
+    await road.scroll_into_view_if_needed()
+    box = await road.bounding_box()
+    group = road.locator(":scope > g")
+    before_view = await group.get_attribute("transform")
+    await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.6)
+    await page.mouse.wheel(0, -300)
+    await page.wait_for_timeout(100)
+    assert await group.get_attribute("transform") != before_view
+    tools = page.locator(".roads-tools .roads-zoom")
+    await tools.locator("button").nth(1).click()
+    await expect(tools).to_contain_text("全景")
+    await road.scroll_into_view_if_needed()
+    box = await road.bounding_box()
+    await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+box["height"]*.7)
+    await page.mouse.down()
+    await page.mouse.move(box["x"]+box["width"]*.7+40, box["y"]+box["height"]*.7+25, steps=7)
+    await page.mouse.up()
+    await expect(tools).to_contain_text("100% · 复位")
+    await tools.locator("button").nth(1).click()
+    library_node = road.locator(".roads-node.is-library").first
+    await library_node.click()
+    await expect(library_node).to_have_attribute("aria-expanded", "true")
+    await expect(tools).to_contain_text("125%")
+    await road.screenshot(path=str(shots / "02-shared-gestures.png"))
+
+
 async def main():
     shots=Path(os.environ.get('LENS_SHOTS','.logsdev/verification/01-第三轮实施-20261024/browser'))
     shots.mkdir(parents=True,exist_ok=True)
@@ -198,6 +259,7 @@ async def main():
                 await page.route('**/api/domains/overview',lambda r:r.fulfill(json=overview))
                 await page.route('**/api/domains/atlas',lambda r:r.fulfill(json=atlas))
                 values=await check_simplified(page,origin,shots)
+                await check_retained(page,origin,shots)
                 (shots/'results.json').write_text(json.dumps(values,ensure_ascii=False,indent=2),encoding='utf-8')
                 assert not errors,errors
                 await browser.close()

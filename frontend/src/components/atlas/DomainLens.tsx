@@ -196,9 +196,12 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     setNotice(`已返回 ${name}`);
     noticeTimer.current = setTimeout(() => setNotice(""), 1500);
   }
-  function navigateTo(layer: string | null) {
-    if (scope === layer) return;
-    let parent = scope;
+  function navigateTo(
+    layer: string | null,
+    source = params.current.get("layer"),
+  ) {
+    if (source === layer) return;
+    let parent = source;
     while (parent && model.nodes.get(parent)?.parent !== layer)
       parent = model.nodes.get(parent)?.parent ?? null;
     const destinationRows = (
@@ -221,20 +224,21 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     returned(layer ? model.nodes.get(layer)!.name : "全部领域");
   }
   function back() {
-    if (moving) return;
     if (compareFrom) {
       setCompareFrom(null);
       return;
     }
-    if (base) {
+    if (params.current.get("compare")) {
       update({ compare: null });
       return;
     }
-    if (selected) {
+    if (params.current.get("node")) {
       update({ node: null });
       return;
     }
-    if (scope) navigateTo(model.nodes.get(scope)!.parent);
+    const currentLayer = params.current.get("layer");
+    if (currentLayer)
+      navigateTo(model.nodes.get(currentLayer)?.parent ?? null, currentLayer);
   }
   function selectRow(id: string) {
     const node = model.nodes.get(id);

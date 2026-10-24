@@ -116,6 +116,17 @@ async def check_simplified(page,origin,shots):
             await settle(page)
             if node and layer!=system:
                 await expect(page.locator(".lens-return-notice")).to_contain_text("已返回")
+        # Six ordinary clicks during the 420ms return animation must not be lost.
+        from urllib.parse import urlencode
+        await page.goto(origin+'/overview/domains?'+urlencode({'layer':system,'node':leaf_id}))
+        await page.locator('.lens-node').first.wait_for(timeout=60000)
+        await settle(page)
+        fast_box=await page.locator('.lens-plot').bounding_box()
+        for _ in range(6):
+            await page.mouse.click(fast_box['x']+fast_box['width']*.7,fast_box['y']+8)
+            await page.wait_for_timeout(70)
+        await page.wait_for_function("new URL(location.href).searchParams.get('layer')===null&&new URL(location.href).searchParams.get('node')===null",timeout=3000)
+        await settle(page)
         await click_node(page.locator(".lens-node").first)
         await page.get_by_role("button",name="⇄ 对比",exact=True).click()
         await click_node(page.locator(".lens-node").last)

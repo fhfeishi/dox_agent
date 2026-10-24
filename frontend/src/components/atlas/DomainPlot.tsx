@@ -90,6 +90,7 @@ export function DomainPlot({
     yUnit = lens === "base" ? " 档" : lens === "money" ? " 项" : "%";
   function nodeKey(e: React.KeyboardEvent<SVGGElement>, id: string) {
     if (e.key === "Enter" || e.key === " ") {
+      if (moving) return;
       e.preventDefault();
       onSelect(id);
       return;
@@ -148,7 +149,6 @@ export function DomainPlot({
         }}
         onClick={(e) => {
           if (
-            !moving &&
             !pan.suppressClick() &&
             !(e.target as Element).closest("[data-node],[data-explain]")
           )

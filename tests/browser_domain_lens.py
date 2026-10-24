@@ -144,6 +144,32 @@ async def run_checks(page, origin, shots):
     await page.mouse.wheel(0, 400)
     await page.wait_for_timeout(200)
     assert await page.locator("main").evaluate("e=>e.scrollTop") > before_scroll
+    # 02 uses the extracted hook too: zoom/pan must retain click-to-expand and glide.
+    road = page.locator(".roads-svg")
+    await road.scroll_into_view_if_needed()
+    box = await road.bounding_box()
+    group = road.locator(":scope > g")
+    before_view = await group.get_attribute("transform")
+    await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.6)
+    await page.mouse.wheel(0, -300)
+    await page.wait_for_timeout(100)
+    assert await group.get_attribute("transform") != before_view
+    tools = page.locator(".roads-tools .roads-zoom")
+    await tools.locator("button").nth(1).click()
+    await expect(tools).to_contain_text("全景")
+    await road.scroll_into_view_if_needed()
+    box = await road.bounding_box()
+    await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+box["height"]*.7)
+    await page.mouse.down()
+    await page.mouse.move(box["x"]+box["width"]*.7+40, box["y"]+box["height"]*.7+25, steps=7)
+    await page.mouse.up()
+    await expect(tools).to_contain_text("100% · 复位")
+    await tools.locator("button").nth(1).click()
+    library_node = road.locator(".roads-node.is-library").first
+    await library_node.click()
+    await expect(library_node).to_have_attribute("aria-expanded", "true")
+    await expect(tools).to_contain_text("125%")
+    await road.screenshot(path=str(shots / "02-shared-gestures.png"))
 
 
 async def main():

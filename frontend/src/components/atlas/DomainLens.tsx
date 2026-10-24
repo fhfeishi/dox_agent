@@ -384,7 +384,18 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
   function showLibrary() {
     const domain = current.node.domain;
     const row = libraries.find((r) => r.corpus_id === domain);
-    if (row) setPreview(row);
+    if (row) {
+      const full = model.measure(domain);
+      setPreview({
+        ...row,
+        funding: {
+          total_yuan: String(full.funding * 10000),
+          projects: full.funded,
+          scope: "awarded",
+          label: "批准资助金额",
+        },
+      });
+    }
   }
   return (
     <div

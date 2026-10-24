@@ -189,6 +189,7 @@ export function LensInspector({
                       <th>名称</th>
                       <th>项目</th>
                       <th>资助/万</th>
+                      <th>技术</th>
                       <th>成果</th>
                       <th />
                     </tr>
@@ -210,6 +211,7 @@ export function LensInspector({
                         <td>{row.node.name}</td>
                         <td>{row.projects}</td>
                         <td>{row.funded ? fmt(row.funding) : "未记录"}</td>
+                        <td>{fmt(row.items)}</td>
                         <td>{row.listed ? fmt(row.outputs) : "未记录"}</td>
                         <td>›</td>
                       </tr>

@@ -170,6 +170,7 @@ async def check_simplified(page,origin,shots):
         await expect(status).to_contain_text('已选中')
         assert await page.evaluate("new URL(location.href).searchParams.get('pin')") is None
         button=page.locator('.lens-primary');before=await button.bounding_box()
+        assert before['y']>=0 and before['y']+before['height']<=await page.evaluate('innerHeight'),before
         await page.locator('.lens-detail-body').evaluate('e=>e.scrollTop=e.scrollHeight')
         after=await button.bounding_box();assert abs(after['y']-before['y'])<1
         await page.screenshot(path=str(shots/f'{width}-selected.png'))

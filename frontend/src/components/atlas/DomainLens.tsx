@@ -317,18 +317,31 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       const height = Math.ceil(
         box.height - (matrix?.getBoundingClientRect().height ?? 0),
       );
-      setPanelHeight((old) =>
-        Math.abs(old - height) < 1
-          ? old
-          : Math.min(Math.max(440, height), Math.max(200, available - 12)),
+      const viewport = main!.closest("main");
+      const viewportBox = viewport?.getBoundingClientRect();
+      const limit = Math.max(
+        200,
+        (viewportBox?.bottom ?? globalThis.innerHeight) -
+          Math.max(box.top, viewportBox?.top ?? 0) -
+          12,
       );
+      const panel = Math.min(Math.max(440, height), limit);
+      setPanelHeight((old) => (Math.abs(old - panel) < 1 ? old : panel));
     }
+    const viewport = main.closest("main");
+    const scrolled = () => {
+      read();
+      setGuide(null);
+    };
+    viewport?.addEventListener("scroll", scrolled, { passive: true });
     const observer = new ResizeObserver(read);
     observer.observe(el);
     observer.observe(main);
+    if (viewport) observer.observe(viewport);
     globalThis.addEventListener("resize", read);
     read();
     return () => {
+      viewport?.removeEventListener("scroll", scrolled);
       observer.disconnect();
       globalThis.removeEventListener("resize", read);
     };

@@ -152,14 +152,17 @@ async def check_convenience(page, origin, shots):
         await page.locator(".lens-zoom button").nth(1).click()
         await page.locator(".lens-node").first.locator(".lens-node-name").dblclick()
         await page.wait_for_function("new URL(location.href).searchParams.get('layer')!==null")
+        await expect(page.locator(".domain-lens")).to_have_attribute("data-moving", "false")
         layer = await page.evaluate("new URL(location.href).searchParams.get('layer')")
+        await page.locator(".lens-node").first.locator(".lens-node-name").click()
+        await page.wait_for_function("new URL(location.href).searchParams.get('pin')!==null")
         await plot.scroll_into_view_if_needed()
         box = await plot.bounding_box()
         await page.mouse.move(box["x"]+box["width"]*.7,box["y"]+8)
         await page.mouse.down()
         await page.mouse.move(box["x"]+box["width"]*.7+3,box["y"]+8)
         await page.mouse.up()
-        await page.wait_for_timeout(100)
+        await page.wait_for_function("new URL(location.href).searchParams.get('pin')===null")
         assert await page.evaluate("new URL(location.href).searchParams.get('layer')") == layer
         await page.screenshot(path=str(shots / f"{width}-visible-actions.png"))
     return measurements

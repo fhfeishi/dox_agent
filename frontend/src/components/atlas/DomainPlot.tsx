@@ -401,8 +401,24 @@ export function DomainPlot({
           className="lens-node-tooltip"
           role="tooltip"
           style={{
-            left: Math.max(8, Math.min(size.width - 310, hovered.cx + 20)),
-            top: Math.max(8, Math.min(size.height - 140, hovered.cy + 20)),
+            left: Math.max(
+              8,
+              Math.min(
+                globalThis.innerWidth - 320,
+                (svg.current?.getBoundingClientRect().left ?? 0) +
+                  hovered.cx +
+                  20,
+              ),
+            ),
+            top: Math.max(
+              8,
+              Math.min(
+                globalThis.innerHeight - 250,
+                (svg.current?.getBoundingClientRect().top ?? 0) +
+                  hovered.cy +
+                  20,
+              ),
+            ),
           }}
         >
           <b>{hovered.d.node.name}</b>

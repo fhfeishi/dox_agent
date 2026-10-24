@@ -166,6 +166,7 @@ async def check_simplified(page,origin,shots):
         # A legacy pin link is migrated once; no old interaction mode remains.
         from urllib.parse import urlencode
         await page.goto(origin+'/overview/domains?'+urlencode({'pin':domain}))
+        await page.locator('.lens-node').first.wait_for(timeout=60000)
         await expect(status).to_contain_text('已选中')
         assert await page.evaluate("new URL(location.href).searchParams.get('pin')") is None
         button=page.locator('.lens-primary');before=await button.bounding_box()

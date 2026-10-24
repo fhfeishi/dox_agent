@@ -318,7 +318,9 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
         box.height - (matrix?.getBoundingClientRect().height ?? 0),
       );
       setPanelHeight((old) =>
-        Math.abs(old - height) < 1 ? old : Math.max(440, height),
+        Math.abs(old - height) < 1
+          ? old
+          : Math.min(Math.max(440, height), Math.max(200, available - 12)),
       );
     }
     const observer = new ResizeObserver(read);

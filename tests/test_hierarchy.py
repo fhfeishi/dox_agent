@@ -294,7 +294,14 @@ def test_hierarchy_is_stale_when_the_four_dimension_topics_change(tmp_path, monk
             if job["status"] != "running":
                 break
             time.sleep(0.01)
-        state = client.get(f"/api/corpora/{corpus_id}/hierarchy").json()
+        # Extraction completion schedules R1's separate index publisher. Wait for
+        # the new topics to become visible, then keep the original stale checks.
+        deadline = time.monotonic() + 5
+        while True:
+            state = client.get(f"/api/corpora/{corpus_id}/hierarchy").json()
+            if state.get("topics", {}).get("场景") == 2 or time.monotonic() >= deadline:
+                break
+            time.sleep(0.01)
 
     assert state["state"] == "stale" and state["message"]
     assert state["scenes"], "需更新也要能回读已生成内容"

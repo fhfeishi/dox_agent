@@ -722,3 +722,5 @@
     gap: 6px;
   }
 }
+
+.lens-halo{fill:var(--terrain-dot-on);opacity:0;r:var(--node-radius);transition:r 160ms,opacity 160ms}.lens-node[data-active=true] .lens-halo{opacity:.16;r:calc(var(--node-radius) + 7px)}.lens-dot{transition:fill 200ms}.lens-node[data-selected=true] .lens-node-name{font-weight:600}.lens-detail-body{animation:lens-detail-in 180ms both}.lens-node-tooltip,.lens-axis-readout{animation:lens-fade 120ms both}@keyframes lens-fade{from{opacity:0}to{opacity:1}}@keyframes lens-detail-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.domain-lens *{transition:none!important;animation:none!important}}

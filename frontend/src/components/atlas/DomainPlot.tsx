@@ -447,7 +447,7 @@ export function DomainPlot({
             {selected === hovered.d.node.id
               ? hovered.d.node.children.length
                 ? `再点进入（${hovered.d.node.children.length} 个${NODE_KIND(hovered.d.node.kind)}）`
-                : "研究方向层到此为止"
+                : "当前分支已到最底层"
               : "点击选中"}
           </strong>
         </div>

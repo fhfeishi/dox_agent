@@ -217,6 +217,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     const p = destination.points.find((p) => p.d.node.id === parent);
     navigation.current = {
       kind: "back",
+      parent,
       anchor: p ? { cx: p.cx, cy: p.cy, r: p.r } : anchor(scope ?? ""),
     };
     update({ layer, node: parent, compare: null });

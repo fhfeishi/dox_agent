@@ -4,8 +4,17 @@ type Layout = ReturnType<typeof atlasLayout>;
 export type LayerMotion = {
   kind: "enter" | "back";
   anchor: { cx: number; cy: number; r: number };
+  parent?: string | null;
 };
-const ease = (x: number) => {
+type Flight = {
+  key: string;
+  from: Layout;
+  kind: "enter" | "back" | "data";
+  anchor: { cx: number; cy: number; r: number };
+  parent?: string | null;
+  started: number;
+};
+function ease(x: number) {
   if (x <= 0 || x >= 1) return x;
   let lo = 0,
     hi = 1,
@@ -17,9 +26,9 @@ const ease = (x: number) => {
     else hi = t;
     t = (lo + hi) / 2;
   }
-  return 1 - Math.pow(1 - t, 3);
-};
-/** Display geometry only; counts and medians always belong to the destination. */
+  return 1 - (1 - t) ** 3;
+}
+/** A resize may update the destination, but never restarts or cancels a flight. */
 export function useAtlasMotion(
   target: Layout,
   selectionKey: string,
@@ -29,7 +38,8 @@ export function useAtlasMotion(
   const [layout, setLayout] = useState(target),
     [moving, setMoving] = useState(false);
   const shown = useRef(target),
-    previous = useRef({ selectionKey, layerKey });
+    previous = useRef({ selectionKey, layerKey }),
+    flight = useRef<Flight | null>(null);
   const [reduced, setReduced] = useState(
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
@@ -42,50 +52,60 @@ export function useAtlasMotion(
   useLayoutEffect(() => {
     const old = previous.current;
     previous.current = { selectionKey, layerKey };
-    const start = shown.current;
+    const key = JSON.stringify([selectionKey, layerKey]);
+    const active = flight.current?.key === key ? flight.current : null;
+    const changed = old.layerKey !== layerKey;
     if (
       reduced ||
-      (old.layerKey === layerKey && old.selectionKey === selectionKey) ||
-      !start.points.length ||
+      (!active &&
+        old.layerKey === layerKey &&
+        old.selectionKey === selectionKey) ||
+      !shown.current.points.length ||
       !target.points.length
     ) {
+      flight.current = null;
       shown.current = target;
       setLayout(target);
       setMoving(false);
       return;
     }
-    const changed = old.layerKey !== layerKey,
-      back = changed && navigation?.kind === "back",
-      anchor = navigation?.anchor ?? {
+    const context: Flight = active ?? {
+      key,
+      from: shown.current,
+      kind: changed ? (navigation?.kind ?? "enter") : "data",
+      anchor: navigation?.anchor ?? {
         cx: (target.left + target.right) / 2,
         cy: (target.top + target.bottom) / 2,
         r: 8,
-      };
-    const before = new Map(
-      start.points.filter((p) => !p.ghost).map((p) => [p.d.node.id, p]),
-    );
-    const mix = (a: number, b: number, t: number) => a + (b - a) * t;
-    let frame = 0,
-      begin: number | null = null;
+      },
+      parent: navigation?.parent,
+      started: performance.now(),
+    };
+    flight.current = context;
     setMoving(true);
+    const start = context.from,
+      before = new Map(
+        start.points.filter((p) => !p.ghost).map((p) => [p.d.node.id, p]),
+      );
+    const mix = (a: number, b: number, t: number) => a + (b - a) * t;
+    const back = context.kind === "back",
+      enter = context.kind === "enter";
+    const parent = back
+      ? target.points.find((p) => p.d.node.id === context.parent)
+      : null;
+    const anchor = parent ?? context.anchor;
+    let frame = 0;
     function draw(now: number) {
-      begin ??= now;
-      const elapsed = Math.min(1, (now - begin) / 420),
+      const elapsed = Math.min(1, (now - context.started) / 420),
         t = ease(elapsed);
       const points = target.points.map((p) => {
         const a = before.get(p.d.node.id);
         return {
           ...p,
-          cx:
-            changed && !back
-              ? mix(anchor.cx, p.cx, t)
-              : mix(a?.cx ?? p.cx, p.cx, t),
-          cy:
-            changed && !back
-              ? mix(anchor.cy, p.cy, t)
-              : mix(a?.cy ?? p.cy, p.cy, t),
-          r: mix(changed ? 0 : (a?.r ?? 0), p.r, t),
-          opacity: changed ? t : 1,
+          cx: enter ? mix(anchor.cx, p.cx, t) : mix(a?.cx ?? p.cx, p.cx, t),
+          cy: enter ? mix(anchor.cy, p.cy, t) : mix(a?.cy ?? p.cy, p.cy, t),
+          r: mix(context.kind === "data" ? (a?.r ?? 0) : 0, p.r, t),
+          opacity: context.kind === "data" ? 1 : t,
         };
       });
       const seats = new Map(
@@ -95,8 +115,8 @@ export function useAtlasMotion(
             id,
             {
               ...b,
-              x: mix(changed && !back ? anchor.cx : a.x, b.x, t),
-              y: mix(changed && !back ? anchor.cy : a.y, b.y, t),
+              x: mix(enter ? anchor.cx : a.x, b.x, t),
+              y: mix(enter ? anchor.cy : a.y, b.y, t),
             },
           ];
         }),
@@ -131,6 +151,7 @@ export function useAtlasMotion(
       setLayout(current);
       if (elapsed < 1) frame = requestAnimationFrame(draw);
       else {
+        flight.current = null;
         shown.current = target;
         setLayout(target);
         setMoving(false);

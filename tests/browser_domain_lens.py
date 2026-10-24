@@ -30,6 +30,8 @@ def records():
         items = {f"t{j}": {"project_id": f"p{j % 9}", "maturity": 1 + (j+i) % 5}
                  for j in range(600 if i == 0 else 10+i*2)}
         tree = {"items": items, "categories": [{"name": f"技术体系{k}", "children": [{"name": f"研究方向{k}", "themes": [{"items": keys}]}]} for k,keys in enumerate([list(items)[:len(items)//3],list(items)[len(items)//3:]])]}
+        if i == 0:
+            items['unplaced'] = {'project_id': 'p1', 'maturity': 0}
         lib = library(*projects)
         if i == 10:
             for p in projects:
@@ -75,6 +77,7 @@ async def check_simplified(page,origin,shots):
         await expect(status).to_contain_text("当前层")
         first=page.locator(".lens-node").first
         domain=await first.get_attribute("data-node")
+        await lens.evaluate("""el=>{window.__motion=[];new MutationObserver(()=>window.__motion.push([el.dataset.moving,performance.now()])).observe(el,{attributes:true,attributeFilter:['data-moving']});}""")
         await click_node(first)
         await page.wait_for_function("id=>new URL(location.href).searchParams.get('node')===id",arg=domain)
         await expect(status).to_contain_text("已选中")
@@ -88,6 +91,8 @@ async def check_simplified(page,origin,shots):
         await click_node(first)
         await page.wait_for_function("id=>new URL(location.href).searchParams.get('layer')===id",arg=domain)
         await settle(page)
+        duration=await page.evaluate("""()=>{const a=window.__motion.find(x=>x[0]==='true'),b=window.__motion.filter(x=>x[0]==='false').at(-1);return a&&b?b[1]-a[1]:0;}""")
+        assert duration>=350,duration
         assert await page.evaluate("new URL(location.href).searchParams.get('node')") is None
         await expect(status).to_contain_text("当前层")
         await expect(page.locator(".lens-inspector h3")).to_have_text(heading)
@@ -110,12 +115,17 @@ async def check_simplified(page,origin,shots):
         await click_node(leaf)
         await click_node(leaf)
         assert await page.evaluate("new URL(location.href).searchParams.get('node')")==leaf_id
+        back_durations=[]
         for layer,node in [(system,None),(domain,system),(domain,None),(None,domain),(None,None),(None,None)]:
+            await page.evaluate("window.__motion=[]")
             await blank(page,jitter=True)
             await page.wait_for_function("v=>new URL(location.href).searchParams.get('layer')===v[0]&&new URL(location.href).searchParams.get('node')===v[1]",arg=[layer,node])
             await settle(page)
             if node and layer!=system:
                 await expect(page.locator(".lens-return-notice")).to_contain_text("已返回")
+                back_ms=await page.evaluate("""()=>{const a=window.__motion.find(x=>x[0]==='true'),b=window.__motion.filter(x=>x[0]==='false').at(-1);return a&&b?b[1]-a[1]:0;}""")
+                assert back_ms>=350,back_ms
+                back_durations.append(back_ms)
         # Six ordinary clicks during the 420ms return animation must not be lost.
         from urllib.parse import urlencode
         await page.goto(origin+'/overview/domains?'+urlencode({'layer':system,'node':leaf_id}))
@@ -189,7 +199,7 @@ async def check_simplified(page,origin,shots):
         await click_node(page.locator('.lens-node').first)
         await expect(lens).to_have_attribute('data-moving','false')
         await page.emulate_media(reduced_motion='no-preference')
-        reports.append({'width':width,'small_text':len(inventory),'geometry':geometry})
+        reports.append({'width':width,'small_text':len(inventory),'geometry':geometry,'enter_ms':duration,'back_ms':back_durations})
     return reports
 
 async def check_retained(page,origin,shots):

@@ -18,6 +18,7 @@ from collections import defaultdict
 from fastapi import APIRouter, HTTPException
 
 from .. import lineage
+from ..achievement_list import library_outputs
 from ..agent.corpora import scan_corpora
 from ..hierarchy import read as read_hierarchy
 from .common import FUNDING_LABELS
@@ -64,6 +65,40 @@ def system_owner(tree: dict) -> dict[str, str]:
                 for key in theme.get("items") or []:
                     owner[key] = category.get("name") or ""
     return owner
+
+
+def atlas_domain(info, library: dict, tree: dict, outputs: dict) -> dict:
+    """Project-level facts for 01, so every selected window/layer can deduplicate project IDs."""
+    kinds = {"期刊论文", "会议论文", "专利", "奖励", "专著"}
+    records = outputs.get("projects") or {}
+    projects = [{"id": p["project_id"], "title": p.get("title") or p["project_id"],
+                 "year": p.get("start_year"), "amount": amount(p, "awarded"),
+                 "outputs": sum(n for k, n in records[p["project_id"]].get("counts", {}).items() if k in kinds)
+                 if p["project_id"] in records else None}
+                for p in library["projects"] if p.get("identity_status") == "identified"]
+    items = tree.get("items") or {}
+    systems, covered = [], set()
+    for i, category in enumerate(tree.get("categories") or []):
+        if category.get("unplaced"):
+            continue
+        directions = []
+        for j, child in enumerate(category.get("children") or []):
+            keys = list(dict.fromkeys(k for t in child.get("themes") or [] for k in t.get("items") or [] if k in items))
+            if keys:
+                directions.append({"id": f"{info.id}/s{i}/d{j}", "name": child.get("name") or "未命名方向", "item_ids": keys})
+        keys = list(dict.fromkeys(k for d in directions for k in d["item_ids"]))
+        if keys:
+            covered.update(keys)
+            systems.append({"id": f"{info.id}/s{i}", "name": category.get("name") or "未命名体系",
+                            "item_ids": keys, "directions": directions, "unplaced": False})
+    unplaced = [k for k in items if k not in covered]
+    if unplaced:
+        systems.append({"id": f"{info.id}/unplaced", "name": "未归入体系", "item_ids": unplaced,
+                        "directions": [], "unplaced": True})
+    return {"id": info.id, "name": info.name.removeprefix(PREFIX), "projects": projects,
+            "items": [{"id": k, "project_id": v.get("project_id"),
+                       "maturity": v.get("maturity") if isinstance(v.get("maturity"), int) and 0 <= v["maturity"] <= 5 else 0}
+                      for k, v in items.items()], "systems": systems}
 
 
 def domain_payload(info, library: dict, tree: dict, scenes_record: dict, blanks: dict, scope: str) -> dict:
@@ -241,9 +276,8 @@ def install(app, ctx):
             tree = await lineage.read(info, library)
             scenes = await read_hierarchy(info, library)
             sources.append((info, library, tree, scenes, await asyncio.to_thread(read_json, info, "lineage_blanks.json")))
-        # One funding measure for every domain, the one most projects state, as on 首页.
-        scope = max(FUNDING_LABELS, key=lambda s: sum(lib["coverage"]["funding"].get(s, {}).get("eligible_projects", 0)
-                                                      for _, lib, *_ in sources)) if sources else "awarded"
+        # 01 and its page headline use the same approved-award measure; missing awards stay unknown.
+        scope = "awarded"
         domains = [domain_payload(info, library, tree, scenes, blanks, scope)
                    for info, library, tree, scenes, blanks in sources]
         domains = [d for d in domains if d["projects"] and d["items"]]
@@ -262,6 +296,25 @@ def install(app, ctx):
                        "combos": sum(len(d["combos"]) for d in domains)},
             "domains": domains,
         }
+
+    @router.get("/api/domains/atlas")
+    async def domains_atlas():
+        """Read stored records only; project index and parsed outcome lists use their version caches."""
+        domains = []
+        for info in await asyncio.to_thread(scan_corpora, ctx.settings):
+            if info.missing or not info.docs_count:
+                continue
+            knowledge = knowledge_for(info)
+            library = await asyncio.to_thread(app.state.project_index.library, info, knowledge)
+            tree = await lineage.read(info, library)
+            if not tree.get("items"):
+                continue
+            outputs = await asyncio.to_thread(library_outputs, info.id, library, knowledge)
+            domains.append(atlas_domain(info, library, tree, outputs))
+        if not domains:
+            raise HTTPException(409, "还没有可浏览的领域资料：请先导入资料并生成技术谱系。")
+        return {"funding_label": FUNDING_LABELS["awarded"],
+                "years": sorted({p["year"] for d in domains for p in d["projects"] if p["year"]}), "domains": domains}
 
     @router.get("/api/domains/{corpus_id}/tree")
     async def domain_tree(corpus_id: str):

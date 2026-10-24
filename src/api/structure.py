@@ -72,6 +72,9 @@ def domain_report(row: dict, today: str) -> tuple[str, str]:
     years = row.get("start_years") or []
     span = list(range(years[0], years[-1] + 1)) if years else []
     funding = row.get("funding") or {}
+    research = row.get("research_records")
+    if research:
+        funding = {"projects": research["funded"], "total_yuan": research["funding_yuan"], "label": "批准资助金额"}
     chart = lambda spec: ["```dox-chart", json.dumps(spec, ensure_ascii=False), "```", ""]
     lines = [f"# 领域分析 · {name}", "",
              f"{name}资料库共 {row['projects']} 个项目、{row['files']} 份资料，技术谱系 {lineage.get('items', 0)} 条技术、"
@@ -97,6 +100,9 @@ def domain_report(row: dict, today: str) -> tuple[str, str]:
         or ["- 这个库还没有条目达到成熟度 4。"]
     lines += ["", "## 统计口径", "",
               f"- 数据取自 {today} 的技术谱系与项目索引，由系统统计，未经模型改写；成熟度为报告所述阶段，不是正式技术成熟度评定。", ""]
+    if research:
+        lines += ["## 成果列表", "", f"报告成果列表共 {research['outputs']} 条，{research['listed']}/{row['projects']} 个项目列有成果。",
+                  "按报告成果列表逐条计数期刊与会议论文、专利、奖励、专著；按项目立项年归属，不是发表年份，不等于经济收益。", ""]
     return f"领域分析 · {name}（{today}）", "\n".join(lines)
 
 
@@ -138,9 +144,18 @@ def install(app, ctx):
         hierarchy, lineage = read("hierarchy.json"), read("lineage.json")
         coverage = library["coverage"]
         identified = coverage["identified_projects"]
+        output_records = library_outputs(info.id, library, knowledge_for(info))["projects"]
+        project_ids = {p["project_id"] for p in library["projects"] if p.get("identity_status") == "identified"}
+        approved = coverage["funding"].get("awarded", {})
+        kinds = {"期刊论文", "会议论文", "专利", "奖励", "专著"}
         return {
             "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
             "index": library.get("index"),
+            "research_records": {"funded": approved.get("eligible_projects", 0),
+                                 "funding_yuan": approved.get("total_yuan", "0"),
+                                 "listed": len(project_ids & output_records.keys()),
+                                 "outputs": sum(n for pid, record in output_records.items() if pid in project_ids
+                                                for kind, n in record.get("counts", {}).items() if kind in kinds)},
             "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
             # Projects whose material yielded something in that dimension (首页 地形图, query 2026-1021):
             # the map asks "is this dimension represented", not "was every file processed".

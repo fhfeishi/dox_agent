@@ -247,10 +247,12 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         # 资料库建设 (query 2026-1013 1637): one row per library with its own counts, nothing generated yet.
         overview = client.get("/api/overview/libraries").json()
         assert [(row["corpus_id"], row["files"], row["hierarchy"]["scenes"], row["lineage"]["items"]) for row in overview] == [(corpus_id, 1, 0, 0)]
+        assert overview[0]["research_records"] == {"funded": 0, "funding_yuan": "0", "listed": 0, "outputs": 0}
         # 资料库预览 → 导出报告 (query 2026-1023 1044): a counted 专项报告 · 领域分析 in the account's 报告中心.
         exported = client.post(f"/api/domains/{corpus_id}/report").json()
         assert (exported["task_id"], exported["template_id"], exported["created_by"]) == ("task4", "domain_analysis", "admin")
         assert exported["title"].startswith("领域分析 · ") and "## 成熟度分布" in exported["markdown"]
+        assert "## 成果列表" in exported["markdown"] and "不等于经济收益" in exported["markdown"]
         assert client.post("/api/domains/no-such-library/report").status_code == 404
         # 03 机会清单 and 立项建议 download as Word (query 2026-1023 1156): a real .docx with the table in it.
         from docx import Document as Docx

@@ -10,9 +10,9 @@ import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
-export type TodoGroup = "资料处理" | "结构更新" | "身份核对" | "未完成任务";
+export type TodoGroup = "资料处理" | "结构更新" | "身份核对" | "补录" | "未完成任务";
 export type Todo = { key: string; group: TodoGroup; what: string; detail: string; action: string; go: () => void };
-export const TODO_GROUPS: TodoGroup[] = ["资料处理", "结构更新", "身份核对", "未完成任务"];
+export const TODO_GROUPS: TodoGroup[] = ["资料处理", "结构更新", "身份核对", "补录", "未完成任务"];
 
 /** Whether a library needs a look before its material can be read and searched as expected. */
 export function libraryProblems(c: CorpusInfo): string[] {
@@ -41,6 +41,10 @@ export function useAdminTodos(enabled = true) {
   const reports = useQuery({ queryKey: ["admin", "artifacts"], queryFn: () => fetchArtifacts({ scope: "all" }), enabled });
   const libs = overview.data ?? [];
   const todos: Todo[] = [
+    ...libs.filter(l => l.research_records && (l.research_records.funded < l.projects || l.research_records.listed < l.projects)).map(l => ({
+      key: "records" + l.corpus_id, group: "补录" as const, what: `${short(l.name)}：补录批准资助金额 / 成果列表`,
+      detail: `${Math.max(0,l.projects-l.research_records!.funded)} 个项目未记录批准资助金额，${Math.max(0,l.projects-l.research_records!.listed)} 个项目未列成果`,
+      action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files") })),
     ...corpora.filter((c) => libraryProblems(c).length).map((c) => ({ key: "lib" + c.id, group: "资料处理" as const,
       what: `${short(c.name)}：${libraryProblems(c).join("、")}`,
       detail: c.missing ? "重新关联目录或移除失效记录" : "在资料管理中查看原因、重试或替换文件", action: "打开资料管理",

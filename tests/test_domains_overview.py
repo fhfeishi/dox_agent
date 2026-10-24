@@ -77,3 +77,43 @@ def test_the_tree_runs_system_direction_theme_project_with_the_best_level_per_pr
     assert [(p["id"], p["maturity"], p["year"]) for p in theme[0]["projects"]] == [("p1", 4, 2021), ("p2", 0, 2023)]
     # Each project says which of its items sit in this theme, best first
     assert [i["maturity"] for i in theme[0]["projects"][0]["items"]] == [4, 1]
+
+
+def test_atlas_route_keeps_project_records_outcome_coverage_and_duplicate_references(tmp_path, monkeypatch):
+    """Real HTTP contract: a listed zero is known; missing money/outcomes stay null, not zero."""
+    from fastapi.testclient import TestClient
+
+    from src.agent.corpora import CorpusInfo
+    from src.api import domains
+    from tests.test_app import setup
+
+    app, store = setup(tmp_path)
+    info = CorpusInfo(id="lib", name="自然科学基金-AI与测试", kind="unknown", domain="", rel_path="fixture",
+                      root=tmp_path, source_dir=tmp_path / "source", db_dir=store.path.parent,
+                      vectordb_dir=tmp_path / "vectordb", sqlite=store.path, docs_count=1,
+                      preparation="ready", is_default=True)
+    lib = library(project("p1", 2021, amount=100), project("p2", 2023), project("p3", None, amount=30))
+    lib["projects"][0]["funding_conflicts"] = ["direct"]
+    tree = {**TREE, "categories": [{"name": "体系甲", "children": [
+        {"name": "方向一", "themes": [{"items": ["a", "b", "a"]}]},
+        {"name": "方向二", "themes": [{"items": ["a", "c"]}]}]}]}
+    monkeypatch.setattr(domains, "scan_corpora", lambda settings: [info])
+    async def read(*args):
+        return tree
+    monkeypatch.setattr(domains.lineage, "read", read)
+    monkeypatch.setattr(domains, "library_outputs", lambda *args: {"projects": {
+        "p1": {"counts": {"期刊论文": 2, "专利": 1, "其他": 50}}, "p3": {"counts": {}}}})
+    with TestClient(app) as client:
+        monkeypatch.setattr(app.state.project_index, "library", lambda *args: lib)
+        response = client.get("/api/domains/atlas")
+    assert response.status_code == 200
+    out = response.json()
+    assert out["funding_label"] == "批准资助金额" and out["years"] == [2021, 2023]
+    d = out["domains"][0]
+    records = {p["id"]: p for p in d["projects"]}
+    assert records["p1"]["amount"] == 100 and records["p1"]["outputs"] == 3
+    assert records["p2"]["amount"] is None and records["p2"]["outputs"] is None
+    assert records["p3"]["year"] is None and records["p3"]["outputs"] == 0
+    assert d["systems"][0]["item_ids"] == ["a", "b", "c"]
+    assert d["systems"][0]["directions"][0]["item_ids"] == ["a", "b"]
+    assert d["systems"][-1]["unplaced"] is True and d["systems"][-1]["item_ids"] == ["d"]

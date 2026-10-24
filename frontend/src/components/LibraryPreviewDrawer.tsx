@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { saveDomainReport, type ArtifactSummary, type LibraryOverview } from "../api";
 import { useLayout } from "../layout";
-import { MATURITY, shortPct } from "./CaliberPop";
+import { MATURITY_NAMES } from "../domains";
+import { OUTPUT_MEANING, type AtlasMeasure } from "../domainAtlas";
 import { SlideOver } from "./SlideOver";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const fmt = (n: number) => n.toLocaleString("zh-CN", { maximumFractionDigits: 0 });
+const shortPct = (n: number) => `${n.toLocaleString("zh-CN", { maximumFractionDigits: 1 })}%`;
 const clip = (text: string, length: number) => text.length > length ? `${text.slice(0, length)}…` : text;
 
 /**
@@ -25,7 +27,7 @@ const clip = (text: string, length: number) => text.length > length ? `${text.sl
  * the width can be set to 20 / 40 / 60 %, and 导出报告 saves these figures to 报告中心 as a
  * 专项报告 · 领域分析 of the signed-in account.
  */
-export function LibraryPreviewDrawer({ row: current, onClose }: { row: LibraryOverview | null; onClose: () => void }) {
+export function LibraryPreviewDrawer({ row: current, onClose, research }: { row: LibraryOverview | null; onClose: () => void; research?: AtlasMeasure }) {
   const { openCorpus, showInspector } = useLayout();
   // 八个体系全展开会把成熟度与高成熟条目推到首屏之外；先给前五个，其余一次点开。
   const [expanded, setExpanded] = useState(false);
@@ -33,7 +35,9 @@ export function LibraryPreviewDrawer({ row: current, onClose }: { row: LibraryOv
   const [saved, setSaved] = useState<{ corpus: string; report?: ArtifactSummary; error?: string } | null>(null);
   // The last library stays on the panel while it slides out.
   const last = useRef(current);
-  if (current) last.current = current;
+  const lastResearch = useRef(research);
+  if (current) { last.current = current; lastResearch.current = research; }
+  const records = current ? research : lastResearch.current;
   const row = last.current;
 
   if (!row) return null;
@@ -74,6 +78,7 @@ export function LibraryPreviewDrawer({ row: current, onClose }: { row: LibraryOv
       <button type="button" className="slide-action primary" onClick={() => { onClose(); openCorpus(row.corpus_id); }}>进入资料库 →</button>
     </>}>
       <div className="space-y-3">
+        {records ? <section className="terrain-card p-4"><b className="text-body text-[var(--heading)]">批准资助金额与成果列表</b><p className="mt-2 text-body">批准资助金额 {fmt(records.funding)} 万元（{records.funded}/{records.projects} 项有记录）；成果 {fmt(records.outputs)} 条（{records.listed}/{records.projects} 项列有成果）。</p><p className="mt-2 text-caption text-[var(--steel)]">{OUTPUT_MEANING}</p></section> : null}
         {years.length ? <section className="terrain-card p-4">
           <div className="mb-2.5 flex items-baseline justify-between gap-2">
             <b className="text-caption font-semibold text-[var(--heading)]">年度立项</b>
@@ -133,12 +138,12 @@ export function LibraryPreviewDrawer({ row: current, onClose }: { row: LibraryOv
           </div>
           <div className="terrain-stack">
             {dist.map((count, level) => count ? <i key={level} style={{ flex: count, background: `var(--m-${level})` }}
-              title={`${MATURITY[level].name}：${fmt(count)} 条`} /> : null)}
+              title={`${MATURITY_NAMES[level]}：${fmt(count)} 条`} /> : null)}
           </div>
           <div className="mt-2.5 grid grid-cols-2 gap-x-5 gap-y-1">
             {dist.map((count, level) => <div key={level} className="flex items-baseline gap-1.5 text-caption">
               <i className="size-2 shrink-0 self-center rounded-sm" style={{ background: `var(--m-${level})` }} />
-              <span className="min-w-0 truncate text-[var(--slate)]" title={MATURITY[level].name}>{level} {MATURITY[level].name}</span>
+              <span className="min-w-0 truncate text-[var(--slate)]" title={MATURITY_NAMES[level]}>{level} {MATURITY_NAMES[level]}</span>
               <b className="terrain-serif ml-auto font-normal text-[var(--slate)]">{fmt(count)}</b>
               <span className="w-9 shrink-0 text-right tabular-nums text-[var(--muted-cool)]">{shortPct(count / items * 100)}</span>
             </div>)}

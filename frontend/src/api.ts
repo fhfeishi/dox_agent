@@ -35,6 +35,7 @@ export type CorpusInfo = {
 export type IndexState = { state: "ready" | "refreshing"; revision: number; stale_docs: number };
 export type LibraryOverview = {
   index?: IndexState;
+  research_records?: { funded: number; funding_yuan: string; listed: number; outputs: number };
   corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
   /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
   funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];

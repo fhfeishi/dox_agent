@@ -32,6 +32,7 @@ SMOKE=(
   browser_export               # report export
   browser_figures_live         # versioned figures, PDF and DOCX/ZIP
   browser_scene_hierarchy      # 技术研判 view, outcome radar
+  browser_domain_lens          # 01/02 gestures, annual metrics, restoration and 1366–4K labels
   browser_answer_controls      # chat answer copy, retry, cancel and failure
   browser_run_detach           # G2-3: report survives a closed page; kill -9 → 已中断，可重试 → retry
 )

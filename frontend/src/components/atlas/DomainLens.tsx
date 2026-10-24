@@ -77,8 +77,7 @@ function LensMap({ data, libraries, reveal }: {
         clearTimeout(timer.current);
         timer.current = null;
     } };
-    const update = (values: Record<string, string | null>) => { cancelClick();drag.current=null;setTrace(null); setHover(null); setGuide(null); setTip(null); setSearch(old => { const next = new URLSearchParams(old); if (hover && !fixed && !base && !("node" in values))
-        next.set("node", hover.id); for (const [k, v] of Object.entries(values)) {
+    const update = (values: Record<string, string | null>) => { cancelClick();drag.current=null;setTrace(null); setHover(null); setGuide(null); setTip(null); setSearch(old => { const next = new URLSearchParams(old); for (const [k, v] of Object.entries(values)) {
         if (v === null)
             next.delete(k);
         else
@@ -154,7 +153,7 @@ function LensMap({ data, libraries, reveal }: {
     } };
     if (!selected || !d)
         return <p role="status">此层暂无可浏览节点。</p>;
-    return <div className="domain-lens" data-testid="domain-lens" data-moving={moving} style={{"--lens-stage-height":`${panelHeight}px` } as CSSProperties}><div ref={stage} className="lens-main"><div className="lens-views">{(Object.keys(LENSES) as Lens[]).map(k => <button key={k} type="button" aria-pressed={lens === k} onClick={() => update({ lens: k })}>{LENSES[k].name}</button>)}</div>
+    return <div className="domain-lens" data-testid="domain-lens" data-moving={moving} style={{"--lens-stage-height":`${panelHeight}px` } as CSSProperties}><div ref={stage} className="lens-main"><div className="lens-views">{(Object.keys(LENSES) as Lens[]).map(k => <button key={k} type="button" aria-pressed={lens === k} onClick={() => update({ lens: k, annual: ({base:"projects",money:"funding",impact:"outputs"})[k] })}>{LENSES[k].name}</button>)}</div>
     <div className="lens-head"><div><nav aria-label="当前分析层级">全部领域{path.map((name, i) => <span key={i}> › {name}</span>)}</nav><h3>{v.question}</h3></div><span>{windowLabel(window)}</span></div>
     <div className="lens-status"><span>圆面积＝项目数 · 虚线＝本层中位数</span><span aria-live="polite">{moving?"正在切换视角与年份…":base ? "蓝线对比中 · 点空白退出" : fixed ? "已固定 · 再点解除" : "悬停预览 · 单击固定"}</span></div>
     <div className="lens-plot-tools"><PanZoomControls map={pan} className="lens-zoom" /></div><div ref={wrap} className="lens-plot-scroll"><svg ref={svg} width={size.width} height={size.height} viewBox={`0 0 ${size.width} ${size.height}`} tabIndex={0} role="group" aria-label="研究领域四象限图" onKeyDown={pan.key} onPointerDown={e=>{suppress.current=0;pan.down(e);}} onDoubleClick={e => { if (!(e.target as Element).closest("[data-node]")) { cancelClick(); pan.reset(); } }} className="lens-plot" onClick={e => { if (!moving&&!(e.target as Element).closest("[data-node],[data-explain]") && Date.now() > suppress.current && !pan.suppressClick()) { cancelClick(); if(e.detail === 1) timer.current = setTimeout(() => back(), 230); } }} onPointerMove={e => { const a = drag.current; if (!a)

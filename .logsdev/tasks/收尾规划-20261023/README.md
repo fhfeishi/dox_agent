@@ -113,7 +113,7 @@ Ego因权限中继故障不能操作，未升级或绕过；改用项目既有�
 
 本地证据目录 `.logsdev/verification/收尾-R1/`、`收尾-R2/`、`收尾-R3/`、`收尾-R4/`、`收尾-R6-R7/`、`收尾-Windows/`，包含完整回归、并发结果、截图与原生计时；交付时保留到Windows副本相同目录。复现入口为 `scripts/check.sh full`、四个Windows定向测试文件（test_project_index_concurrency、test_model_status、test_app、test_core_db）及本地Windows verify.py/profile.py/smoke.cjs；测量配置在copy.json/ready.json。
 
-待办：R5按§6另行实施；W1仍在原工作区、未提交/合并，本轮main的验收不替代W1验收；A1及真实触屏、投屏、首次阅读仍由用户验收。本轮8010/8012测试服务已关闭；Windows停止前journal/运行任务/租约均0。116个证据文件已保留到Windows相同目录并逐一校验哈希一致。Windows临时副本删除被自动审批以“策略阻止”拒绝，未绕过；`C:/Users/User/AppData/Local/Temp/dox-fixes-win-y7vvf_p8` 与WSL `/tmp/dox-r1-real-jzgev4pd` 暂留，各约3.4GB。原8000/8011服务未执行停止操作。
+待办：R5按§6另行实施；W1已按§7合入main并另行验收，R1–R7的验收不替代W1验收；A1及真实触屏、投屏、首次阅读仍由用户验收。本轮8010/8012测试服务已关闭；Windows停止前journal/运行任务/租约均0。116个证据文件已保留到Windows相同目录并逐一校验哈希一致。Windows临时副本删除被自动审批以“策略阻止”拒绝，未绕过；`C:/Users/User/AppData/Local/Temp/dox-fixes-win-y7vvf_p8` 与WSL `/tmp/dox-r1-real-jzgev4pd` 暂留，各约3.4GB。原8000/8011服务未执行停止操作。
 
 ## 6. R5 性能后续工作
 
@@ -148,8 +148,10 @@ R5本轮范围是定位和立项，未实施登记表改造。Windows同一隔�
 
 > 读本文 §7 与 [实施方案 §9](实施方案.md#9-w1-收尾01-总览的交互修正2026-10-24-评审)、AGENTS.md 路由到的 development.md 与 verification.md，以及 W1 方案 `.logsdev/owner-领域分析-design/claude-01-总览/README.md`（本地文件）的 §5、§6。在 W1 工作区 `/home/mvr/wslcodespace/dox_agent` 先提交现有改动并 rebase 到 `origin/main`，冲突以 `main` 上 R1、R2 的行为为准；然后按 §9.3、§9.4、§9.6 实施 U1、U2、U4，每项一个提交，完成依据见 §9.7。U3 只出对比稿和截图交用户选择，选定前不改外观相关源码。完成后合并到 `main`、推送，删除 `feat/domain-atlas-20261022`，在 Windows `git pull origin main` 复测，并在本文 §7 写回各项结果与证据路径。遇到与本文不一致的代码事实，先写在本文再决定，不自行改要求。
 
-执行状态（2026-10-24）：W1现有成果已保存为98ea91c并rebase到b96ede9；合并基线完整回归通过。U1提交673cb74、499cac6、a9c96b2，恢复01/02共用缩放平移、5px拖动阈值、点击/双击分流、全景标签避让及缩放状态切换的420ms过渡；U2提交ffac142，指标分段单选/键盘、视角联动、年度合计/覆盖浮层、空值统一与F4修复；U4提交b514885，拆出LensInspector、手势hook和格式函数，整理为具名事件；U3用户明确选择B「分区聚焦」，源码提交dc7b816。
+执行状态（2026-10-24）：W1现有成果已保存为98ea91c并rebase到b96ede9；合并基线完整回归通过。U1提交673cb74、499cac6、a9c96b2、5223c60，恢复01/02共用缩放平移、5px拖动阈值、点击/双击分流、全景标签避让及缩放状态切换的420ms过渡；U2提交ffac142，指标分段单选/键盘、视角联动、年度合计/覆盖浮层、空值统一与F4修复；U4提交b514885，拆出LensInspector、手势hook和格式函数，整理为具名事件；U3用户明确选择B「分区聚焦」，源码提交dc7b816。
 
-最终WSL check.sh full退出0（365后端/58前端/10条浏览器冒烟、权限/类型/构建通过），证据 .logsdev/verification/W1-收尾-20261024/final-full.log；新增browser_domain_lens覆盖01/02手势、统计不受缩放影响、年度单选/键盘/缺失/URL恢复、1366—4K标签不相交与减少动态偏好。此路径既有浏览器旅程未覆盖，按§9.7新增并纳入full。Ego仍因权限中继错误不可用，使用项目已有Playwright检查；未覆盖真实触屏/投屏/首次阅读。U4类型检查及02节点点击各连续失败两次后均已暂停并获用户授权继续，原断言保留；修复点分别为回调类型误加、按下即捕获指针。
+最终WSL check.sh full退出0（365后端/58前端/10条浏览器冒烟、权限/类型/构建通过），证据 `.logsdev/verification/W1-收尾-20261024/release-full.log`；新增browser_domain_lens覆盖01/02手势、统计不受缩放影响、年度单选/键盘/缺失/URL恢复、1366—4K标签不相交与减少动态偏好。此路径既有浏览器旅程未覆盖，按§9.7新增并纳入full。Ego仍因权限中继错误不可用，使用项目已有Playwright检查；未覆盖真实触屏/投屏/首次阅读。U4类型检查及02节点点击各连续失败两次后均已暂停并获用户授权继续，原断言保留；修复点分别为回调类型误加、按下即捕获指针。
 
-外观稿位于 .logsdev/owner-领域分析-design/gpt-sol-designer/w1-review-20261024/，同一真实副本11库数据，含1440/1920收起/展开截图及可交互A/B稿；用户已选B并实施。Windows待本次合入main后拉取复测，结果在此更新。
+外观稿位于 `.logsdev/owner-领域分析-design/gpt-sol-designer/w1-review-20261024/`，同一真实副本11库数据，含1440/1920收起/展开截图及可交互A/B稿；用户已选B并实施。main已合并并推送，Windows已拉取5223c60。原生38项相关契约检查通过；真实launch.cmd+隔离11库副本启动、atlas读取1119个已确认项目。Windows本机Chrome通过三视角、平移/缩放/双击复位、蓝线对比、年度指标与键盘、年份不改node、矩阵/URL恢复、两级下钻、轴上读数实际绘制的完整链路。1536/1920/2560/3840下无标签相交或页面横向溢出，字号16/16/17/19px，三个视角卡片高均1178px；截图已人工查看。证据在Windows `.logsdev/verification/W1-收尾-20261024/` 的contracts.log、live-windows.log、live-windows/results.json与recheck/。
+
+收口：最新源码只读预览 `http://localhost:4319/result.html`；WSL真实副本走查同样通过，见 `live-wsl-final.log`。最后补查发现轴值被图形裁切，截图像素差先复现后修复5223c60，最终release-full与Windows本机Chrome均通过。测试服务8010/8021已关闭，Windows停服前journal/运行任务/租约均0，原8000/8011未执行停止或重启。功能分支按方案删除，R5与A1仍按原安排待处理；不宣称真实触屏、投屏或首次阅读验收完成。

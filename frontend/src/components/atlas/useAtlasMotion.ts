@@ -1,3 +1,4 @@
+export type LayerMotion={kind:"enter"|"back";anchor:{cx:number;cy:number;r:number}};
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { atlasLayout } from "../../domainAtlas";
 
@@ -7,6 +8,7 @@ export function useAtlasMotion(
   target: Layout,
   selectionKey: string,
   layerKey: string,
+  _navigation:LayerMotion|null=null,
 ) {
   const [layout, setLayout] = useState(target),
     [moving, setMoving] = useState(false);

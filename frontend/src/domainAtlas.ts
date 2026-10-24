@@ -322,6 +322,7 @@ export function atlasLayout(
     cx: px(p.x),
     cy: py(p.y),
     r: Math.sqrt(p.d.projects / max) * fontSize * 1.65,
+    ghost:false,opacity:1,label:p.d.node.name,
   }));
   type Box = { x: number; y: number; w: number; h: number };
   const intersects = (a: Box, b: Box) =>
@@ -539,3 +540,47 @@ export const atlasQuery = {
     return r.json();
   },
 };
+
+export function levelMeasure(
+  model: AtlasModel,
+  ids: string[],
+  scope: string | null,
+  window: YearWindow,
+): AtlasMeasure {
+  if (scope) return model.measure(scope, window);
+  const rows = ids.map((id) => model.measure(id, window));
+  const levels = Array.from({ length: 6 }, (_, i) =>
+    rows.reduce((n, d) => n + d.levels[i], 0),
+  );
+  const projects = rows.reduce((n, d) => n + d.projects, 0),
+    items = rows.reduce((n, d) => n + d.items, 0),
+    funding = rows.reduce((n, d) => n + d.funding, 0),
+    funded = rows.reduce((n, d) => n + d.funded, 0),
+    outputs = rows.reduce((n, d) => n + d.outputs, 0),
+    listed = rows.reduce((n, d) => n + d.listed, 0),
+    judged = items - levels[0];
+  return {
+    node: {
+      id: "all",
+      name: "全部领域",
+      domain: "",
+      parent: null,
+      kind: "domain",
+      children: ids,
+      itemIds: [],
+    },
+    records: [],
+    projects,
+    items,
+    levels,
+    funding,
+    funded,
+    outputs,
+    listed,
+    maturity: judged ? levels.reduce((n, v, i) => n + v * i, 0) / judged : null,
+    avgFunding: funded >= MIN_BASE ? funding / funded : null,
+    avgOutputs: listed >= MIN_BASE ? outputs / listed : null,
+    landed: items ? ((levels[4] + levels[5]) / items) * 100 : null,
+    undated: rows.reduce((n, d) => n + d.undated, 0),
+  };
+}

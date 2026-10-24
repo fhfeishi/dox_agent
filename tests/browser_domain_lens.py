@@ -30,8 +30,7 @@ def records():
         # A large outlier and a dense small-domain cluster reproduce F5.
         items = {f"t{j}": {"project_id": f"p{j % 9}", "maturity": 1 + (j+i) % 5}
                  for j in range(600 if i == 0 else 10+i*2)}
-        tree = {"items": items, "categories": [{"name": "技术体系", "children": [
-            {"name": "研究方向", "themes": [{"items": list(items)}]}]}]}
+        tree = {"items": items, "categories": [{"name": f"技术体系{k}", "children": [{"name": f"研究方向{k}", "themes": [{"items": keys}]}]} for k,keys in enumerate([list(items)[:len(items)//3],list(items)[len(items)//3:]])]}
         lib = library(*projects)
         if i == 10:
             for p in projects:
@@ -46,335 +45,164 @@ def records():
     return overview, {"funding_label": "批准资助金额", "years": [2019, 2020, 2021, 2022], "domains": atlas}
 
 
-async def geometry(page):
-    return await page.locator(".lens-dot").evaluate_all("cs=>cs.map(c=>[+c.getAttribute('cx'),+c.getAttribute('cy')])")
-
-
-async def check_convenience(page, origin, shots):
-    """Second review §10: visible actions, immediate selection and usable space."""
-    measurements = []
-    for width in (1366, 1440, 1920):
-        await page.set_viewport_size({"width": width, "height": 900 if width < 1920 else 1080})
-        await page.goto(origin + "/overview/domains")
-        await page.locator(".lens-node").first.wait_for(timeout=60000)
-        await expect(page.locator(".lens-node")).to_have_count(11)
-        nav = page.get_by_role("navigation", name="当前分析层级")
-        await expect(nav.get_by_role("button", name="全部领域", exact=True)).to_be_visible()
-        area = await page.locator("[data-plot-background]").bounding_box()
-        if width == 1440:
-            assert area["width"] >= 700 and area["height"] >= 320, area
-        await page.locator(".domain-lens").evaluate("el=>el.scrollIntoView({block:'start'})")
-        await page.screenshot(path=str(shots / f"{width}-overview-viewport.png"))
-        node = page.locator(".lens-node").first
-        ident = await node.get_attribute("data-node")
-        await node.evaluate("""(el,id)=>{
-            const original=history.replaceState;
-            window.__pinLatency=null;
-            el.addEventListener('click',()=>window.__pinStart=performance.now(),{once:true});
-            history.replaceState=function(...args){
-                const out=original.apply(this,args);
-                if(new URL(location.href).searchParams.get('pin')===id && window.__pinStart)
-                    window.__pinLatency=performance.now()-window.__pinStart;
-                return out;
-            };
-        }""", ident)
-        await node.locator(".lens-node-name").click()
-        await page.wait_for_function("window.__pinLatency!==null")
-        latency = await page.evaluate("window.__pinLatency")
-        assert latency <= 100
-        await node.locator(".lens-node-name").dblclick()
-        await expect(page).to_have_url(re.compile(r"layer="))
-        assert await page.evaluate("new URL(location.href).searchParams.get('pin')") is None
-        scope = await page.evaluate("new URL(location.href).searchParams.get('layer')")
-        await page.get_by_role("button", name=re.compile("‹ 返回")).click()
-        await expect(page.locator(".lens-node").first).to_have_attribute("data-node", scope)
-        await page.wait_for_function("new URL(location.href).searchParams.get('layer')===null")
-        assert await page.evaluate("new URL(location.href).searchParams.get('node')") == scope
-        await page.get_by_role("button", name="进入研究方向 ›", exact=True).click()
-        await page.wait_for_function("new URL(location.href).searchParams.get('layer')!==null")
-        assert await page.evaluate("new URL(location.href).searchParams.get('layer')") == scope
-        await nav.get_by_role("button", name="全部领域", exact=True).click()
-        await page.wait_for_function("new URL(location.href).searchParams.get('layer')===null")
-        await page.get_by_role("button", name="对比…", exact=True).click()
-        await expect(page.locator(".lens-command-state")).to_contain_text("选择要对比")
-        await page.locator(".lens-node").nth(1).locator(".lens-node-name").click()
-        await expect(page.locator(".lens-pair-names")).to_be_visible()
-        await page.keyboard.press("Escape")
-        await expect(page.locator(".lens-pair-names")).to_have_count(0)
-        await page.get_by_role("button", name="对比…", exact=True).click()
-        await page.keyboard.press("Escape")
-        await expect(page.locator(".lens-command-state")).not_to_contain_text("选择要对比")
-        help_button = page.get_by_role("button", name="? 操作", exact=True)
-        await help_button.click()
-        await expect(page.locator(".lens-operation-card")).to_be_visible()
-        await help_button.click()
-        await expect(page.locator(".lens-operation-card")).to_have_count(0)
-        # Returning does not fix a node. A transient preview must give it back.
-        selected = await page.evaluate("new URL(location.href).searchParams.get('node')")
-        selected_name = await page.locator(f'[data-node="{selected}"]').get_attribute("data-name")
-        other = page.locator(f'.lens-node:not([data-node="{selected}"])').last
-        await other.locator(".lens-node-name").hover()
-        await page.get_by_role("complementary", name="研究详情").hover()
-        await expect(page.locator(".lens-preview-name")).to_have_text(selected_name, timeout=1000)
-        await expect(page.get_by_role("region", name="各年立项项目分布")).to_have_count(0)
-        await expect(page.get_by_text("向左拉动顶栏，预览资料库全库概况", exact=True)).to_have_count(0)
-        labels = await check_label_geometry(page, full=True)
-        measurements.append({"width": width, "data_area": area, "pin_ms": latency, "geometry": labels})
-        plot = page.locator(".lens-plot")
-        await plot.scroll_into_view_if_needed()
-        box = await plot.bounding_box()
-        await plot.click(position={"x": box["width"]*.8, "y": 8})
-        assert await plot.evaluate("el=>getComputedStyle(el).outlineStyle") == "none"
-        await page.keyboard.press("Shift+Tab")
-        await page.keyboard.press("Tab")
-        assert await plot.evaluate("el=>el===document.activeElement&&el.matches(':focus-visible')")
-        assert await plot.evaluate("el=>getComputedStyle(el).outlineStyle") != "none"
-        anchor = await page.locator(".lens-dot").evaluate_all("""els=>{
-            const points=els.map(e=>{const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}}).sort((a,b)=>a.x-b.x).slice(0,4);
-            return{x:points.reduce((n,p)=>n+p.x,0)/points.length,y:points.reduce((n,p)=>n+p.y,0)/points.length};
-        }""")
-        await page.mouse.move(anchor["x"], anchor["y"])
-        old_zoom = 1
-        for zoom in (1.5, 2, 3):
-            import math
-            await page.mouse.wheel(0, -math.log(zoom / old_zoom)/.002)
-            await page.wait_for_timeout(100)
-            await check_label_geometry(page, full=False)
-            old_zoom = zoom
-        for dx, dy in ((1800, 1400), (-1800, -1400), (1800, -1400), (-1800, 1400)):
-            # Blank top margin belongs to the SVG too; it cannot hit a label.
-            await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+8)
-            await page.mouse.down()
-            await page.mouse.move(box["x"]+box["width"]*.7+dx, box["y"]+8+dy, steps=5)
-            await page.mouse.up()
-            await page.wait_for_timeout(80)
-            await check_label_geometry(page, full=False)
-        await page.locator(".lens-zoom button").nth(1).click()
-        await page.locator(".lens-node").first.locator(".lens-node-name").dblclick()
-        await page.wait_for_function("new URL(location.href).searchParams.get('layer')!==null")
-        await expect(page.locator(".domain-lens")).to_have_attribute("data-moving", "false")
-        layer = await page.evaluate("new URL(location.href).searchParams.get('layer')")
-        await page.locator(".lens-node").first.locator(".lens-node-name").click()
-        await page.wait_for_function("new URL(location.href).searchParams.get('pin')!==null")
-        await plot.scroll_into_view_if_needed()
-        box = await plot.bounding_box()
-        await page.mouse.move(box["x"]+box["width"]*.7,box["y"]+8)
-        await page.mouse.down()
-        await page.mouse.move(box["x"]+box["width"]*.7+3,box["y"]+8)
-        await page.mouse.up()
-        await page.wait_for_function("new URL(location.href).searchParams.get('pin')===null")
-        assert await page.evaluate("new URL(location.href).searchParams.get('layer')") == layer
-        await page.screenshot(path=str(shots / f"{width}-visible-actions.png"))
-    return measurements
-
-
-async def check_label_geometry(page, full):
-    result = await page.locator(".lens-plot").evaluate("""svg=>{
-        const r=svg.querySelector('[data-plot-background]').getBoundingClientRect();
-        const nodes=[...svg.querySelectorAll('[data-node]')].map(g=>{
-          const c=g.querySelector('.lens-dot').getBoundingClientRect();
-          return {x:(c.left+c.right)/2,y:(c.top+c.bottom)/2,r:c.width/2,label:g.querySelector('.lens-node-name')};
-        });
-        const visible=nodes.filter(p=>p.x>=r.left&&p.x<=r.right&&p.y>=r.top&&p.y<=r.bottom);
-        const labelled=visible.filter(p=>p.label);
-        const missing=visible.filter(p=>!p.label);
-        const overlap=(a,b)=>a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;
-        const quads=[...svg.querySelectorAll('.lens-quad')].map(e=>e.getBoundingClientRect());
-        const quadClashes=quads.filter(q=>nodes.some(p=>Math.hypot(p.x-Math.max(q.left,Math.min(q.right,p.x)),p.y-Math.max(q.top,Math.min(q.bottom,p.y)))<p.r)).length;
-        const ticks=[...svg.querySelectorAll('.lens-axis')].filter(e=>getComputedStyle(e).visibility!=='hidden').map(e=>e.getBoundingClientRect());
-        const medians=[...svg.querySelectorAll('.lens-median')].map(e=>e.getBoundingClientRect());
-        return {visible:visible.length,missing:missing.map(p=>p.r),labelled:labelled.map(p=>p.r),
-          topTwoNamed:nodes.slice().sort((a,b)=>b.r-a.r).slice(0,2).every(p=>p.label),quadClashes,
-          tickClashes:medians.filter(m=>ticks.some(t=>overlap(m,t))).length};
-    }""")
-    assert result["visible"] > 0, result
-    if full:
-        assert result["topTwoNamed"] and result["quadClashes"] == 0 and result["tickClashes"] == 0, result
-    if result["missing"]:
-        assert result["labelled"] and max(result["missing"]) <= min(result["labelled"]), result
-    return result
-
-
-async def run_checks(page, origin, shots):
-    await page.goto(origin + "/overview/domains")
-    plot = page.locator(".lens-plot")
-    await expect(page.locator(".lens-node")).to_have_count(11)
-    for width in (1366, 1440, 1920, 2560, 3840):
-        await page.set_viewport_size({"width": width, "height": round(width * 9 / 16)})
-        await plot.scroll_into_view_if_needed()
-        await page.wait_for_timeout(500)
-        overlap = await page.locator(".lens-node-name:visible").evaluate_all("""ts=>{
-          const r=ts.map(t=>t.getBoundingClientRect());let n=0;
-          for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){
-            const a=r[i],b=r[j];if(a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom)n++;
-          }return n;}""")
-        assert overlap == 0, (width, overlap)
-        await page.locator(".domain-lens").screenshot(path=str(shots / f"{width}-overview.png"))
-    await page.set_viewport_size({"width": 1440, "height": 1000})
-    first = page.locator(".lens-node").first
-    await first.locator(".lens-node-name").click()
-    await page.wait_for_timeout(300)
-    # The hover values must actually paint outside the plot clip, not merely
-    # exist as positive-size SVG text that is invisible to the reader.
-    axis_value = page.locator(".lens-guide-value").first
-    box = await axis_value.bounding_box()
-    painted = await page.screenshot(clip=box)
-    await axis_value.evaluate("el=>el.style.visibility='hidden'")
-    hidden = await page.screenshot(clip=box)
-    await axis_value.evaluate("el=>el.style.removeProperty('visibility')")
-    assert painted != hidden, "axis value was clipped"
-    why = await page.locator(".lens-why").inner_text()
-    before = await geometry(page)
-    box = await plot.bounding_box()
-    x, y = box["x"] + box["width"] * .65, box["y"] + box["height"] * .6
-    await page.mouse.move(x, y)
-    scroll = await page.locator("main").evaluate("e=>e.scrollTop")
-    await page.mouse.wheel(0, -400)
-    await page.wait_for_timeout(100)
-    assert before != await geometry(page), "wheel did not zoom"
-    await expect(page.locator(".lens-zoom")).to_contain_text("%")
-    assert await page.locator("main").evaluate("e=>e.scrollTop") == scroll
-    assert await page.locator(".lens-why").inner_text() == why
-    after = await geometry(page)
-    url = page.url
-    await page.mouse.move(x, y)
-    await page.mouse.down()
-    await page.mouse.move(x+45, y+30, steps=8)
-    await page.mouse.up()
-    await page.wait_for_timeout(300)
-    assert after != await geometry(page), "blank drag did not pan"
-    assert page.url == url, "pan triggered blank return"
-    await plot.dblclick(position={"x": box["width"]*.65, "y": box["height"]*.65})
-    await expect(page.locator(".lens-zoom")).to_contain_text("全景")
-    assert page.url == url, "double click reset navigated back"
-    nodes = page.locator(".lens-node")
-    await nodes.nth(0).locator(".lens-node-name").drag_to(nodes.nth(1).locator(".lens-node-name"))
-    await expect(page.locator(".lens-pair-names")).to_be_visible()
-    await page.locator(".domain-lens").screenshot(path=str(shots / "compare.png"))
-    await page.locator(".lens-zoom").get_by_role("button", name="放大", exact=True).click()
-    await expect(page.locator(".lens-zoom")).to_contain_text("%")
-    await page.locator(".lens-zoom button").nth(1).click()
-    await expect(page.locator(".lens-zoom")).to_contain_text("全景")
-    await plot.focus()
-    await page.keyboard.press("+")
-    await expect(page.locator(".lens-zoom")).to_contain_text("%")
-    await page.keyboard.press("0")
-    await expect(page.locator(".lens-zoom")).to_contain_text("全景")
-    # Blank single click exits comparison; double click does not.
-    await plot.click(position={"x": box["width"]*.7, "y": box["height"]*.7})
-    await expect(page.locator(".lens-pair-names")).to_have_count(0)
-    if os.environ.get("LENS_PHASE") == "u1":
-        return
-    await page.locator(".lens-node").nth(2).locator(".lens-node-name").hover()
-    node_before = await page.evaluate("new URL(location.href).searchParams.get('node')")
-    money = page.get_by_role("radio", name="资金（万元）", exact=True)
-    await money.click()
-    await expect(money).to_have_attribute("aria-checked", "true")
-    await expect(page.locator(".lens-year-legend")).to_contain_text("批准资助金额")
-    await money.press("ArrowRight")
-    await expect(page.get_by_role("radio", name="技术（条）", exact=True)).to_have_attribute("aria-checked", "true")
-    await page.locator(".lens-zoom").get_by_role("button", name="放大", exact=True).click()
-    await page.locator(".domain-lens").evaluate("""el=>{
-        el.dataset.sawMotion='0';
-        const observer=new MutationObserver(()=>{
-            if(el.dataset.moving==='true')el.dataset.sawMotion='1';
-        });
-        observer.observe(el,{attributes:true,attributeFilter:['data-moving']});
-    }""")
-    await page.locator(".lens-views").get_by_role("button", name="投入与产出").click()
-    await expect(money).to_have_attribute("aria-checked", "true")
-    await page.wait_for_timeout(500)
-    await expect(page.locator(".domain-lens")).to_have_attribute("data-saw-motion", "1")
-    await expect(page.locator(".lens-zoom")).to_contain_text("全景")
-    await page.locator('.lens-band-svg [data-year="2021"]').click()
-    assert await page.evaluate("new URL(location.href).searchParams.get('node')") == node_before
-    await page.locator(".lens-pull").click()
-    await expect(page.locator(".lens-matrix")).to_be_visible()
-    assert "—" not in await page.locator(".lens-matrix tbody td:last-child").all_text_contents()
-    await expect(page.locator(".lens-matrix tbody tr").filter(has_text="AI与研究领域10").locator("td").last).to_have_text("未记录")
-    await expect(page.locator('.lens-band-svg [data-year="2019"] .lens-year-total')).to_have_text("0")
-    await page.locator(".lens-year-band").screenshot(path=str(shots / "annual-expanded.png"))
-    await page.reload()
-    await expect(money).to_have_attribute("aria-checked", "true")
-    await expect(page.locator(".lens-matrix")).to_be_visible()
-    await page.locator(".lens-node").first.locator(".lens-node-name").dblclick()
-    await expect(page.locator(".lens-head nav")).to_contain_text("研究领域")
-    await page.wait_for_timeout(500)
-    await page.locator(".lens-node").first.locator(".lens-node-name").dblclick()
-    await expect(page.locator(".lens-head nav")).to_contain_text("技术体系")
-    await page.emulate_media(reduced_motion="reduce")
-    await page.wait_for_timeout(50)
-    await page.locator(".lens-views").get_by_role("button", name="成果与落地").click()
+async def settle(page):
+    layer=await page.evaluate("new URL(location.href).searchParams.get('layer')||''")
+    await expect(page.locator(".domain-lens")).to_have_attribute("data-layer",layer)
     await expect(page.locator(".domain-lens")).to_have_attribute("data-moving", "false")
-    # At 1x an outward wheel gesture belongs to page scrolling.
-    await plot.scroll_into_view_if_needed()
-    box = await plot.bounding_box()
-    await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+box["height"]*.6)
-    before_scroll = await page.locator("main").evaluate("e=>e.scrollTop")
-    await page.mouse.wheel(0, 400)
-    await page.wait_for_timeout(200)
-    assert await page.locator("main").evaluate("e=>e.scrollTop") > before_scroll
-    # 02 uses the extracted hook too: zoom/pan must retain click-to-expand and glide.
-    road = page.locator(".roads-svg")
-    await road.scroll_into_view_if_needed()
-    box = await road.bounding_box()
-    group = road.locator(":scope > g")
-    before_view = await group.get_attribute("transform")
-    await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.6)
-    await page.mouse.wheel(0, -300)
-    await page.wait_for_timeout(100)
-    assert await group.get_attribute("transform") != before_view
-    tools = page.locator(".roads-tools .roads-zoom")
-    await tools.locator("button").nth(1).click()
-    await expect(tools).to_contain_text("全景")
-    await road.scroll_into_view_if_needed()
-    box = await road.bounding_box()
-    await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+box["height"]*.7)
-    await page.mouse.down()
-    await page.mouse.move(box["x"]+box["width"]*.7+40, box["y"]+box["height"]*.7+25, steps=7)
-    await page.mouse.up()
-    await expect(tools).to_contain_text("100% · 复位")
-    await tools.locator("button").nth(1).click()
-    library_node = road.locator(".roads-node.is-library").first
-    await library_node.click()
-    await expect(library_node).to_have_attribute("aria-expanded", "true")
-    await expect(tools).to_contain_text("125%")
-    await road.screenshot(path=str(shots / "02-shared-gestures.png"))
 
+async def click_node(node):
+    await node.locator(".lens-dot").click()
+
+async def blank(page, jitter=False):
+    plot=page.locator(".lens-plot")
+    await plot.scroll_into_view_if_needed()
+    box=await plot.bounding_box()
+    await page.mouse.move(box["x"]+box["width"]*.7,box["y"]+8)
+    await page.mouse.down()
+    if jitter: await page.mouse.move(box["x"]+box["width"]*.7+3,box["y"]+8)
+    await page.mouse.up()
+    await page.wait_for_timeout(30)
+    await settle(page)
+
+async def check_simplified(page,origin,shots):
+    reports=[]
+    for width in (1366,1440,1920):
+        await page.set_viewport_size({"width":width,"height":900 if width<1920 else 1080})
+        await page.goto(origin+"/overview/domains")
+        await page.locator(".lens-node").first.wait_for(timeout=60000)
+        await settle(page)
+        lens=page.locator(".domain-lens")
+        status=page.locator(".lens-inspector-status")
+        await expect(status).to_contain_text("当前层")
+        first=page.locator(".lens-node").first
+        domain=await first.get_attribute("data-node")
+        await click_node(first)
+        await page.wait_for_function("id=>new URL(location.href).searchParams.get('node')===id",arg=domain)
+        await expect(status).to_contain_text("已选中")
+        await expect(page.locator(".lens-primary")).to_contain_text("预览资料库")
+        heading=await page.locator(".lens-inspector h3").inner_text()
+        await page.locator(".lens-node").last.locator(".lens-dot").hover()
+        await expect(page.locator(".lens-node-tooltip")).to_be_visible()
+        await expect(page.locator(".lens-axis-readout")).to_have_count(2)
+        assert await page.locator(".lens-inspector h3").inner_text()==heading
+        assert await first.locator(".lens-halo").evaluate("e=>+getComputedStyle(e).opacity")>0
+        await click_node(first)
+        await page.wait_for_function("id=>new URL(location.href).searchParams.get('layer')===id",arg=domain)
+        await settle(page)
+        assert await page.evaluate("new URL(location.href).searchParams.get('node')") is None
+        await expect(status).to_contain_text("当前层")
+        await expect(page.locator(".lens-inspector h3")).to_have_text(heading)
+        system_node=page.locator(".lens-node").first
+        system=await system_node.get_attribute("data-node")
+        await click_node(system_node)
+        await click_node(system_node)
+        await page.wait_for_function("id=>new URL(location.href).searchParams.get('layer')===id",arg=system)
+        await settle(page)
+        switch=page.get_by_label("切换当前层")
+        options=await switch.locator("option:not([disabled])").evaluate_all("els=>els.map(e=>e.value)")
+        if len(options)>1:
+            peer=next(x for x in options if x!=system)
+            await switch.select_option(peer)
+            system=peer
+            await settle(page)
+            assert await page.evaluate("new URL(location.href).searchParams.get('layer')")==peer
+        leaf=page.locator(".lens-node").first
+        leaf_id=await leaf.get_attribute("data-node")
+        await click_node(leaf)
+        await click_node(leaf)
+        assert await page.evaluate("new URL(location.href).searchParams.get('node')")==leaf_id
+        for layer,node in [(system,None),(domain,system),(domain,None),(None,domain),(None,None),(None,None)]:
+            await blank(page,jitter=True)
+            await page.wait_for_function("v=>new URL(location.href).searchParams.get('layer')===v[0]&&new URL(location.href).searchParams.get('node')===v[1]",arg=[layer,node])
+            await settle(page)
+            if node and layer!=system:
+                await expect(page.locator(".lens-return-notice")).to_contain_text("已返回")
+        await click_node(page.locator(".lens-node").first)
+        await page.get_by_role("button",name="⇄ 对比",exact=True).click()
+        await click_node(page.locator(".lens-node").last)
+        await expect(page.locator(".lens-pair-names")).to_be_visible()
+        await blank(page)
+        await expect(page.locator(".lens-pair-names")).to_have_count(0)
+        await blank(page)
+        await page.get_by_role("radio",name="资金（万元）",exact=True).click()
+        await page.locator('.lens-band-svg [data-year="2021"]').click()
+        await settle(page)
+        await expect(page.get_by_role("button",name="清除年份范围")).to_be_visible()
+        await page.get_by_role("button",name="清除年份范围").click()
+        await settle(page)
+        await page.get_by_role("button",name="展开各领域 ▾",exact=True).click()
+        await expect(page.locator(".lens-matrix")).to_be_visible()
+        await page.get_by_role("button",name="收起各领域 ▴",exact=True).click()
+        # Zoom is independent from stepping back; only the panorama button resets.
+        await page.locator(".lens-zoom").get_by_role("button",name="放大",exact=True).click()
+        await expect(page.locator(".lens-zoom")).to_contain_text("%")
+        await page.locator(".lens-zoom button").nth(1).click()
+        await expect(page.locator(".lens-zoom")).to_contain_text("全景")
+        inventory=await lens.evaluate("""root=>{
+          const out=[];const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;
+          while(n=walker.nextNode()){
+            const text=n.textContent.trim(),el=n.parentElement;if(!text||!el)continue;
+            const c=getComputedStyle(el),r=el.getBoundingClientRect();
+            if(!r.width||!r.height||c.visibility==='hidden'||c.display==='none'||el.closest('.lens-inspector-status'))continue;
+            if(el.closest('svg')&&/^[\d.,]+$/.test(text))continue;
+            if(parseFloat(c.fontSize)<14)out.push(text);
+          }return out;
+        }""")
+        assert len(inventory)<=15,inventory
+        affordance=await lens.locator("button").evaluate_all("""bs=>bs.filter(b=>b.getBoundingClientRect().width&&!b.closest('.lens-views')&&!b.classList.contains('lens-icon-button')).map(b=>{
+          const c=getComputedStyle(b),r=b.getBoundingClientRect();return{text:b.textContent.trim(),font:parseFloat(c.fontSize),height:r.height,visible:c.backgroundColor!=='rgba(0, 0, 0, 0)'||parseFloat(c.borderTopWidth)>0};
+        })""")
+        assert all(b['font']>=14 and b['height']>=32 and b['visible'] for b in affordance),affordance
+        geometry=await page.locator(".lens-plot").evaluate("""svg=>{
+          const nodes=[...svg.querySelectorAll('[data-node]')].map(g=>{const c=g.querySelector('.lens-dot').getBoundingClientRect();const t=g.querySelector('.lens-node-name');return{c,t,r:+g.querySelector('.lens-dot').getAttribute('r')}});
+          let collisions=0,maxDistance=0;const names=nodes.filter(p=>p.t);
+          for(let i=0;i<names.length;i++){
+            const a=names[i].t.getBoundingClientRect(),c=names[i].c,cx=(c.left+c.right)/2,cy=(c.top+c.bottom)/2;
+            maxDistance=Math.max(maxDistance,Math.hypot(cx-Math.max(a.left,Math.min(a.right,cx)),cy-Math.max(a.top,Math.min(a.bottom,cy)))-names[i].r);
+            for(let j=i+1;j<names.length;j++){const b=names[j].t.getBoundingClientRect();if(a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom)collisions++;}
+            for(const p of nodes){const x=(p.c.left+p.c.right)/2,y=(p.c.top+p.c.bottom)/2;if(Math.hypot(x-Math.max(a.left,Math.min(a.right,x)),y-Math.max(a.top,Math.min(a.bottom,y)))<p.r)collisions++;}
+          }return{minRadius:Math.min(...nodes.map(p=>p.r)),maxRadius:Math.max(...nodes.map(p=>p.r)),maxDistance,collisions};
+        }""")
+        assert geometry['minRadius']>=8 and geometry['maxRadius']<=30 and geometry['maxDistance']<=40 and geometry['collisions']==0,geometry
+        # A legacy pin link is migrated once; no old interaction mode remains.
+        from urllib.parse import urlencode
+        await page.goto(origin+'/overview/domains?'+urlencode({'pin':domain}))
+        await expect(status).to_contain_text('已选中')
+        assert await page.evaluate("new URL(location.href).searchParams.get('pin')") is None
+        button=page.locator('.lens-primary');before=await button.bounding_box()
+        await page.locator('.lens-detail-body').evaluate('e=>e.scrollTop=e.scrollHeight')
+        after=await button.bounding_box();assert abs(after['y']-before['y'])<1
+        await page.screenshot(path=str(shots/f'{width}-selected.png'))
+        await page.emulate_media(reduced_motion='reduce')
+        await click_node(page.locator('.lens-node').first)
+        await expect(lens).to_have_attribute('data-moving','false')
+        await page.emulate_media(reduced_motion='no-preference')
+        reports.append({'width':width,'small_text':len(inventory),'geometry':geometry})
+    return reports
 
 async def main():
-    shots = Path(os.environ.get("LENS_SHOTS", ".logsdev/verification/01-交互实施-20261024/browser"))
-    shots.mkdir(parents=True, exist_ok=True)
-    overview, atlas = records()
-    with TemporaryDirectory(prefix="dox-lens-") as folder:
-        root = Path(folder)
-        settings = Settings(_env_file=None, corpora_root=root/"corpora", state_dir=root/"state", user_dir=root/"users")
-        origin, server, thread, listener = start_server(create_app(settings))
+    shots=Path(os.environ.get('LENS_SHOTS','.logsdev/verification/01-第三轮实施-20261024/browser'))
+    shots.mkdir(parents=True,exist_ok=True)
+    overview,atlas=records()
+    with TemporaryDirectory(prefix='dox-lens-') as folder:
+        root=Path(folder)
+        settings=Settings(_env_file=None,corpora_root=root/'corpora',state_dir=root/'state',user_dir=root/'users')
+        origin,server,thread,listener=start_server(create_app(settings))
         try:
             async with async_playwright() as pw:
-                browser = await pw.chromium.launch()
-                page = await browser.new_page(viewport={"width": 1440, "height": 1000})
-                errors = []
-                page.on("pageerror", lambda e: errors.append(str(e)))
-                await login(page, origin)
-                await page.route("**/api/corpora", lambda r: r.fulfill(json=[{
-                    "id": "domain-0", "name": "AI与研究领域0", "indexed_count": 9,
-                    "docs_count": 9, "missing": False, "kind": "fund", "job": None}]))
-                await page.route("**/api/domains/overview", lambda r: r.fulfill(json=overview))
-                await page.route("**/api/domains/atlas", lambda r: r.fulfill(json=atlas))
-                if os.environ.get("LENS_PHASE") != "u1":
-                    measurements = await check_convenience(page, origin, shots)
-                    (shots / "measurements.json").write_text(json.dumps(measurements, ensure_ascii=False, indent=2), encoding="utf-8")
-                await run_checks(page, origin, shots)
-                assert not errors, errors
+                browser=await pw.chromium.launch()
+                page=await browser.new_page(viewport={'width':1440,'height':900})
+                errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+                await login(page,origin)
+                await page.route('**/api/corpora',lambda r:r.fulfill(json=[{'id':'domain-0','name':'AI与研究领域0','indexed_count':9,'docs_count':9,'missing':False,'kind':'fund','job':None}]))
+                await page.route('**/api/domains/overview',lambda r:r.fulfill(json=overview))
+                await page.route('**/api/domains/atlas',lambda r:r.fulfill(json=atlas))
+                values=await check_simplified(page,origin,shots)
+                (shots/'results.json').write_text(json.dumps(values,ensure_ascii=False,indent=2),encoding='utf-8')
+                assert not errors,errors
                 await browser.close()
-                print("PASS 01 pan/zoom, comparison, stable statistics and 1366–4K labels" +
-                      ("" if os.environ.get("LENS_PHASE") == "u1" else "; annual controls, missing records and URL restoration"))
+                print('PASS 01 single-click state machine, back steps, siblings, hover isolation, comparison, visuals and legacy URLs')
         finally:
-            server.should_exit = True
-            thread.join(timeout=15)
-            listener.close()
+            server.should_exit=True;thread.join(timeout=15);listener.close()
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__=='__main__':asyncio.run(main())

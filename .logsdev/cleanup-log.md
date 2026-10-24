@@ -6,6 +6,7 @@ Background: Baha's review of 2026-10-18, findings F4/F6 and quick wins Q3/Q4.
 
 | Date | Removed | Old location | Why | Restore |
 |---|---|---|---|---|
+| 2026-10-24 | 01固定/解除、双击进入/复位、拖线对比、悬停换右栏及旧手势hook | `DomainLens.tsx`、`LensInspector.tsx`、`useLensGestures.ts` 与 browser_domain_lens 旧断言 | 第三轮用户明确改为单击选中/再点进入/空白退一步；年度框选改用 `useAnnualSelection.ts`，旧代码与断言删除 | `git show fde928c:frontend/src/components/atlas/useLensGestures.ts`（其他同提交） |
 | 2026-10-24 | 过期的领域全景实施任务记录 | `.logsdev/tasks/task-领域分析全景实施-20261021.md` | R7：头部“已回退”与后续261560d等已上线实现不符，旧组件名与像素阈值会误导接续。统计边界与仍有效的触屏/投屏/首次阅读及首屏位置待验收转入PROJECT §1；当前实现由代码/测试承接。 | `git show 847ff34:.logsdev/tasks/task-领域分析全景实施-20261021.md` |
 | 2026-10-23 | 旧01积累图与专用说明组件及未再引用的样式 | `frontend/src/components/LibraryTerrain.tsx`、`CaliberPop.tsx`，`styles/globals.css` 的旧图专用段 | 用户采纳年度带原型，整体由 `atlas/DomainLens.tsx`、`YearBand.tsx` 替换；共享预览样式保留，成熟度名称改读 `domains.ts` | `git show 67d3656:frontend/src/components/LibraryTerrain.tsx`（说明组件同提交） |
 | 2026-10-19 | `src/agent/quick.py` (`use_quick`, `verify`) | `src/agent/quick.py` | Imported `ResearchReport` / `validate_report`, which `evidence.py` no longer has, so importing it always failed. Nothing imported it; 0% coverage. | `git show 4ce4616:src/agent/quick.py` |

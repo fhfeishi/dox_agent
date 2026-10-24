@@ -1,4 +1,4 @@
-import { useAnnualGestures } from "./useLensGestures";
+import { useAnnualGestures } from "./useAnnualSelection";
 import { useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import {
   ALL_YEARS,
@@ -30,7 +30,6 @@ export function YearBand({
   onWindow,
   onMetric,
   onExpanded,
-  onPreview,
   onFix,
   onYearFix,
 }: {
@@ -41,16 +40,15 @@ export function YearBand({
   window: YearWindow;
   metric: AnnualMetric;
   expanded: boolean;
-  chosen: string;
+  chosen: string | null;
   baseline: string | null;
   onWindow: (w: YearWindow) => void;
   onMetric: (m: AnnualMetric) => void;
   onExpanded: (v: boolean) => void;
-  onPreview: (id: string, year: number | null) => void;
   onFix: (id: string) => void;
   onYearFix: (id: string, y: number) => void;
 }) {
-  const { drag, pull, draft, setDraft } = useAnnualGestures();
+  const { drag, draft, setDraft } = useAnnualGestures();
   const controls = useRef<HTMLDivElement>(null);
   const [tip, setTip] = useState<{
     year: number;
@@ -83,7 +81,11 @@ export function YearBand({
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
     bandHeight = 180 * scale;
-  const focus = baseline ? [baseline, chosen] : [chosen];
+  const focus: string[] = chosen
+    ? baseline
+      ? [baseline, chosen]
+      : [chosen]
+    : [];
   const all = (year: number) =>
     scope ? model.measure(scope, { from: year, to: year }) : null;
   const totals = years.map((y) =>
@@ -225,43 +227,6 @@ export function YearBand({
       );
     }
   };
-  const beginDetailsPull: NonNullable<
-    React.ComponentProps<"div">["onPointerDown"]
-  > = (e) => {
-    if (e.button !== 0) return;
-    e.currentTarget.focus({ preventScroll: true });
-    pull.current = e.clientY;
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-  const commitDetailsPull: NonNullable<
-    React.ComponentProps<"div">["onPointerUp"]
-  > = (e) => {
-    if (pull.current !== null) {
-      if (Math.abs(e.clientY - pull.current) > 24)
-        onExpanded(e.clientY > pull.current);
-      else toggle();
-    }
-    pull.current = null;
-  };
-  const cancelDetailsPull: NonNullable<
-    React.ComponentProps<"div">["onPointerCancel"]
-  > = () => {
-    pull.current = null;
-  };
-  const navigateDetails: NonNullable<
-    React.ComponentProps<"div">["onKeyDown"]
-  > = (e) => {
-    if (e.key === "Escape" && pull.current !== null) {
-      e.preventDefault();
-      e.stopPropagation();
-      pull.current = null;
-      return;
-    }
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggle();
-    }
-  };
   if (!years.length)
     return (
       <p className="lens-muted">暂无已确认的立项年份；当前显示累计数据。</p>
@@ -278,9 +243,16 @@ export function YearBand({
                 ? `${activeWindow.from} 年`
                 : `${activeWindow.from}—${activeWindow.to} 年`}
           </span>
-          <small>
-            {draft ? "松开后应用年份范围" : "点一年 · 拖动框选 · 再点恢复全部"}
-          </small>
+          {window.from !== null ? (
+            <button
+              type="button"
+              className="lens-secondary lens-icon-button"
+              aria-label="清除年份范围"
+              onClick={() => onWindow(ALL_YEARS)}
+            >
+              ✕
+            </button>
+          ) : null}
         </div>
         <div
           ref={controls}
@@ -319,19 +291,12 @@ export function YearBand({
         </div>
       </div>
       <p className="lens-year-legend">
-        灰条：当前范围去重合计 ·{" "}
-        {focus.map((id, i) => {
-          return (
-            <span
-              key={id}
-              className={baseline ? (i ? "lens-b" : "lens-a") : "lens-b"}
-            >
-              {baseline ? (i ? " B / " : " A / ") : "绿条 / "}
-              {model.nodes.get(id)?.name}
-            </span>
-          );
-        })}{" "}
-        · {ANNUAL_NAMES[metric]}
+        {focus.map((id, i) => (
+          <span key={id} className={baseline ? (i ? "lens-b" : "lens-a") : ""}>
+            ■ {model.nodes.get(id)?.name.replace(/^AI与/, "")}　
+          </span>
+        ))}
+        灰柱 = 当年合计
       </p>
       <div ref={canvas} className="lens-year-scroll">
         <svg
@@ -511,24 +476,16 @@ export function YearBand({
           </span>
         </div>
       ) : null}
-      <div
-        className="lens-pull"
-        role="separator"
-        tabIndex={0}
-        aria-label="点击或拖动展开年度明细，回车切换，Esc取消拖动"
-        aria-controls="lens-annual-details"
-        aria-valuemin={0}
-        aria-valuemax={1}
-        aria-valuenow={expanded ? 1 : 0}
-        onPointerDown={beginDetailsPull}
-        onPointerUp={commitDetailsPull}
-        onPointerCancel={cancelDetailsPull}
-        onKeyDown={navigateDetails}
-      >
-        <i />
-        {expanded
-          ? "点击或上推，收起年度明细"
-          : "点击或下拉，展开各领域年度分布"}
+      <div className="lens-year-expand">
+        <button
+          type="button"
+          className="lens-secondary"
+          aria-expanded={expanded}
+          aria-controls="lens-annual-details"
+          onClick={toggle}
+        >
+          {expanded ? "收起各领域 ▴" : "展开各领域 ▾"}
+        </button>
       </div>
       {expanded ? (
         <div id="lens-annual-details" className="lens-matrix">
@@ -575,14 +532,6 @@ export function YearBand({
                       {model.nodes.get(id)?.name}
                     </th>
                     {years.map((y) => {
-                      const previewMatrixYear: NonNullable<
-                        React.ComponentProps<"td">["onPointerEnter"]
-                      > = () => {
-                        if (!baseline) onPreview(id, y);
-                      };
-                      const leaveMatrixYear: NonNullable<
-                        React.ComponentProps<"td">["onPointerLeave"]
-                      > = () => onPreview(id, null);
                       const fixMatrixYear: NonNullable<
                         React.ComponentProps<"td">["onClick"]
                       > = () => onYearFix(id, y);
@@ -598,8 +547,6 @@ export function YearBand({
                           data-selected={inWindow(y)}
                           tabIndex={0}
                           aria-label={`${model.nodes.get(id)?.name} ${y} 年`}
-                          onPointerEnter={previewMatrixYear}
-                          onPointerLeave={leaveMatrixYear}
                           onClick={fixMatrixYear}
                           onKeyDown={navigateMatrixYear}
                         >

@@ -317,12 +317,16 @@ export function atlasLayout(
   const mx = median(valid.map((p) => p.x)),
     my = median(valid.map((p) => p.y)),
     max = Math.max(1, ...valid.map((p) => p.d.projects));
+  const shorten =
+    valid.length > 0 && valid.every((p) => p.d.node.name.startsWith("AI与"));
   const points = valid.map((p) => ({
     ...p,
     cx: px(p.x),
     cy: py(p.y),
-    r: Math.sqrt(p.d.projects / max) * fontSize * 1.65,
-    ghost:false,opacity:1,label:p.d.node.name,
+    r: Math.max(8, Math.sqrt(p.d.projects / max) * 30),
+    ghost: false,
+    opacity: 1,
+    label: shorten ? p.d.node.name.slice(3) : p.d.node.name,
   }));
   type Box = { x: number; y: number; w: number; h: number };
   const intersects = (a: Box, b: Box) =>
@@ -359,7 +363,7 @@ export function atlasLayout(
       x1 = i % 2 ? right : Math.min(right, medianX);
     const y0 = i < 2 ? top : Math.max(top, medianY),
       y1 = i < 2 ? Math.min(bottom, medianY) : bottom;
-    const w = name.length * fontSize * 0.9 + 8,
+    const w = (name.length + 3) * fontSize * 0.9 + 8,
       h = fontSize * 1.3;
     if (x1 - x0 < w + 12 || y1 - y0 < h + 12) return;
     const candidates = [
@@ -390,7 +394,7 @@ export function atlasLayout(
     .forEach((p) => {
       if (outOfSeats) return;
       const w =
-          [...p.d.node.name].reduce(
+          [...p.label].reduce(
             (n, c) =>
               n + (/[\u3400-\u9fff]/.test(c) ? fontSize : fontSize * 0.64),
             0,
@@ -403,16 +407,13 @@ export function atlasLayout(
         { x: p.cx - w / 2, y: p.cy - p.r - h - gap },
         { x: p.cx - w / 2, y: p.cy + p.r + gap },
       ];
-      // Callouts search the available rows, nearest to the node first. Smaller
-      // projects are omitted only after all seats have been used by larger ones.
-      for (let y = top + 4; y + h < bottom - 4; y += h + 6) {
+      for (const delta of [-36, -24, -12, 12, 24, 36]) {
         candidates.push(
-          { x: p.cx - w / 2, y },
-          { x: p.cx + p.r + gap, y },
-          { x: p.cx - p.r - w - gap, y },
+          { x: p.cx + p.r + gap, y: p.cy - h / 2 + delta },
+          { x: p.cx - p.r - w - gap, y: p.cy - h / 2 + delta },
+          { x: p.cx - w / 2 + delta, y: p.cy - p.r - h - gap },
+          { x: p.cx - w / 2 + delta, y: p.cy + p.r + gap },
         );
-        for (let x = left + 4; x + w < right - 4; x += w + 12)
-          candidates.push({ x, y });
       }
       const opts = candidates.map((b) => ({
         x: Math.max(left + 4, Math.min(right - w - 4, b.x)),
@@ -427,6 +428,12 @@ export function atlasLayout(
       );
       const seat = opts.find(
         (b) =>
+          Math.hypot(
+            p.cx - Math.max(b.x, Math.min(b.x + b.w, p.cx)),
+            p.cy - Math.max(b.y, Math.min(b.y + b.h, p.cy)),
+          ) -
+            p.r <=
+            30 &&
           !boxes.some((a) =>
             intersects(a, { x: b.x - 3, y: b.y - 3, w: b.w + 6, h: b.h + 6 }),
           ),

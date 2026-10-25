@@ -104,8 +104,13 @@ async def check_simplified(page,origin,shots):
         assert len(await page.locator('.lens-why').inner_text())<=30
         heading=await page.locator(".lens-inspector h3").inner_text()
         await page.locator(".lens-node").last.locator(".lens-dot").hover()
+        scroll_top=await page.locator('main').evaluate('e=>e.scrollTop')
+        await page.mouse.wheel(0,1)
+        await page.wait_for_function("y=>document.querySelector('main').scrollTop>y",arg=scroll_top)
         await expect(page.locator(".lens-node-tooltip")).to_be_visible()
         await expect(page.locator(".lens-axis-readout")).to_have_count(2)
+        await page.locator('main').evaluate('(e,y)=>e.scrollTop=y',scroll_top)
+        await page.wait_for_function("y=>document.querySelector('main').scrollTop===y",arg=scroll_top)
         assert await page.locator(".lens-inspector h3").inner_text()==heading
         assert await first.locator(".lens-halo").evaluate("e=>+getComputedStyle(e).opacity")>0
         await click_node(first)

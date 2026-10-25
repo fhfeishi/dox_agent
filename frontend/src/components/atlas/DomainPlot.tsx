@@ -7,7 +7,7 @@ import {
   type PointerEvent,
 } from "react";
 import { LENSES, type atlasLayout, type Lens } from "../../domainAtlas";
-import { fmt } from "./lensFormat";
+import { cash, fmt } from "./lensFormat";
 type Layout = ReturnType<typeof atlasLayout>;
 type Props = {
   layout: Layout;
@@ -409,6 +409,18 @@ export function DomainPlot({
                   cy={p.cy}
                   r={p.r}
                 />
+                {selected === id && p.d.node.children.length > 0 ? (
+                  <text
+                    className="lens-enter-cue"
+                    x={p.cx}
+                    y={p.cy + 5}
+                    textAnchor="middle"
+                    aria-hidden="true"
+                    pointerEvents="none"
+                  >
+                    ›
+                  </text>
+                ) : null}
                 {seat ? (
                   <text
                     className="lens-node-name"
@@ -422,18 +434,6 @@ export function DomainPlot({
               </g>
             );
           })}
-          {wire ? (
-            <g
-              className="lens-wire-hint"
-              pointerEvents="none"
-              transform={`translate(${(layout.left + layout.right) / 2} ${layout.top + 24})`}
-            >
-              <rect x={-112} y={-18} width={224} height={28} rx={14} />
-              <text textAnchor="middle">
-                {wire.to ? "松开，即可并排对比" : "拖向另一圆，松开对比"}
-              </text>
-            </g>
-          ) : null}
           {view.quads.map((name, i) => {
             const q = layout.quadSeats.get(i);
             return hasData && q ? (
@@ -451,6 +451,18 @@ export function DomainPlot({
             ) : null;
           })}
         </g>
+        {wire ? (
+          <g
+            className="lens-wire-hint"
+            pointerEvents="none"
+            transform={`translate(${layout.right - 72} ${layout.top - 12})`}
+          >
+            <rect x={-72} y={-18} width={144} height={28} rx={14} />
+            <text textAnchor="middle">
+              {wire.to ? "松开对比" : "连接另一圆"}
+            </text>
+          </g>
+        ) : null}
         {Array.from({ length: 5 }, (_, i) => {
           const y = layout.yr[0] + ((layout.yr[1] - layout.yr[0]) * i) / 4;
           return Math.abs(layout.py(y) - my) > size.font * 1.7 ? (
@@ -572,7 +584,7 @@ export function DomainPlot({
             top: Math.max(
               8,
               Math.min(
-                globalThis.innerHeight - 250,
+                globalThis.innerHeight - 160,
                 (svg.current?.getBoundingClientRect().top ?? 0) +
                   hovered.cy +
                   20,
@@ -581,39 +593,19 @@ export function DomainPlot({
           }}
         >
           <b>{hovered.d.node.name}</b>
-          <span>
-            {view.x} {fmt(hovered.x)}
-            {xUnit}，{hovered.x > home.mx ? "高于" : "不高于"}中位{" "}
-            {fmt(home.mx)}
-            {xUnit}
-          </span>
-          <span>
-            {view.y} {fmt(hovered.y)}
-            {yUnit}，{hovered.y > home.my ? "高于" : "不高于"}中位{" "}
-            {fmt(home.my)}
-            {yUnit}
-          </span>
-          <span>
-            {hovered.d.projects} 个项目 · 在「
-            {
-              view.quads[
-                (hovered.y > home.my ? 0 : 2) + (hovered.x > home.mx ? 1 : 0)
-              ]
-            }
-            」
-          </span>
-          <strong>
-            {selected === hovered.d.node.id
-              ? hovered.d.node.children.length
-                ? `再点进入（${hovered.d.node.children.length} 个${NODE_KIND(hovered.d.node.kind)}）`
-                : "当前分支已到最底层"
-              : "点击选中"}
-          </strong>
-          <span>拖向另一圆，连线对比</span>
+          <div className="lens-node-facts">
+            <span>
+              <b>{fmt(hovered.d.projects)}</b>项目
+            </span>
+            <span>
+              <b>{cash(hovered.d)}</b>资助
+            </span>
+            <span>
+              <b>{fmt(hovered.d.items)}</b>技术
+            </span>
+          </div>
         </div>
       ) : null}
     </div>
   );
 }
-const NODE_KIND = (kind: string) =>
-  kind === "domain" ? "技术体系" : "研究方向";

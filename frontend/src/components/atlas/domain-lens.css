@@ -26,7 +26,7 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 12px var(--lens-pad) 6px;
+  padding: 8px var(--lens-pad) 4px;
 }
 .lens-views {
   display: flex;
@@ -46,6 +46,10 @@
   border: 0;
   cursor: pointer;
   white-space: nowrap;
+}
+.lens-top .lens-views button {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .lens-views button[aria-pressed="true"],
 .lens-views button[aria-checked="true"] {
@@ -123,13 +127,6 @@
   padding: 0;
   min-height: 32px;
 }
-.lens-crumbs a {
-  color: var(--link);
-  padding: 3px;
-}
-.lens-crumbs a:hover {
-  text-decoration: underline;
-}
 .lens-crumbs b,
 .lens-crumbs select {
   font-weight: 600;
@@ -138,8 +135,10 @@
 .lens-crumbs select {
   font-size: var(--text-body);
   background: var(--canvas);
-  border: 0;
-  padding: 3px 16px 3px 4px;
+  border: 1px solid var(--line-cool-strong);
+  border-radius: 6px;
+  min-height: 32px;
+  padding: 3px 8px;
   max-width: 250px;
   cursor: pointer;
 }
@@ -221,6 +220,17 @@
 .lens-node {
   cursor: pointer;
   touch-action: none;
+}
+.lens-dot {
+  cursor: grab;
+}
+.lens-enter-cue {
+  font-size: var(--text-emphasis);
+  fill: var(--canvas);
+  font-weight: 600;
+}
+.lens-plot[data-linking="true"] .lens-dot {
+  cursor: grabbing;
 }
 .lens-ghost {
   pointer-events: none;
@@ -311,12 +321,14 @@
 .lens-node-tooltip strong {
   margin-top: 4px;
 }
-.lens-gesture-hint {
-  font-size: var(--text-body);
-  color: var(--steel);
-  text-align: center;
-  padding: 6px 10px 12px;
-  margin: 0;
+.lens-node-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.lens-node-facts b {
+  font-size: var(--text-emphasis);
 }
 .lens-insufficient {
   display: flex;
@@ -412,31 +424,26 @@
   display: block;
   margin-top: 3px;
 }
-.lens-four .lens-info {
-  display: inline-block;
-}
-.lens-info {
-  font-size: var(--text-body);
-  color: var(--muted-cool);
-  cursor: help;
+.lens-four .ui-help-term {
+  display: inline-flex;
 }
 .lens-why {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: var(--text-body);
-  line-height: 1.8;
-  background: var(--canvas);
-  border: 1px solid var(--line-cool);
-  border-radius: 9px;
-  padding: 10px 12px;
-  margin-bottom: 14px;
+  color: var(--terrain-dot-on);
+  padding: 4px 0;
+  margin-bottom: 10px;
 }
 .lens-coverage {
+  display: inline-flex;
   font-size: var(--text-body);
   color: var(--terrain-amber-ink);
   background: var(--terrain-amber-soft);
-  padding: 10px;
-  border-radius: 7px;
-  line-height: 1.7;
-  margin: 0 0 14px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin: 0 0 10px;
 }
 .lens-detail-body h4 {
   font-size: var(--text-body);
@@ -511,22 +518,50 @@
   align-items: center;
   gap: 8px;
 }
-.lens-year-head b {
-  font-size: var(--text-caption);
+.lens-year-head .ui-help-term {
+  font-size: var(--text-body);
   color: var(--steel);
   font-weight: 400;
 }
-.lens-year-head > div > span {
+.lens-year-head > div > span:not(.ui-help-term) {
   font-size: var(--text-emphasis);
   font-weight: 600;
 }
 .lens-year-legend {
+  position: absolute;
+  left: 0;
+  top: 6px;
   font-size: var(--text-body);
   color: var(--steel);
-  margin: 8px 0 4px;
+  margin: 0;
+  line-height: var(--text-body--line-height);
 }
 .lens-year-legend span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   color: var(--terrain-dot-on);
+}
+.lens-year-chart {
+  position: relative;
+}
+.lens-year-legend span::before,
+.lens-legend-total::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: currentColor;
+  margin-right: 5px;
+}
+.lens-legend-total {
+  display: block;
+  font-weight: 400;
+}
+.lens-legend-total::before {
+  background: var(--line-cool-strong);
 }
 .lens-year-scroll {
   overflow-x: auto;
@@ -558,11 +593,22 @@
 }
 .lens-year-total {
   font-size: var(--text-body);
+  fill: var(--steel);
+}
+.lens-year-total-bar {
+  fill: var(--line-cool-strong);
 }
 .lens-year-expand {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.lens-year-expand::after {
+  content: "⌄";
+  display: inline-block;
+  margin-left: 8px;
+}
+.lens-year-expand[aria-expanded="true"]::after {
+  transform: rotate(180deg);
 }
 .lens-year-tooltip {
   position: fixed;
@@ -722,15 +768,8 @@
 }
 
 @media (min-width: 851px) and (max-height: 1000px) {
-  .lens-gesture-hint {
-    padding-top: 4px;
-    padding-bottom: 6px;
-  }
   .lens-year-band {
     padding-top: 8px;
     padding-bottom: 8px;
-  }
-  .lens-year-legend {
-    margin-top: 4px;
   }
 }

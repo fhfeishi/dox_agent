@@ -70,7 +70,7 @@ export function DomainAtlas() {
       </div>
       <ul aria-label="先给结论" className="atlas-findings">{conclusions(data).map((line) => <li key={line.text}>
         <button type="button" onClick={() => line.library ? locate(line.library) : document.getElementById(line.section!)?.scrollIntoView({ behavior: "smooth", block: "start" })}>
-          {line.text}<i aria-hidden="true">→</i></button></li>)}</ul>
+          {line.text}<i aria-hidden="true">›</i></button></li>)}</ul>
     </header>
 
     <section aria-labelledby="atlas-01">

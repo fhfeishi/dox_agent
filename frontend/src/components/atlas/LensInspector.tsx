@@ -1,3 +1,6 @@
+import { HelpTerm as Info } from "../HelpTerm";
+import { useAuth } from "../../auth";
+import { useLayout } from "../../layout";
 import type {
   AtlasMeasure,
   AtlasModel,
@@ -25,13 +28,6 @@ type Props = {
   onSelectRow: (id: string) => void;
   showLibrary: () => void;
 };
-function Info({ text }: { text: string }) {
-  return (
-    <span tabIndex={0} className="lens-info" aria-label={text} title={text}>
-      ⓘ
-    </span>
-  );
-}
 export function LensInspector({
   model,
   d,
@@ -46,12 +42,17 @@ export function LensInspector({
   onSelectRow,
   showLibrary,
 }: Props) {
+  const { role } = useAuth(),
+    { openCorpus } = useLayout();
   const domain = model.nodes.get(d.node.domain),
     short = domain?.name.replace(/^AI与/, "");
   const missingMoney = d.projects - d.funded,
     missingOutputs = d.projects - d.listed;
   const v = LENSES[lens],
     value = lensValue(d, lens);
+  const quadrant = value.reason
+    ? null
+    : (value.y! > medians.my ? 0 : 2) + (value.x! > medians.mx ? 1 : 0);
   const why = value.reason
     ? value.reason
     : `在「${v.quads[(value.y! > medians.my ? 0 : 2) + (value.x! > medians.mx ? 1 : 0)]}」：${v.x} ${fmt(value.x!)}（中位 ${fmt(medians.mx)}），${v.y} ${fmt(value.y!)}（中位 ${fmt(medians.my)}）。`;
@@ -99,27 +100,52 @@ export function LensInspector({
           </>
         ) : (
           <>
-            <h3 className="lens-preview-name">{d.node.name}</h3>
+            <h3 className="lens-preview-name">
+              {domain && d.node.kind === "domain" ? (
+                <a
+                  className="ui-page-link"
+                  href={`/library/${encodeURIComponent(domain.id)}/${role === "leader" ? "targets/four-facets" : "documents"}`}
+                  onClick={(e) => {
+                    if (
+                      e.button === 0 &&
+                      !e.ctrlKey &&
+                      !e.metaKey &&
+                      !e.shiftKey &&
+                      !e.altKey
+                    ) {
+                      e.preventDefault();
+                      openCorpus(domain.id);
+                    }
+                  }}
+                >
+                  {d.node.name}
+                </a>
+              ) : (
+                d.node.name
+              )}
+            </h3>
             <p className="lens-scope-range">
               {windowLabel(window).replace("立项", "")}
             </p>
             <div className="lens-four">
               <div>
                 <b>{fmt(d.projects)}</b>
-                <span>
-                  项目{" "}
+                <span className="lens-stat-label">
                   <Info
                     text={`当前层与所选立项年份内的可确认项目，各体系可能涉及相同项目。${d.undated ? `含 ${d.undated} 项立项年份未确认，仅计累计，不进入年度柱图。` : ""}`}
-                  />
+                  >
+                    项目
+                  </Info>
                 </span>
               </div>
               <div>
                 <b>{cash(d)}</b>
-                <span>
-                  批准资助金额{" "}
+                <span className="lens-stat-label">
                   <Info
                     text={`${d.funded}/${d.projects} 项给出金额，未记录不作零。`}
-                  />
+                  >
+                    批准资助金额
+                  </Info>
                 </span>
                 {d.projects && d.funded / d.projects < 0.95 ? (
                   <small>缺 {missingMoney} 项</small>
@@ -127,40 +153,69 @@ export function LensInspector({
               </div>
               <div>
                 <b>{fmt(d.items)}</b>
-                <span>
-                  技术条目{" "}
+                <span className="lens-stat-label">
                   <Info
                     text={`${d.items - d.levels[0]} 条已判定成熟度；平均成熟度只计已判定条目。`}
-                  />
+                  >
+                    技术条目
+                  </Info>
                 </span>
               </div>
               <div>
                 <b>{d.listed ? fmt(d.outputs) : "未记录"}</b>
-                <span>
-                  成果条目{" "}
+                <span className="lens-stat-label">
                   <Info
                     text={`${d.listed}/${d.projects} 项列有成果。${OUTPUT_MEANING}`}
-                  />
+                  >
+                    成果条目
+                  </Info>
                 </span>
                 {d.projects && d.listed / d.projects < 0.95 ? (
                   <small>缺 {missingOutputs} 项</small>
                 ) : null}
               </div>
             </div>
-            {selected ? <div className="lens-why">{why}</div> : null}
+            {selected ? (
+              <div className="lens-why">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                >
+                  {[0, 1, 2, 3].map((i) => (
+                    <rect
+                      key={i}
+                      x={(i % 2) * 12}
+                      y={Math.floor(i / 2) * 12}
+                      width="10"
+                      height="10"
+                      rx="2"
+                      fill="currentColor"
+                      opacity={i === quadrant ? 1 : 0.16}
+                    />
+                  ))}
+                </svg>
+                <Info text={why}>
+                  {quadrant === null ? "暂不能定位" : v.quads[quadrant]}
+                </Info>
+              </div>
+            ) : null}
             {missingMoney || missingOutputs ? (
-              <p className="lens-coverage">
-                {missingMoney ? `缺金额 ${missingMoney} 项` : ""}
-                {missingMoney && missingOutputs ? " · " : ""}
-                {missingOutputs ? `缺成果 ${missingOutputs} 项` : ""} ·
-                已列入补录待办
-              </p>
+              <div className="lens-coverage">
+                <Info
+                  text={`${missingMoney ? `缺金额 ${missingMoney} 项` : "金额完整"}；${missingOutputs ? `缺成果 ${missingOutputs} 项` : "成果完整"}。缺失已列入补录待办。`}
+                >
+                  待补录
+                </Info>
+              </div>
             ) : null}
             {rows.length ? (
               <>
                 <h4>
-                  {NODE_KINDS[rows[0].node.kind]}构成{" "}
-                  <Info text="各行可能涉及同一项目，不可直接相加；点击一行查看该节点。" />
+                  <Info text="各行可能涉及同一项目，不可直接相加。">
+                    {NODE_KINDS[rows[0].node.kind]}构成
+                  </Info>
                 </h4>
                 <table className="lens-read-table">
                   <thead>

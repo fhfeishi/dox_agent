@@ -1,4 +1,5 @@
 import { useAnnualGestures } from "./useAnnualSelection";
+import { HelpTerm } from "../HelpTerm";
 import { useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import {
   ALL_YEARS,
@@ -88,7 +89,7 @@ export function YearBand({
   }, [years.length]);
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
-    trim = viewport.compact ? 72 : 0,
+    trim = viewport.compact ? 110 : 0,
     bandHeight = ((baseline ? 270 : 180) - trim) * scale;
   const baseY = ((baseline ? 248 : 160) - trim) * scale,
     barMax = ((baseline ? 190 : 128) - trim) * scale;
@@ -246,7 +247,9 @@ export function YearBand({
     <div className="lens-year-band">
       <div className="lens-year-head">
         <div>
-          <b>立项年度</b>
+          <HelpTerm text="年度数据按项目立项年份归属；技术和成果也随项目立项年汇总，不是成果发表年份。">
+            立项年
+          </HelpTerm>
           <span aria-live="polite">
             {activeWindow.from === null
               ? "全部年份"
@@ -300,154 +303,170 @@ export function YearBand({
             );
           })}
         </div>
-      </div>
-      <p className="lens-year-legend">
-        {focus.map((id, i) => (
-          <span key={id} className={baseline ? (i ? "lens-b" : "lens-a") : ""}>
-            ■ {baseline ? (i ? "B / " : "A / ") : ""}
-            {model.nodes.get(id)?.name.replace(/^AI与/, "")}　
-          </span>
-        ))}
-        灰柱 = 当年合计
-      </p>
-      <div ref={canvas} className="lens-year-scroll">
-        <svg
-          width={viewport.width}
-          height={bandHeight}
-          viewBox={`0 0 ${viewport.width} ${bandHeight}`}
-          tabIndex={0}
-          role="group"
-          aria-label="选择立项年份，点选或拖动框选，Esc取消，方向键单年，Home恢复全部"
-          className="lens-band-svg"
-          data-comparison-extra={baseline ? 90 * scale : 0}
-          data-selecting={draft !== null}
-          onPointerDown={beginYearSelection}
-          onPointerMove={previewYearRange}
-          onPointerUp={commitYearSelection}
-          onPointerCancel={cancelYearSelection}
-          onKeyDown={navigateYears}
+        <button
+          type="button"
+          className="lens-secondary ui-disclosure lens-year-expand"
+          aria-expanded={expanded}
+          aria-controls="lens-annual-details"
+          aria-label={expanded ? "收起各领域 ▴" : "展开各领域 ▾"}
+          onClick={toggle}
         >
-          {years.map((y, i) => {
-            const previewYearValues: NonNullable<
-              React.ComponentProps<"g">["onPointerEnter"]
-            > = (e) => {
-              if (!drag.current)
-                setTip({
-                  year: y,
-                  x: Math.max(
-                    12,
-                    Math.min(globalThis.innerWidth - 300, e.clientX + 14),
-                  ),
-                  y: Math.max(
-                    12,
-                    Math.min(globalThis.innerHeight - 200, e.clientY - 180),
-                  ),
-                });
-            };
-            const dismissYearValues: NonNullable<
-              React.ComponentProps<"g">["onPointerLeave"]
-            > = () => setTip(null);
-            const x = bandLeft + i * w;
-            return (
-              <g
-                key={y}
-                data-year={y}
-                onPointerEnter={previewYearValues}
-                onPointerLeave={dismissYearValues}
+          各领域
+        </button>
+      </div>
+      <div ref={canvas} className="lens-year-scroll">
+        <div className="lens-year-chart" style={{ width: viewport.width }}>
+          <p className="lens-year-legend" style={{ width: bandLeft - 14 }}>
+            {focus.map((id, i) => (
+              <span
+                key={id}
+                title={model.nodes.get(id)?.name}
+                className={baseline ? (i ? "lens-b" : "lens-a") : ""}
               >
-                <rect
-                  x={x}
-                  y={3 * scale}
-                  width={w}
-                  height={bandHeight}
-                  fill={inWindow(y) ? "var(--terrain-empty)" : "transparent"}
-                />
-                <rect
-                  className="lens-year-bar"
-                  x={x + 12}
-                  y={baseY - (sums[i] / peak) * barMax}
-                  width={w - 24}
-                  height={(sums[i] / peak) * barMax}
-                  fill="var(--track)"
-                />
-                <text
-                  className="lens-year-total"
-                  x={x + w / 2}
-                  y={14 * scale}
-                  textAnchor="middle"
-                  fill="var(--muted-cool)"
+                {baseline ? (i ? "B / " : "A / ") : ""}
+                {model.nodes.get(id)?.name.replace(/^AI与/, "")}
+              </span>
+            ))}
+            <b className="lens-legend-total">当年合计</b>
+          </p>
+          <svg
+            width={viewport.width}
+            height={bandHeight}
+            viewBox={`0 0 ${viewport.width} ${bandHeight}`}
+            tabIndex={0}
+            role="group"
+            aria-label="选择立项年份，点选或拖动框选，Esc取消，方向键单年，Home恢复全部"
+            className="lens-band-svg"
+            data-comparison-extra={baseline ? 90 * scale : 0}
+            data-selecting={draft !== null}
+            onPointerDown={beginYearSelection}
+            onPointerMove={previewYearRange}
+            onPointerUp={commitYearSelection}
+            onPointerCancel={cancelYearSelection}
+            onKeyDown={navigateYears}
+          >
+            {years.map((y, i) => {
+              const previewYearValues: NonNullable<
+                React.ComponentProps<"g">["onPointerEnter"]
+              > = (e) => {
+                if (!drag.current)
+                  setTip({
+                    year: y,
+                    x: Math.max(
+                      12,
+                      Math.min(globalThis.innerWidth - 300, e.clientX + 14),
+                    ),
+                    y: Math.max(
+                      12,
+                      Math.min(globalThis.innerHeight - 200, e.clientY - 180),
+                    ),
+                  });
+              };
+              const dismissYearValues: NonNullable<
+                React.ComponentProps<"g">["onPointerLeave"]
+              > = () => setTip(null);
+              const x = bandLeft + i * w;
+              return (
+                <g
+                  key={y}
+                  data-year={y}
+                  onPointerEnter={previewYearValues}
+                  onPointerLeave={dismissYearValues}
                 >
-                  {sumText(i)}
-                </text>
-                {focus.map((id, j) => {
-                  const d = model.measure(id, { from: y, to: y }),
-                    h = (d[metric] / peak) * barMax,
-                    bx =
-                      x +
-                      w / 2 +
-                      (focus.length > 1
+                  <rect
+                    x={x}
+                    y={3 * scale}
+                    width={w}
+                    height={bandHeight}
+                    fill={inWindow(y) ? "var(--terrain-empty)" : "transparent"}
+                  />
+                  <rect
+                    className="lens-year-bar lens-year-total-bar"
+                    x={x + 12}
+                    y={baseY - (sums[i] / peak) * barMax}
+                    width={w - 24}
+                    height={(sums[i] / peak) * barMax}
+                    fill="var(--track)"
+                  />
+                  <text
+                    className="lens-year-total"
+                    x={x + w / 2}
+                    y={14 * scale}
+                    textAnchor="middle"
+                    fill="var(--muted-cool)"
+                  >
+                    {sumText(i)}
+                  </text>
+                  {focus.map((id, j) => {
+                    const d = model.measure(id, { from: y, to: y }),
+                      h = (d[metric] / peak) * barMax,
+                      bx =
+                        x +
+                        w / 2 +
+                        (focus.length > 1
+                          ? j
+                            ? 3 * scale
+                            : -16 * scale
+                          : -8 * scale),
+                      color = baseline
                         ? j
-                          ? 3 * scale
-                          : -16 * scale
-                        : -8 * scale),
-                    color = baseline
-                      ? j
-                        ? "var(--terrain-amber)"
-                        : "var(--link)"
-                      : "var(--terrain-dot-on)";
-                  return (
-                    <g key={id}>
-                      <text
-                        x={bx + 7 * scale}
-                        y={
-                          baseline
-                            ? (j ? 50 : 32) * scale
-                            : baseY - h - 6 * scale
-                        }
-                        textAnchor="middle"
-                        fill={color}
-                      >
-                        {!d.projects
-                          ? ""
-                          : known(d, metric)
-                            ? fmt(d[metric])
-                            : "未记录"}
-                      </text>
-                      {d.projects && !known(d, metric) ? (
-                        <circle
-                          cx={bx + 7 * scale}
-                          cy={baseY - 8 * scale}
-                          r={5 * scale}
-                          fill="none"
-                          stroke={color}
-                          strokeDasharray="2 3"
-                        />
-                      ) : (
-                        <rect
-                          className="lens-year-bar"
-                          x={bx}
-                          y={baseY - h}
-                          width={14 * scale}
-                          height={h}
+                          ? "var(--terrain-amber)"
+                          : "var(--link)"
+                        : "var(--terrain-dot-on)";
+                    return (
+                      <g key={id}>
+                        <text
+                          x={bx + 7 * scale}
+                          y={
+                            baseline
+                              ? (j ? 50 : 32) * scale
+                              : baseY - h - 6 * scale
+                          }
+                          textAnchor="middle"
                           fill={color}
-                          opacity={inWindow(y) ? 1 : 0.4}
-                        />
-                      )}
-                    </g>
-                  );
-                })}
-                <text
-                  x={x + w / 2}
-                  y={bandHeight - 6 * scale}
-                  textAnchor="middle"
-                  fill="var(--muted-cool)"
-                >
-                  {y}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
+                        >
+                          {!d.projects
+                            ? ""
+                            : known(d, metric)
+                              ? fmt(d[metric])
+                              : "未记录"}
+                        </text>
+                        {d.projects && !known(d, metric) ? (
+                          <circle
+                            cx={bx + 7 * scale}
+                            cy={baseY - 8 * scale}
+                            r={5 * scale}
+                            fill="none"
+                            stroke={color}
+                            strokeDasharray="2 3"
+                          />
+                        ) : (
+                          <rect
+                            className="lens-year-bar"
+                            x={bx}
+                            y={baseY - h}
+                            width={14 * scale}
+                            height={h}
+                            fill={color}
+                            opacity={inWindow(y) ? 1 : 0.4}
+                          />
+                        )}
+                      </g>
+                    );
+                  })}
+                  <text
+                    x={x + w / 2}
+                    y={bandHeight - 6 * scale}
+                    textAnchor="middle"
+                    fill="var(--muted-cool)"
+                  >
+                    {y}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
       </div>
       {tip ? (
         <div
@@ -492,17 +511,6 @@ export function YearBand({
           </span>
         </div>
       ) : null}
-      <div className="lens-year-expand">
-        <button
-          type="button"
-          className="lens-secondary"
-          aria-expanded={expanded}
-          aria-controls="lens-annual-details"
-          onClick={toggle}
-        >
-          {expanded ? "收起各领域 ▴" : "展开各领域 ▾"}
-        </button>
-      </div>
       {expanded ? (
         <div id="lens-annual-details" className="lens-matrix">
           <table>

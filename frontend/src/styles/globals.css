@@ -415,6 +415,15 @@
 
 /* ------------------------------------------------------------------ 领域分析 · 全景 (query 2026-1021 1629)
    Same quiet palette as the 首页 地形图: maturity roles --m-*, amber for money, slate for projects. */
+.ui-page-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--line-cool-strong); }
+a.ui-page-link { color: var(--link); }
+.ui-page-link::after { content: "↗"; display: inline-block; margin-left: 5px; font-size: var(--text-body); }
+.ui-page-link:hover { text-decoration-color: currentColor; }
+button.ui-page-link { text-decoration: none; }
+.ui-help-term { text-decoration: underline dotted; text-decoration-color: var(--muted-cool); text-underline-offset: 4px; cursor: help; }
+.ui-help-term:focus-visible,.ui-page-link:focus-visible { outline: 2px solid var(--terrain-amber); outline-offset: 3px; border-radius: 3px; }
+.ui-help-tooltip { position: fixed; z-index: 120; width: 280px; max-width: calc(100vw - 24px); padding: 10px 12px; border-radius: 8px; background: var(--heading); color: var(--canvas); font-size: var(--text-body); line-height: 1.6; box-shadow: 0 6px 24px var(--line-cool-strong); pointer-events: none; }
+.ui-disclosure[aria-expanded="true"] { background: var(--selected-cool); border-color: var(--link); }
 .atlas-page { color: var(--ink); max-width: clamp(1280px, 80vw, 2400px); }
 .atlas-hero { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1024px) { .atlas-hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; } }
@@ -424,10 +433,10 @@
 .atlas-totals dd { font-size: var(--text-stat); line-height: var(--text-stat--line-height); color: var(--heading); font-variant-numeric: tabular-nums; }
 .atlas-findings { display: grid; align-content: center; gap: 8px; border-radius: 16px; padding: 16px 20px; background: linear-gradient(135deg, var(--banner-1), var(--banner-2)); color: var(--canvas); }
 .atlas-findings li { position: relative; padding-left: 14px; font-size: var(--text-body); font-weight: 500; line-height: 22px; }
-.atlas-findings button { text-align: left; color: inherit; }
-.atlas-findings button i { font-style: normal; margin-left: 6px; opacity: 0; transition: opacity 150ms; }
+.atlas-findings button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; text-align: left; color: inherit; border-radius: 4px; cursor: pointer; }
+.atlas-findings button i { flex-shrink: 0; font-style: normal; margin-left: 6px; opacity: 0.8; transition: opacity 150ms; }
 .atlas-findings button:hover i, .atlas-findings button:focus-visible i { opacity: 0.8; }
-.atlas-findings button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.atlas-findings button:hover { background: color-mix(in srgb, var(--canvas) 10%, transparent); }
 .atlas-findings li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--terrain-amber); }
 .atlas-section { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 14px; font-size: var(--text-group); font-weight: 600; color: var(--heading); }
 .atlas-section span { font-size: var(--text-caption); color: var(--muted-cool); font-weight: 400; }

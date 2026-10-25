@@ -6,6 +6,7 @@ Background: Baha's review of 2026-10-18, findings F4/F6 and quick wins Q3/Q4.
 
 | Date | Removed | Old location | Why | Restore |
 |---|---|---|---|---|
+| 2026-10-25 | 01常驻手势句、右栏长段象限说明与重复缺项横幅、年度独立图例/展开行 | `DomainLens.tsx`、`LensInspector.tsx`、`DomainPlot.tsx`、`YearBand.tsx` 与样式 | 用户要求主图更高、通过布局与交互解释。说明改为共享HelpTerm按需提供，象限用小图标，年图改为导航带；数据与规则保留 | `git show 9b2579d:frontend/src/components/atlas/LensInspector.tsx`（其他同提交） |
 | 2026-10-25 | 01缩放/平移控件与事件、复位键、视窗变换和防拖空约束及旧缩放断言 | `DomainLens.tsx`、`DomainPlot.tsx`、`domainAtlas.ts`、`usePanZoom.ts`、`domain-lens.css` | 用户要求四象限固定全景；删除01使用的缩放路径与约束参数，02仍使用共享缩放hook与控件；新断言验证滚动页面和空白拖动不改变图内坐标 | `git show dfa6260:frontend/src/domainAtlas.ts`（其他同提交） |
 | 2026-10-25 | 01右栏对比按钮、待选择状态及对应旧断言/样式 | `DomainLens.tsx`、`LensInspector.tsx`、`domain-lens.css`、`browser_domain_lens.py` | 用户要求取消先点小按钮的步骤；改为图中直接拖线对比，删除互斥旧模式；拖线以当前单击模型重写，没有恢复旧延迟/固定逻辑 | `git show 2dc7b8d:frontend/src/components/atlas/LensInspector.tsx`（其他同提交） |
 | 2026-10-24 | 01固定/解除、双击进入/复位、拖线对比、悬停换右栏及旧手势hook | `DomainLens.tsx`、`LensInspector.tsx`、`useLensGestures.ts` 与 browser_domain_lens 旧断言 | 第三轮用户明确改为单击选中/再点进入/空白退一步；年度框选改用 `useAnnualSelection.ts`，旧代码与断言删除 | `git show fde928c:frontend/src/components/atlas/useLensGestures.ts`（其他同提交） |

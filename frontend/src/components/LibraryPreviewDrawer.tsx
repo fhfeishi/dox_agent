@@ -75,7 +75,7 @@ export function LibraryPreviewDrawer({ row: current, onClose, research }: { row:
         : <span className="text-caption text-[var(--muted-cool)]">数据取技术谱系与项目索引</span>}
       <button type="button" className="slide-action" disabled={saving} title="把这份预览的图表与数字保存到报告中心：专项报告 · 领域分析"
         onClick={() => void exportReport(row.corpus_id)}>{saving ? "正在保存…" : "导出报告"}</button>
-      <button type="button" className="slide-action primary" onClick={() => { onClose(); openCorpus(row.corpus_id); }}>进入资料库 →</button>
+      <button type="button" className="slide-action primary ui-page-link" onClick={() => { onClose(); openCorpus(row.corpus_id); }}>进入资料库</button>
     </>}>
       <div className="space-y-3">
         {records ? <section className="terrain-card p-4"><b className="text-body text-[var(--heading)]">批准资助金额与成果列表</b><p className="mt-2 text-body">批准资助金额 {fmt(records.funding)} 万元（{records.funded}/{records.projects} 项有记录）；成果 {fmt(records.outputs)} 条（{records.listed}/{records.projects} 项列有成果）。</p><p className="mt-2 text-caption text-[var(--steel)]">{OUTPUT_MEANING}</p></section> : null}

@@ -7,6 +7,7 @@ The real HTTP app/session runs in temporary storage; only domain data is a fixtu
 import asyncio
 import json
 import os
+from urllib.parse import quote
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -77,7 +78,8 @@ async def check_simplified(page,origin,shots):
         lens=page.locator(".domain-lens")
         await expect(lens.get_by_role('group',name='缩放',exact=True)).to_have_count(0)
         plot_box=await page.locator('.lens-plot').bounding_box()
-        assert plot_box['width']>=790 and plot_box['height']>=350,plot_box
+        assert plot_box['width']>=790 and plot_box['height']>=460,plot_box
+        await expect(page.locator('.lens-gesture-hint')).to_have_count(0)
         status=page.locator(".lens-inspector-status")
         await expect(status).to_contain_text("当前层")
         first=page.locator(".lens-node").first
@@ -87,6 +89,19 @@ async def check_simplified(page,origin,shots):
         await page.wait_for_function("id=>new URL(location.href).searchParams.get('node')===id",arg=domain)
         await expect(status).to_contain_text("已选中")
         await expect(page.locator(".lens-primary")).to_contain_text("预览资料库")
+        href=await page.locator('.lens-preview-name .ui-page-link').get_attribute('href')
+        assert href in [f'/library/{quote(domain,safe="")}/documents',f'/library/{quote(domain,safe="")}/targets/four-facets'],href
+        term=page.locator('.lens-four').get_by_text('批准资助金额',exact=True)
+        await term.hover()
+        await expect(page.get_by_role('tooltip')).to_contain_text('项给出金额')
+        await page.mouse.move(20,20)
+        await expect(page.locator('.ui-help-tooltip')).to_have_count(0)
+        await term.focus()
+        await expect(page.locator('.ui-help-tooltip')).to_be_visible()
+        await page.keyboard.press('Escape')
+        await expect(page.locator('.ui-help-tooltip')).to_have_count(0)
+        assert await page.evaluate("new URL(location.href).searchParams.get('node')")==domain
+        assert len(await page.locator('.lens-why').inner_text())<=30
         heading=await page.locator(".lens-inspector h3").inner_text()
         await page.locator(".lens-node").last.locator(".lens-dot").hover()
         await expect(page.locator(".lens-node-tooltip")).to_be_visible()

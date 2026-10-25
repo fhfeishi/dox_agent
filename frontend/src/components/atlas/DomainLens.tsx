@@ -297,8 +297,8 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
         width: Math.max(660, Math.floor(plot.width)),
         height: Math.round(
           Math.max(
-            globalThis.innerWidth > 850 ? 356 : 414,
-            Math.min(1000, available - header - footer + comparisonExtra),
+            globalThis.innerWidth > 850 ? 464 : 414,
+            Math.min(1120, available - header - footer + comparisonExtra),
           ),
         ),
         font,
@@ -412,15 +412,13 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           </div>
           <nav className="lens-crumbs" aria-label="当前分析层级">
             {scope ? (
-              <a
-                href="?"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateTo(null);
-                }}
+              <button
+                type="button"
+                className="lens-secondary ui-disclosure"
+                onClick={() => navigateTo(null)}
               >
                 全部领域
-              </a>
+              </button>
             ) : (
               <b>全部领域</b>
             )}
@@ -445,15 +443,13 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
                     ))}
                   </select>
                 ) : (
-                  <a
-                    href="?"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo(id);
-                    }}
+                  <button
+                    type="button"
+                    className="lens-secondary ui-disclosure"
+                    onClick={() => navigateTo(id)}
                   >
                     {model.nodes.get(id)!.name}
-                  </a>
+                  </button>
                 )}
               </span>
             ))}
@@ -495,9 +491,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           }}
           onBlank={back}
         />
-        <p className="lens-gesture-hint">
-          点圆选中 · 再点进入 · 拖圆对比 · 点空白返回
-        </p>
         {layout.missing.some((p) => p.d.projects) ? (
           <div className="lens-insufficient">
             数据不足：

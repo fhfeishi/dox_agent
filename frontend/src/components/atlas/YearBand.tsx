@@ -56,7 +56,11 @@ export function YearBand({
     y: number;
   } | null>(null);
   const canvas = useRef<HTMLDivElement>(null),
-    [viewport, setViewport] = useState({ width: 750, font: 14 });
+    [viewport, setViewport] = useState({
+      width: 750,
+      font: 14,
+      compact: false,
+    });
   useLayoutEffect(() => {
     const el = canvas.current;
     if (!el) return;
@@ -65,8 +69,12 @@ export function YearBand({
         font =
           parseFloat(getComputedStyle(el).getPropertyValue("--text-body")) ||
           14;
+      const compact =
+        globalThis.innerWidth > 850 && globalThis.innerHeight <= 1000;
       setViewport((old) =>
-        old.width === width && old.font === font ? old : { width, font },
+        old.width === width && old.font === font && old.compact === compact
+          ? old
+          : { width, font, compact },
       );
     };
     const observer = new ResizeObserver(read);
@@ -80,9 +88,10 @@ export function YearBand({
   }, [years.length]);
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
-    bandHeight = (baseline ? 270 : 180) * scale;
-  const baseY = (baseline ? 248 : 160) * scale,
-    barMax = (baseline ? 190 : 128) * scale;
+    trim = viewport.compact ? 72 : 0,
+    bandHeight = ((baseline ? 270 : 180) - trim) * scale;
+  const baseY = ((baseline ? 248 : 160) - trim) * scale,
+    barMax = ((baseline ? 190 : 128) - trim) * scale;
   const focus: string[] = chosen
     ? baseline
       ? [baseline, chosen]

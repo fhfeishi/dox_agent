@@ -72,6 +72,8 @@ async def check_simplified(page,origin,shots):
         await page.goto(origin+"/overview/domains")
         await page.locator(".lens-node").first.wait_for(timeout=60000)
         await settle(page)
+        band=await page.locator('.lens-band-svg').bounding_box()
+        assert band and band['y']+band['height']<=await page.evaluate('innerHeight'),band
         lens=page.locator(".domain-lens")
         status=page.locator(".lens-inspector-status")
         await expect(status).to_contain_text("当前层")

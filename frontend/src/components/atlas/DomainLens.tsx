@@ -92,7 +92,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     : "projects";
   const expanded = search.get("expanded") === "1";
   const [guide, setGuide] = useState<string | null>(null);
-  const [compareFrom, setCompareFrom] = useState<string | null>(null);
   const [open, setOpen] = useState(() => globalThis.innerWidth > 850);
   const [preview, setPreview] = useState<LibraryOverview | null>(null);
   const [notice, setNotice] = useState("");
@@ -141,7 +140,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       values.node === null
     )
       setGuide(null);
-    setCompareFrom(null);
     const next = new URLSearchParams(params.current);
     next.delete("pin");
     for (const [k, v] of Object.entries(values))
@@ -181,10 +179,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
   function choose(id: string) {
     if (!ids.includes(id)) return;
     setOpen(true);
-    if (compareFrom) {
-      if (compareFrom !== id) update({ compare: compareFrom, node: id });
-      return;
-    }
     if (params.current.get("node") === id) {
       enter(id);
       return;
@@ -225,10 +219,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     returned(layer ? model.nodes.get(layer)!.name : "全部领域");
   }
   function back() {
-    if (compareFrom) {
-      setCompareFrom(null);
-      return;
-    }
     if (params.current.get("compare")) {
       update({ compare: null });
       return;
@@ -280,7 +270,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     }
     document.addEventListener("keydown", key);
     return () => document.removeEventListener("keydown", key);
-  }, [preview, selected, base, scope, compareFrom, moving]);
+  }, [preview, selected, base, scope, moving]);
   useEffect(
     () => () => {
       if (noticeTimer.current) clearTimeout(noticeTimer.current);
@@ -511,10 +501,18 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           moving={moving}
           onHover={setGuide}
           onSelect={choose}
+          onCompare={(from, to) => {
+            if (from !== to && ids.includes(from) && ids.includes(to)) {
+              update({ compare: from, node: to });
+              setOpen(true);
+            }
+          }}
           onBlank={back}
           pan={pan}
         />
-        <p className="lens-gesture-hint">点圆选中 · 再点进入 · 点空白返回</p>
+        <p className="lens-gesture-hint">
+          点圆选中 · 再点进入 · 拖圆对比 · 点空白返回
+        </p>
         {layout.missing.some((p) => p.d.projects) ? (
           <div className="lens-insufficient">
             数据不足：
@@ -562,10 +560,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
         medians={home}
         open={open}
         onClose={() => setOpen(false)}
-        onCompare={() => {
-          if (selected) setCompareFrom(selected);
-        }}
-        comparePending={!!compareFrom}
         onSelectRow={selectRow}
         showLibrary={showLibrary}
       />

@@ -1,4 +1,11 @@
-import { useRef, type CSSProperties, type RefObject } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type RefObject,
+  type PointerEvent,
+} from "react";
 import { LENSES, type atlasLayout, type Lens } from "../../domainAtlas";
 import { fmt } from "./lensFormat";
 import type { usePanZoom } from "./usePanZoom";
@@ -17,6 +24,7 @@ type Props = {
   moving: boolean;
   onHover: (id: string | null) => void;
   onSelect: (id: string) => void;
+  onCompare: (from: string, to: string) => void;
   onBlank: () => void;
   pan: ReturnType<typeof usePanZoom>;
 };
@@ -73,16 +81,95 @@ export function DomainPlot({
   moving,
   onHover,
   onSelect,
+  onCompare,
   onBlank,
   pan,
 }: Props) {
   const press = useRef<{ x: number; y: number } | null>(null);
+  const drag = useRef<{
+    id: string;
+    pointer: number;
+    x: number;
+    y: number;
+    active: boolean;
+  } | null>(null);
+  const suppressDragClick = useRef(false);
+  const [wire, setWire] = useState<{
+    from: string;
+    x: number;
+    y: number;
+    to: string | null;
+  } | null>(null);
+  function clearDrag() {
+    const d = drag.current;
+    drag.current = null;
+    setWire(null);
+    if (d && svg.current?.hasPointerCapture(d.pointer))
+      svg.current.releasePointerCapture(d.pointer);
+  }
+  useEffect(() => {
+    window.addEventListener("blur", clearDrag);
+    return () => window.removeEventListener("blur", clearDrag);
+  }, []);
+  function pointerPoint(e: PointerEvent<SVGSVGElement>) {
+    const node = svg.current!;
+    const point = node.createSVGPoint();
+    point.x = e.clientX;
+    point.y = e.clientY;
+    return point.matrixTransform(node.getScreenCTM()!.inverse());
+  }
+  function dropTarget(x: number, y: number, from: string) {
+    return layout.points
+      .filter(
+        (p) =>
+          !p.ghost &&
+          p.d.node.id !== from &&
+          Math.hypot(p.cx - x, p.cy - y) <= p.r + 10,
+      )
+      .sort(
+        (a, b) =>
+          Math.hypot(a.cx - x, a.cy - y) - Math.hypot(b.cx - x, b.cy - y),
+      )[0];
+  }
+  function moveWire(e: PointerEvent<SVGSVGElement>) {
+    const d = drag.current;
+    if (!d || d.pointer !== e.pointerId) return;
+    if (!d.active && Math.hypot(e.clientX - d.x, e.clientY - d.y) <= 5) return;
+    if (!d.active) {
+      d.active = true;
+      suppressDragClick.current = true;
+      svg.current!.setPointerCapture(e.pointerId);
+      onHover(null);
+    }
+    const point = pointerPoint(e),
+      target = dropTarget(point.x, point.y, d.id);
+    setWire({
+      from: d.id,
+      x: target?.cx ?? point.x,
+      y: target?.cy ?? point.y,
+      to: target?.d.node.id ?? null,
+    });
+  }
+  function finishWire(e: PointerEvent<SVGSVGElement>) {
+    const d = drag.current;
+    if (!d || d.pointer !== e.pointerId) return;
+    const point = pointerPoint(e),
+      target = d.active ? dropTarget(point.x, point.y, d.id) : undefined;
+    clearDrag();
+    if (d.active) {
+      e.preventDefault();
+      e.stopPropagation();
+      onHover(null);
+      if (target) onCompare(d.id, target.d.node.id);
+    }
+  }
   const hovered = layout.points.find((p) => !p.ghost && p.d.node.id === guide);
-  const focused = moving
-    ? undefined
-    : layout.points.find(
-        (p) => !p.ghost && p.d.node.id === (guide ?? selected),
-      );
+  const focused =
+    moving || wire
+      ? undefined
+      : layout.points.find(
+          (p) => !p.ghost && p.d.node.id === (guide ?? selected),
+        );
   const view = LENSES[lens],
     mx = layout.medianX,
     my = layout.medianY;
@@ -92,6 +179,10 @@ export function DomainPlot({
     if (e.key === "Enter" || e.key === " ") {
       if (moving) return;
       e.preventDefault();
+      if (e.shiftKey && selected && selected !== id) {
+        onCompare(selected, id);
+        return;
+      }
       onSelect(id);
       return;
     }
@@ -124,7 +215,14 @@ export function DomainPlot({
         tabIndex={0}
         role="group"
         aria-label="研究领域四象限图"
+        data-linking={!!wire}
         onKeyDown={(e) => {
+          if (e.key === "Escape" && drag.current) {
+            e.preventDefault();
+            e.stopPropagation();
+            clearDrag();
+            return;
+          }
           if (e.key === "0") {
             e.preventDefault();
             pan.reset();
@@ -132,18 +230,27 @@ export function DomainPlot({
         }}
         onPointerDownCapture={(e) => {
           press.current = { x: e.clientX, y: e.clientY };
+          suppressDragClick.current = false;
+        }}
+        onPointerMove={moveWire}
+        onPointerUp={finishWire}
+        onPointerCancel={clearDrag}
+        onLostPointerCapture={() => {
+          if (drag.current) clearDrag();
         }}
         onPointerDown={(e) => {
           if (!(e.target as Element).closest("[data-node]")) pan.down(e);
         }}
         onClickCapture={(e) => {
           if (
-            press.current &&
-            Math.hypot(
-              e.clientX - press.current.x,
-              e.clientY - press.current.y,
-            ) > 5
+            suppressDragClick.current ||
+            (press.current &&
+              Math.hypot(
+                e.clientX - press.current.x,
+                e.clientY - press.current.y,
+              ) > 5)
           ) {
+            suppressDragClick.current = false;
             e.preventDefault();
             e.stopPropagation();
           }
@@ -228,10 +335,29 @@ export function DomainPlot({
                 ) : null;
               })()
             : null}
+          {wire
+            ? (() => {
+                const from = layout.points.find(
+                  (p) => !p.ghost && p.d.node.id === wire.from,
+                );
+                return from ? (
+                  <path
+                    className="lens-compare-draft"
+                    pointerEvents="none"
+                    d={`M${from.cx} ${from.cy}L${wire.x} ${wire.y}`}
+                  />
+                ) : null;
+              })()
+            : null}
           {layout.points.map((p) => {
             const id = p.d.node.id,
               seat = layout.seats.get(id),
-              active = guide === id || selected === id || baseline === id;
+              active =
+                guide === id ||
+                selected === id ||
+                baseline === id ||
+                wire?.from === id ||
+                wire?.to === id;
             return (
               <g
                 key={`${p.ghost ? "ghost" : "node"}-${id}`}
@@ -241,6 +367,7 @@ export function DomainPlot({
                 data-active={active}
                 data-baseline={baseline === id}
                 data-comparing={!!baseline}
+                data-drop-target={wire?.to === id}
                 className={p.ghost ? "lens-ghost" : "lens-node"}
                 style={
                   {
@@ -252,9 +379,20 @@ export function DomainPlot({
                 role={p.ghost ? undefined : "button"}
                 aria-label={p.d.node.name}
                 aria-pressed={selected === id}
-                onPointerDown={(e) => e.stopPropagation()}
+                aria-description="点选查看，拖到另一圆对比；键盘可用 Shift 与 Enter 对比已选圆"
+                onPointerDown={(e) => {
+                  e.stopPropagation();
+                  if (!moving && !p.ghost && e.button === 0)
+                    drag.current = {
+                      id,
+                      pointer: e.pointerId,
+                      x: e.clientX,
+                      y: e.clientY,
+                      active: false,
+                    };
+                }}
                 onPointerEnter={() => {
-                  if (!p.ghost) onHover(id);
+                  if (!p.ghost && !drag.current?.active) onHover(id);
                 }}
                 onPointerLeave={() => onHover(null)}
                 onFocus={() => onHover(id)}
@@ -292,6 +430,18 @@ export function DomainPlot({
               </g>
             );
           })}
+          {wire ? (
+            <g
+              className="lens-wire-hint"
+              pointerEvents="none"
+              transform={`translate(${(layout.left + layout.right) / 2} ${layout.top + 24})`}
+            >
+              <rect x={-112} y={-18} width={224} height={28} rx={14} />
+              <text textAnchor="middle">
+                {wire.to ? "松开，即可并排对比" : "拖向另一圆，松开对比"}
+              </text>
+            </g>
+          ) : null}
           {view.quads.map((name, i) => {
             const q = layout.quadSeats.get(i);
             return hasData && q ? (
@@ -467,6 +617,7 @@ export function DomainPlot({
                 : "当前分支已到最底层"
               : "点击选中"}
           </strong>
+          <span>拖向另一圆，连线对比</span>
         </div>
       ) : null}
     </div>

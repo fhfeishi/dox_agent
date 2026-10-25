@@ -139,9 +139,24 @@ async def check_simplified(page,origin,shots):
             await page.wait_for_timeout(70)
         await page.wait_for_function("new URL(location.href).searchParams.get('layer')===null&&new URL(location.href).searchParams.get('node')===null",timeout=3000)
         await settle(page)
-        await click_node(page.locator(".lens-node").first)
-        await page.get_by_role("button",name="⇄ 对比",exact=True).click()
-        await click_node(page.locator(".lens-node").last)
+        a=page.locator('.lens-node').first
+        b=page.locator('.lens-node').last
+        a_id=await a.get_attribute('data-node');b_id=await b.get_attribute('data-node')
+        a_box=await a.locator('.lens-dot').bounding_box();b_box=await b.locator('.lens-dot').bounding_box()
+        ax=a_box['x']+a_box['width']/2;ay=a_box['y']+a_box['height']/2
+        bx=b_box['x']+b_box['width']/2;by=b_box['y']+b_box['height']/2
+        before_cx=await a.locator('.lens-dot').get_attribute('cx')
+        await page.mouse.move(ax,ay);await page.mouse.down()
+        await page.mouse.move((ax+bx)/2,(ay+by)/2,steps=5)
+        await expect(page.locator('.lens-compare-draft')).to_be_visible()
+        await page.mouse.move(bx,by,steps=5)
+        await expect(page.locator('[data-drop-target=true]')).to_have_attribute('data-node',b_id)
+        await page.screenshot(path=str(shots/f'{width}-drag-compare.png'))
+        await page.mouse.up()
+        await page.wait_for_function("v=>new URL(location.href).searchParams.get('compare')===v[0]&&new URL(location.href).searchParams.get('node')===v[1]",arg=[a_id,b_id])
+        assert await a.locator('.lens-dot').get_attribute('cx')==before_cx
+        assert await page.evaluate("new URL(location.href).searchParams.get('layer')") is None
+        await expect(page.get_by_role('button',name='⇄ 对比',exact=True)).to_have_count(0)
         await expect(page.locator(".lens-pair-names")).to_be_visible()
         map_height=(await page.locator('.lens-plot').bounding_box())['height']
         await page.get_by_role('radio',name='资金（万元）',exact=True).click()
@@ -157,6 +172,24 @@ async def check_simplified(page,origin,shots):
         await blank(page)
         await expect(page.locator(".lens-pair-names")).to_have_count(0)
         await blank(page)
+        # A cancelled wire must not pan, select a circle, enter a layer or step back.
+        box=await page.locator('.lens-plot').bounding_box()
+        for end in [(box['x']+box['width']*.7,box['y']+8),(ax,ay)]:
+            await page.mouse.move(ax,ay);await page.mouse.down()
+            await page.mouse.move(ax-30,ay,steps=3)
+            await page.mouse.move(*end,steps=5);await page.mouse.up()
+            await expect(page.locator('.lens-compare-draft')).to_have_count(0)
+            assert await page.evaluate("['node','compare','layer'].every(k=>!new URL(location.href).searchParams.has(k))")
+            assert await a.locator('.lens-dot').get_attribute('cx')==before_cx
+        await click_node(a)
+        await page.mouse.move(ax,ay);await page.mouse.down()
+        await page.mouse.move(ax-30,ay,steps=3)
+        await page.keyboard.press('Escape');await page.mouse.up()
+        await expect(page.locator('.lens-compare-draft')).to_have_count(0)
+        assert await page.evaluate("new URL(location.href).searchParams.get('node')")==a_id
+        await b.focus();await page.keyboard.press('Shift+Enter')
+        await expect(page.locator('.lens-pair-names')).to_be_visible()
+        await blank(page);await blank(page)
         await page.get_by_role("radio",name="资金（万元）",exact=True).click()
         await page.locator('.lens-band-svg [data-year="2021"]').click()
         await settle(page)

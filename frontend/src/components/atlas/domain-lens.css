@@ -198,6 +198,28 @@
   fill: none;
   pointer-events: none;
 }
+.lens-compare-draft {
+  fill: none;
+  stroke: var(--link);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+}
+.lens-wire-hint rect {
+  fill: var(--canvas);
+  stroke: var(--line-cool);
+}
+.lens-wire-hint text {
+  fill: var(--link);
+  font-size: var(--text-body);
+}
+.lens-plot[data-linking="true"],
+.lens-plot[data-linking="true"] .lens-node {
+  cursor: grabbing;
+}
+.lens-node[data-drop-target="true"] .lens-dot {
+  stroke: var(--link);
+  stroke-width: 3;
+}
 .lens-guide {
   fill: none;
   stroke: var(--terrain-dot-on);
@@ -422,17 +444,6 @@
   border-radius: 7px;
   line-height: 1.7;
   margin: 0 0 14px;
-}
-.lens-compare-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.lens-compare-status {
-  font-size: var(--text-body);
-  color: var(--link);
 }
 .lens-detail-body h4 {
   font-size: var(--text-body);
@@ -732,9 +743,4 @@
   .lens-year-legend {
     margin-top: 4px;
   }
-}
-
-.lens-secondary[aria-pressed="true"] {
-  background: var(--selected-cool);
-  border-color: var(--link);
 }

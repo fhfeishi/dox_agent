@@ -22,8 +22,6 @@ type Props = {
   medians: { mx: number; my: number };
   open: boolean;
   onClose: () => void;
-  onCompare: () => void;
-  comparePending: boolean;
   onSelectRow: (id: string) => void;
   showLibrary: () => void;
 };
@@ -45,8 +43,6 @@ export function LensInspector({
   medians,
   open,
   onClose,
-  onCompare,
-  comparePending,
   onSelectRow,
   showLibrary,
 }: Props) {
@@ -159,23 +155,6 @@ export function LensInspector({
                 {missingOutputs ? `缺成果 ${missingOutputs} 项` : ""} ·
                 已列入补录待办
               </p>
-            ) : null}
-            {selected ? (
-              <div className="lens-compare-actions">
-                <button
-                  type="button"
-                  className="lens-secondary"
-                  aria-pressed={comparePending}
-                  onClick={onCompare}
-                >
-                  ⇄ 对比
-                </button>
-                {comparePending ? (
-                  <span className="lens-compare-status" role="status">
-                    再点一个圆进行对比 · 点空白取消
-                  </span>
-                ) : null}
-              </div>
             ) : null}
             {rows.length ? (
               <>

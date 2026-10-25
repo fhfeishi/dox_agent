@@ -7,10 +7,10 @@ The real HTTP app/session runs in temporary storage; only domain data is a fixtu
 import asyncio
 import json
 import os
-from urllib.parse import quote
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
+from urllib.parse import quote
 
 from playwright.async_api import async_playwright, expect
 

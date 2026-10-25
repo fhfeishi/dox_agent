@@ -266,7 +266,6 @@ export function atlasLayout(
   width: number,
   height: number,
   fontSize = 14,
-  view = { x: 0, y: 0, k: 1 },
 ) {
   const measured = rows.map((d) => ({ d, value: lensValue(d, lens) }));
   const valid = measured
@@ -292,28 +291,15 @@ export function atlasLayout(
     right = width - fontSize,
     top = fontSize * 2.1,
     bottom = height - fontSize * 3.3;
-  const xr = [left, right].map(
-    (x) =>
-      fullX[0] +
-      (((x - view.x) / view.k - left) / (right - left)) * (fullX[1] - fullX[0]),
-  );
-  const yr = [bottom, top].map(
-    (y) =>
-      fullY[0] +
-      ((bottom - (y - view.y) / view.k) / (bottom - top)) *
-        (fullY[1] - fullY[0]),
-  );
+  const xr = fullX,
+    yr = fullY;
   const px = (x: number) =>
-    view.x +
-    view.k *
-      (left +
-        (((lens === "base" ? Math.log10(x) : x) - fullX[0]) /
-          (fullX[1] - fullX[0])) *
-          (right - left));
+    left +
+    (((lens === "base" ? Math.log10(x) : x) - fullX[0]) /
+      (fullX[1] - fullX[0])) *
+      (right - left);
   const py = (y: number) =>
-    view.y +
-    view.k *
-      (bottom - ((y - fullY[0]) / (fullY[1] - fullY[0])) * (bottom - top));
+    bottom - ((y - fullY[0]) / (fullY[1] - fullY[0])) * (bottom - top);
   const mx = median(valid.map((p) => p.x)),
     my = median(valid.map((p) => p.y)),
     max = Math.max(1, ...valid.map((p) => p.d.projects));
@@ -479,60 +465,6 @@ export function atlasLayout(
     top,
     bottom,
   };
-}
-
-/** Constrain 01 without changing 02's existing navigation or any measurements. */
-export function constrainAtlasView(
-  layout: ReturnType<typeof atlasLayout>,
-  next: { x: number; y: number; k: number },
-) {
-  if (next.k <= 1 || !layout.points.length) return { x: 0, y: 0, k: 1 };
-  const { left, right, top, bottom, points } = layout;
-  const range = (values: number[], lo: number, hi: number, offset: number) => {
-    const min = Math.min(...values) * next.k,
-      max = Math.max(...values) * next.k;
-    const margin = Math.min(hi - lo, max - min) / 2;
-    return Math.max(lo + margin - max, Math.min(hi - margin - min, offset));
-  };
-  let x = range(
-      points.map((p) => p.cx),
-      left,
-      right,
-      next.x,
-    ),
-    y = range(
-      points.map((p) => p.cy),
-      top,
-      bottom,
-      next.y,
-    );
-  if (
-    !points.some(
-      (p) =>
-        p.cx * next.k + x >= left &&
-        p.cx * next.k + x <= right &&
-        p.cy * next.k + y >= top &&
-        p.cy * next.k + y <= bottom,
-    )
-  ) {
-    const nearest = [...points].sort(
-      (a, b) =>
-        Math.hypot(
-          a.cx * next.k + x - (left + right) / 2,
-          a.cy * next.k + y - (top + bottom) / 2,
-        ) -
-        Math.hypot(
-          b.cx * next.k + x - (left + right) / 2,
-          b.cy * next.k + y - (top + bottom) / 2,
-        ),
-    )[0];
-    const cx = nearest.cx * next.k + x,
-      cy = nearest.cy * next.k + y,
-      pad = Math.min(nearest.r + 4, 24);
-    x += Math.max(left + pad, Math.min(right - pad, cx)) - cx;
-    y += Math.max(top + pad, Math.min(bottom - pad, cy)) - cy;
-  }
-  return { x, y, k: next.k };
 }
 
 export const atlasQuery = {

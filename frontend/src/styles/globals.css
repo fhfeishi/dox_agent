@@ -415,7 +415,7 @@
 
 /* ------------------------------------------------------------------ 领域分析 · 全景 (query 2026-1021 1629)
    Same quiet palette as the 首页 地形图: maturity roles --m-*, amber for money, slate for projects. */
-.atlas-page { color: var(--ink); }
+.atlas-page { color: var(--ink); max-width: clamp(1280px, 80vw, 2400px); }
 .atlas-hero { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1024px) { .atlas-hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; } }
 .atlas-hero h1 { margin-top: 8px; font-size: var(--text-page); line-height: var(--text-page--line-height); font-weight: 600; color: var(--heading); }

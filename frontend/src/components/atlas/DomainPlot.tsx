@@ -8,7 +8,6 @@ import {
 } from "react";
 import { LENSES, type atlasLayout, type Lens } from "../../domainAtlas";
 import { fmt } from "./lensFormat";
-import type { usePanZoom } from "./usePanZoom";
 type Layout = ReturnType<typeof atlasLayout>;
 type Props = {
   layout: Layout;
@@ -26,7 +25,6 @@ type Props = {
   onSelect: (id: string) => void;
   onCompare: (from: string, to: string) => void;
   onBlank: () => void;
-  pan: ReturnType<typeof usePanZoom>;
 };
 function Tag({
   x,
@@ -83,9 +81,8 @@ export function DomainPlot({
   onSelect,
   onCompare,
   onBlank,
-  pan,
 }: Props) {
-  const press = useRef<{ x: number; y: number } | null>(null);
+  const press = useRef<{ x: number; y: number; moved: boolean } | null>(null);
   const drag = useRef<{
     id: string;
     pointer: number;
@@ -223,43 +220,38 @@ export function DomainPlot({
             clearDrag();
             return;
           }
-          if (e.key === "0") {
-            e.preventDefault();
-            pan.reset();
-          }
         }}
         onPointerDownCapture={(e) => {
-          press.current = { x: e.clientX, y: e.clientY };
+          press.current = { x: e.clientX, y: e.clientY, moved: false };
           suppressDragClick.current = false;
         }}
-        onPointerMove={moveWire}
+        onPointerMove={(e) => {
+          if (
+            press.current &&
+            Math.hypot(
+              e.clientX - press.current.x,
+              e.clientY - press.current.y,
+            ) > 5
+          )
+            press.current.moved = true;
+          moveWire(e);
+        }}
         onPointerUp={finishWire}
         onPointerCancel={clearDrag}
         onLostPointerCapture={() => {
           if (drag.current) clearDrag();
         }}
-        onPointerDown={(e) => {
-          if (!(e.target as Element).closest("[data-node]")) pan.down(e);
-        }}
         onClickCapture={(e) => {
-          if (
-            suppressDragClick.current ||
-            (press.current &&
-              Math.hypot(
-                e.clientX - press.current.x,
-                e.clientY - press.current.y,
-              ) > 5)
-          ) {
+          const moved = press.current?.moved;
+          press.current = null;
+          if (suppressDragClick.current || moved) {
             suppressDragClick.current = false;
             e.preventDefault();
             e.stopPropagation();
           }
         }}
         onClick={(e) => {
-          if (
-            !pan.suppressClick() &&
-            !(e.target as Element).closest("[data-node],[data-explain]")
-          )
+          if (!(e.target as Element).closest("[data-node],[data-explain]"))
             onBlank();
         }}
       >

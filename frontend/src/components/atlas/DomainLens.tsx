@@ -16,7 +16,6 @@ import {
   atlasLayout,
   atlasQuery,
   buildAtlas,
-  constrainAtlasView,
   levelMeasure,
   type AnnualMetric,
   type AtlasData,
@@ -27,8 +26,6 @@ import { LibraryPreviewDrawer } from "../LibraryPreviewDrawer";
 import { YearBand } from "./YearBand";
 import { LensInspector } from "./LensInspector";
 import { DomainPlot } from "./DomainPlot";
-import { PanZoomControls } from "./PanZoomControls";
-import { usePanZoom } from "./usePanZoom";
 import { useAtlasMotion, type LayerMotion } from "./useAtlasMotion";
 import "./domain-lens.css";
 
@@ -111,18 +108,8 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     () => atlasLayout(rows, lens, size.width, size.height, size.font),
     [rows, lens, size],
   );
-  const pan = usePanZoom(
-    svg,
-    home,
-    `${scope}|${lens}|${window.from}|${window.to}`,
-    (v) => constrainAtlasView(home, v),
-  );
-  const target = useMemo(
-    () => atlasLayout(rows, lens, size.width, size.height, size.font, pan.view),
-    [rows, lens, size, pan.view],
-  );
   const { layout, moving } = useAtlasMotion(
-    target,
+    home,
     `${lens}|${window.from}|${window.to}`,
     scope ?? "root",
     navigation.current,
@@ -301,14 +288,16 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       const viewport = main!.closest("main");
       const viewportBox = viewport?.getBoundingClientRect();
       const available =
-        (viewportBox?.bottom ?? globalThis.innerHeight) -
-        Math.max(box.top, viewportBox?.top ?? 0) -
+        (viewport?.clientHeight ?? globalThis.innerHeight) -
+        (box.top -
+          (viewportBox?.top ?? 0) +
+          (viewport?.scrollTop ?? globalThis.scrollY)) -
         12;
       const next = {
         width: Math.max(660, Math.floor(plot.width)),
         height: Math.round(
           Math.max(
-            globalThis.innerWidth > 850 ? 320 : 414,
+            globalThis.innerWidth > 850 ? 356 : 414,
             Math.min(1000, available - header - footer + comparisonExtra),
           ),
         ),
@@ -421,72 +410,69 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
               </button>
             ))}
           </div>
-          <div className="lens-view-tools">
-            {!open && (
-              <button
-                type="button"
-                className="lens-secondary"
-                onClick={() => setOpen(true)}
+          <nav className="lens-crumbs" aria-label="当前分析层级">
+            {scope ? (
+              <a
+                href="?"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo(null);
+                }}
               >
-                展开详情
-              </button>
+                全部领域
+              </a>
+            ) : (
+              <b>全部领域</b>
             )}
-            <PanZoomControls map={pan} className="lens-zoom" />
-          </div>
-        </div>
-        <nav className="lens-crumbs" aria-label="当前分析层级">
-          {scope ? (
-            <a
-              href="?"
-              onClick={(e) => {
-                e.preventDefault();
-                navigateTo(null);
-              }}
+            {path.map((id) => (
+              <span key={id}>
+                {" "}
+                ›{" "}
+                {id === scope ? (
+                  <select
+                    aria-label="切换当前层"
+                    value={scope}
+                    onChange={(e) => switchLayer(e.target.value)}
+                  >
+                    {peers.map((peer) => (
+                      <option
+                        key={peer}
+                        value={peer}
+                        disabled={!model.nodes.get(peer)!.children.length}
+                      >
+                        {model.nodes.get(peer)!.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <a
+                    href="?"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo(id);
+                    }}
+                  >
+                    {model.nodes.get(id)!.name}
+                  </a>
+                )}
+              </span>
+            ))}
+            {notice ? (
+              <span className="lens-return-notice" role="status">
+                {notice}
+              </span>
+            ) : null}
+          </nav>
+          {!open && (
+            <button
+              type="button"
+              className="lens-secondary"
+              onClick={() => setOpen(true)}
             >
-              全部领域
-            </a>
-          ) : (
-            <b>全部领域</b>
+              展开详情
+            </button>
           )}
-          {path.map((id) => (
-            <span key={id}>
-              {" "}
-              ›{" "}
-              {id === scope ? (
-                <select
-                  aria-label="切换当前层"
-                  value={scope}
-                  onChange={(e) => switchLayer(e.target.value)}
-                >
-                  {peers.map((peer) => (
-                    <option
-                      key={peer}
-                      value={peer}
-                      disabled={!model.nodes.get(peer)!.children.length}
-                    >
-                      {model.nodes.get(peer)!.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <a
-                  href="?"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateTo(id);
-                  }}
-                >
-                  {model.nodes.get(id)!.name}
-                </a>
-              )}
-            </span>
-          ))}
-          {notice ? (
-            <span className="lens-return-notice" role="status">
-              {notice}
-            </span>
-          ) : null}
-        </nav>
+        </div>
         <DomainPlot
           layout={layout}
           home={home}
@@ -508,7 +494,6 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
             }
           }}
           onBlank={back}
-          pan={pan}
         />
         <p className="lens-gesture-hint">
           点圆选中 · 再点进入 · 拖圆对比 · 点空白返回

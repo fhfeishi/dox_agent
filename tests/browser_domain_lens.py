@@ -75,6 +75,9 @@ async def check_simplified(page,origin,shots):
         band=await page.locator('.lens-band-svg').bounding_box()
         assert band and band['y']+band['height']<=await page.evaluate('innerHeight'),band
         lens=page.locator(".domain-lens")
+        await expect(lens.get_by_role('group',name='缩放',exact=True)).to_have_count(0)
+        plot_box=await page.locator('.lens-plot').bounding_box()
+        assert plot_box['width']>=790 and plot_box['height']>=350,plot_box
         status=page.locator(".lens-inspector-status")
         await expect(status).to_contain_text("当前层")
         first=page.locator(".lens-node").first
@@ -199,11 +202,6 @@ async def check_simplified(page,origin,shots):
         await page.get_by_role("button",name="展开各领域 ▾",exact=True).click()
         await expect(page.locator(".lens-matrix")).to_be_visible()
         await page.get_by_role("button",name="收起各领域 ▴",exact=True).click()
-        # Zoom is independent from stepping back; only the panorama button resets.
-        await page.locator(".lens-zoom").get_by_role("button",name="放大",exact=True).click()
-        await expect(page.locator(".lens-zoom")).to_contain_text("%")
-        await page.locator(".lens-zoom button").nth(1).click()
-        await expect(page.locator(".lens-zoom")).to_contain_text("全景")
         inventory=await lens.evaluate("""root=>{
           const out=[];const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;
           while(n=walker.nextNode()){
@@ -253,7 +251,7 @@ async def check_simplified(page,origin,shots):
         await click_node(page.locator('.lens-node').first)
         await expect(lens).to_have_attribute('data-moving','false')
         await page.emulate_media(reduced_motion='no-preference')
-        reports.append({'width':width,'small_text':len(inventory),'geometry':geometry,'enter_ms':duration,'back_ms':back_durations})
+        reports.append({'width':width,'plot':plot_box,'small_text':len(inventory),'geometry':geometry,'enter_ms':duration,'back_ms':back_durations})
     return reports
 
 async def check_retained(page,origin,shots):
@@ -264,13 +262,16 @@ async def check_retained(page,origin,shots):
     await expect(page.locator('.lens-why')).to_be_visible()
     before=await page.locator('.lens-why').inner_text()
     plot=page.locator('.lens-plot');await plot.scroll_into_view_if_needed();box=await plot.bounding_box()
-    await page.mouse.move(box['x']+box['width']*.65,box['y']+box['height']*.6)
-    await page.mouse.wheel(0,-350)
-    await expect(page.locator('.lens-zoom')).to_contain_text('%')
+    positions=await plot.locator('.lens-dot').evaluate_all("es=>es.map(e=>[e.getAttribute('cx'),e.getAttribute('cy'),e.getAttribute('r')])")
+    saved_url=page.url
+    await page.mouse.move(box['x']+box['width']*.65,box['y']+8)
+    await page.mouse.down();await page.mouse.move(box['x']+box['width']*.65+60,box['y']+8,steps=5);await page.mouse.move(box['x']+box['width']*.65,box['y']+8,steps=5);await page.mouse.up()
+    assert page.url==saved_url
+    await page.mouse.wheel(0,300)
+    await page.wait_for_function("document.querySelector('main').scrollTop>0")
+    assert await plot.locator('.lens-dot').evaluate_all("es=>es.map(e=>[e.getAttribute('cx'),e.getAttribute('cy'),e.getAttribute('r')])")==positions
     assert await page.locator('.lens-why').inner_text()==before
-    await page.locator('.lens-zoom button').nth(1).click()
-    await plot.focus();await page.keyboard.press('0')
-    await expect(page.locator('.lens-zoom')).to_contain_text('全景')
+    await page.locator('main').evaluate('e=>e.scrollTop=0')
     await page.get_by_role('radio',name='资金（万元）',exact=True).click()
     await page.get_by_role('radio',name='资金（万元）',exact=True).press('ArrowRight')
     await expect(page.get_by_role('radio',name='技术（条）',exact=True)).to_have_attribute('aria-checked','true')
@@ -298,7 +299,7 @@ async def check_retained(page,origin,shots):
     await expect(page.locator('.lens-matrix tbody tr').filter(has_text='AI与研究领域10').locator('td').last).to_have_text('未记录')
     await expect(page.locator('.lens-band-svg [data-year="2019"] .lens-year-total')).to_have_text('0')
     saved=page.url;await page.reload();await expect(page.locator('.lens-matrix')).to_be_visible();assert page.url==saved
-    # 02 uses the extracted hook too: zoom/pan must retain click-to-expand and glide.
+    # 02 retains zoom/pan, click-to-expand and glide independently of 01.
     road = page.locator(".roads-svg")
     await road.scroll_into_view_if_needed()
     box = await road.bounding_box()

@@ -88,7 +88,11 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     ? (search.get("annual") as AnnualMetric)
     : "projects";
   const expanded = search.get("expanded") === "1";
-  const [guide, setGuide] = useState<string | null>(null);
+  const [hover, setHover] = useState<{ id: string } | null>(null);
+  const guide = hover?.id ?? null;
+  function setGuide(id: string | null) {
+    setHover(id ? { id } : null);
+  }
   const [open, setOpen] = useState(() => globalThis.innerWidth > 850);
   const [preview, setPreview] = useState<LibraryOverview | null>(null);
   const [notice, setNotice] = useState("");
@@ -325,7 +329,11 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     const viewport = main.closest("main");
     const scrolled = () => {
       read();
-      setGuide(null);
+      // Chrome may deliver an automatic scroll after pointerenter. Preserve the
+      // node under the pointer and refresh the tooltip's viewport coordinates.
+      setGuide(
+        el.querySelector<SVGGElement>(".lens-node:hover")?.dataset.node ?? null,
+      );
     };
     viewport?.addEventListener("scroll", scrolled, { passive: true });
     const observer = new ResizeObserver(read);

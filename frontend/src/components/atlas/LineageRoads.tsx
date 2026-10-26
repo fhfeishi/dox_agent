@@ -30,12 +30,13 @@ type Node = {
 };
 const RADII: Record<Kind, number> = { root: 0, library: 140, system: 250, direction: 360, theme: 465, project: 570, more: 570 };
 const PROJECTS_SHOWN = 12;
+// Outer labels are cut to this many characters; the full name is in the hover card and the path bar.
+const LABEL_CHARS = 10;
 const short = (name: string) => name.replace(/^(自然科学基金-)?AI与/, "");
 
 function build(data: DomainsOverview, trees: Map<string, DomainTree>, open: Set<string>, full: Set<string>): Node {
   const root: Node = { id: "root", parent: null, kind: "root", name: "人工智能", plain: "", items: data.totals.items, maturity: null,
-    library: "", children: [], expandable: true };
-  if (!open.has("root")) return root;
+    library: "", children: [], expandable: false };
   for (const domain of data.domains) {
     const lib: Node = { id: domain.id, parent: "root", kind: "library", name: short(domain.name), plain: "", items: domain.items,
       maturity: domain.maturity, library: domain.id, children: [], expandable: domain.systems.length > 0 };
@@ -77,28 +78,105 @@ function build(data: DomainsOverview, trees: Map<string, DomainTree>, open: Set<
   return root;
 }
 
-type Placed = { node: Node; x: number; y: number; angle: number; r: number };
+type Placed = { node: Node; x: number; y: number; angle: number; r: number; span: number };
 /**
- * Radial layout: each node gets an arc by the leaves it shows and sits mid-arc on its ring. Leaves are
- * damped (power 0.8), with a minimum arc for siblings when several branches are open.
+ * Radial layout: every shown leaf carries one label line, which needs an arc of (line height / its
+ * radius); a branch's arc is the sum of its leaves' needs, scaled so the whole tree fills the circle.
+ * Each label thus gets the same clearance from its neighbours, whichever branches are open.
  */
 function place(root: Node) {
   const out = new Map<string, Placed>();
-  const leaves = (n: Node): number => n.children.length ? Math.pow(n.children.reduce((s, c) => s + leaves(c), 0), 0.8) : 1;
+  // A library's name reads horizontally, so a library, open or not, holds at least two lines of arc.
+  const need = (n: Node): number => Math.max(n.kind === "library" ? 2 / RADII.library : 0,
+    n.children.length ? n.children.reduce((s, c) => s + need(c), 0) : 1 / RADII[n.kind]);
   const walk = (n: Node, from: number, to: number) => {
     const angle = (from + to) / 2, r = RADII[n.kind];
-    out.set(n.id, { node: n, angle, r, x: Math.cos(angle) * r, y: Math.sin(angle) * r });
+    out.set(n.id, { node: n, angle, r, span: to - from, x: Math.cos(angle) * r, y: Math.sin(angle) * r });
     let at = from;
-    // Siblings share the parent's arc by their own weights, which are damped and so need not add up to it.
-    const total = n.children.reduce((sum, c) => sum + leaves(c), 0);
+    const total = need(n);
     for (const child of n.children) {
-      const reserve = n.kind === "root" ? 0.6 : 0.25;
-      const span = (to - from) * (reserve / n.children.length + (1 - reserve) * leaves(child) / total);
+      const span = (to - from) * need(child) / total;
       walk(child, at, at + span);
       at += span;
     }
   };
   walk(root, -Math.PI / 2, Math.PI * 1.5);
+  return out;
+}
+
+/** Drawn radius of a node (map units): the centre, project dots, or by technology count. */
+function nodeRadius(n: Node, maxItems: number) {
+  return n.kind === "root" ? 34 : n.kind === "project" || n.kind === "more" ? 4.5 : 5 + Math.sqrt(n.items / maxItems) * 22;
+}
+
+type Label = { text: string; style: "spoke" | "ring" | "library" | "library-in" | "library-spoke"; inset?: number; dx?: number; dy?: number };
+type Box = { x: number; y: number; w: number; h: number; a: number };
+/** Separating-axis test for two rotated rectangles (centre, half sizes, angle). */
+function overlaps(p: Box, q: Box) {
+  for (const a of [p.a, p.a + Math.PI / 2, q.a, q.a + Math.PI / 2]) {
+    const ux = Math.cos(a), uy = Math.sin(a);
+    const reach = (b: Box) => Math.abs(b.w * Math.cos(b.a - a)) + Math.abs(b.h * Math.sin(b.a - a));
+    if (Math.abs((p.x - q.x) * ux + (p.y - q.y) * uy) >= reach(p) + reach(q)) return false;
+  }
+  return true;
+}
+const textWidth = (text: string, size: number) => [...text].reduce((w, c) => w + (c.charCodeAt(0) < 128 ? 0.58 : 1), 0) * size;
+
+/**
+ * Chooses which names to draw, like a map: names go down in priority order (the active path,
+ * libraries, open nodes, the active node's children, then inner rings before outer ones), each tries
+ * its positions in turn, and a name that would cover a placed name or another node is left out.
+ * Zooming in makes room, so more names appear; the hover card and the path bar always name a node. Spoke names are also cut where they
+ * would leave the map, so a deep ring does not run off the frame.
+ */
+function fitLabels(layout: Map<string, Placed>, maxItems: number, size: number, edge: number, path: Set<string>, active: string) {
+  const out = new Map<string, Label>(), placed: Box[] = [];
+  const nodes = [...layout.values()].filter((p) => p.node.kind !== "root");
+  const obstacles = [...layout.values()].map((p) => ({ id: p.node.id, box: { x: p.x, y: p.y, w: nodeRadius(p.node, maxItems), h: nodeRadius(p.node, maxItems), a: 0 } }));
+  // The 详情 chip under the active node (44 × 19 px at body size 14).
+  const at = layout.get(active);
+  if (at && !["root", "project", "more"].includes(at.node.kind)) {
+    obstacles.push({ id: "", box: { x: at.x, y: at.y + nodeRadius(at.node, maxItems) + 1.1 * size, w: 1.6 * size, h: 0.7 * size, a: 0 } });
+  }
+  const rank = (p: Placed) => path.has(p.node.id) ? 0 : p.node.kind === "library" ? 1 : p.node.children.length ? 2 : p.node.parent === active ? 3 : 4 + p.r / 1000;
+  const free = (id: string, box: Box) => !placed.some((q) => overlaps(box, q)) && !obstacles.some((o) => o.id !== id && overlaps(box, o.box));
+  for (const p of nodes.sort((a, b) => rank(a) - rank(b))) {
+    const n = p.node, r = nodeRadius(n, maxItems), ux = Math.cos(p.angle), uy = Math.sin(p.angle);
+    // Along the spoke, outwards from the node, cut to `max` characters.
+    const spoke = (max: number, style: Label["style"]): [Label, Box] => {
+      const start = r + 0.35 * size, text = n.name.length > max ? `${n.name.slice(0, Math.max(1, max - 1))}…` : n.name, w = textWidth(text, size);
+      return [{ text, style }, { x: p.x + ux * (start + w / 2), y: p.y + uy * (start + w / 2), w: w / 2, h: size * 0.58, a: p.angle }];
+    };
+    const options: [Label, Box][] = [];
+    if (n.kind === "library") {
+      // An open library's fan is outside it, so its name first tries the centre side.
+      const w = textWidth(n.name, size * 1.05) / 2, d = r + 0.95 * size;
+      const dx = -ux * (d + Math.abs(ux) * w), dy = -uy * d;
+      if (n.children.length) options.push([{ text: n.name, style: "library-in", dx, dy }, { x: p.x + dx, y: p.y + dy, w, h: size * 0.6, a: 0 }]);
+      options.push([{ text: n.name, style: "library" }, { x: p.x, y: p.y - d, w, h: size * 0.6, a: 0 }]);
+      if (n.children.length) options.push([{ text: n.name, style: "ring", inset: d }, { x: p.x - ux * d, y: p.y - uy * d, w, h: size * 0.6, a: p.angle + Math.PI / 2 }]);
+      // A folded library may also name itself along its own spoke, where nothing else is drawn.
+      if (!n.children.length) options.push(spoke(LABEL_CHARS, "library-spoke"));
+    } else if (n.children.length) {
+      // On the centre side, along the ring: across the arc its own children use.
+      // A second, deeper position clears the 详情 chip of the active node.
+      for (const inset of [r + 0.9 * size, r + 2.3 * size, r + 3.7 * size]) {
+        const room = Math.floor(p.span * (p.r - inset) / size);
+        const text = room >= n.name.length ? n.name : room >= 3 ? `${n.name.slice(0, room - 1)}…` : n.name;
+        options.push([{ text, style: "ring", inset }, { x: p.x - ux * inset, y: p.y - uy * inset, w: textWidth(text, size) / 2, h: size * 0.58, a: p.angle + Math.PI / 2 }]);
+      }
+    } else {
+      // Kept one character inside the map edge; then a short form if the full one does not fit.
+      const room = Math.floor((edge - p.r - r) / size) - 1;
+      options.push(spoke(Math.max(2, Math.min(LABEL_CHARS, room)), "spoke"));
+      if (n.name.length > 5) options.push(spoke(5, "spoke"));
+    }
+    // A name that fits nowhere is left out: the path bar always names the active path in full.
+    const pick = options.find(([, box]) => free(n.id, box));
+    if (!pick) continue;
+    placed.push(pick[1]);
+    out.set(n.id, pick[0]);
+  }
   return out;
 }
 
@@ -131,7 +209,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const detailContent = useRef<HTMLDivElement>(null);
   const overview = useQuery({ ...libraryOverviewQuery() });
   // A library's deeper levels are read only once it is opened.
-  const libs = open.has("root") ? data.domains.filter((d) => open.has(d.id)).map((d) => d.id) : [];
+  const libs = data.domains.filter((d) => open.has(d.id)).map((d) => d.id);
   const queries = useQueries({ queries: libs.map((id) => domainTreeQuery(id)) });
   const trees = new Map<string, DomainTree>();
   queries.forEach((q, i) => { if (q.data) trees.set(libs[i], q.data); });
@@ -226,9 +304,16 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     if (largeSvg.current) observer.observe(largeSvg.current);
     return () => observer.disconnect();
   }, [large]);
-  // The view fits the outermost ring on show, plus room for its spoke labels; it grows as levels open.
+  // Labels keep their screen size, so the margin for the outermost spoke labels is solved in screen
+  // terms: a label of L pixels needs L·SIZE/pixels map units, and SIZE itself includes that margin.
+  const [font, setFont] = useState(14);
+  useEffect(() => { setFont(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--text-body")) || 14); }, [pixels]);
   const outermost = Math.max(...[...layout.values()].map((p) => p.r));
-  const SIZE = 2 * (outermost + (outermost > 300 ? 170 : 110));
+  const longest = Math.max(0, ...[...layout.values()].filter((p) => p.r === outermost).map((p) => Math.min(LABEL_CHARS, p.node.name.length)));
+  const reach = longest * font + 16;
+  // Capped so a deep map keeps a readable scale; a longer outer name may then reach the frame edge.
+  const SIZE = 2 * (outermost + (outermost > RADII.library
+    ? Math.min(2 * reach * outermost / Math.max(pixels - 2 * reach, 0.45 * pixels), 0.3 * outermost + 110) : 110));
   const bounds = {left:-SIZE/2,right:SIZE/2,top:-SIZE/2,bottom:SIZE/2};
   const pan = usePanZoom(svg, bounds, engaged && !large);
   const largePan = usePanZoom(largeSvg, bounds, large);
@@ -329,9 +414,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   }
   const loading = queries.some((q) => q.isLoading);
   const nodes = [...layout.values()];
-  // Past a few dozen projects their names would overlap; they then show on hover and along the active path.
-  const crowded = nodes.filter((p) => p.node.kind === "project").length > 36;
   const onPath = new Set(path.map((n) => n.id));
+  // Name placement depends on the scale only, so it is recomputed on zoom but not on hover.
+  const embeddedNames = useMemo(() => fitLabels(layout, maxItems, font * SIZE / pixels / pan.view.k, SIZE / 2, onPath, active),
+    [layout, font, SIZE, pixels, pan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
+  const largeNames = useMemo(() => large ? fitLabels(layout, maxItems, font * SIZE / largePixels / largePan.view.k, SIZE / 2, onPath, active) : new Map<string, Label>(),
+    [large, layout, font, SIZE, largePixels, largePan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const activeNode = layout.get(active)?.node;
   const [card, setCard] = useState<{ left: number; top: number; large: boolean } | null>(null);
@@ -357,6 +445,29 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   function mapSvg(isLarge: boolean) {
     const map = isLarge ? largePan : pan, view = map.view;
     const px = SIZE / (isLarge ? largePixels : pixels) / view.k;
+    const line = font * px;
+    const names = isLarge ? largeNames : embeddedNames;
+    function label(p: Placed, r: number, px: number) {
+      const n = p.node, chosen = names.get(n.id);
+      if (!chosen) return null;
+      const deg = (p.angle * 180) / Math.PI;
+      const style = { fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3 * px };
+      if (chosen.style === "library") return <text className="roads-label is-library" textAnchor="middle" y={-(r + 6 * px)} style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
+      if (chosen.style === "library-in") return <text className="roads-label is-library" textAnchor="middle" dy={0.35 * line}
+        x={chosen.dx} y={chosen.dy} style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
+      if (chosen.style === "spoke" || chosen.style === "library-spoke") {
+        const flip = deg > 90 && deg < 270;
+        return <text className={`roads-label${chosen.style === "library-spoke" ? " is-library" : ""}`} transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 5 * px) : r + 5 * px} dy={0.32 * line}
+          textAnchor={flip ? "end" : "start"} style={style}>{chosen.text}</text>;
+      }
+      const inset = chosen.inset ?? r + 0.9 * line;
+      let turn = deg + 90;
+      while (turn > 180) turn -= 360;
+      if (turn > 90 || turn < -90) turn -= 180;
+      return <text className={`roads-label is-${n.kind} is-ring`} textAnchor="middle" dy={0.35 * line}
+        transform={`translate(${(-Math.cos(p.angle) * inset).toFixed(2)},${(-Math.sin(p.angle) * inset).toFixed(2)}) rotate(${turn.toFixed(1)})`}
+        style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
+    }
     return <svg ref={isLarge ? largeSvg : svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
       tabIndex={0} onKeyDown={e => {
@@ -378,10 +489,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
         })}
         {nodes.map((p) => {
           const at = shown.get(p.node.id) ?? p, n = p.node;
-          const r = n.kind === "root" ? 34 : n.kind === "project" || n.kind === "more" ? 4.5 : 5 + Math.sqrt(n.items / maxItems) * 22;
-          // Only the centre and the libraries read horizontally; every ring further out labels along its spoke.
-          const outer = n.kind !== "root" && n.kind !== "library";
-          const deg = (p.angle * 180) / Math.PI, flip = deg > 90 && deg < 270;
+          const r = nodeRadius(n, maxItems);
           const isOpen = open.has(n.id);
           return <g key={n.id} className={`roads-node is-${n.kind}${n.unplaced ? " is-unplaced" : ""}${lit && !lit.has(n.id) ? " is-dim" : ""}${active === n.id ? " is-active" : ""}`}
             style={{ transform: `translate(${at.x}px,${at.y}px)` }} role="button" tabIndex={0}
@@ -395,11 +503,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             {n.kind === "root" ? <circle r={r} className="roads-core" />
               : <circle r={r} style={{ fill: n.kind === "library" ? hue(n.library) : maturityVar(n.maturity), stroke: hue(n.library) }}
                 className={n.expandable && !isOpen ? "is-closed" : ""} />}
-            {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text>
-              : outer && crowded && n.kind === "project" && !lit?.has(n.id) && !onPath.has(n.id) ? null
-              : outer ? <text className="roads-label" transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 5 * px) : r + 5 * px} dy={4 * px}
-                textAnchor={flip ? "end" : "start"} style={{ fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3 * px }}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
-              : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 6 * px)} style={{ fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3.5 * px }}>{n.name}</text>}
+            {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text> : label(p, r, px)}
             {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
             {active === n.id && n.kind !== "root" && n.kind !== "more" && n.kind !== "project" ? <g className="roads-chip" role="button" tabIndex={0} aria-label={`${n.name} 详情`}
               transform={`translate(0,${r + 6 * px}) scale(${px})`}
@@ -419,7 +523,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
       {hovered.project ? <span>{[hovered.project.number, hovered.project.unit, hovered.project.year].filter(Boolean).join(" · ")}<br />本主题 {hovered.project.items.length} 条技术 · 最高 {hovered.project.maturity || "—"} 档</span>
         : hovered.kind === "more" ? <span>点一下，在原处展开其余项目</span>
         : <span>{hovered.items} 条技术 · 平均 {hovered.maturity ?? "—"} 档{hovered.plain ? <><br />{hovered.plain}</> : null}</span>}
-      <em>{hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起" : "点击展开") + " · 详情在节点下方" : "点击后在节点下方看详情"}</em>
+      <em>{hovered.kind === "root" ? "各资料库始终列出，点资料库展开" : hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起" : "点击展开") + " · 详情在节点下方" : "点击后在节点下方看详情"}</em>
     </div> : null;
   }
   return <>
@@ -433,7 +537,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             onClick={e => { if (e.detail && touchHandled.current) { touchHandled.current = false; return; } touchHandled.current = false; changeMode(!engaged); }}>
             {engaged ? "✓ 图谱操作中" : "↕ 浏览页面"}
           </button>
-          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
+          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。放不下的名称先隐藏，悬停或放大后显示。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
             {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
           </>}>图例与操作</Hint>
           <button type="button" onClick={expandSystems}>展开全部技术体系</button>

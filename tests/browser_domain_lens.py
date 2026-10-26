@@ -346,10 +346,25 @@ async def check_retained(page,origin,shots):
     await check_roads(page,shots)
 
 
+LABEL_OVERLAPS='''(svg)=>{
+  const boxes=[...svg.querySelectorAll('.roads-label')].map(e=>{const b=e.getBBox(),m=e.getScreenCTM(),
+    pt=(x,y)=>{const p=svg.createSVGPoint();p.x=x;p.y=y;return p.matrixTransform(m)};
+    return {text:e.textContent,poly:[pt(b.x,b.y+b.height*.15),pt(b.x+b.width,b.y+b.height*.15),pt(b.x+b.width,b.y+b.height*.85),pt(b.x,b.y+b.height*.85)]}});
+  const axes=p=>p.map((a,i)=>{const b=p[(i+1)%4];return {x:a.y-b.y,y:b.x-a.x}});
+  const hit=(p,q)=>[...axes(p),...axes(q)].every(ax=>{const f=s=>s.map(v=>v.x*ax.x+v.y*ax.y),a=f(p),b=f(q);
+    return Math.max(...a)>Math.min(...b)&&Math.max(...b)>Math.min(...a)});
+  const out=[];for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++)if(hit(boxes[i].poly,boxes[j].poly))out.push([boxes[i].text,boxes[j].text]);
+  return out}'''
+
+
 async def check_roads(page,shots):
     """02 browsing never captures wheel; explicit operation and a large view do, without losing branches."""
     road = page.locator('.roads:not(.roads-large-content) > .roads-svg')
     await road.scroll_into_view_if_needed()
+    # 人工智能 is the fixed centre: clicking it never folds the libraries away.
+    libraries=await road.locator('.roads-node.is-library').count()
+    await road.locator('.roads-node.is-root .roads-hit').click()
+    await expect(road.locator('.roads-node.is-library')).to_have_count(libraries)
     box = await road.bounding_box()
     group = road.locator(":scope > g")
     before_view = await group.get_attribute("transform")
@@ -454,6 +469,18 @@ async def check_roads(page,shots):
     await expect(b).to_have_attribute('aria-expanded','true')
     await a.locator('.roads-hit').click()
     await expect(projects).to_have_count(15)
+    # With libraries, systems, directions, a theme and all its projects open, no two names overlap.
+    await page.wait_for_timeout(700)
+    assert await road.evaluate(LABEL_OVERLAPS)==[]
+    named=await road.locator('.roads-label').count()
+    assert named>=20
+    # Zooming in makes room: more names appear, still apart; 0 returns to the overview.
+    await road.focus()
+    for _ in range(3): await road.press('+')
+    await page.wait_for_timeout(300)
+    assert await road.locator('.roads-label').count()>named
+    assert await road.evaluate(LABEL_OVERLAPS)==[]
+    await road.press('0')
     await frame.get_by_role('button',name='放大查看技术谱系',exact=True).click()
     await dialog.locator(f'.roads-node.is-project[data-parent="{tid}"] .roads-hit').first.click()
     await expect(dialog).not_to_be_visible()

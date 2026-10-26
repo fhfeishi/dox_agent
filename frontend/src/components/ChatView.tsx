@@ -28,8 +28,8 @@ function UserRow({
   onEdit: () => void;
 }) {
   return (
-    <article className="group mb-[26px] flex justify-end gap-[12px]">
-      <div className="max-w-[82%]">
+    <article className="chat-question group mb-[28px] flex justify-end gap-[12px]">
+      <div className="min-w-0 max-w-[88%]">
         <div className="mb-[6px] flex items-center justify-end gap-[8px] text-body font-semibold text-[var(--ink)]">
           <span className="text-caption font-normal text-[var(--stone)]">{time}</span>
           我
@@ -40,7 +40,7 @@ function UserRow({
           ) : null}
         </div>
         <div
-          className={`rounded-[12px] border bg-[var(--surface)] px-[14px] py-[11px] text-body whitespace-pre-wrap text-[var(--ink)] ${
+          className={`question-text rounded-[12px] border bg-[var(--primary-soft-2)] px-[18px] py-[14px] text-emphasis leading-[1.75] whitespace-pre-wrap break-words text-[var(--ink)] ${
             editing
               ? "border-[var(--primary)] ring-3 ring-[var(--primary-soft)]"
               : "border-[var(--hairline-soft)]"
@@ -153,6 +153,7 @@ export function ChatView() {
   const [search, setSearch] = useSearchParams();
   const wanted = search.get("task");
   const [guideTask, setGuideTask] = useState<string | null>(null);
+  const [guideTarget, setGuideTarget] = useState<string | undefined>(undefined);
   useEffect(() => {
     if (!wanted || !workspace.loaded || !tasks.length) return;
     setSearch((old) => { const next = new URLSearchParams(old); next.delete("task"); return next; }, { replace: true });
@@ -208,7 +209,7 @@ export function ChatView() {
   const visibleBranches = workspace.branches;
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
+    <section className="chat-workspace flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
         <span className="max-w-[32%] truncate text-body font-semibold tracking-[-0.1px] text-[var(--ink)]">
           {activeTitle || "新对话"}
@@ -282,7 +283,7 @@ export function ChatView() {
 
       <div className="relative flex min-h-0 flex-1 flex-col">
       <section ref={scrollRef} onScroll={onScroll} aria-label="对话" className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[820px] px-[32px] pt-[28px] pb-[8px]">
+        <div className="chat-reading mx-auto w-full max-w-[1008px] px-[24px] pt-[28px] pb-[8px]">
           {!connected ? (
             <section
               role="alert"
@@ -333,7 +334,7 @@ export function ChatView() {
                   onCopy={() => void copyQuestion(turn.question)}
                   onEdit={() => void beginEdit(i)}
                 />
-                <article className="mb-[26px] flex gap-[12px]">
+                <article className="chat-answer mb-[40px] flex gap-[14px]">
                   <span className="grid size-[26px] shrink-0 place-items-center rounded-[8px] bg-[var(--navy)]">
                     <BrandMark size={14} />
                   </span>
@@ -446,9 +447,9 @@ export function ChatView() {
       ) : null}
       </div>
 
-      <Composer />
+      <Composer guideTarget={guided ? guideTarget : undefined} />
       {guided && guideSteps.length ? (
-        <CoachMarks label={`${guided.name}使用指引`} steps={guideSteps}
+        <CoachMarks label={`${guided.name}使用指引`} steps={guideSteps} onStepChange={setGuideTarget}
           onClose={() => { if (mute) muteGuide(guided.id); setGuideTask(null); setMute(false); if (!guidesSeen.includes("chat")) seeGuide("chat"); }}
           footer={<label className="flex items-center gap-[6px]"><input type="checkbox" checked={mute} onChange={(e) => setMute(e.target.checked)} />以后进入“{guided.name}”时不再自动显示</label>} />
       ) : null}

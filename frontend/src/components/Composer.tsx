@@ -46,7 +46,7 @@ function PopItem({
   );
 }
 
-export function Composer() {
+export function Composer({ guideTarget }: { guideTarget?: string }) {
   const { role } = useAuth();
   const {
     input,
@@ -95,15 +95,24 @@ export function Composer() {
   // 点选提问 belongs to the start of a conversation; afterwards it is one button away, so the answers
   // keep the screen (query 2026-1020 1719: the composer took half the page while reading).
   const empty = turns.length === 0;
-  const [quickOpen, setQuickOpen] = useState(empty);
-  useEffect(() => { setQuickOpen(empty); }, [empty, workspace.active]);
+  const [panel, setPanel] = useState<"quick" | "corpus" | "scope" | null>(null);
+  const quickOpen = panel === "quick", corpusOpen = panel === "corpus", scopeOpen = panel === "scope";
+  const setQuickOpen = (open: boolean | ((value: boolean) => boolean)) => setPanel((current) =>
+    (typeof open === "function" ? open(current === "quick") : open) ? "quick" : current === "quick" ? null : current);
+  const setCorpusOpen = (open: boolean | ((value: boolean) => boolean)) => setPanel((current) =>
+    (typeof open === "function" ? open(current === "corpus") : open) ? "corpus" : current === "corpus" ? null : current);
+  const setScopeOpen = (open: boolean | ((value: boolean) => boolean)) => setPanel((current) =>
+    (typeof open === "function" ? open(current === "scope") : open) ? "scope" : current === "scope" ? null : current);
+  useEffect(() => { setPanel(null); }, [workspace.active]);
+  useEffect(() => {
+    if (guideTarget !== undefined) setPanel(guideTarget === "chat-quick" ? "quick" : guideTarget === "chat-libraries" ? "corpus" : null);
+  }, [guideTarget]);
 
   const [uploadOpen, setUploadOpen] = useState(false);
   const [uploadTarget, setUploadTarget] = useState("");
   const corpusButton = useRef<HTMLButtonElement>(null);
+  const scopeButton = useRef<HTMLButtonElement>(null);
   const [popOpen, setPopOpen] = useState(false);
-  const [corpusOpen, setCorpusOpen] = useState(false);
-  const [scopeOpen, setScopeOpen] = useState(false);
   const [webOpen, setWebOpen] = useState(false);
   const [webMode, setWebMode] = useState<"url" | "search">("url");
   const [webUrl, setWebUrl] = useState("");
@@ -144,10 +153,11 @@ export function Composer() {
     if (!popOpen && !corpusOpen && !scopeOpen) return;
     const onDown = (e: MouseEvent) => {
       const path = e.composedPath();
+      if (path.some((node) => node instanceof Element && node.closest('[aria-modal="true"]'))) return;
       const inside = (node: Element | null) => Boolean(node && path.includes(node));
       if (popOpen && !inside(popRef.current)) setPopOpen(false);
       if (corpusOpen && !inside(corpusRef.current) && !inside(corpusButton.current)) setCorpusOpen(false);
-      if (scopeOpen && !inside(scopeRef.current)) setScopeOpen(false);
+      if (scopeOpen && !inside(scopeRef.current) && !inside(scopeButton.current)) setScopeOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
@@ -263,9 +273,9 @@ export function Composer() {
   const runConfig = `本次配置：${activeTask?.name ?? taskId} · ${libraryNames || "未选择知识库"} · ${options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · ${options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}${role === "admin" ? ` · ${model || "模型未记录"}` : ""} · ${taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}`;
 
   return (
-    <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[10px]">
+    <div className="chat-composer shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[24px] pb-[14px]">
       {/* 点选提问 anchors to this column: it opens above the composer instead of pushing the page. */}
-      <div className="relative mx-auto w-full max-w-[820px]">
+      <div className="relative mx-auto w-full max-w-[960px]">
         {!scopeReady ? (
           <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <span className="min-w-0 flex-1">
@@ -333,7 +343,7 @@ export function Composer() {
           </p>
         ) : null}
 
-        {!editing && quickOpen ? <QuickAsk onClose={() => setQuickOpen(false)} /> : null}
+        {!editing ? <QuickAsk key={workspace.active} open={quickOpen} onClose={() => setQuickOpen(false)} /> : null}
 
         {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption">
           <div className="mb-[7px] flex gap-[5px]">
@@ -384,12 +394,17 @@ export function Composer() {
         </div> : null}
 
         {corpusOpen ? (
-          <div ref={corpusRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
-            <div className="mb-[6px] flex items-center gap-[8px] px-[4px] text-caption text-[var(--steel)]">
+          <div ref={corpusRef} role="dialog" aria-label="对话资料库" data-guide="chat-libraries" className="composer-panel library-panel">
+            <div className="composer-panel-heading">
+              <strong>对话资料库</strong>
+              <span className="flex-1" />
+              <button type="button" aria-label="关闭资料库选择" onClick={() => setCorpusOpen(false)} className="panel-close"><Icon name="close" size={16} /></button>
+            </div>
+            <div className="flex items-center gap-[8px] border-b border-[var(--hairline-soft)] px-[16px] py-[10px] text-body text-[var(--steel)]">
               <label className="inline-flex items-center gap-1" title="开启后每次提问按问题内容自动选择最相关的资料库；手动选择资料库会关闭此项">
                 <input type="checkbox" checked={autoCorpus} onChange={(e) => setAutoCorpus(e.target.checked)} />按问题自动选择</label>
               <span className="flex-1" />
-              <span>已选 {corpusIds.length}/6</span>
+              <span>{autoCorpus ? "自动选库" : `已选 ${corpusIds.length}/6`}</span>
             </div>
             <CorpusPicker
               corpora={corpora}
@@ -399,12 +414,12 @@ export function Composer() {
               onUseOnly={(id) => setSearchCorpusIds([id])}
               onDetails={openCorpus}
             />
-            <div className="mt-2 flex gap-3"><button onClick={() => setNav("library")}>打开知识库管理</button><button onClick={() => { setNav("library"); setNewCorpusOpen(true); }}>新建知识库</button></div>
+            <div className="composer-panel-footer"><button type="button" className="text-[var(--link)]" onClick={() => setNav("library")}>管理资料库 ↗</button><span className="flex-1" /><Button variant="primary" size="sm" onClick={() => setCorpusOpen(false)}>完成</Button></div>
           </div>
         ) : null}
 
         {scopeOpen ? (
-          <div ref={scopeRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
+          <div ref={scopeRef} className="composer-panel p-[16px]">
             <ScopeSelector
               documents={scopeDocuments}
               selected={options.allowed_doc_ids}
@@ -558,7 +573,7 @@ export function Composer() {
 
             <button ref={corpusButton} type="button" data-guide="chat-scope" aria-expanded={corpusOpen}
               aria-label={`对话知识库：${libraryNames || "未选择"}`} title={libraryNames || "选择对话知识库"}
-              onClick={() => { setCorpusOpen((v) => !v); setPopOpen(false); setScopeOpen(false); }}
+              onClick={() => { setCorpusOpen((v) => !v); setPopOpen(false); }}
               className="font-app inline-flex h-[30px] max-w-[260px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
               <Icon name="library" size={15} />
               <span className="truncate">{autoCorpus ? "自动 · " : ""}{corpusIds.length
@@ -566,8 +581,10 @@ export function Composer() {
             </button>
 
             <button
+              ref={scopeButton}
               type="button"
-              onClick={() => setScopeOpen((v) => !v)}
+              onClick={() => { setScopeOpen((v) => !v); setPopOpen(false); }}
+              aria-expanded={scopeOpen}
               className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
             >
               <Icon name="list" size={15} />
@@ -584,7 +601,7 @@ export function Composer() {
             ) : null}
 
             {!editing ? (
-              <button type="button" onClick={() => setQuickOpen((open) => !open)}
+              <button type="button" onClick={() => { setQuickOpen((open) => !open); setPopOpen(false); }}
                 aria-expanded={quickOpen} aria-controls="quick-ask-panel"
                 className={`font-app inline-flex h-[30px] items-center gap-[5px] rounded-[6px] px-[9px] text-body transition-colors ${quickOpen
                   ? "bg-[var(--primary-soft)] font-medium text-[var(--primary-pressed)]"

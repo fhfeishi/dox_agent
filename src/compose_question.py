@@ -58,7 +58,7 @@ def vocabulary_slice(vocabulary: dict[str, list[str]], attempt: int) -> dict[str
 
 
 def is_sparse(elements: list[str], intents: list[str], scene: str, note: str) -> bool:
-    return not note and len(elements) + len(intents) + (1 if scene else 0) <= SPARSE_PICKS
+    return "综合分析" not in intents and not note and len(elements) + len(intents) + (1 if scene else 0) <= SPARSE_PICKS
 
 
 def prompt_lines(task: str, elements: list[str], intents: list[str], domains: list[str],
@@ -81,6 +81,10 @@ def prompt_lines(task: str, elements: list[str], intents: list[str], domains: li
         lines.append(f"关注要素：{'、'.join(elements)}")
     if intents:
         lines.append(f"附带问题：{'；'.join(intents)}")
+    if "综合分析" in intents:
+        lines.append("综合分析范围：覆盖技术谱系、应用场景、核心问题、关键技术、成果、项目与经费投入、待突破缺口；缺少资料的要点说明不足，不编造。")
+        if not scene:
+            lines.append("场景范围：综合全部场景，不从资料库词表中另选单一场景收窄问题。")
     lines.append("选择情况：" + ("较少，可补充一个角度" if is_sparse(elements, intents, scene, note) else "充分，不补充角度"))
     for kind, names in (vocabulary or {}).items():
         lines.append(f"资料库中的{kind}：{'、'.join(names)}")

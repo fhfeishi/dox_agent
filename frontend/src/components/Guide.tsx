@@ -31,7 +31,7 @@ export function Guide({ area }: { area: string }) {
   const guide = GUIDES[area];
   if (!guide || (!forced && guidesSeen.includes(area))) return null;
   const close = () => { setForced(false); if (!guidesSeen.includes(area)) seeGuide(area); };
-  return <div role="dialog" aria-label={`${guide.title} 操作指南`}
+  return <div data-area-guide={area} role="dialog" aria-label={`${guide.title} 操作指南`}
     className="absolute right-4 bottom-4 z-40 w-[300px] max-w-[calc(100%-2rem)] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 shadow-xl">
     <p className="text-body font-semibold">{guide.title} · 三步上手</p>
     <ol className="mt-2 space-y-1.5 text-body leading-5 text-[var(--slate)]">

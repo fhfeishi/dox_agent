@@ -70,7 +70,12 @@ function clip(text: string, width: number, size: number) {
   return text.length > room ? text.slice(0, room - 1) + "…" : text;
 }
 
-const COL_W = 262, GAP = 56, NODE_H = 54, ROW = 62, TOP = 52, SHOWN = 12;
+const NODE_H = 54, ROW = 62, TOP = 52, SHOWN = 12;
+
+function orderedChildren(parent: TreeNode, projects: (ids: string[]) => number) {
+  return parent.children[0]?.level === 4 ? parent.children : [...parent.children].sort((a, b) =>
+    Number(Boolean(a.muted)) - Number(Boolean(b.muted)) || projects(b.items) - projects(a.items));
+}
 
 /**
  * 技术谱系图 (query 2026-1010 1124 / 1530): one column per level. Every column keeps its
@@ -78,19 +83,21 @@ const COL_W = 262, GAP = 56, NODE_H = 54, ROW = 62, TOP = 52, SHOWN = 12;
  * professional name and a plain line — with the matching project count; a project technique
  * carries its report-described stage instead. Filters dim branches without matches (count 0).
  */
-function LineageColumns({ path, lineage, match, projects, onSelect }: {
-  path: TreeNode[]; lineage: Lineage; match: Set<string>; projects: (ids: string[]) => number; onSelect: (key: string) => void;
+function LineageColumns({ path, lineage, match, projects, onSelect, expandLeaf }: {
+  path: TreeNode[]; lineage: Lineage; match: Set<string>; projects: (ids: string[]) => number; onSelect: (key: string) => void; expandLeaf: boolean;
 }) {
   const [open, setOpen] = useState<Set<string>>(new Set());
+  // The first four columns fit together; project-level drilldown keeps its wider technical labels.
+  const COL_W = expandLeaf ? 262 : 190, GAP = expandLeaf ? 56 : 24;
   const hits = (node: TreeNode) => node.items.filter((id) => match.has(id));
   // The library itself is the first column (R2), so all five levels R2–R6 are drawn.
   const columns: { parent: TreeNode; nodes: TreeNode[]; more: number }[] = [{ parent: { ...path[0], key: "", children: [path[0]] }, nodes: [path[0]], more: 0 }];
   for (let i = 0; i < path.length; i += 1) {
     const parent = path[i];
+    if (parent.level === 3 && !expandLeaf) break;
     if (!parent.children.length) break;
     // Branches by matching projects (the unplaced bucket last); techniques keep stage order.
-    const sorted = parent.children[0].level === 4 ? parent.children
-      : [...parent.children].sort((a, b) => Number(Boolean(a.muted)) - Number(Boolean(b.muted)) || projects(hits(b)) - projects(hits(a)));
+    const sorted = orderedChildren(parent, (ids) => projects(ids.filter((id) => match.has(id))));
     const chosen = path[i + 1];
     let nodes = open.has(parent.key) ? sorted : sorted.slice(0, SHOWN);
     if (chosen && !nodes.includes(chosen)) nodes = [...nodes, chosen];
@@ -257,7 +264,12 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
     onError: (reason: Error) => setNotice(reason.message),
   });
   const root = useMemo(() => data ? buildTree(withBlanks(data)) : null, [data]);
-  const path = root ? find(root, focus || "root") ?? [root] : [];
+  const projectCount = (items: string[]) => new Set(items.map((id) => data?.items[id]?.project_id)).size;
+  // First visit opens one complete R2–R5 path; R6 project techniques remain an explicit next step.
+  const initialPath: TreeNode[] = [];
+  let first = root;
+  while (first && initialPath.length < 4) { initialPath.push(first); first = orderedChildren(first, projectCount)[0] ?? null; }
+  const path = root ? (focus ? find(root, focus) ?? initialPath : initialPath) : [];
   const node = path[path.length - 1];
   const leafId = node?.level === 4 ? node.items[0] : "";
   const leaf = leafId && data ? data.items[leafId] : null;
@@ -281,7 +293,6 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   const stageOf = (id: string) => stageNames.includes(data.items[id]?.stage ?? "") ? data.items[id].stage! : UNDETERMINED_STAGE;
   const all = Object.keys(data.items);
   const match = new Set(all.filter((id) => (!fields.length || fields.includes(resolve.of(id))) && (!stages.length || stages.includes(stageOf(id)))));
-  const projectCount = (items: string[]) => new Set(items.map((id) => data.items[id]?.project_id)).size;
   const matched = (items: string[]) => items.filter((id) => match.has(id));
   const filtered = fields.length > 0 || stages.length > 0;
   const color = branchColor(corpora.map((c) => c.id), corpusId);
@@ -360,7 +371,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
             {i < path.length - 1 ? <button type="button" onClick={() => onFocus(n.key)} className="rounded px-1 text-[var(--link)] hover:bg-[var(--canvas)]">{n.name}</button>
               : <b className="px-1">{n.name}</b>}</span>)}
         </nav>
-        <LineageColumns path={path} lineage={data} match={match} projects={projectCount} onSelect={onFocus} />
+        <LineageColumns path={path} lineage={data} match={match} projects={projectCount} onSelect={onFocus} expandLeaf={Boolean(focus)} />
         <p className="mt-2 flex flex-wrap items-center gap-1.5 text-caption text-[var(--steel)]">项目技术的报告所述阶段：
           {TIERS.map((tier) => <span key={tier.label} className="inline-flex items-center gap-1"><Tier level={tier.min} />
             <span className="text-[var(--stone)]">{tier.min === 5 ? "5 级" : tier.min === 4 ? "4 级" : tier.min === 2 ? "2–3 级" : "0–1 级"}</span></span>)}</p>

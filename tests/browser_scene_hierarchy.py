@@ -201,6 +201,13 @@ async def main():
             await block.get_by_role("button", name="生成技术谱系", exact=True).click()
             await expect(tabs.get_by_role("tab", name="技术谱系 1 个技术体系 · 3 个技术条目")).to_be_visible()
             assert len(LINEAGE_POSTS) == 1, LINEAGE_POSTS
+            # Initial visit must show R2–R5 and the first theme's detail, without opening R6 yet.
+            initial_graph = block.get_by_role("region", name="技术谱系图谱")
+            await expect(initial_graph.get_by_role("button", name="R5：网络模型")).to_have_attribute("aria-pressed", "true")
+            for level in ("R2", "R3", "R4", "R5"):
+                await expect(initial_graph.locator("svg > text").filter(has_text=re.compile("^" + level + "$"))).to_have_count(1)
+            await expect(initial_graph.get_by_role("button", name=re.compile("^R6："))).to_have_count(0)
+            await expect(block.get_by_label("技术详情")).to_contain_text("网络模型")
             # 总览、五级谱系、路网一次显示一个（query 2026-1013 2012）。
             await block.get_by_role("tablist", name="技术谱系视图").get_by_role("tab", name="总览").click()
 

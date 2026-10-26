@@ -75,7 +75,7 @@ function Row({ label, hint, children }: { label: string; hint?: ReactNode; child
  * clicking outside, Escape, the ✕ in its head and the toolbar button all close it; it never moves the
  * page; the toolbar button carries aria-expanded so the state is announced.
  */
-export function QuickAsk({ onClose }: { onClose: () => void }) {
+export function QuickAsk({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { taskId, corpusIds, askInTask, busy, sessionBusy, input } = useApp();
   const [task, setTask] = useState(TASKS.some(([id]) => id === taskId) ? taskId : "task1");
   // Follow the session's task when it changes elsewhere (task menu, session list).
@@ -96,33 +96,44 @@ export function QuickAsk({ onClose }: { onClose: () => void }) {
   const panel = useRef<HTMLDivElement>(null);
   const { data: hierarchy } = useQuery({ ...hierarchyQuery(corpusIds[0] ?? ""), enabled: Boolean(corpusIds[0]), staleTime: 60_000 });
   const scenes = hierarchy?.scenes.map((item) => item.name) ?? [];
+  const scopeKey = corpusIds.join("|");
+  useEffect(() => { setScene(""); setAllScenes(false); }, [scopeKey]);
 
   // Dismiss on click outside and on Escape. Clicks, not mousedown: a mousedown here would close on the
   // toolbar button before its own click reopened, so that button could never shut the panel.
   useEffect(() => {
+    if (!open) return;
     const onClick = (event: MouseEvent) => {
       const path = event.composedPath();
       if (panel.current && path.includes(panel.current)) return;
       // The toolbar button owns the toggle. React flushes the effect that registered this listener
       // before the same click finishes bubbling, so without this the button would open the panel and
       // this listener would close it again — the panel could never be reopened (found 2026-1021).
-      if (path.some((node) => node instanceof Element && node.getAttribute("aria-controls") === "quick-ask-panel")) return;
+      if (path.some((node) => node instanceof Element && (node.getAttribute("aria-controls") === "quick-ask-panel" || node.closest('[aria-modal="true"]')))) return;
       onClose();
     };
-    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { onClose(); document.querySelector<HTMLButtonElement>('[aria-controls="quick-ask-panel"]')?.focus(); }
+    };
     document.addEventListener("click", onClick);
     document.addEventListener("keydown", onKey);
     return () => {
       document.removeEventListener("click", onClick);
       document.removeEventListener("keydown", onKey);
     };
-  }, [onClose]);
+  }, [open, onClose]);
 
   const toggle = (list: string[], value: string, set: (next: string[]) => void) =>
     set(list.includes(value) ? list.filter((item) => item !== value) : [...list, value]);
   const toggleIntent = (value: string) => {
-    if (!intents.includes(value) && intents.length >= MAX_INTENTS) return;
-    toggle(intents, value, setIntents);
+    if (value === "综合分析") {
+      if (intents.includes(value)) setIntents([]);
+      else { setIntents([value]); setElements(ELEMENTS); }
+      return;
+    }
+    const focused = intents.filter((item) => item !== "综合分析");
+    if (!focused.includes(value) && focused.length >= MAX_INTENTS) return;
+    toggle(focused, value, setIntents);
   };
 
   const span = TIMES.find((item) => item.key === time);
@@ -131,8 +142,8 @@ export function QuickAsk({ onClose }: { onClose: () => void }) {
   const typed = input.trim();
   const note = filled.has(typed) ? "" : typed.slice(0, NOTE_MAX);
   // Mirrors the server's SPARSE_PICKS: a thin selection with nothing typed may borrow a library angle.
-  const sparse = !note && elements.length + intents.length + (scene ? 1 : 0) <= 2;
-  const picks = JSON.stringify([task, elements, intents, time, scene, note]);
+  const sparse = !intents.includes("综合分析") && !note && elements.length + intents.length + (scene ? 1 : 0) <= 2;
+  const picks = JSON.stringify([task, scopeKey, elements, intents, time, scene, note]);
   useEffect(() => { setDrafts([]); setShown(0); }, [picks]);
   const draft = drafts[shown];
 
@@ -164,11 +175,12 @@ export function QuickAsk({ onClose }: { onClose: () => void }) {
     filled.add(draft.question);
     await askInTask(task, draft.question);
     onClose();
+    requestAnimationFrame(() => document.querySelector<HTMLTextAreaElement>('[data-guide="chat-input"]')?.focus());
   }
 
   return (
     <div id="quick-ask-panel" ref={panel} role="dialog" aria-label="点选提问" data-guide="chat-quick"
-      className="quick-ask absolute bottom-[calc(100%+10px)] left-0 right-0 z-[70] flex max-h-[min(64vh,432px)] flex-col overflow-hidden rounded-[14px] border border-[var(--hairline)] bg-[var(--canvas)] shadow-[0_28px_64px_-24px_rgba(15,15,15,0.3)]">
+      className="quick-ask composer-panel" style={open ? undefined : { display: "none" }}>
       <div className="flex shrink-0 items-center gap-[8px] border-b border-[var(--hairline-soft)] px-[14px] py-[10px]">
         <span className="grid size-[24px] shrink-0 place-items-center rounded-[7px] bg-[var(--primary-soft)] text-[var(--primary)]">
           <Icon name="checklist" size={14} strokeWidth={1.9} />
@@ -189,7 +201,10 @@ export function QuickAsk({ onClose }: { onClose: () => void }) {
           {TASKS.map(([id, name]) => <Chip key={id} on={task === id} onClick={() => setTask(id)}>{name}</Chip>)}
         </Row>
         <Row label="关注要素">
-          {ELEMENTS.map((item) => <Chip key={item} on={elements.includes(item)} onClick={() => toggle(elements, item, setElements)}>{item}</Chip>)}
+          {ELEMENTS.map((item) => <Chip key={item} on={elements.includes(item)} onClick={() => {
+            toggle(elements, item, setElements);
+            if (intents.includes("综合分析")) setIntents([]);
+          }}>{item}</Chip>)}
         </Row>
         <Row label="时间"
           hint={period
@@ -199,20 +214,22 @@ export function QuickAsk({ onClose }: { onClose: () => void }) {
             title={item.from ? `${item.from}—${item.to}` : "全部立项年份"}>{item.label}</Chip>)}
         </Row>
         <Row label="附带问题"
-          hint={intents.length >= MAX_INTENTS ? `已选 ${MAX_INTENTS} 项；再多会让生成的问题过长，可先取消一项` : `可多选，最多 ${MAX_INTENTS} 项`}>
+          hint={intents.includes("综合分析") ? "覆盖研究路线、进展、成果、投入与缺口；也可改选具体问题" : `最多 ${MAX_INTENTS} 项`}>
+          <Chip on={intents.includes("综合分析")} onClick={() => toggleIntent("综合分析")}>综合分析</Chip>
           {INTENTS.map((item) => {
             const on = intents.includes(item);
             return <Chip key={item} on={on} disabled={!on && intents.length >= MAX_INTENTS} onClick={() => toggleIntent(item)}>{item}</Chip>;
           })}
         </Row>
-        {scenes.length ? <Row label="关注场景" hint="只取该场景下的资料，不选则覆盖全库">
+        <Row label="关注场景">
+          <Chip on={!scene} onClick={() => setScene("")}>综合</Chip>
           {(allScenes ? scenes : scenes.slice(0, 8)).map((item) =>
             <Chip key={item} on={scene === item} onClick={() => setScene(scene === item ? "" : item)}>{item}</Chip>)}
           {scenes.length > 8 ? <button type="button" onClick={() => setAllScenes(!allScenes)}
             className="rounded-full px-[8px] py-[4px] text-caption text-[var(--stone)] transition-colors hover:text-[var(--primary)]">
             {allScenes ? "收起" : `还有 ${scenes.length - 8} 个`}
           </button> : null}
-        </Row> : null}
+        </Row>
       </div>
 
       {draft ? <div aria-live="polite" className="quick-ask-draft shrink-0 border-t border-[var(--hairline-soft)] px-[14px] py-[10px]">

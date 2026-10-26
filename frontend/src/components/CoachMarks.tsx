@@ -8,21 +8,29 @@ export type CoachStep = { target?: string; title: string; body: ReactNode };
  * found by their `data-guide` name; a step without one, or whose element is not on screen, centres
  * its card. ← and → move, Esc closes.
  */
-export function CoachMarks({ steps, label, onClose, footer }: { steps: CoachStep[]; label: string; onClose: () => void; footer?: ReactNode }) {
+export function CoachMarks({ steps, label, onClose, footer, onStepChange }: { steps: CoachStep[]; label: string; onClose: () => void; footer?: ReactNode; onStepChange?: (target: string | undefined) => void }) {
   const [index, setIndex] = useState(0);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const step = steps[index];
   const last = index === steps.length - 1;
 
   useLayoutEffect(() => {
-    const element = step.target ? document.querySelector<HTMLElement>(`[data-guide="${step.target}"]`) : null;
-    element?.scrollIntoView({ block: "nearest" });
-    const measure = () => setRect(element && element.offsetParent !== null ? element.getBoundingClientRect() : null);
+    onStepChange?.(step.target);
+    const measure = () => {
+      const element = step.target ? document.querySelector<HTMLElement>(`[data-guide="${step.target}"]`) : null;
+      const next = element && element.getClientRects().length ? element.getBoundingClientRect() : null;
+      setRect((old) => old?.x === next?.x && old?.y === next?.y && old?.width === next?.width && old?.height === next?.height ? old : next);
+    };
+    document.querySelector<HTMLElement>(`[data-guide="${step.target}"]`)?.scrollIntoView({ block: "nearest" });
     measure();
+    // The next step may open its target panel in another component after this commit.
+    const observer = new MutationObserver(measure);
+    observer.observe(document.body, { childList: true, subtree: true });
+    const frame = requestAnimationFrame(measure);
     window.addEventListener("resize", measure);
     window.addEventListener("scroll", measure, true);
-    return () => { window.removeEventListener("resize", measure); window.removeEventListener("scroll", measure, true); };
-  }, [step.target, index]);
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); window.removeEventListener("resize", measure); window.removeEventListener("scroll", measure, true); };
+  }, [step.target, index, onStepChange]);
 
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
@@ -39,19 +47,18 @@ export function CoachMarks({ steps, label, onClose, footer }: { steps: CoachStep
   // The card sits below the lit element when there is room, otherwise above it.
   const below = rect ? window.innerHeight - rect.bottom > 230 : false;
   const card = rect
-    ? { left: Math.max(12, Math.min(rect.left, window.innerWidth - width - 12)), top: below ? rect.bottom + pad + 12 : undefined,
-        bottom: below ? undefined : window.innerHeight - rect.top + pad + 12 }
+    ? { left: Math.max(12, Math.min(rect.right - width, window.innerWidth - width - 12)), top: Math.max(12, Math.min(window.innerHeight - 280, below ? rect.bottom + pad + 12 : rect.top - 260)) }
     : null;
 
   return (
-    <div className="fixed inset-0 z-[200]" aria-live="polite">
+    <div data-coachmarks className="fixed inset-0 z-[200]" aria-live="polite">
       {rect ? (
-        <div aria-hidden="true" className="pointer-events-none fixed rounded-[12px] ring-2 ring-[var(--primary)] transition-all duration-300"
+        <div aria-hidden="true" className="pointer-events-none fixed rounded-[12px] ring-2 ring-[var(--primary)]"
           style={{ left: rect.left - pad, top: rect.top - pad, width: rect.width + pad * 2, height: rect.height + pad * 2,
             boxShadow: "0 0 0 9999px rgba(15, 23, 42, 0.55)" }} />
       ) : <div aria-hidden="true" className="fixed inset-0 bg-[rgba(15,23,42,0.55)]" />}
       <div role="dialog" aria-label={label} aria-modal="true"
-        className="fixed w-[340px] max-w-[calc(100vw-24px)] rounded-[14px] bg-[var(--canvas)] p-[16px] shadow-2xl"
+        className="fixed max-h-[calc(100dvh-24px)] w-[340px] max-w-[calc(100vw-24px)] overflow-y-auto rounded-[14px] bg-[var(--canvas)] p-[16px] shadow-2xl"
         style={card ?? { left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
         <div className="flex items-center gap-[6px]">
           {steps.map((_, i) => <span key={i} aria-hidden="true" className={`h-[4px] rounded-full transition-all ${i === index ? "w-[18px] bg-[var(--primary)]" : "w-[6px] bg-[var(--hairline-strong)]"}`} />)}
@@ -98,8 +105,8 @@ export function taskGuide(task: { id: string; name: string; output_hint?: string
   if (!tips) return [];
   return [
     { target: "chat-task", title: `这是“${task.name}”`, body: <><p>{tips.does}</p>{task.output_hint ? <p className="text-caption text-[var(--steel)]">输出：{task.output_hint}</p> : null}</> },
-    { target: "chat-scope", title: "选择资料范围", body: <><p>默认按问题自动选择最相关的资料库；点这个按钮可以手动选择，最多 6 个。</p><p>{tips.scope}</p></> },
-    { target: "chat-quick", title: "点选提问", body: <><p>已为“{task.name}”预选常用的关注要素{presets?.length ? `（${presets.join("、")}）` : ""}。点“生成问题”，系统把点选内容写成问题填进输入框，你可以再改。</p></> },
+    { target: "chat-libraries", title: "选择资料范围", body: <><p>按问题自动选库，或搜索库名、勾选多个库；“仅使用此库”可直接切换。</p><p>{tips.scope}</p></> },
+    { target: "chat-quick", title: "点选提问", body: <><p>已为“{task.name}”预选关注要素{presets?.length ? `（${presets.join("、")}）` : ""}。选择“综合分析”可覆盖主要要点；生成后预览问题，再点“填入输入框”修改或发送。</p></> },
     { target: "chat-input", title: "提问并发送", body: <><p>{tips.ask}</p><p className="text-caption text-[var(--steel)]">Enter 发送，Shift+Enter 换行；回答生成时可以离开页面，回来接着看。</p></> },
     { title: "查看与保存结果", body: <p>{tips.after}</p> },
   ];

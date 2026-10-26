@@ -52,3 +52,5 @@ no file except `src/main.py` is over 800 lines.
 | browser_smoke.py | 依赖外部已运行 8011 端口，且使用旧设置入口 | check.sh full 启动临时服务；browser_export / browser_answer_controls |
 
 没有删除仍有效的原文预览、网络快照、分支和范围恢复等能力测试。它们尚需迁移的具体问题登记在 [Q1 盘点](tasks/upgrade-Q1-20261019.md)。
+
+2026-10-26 工作台易用性：`Composer.tsx` 的三个独立面板开关改为一个互斥状态，删除资料库选择的内联布局与重复标题、已选名单说明；新会话不再自动弹出点选提问。资料库、点选提问与资料范围统一在输入框上方，点选条件在切换时保留；综合分析与默认谱系路径由现行代码承接。可从父提交 `fe99ab3` 恢复旧实现。

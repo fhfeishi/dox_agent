@@ -472,13 +472,15 @@ async def check_roads(page,shots):
     # With libraries, systems, directions, a theme and all its projects open, no two names overlap.
     await page.wait_for_timeout(700)
     assert await road.evaluate(LABEL_OVERLAPS)==[]
+    # Names get room instead of hiding: every node of the deep branch keeps its name.
     named=await road.locator('.roads-label').count()
-    assert named>=20
-    # Zooming in makes room: more names appear, still apart; 0 returns to the overview.
+    nodes=await road.locator('.roads-node:not(.is-root)').count()
+    assert named==nodes,(named,nodes)
+    # Zoomed in, names stay apart and none is lost; 0 returns to the overview.
     await road.focus()
     for _ in range(3): await road.press('+')
     await page.wait_for_timeout(300)
-    assert await road.locator('.roads-label').count()>named
+    assert await road.locator('.roads-label').count()==nodes
     assert await road.evaluate(LABEL_OVERLAPS)==[]
     await road.press('0')
     await frame.get_by_role('button',name='放大查看技术谱系',exact=True).click()

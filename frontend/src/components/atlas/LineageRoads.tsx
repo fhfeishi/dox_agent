@@ -80,17 +80,77 @@ function build(data: DomainsOverview, trees: Map<string, DomainTree>, open: Set<
 
 type Placed = { node: Node; x: number; y: number; angle: number; r: number; span: number };
 /**
- * Radial layout: every shown leaf carries one label line, which needs an arc of (line height / its
- * radius); a branch's arc is the sum of its leaves' needs, scaled so the whole tree fills the circle.
- * Each label thus gets the same clearance from its neighbours, whichever branches are open.
+ * The arc a subtree's names need, in lines of text over radius: each shown leaf carries one label
+ * line along its spoke. An open node writes its name along its ring on the centre side, so its arc is
+ * at least that name's length there; an open library's name reads horizontally beside it.
  */
-function place(root: Node) {
+function need(n: Node): number {
+  const chars = Math.min(LABEL_CHARS, n.name.length) + 1;
+  if (!n.children.length) return (n.kind === "library" ? 3 : 1) / RADII[n.kind];
+  const own = n.kind === "root" ? 0 : n.kind === "library" ? Math.max(2, 0.5 * chars) / RADII.library : chars / (0.85 * RADII[n.kind]);
+  return Math.max(own, n.children.reduce((s, c) => s + need(c), 0));
+}
+
+/**
+ * Spreads the rings outwards until every name has room (query 2026-10-26: spread outwards rather than
+ * hide names). The unspread map fits the frame's default height; spreading keeps that on-screen scale,
+ * so nodes and text keep their size, and the frame grows taller to hold the drawing. It starts from
+ * the arc estimate of `need`, places the names, and spreads further while some still do not fit; only
+ * once the drawing is as wide as the frame do names start to drop out. Selection does not take part,
+ * so a click never moves the map. Returns the ring factor, the layout, the map size, the drawn extent
+ * and the screen scale.
+ */
+function arrange(root: Node, font: number, width: number, height: number, maxItems: number) {
+  const shown: Node[] = [];
+  const walk = (n: Node) => { shown.push(n); n.children.forEach(walk); };
+  walk(root);
+  const outer = Math.max(...shown.map((n) => RADII[n.kind]));
+  const longest = Math.max(0, ...shown.filter((n) => RADII[n.kind] === outer).map((n) => Math.min(LABEL_CHARS, n.name.length)));
+  const reach = longest * font + 16, pixels = Math.min(width, height);
+  // Capped so a deep map keeps a readable scale; a longer outer name may then reach the frame edge.
+  const base = 2 * (outer + (outer > RADII.library
+    ? Math.min(2 * reach * outer / Math.max(pixels - 2 * reach, 0.45 * pixels), 0.3 * outer + 110) : 110));
+  const scale = pixels / base;
+  const line = font / scale;
+  const attempt = (spread: number) => {
+    const layout = place(root, spread), size = spread === 1 ? base : 2 * (outer * spread + reach / scale);
+    const box = extent(layout, maxItems, line);
+    return { spread, layout, size, box, fits: spread === 1 || (box.right - box.left) * scale <= width };
+  };
+  let spread = Math.max(1, (font * 1.2 * need(root)) / (2 * Math.PI * 0.85 * scale));
+  let best = attempt(spread);
+  while (!best.fits) best = attempt(spread = Math.max(1, spread / 1.12));
+  for (let i = 0; i < 24 && fitLabels(best.layout, maxItems, line, best.size / 2, new Set(), "").size < shown.length - 1; i++) {
+    const next = attempt(spread *= 1.12);
+    if (!next.fits) break;
+    best = next;
+  }
+  return { ...best, scale };
+}
+
+/** The part of the map a layout draws on, names included (map units; `line` is the text size). */
+function extent(layout: Map<string, Placed>, maxItems: number, line: number) {
+  let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
+  for (const p of layout.values()) {
+    const n = p.node, r = nodeRadius(n, maxItems), leaf = !n.children.length && n.kind !== "root";
+    const reach = leaf ? r + 0.35 * line + textWidth(n.name.slice(0, LABEL_CHARS), line) : 0;
+    const side = n.kind === "library" ? r + textWidth(n.name, line) * 0.55 : r + 1.6 * line;
+    const tx = p.x + Math.cos(p.angle) * reach, ty = p.y + Math.sin(p.angle) * reach;
+    left = Math.min(left, p.x - side, tx); right = Math.max(right, p.x + side, tx);
+    top = Math.min(top, p.y - r - 1.6 * line, ty); bottom = Math.max(bottom, p.y + r + 1.6 * line, ty);
+  }
+  return { left, right, top, bottom };
+}
+
+/**
+ * Radial layout: a branch's arc is the sum of its leaves' needs, scaled so the whole tree fills the
+ * circle, so each label gets the same clearance from its neighbours whichever branches are open.
+ * Rings sit at their base radius times `spread`; node sizes do not change.
+ */
+function place(root: Node, spread: number) {
   const out = new Map<string, Placed>();
-  // A library's name reads horizontally, so a library, open or not, holds at least two lines of arc.
-  const need = (n: Node): number => Math.max(n.kind === "library" ? 2 / RADII.library : 0,
-    n.children.length ? n.children.reduce((s, c) => s + need(c), 0) : 1 / RADII[n.kind]);
   const walk = (n: Node, from: number, to: number) => {
-    const angle = (from + to) / 2, r = RADII[n.kind];
+    const angle = (from + to) / 2, r = RADII[n.kind] * spread;
     out.set(n.id, { node: n, angle, r, span: to - from, x: Math.cos(angle) * r, y: Math.sin(angle) * r });
     let at = from;
     const total = need(n);
@@ -126,8 +186,8 @@ const textWidth = (text: string, size: number) => [...text].reduce((w, c) => w +
  * Chooses which names to draw, like a map: names go down in priority order (the active path,
  * libraries, open nodes, the active node's children, then inner rings before outer ones), each tries
  * its positions in turn, and a name that would cover a placed name or another node is left out.
- * Zooming in makes room, so more names appear; the hover card and the path bar always name a node. Spoke names are also cut where they
- * would leave the map, so a deep ring does not run off the frame.
+ * Zooming in makes room, so more names appear; the hover card and the path bar always name a node.
+ * Spoke names are also cut where they would leave the map, so a deep ring does not run off the frame.
  */
 function fitLabels(layout: Map<string, Placed>, maxItems: number, size: number, edge: number, path: Set<string>, active: string) {
   const out = new Map<string, Label>(), placed: Box[] = [];
@@ -251,7 +311,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     setOpen((old) => new Set([...old, ...ids]));
     setFull((old) => new Set([...old, ...themes]));
   }
-  const layout = useMemo(() => place(root), [root]);
+  const [font, setFont] = useState(14);
+  // The embedded frame: its width, and its default height (the CSS clamp(520px, 76vh, 1240px)).
+  const [frame, setFrame] = useState({ width: 1100, height: 700 });
+  const sized = useMemo(() => arrange(root, font, frame.width, frame.height, Math.max(...data.domains.map((d) => d.items))),
+    [root, font, frame, data]);
+  const layout = sized.layout;
   const detail = detailTarget ? layout.get(detailTarget.id)?.node ?? detailTarget : null;
   const hue = (library: string) => (overview.data && library ? libraryColor(overview.data, library) : "var(--terrain-dot)");
   const maxItems = Math.max(...data.domains.map((d) => d.items));
@@ -291,30 +356,40 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const svg = useRef<SVGSVGElement>(null);
   const largeSvg = useRef<SVGSVGElement>(null);
   const focusOn = useRef("");
-  // The square map is fitted to the shorter side of a wide, short frame: that side sets the scale.
-  const side = (box: DOMRect) => Math.min(box.width, box.height) || 1100;
-  const [pixels, setPixels] = useState(1100);
-  const [largePixels, setLargePixels] = useState(1100);
+  // The square map is fitted to the shorter side of the frame: that side sets the scale.
+  const [largeFrame, setLargeFrame] = useState({ width: 1100, height: 1100 });
   useEffect(() => {
-    const observer = new ResizeObserver(() => {
-      if (svg.current) setPixels(side(svg.current.getBoundingClientRect()));
-      if (largeSvg.current && large) setLargePixels(side(largeSvg.current.getBoundingClientRect()));
-    });
+    const measure = () => {
+      if (svg.current) setFrame((old) => {
+        const width = svg.current!.getBoundingClientRect().width || old.width;
+        const height = Math.min(1240, Math.max(520, innerHeight * 0.76));
+        return width === old.width && height === old.height ? old : { width, height };
+      });
+      if (largeSvg.current && large) {
+        const { width, height } = largeSvg.current.getBoundingClientRect();
+        if (width && height) setLargeFrame((old) => (old.width === width && old.height === height ? old : { width, height }));
+      }
+      setFont(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--text-body")) || 14);
+    };
+    const observer = new ResizeObserver(measure);
     if (svg.current) observer.observe(svg.current);
     if (largeSvg.current) observer.observe(largeSvg.current);
-    return () => observer.disconnect();
+    addEventListener("resize", measure);
+    return () => { observer.disconnect(); removeEventListener("resize", measure); };
   }, [large]);
-  // Labels keep their screen size, so the margin for the outermost spoke labels is solved in screen
-  // terms: a label of L pixels needs L·SIZE/pixels map units, and SIZE itself includes that margin.
-  const [font, setFont] = useState(14);
-  useEffect(() => { setFont(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--text-body")) || 14); }, [pixels]);
-  const outermost = Math.max(...[...layout.values()].map((p) => p.r));
-  const longest = Math.max(0, ...[...layout.values()].filter((p) => p.r === outermost).map((p) => Math.min(LABEL_CHARS, p.node.name.length)));
-  const reach = longest * font + 16;
-  // Capped so a deep map keeps a readable scale; a longer outer name may then reach the frame edge.
-  const SIZE = 2 * (outermost + (outermost > RADII.library
-    ? Math.min(2 * reach * outermost / Math.max(pixels - 2 * reach, 0.45 * pixels), 0.3 * outermost + 110) : 110));
-  const bounds = {left:-SIZE/2,right:SIZE/2,top:-SIZE/2,bottom:SIZE/2};
+  const SIZE = sized.size, grown = sized.spread > 1;
+  // A grown frame shows what the drawing uses, centred: no empty band when a branch leans one way.
+  const crop = useMemo(() => {
+    if (!grown) return { left: -SIZE / 2, top: -SIZE / 2, width: SIZE, height: SIZE };
+    const { box, scale } = sized, line = font / scale;
+    const width = frame.width / scale, height = Math.max(frame.height / scale, box.bottom - box.top + 2 * line);
+    return { left: (box.left + box.right - width) / 2, top: (box.top + box.bottom - height) / 2, width, height };
+  }, [grown, sized, font, frame, SIZE]);
+  // Screen pixels per map unit at zoom 1, written as the map side it gives (px = SIZE / pixels / k).
+  const pixels = (grown ? sized.scale : Math.min(frame.width, frame.height) / SIZE) * SIZE;
+  // The large view shows the same part of the map, fitted to the window.
+  const largePixels = Math.min(largeFrame.width / crop.width, largeFrame.height / crop.height) * SIZE;
+  const bounds = { left: crop.left, right: crop.left + crop.width, top: crop.top, bottom: crop.top + crop.height };
   const pan = usePanZoom(svg, bounds, engaged && !large);
   const largePan = usePanZoom(largeSvg, bounds, large);
   // Only an explicit reveal from 03 moves the camera; opening another branch keeps the context.
@@ -327,8 +402,10 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     if (!p || p.node.kind === "root") { map.glideTo({ x: 0, y: 0, k: 1 }); return; }
     const k = { library: 1.25, system: 1.6, direction: 2, theme: 2.4, project: 2.4, more: 2.4, root: 1 }[p.node.kind];
     // Centre between the node and the ring of its children, so the new fan is in view.
-    const reach = (p.r + Math.min(p.r + 110, 600)) / 2;
-    map.glideTo({ x: -Math.cos(p.angle) * reach * k, y: -Math.sin(p.angle) * reach * k, k });
+    // A fitted frame is not centred on the map origin; its own centre is the target.
+    const reach = (p.r + Math.min(p.r + 110 * sized.spread, 600 * sized.spread)) / 2;
+    const cx = crop.left + crop.width / 2, cy = crop.top + crop.height / 2;
+    map.glideTo({ x: cx - Math.cos(p.angle) * reach * k, y: cy - Math.sin(p.angle) * reach * k, k });
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function expandSystems() {
@@ -468,7 +545,9 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
         transform={`translate(${(-Math.cos(p.angle) * inset).toFixed(2)},${(-Math.sin(p.angle) * inset).toFixed(2)}) rotate(${turn.toFixed(1)})`}
         style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
     }
-    return <svg ref={isLarge ? largeSvg : svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
+    return <svg ref={isLarge ? largeSvg : svg} className="roads-svg" role="group"
+      viewBox={`${crop.left} ${crop.top} ${crop.width} ${crop.height}`}
+      style={!isLarge && grown ? { height: crop.height * sized.scale } : undefined}
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
       tabIndex={0} onKeyDown={e => {
         if (!isLarge && e.target === e.currentTarget && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); changeMode(!engaged); return; }
@@ -478,7 +557,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
       onDoubleClick={e => { if (!isLarge && blankClicks.current === 2 && !(e.target as Element).closest(".roads-node")) { e.preventDefault(); changeMode(!engaged); } }}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
-          ? <circle key={k} r={RADII[k]} className="roads-ring" /> : null)}
+          ? <circle key={k} r={RADII[k] * sized.spread} className="roads-ring" /> : null)}
         {nodes.filter((p) => p.node.parent).map((p) => {
           const parent = layout.get(p.node.parent!)!;
           const a = shown.get(parent.node.id) ?? parent, b = shown.get(p.node.id) ?? p;
@@ -537,7 +616,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             onClick={e => { if (e.detail && touchHandled.current) { touchHandled.current = false; return; } touchHandled.current = false; changeMode(!engaged); }}>
             {engaged ? "✓ 图谱操作中" : "↕ 浏览页面"}
           </button>
-          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。放不下的名称先隐藏，悬停或放大后显示。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
+          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。展开的层级多时，各层向外展开、图框随之加高，名称不重叠。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
             {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
           </>}>图例与操作</Hint>
           <button type="button" onClick={expandSystems}>展开全部技术体系</button>

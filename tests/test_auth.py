@@ -1,5 +1,6 @@
 """Real HTTP/cookie/SQLite authentication lifecycle, no substitute authentication."""
 import time
+from contextlib import closing
 
 from fastapi.testclient import TestClient
 
@@ -123,7 +124,7 @@ def test_single_administrator_store_moves_into_accounts(tmp_path):
     store = Accounts(tmp_path)
     salt = "00" * 16
     tmp_path.mkdir(exist_ok=True)
-    with sqlite3.connect(tmp_path / "accounts.sqlite3") as db:
+    with closing(sqlite3.connect(tmp_path / "accounts.sqlite3")) as db, db:
         db.execute("CREATE TABLE administrator (id INTEGER PRIMARY KEY CHECK(id=1), salt TEXT, digest TEXT)")
         db.execute("CREATE TABLE sessions (digest TEXT PRIMARY KEY, expires REAL)")
         db.execute("INSERT INTO administrator VALUES (1,?,?)", (salt, Accounts.password_digest("old-password-1", salt)))

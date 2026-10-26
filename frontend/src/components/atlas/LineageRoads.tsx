@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { createPortal } from "react-dom";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { domainTreeQuery, maturityVar, MATURITY_NAMES, type DomainsOverview, type DomainTree, type TreeProject } from "../../domains";
 import { libraryOverviewQuery } from "../../libraryQueries";
@@ -8,18 +9,18 @@ import { Hint } from "../Hint";
 import { SlideOver } from "../SlideOver";
 import { usePanZoom } from "./usePanZoom";
 import { PanZoomControls } from "./PanZoomControls";
+import { Button } from "../ui";
 
 /**
  * 02 技术谱系总览 as a radial road map (query 2026-1022 1606): 人工智能 at the centre, then each library,
  * its technology systems, research directions, themes and finally the projects, one ring further out
- * per level. It opens one node at a time: a click grows that node's children out of it, a second click
- * folds them back. Roads are as wide as the technology they carry and take their library's colour (the
+ * per level. A click grows a node's children out of it, a second click folds only that branch back. Roads are as wide as the technology they carry and take their library's colour (the
  * same hues as the 首页 banner); a node's fill is its mean maturity. Hovering lights the road back to
  * the centre; the path bar above names where you are and opens its details on the right.
  *
- * No double clicks (query 2026-1023 1044): a click already opens a branch and starts the glide, so a
- * second click landed on a moving map and folded what had just opened. Details open from the 详情
- * chip under the node that was clicked, or from 详情 → in the path bar; 全景 recentres the view.
+ * Nodes open independently. A blank-space double click explicitly enables/disables canvas input;
+ * node clicks never enable wheel capture. A separate large viewport shares expansion and detail
+ * routes while preserving the embedded camera and page position.
  */
 
 type Kind = "root" | "library" | "system" | "direction" | "theme" | "project" | "more";
@@ -79,14 +80,11 @@ function build(data: DomainsOverview, trees: Map<string, DomainTree>, open: Set<
 type Placed = { node: Node; x: number; y: number; angle: number; r: number };
 /**
  * Radial layout: each node gets an arc by the leaves it shows and sits mid-arc on its ring. Leaves are
- * damped (power 0.8) so one opened branch widens without squeezing its folded siblings to a line.
- * The branch on the path to the active node gets 1.5× per level, which compounds along the path.
+ * damped (power 0.8), with a minimum arc for siblings when several branches are open.
  */
-function place(root: Node, focus: Set<string>) {
+function place(root: Node) {
   const out = new Map<string, Placed>();
-  // The branch being explored gets 1.5× per level on the path (it compounds), so drilling in makes room without crushing the rest.
-  const leaves = (n: Node): number => (n.children.length ? Math.pow(n.children.reduce((s, c) => s + leaves(c), 0), 0.8) : 1)
-    * (focus.has(n.id) && n.kind !== "root" ? 1.5 : 1);
+  const leaves = (n: Node): number => n.children.length ? Math.pow(n.children.reduce((s, c) => s + leaves(c), 0), 0.8) : 1;
   const walk = (n: Node, from: number, to: number) => {
     const angle = (from + to) / 2, r = RADII[n.kind];
     out.set(n.id, { node: n, angle, r, x: Math.cos(angle) * r, y: Math.sin(angle) * r });
@@ -94,7 +92,8 @@ function place(root: Node, focus: Set<string>) {
     // Siblings share the parent's arc by their own weights, which are damped and so need not add up to it.
     const total = n.children.reduce((sum, c) => sum + leaves(c), 0);
     for (const child of n.children) {
-      const span = ((to - from) * leaves(child)) / total;
+      const reserve = n.kind === "root" ? 0.6 : 0.25;
+      const span = (to - from) * (reserve / n.children.length + (1 - reserve) * leaves(child) / total);
       walk(child, at, at + span);
       at += span;
     }
@@ -117,12 +116,22 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const [open, setOpen] = useState<Set<string>>(() => new Set(["root"]));
   const [full, setFull] = useState<Set<string>>(() => new Set());
   const box = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const largeButton = useRef<HTMLSpanElement>(null);
+  const restoreLargeFocus = useRef(true);
+  const [engaged, setEngaged] = useState(false);
+  const [large, setLarge] = useState(false);
+  const scrollSnapshot = useRef<{ node: HTMLElement; top: number; windowTop: number } | null>(null);
+  const modePress = useRef<{ id: number; x: number; y: number; scroll: number; engaged: boolean } | null>(null);
+  const touchHandled = useRef(false);
+  const blankClicks = useRef(0);
   const [active, setActive] = useState("root");
   const [hover, setHover] = useState("");
-  const [detail, setDetail] = useState<Node | null>(null);
+  const [detailTarget, setDetail] = useState<Node | null>(null);
+  const detailContent = useRef<HTMLDivElement>(null);
   const overview = useQuery({ ...libraryOverviewQuery() });
   // A library's deeper levels are read only once it is opened.
-  const libs = data.domains.filter((d) => open.has(d.id)).map((d) => d.id);
+  const libs = open.has("root") ? data.domains.filter((d) => open.has(d.id)).map((d) => d.id) : [];
   const queries = useQueries({ queries: libs.map((id) => domainTreeQuery(id)) });
   const trees = new Map<string, DomainTree>();
   queries.forEach((q, i) => { if (q.data) trees.set(libs[i], q.data); });
@@ -136,6 +145,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const sid = reveal.system ? `${reveal.library}/${reveal.system}` : "";
     setOpen((old) => new Set([...old, "root", reveal.library, ...(sid ? [sid] : [])]));
     setActive(sid || reveal.library);
+    focusOn.current = sid || reveal.library;
     box.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [reveal?.at]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -163,16 +173,8 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     setOpen((old) => new Set([...old, ...ids]));
     setFull((old) => new Set([...old, ...themes]));
   }
-  const focusPath = useMemo(() => {
-    // Parent links from the tree itself: a technology name may contain "/", so ids are not split.
-    const parent = new Map<string, string | null>();
-    const walk = (n: Node) => { parent.set(n.id, n.parent); n.children.forEach(walk); };
-    walk(root);
-    const out = new Set<string>();
-    for (let at: string | null = active; at; at = parent.get(at) ?? null) out.add(at);
-    return out;
-  }, [active, root]);
-  const layout = useMemo(() => place(root, focusPath), [root, focusPath]);
+  const layout = useMemo(() => place(root), [root]);
+  const detail = detailTarget ? layout.get(detailTarget.id)?.node ?? detailTarget : null;
   const hue = (library: string) => (overview.data && library ? libraryColor(overview.data, library) : "var(--terrain-dot)");
   const maxItems = Math.max(...data.domains.map((d) => d.items));
 
@@ -190,67 +192,140 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     return () => cancelAnimationFrame(frame);
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /**
-   * A click opens one branch and folds its siblings' (query 2026-1022: the map was hard to work), then
-   * the view glides to the opened node; a second click folds it and steps back to its parent.
-   */
+  // Expansion belongs to each node. Folding a parent hides, but remembers, its descendants.
   function toggle(node: Node) {
     setActive(node.id);
-    if (node.kind === "project") { setDetail(node); return; }
-    if (node.kind === "more") { setFull((old) => new Set([...old, node.parent!])); setActive(node.parent!); focusOn.current = node.parent!; return; }
+    if (node.kind === "project") { showDetail(node); return; }
+    if (node.kind === "more") { setFull((old) => new Set([...old, node.parent!])); setActive(node.parent!); return; }
     if (!node.expandable) return;
-    const closing = open.has(node.id) && node.kind !== "root";
-    const siblings = [...layout.values()].filter((p) => p.node.parent === node.parent && p.node.id !== node.id).map((p) => p.node.id);
     setOpen((old) => {
       const next = new Set(old);
-      const fold = (id: string) => { for (const k of [...next]) if (k === id || k.startsWith(id + "/")) next.delete(k); };
-      if (closing) fold(node.id);
-      else { next.add(node.id); siblings.forEach(fold); }
-      next.add("root");
+      if (next.has(node.id)) next.delete(node.id); else next.add(node.id);
       return next;
     });
-    focusOn.current = closing ? (node.parent ?? "root") : node.id;
   }
 
   const lineage = (id: string) => { const out = new Set<string>(); let at: string | null = id; while (at) { out.add(at); at = layout.get(at)?.node.parent ?? null; } return out; };
   const lit = hover ? lineage(hover) : null;
   const path = [...lineage(active)].reverse().map((id) => layout.get(id)?.node).filter(Boolean) as Node[];
 
-  // Drag pans, the wheel zooms at the pointer; 全景 recentres.
+  // The two viewports share data/expansion, but have independent display coordinates.
   const svg = useRef<SVGSVGElement>(null);
+  const largeSvg = useRef<SVGSVGElement>(null);
   const focusOn = useRef("");
   // The square map is fitted to the shorter side of a wide, short frame: that side sets the scale.
   const side = (box: DOMRect) => Math.min(box.width, box.height) || 1100;
   const [pixels, setPixels] = useState(1100);
+  const [largePixels, setLargePixels] = useState(1100);
   useEffect(() => {
-    const node = svg.current;
-    if (!node) return;
-    const observer = new ResizeObserver(() => setPixels(side(node.getBoundingClientRect())));
-    observer.observe(node);
+    const observer = new ResizeObserver(() => {
+      if (svg.current) setPixels(side(svg.current.getBoundingClientRect()));
+      if (largeSvg.current && large) setLargePixels(side(largeSvg.current.getBoundingClientRect()));
+    });
+    if (svg.current) observer.observe(svg.current);
+    if (largeSvg.current) observer.observe(largeSvg.current);
     return () => observer.disconnect();
-  }, []);
+  }, [large]);
   // The view fits the outermost ring on show, plus room for its spoke labels; it grows as levels open.
   const outermost = Math.max(...[...layout.values()].map((p) => p.r));
   const SIZE = 2 * (outermost + (outermost > 300 ? 170 : 110));
-  const pan = usePanZoom(svg, {left:-SIZE/2,right:SIZE/2,top:-SIZE/2,bottom:SIZE/2});
-  const {view, glideTo} = pan;
-  // Labels and hit areas keep the same size on screen at any zoom.
-  const px = SIZE / pixels / view.k;
-  // After a click, centre the opened node at a zoom that suits its level.
+  const bounds = {left:-SIZE/2,right:SIZE/2,top:-SIZE/2,bottom:SIZE/2};
+  const pan = usePanZoom(svg, bounds, engaged && !large);
+  const largePan = usePanZoom(largeSvg, bounds, large);
+  // Only an explicit reveal from 03 moves the camera; opening another branch keeps the context.
   useEffect(() => {
     const id = focusOn.current;
     if (!id) return;
     focusOn.current = "";
     const p = layout.get(id);
-    if (!p || p.node.kind === "root") { glideTo({ x: 0, y: 0, k: 1 }); return; }
+    const map = large ? largePan : pan;
+    if (!p || p.node.kind === "root") { map.glideTo({ x: 0, y: 0, k: 1 }); return; }
     const k = { library: 1.25, system: 1.6, direction: 2, theme: 2.4, project: 2.4, more: 2.4, root: 1 }[p.node.kind];
     // Centre between the node and the ring of its children, so the new fan is in view.
     const reach = (p.r + Math.min(p.r + 110, 600)) / 2;
-    glideTo({ x: -Math.cos(p.angle) * reach * k, y: -Math.sin(p.angle) * reach * k, k });
+    map.glideTo({ x: -Math.cos(p.angle) * reach * k, y: -Math.sin(p.angle) * reach * k, k });
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function expandSystems() {
-    setOpen(new Set(["root", ...data.domains.map((d) => d.id)]));
+    setOpen((old) => new Set([...old, "root", ...data.domains.map((d) => d.id)]));
+  }
+  function scroller() {
+    let node: HTMLElement | null = box.current?.parentElement ?? null;
+    while (node && !/(auto|scroll)/.test(getComputedStyle(node).overflowY)) node = node.parentElement;
+    return node ?? document.documentElement;
+  }
+  function pageTop() { return scroller().scrollTop + window.scrollY; }
+  function changeMode(value: boolean) {
+    setEngaged(value);
+    if (value) svg.current?.focus({ preventScroll: true });
+  }
+  useEffect(() => {
+    if (!engaged) return;
+    const outside = (e: globalThis.PointerEvent) => { if (!(e.target instanceof globalThis.Node) || !box.current?.contains(e.target)) setEngaged(false); };
+    const wheel = (e: WheelEvent) => { if (!(e.target instanceof globalThis.Node) || !svg.current?.contains(e.target)) setEngaged(false); };
+    const leave = () => setEngaged(false);
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); setEngaged(false); } };
+    document.addEventListener("pointerdown", outside, true);
+    document.addEventListener("wheel", wheel, { capture: true, passive: true });
+    document.addEventListener("scroll", leave, { capture: true, passive: true });
+    document.addEventListener("keydown", key, true);
+    window.addEventListener("blur", leave);
+    return () => {
+      document.removeEventListener("pointerdown", outside, true);
+      document.removeEventListener("wheel", wheel, true);
+      document.removeEventListener("scroll", leave, true);
+      document.removeEventListener("keydown", key, true);
+      window.removeEventListener("blur", leave);
+    };
+  }, [engaged]);
+  function openLarge() {
+    const node = scroller();
+    scrollSnapshot.current = { node, top: node.scrollTop, windowTop: window.scrollY };
+    restoreLargeFocus.current = true;
+    pan.stop(); largePan.stop(); largePan.setView(pan.view);
+    setEngaged(false); setHover(""); setCard(null); setLarge(true);
+  }
+  function closeLarge(focus = true) {
+    restoreLargeFocus.current = focus;
+    dialog.current?.close();
+    largePan.stop(); setLarge(false); setHover(""); setCard(null);
+  }
+  useLayoutEffect(() => {
+    if (!large || !dialog.current) return;
+    const element = dialog.current;
+    element.showModal();
+    const root = document.documentElement, overflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    largeSvg.current?.focus({ preventScroll: true });
+    return () => {
+      element.close(); root.style.overflow = overflow;
+      const saved = scrollSnapshot.current;
+      if (saved?.node.isConnected) {
+        saved.node.scrollTo({ top: saved.top, behavior: "instant" });
+        window.scrollTo({ top: saved.windowTop, behavior: "instant" });
+      }
+      if (restoreLargeFocus.current) largeButton.current?.querySelector("button")?.focus({ preventScroll: true });
+    };
+  }, [large]);
+  function showDetail(node: Node | null) {
+    setEngaged(false);
+    if (large) closeLarge(false);
+    setDetail(node);
+  }
+  useLayoutEffect(() => {
+    if (!detailTarget || !detailContent.current) return;
+    detailContent.current.parentElement?.scrollTo({ top: 0, behavior: "instant" });
+    detailContent.current.focus({ preventScroll: true });
+  }, [detailTarget?.id]);
+  function modeDown(e: PointerEvent<HTMLButtonElement>) {
+    touchHandled.current = false;
+    modePress.current = e.pointerType === "touch" ? { id: e.pointerId, x: e.clientX, y: e.clientY, scroll: pageTop(), engaged } : null;
+  }
+  function modeUp(e: PointerEvent<HTMLButtonElement>) {
+    const press = modePress.current; modePress.current = null;
+    if (press && press.id === e.pointerId && Math.hypot(e.clientX - press.x, e.clientY - press.y) < 10 && Math.abs(pageTop() - press.scroll) < 2) {
+      touchHandled.current = true; changeMode(!press.engaged);
+    }
   }
   const loading = queries.some((q) => q.isLoading);
   const nodes = [...layout.values()];
@@ -259,38 +334,37 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const onPath = new Set(path.map((n) => n.id));
 
   const activeNode = layout.get(active)?.node;
-  const [card, setCard] = useState<{ left: number; top: number } | null>(null);
-  function moveCard(event: { clientX: number; clientY: number }) {
-    const frame = box.current?.getBoundingClientRect();
-    if (!frame || pan.suppressClick()) return;
+  const [card, setCard] = useState<{ left: number; top: number; large: boolean } | null>(null);
+  function moveCard(event: { clientX: number; clientY: number }, isLarge: boolean) {
+    const frame = (isLarge ? dialog.current : box.current)?.getBoundingClientRect();
+    if (!frame || (isLarge ? largePan : pan).isDragging()) return;
     const left = event.clientX - frame.left + 16;
-    setCard({ left: left + 260 > frame.width ? left - 290 : left, top: event.clientY - frame.top + 14 });
+    setCard({ left: left + 260 > frame.width ? left - 290 : left, top: event.clientY - frame.top + 14, large: isLarge });
   }
   const hovered = hover ? layout.get(hover)?.node : undefined;
   const KIND_NAME: Record<Kind, string> = { root: "全部领域", library: "资料库", system: "技术体系", direction: "研究方向", theme: "主题", project: "项目", more: "其余项目" };
-  return <div className="roads" ref={box}>
-    <div className="roads-bar">
-      <nav aria-label="当前位置" className="roads-path">
+  function pathBar() {
+    return <nav aria-label="当前位置" className="roads-path">
         {path.map((n, i) => <span key={n.id}>{i ? <i aria-hidden="true">›</i> : null}
           <button type="button" onClick={() => setActive(n.id)} aria-current={n.id === active ? "true" : undefined}>{n.name}</button></span>)}
-        {active !== "root" ? <button type="button" className="roads-detail" onClick={() => setDetail(layout.get(active)?.node ?? null)}>详情 →</button> : null}
+        {active !== "root" ? <button type="button" className="roads-detail" onClick={() => showDetail(layout.get(active)?.node ?? null)}>详情 →</button> : null}
         {activeNode && ["system", "direction", "theme"].includes(activeNode.kind) && trees.has(activeNode.library)
           ? <button type="button" className="roads-detail" onClick={() => expandBranch(active)}>{activeNode.kind === "system" ? "展开到主题"
             : activeNode.kind === "direction" ? "展开到项目" : "显示全部项目"}</button> : null}
-      </nav>
-      <div className="roads-tools">
-        {loading ? <span role="status">读取中…</span> : null}
-        <Hint align="end" text={<>点节点展开（同级其他分支自动收起），再点收起；点节点下方的「详情」看说明与清单<br />路宽 = 技术条目数 · 路色 = 资料库<br />节点颜色 = 平均成熟度：
-          {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
-          <br />拖动平移 · 滚轮缩放 · 「全景」复位</>}>图例与操作</Hint>
-        <button type="button" onClick={expandSystems}>展开全部技术体系</button>
-        <button type="button" onClick={() => { setOpen(new Set(["root"])); setActive("root"); }}>全部收起</button>
-        <PanZoomControls map={pan} />
-      </div>
-    </div>
-    <svg ref={svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
+        <span className="roads-open-count">{nodes.filter(p => p.node.kind === "library" && open.has(p.node.id)).length} 个领域展开</span>
+      </nav>;
+  }
+  function mapSvg(isLarge: boolean) {
+    const map = isLarge ? largePan : pan, view = map.view;
+    const px = SIZE / (isLarge ? largePixels : pixels) / view.k;
+    return <svg ref={isLarge ? largeSvg : svg} className="roads-svg" viewBox={`${-SIZE / 2} ${-SIZE / 2} ${SIZE} ${SIZE}`} role="group"
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
-      tabIndex={0} onKeyDown={pan.key} onPointerDown={pan.down} onDoubleClick={e=>{if(!(e.target as Element).closest(".roads-node"))pan.reset();}}>
+      tabIndex={0} onKeyDown={e => {
+        if (!isLarge && e.target === e.currentTarget && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); changeMode(!engaged); return; }
+        map.key(e);
+      }} onPointerDown={map.down}
+      onClickCapture={e => { if (!isLarge) blankClicks.current = (e.target as Element).closest(".roads-node") ? 0 : Math.min(2, blankClicks.current + 1); }}
+      onDoubleClick={e => { if (!isLarge && blankClicks.current === 2 && !(e.target as Element).closest(".roads-node")) { e.preventDefault(); changeMode(!engaged); } }}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
           ? <circle key={k} r={RADII[k]} className="roads-ring" /> : null)}
@@ -311,11 +385,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
           const isOpen = open.has(n.id);
           return <g key={n.id} className={`roads-node is-${n.kind}${n.unplaced ? " is-unplaced" : ""}${lit && !lit.has(n.id) ? " is-dim" : ""}${active === n.id ? " is-active" : ""}`}
             style={{ transform: `translate(${at.x}px,${at.y}px)` }} role="button" tabIndex={0}
+            data-node={n.id} data-parent={n.parent ?? ""}
             aria-label={`${n.name}${n.kind === "project" ? "" : `，${n.items} 条技术`}${n.expandable ? (isOpen ? "，已展开" : "，可展开") : ""}`}
             aria-expanded={n.expandable ? isOpen : undefined}
-            onClick={(e) => { e.stopPropagation(); if (!pan.suppressClick()) toggle(n); }}
-            onKeyDown={(e) => { if (e.key === "Enter") toggle(n); }}
-            onMouseEnter={(e) => { setHover(n.id); moveCard(e); }} onMouseMove={moveCard} onMouseLeave={() => { setHover(""); setCard(null); }}>
+            onClick={(e) => { e.stopPropagation(); if (!map.suppressClick()) toggle(n); }}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); toggle(n); } }}
+            onMouseEnter={(e) => { setHover(n.id); moveCard(e, isLarge); }} onMouseMove={e => moveCard(e, isLarge)} onMouseLeave={() => { setHover(""); setCard(null); }}>
             <circle r={Math.max(r, 11 * px)} className="roads-hit" />
             {n.kind === "root" ? <circle r={r} className="roads-core" />
               : <circle r={r} style={{ fill: n.kind === "library" ? hue(n.library) : maturityVar(n.maturity), stroke: hue(n.library) }}
@@ -323,27 +398,65 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text>
               : outer && crowded && n.kind === "project" && !lit?.has(n.id) && !onPath.has(n.id) ? null
               : outer ? <text className="roads-label" transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 5 * px) : r + 5 * px} dy={4 * px}
-                textAnchor={flip ? "end" : "start"} style={{ fontSize: 11.5 * px, strokeWidth: 3 * px }}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
-              : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 6 * px)} style={{ fontSize: 13.5 * px, strokeWidth: 3.5 * px }}>{n.name}</text>}
+                textAnchor={flip ? "end" : "start"} style={{ fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3 * px }}>{n.name.length > 16 ? `${n.name.slice(0, 15)}…` : n.name}</text>
+              : <text className={`roads-label is-${n.kind}`} textAnchor="middle" y={-(r + 6 * px)} style={{ fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3.5 * px }}>{n.name}</text>}
             {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
             {active === n.id && n.kind !== "root" && n.kind !== "more" && n.kind !== "project" ? <g className="roads-chip" role="button" tabIndex={0} aria-label={`${n.name} 详情`}
               transform={`translate(0,${r + 6 * px}) scale(${px})`}
-              onClick={(e) => { e.stopPropagation(); if (!pan.suppressClick()) setDetail(n); }}
-              onKeyDown={(e) => { if (e.key === "Enter") { e.stopPropagation(); setDetail(n); } }}>
+              onClick={(e) => { e.stopPropagation(); if (!map.suppressClick()) showDetail(n); }}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); showDetail(n); } }}>
               <rect x={-22} y={0} width={44} height={19} rx={9.5} /><text x={0} y={13.5} textAnchor="middle">详情 ›</text>
             </g> : null}
           </g>;
         })}
       </g>
-    </svg>
-    {hovered && card ? <div className="roads-card" style={{ left: card.left, top: card.top }} aria-hidden="true">
+    </svg>;
+  }
+  function hoverCard(isLarge: boolean) {
+    return hovered && card && card.large === isLarge ? <div className="roads-card" style={{ left: card.left, top: card.top }} aria-hidden="true">
       <small>{hovered.unplaced ? "未归入体系" : KIND_NAME[hovered.kind]}{hovered.kind !== "root" && hovered.kind !== "library" ? ` · ${short(data.domains.find((d) => d.id === hovered.library)?.name ?? "")}` : ""}</small>
       <b>{hovered.name}</b>
       {hovered.project ? <span>{[hovered.project.number, hovered.project.unit, hovered.project.year].filter(Boolean).join(" · ")}<br />本主题 {hovered.project.items.length} 条技术 · 最高 {hovered.project.maturity || "—"} 档</span>
         : hovered.kind === "more" ? <span>点一下，在原处展开其余项目</span>
         : <span>{hovered.items} 条技术 · 平均 {hovered.maturity ?? "—"} 档{hovered.plain ? <><br />{hovered.plain}</> : null}</span>}
       <em>{hovered.kind === "project" ? "点击看技术条目与原文" : hovered.expandable ? (open.has(hovered.id) ? "点击收起" : "点击展开") + " · 详情在节点下方" : "点击后在节点下方看详情"}</em>
-    </div> : null}
+    </div> : null;
+  }
+  return <>
+    <div className="roads" ref={box} data-engaged={engaged}>
+      <div className="roads-bar">
+        {pathBar()}
+        <div className="roads-tools">
+          {loading ? <span role="status">读取中…</span> : null}
+          <button type="button" className="roads-mode" aria-label={engaged ? "退出图谱操作" : "进入图谱操作"} aria-pressed={engaged}
+            onPointerDown={modeDown} onPointerUp={modeUp} onPointerCancel={() => { modePress.current = null; touchHandled.current = false; }}
+            onClick={e => { if (e.detail && touchHandled.current) { touchHandled.current = false; return; } touchHandled.current = false; changeMode(!engaged); }}>
+            {engaged ? "✓ 图谱操作中" : "↕ 浏览页面"}
+          </button>
+          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
+            {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
+          </>}>图例与操作</Hint>
+          <button type="button" onClick={expandSystems}>展开全部技术体系</button>
+          <button type="button" onClick={() => { setOpen(new Set(["root"])); setFull(new Set()); setActive("root"); }}>全部收起</button>
+          <PanZoomControls map={pan} />
+          <span ref={largeButton}><Button size="sm" variant="outline" aria-label="放大查看技术谱系" onClick={openLarge}>⛶ 放大查看</Button></span>
+        </div>
+      </div>
+      {mapSvg(false)}
+      <div className="roads-interaction-hint" role="status">{engaged ? "图谱操作中 · 再双击空白 / Esc 退出" : "双击图内空白可操作 · 滚轮浏览页面"}</div>
+      {hoverCard(false)}
+    </div>
+    {createPortal(<dialog ref={dialog} className="roads-large-dialog" aria-label="技术谱系大图"
+      onCancel={e => { e.preventDefault(); closeLarge(); }} onKeyDown={e => { if (e.key === "Escape") e.stopPropagation(); }}>
+      <header className="roads-large-head"><div><span>图内操作</span><h2>技术谱系总览</h2><small>滚轮缩放 · 拖动平移</small></div>
+        <Button variant="outline" aria-label="返回页面" onClick={() => closeLarge()}>返回页面 <kbd>Esc</kbd></Button>
+      </header>
+      <div className="roads roads-large-content">
+        <div className="roads-bar">{pathBar()}<div className="roads-tools"><PanZoomControls map={largePan} /></div></div>
+        {large ? mapSvg(true) : null}
+        {hoverCard(true)}
+      </div>
+    </dialog>, document.body)}
     <SlideOver open={Boolean(detail)} onClose={() => setDetail(null)}
       eyebrow={detail ? { root: "全部领域", library: "资料库", system: detail.unplaced ? "未归入体系" : "技术体系", direction: "研究方向", theme: "主题", project: "项目", more: "主题下的其他项目" }[detail.kind] : ""}
       title={detail?.name ?? ""}
@@ -357,12 +470,16 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
           const doc = detail.project!.document!, lib = detail.library; setDetail(null); openPreview(doc, null, lib); }}>查看原文</button> : null}
         <button type="button" className="slide-action primary" onClick={() => { const lib = detail.library; setDetail(null); if (lib) openCorpus(lib); }}>进入资料库 →</button>
       </> : null}>
+      <div ref={detailContent} tabIndex={-1} className="roads-detail-content">
       {detail?.project ? <ul className="roads-list">{detail.project.items.map((item, i) => <li key={`${item.name}-${i}`}>
           <b>{item.name || "（未命名条目）"}</b>
           <small><i className="roads-swatch" style={{ background: `var(--m-${item.maturity})` }} />{item.maturity} 档 · {MATURITY_NAMES[item.maturity] ?? "未判定"}{item.basis ? `：${item.basis}` : ""}</small></li>)}</ul>
         : detail && detail.children.length ? <ul className="roads-list">{detail.children.map((c) => <li key={c.id}>
-          <b>{c.name}</b><small>{c.kind === "project" ? [c.project?.number, c.project?.year].filter(Boolean).join(" · ") : `${c.items} 条技术 · 平均 ${c.maturity ?? "—"} 档`}</small></li>)}</ul>
+          {c.kind === "project" ? <button type="button" className="roads-child-link" aria-label={`查看项目：${c.name}`} onClick={() => { setActive(c.id); showDetail(c); }}>{c.name}<span aria-hidden="true">›</span></button>
+            : c.kind === "more" ? <button type="button" className="roads-child-link" onClick={() => toggle(c)}>{c.name}<span aria-hidden="true">›</span></button> : <b>{c.name}</b>}
+          <small>{c.kind === "project" ? [c.project?.number, c.project?.year].filter(Boolean).join(" · ") : `${c.items} 条技术 · 平均 ${c.maturity ?? "—"} 档`}</small></li>)}</ul>
         : <p className="text-body text-[var(--slate)]">在图上点这个节点展开下一级，这里会列出它们。</p>}
+      </div>
     </SlideOver>
-  </div>;
+  </>;
 }

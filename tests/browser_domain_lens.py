@@ -66,6 +66,28 @@ async def blank(page, jitter=False):
     await page.wait_for_timeout(30)
     await settle(page)
 
+
+def tree_records(corpus_id):
+    """Controlled deep-tree contract, including sibling names containing a slash and >12 projects."""
+    doc={'doc_id':'doc-02','title':'02 原文','origin':'source.md','version':'v1','captured_at':'',
+         'kind':'text','parser':'markdown','pages':1,'corpus_id':corpus_id}
+    projects=[{'id':f'p{i}','title':f'示例项目{i}','number':str(100000+i),'unit':'示例单位','admin':'',
+               'year':2020,'maturity':3,'items':[{'name':f'本主题技术{i}','maturity':3,'basis':'样机验证'}],
+               'document':doc} for i in range(15)]
+    def node(name,**extra):
+        return {'name':name,'plain':'受控样本','items':30,'maturity':3,**extra}
+    return {'id':corpus_id,'name':corpus_id,'items':60,'systems':[
+        node(name,directions=[node(f'研究方向{d}',themes=[node(f'主题{t}',projects=projects) for t in range(2)]) for d in range(2)])
+        for name in ['技术体系0','技术体系0/交叉']]}
+
+
+async def mock_domain_routes(page,overview,atlas):
+    await page.route('**/api/corpora',lambda r:r.fulfill(json=[{'id':'domain-0','name':'AI与研究领域0','indexed_count':9,'docs_count':9,'missing':False,'kind':'fund','job':None}]))
+    await page.route('**/api/domains/overview',lambda r:r.fulfill(json=overview))
+    await page.route('**/api/domains/atlas',lambda r:r.fulfill(json=atlas))
+    await page.route('**/api/domains/*/tree',lambda r:r.fulfill(json=tree_records(r.request.url.split('/')[-2])))
+    await page.route('**/api/documents/doc-02/markdown*',lambda r:r.fulfill(json={'text':'# 02 原文校验\n\n原文入口保持可用。','version':'v1'}))
+
 async def check_simplified(page,origin,shots):
     reports=[]
     for width in (1366,1440,1920):
@@ -92,6 +114,8 @@ async def check_simplified(page,origin,shots):
         href=await page.locator('.lens-preview-name .ui-page-link').get_attribute('href')
         assert href in [f'/library/{quote(domain,safe="")}/documents',f'/library/{quote(domain,safe="")}/targets/four-facets'],href
         term=page.locator('.lens-four').get_by_text('批准资助金额',exact=True)
+        await term.scroll_into_view_if_needed()
+        await page.locator('.lens-detail-body').evaluate('e=>Promise.all(e.getAnimations({subtree:true}).map(a=>a.finished))')
         await term.hover()
         await expect(page.get_by_role('tooltip')).to_contain_text('项给出金额')
         await page.mouse.move(20,20)
@@ -319,32 +343,182 @@ async def check_retained(page,origin,shots):
     await expect(page.locator('.lens-matrix tbody tr').filter(has_text='AI与研究领域10').locator('td').last).to_have_text('未记录')
     await expect(page.locator('.lens-band-svg [data-year="2019"] .lens-year-total')).to_have_text('0')
     saved=page.url;await page.reload();await expect(page.locator('.lens-matrix')).to_be_visible();assert page.url==saved
-    # 02 retains zoom/pan, click-to-expand and glide independently of 01.
-    road = page.locator(".roads-svg")
+    await check_roads(page,shots)
+
+
+async def check_roads(page,shots):
+    """02 browsing never captures wheel; explicit operation and a large view do, without losing branches."""
+    road = page.locator('.roads:not(.roads-large-content) > .roads-svg')
     await road.scroll_into_view_if_needed()
     box = await road.bounding_box()
     group = road.locator(":scope > g")
     before_view = await group.get_attribute("transform")
+    scroller=page.locator('main')
+    scroll_before=await scroller.evaluate('e=>e.scrollTop')
     await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.6)
     await page.mouse.wheel(0, -300)
-    await page.wait_for_timeout(100)
-    assert await group.get_attribute("transform") != before_view
-    tools = page.locator(".roads-tools .roads-zoom")
+    await page.wait_for_function('(top)=>document.querySelector("main").scrollTop<top-10',arg=scroll_before,timeout=3000)
+    await expect(group).to_have_attribute('transform',before_view)
+    frame=page.locator('.roads:not(.roads-large-content)')
+    mode=frame.get_by_role('button',name='进入图谱操作',exact=True)
+    await expect(mode).to_have_attribute('aria-pressed','false')
+    await road.dblclick(position={'x':24,'y':24})
+    await expect(frame).to_have_attribute('data-engaged','true')
+    box=await road.bounding_box()
+    scroll_before=await scroller.evaluate('e=>e.scrollTop')
+    await page.mouse.move(box['x']+30,box['y']+90)
+    await page.mouse.wheel(0,-200)
+    await page.wait_for_function('(old)=>document.querySelector(".roads > .roads-svg > g").getAttribute("transform")!==old',arg=before_view)
+    assert await scroller.evaluate('e=>e.scrollTop')==scroll_before
+    changed=await group.get_attribute('transform')
+    await road.dblclick(position={'x':24,'y':24})
+    await expect(frame).to_have_attribute('data-engaged','false')
+    await expect(group).to_have_attribute('transform',changed)
+    tools = frame.locator(".roads-tools .roads-zoom")
     await tools.locator("button").nth(1).click()
     await expect(tools).to_contain_text("全景")
     await road.scroll_into_view_if_needed()
+    await frame.get_by_role('button',name='进入图谱操作',exact=True).click()
+    await expect(frame).to_have_attribute('data-engaged','true')
     box = await road.bounding_box()
     await page.mouse.move(box["x"]+box["width"]*.7, box["y"]+box["height"]*.7)
     await page.mouse.down()
     await page.mouse.move(box["x"]+box["width"]*.7+40, box["y"]+box["height"]*.7+25, steps=7)
     await page.mouse.up()
     await expect(tools).to_contain_text("100% · 复位")
+    await road.focus()
+    await road.press('Escape')
+    await expect(frame).to_have_attribute('data-engaged','false')
     await tools.locator("button").nth(1).click()
-    library_node = road.locator(".roads-node.is-library").first
-    await library_node.click()
-    await expect(library_node).to_have_attribute("aria-expanded", "true")
-    await expect(tools).to_contain_text("125%")
+    a=road.locator('.roads-node.is-library').nth(0)
+    b=road.locator('.roads-node.is-library').nth(1)
+    await a.locator('.roads-hit').click()
+    await expect(a).to_have_attribute('aria-expanded','true')
+    await b.locator('.roads-hit').click()
+    await expect(b).to_have_attribute('aria-expanded','true')
+    await expect(a).to_have_attribute('aria-expanded','true')
+    await expect(tools).to_contain_text('全景')
+    await a.locator('.roads-hit').click()
+    await expect(a).to_have_attribute('aria-expanded','false')
+    await expect(b).to_have_attribute('aria-expanded','true')
+    await a.locator('.roads-hit').click()
+    await expect(a).to_have_attribute('aria-expanded','true')
+    await frame.get_by_role('button',name='放大查看技术谱系',exact=True).scroll_into_view_if_needed()
+    scroll_before=await scroller.evaluate('e=>e.scrollTop')
+    before_view=await group.get_attribute('transform')
+    await frame.get_by_role('button',name='放大查看技术谱系',exact=True).click()
+    dialog=page.get_by_role('dialog',name='技术谱系大图',exact=True)
+    await expect(dialog).to_be_visible()
+    large=dialog.locator('.roads-svg')
+    await expect(large.locator('.roads-node.is-library').nth(0)).to_have_attribute('aria-expanded','true')
+    await expect(large.locator('.roads-node.is-library').nth(1)).to_have_attribute('aria-expanded','true')
+    old_large=await large.locator(':scope > g').get_attribute('transform')
+    box=await large.bounding_box()
+    await page.mouse.move(box['x']+30,box['y']+90)
+    await page.mouse.wheel(0,-180)
+    await page.wait_for_function('(old)=>document.querySelector("dialog .roads-svg > g").getAttribute("transform")!==old',arg=old_large)
+    assert await scroller.evaluate('e=>e.scrollTop')==scroll_before
+    await page.keyboard.press('Escape')
+    await expect(dialog).not_to_be_visible()
+    await expect(group).to_have_attribute('transform',before_view)
+    assert abs(await scroller.evaluate('e=>e.scrollTop')-scroll_before)<2
+    await expect(a).to_have_attribute('aria-expanded','true')
+    await expect(b).to_have_attribute('aria-expanded','true')
+    await expect(frame.get_by_role('button',name='放大查看技术谱系',exact=True)).to_be_focused()
+    aid=await a.get_attribute('data-node')
+    systems=road.locator(f'.roads-node.is-system[data-parent="{aid}"]')
+    await expect(systems).to_have_count(2)
+    first=systems.nth(0);second=systems.nth(1)
+    sid=await first.get_attribute('data-node')
+    await first.locator('.roads-hit').click()
+    directions=road.locator(f'.roads-node.is-direction[data-parent="{sid}"]')
+    await expect(directions).to_have_count(2)
+    await second.locator('.roads-hit').click()
+    await expect(first).to_have_attribute('aria-expanded','true')
+    await expect(second).to_have_attribute('aria-expanded','true')
+    await first.locator('.roads-hit').click()
+    await expect(second).to_have_attribute('aria-expanded','true')
+    await first.locator('.roads-hit').click()
+    direction=directions.first
+    did=await direction.get_attribute('data-node')
+    await direction.locator('.roads-hit').click()
+    theme=road.locator(f'.roads-node.is-theme[data-parent="{did}"]').first
+    tid=await theme.get_attribute('data-node')
+    await theme.locator('.roads-hit').click()
+    projects=road.locator(f'.roads-node.is-project[data-parent="{tid}"]')
+    await expect(projects).to_have_count(12)
+    await road.locator(f'.roads-node.is-more[data-parent="{tid}"] .roads-hit').click()
+    await expect(projects).to_have_count(15)
+    await a.locator('.roads-hit').click()
+    await expect(projects).to_have_count(0)
+    await expect(b).to_have_attribute('aria-expanded','true')
+    await a.locator('.roads-hit').click()
+    await expect(projects).to_have_count(15)
+    await frame.get_by_role('button',name='放大查看技术谱系',exact=True).click()
+    await dialog.locator(f'.roads-node.is-project[data-parent="{tid}"] .roads-hit').first.click()
+    await expect(dialog).not_to_be_visible()
+    details=page.locator('.slide-over.is-open')
+    await expect(details).to_contain_text('本主题技术0')
+    await details.get_by_role('button',name='查看原文',exact=True).click()
+    await expect(page.get_by_role('heading',name='02 原文校验',exact=True)).to_be_visible()
+    await page.keyboard.press('Escape')
+    await frame.get_by_role('button',name='全部收起',exact=True).click()
+    inspector_close=page.get_by_role('button',name='收起详情',exact=True)
+    if await inspector_close.is_visible():
+        await inspector_close.click()
+    for width,height in [(1366,900),(2560,1440),(3840,2160),(390,844)]:
+        await page.set_viewport_size({'width':width,'height':height})
+        await frame.get_by_role('button',name='放大查看技术谱系',exact=True).click()
+        await expect(dialog).to_be_visible()
+        back=dialog.get_by_role('button',name='返回页面',exact=True)
+        action_box=await back.bounding_box()
+        assert action_box['x']>=0 and action_box['x']+action_box['width']<=width+1
+        assert action_box['y']>=0 and action_box['y']+action_box['height']<=height
+        await page.screenshot(path=str(shots/f'02-large-{width}.png'))
+        await back.click()
+        await expect(dialog).not_to_be_visible()
+        assert await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
     await road.screenshot(path=str(shots / "02-shared-gestures.png"))
+
+
+async def check_roads_touch(browser,origin,overview,atlas):
+    context=await browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
+    page=await context.new_page()
+    await login(page,origin)
+    await mock_domain_routes(page,overview,atlas)
+    await page.goto(origin+'/overview/domains')
+    road=page.locator('.roads:not(.roads-large-content) > .roads-svg')
+    await road.scroll_into_view_if_needed()
+    frame=page.locator('.roads:not(.roads-large-content)')
+    mode=frame.locator('.roads-mode')
+    await mode.tap()
+    await expect(frame).to_have_attribute('data-engaged','true')
+    before=await road.locator(':scope > g').get_attribute('transform')
+    box=await road.bounding_box()
+    scroller=page.locator('main')
+    scroll_before=await scroller.evaluate('e=>e.scrollTop')
+    session=await context.new_cdp_session(page)
+    x=box['x']+30;y=max(120,min(640,box['y']+65))
+    await session.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':x,'y':y}]})
+    for delta in [20,40,65]:
+        await session.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':x+delta,'y':y+delta/2}]})
+    await session.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+    assert await road.locator(':scope > g').get_attribute('transform')!=before
+    assert await scroller.evaluate('e=>e.scrollTop')==scroll_before
+    await mode.tap()
+    await expect(frame).to_have_attribute('data-engaged','false')
+    await road.scroll_into_view_if_needed()
+    box=await road.bounding_box()
+    y=max(250,min(650,box['y']+220));x=box['x']+box['width']/2
+    scroll_before=await scroller.evaluate('e=>e.scrollTop')
+    before=await road.locator(':scope > g').get_attribute('transform')
+    await session.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':x,'y':y}]})
+    for delta in [30,70,110,160]:
+        await session.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':x,'y':y-delta}]})
+    await session.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+    await page.wait_for_function('(top)=>document.querySelector("main").scrollTop>top+20',arg=scroll_before)
+    await expect(road.locator(':scope > g')).to_have_attribute('transform',before)
+    await context.close()
 
 
 async def main():
@@ -361,11 +535,10 @@ async def main():
                 page=await browser.new_page(viewport={'width':1440,'height':900})
                 errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
                 await login(page,origin)
-                await page.route('**/api/corpora',lambda r:r.fulfill(json=[{'id':'domain-0','name':'AI与研究领域0','indexed_count':9,'docs_count':9,'missing':False,'kind':'fund','job':None}]))
-                await page.route('**/api/domains/overview',lambda r:r.fulfill(json=overview))
-                await page.route('**/api/domains/atlas',lambda r:r.fulfill(json=atlas))
+                await mock_domain_routes(page,overview,atlas)
                 values=await check_simplified(page,origin,shots)
                 await check_retained(page,origin,shots)
+                await check_roads_touch(browser,origin,overview,atlas)
                 (shots/'results.json').write_text(json.dumps(values,ensure_ascii=False,indent=2),encoding='utf-8')
                 assert not errors,errors
                 await browser.close()

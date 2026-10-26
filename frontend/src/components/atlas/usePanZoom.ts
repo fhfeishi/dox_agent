@@ -16,11 +16,12 @@ const HOME: MapView = { x: 0, y: 0, k: 1 };
 export function usePanZoom(
   svg: RefObject<SVGSVGElement | null>,
   bounds: Bounds,
-  resetKey = "",
+  interactive: boolean,
 ) {
   const [view, render] = useState(HOME);
-  const selection = useRef(resetKey);
   const current = useRef(view);
+  const enabled = useRef(interactive);
+  enabled.current = interactive;
   const limits = useRef(bounds);
   limits.current = bounds;
   const drag = useRef<{
@@ -29,8 +30,9 @@ export function usePanZoom(
     startX: number;
     startY: number;
     moved: boolean;
+    pointerId: number;
   } | null>(null);
-  const suppressedUntil = useRef(0);
+  const suppressed = useRef(false);
   const animation = useRef(0);
   const reduced = useRef(false);
   useEffect(() => {
@@ -52,10 +54,13 @@ export function usePanZoom(
     stop();
     setView(HOME);
   }, [setView, stop]);
-  useLayoutEffect(() => {
-    selection.current = resetKey;
-    reset();
-  }, [resetKey, reset]);
+  const cancelDrag = useCallback(() => {
+    const d = drag.current;
+    if (d?.moved) suppressed.current = true;
+    if (d && svg.current?.hasPointerCapture(d.pointerId)) svg.current.releasePointerCapture(d.pointerId);
+    drag.current = null;
+  }, [svg]);
+  useLayoutEffect(() => { if (!interactive) cancelDrag(); }, [interactive, cancelDrag]);
   useEffect(() => stop, [stop]);
   function point(clientX: number, clientY: number) {
     const node = svg.current;
@@ -109,7 +114,8 @@ export function usePanZoom(
   }
   function down(event: PointerEvent<SVGSVGElement>) {
     if (event.button !== 0) return;
-    suppressedUntil.current = 0;
+    suppressed.current = false;
+    if (!enabled.current) return;
     stop();
     drag.current = {
       x: event.clientX,
@@ -117,12 +123,13 @@ export function usePanZoom(
       startX: event.clientX,
       startY: event.clientY,
       moved: false,
+      pointerId: event.pointerId,
     };
   }
   useEffect(() => {
     const move = (event: globalThis.PointerEvent) => {
       const d = drag.current;
-      if (!d) return;
+      if (!d || !enabled.current) return;
       if (
         !d.moved &&
         Math.hypot(event.clientX - d.startX, event.clientY - d.startY) <= 5
@@ -142,31 +149,31 @@ export function usePanZoom(
         y: current.current.y + b.y - a.y,
       });
     };
-    const up = () => {
-      if (drag.current?.moved) suppressedUntil.current = Date.now() + 350;
-      drag.current = null;
-    };
+    const up = () => cancelDrag();
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerup", up);
     window.addEventListener("pointercancel", up);
+    return () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+      cancelDrag();
+    };
+  }, [svg, setView, cancelDrag]);
+  useEffect(() => {
+    if (!interactive) return;
     const node = svg.current;
     function wheel(event: WheelEvent) {
-      if (current.current.k <= 1 && event.deltaY >= 0) return;
-      const p = point(event.clientX, event.clientY),
-        b = limits.current;
-      if (p.x < b.left || p.x > b.right || p.y < b.top || p.y > b.bottom)
-        return;
+      if (!enabled.current || event.ctrlKey) return;
+      const p = point(event.clientX, event.clientY);
       event.preventDefault();
       zoom(Math.exp(-Math.max(-400, Math.min(400, event.deltaY)) * 0.002), p);
     }
     node?.addEventListener("wheel", wheel, { passive: false });
     return () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", up);
-      window.removeEventListener("pointercancel", up);
       node?.removeEventListener("wheel", wheel);
     };
-  }, [svg, zoom, setView]);
+  }, [svg, zoom, interactive]);
   function key(event: React.KeyboardEvent<SVGSVGElement>) {
     if (["+", "=", "-", "0"].includes(event.key)) {
       event.preventDefault();
@@ -179,16 +186,16 @@ export function usePanZoom(
     Math.abs(view.x) < 0.1 &&
     Math.abs(view.y) < 0.1;
   return {
-    // Use a stable panorama in the selection's first render, so resetting a
-    // zoomed view cannot cancel the caller's 420ms data transition on rerender.
-    view: selection.current !== resetKey || isHome ? HOME : view,
+    view: isHome ? HOME : view,
     zoom,
     reset,
     glideTo,
     down,
     key,
-    drag,
-    suppressClick: () => Date.now() < suppressedUntil.current,
+    setView,
+    stop,
+    suppressClick: () => suppressed.current,
+    isDragging: () => Boolean(drag.current?.moved),
     isHome,
   };
 }

@@ -1,7 +1,9 @@
 """Login -> upload -> background queue -> return -> report filters, with real HTTP/storage/UI."""
 import asyncio
+import os
 import re
 import threading
+import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -12,6 +14,68 @@ from src.main import create_app
 from src.review import routes, storage
 from tests.browser_artifacts_live import start_server
 from tests.test_review_flows import FixtureReviewClient
+
+
+async def check_persistent_login(chromium, origin, root):
+    """A real browser restart must keep an opted-in login and discard a session-only one."""
+    profile = root / "login-profile"
+    launch = {"headless": True, "executable_path": os.environ.get("DOX_BROWSER_EXECUTABLE") or None}
+    context = await chromium.launch_persistent_context(profile, **launch)
+    page = context.pages[0]
+    await page.goto(origin)
+    await expect(page.get_by_role("heading", name="登录", exact=True)).to_be_visible()
+    await expect(page.get_by_role("checkbox", name="保持登录 30 天")).to_be_checked()
+    await page.get_by_label("账户", exact=True).fill("owner")
+    await page.get_by_label("密码", exact=True).fill("123456")
+    await page.get_by_role("button", name="登录", exact=True).click()
+    await expect(page.get_by_role("heading", name="登录", exact=True)).not_to_be_visible()
+    cookies = [c for c in await context.cookies() if c["name"].startswith("dox_session_")]
+    assert len(cookies) == 1 and cookies[0]["httpOnly"] and cookies[0]["expires"] > time.time() + 29 * 86400
+    assert await page.evaluate("JSON.parse(localStorage.getItem('dox-login'))") == {"username": "owner", "remember": True}
+    await context.close()
+
+    context = await chromium.launch_persistent_context(profile, **launch)
+    page = context.pages[0]
+    gate = asyncio.Event()
+
+    async def hold_session(route):
+        await gate.wait()
+        await route.continue_()
+
+    await page.route("**/api/auth/session", hold_session)
+    await page.goto(origin)
+    try:
+        await expect(page.get_by_role("status").filter(has_text="正在恢复登录")).to_be_visible()
+        await expect(page.get_by_role("heading", name="登录", exact=True)).to_have_count(0)
+    finally:
+        gate.set()
+    await expect(page.get_by_role("navigation", name="主导航", exact=True)).to_be_visible()
+    await page.unroute("**/api/auth/session", hold_session)
+    session = (await page.request.get(origin + "/api/auth/session"))
+    assert (await session.json())["username"] == "owner"
+    assert (await page.request.post(origin + "/api/auth/logout")).status == 200
+    await page.reload()
+    await expect(page.get_by_label("账户", exact=True)).to_have_value("owner")
+    await expect(page.get_by_label("密码", exact=True)).to_have_value("")
+    await page.get_by_role("checkbox", name="保持登录 30 天").uncheck()
+    await page.get_by_label("密码", exact=True).fill("123456")
+    await page.get_by_role("button", name="登录", exact=True).click()
+    await expect(page.get_by_role("heading", name="登录", exact=True)).not_to_be_visible()
+    cookies = [c for c in await context.cookies() if c["name"].startswith("dox_session_")]
+    assert len(cookies) == 1 and cookies[0]["expires"] == -1
+    await context.close()
+
+    context = await chromium.launch_persistent_context(profile, **launch)
+    page = context.pages[0]
+    await page.goto(origin)
+    await expect(page.get_by_role("heading", name="登录", exact=True)).to_be_visible()
+    await expect(page.get_by_label("账户", exact=True)).to_have_value("owner")
+    await expect(page.get_by_label("密码", exact=True)).to_have_value("")
+    await expect(page.get_by_role("checkbox", name="保持登录 30 天")).not_to_be_checked()
+    shots = Path(os.environ.get("LOGIN_SHOTS") or ".logsdev/verification/remember-login")
+    shots.mkdir(parents=True, exist_ok=True)
+    await page.screenshot(path=str(shots / "login.png"))
+    await context.close()
 
 
 async def check_corpora_states(browser, origin):
@@ -87,6 +151,7 @@ async def main():
         origin, server, thread, listener = start_server(create_app(settings))
         try:
             async with async_playwright() as p:
+                await check_persistent_login(p.chromium, origin, root)
                 browser = await p.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 1000})
                 errors = []

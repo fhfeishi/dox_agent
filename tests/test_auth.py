@@ -1,11 +1,13 @@
 """Real HTTP/cookie/SQLite authentication lifecycle, no substitute authentication."""
+import time
+
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
 from src.main import create_app
 
 
-def test_default_admin_login_logout_and_private_api(tmp_path):
+def test_default_admin_login_logout_and_private_api(tmp_path, monkeypatch):
     """An internal system: it starts with admin / 123456; there is no first-run setup."""
     app = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
                               user_dir=tmp_path/"usr"))
@@ -19,6 +21,27 @@ def test_default_admin_login_logout_and_private_api(tmp_path):
         assert client.post("/api/auth/login", json={"username": "admin", "password": "wrong"}).status_code == 401
         login = client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
         assert login.status_code == 200 and "httponly" in login.headers["set-cookie"].lower()
+        later = time.time() + 8 * 86400
+        with monkeypatch.context() as clock:
+            clock.setattr("src.auth.time.time", lambda: later)
+            assert client.get("/api/auth/session").json()["authenticated"] is True
+        scoped = next(name for name in client.cookies if name.startswith("dox_session_"))
+        token = client.cookies.get(scoped)
+        client.cookies.clear()
+        client.cookies.set("dox_session", token, domain="testserver.local", path="/")
+        assert client.get("/api/auth/session").json()["username"] == "admin"  # old login adopts new scope
+        assert scoped in client.cookies and "dox_session" not in client.cookies
+        # Browser cookies are shared across ports: another data directory must not replace this login.
+        other = create_app(Settings(_env_file=None, state_dir=tmp_path/"other-state", corpora_root=tmp_path/"other-corpora",
+                                    user_dir=tmp_path/"other-usr"))
+        with TestClient(other, base_url="http://testserver:9000") as peer:
+            peer.cookies.update(client.cookies)
+            assert peer.get("/api/auth/session").json()["authenticated"] is False
+            assert peer.post("/api/auth/login", json={"username": "owner", "password": "123456"}).status_code == 200
+            client.cookies.update(peer.cookies)
+            assert client.get("/api/auth/session").json()["username"] == "admin"
+            assert peer.get("/api/auth/session").json()["username"] == "owner"
+        assert "Max-Age=2592000" in login.headers["set-cookie"]
         assert client.get("/api/auth/session").json()["authenticated"]
         assert client.get("/api/corpora").status_code == 200
         assert client.post("/api/auth/accounts", json={"username": "viewer", "role": "user"}).status_code == 200
@@ -33,6 +56,17 @@ def test_default_admin_login_logout_and_private_api(tmp_path):
         assert client.post("/api/auth/login", json={"username": "viewer", "password": "abcd"}).status_code == 200
         assert client.post("/api/auth/logout").status_code == 200
         assert client.get("/api/auth/session").json()["authenticated"] is False
+        temporary = client.post("/api/auth/login", json={"username": "admin", "password": "123456", "remember": False})
+        assert "max-age" not in temporary.headers["set-cookie"].lower()
+        assert "expires=" not in temporary.headers["set-cookie"].lower()
+        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
+        saved = dict(client.cookies)
+    # Restarting the service with the same user directory preserves the server-side session.
+    restarted = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
+                                    user_dir=tmp_path/"usr"))
+    with TestClient(restarted) as client:
+        client.cookies.update(saved)
+        assert client.get("/api/auth/session").json()["username"] == "admin"
     assert b"123456" not in (tmp_path/"usr"/"accounts.sqlite3").read_bytes()
 
 

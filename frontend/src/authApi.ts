@@ -16,9 +16,9 @@ export async function fetchSession(): Promise<Session> {
   return response.json();
 }
 
-export async function login(username: string, password: string): Promise<void> {
+export async function login(username: string, password: string, remember = true): Promise<void> {
   await json(await fetch("/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }) }), "请检查账户和密码");
+    body: JSON.stringify({ username, password, remember }) }), "请检查账户和密码");
 }
 
 /** True once the session is gone (also when it had already expired). */

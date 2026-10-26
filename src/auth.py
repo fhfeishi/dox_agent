@@ -29,7 +29,8 @@ from .core.db import connect, migrate
 from .launcher import code_version
 
 COOKIE = "dox_session"
-LIFETIME = 7 * 24 * 3600
+LIFETIME = 30 * 24 * 3600
+SESSION_LIFETIME = 7 * 24 * 3600
 Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
@@ -47,6 +48,7 @@ DEFAULT_ACCOUNTS = (("admin", "admin"), ("owner", "leader"), ("user", "user"))
 class Credentials(BaseModel):
     username: str = Field(default="admin", max_length=80)
     password: str = Field(min_length=1, max_length=256)
+    remember: bool = True
 
 
 class NewAccount(BaseModel):
@@ -144,11 +146,11 @@ class Accounts:
         if not valid:
             raise HTTPException(401, "账户或密码不正确")
 
-    def session(self, username):
+    def session(self, username, lifetime=LIFETIME):
         token = secrets.token_urlsafe(32)
         with self.connect() as db:
             db.execute("DELETE FROM sessions WHERE expires<=?", (time.time(),))
-            db.execute("INSERT INTO sessions VALUES (?,?,?)", (hashlib.sha256(token.encode()).hexdigest(), username, time.time() + LIFETIME))
+            db.execute("INSERT INTO sessions VALUES (?,?,?)", (hashlib.sha256(token.encode()).hexdigest(), username, time.time() + lifetime))
         return token
 
     def logout(self, token):
@@ -256,6 +258,27 @@ def visible_owners(request: Request, scope: str = "mine") -> list[str] | None:
 def install_auth(app, directory):
     accounts = Accounts(directory)
     app.state.accounts = accounts
+    def cookie_name(request):
+        # Browsers isolate cookie hosts but not ports. Local test services must not replace the
+        # normal entry's login; replicas behind the same public entry still share one cookie name.
+        port = request.url.port or (443 if request.url.scheme == "https" else 80)
+        return f"{COOKIE}_{port}"
+
+    def session_token(request):
+        token = request.cookies.get(cookie_name(request))
+        if token:
+            return token
+        # Adopt a still-valid seven-day cookie from before scoping without asking for a password.
+        legacy = request.cookies.get(COOKIE)
+        return legacy if accounts.user(legacy) else ""
+
+    def set_cookie(result, request, token, max_age):
+        result.set_cookie(cookie_name(request), token, max_age=max_age, httponly=True,
+                          samesite="strict", secure=request.url.scheme == "https")
+
+    def clear_legacy(result, request):
+        if accounts.user(request.cookies.get(COOKIE)):
+            result.delete_cookie(COOKIE)
 
     @app.middleware("http")
     async def authenticate(request: Request, call_next):
@@ -266,10 +289,12 @@ def install_auth(app, directory):
                 if origin and urlsplit(origin).netloc != request.headers.get("host"):
                     return JSONResponse({"detail": "请求来源不匹配"}, status_code=403)
             if path not in ("/api/auth/session", "/api/auth/login"):
-                user = accounts.user(request.cookies.get(COOKIE))
+                token = session_token(request)
+                user = accounts.user(token)
                 if not user:
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
                 request.state.user = user
+                request.state.session_token = token
                 CURRENT_USER.set(user[0])
         return await call_next(request)
 
@@ -277,38 +302,47 @@ def install_auth(app, directory):
         if request.state.user[1] != "admin":
             raise HTTPException(403, "只有管理员可以管理账户")
 
-    def response(request, username):
+    def response(request, username, remember):
         role = next(a["role"] for a in accounts.list() if a["username"] == username)
         result = JSONResponse({"authenticated": True, "username": username, "role": role}, headers={"Cache-Control": "no-store"})
-        result.set_cookie(COOKIE, accounts.session(username), max_age=LIFETIME, httponly=True,
-                          samesite="strict", secure=request.url.scheme == "https")
+        set_cookie(result, request, accounts.session(username, LIFETIME if remember else SESSION_LIFETIME),
+                   LIFETIME if remember else None)
+        clear_legacy(result, request)
         return result
 
     @app.get("/api/auth/session")
     def session(request: Request):
-        user = accounts.user(request.cookies.get(COOKIE))
+        token = session_token(request)
+        user = accounts.user(token)
         # app_id and code_version let the launcher recognise a running copy (and an outdated one)
         # without signing in; /api/health needs a session since accounts were added.
-        return JSONResponse({"authenticated": bool(user), "app_id": "dox-agent", "code_version": CODE_VERSION,
+        result = JSONResponse({"authenticated": bool(user), "app_id": "dox-agent", "code_version": CODE_VERSION,
                              "username": user[0] if user else "", "role": user[1] if user else "",
                              "guides_seen": accounts.guides(user[0]) if user else []},
                             headers={"Cache-Control": "no-store"})
+        if user and cookie_name(request) not in request.cookies:
+            set_cookie(result, request, token, SESSION_LIFETIME)
+            clear_legacy(result, request)
+        return result
 
     @app.post("/api/auth/login")
     def login(body: Credentials, request: Request):
         accounts.login(body.username, body.password)
-        return response(request, body.username)
+        return response(request, body.username, body.remember)
 
     @app.post("/api/auth/logout")
     def logout(request: Request):
-        accounts.logout(request.cookies.get(COOKIE, ""))
+        clear_old = bool(accounts.user(request.cookies.get(COOKIE)))
+        accounts.logout(request.state.session_token)
         result = JSONResponse({"authenticated": False})
-        result.delete_cookie(COOKIE)
+        result.delete_cookie(cookie_name(request))
+        if clear_old:
+            result.delete_cookie(COOKIE)
         return result
 
     @app.post("/api/auth/password")
     def change_password(body: PasswordChange, request: Request):
-        accounts.change_own(request.state.user[0], request.cookies.get(COOKIE, ""), body.old, body.new)
+        accounts.change_own(request.state.user[0], request.state.session_token, body.old, body.new)
         return {"changed": True}
 
     @app.post("/api/auth/guides")

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>交互层级样张</title>
+<style>
+/* 取值全部来自 frontend/src/styles/globals.css；--text-2、--text-3 为方案建议新增的冷色正文令牌 */
+:root {
+  --heading: #1f3147; --text-2: #3d4b5c; --text-3: #6b7a8c; --muted-cool: #8a98aa;
+  --line-cool: #e2e7ee; --line-cool-soft: #edf0f4; --line-cool-strong: #b4c1d2;
+  --page-cool: #f5f7fa; --surface-cool: #f6f8fb; --selected-cool: #eef3f9; --canvas: #fff;
+  --primary: #345a78; --primary-pressed: #25435c; --primary-soft: #eaf0f5; --link: #2f6289;
+  --focus-data: #2e8b7a; --bar: #7f97b1; --bar-soft: #9fb3c8; --warn-fg: #7a5a00; --warn-bg: #fdf6e3;
+  --danger-fg: #9b2c2c; --banner-1: #172a40;
+  --text-caption: 12px; --text-body: 14px; --text-emphasis: 16px; --text-group: 18px; --text-stat: 28px;
+  --r-control: 6px; --r-item: 10px; --r-panel: 16px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page-cool); color: var(--text-2); font: var(--text-body)/22px -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 22px; color: var(--heading); margin: 0 0 4px; }
+h2 { font-size: var(--text-group); color: var(--heading); margin: 40px 0 12px; }
+.lead { color: var(--text-3); margin: 0 0 8px; }
+.grid { display: grid; grid-template-columns: 170px 1fr 1fr; gap: 0; background: var(--canvas); border: 1px solid var(--line-cool); border-radius: var(--r-panel); overflow: hidden; }
+.grid > div { padding: 14px 16px; border-bottom: 1px solid var(--line-cool-soft); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.grid > .h { background: var(--surface-cool); color: var(--text-3); font-size: var(--text-caption); padding: 8px 16px; }
+.lv b { color: var(--heading); display: block; }
+.lv small { color: var(--text-3); font-size: var(--text-caption); line-height: 16px; }
+.use { color: var(--text-3); font-size: var(--text-caption); line-height: 18px; }
+button { font: inherit; cursor: pointer; }
+/* L1 主操作 */
+.btn { height: 32px; padding: 0 14px; border-radius: var(--r-control); border: 1px solid transparent; display: inline-flex; align-items: center; gap: 6px; transition: background .1s, border-color .1s, transform .1s; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, .seg button:focus-visible, .item:focus-visible, .a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.l1 { background: var(--primary); color: #fff; }
+.l1:hover { background: var(--primary-pressed); }
+/* L2 次操作 */
+.l2 { background: var(--canvas); color: var(--heading); border-color: var(--line-cool-strong); }
+.l2:hover { background: var(--surface-cool); border-color: var(--primary); }
+/* L3 轻操作（工具、图标） */
+.l3 { background: none; color: var(--text-2); padding: 0 10px; }
+.l3:hover { background: var(--selected-cool); color: var(--heading); }
+.icon { width: 32px; padding: 0; justify-content: center; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+/* L4 切换 */
+.seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 9px; background: var(--line-cool-soft); }
+.seg button { border: 0; background: none; height: 30px; padding: 0 12px; border-radius: 7px; color: var(--text-3); }
+.seg button:hover { color: var(--heading); }
+.seg button[aria-pressed="true"] { background: var(--canvas); color: var(--heading); font-weight: 600; box-shadow: 0 1px 2px rgb(15 23 42 / 10%); }
+/* L5 可点内容 */
+.item { display: flex; align-items: center; gap: 10px; width: 240px; padding: 10px 12px; border-radius: var(--r-item); border: 1px solid var(--line-cool); background: var(--canvas); color: var(--text-2); text-align: left; transition: border-color .12s, background .12s, box-shadow .12s; }
+.item b { color: var(--heading); font-weight: 600; }
+.item .n { margin-left: auto; color: var(--heading); font-variant-numeric: tabular-nums; }
+.item .chev { color: var(--muted-cool); transition: transform .12s, color .12s; }
+.item:hover { border-color: var(--line-cool-strong); box-shadow: 0 2px 6px rgb(15 23 42 / 6%); }
+.item:hover .chev { color: var(--primary); transform: translateX(2px); }
+.item[aria-pressed="true"] { background: var(--primary-soft); border-color: var(--primary); box-shadow: inset 3px 0 0 var(--primary); }
+.row { width: 300px; border: 0; border-bottom: 1px solid var(--line-cool-soft); border-radius: 0; }
+.row:hover { background: var(--surface-cool); box-shadow: none; }
+/* L6 文字 */
+.a { color: var(--link); text-decoration: none; border-radius: 3px; }
+.a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.term { color: inherit; text-decoration: underline dotted var(--muted-cool); text-underline-offset: 4px; cursor: help; }
+.expand { color: var(--primary); background: none; border: 0; padding: 0; }
+.plain { color: var(--text-2); }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.sw { background: var(--canvas); border: 1px solid var(--line-cool); border-radius: var(--r-item); padding: 12px; }
+.sw .chips { display: flex; gap: 4px; margin-bottom: 8px; }
+.sw .chips span { width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgb(0 0 0 / 6%); }
+.sw b { color: var(--heading); display: block; }
+.sw p { margin: 2px 0 0; font-size: var(--text-caption); line-height: 18px; color: var(--text-3); }
+.dont { background: var(--canvas); border: 1px solid var(--line-cool); border-radius: var(--r-panel); padding: 4px 16px; }
+.dont li { padding: 8px 0; border-bottom: 1px solid var(--line-cool-soft); }
+.dont li:last-child { border: 0; }
+.dont em { font-style: normal; color: var(--danger-fg); }
+.scale { display: flex; flex-wrap: wrap; gap: 18px; align-items: baseline; background: var(--canvas); border: 1px solid var(--line-cool); border-radius: var(--r-panel); padding: 16px; color: var(--heading); }
+.scale span small { display: block; font-size: 12px; color: var(--text-3); font-weight: 400; }
+.radii { display: flex; gap: 16px; }
+.radii div { width: 90px; height: 56px; border: 1.5px solid var(--line-cool-strong); background: var(--canvas); display: grid; place-items: center; font-size: 12px; color: var(--text-3); }
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .h { display: none; }
+  .item, .row { width: 100%; }
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: light; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>交互层级样张</h1>
+  <p class="lead">首页与领域分析统一使用的 6 级可交互元素、选中状态、颜色角色和尺寸刻度。每个元素都可以悬停、点击、Tab 聚焦，用来体验最终效果。</p>
+  <p class="lead">取值来自 <code>globals.css</code> 现有令牌；只有 <code>--text-2</code>、<code>--text-3</code> 两个冷色正文令牌是建议新增的。</p>
+
+  <h2>1. 六级可交互元素：每级只有一种样子</h2>
+  <div class="grid">
+    <div class="h">层级</div><div class="h">样子（可悬停、点击）</div><div class="h">用在哪里、数量限制</div>
+    <div class="lv"><span><b>L1 主操作</b><small>实底 · 每个区域最多 1 个</small></span></div>
+    <div><button class="btn l1">预览资料库 · 医疗</button><button class="btn l1" disabled>导出 Word</button></div>
+    <div class="use">右栏底部“预览资料库”、简报“导出 Word”、03“生成立项建议”。<br>同一块里出现第二个实底按钮就是错。</div>
+
+    <div class="lv"><span><b>L2 次操作</b><small>白底 + 描边</small></span></div>
+    <div><button class="btn l2">简报</button><button class="btn l2">导出机会清单</button><button class="btn l2">各领域 ⌄</button></div>
+    <div class="use">打开、导出、展开类动作。现在这一类有 4 种写法（12/14 px，3 种边框色），统一为此一种。</div>
+
+    <div class="lv"><span><b>L3 轻操作</b><small>无底，悬停出底色</small></span></div>
+    <div><button class="btn l3">全部收起</button><button class="btn l3 icon" aria-label="收起右栏">⟩</button><button class="btn l3 icon" aria-label="暂停轮播">❚❚</button></div>
+    <div class="use">工具栏、图标按钮、轮播控制。点击区域不小于 32×32。</div>
+
+    <div class="lv"><span><b>L4 切换</b><small>分段 · 选中项白底凸起</small></span></div>
+    <div><span class="seg"><button aria-pressed="true">家底与深度</button><button aria-pressed="false">投入与产出</button><button aria-pressed="false">成果与落地</button></span>
+      <span class="seg"><button aria-pressed="true">象限图</button><button aria-pressed="false">排序列表</button></span></div>
+    <div class="use">视角、年度指标、象限图/列表、缺口类型、轮播页签。<br>现在“象限图”是深底、“30 待解问题”是绿框，统一为此一种。</div>
+
+    <div class="lv"><span><b>L5 可点内容</b><small>卡片、行、图上节点</small></span></div>
+    <div style="flex-direction:column;align-items:flex-start">
+      <button class="item" aria-pressed="true"><b>AI与医疗</b><span class="n">514</span><span class="chev">›</span></button>
+      <button class="item" aria-pressed="false"><b>AI与机器人自动化</b><span class="n">510</span><span class="chev">›</span></button>
+      <button class="item row" aria-pressed="false"><span>医学影像分析</span><span class="n">294</span><span class="chev">›</span></button>
+    </div>
+    <div class="use">悬停时边框加深、轻阴影，末尾 › 右移；选中为浅蓝底 + 左侧 3 px 主色条。<br>表格行同理，只是无边框。</div>
+
+    <div class="lv"><span><b>L6 文字</b><small>三种含义三种写法</small></span></div>
+    <div><a class="a" href="#">去领域分析 →</a><span class="term" tabindex="0" title="按批准号在各库内去重">项目</span><button class="expand">展开明细 ⌄</button><span class="plain">普通文字</span></div>
+    <div class="use">跳页：链接色，悬停实线下划线，带 → 或 ↗。<br>名词帮助：正文色，点线下划线，悬停出口径。<br>局部展开：主色，带 ⌄ 或 ›。<br>普通文字不用链接色、不加下划线。</div>
+  </div>
+
+  <h2>2. 选中只有一种写法</h2>
+  <p class="lead">现在共有 5 种：首页横条浅蓝底、首页卡片深色边框、视角按钮白底凸起、“象限图”深底白字、“30 待解问题”绿框。统一后，L4 切换用白底凸起，其余一律用“浅蓝底 + 主色描边 + 左侧主色条”（见上表 L5 第一张）。图上节点用绿色加光环，这是数据焦点，不是按钮状态。</p>
+
+  <h2>3. 颜色角色</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chips"><span style="background:#1f3147"></span><span style="background:#3d4b5c"></span><span style="background:#6b7a8c"></span><span style="background:#8a98aa"></span></div><b>文字（冷灰四级）</b><p>标题、正文、说明、弱化。首页和领域分析不再用暖灰 charcoal/slate/steel，现在两页各有 15、8 种文字色。</p></div>
+    <div class="sw"><div class="chips"><span style="background:#fff"></span><span style="background:#f6f8fb"></span><span style="background:#eef3f9"></span><span style="background:#e2e7ee"></span></div><b>结构（冷色底与线）</b><p>画布、浅底、选中底、分隔线。占画面的绝大部分。</p></div>
+    <div class="sw"><div class="chips"><span style="background:#345a78"></span><span style="background:#25435c"></span><span style="background:#2f6289"></span><span style="background:#eaf0f5"></span></div><b>交互（主色）</b><p>只用于能点的东西：按钮、链接、选中。不能点的地方不用。</p></div>
+    <div class="sw"><div class="chips"><span style="background:#7f97b1"></span><span style="background:#9fb3c8"></span><span style="background:#2e8b7a"></span></div><b>数据</b><p>量用单色深浅（bar、bar-soft）；焦点和选中的数据用绿色。同时比较多个领域时才用各领域的固定色（轮播、02），同一领域在各处颜色相同。</p></div>
+    <div class="sw"><div class="chips"><span style="background:#fdf6e3"></span><span style="background:#7a5a00"></span><span style="background:#9b2c2c"></span></div><b>状态</b><p>琥珀表示缺失、待补；红表示错误。不做装饰。</p></div>
+    <div class="sw"><div class="chips"><span style="background:#172a40"></span><span style="background:#1f3a57"></span><span style="background:#2c5373"></span></div><b>深色强调块</b><p>每屏最多 1 块：首页轮播、领域分析要点。</p></div>
+  </div>
+
+  <h2>4. 字号、圆角</h2>
+  <div class="scale">
+    <span style="font-size:12px">说明 12<small>caption：刻度、单位、口径</small></span>
+    <span style="font-size:14px">正文 14<small>body</small></span>
+    <span style="font-size:16px">强调 16<small>emphasis</small></span>
+    <span style="font-size:18px;font-weight:600">分组 18<small>group</small></span>
+    <span style="font-size:28px;font-weight:600">1,119<small>stat</small></span>
+  </div>
+  <p class="lead">现在领域分析出现 10 种字号，其中 8.0、9.9、10、10.5、11 px 是 SVG 随宽度缩放或手写造成的；统一后只用上面 5 级。</p>
+  <div class="radii"><div style="border-radius:6px">6 控件</div><div style="border-radius:10px">10 条目</div><div style="border-radius:16px">16 面板</div></div>
+  <p class="lead">现在共 9 种圆角（0、4、6、7、8、10、12、16、999 px）。统一为 3 种；胶囊形只留给标签。</p>
+
+  <h2>5. 实测中的错例</h2>
+  <ul class="dont">
+    <li><em>能点却像普通文字</em>：首页“各领域项目数”的 11 行，无底、无框、无 ›，悬停前看不出能点；首页 4 张工作台大卡片的“进入 →”只有 60% 不透明度。</li>
+    <li><em>同类按钮多种样子</em>：“展开全部技术体系”“各领域”“导出机会清单”同为次操作，却是 12/14 px 加 3 种边框色。</li>
+    <li><em>两种主色</em>：设计稿右栏用绿色实底，“生成立项建议”用蓝色实底；统一用主色 <code>--primary</code>，绿色只表示数据焦点。</li>
+    <li><em>暖灰冷灰混用</em>：首页卡片文字是暖色 charcoal（#37352f），边框却是冷色 line-cool（#e2e7ee）。</li>
+    <li><em>下划线一词多义</em>：名词帮助、“待补录”、“领域构成”、“怎么读”都用下划线，颜色却各不相同。</li>
+  </ul>
+</main>
+</body>
+</html>

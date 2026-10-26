@@ -363,6 +363,8 @@ async def check_roads(page,shots):
     await road.scroll_into_view_if_needed()
     # 人工智能 is the fixed centre: clicking it never folds the libraries away.
     libraries=await road.locator('.roads-node.is-library').count()
+    dot_size='e=>e.querySelector(".roads-node.is-library:last-of-type circle:not(.roads-hit)").getBoundingClientRect().width'
+    folded_dot=await road.evaluate(dot_size)
     await road.locator('.roads-node.is-root .roads-hit').click()
     await expect(road.locator('.roads-node.is-library')).to_have_count(libraries)
     box = await road.bounding_box()
@@ -473,6 +475,8 @@ async def check_roads(page,shots):
     await page.wait_for_timeout(700)
     assert await road.evaluate(LABEL_OVERLAPS)==[]
     # Names get room instead of hiding: every node of the deep branch keeps its name.
+    # Opening branches spreads the map outwards at one scale: nothing already drawn gets smaller.
+    assert abs(await road.evaluate(dot_size)-folded_dot)<0.5
     named=await road.locator('.roads-label').count()
     nodes=await road.locator('.roads-node:not(.is-root)').count()
     assert named==nodes,(named,nodes)

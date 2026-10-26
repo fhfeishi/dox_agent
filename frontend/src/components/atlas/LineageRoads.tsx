@@ -28,7 +28,6 @@ type Node = {
   id: string; parent: string | null; kind: Kind; name: string; plain: string; items: number; maturity: number | null;
   library: string; children: Node[]; expandable: boolean; project?: TreeProject; hidden?: TreeProject[]; unplaced?: boolean;
 };
-const RADII: Record<Kind, number> = { root: 0, library: 140, system: 250, direction: 360, theme: 465, project: 570, more: 570 };
 const PROJECTS_SHOWN = 12;
 // Outer labels are cut to this many characters; the full name is in the hover card and the path bar.
 const LABEL_CHARS = 10;
@@ -79,83 +78,53 @@ function build(data: DomainsOverview, trees: Map<string, DomainTree>, open: Set<
 }
 
 type Placed = { node: Node; x: number; y: number; angle: number; r: number; span: number };
-/**
- * The arc a subtree's names need, in lines of text over radius: each shown leaf carries one label
- * line along its spoke. An open node writes its name along its ring on the centre side, so its arc is
- * at least that name's length there; an open library's name reads horizontally beside it.
- */
-function need(n: Node): number {
-  const chars = Math.min(LABEL_CHARS, n.name.length) + 1;
-  if (!n.children.length) return (n.kind === "library" ? 3 : 1) / RADII[n.kind];
-  const own = n.kind === "root" ? 0 : n.kind === "library" ? Math.max(2, 0.5 * chars) / RADII.library : chars / (0.85 * RADII[n.kind]);
-  return Math.max(own, n.children.reduce((s, c) => s + need(c), 0));
+const DEPTH: Record<Kind, number> = { root: 0, library: 1, system: 2, direction: 3, theme: 4, project: 5, more: 5 };
+// Screen pixels: from the centre to the libraries, and from the end of a name to its children's ring.
+const FIRST_RING = 170, ROAD = 56;
+
+/** Drawn radius of a node (map units): the centre, project dots, or by technology count. */
+function nodeRadius(n: Node, maxItems: number) {
+  return n.kind === "root" ? 34 : n.kind === "project" || n.kind === "more" ? 4.5 : 5 + Math.sqrt(n.items / maxItems) * 22;
 }
+const textWidth = (text: string, size: number) => [...text].reduce((w, c) => w + (c.charCodeAt(0) < 128 ? 0.58 : 1), 0) * size;
+/** An open node keeps its whole name; a leaf is cut to LABEL_CHARS (hover card and path bar show it whole). */
+const nameOf = (n: Node) => n.children.length || n.name.length <= LABEL_CHARS ? n.name : `${n.name.slice(0, LABEL_CHARS - 1)}…`;
+const nameSize = (n: Node, font: number) => (n.kind === "library" ? font * 1.05 : font);
 
 /**
- * Spreads the rings outwards until every name has room (query 2026-10-26: spread outwards rather than
- * hide names). The unspread map fits the frame's default height; spreading keeps that on-screen scale,
- * so nodes and text keep their size, and the frame grows taller to hold the drawing. It starts from
- * the arc estimate of `need`, places the names, and spreads further while some still do not fit; only
- * once the drawing is as wide as the frame do names start to drop out. Selection does not take part,
- * so a click never moves the map. Returns the ring factor, the layout, the map size, the drawn extent
- * and the screen scale.
+ * Ring radii by depth, in screen pixels at zoom 1. Every name runs outwards along its spoke, and a
+ * ring starts where the longest name of the open nodes on the ring inside it ends, plus a road: an
+ * open branch continues after its parent's last character. `push` moves every ring further out.
  */
-function arrange(root: Node, font: number, width: number, height: number, maxItems: number) {
-  const shown: Node[] = [];
-  const walk = (n: Node) => { shown.push(n); n.children.forEach(walk); };
-  walk(root);
-  const outer = Math.max(...shown.map((n) => RADII[n.kind]));
-  const longest = Math.max(0, ...shown.filter((n) => RADII[n.kind] === outer).map((n) => Math.min(LABEL_CHARS, n.name.length)));
-  const reach = longest * font + 16, pixels = Math.min(width, height);
-  // Capped so a deep map keeps a readable scale; a longer outer name may then reach the frame edge.
-  const base = 2 * (outer + (outer > RADII.library
-    ? Math.min(2 * reach * outer / Math.max(pixels - 2 * reach, 0.45 * pixels), 0.3 * outer + 110) : 110));
-  const scale = pixels / base;
-  const line = font / scale;
-  const attempt = (spread: number) => {
-    const layout = place(root, spread), size = spread === 1 ? base : 2 * (outer * spread + reach / scale);
-    const box = extent(layout, maxItems, line);
-    return { spread, layout, size, box, fits: spread === 1 || (box.right - box.left) * scale <= width };
-  };
-  let spread = Math.max(1, (font * 1.2 * need(root)) / (2 * Math.PI * 0.85 * scale));
-  let best = attempt(spread);
-  while (!best.fits) best = attempt(spread = Math.max(1, spread / 1.12));
-  for (let i = 0; i < 24 && fitLabels(best.layout, maxItems, line, best.size / 2, new Set(), "").size < shown.length - 1; i++) {
-    const next = attempt(spread *= 1.12);
-    if (!next.fits) break;
-    best = next;
+function ringRadii(root: Node, font: number, maxItems: number, push: number) {
+  const rings = [0, FIRST_RING + push];
+  for (let level = root.children, d = 1; ; d++) {
+    const open = level.filter((n) => n.children.length);
+    if (!open.length) return rings;
+    rings[d + 1] = rings[d] + ROAD + Math.max(...open.map((n) => nodeRadius(n, maxItems) + 6 + textWidth(nameOf(n), nameSize(n, font))));
+    level = open.flatMap((n) => n.children);
   }
-  return { ...best, scale };
 }
 
-/** The part of the map a layout draws on, names included (map units; `line` is the text size). */
-function extent(layout: Map<string, Placed>, maxItems: number, line: number) {
-  let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
-  for (const p of layout.values()) {
-    const n = p.node, r = nodeRadius(n, maxItems), leaf = !n.children.length && n.kind !== "root";
-    const reach = leaf ? r + 0.35 * line + textWidth(n.name.slice(0, LABEL_CHARS), line) : 0;
-    const side = n.kind === "library" ? r + textWidth(n.name, line) * 0.55 : r + 1.6 * line;
-    const tx = p.x + Math.cos(p.angle) * reach, ty = p.y + Math.sin(p.angle) * reach;
-    left = Math.min(left, p.x - side, tx); right = Math.max(right, p.x + side, tx);
-    top = Math.min(top, p.y - r - 1.6 * line, ty); bottom = Math.max(bottom, p.y + r + 1.6 * line, ty);
-  }
-  return { left, right, top, bottom };
+/** The arc a subtree's names need: one line of text over its radius per shown name. */
+function need(n: Node, rings: number[], line: number): number {
+  const own = n.kind === "root" ? 0 : line / rings[DEPTH[n.kind]];
+  return Math.max(own, n.children.reduce((s, c) => s + need(c, rings, line), 0));
 }
 
 /**
- * Radial layout: a branch's arc is the sum of its leaves' needs, scaled so the whole tree fills the
- * circle, so each label gets the same clearance from its neighbours whichever branches are open.
- * Rings sit at their base radius times `spread`; node sizes do not change.
+ * Radial layout: a branch's arc is the sum of its names' needs, scaled so the whole tree fills the
+ * circle, so each name gets the same clearance from its neighbours whichever branches are open.
  */
-function place(root: Node, spread: number) {
+function place(root: Node, rings: number[], line: number) {
   const out = new Map<string, Placed>();
   const walk = (n: Node, from: number, to: number) => {
-    const angle = (from + to) / 2, r = RADII[n.kind] * spread;
+    const angle = (from + to) / 2, r = rings[DEPTH[n.kind]];
     out.set(n.id, { node: n, angle, r, span: to - from, x: Math.cos(angle) * r, y: Math.sin(angle) * r });
     let at = from;
-    const total = need(n);
+    const total = need(n, rings, line);
     for (const child of n.children) {
-      const span = (to - from) * need(child) / total;
+      const span = (to - from) * need(child, rings, line) / total;
       walk(child, at, at + span);
       at += span;
     }
@@ -164,12 +133,41 @@ function place(root: Node, spread: number) {
   return out;
 }
 
-/** Drawn radius of a node (map units): the centre, project dots, or by technology count. */
-function nodeRadius(n: Node, maxItems: number) {
-  return n.kind === "root" ? 34 : n.kind === "project" || n.kind === "more" ? 4.5 : 5 + Math.sqrt(n.items / maxItems) * 22;
+/**
+ * Spreads outwards rather than shrinking or hiding (query 2026-10-26): the map keeps one screen
+ * scale, so opening a branch never makes what is already there smaller. Rings move further out
+ * until the names' arcs fit the circle and every name can be placed apart; the frame then grows to
+ * hold the drawing. Selection does not take part, so a click never moves the map.
+ */
+function arrange(root: Node, font: number, maxItems: number) {
+  const line = font * 1.3;
+  let count = 0;
+  const walk = (n: Node) => { count++; n.children.forEach(walk); };
+  walk(root);
+  let push = 0, rings = ringRadii(root, font, maxItems, 0);
+  for (let i = 0; i < 80 && need(root, rings, line) > 2 * Math.PI * 0.92; i++) rings = ringRadii(root, font, maxItems, (push += 16));
+  let layout = place(root, rings, line);
+  for (let i = 0; i < 30 && fitLabels(layout, maxItems, font, new Set(), "").size < count - 1; i++) {
+    rings = ringRadii(root, font, maxItems, (push += 16));
+    layout = place(root, rings, line);
+  }
+  return { rings, layout };
 }
 
-type Label = { text: string; style: "spoke" | "ring" | "library" | "library-in" | "library-spoke"; inset?: number; dx?: number; dy?: number };
+/** The part of the map a layout draws on, names included. */
+function extent(layout: Map<string, Placed>, maxItems: number, font: number) {
+  let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
+  for (const p of layout.values()) {
+    const n = p.node, r = nodeRadius(n, maxItems);
+    const reach = n.kind === "root" ? 0 : r + 6 + textWidth(nameOf(n), nameSize(n, font));
+    const tx = p.x + Math.cos(p.angle) * reach, ty = p.y + Math.sin(p.angle) * reach;
+    left = Math.min(left, p.x - r - font, tx); right = Math.max(right, p.x + r + font, tx);
+    top = Math.min(top, p.y - r - font, ty); bottom = Math.max(bottom, p.y + r + font, ty);
+  }
+  return { left, right, top, bottom };
+}
+
+type Label = { text: string; bold: boolean };
 type Box = { x: number; y: number; w: number; h: number; a: number };
 /** Separating-axis test for two rotated rectangles (centre, half sizes, angle). */
 function overlaps(p: Box, q: Box) {
@@ -180,58 +178,28 @@ function overlaps(p: Box, q: Box) {
   }
   return true;
 }
-const textWidth = (text: string, size: number) => [...text].reduce((w, c) => w + (c.charCodeAt(0) < 128 ? 0.58 : 1), 0) * size;
 
 /**
- * Chooses which names to draw, like a map: names go down in priority order (the active path,
- * libraries, open nodes, the active node's children, then inner rings before outer ones), each tries
- * its positions in turn, and a name that would cover a placed name or another node is left out.
- * Zooming in makes room, so more names appear; the hover card and the path bar always name a node.
- * Spoke names are also cut where they would leave the map, so a deep ring does not run off the frame.
+ * Checks that names stay apart, like a map: they go down in priority order (the active path,
+ * libraries, open nodes, the active node's children, then inner rings first) along their spokes, and
+ * a leaf whose name would cover another tries a short form. The layout spreads until all fit at zoom
+ * 1, so dropping a name is only a safeguard; `size` is the text size in map units.
  */
-function fitLabels(layout: Map<string, Placed>, maxItems: number, size: number, edge: number, path: Set<string>, active: string) {
+function fitLabels(layout: Map<string, Placed>, maxItems: number, size: number, path: Set<string>, active: string) {
   const out = new Map<string, Label>(), placed: Box[] = [];
   const nodes = [...layout.values()].filter((p) => p.node.kind !== "root");
   const obstacles = [...layout.values()].map((p) => ({ id: p.node.id, box: { x: p.x, y: p.y, w: nodeRadius(p.node, maxItems), h: nodeRadius(p.node, maxItems), a: 0 } }));
-  // The 详情 chip under the active node (44 × 19 px at body size 14).
-  const at = layout.get(active);
-  if (at && !["root", "project", "more"].includes(at.node.kind)) {
-    obstacles.push({ id: "", box: { x: at.x, y: at.y + nodeRadius(at.node, maxItems) + 1.1 * size, w: 1.6 * size, h: 0.7 * size, a: 0 } });
-  }
-  const rank = (p: Placed) => path.has(p.node.id) ? 0 : p.node.kind === "library" ? 1 : p.node.children.length ? 2 : p.node.parent === active ? 3 : 4 + p.r / 1000;
+  const rank = (p: Placed) => path.has(p.node.id) ? 0 : p.node.kind === "library" ? 1 : p.node.children.length ? 2 : p.node.parent === active ? 3 : 4 + p.r / 10000;
   const free = (id: string, box: Box) => !placed.some((q) => overlaps(box, q)) && !obstacles.some((o) => o.id !== id && overlaps(box, o.box));
   for (const p of nodes.sort((a, b) => rank(a) - rank(b))) {
     const n = p.node, r = nodeRadius(n, maxItems), ux = Math.cos(p.angle), uy = Math.sin(p.angle);
-    // Along the spoke, outwards from the node, cut to `max` characters.
-    const spoke = (max: number, style: Label["style"]): [Label, Box] => {
-      const start = r + 0.35 * size, text = n.name.length > max ? `${n.name.slice(0, Math.max(1, max - 1))}…` : n.name, w = textWidth(text, size);
-      return [{ text, style }, { x: p.x + ux * (start + w / 2), y: p.y + uy * (start + w / 2), w: w / 2, h: size * 0.58, a: p.angle }];
+    const em = n.kind === "library" ? size * 1.05 : size, start = r + 0.4 * size;
+    const option = (text: string): [Label, Box] => {
+      const w = textWidth(text, em);
+      return [{ text, bold: n.kind === "library" }, { x: p.x + ux * (start + w / 2), y: p.y + uy * (start + w / 2), w: w / 2, h: em * 0.58, a: p.angle }];
     };
-    const options: [Label, Box][] = [];
-    if (n.kind === "library") {
-      // An open library's fan is outside it, so its name first tries the centre side.
-      const w = textWidth(n.name, size * 1.05) / 2, d = r + 0.95 * size;
-      const dx = -ux * (d + Math.abs(ux) * w), dy = -uy * d;
-      if (n.children.length) options.push([{ text: n.name, style: "library-in", dx, dy }, { x: p.x + dx, y: p.y + dy, w, h: size * 0.6, a: 0 }]);
-      options.push([{ text: n.name, style: "library" }, { x: p.x, y: p.y - d, w, h: size * 0.6, a: 0 }]);
-      if (n.children.length) options.push([{ text: n.name, style: "ring", inset: d }, { x: p.x - ux * d, y: p.y - uy * d, w, h: size * 0.6, a: p.angle + Math.PI / 2 }]);
-      // A folded library may also name itself along its own spoke, where nothing else is drawn.
-      if (!n.children.length) options.push(spoke(LABEL_CHARS, "library-spoke"));
-    } else if (n.children.length) {
-      // On the centre side, along the ring: across the arc its own children use.
-      // A second, deeper position clears the 详情 chip of the active node.
-      for (const inset of [r + 0.9 * size, r + 2.3 * size, r + 3.7 * size]) {
-        const room = Math.floor(p.span * (p.r - inset) / size);
-        const text = room >= n.name.length ? n.name : room >= 3 ? `${n.name.slice(0, room - 1)}…` : n.name;
-        options.push([{ text, style: "ring", inset }, { x: p.x - ux * inset, y: p.y - uy * inset, w: textWidth(text, size) / 2, h: size * 0.58, a: p.angle + Math.PI / 2 }]);
-      }
-    } else {
-      // Kept one character inside the map edge; then a short form if the full one does not fit.
-      const room = Math.floor((edge - p.r - r) / size) - 1;
-      options.push(spoke(Math.max(2, Math.min(LABEL_CHARS, room)), "spoke"));
-      if (n.name.length > 5) options.push(spoke(5, "spoke"));
-    }
-    // A name that fits nowhere is left out: the path bar always names the active path in full.
+    const options = [option(nameOf(n))];
+    if (!n.children.length && n.name.length > 5) options.push(option(`${n.name.slice(0, 4)}…`));
     const pick = options.find(([, box]) => free(n.id, box));
     if (!pick) continue;
     placed.push(pick[1]);
@@ -241,7 +209,8 @@ function fitLabels(layout: Map<string, Placed>, maxItems: number, size: number, 
 }
 
 /** A curved road between rings: leaves the parent along its own angle, arrives along the child's. */
-function road(a: Placed, b: Placed) {
+type Spot = { x: number; y: number; angle: number; r: number };
+function road(a: Spot, b: Spot) {
   const mid = (a.r + b.r) / 2;
   const c1 = { x: Math.cos(a.angle) * mid, y: Math.sin(a.angle) * mid };
   const c2 = { x: Math.cos(b.angle) * mid, y: Math.sin(b.angle) * mid };
@@ -314,26 +283,12 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const [font, setFont] = useState(14);
   // The embedded frame: its width, and its default height (the CSS clamp(520px, 76vh, 1240px)).
   const [frame, setFrame] = useState({ width: 1100, height: 700 });
-  const sized = useMemo(() => arrange(root, font, frame.width, frame.height, Math.max(...data.domains.map((d) => d.items))),
-    [root, font, frame, data]);
-  const layout = sized.layout;
+  const maxItems = Math.max(...data.domains.map((d) => d.items));
+  const arranged = useMemo(() => arrange(root, font, maxItems), [root, font, maxItems]);
+  const layout = arranged.layout;
   const detail = detailTarget ? layout.get(detailTarget.id)?.node ?? detailTarget : null;
   const hue = (library: string) => (overview.data && library ? libraryColor(overview.data, library) : "var(--terrain-dot)");
-  const maxItems = Math.max(...data.domains.map((d) => d.items));
 
-  // New nodes are drawn first at their parent's spot, then moved out on the next frame: they grow outwards.
-  const [shown, setShown] = useState<Map<string, { x: number; y: number }>>(new Map());
-  useLayoutEffect(() => {
-    const start = new Map<string, { x: number; y: number }>();
-    for (const [id, p] of layout) {
-      const before = shown.get(id);
-      const parent = p.node.parent ? (shown.get(p.node.parent) ?? layout.get(p.node.parent)) : null;
-      start.set(id, before ?? (parent ? { x: parent.x, y: parent.y } : { x: p.x, y: p.y }));
-    }
-    setShown(start);
-    const frame = requestAnimationFrame(() => setShown(new Map([...layout].map(([id, p]) => [id, { x: p.x, y: p.y }]))));
-    return () => cancelAnimationFrame(frame);
-  }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Expansion belongs to each node. Folding a parent hides, but remembers, its descendants.
   function toggle(node: Node) {
@@ -377,19 +332,64 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     addEventListener("resize", measure);
     return () => { observer.disconnect(); removeEventListener("resize", measure); };
   }, [large]);
-  const SIZE = sized.size, grown = sized.spread > 1;
-  // A grown frame shows what the drawing uses, centred: no empty band when a branch leans one way.
-  const crop = useMemo(() => {
-    if (!grown) return { left: -SIZE / 2, top: -SIZE / 2, width: SIZE, height: SIZE };
-    const { box, scale } = sized, line = font / scale;
-    const width = frame.width / scale, height = Math.max(frame.height / scale, box.bottom - box.top + 2 * line);
-    return { left: (box.left + box.right - width) / 2, top: (box.top + box.bottom - height) / 2, width, height };
-  }, [grown, sized, font, frame, SIZE]);
-  // Screen pixels per map unit at zoom 1, written as the map side it gives (px = SIZE / pixels / k).
-  const pixels = (grown ? sized.scale : Math.min(frame.width, frame.height) / SIZE) * SIZE;
+  /**
+   * The embedded frame keeps one screen scale and grows to hold the drawing. It stays centred on 人工智能
+   * while the drawing fits around it, and otherwise follows the drawing; only a drawing wider than the
+   * frame is scaled down, just enough to fit.
+   */
+  const target = useMemo(() => {
+    const box = extent(layout, maxItems, font), pad = 24;
+    const scale = Math.min(1, frame.width / (box.right - box.left + 2 * pad));
+    const width = frame.width / scale, height = Math.max(frame.height / scale, box.bottom - box.top + 2 * pad);
+    const from = (lo: number, hi: number, size: number) => (lo - pad >= -size / 2 && hi + pad <= size / 2 ? -size / 2 : (lo + hi) / 2 - size / 2);
+    return { left: from(box.left, box.right, width), top: from(box.top, box.bottom, height), width, height, scale };
+  }, [layout, maxItems, font, frame]);
+
+  /**
+   * One motion for every change: nodes travel along their rings and outwards (polar), new ones from
+   * their parent's spot, while rings, roads, the frame height and the view move with them, 520 ms with
+   * an ease-out. An interrupted motion continues from where it is. Reduced motion jumps to the end.
+   */
+  type Drawn = { pos: Map<string, { r: number; a: number }>; rings: number[]; view: typeof target };
+  const drawnRef = useRef<Drawn | null>(null);
+  const [drawn, setDrawn] = useState<Drawn | null>(null);
+  useLayoutEffect(() => {
+    const goal: Drawn = { pos: new Map([...layout].map(([id, p]) => [id, { r: p.r, a: p.angle }])), rings: arranged.rings, view: target };
+    const from = drawnRef.current;
+    const show = (next: Drawn) => { drawnRef.current = next; setDrawn(next); };
+    if (!from || matchMedia("(prefers-reduced-motion: reduce)").matches) { show(goal); return; }
+    const start = new Map<string, { r: number; a: number }>();
+    for (const [id, p] of layout) {
+      let at: string | null = id, was = from.pos.get(id);
+      while (!was && at) { at = layout.get(at)?.node.parent ?? null; was = at ? from.pos.get(at) : undefined; }
+      start.set(id, was ?? { r: 0, a: p.angle });
+    }
+    const t0 = performance.now();
+    let raf = 0;
+    const step = (now: number) => {
+      const t = Math.min(1, (now - t0) / 520), e = 1 - (1 - t) ** 3, mix = (a: number, b: number) => a + (b - a) * e;
+      const pos = new Map<string, { r: number; a: number }>();
+      for (const [id, to] of goal.pos) {
+        const s0 = start.get(id)!;
+        pos.set(id, { r: mix(s0.r, to.r), a: s0.a + Math.atan2(Math.sin(to.a - s0.a), Math.cos(to.a - s0.a)) * e });
+      }
+      const rings = goal.rings.map((r, i) => mix(from.rings[i] ?? from.rings[from.rings.length - 1] ?? r, r));
+      const v = from.view, g = goal.view;
+      show({ pos, rings, view: { left: mix(v.left, g.left), top: mix(v.top, g.top), width: mix(v.width, g.width), height: mix(v.height, g.height), scale: mix(v.scale, g.scale) } });
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    step(t0);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [layout, target]); // eslint-disable-line react-hooks/exhaustive-deps
+  const now = drawn ?? { pos: new Map([...layout].map(([id, p]) => [id, { r: p.r, a: p.angle }])), rings: arranged.rings, view: target };
+  const spot = (id: string): Spot => {
+    const q = now.pos.get(id) ?? { r: layout.get(id)?.r ?? 0, a: layout.get(id)?.angle ?? 0 };
+    return { x: Math.cos(q.a) * q.r, y: Math.sin(q.a) * q.r, angle: q.a, r: q.r };
+  };
   // The large view shows the same part of the map, fitted to the window.
-  const largePixels = Math.min(largeFrame.width / crop.width, largeFrame.height / crop.height) * SIZE;
-  const bounds = { left: crop.left, right: crop.left + crop.width, top: crop.top, bottom: crop.top + crop.height };
+  const largeScale = Math.min(largeFrame.width / now.view.width, largeFrame.height / now.view.height);
+  const bounds = { left: target.left, right: target.left + target.width, top: target.top, bottom: target.top + target.height };
   const pan = usePanZoom(svg, bounds, engaged && !large);
   const largePan = usePanZoom(largeSvg, bounds, large);
   // Only an explicit reveal from 03 moves the camera; opening another branch keeps the context.
@@ -403,8 +403,8 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const k = { library: 1.25, system: 1.6, direction: 2, theme: 2.4, project: 2.4, more: 2.4, root: 1 }[p.node.kind];
     // Centre between the node and the ring of its children, so the new fan is in view.
     // A fitted frame is not centred on the map origin; its own centre is the target.
-    const reach = (p.r + Math.min(p.r + 110 * sized.spread, 600 * sized.spread)) / 2;
-    const cx = crop.left + crop.width / 2, cy = crop.top + crop.height / 2;
+    const reach = (p.r + (arranged.rings[DEPTH[p.node.kind] + 1] ?? p.r + 150)) / 2;
+    const cx = target.left + target.width / 2, cy = target.top + target.height / 2;
     map.glideTo({ x: cx - Math.cos(p.angle) * reach * k, y: cy - Math.sin(p.angle) * reach * k, k });
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -493,10 +493,10 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const nodes = [...layout.values()];
   const onPath = new Set(path.map((n) => n.id));
   // Name placement depends on the scale only, so it is recomputed on zoom but not on hover.
-  const embeddedNames = useMemo(() => fitLabels(layout, maxItems, font * SIZE / pixels / pan.view.k, SIZE / 2, onPath, active),
-    [layout, font, SIZE, pixels, pan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
-  const largeNames = useMemo(() => large ? fitLabels(layout, maxItems, font * SIZE / largePixels / largePan.view.k, SIZE / 2, onPath, active) : new Map<string, Label>(),
-    [large, layout, font, SIZE, largePixels, largePan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
+  const embeddedNames = useMemo(() => fitLabels(layout, maxItems, font / target.scale / pan.view.k, onPath, active),
+    [layout, font, target.scale, pan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
+  const largeNames = useMemo(() => large ? fitLabels(layout, maxItems, font / largeScale / largePan.view.k, onPath, active) : new Map<string, Label>(),
+    [large, layout, font, largeScale, largePan.view.k, active]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const activeNode = layout.get(active)?.node;
   const [card, setCard] = useState<{ left: number; top: number; large: boolean } | null>(null);
@@ -521,33 +521,28 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   }
   function mapSvg(isLarge: boolean) {
     const map = isLarge ? largePan : pan, view = map.view;
-    const px = SIZE / (isLarge ? largePixels : pixels) / view.k;
+    const px = 1 / (isLarge ? largeScale : now.view.scale) / view.k;
     const line = font * px;
     const names = isLarge ? largeNames : embeddedNames;
-    function label(p: Placed, r: number, px: number) {
-      const n = p.node, chosen = names.get(n.id);
+    // An open node's children fork from the end of its name, so the name reads on a clear stretch of road.
+    function fork(id: string): Spot {
+      const at = spot(id), n = layout.get(id)?.node, chosen = names.get(id);
+      if (!n || n.kind === "root" || !chosen) return at;
+      const d = nodeRadius(n, maxItems) + 0.4 * line + textWidth(chosen.text, chosen.bold ? line * 1.05 : line) + 4 * px;
+      return { x: at.x + Math.cos(at.angle) * d, y: at.y + Math.sin(at.angle) * d, angle: at.angle, r: at.r + d };
+    }
+    // Every name runs outwards along its spoke, turned upright on the left half.
+    function label(n: Node, angle: number, r: number) {
+      const chosen = names.get(n.id);
       if (!chosen) return null;
-      const deg = (p.angle * 180) / Math.PI;
-      const style = { fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3 * px };
-      if (chosen.style === "library") return <text className="roads-label is-library" textAnchor="middle" y={-(r + 6 * px)} style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
-      if (chosen.style === "library-in") return <text className="roads-label is-library" textAnchor="middle" dy={0.35 * line}
-        x={chosen.dx} y={chosen.dy} style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
-      if (chosen.style === "spoke" || chosen.style === "library-spoke") {
-        const flip = deg > 90 && deg < 270;
-        return <text className={`roads-label${chosen.style === "library-spoke" ? " is-library" : ""}`} transform={`rotate(${flip ? deg - 180 : deg})`} x={flip ? -(r + 5 * px) : r + 5 * px} dy={0.32 * line}
-          textAnchor={flip ? "end" : "start"} style={style}>{chosen.text}</text>;
-      }
-      const inset = chosen.inset ?? r + 0.9 * line;
-      let turn = deg + 90;
-      while (turn > 180) turn -= 360;
-      if (turn > 90 || turn < -90) turn -= 180;
-      return <text className={`roads-label is-${n.kind} is-ring`} textAnchor="middle" dy={0.35 * line}
-        transform={`translate(${(-Math.cos(p.angle) * inset).toFixed(2)},${(-Math.sin(p.angle) * inset).toFixed(2)}) rotate(${turn.toFixed(1)})`}
-        style={{ ...style, strokeWidth: 3.5 * px }}>{chosen.text}</text>;
+      const deg = (angle * 180) / Math.PI, flip = Math.cos(angle) < 0;
+      return <text className={`roads-label${chosen.bold ? " is-library" : ""}`} transform={`rotate(${(flip ? deg - 180 : deg).toFixed(2)})`}
+        x={flip ? -(r + 0.4 * line) : r + 0.4 * line} dy={0.32 * line} textAnchor={flip ? "end" : "start"}
+        style={{ fontSize: `calc(var(--text-body) * ${px})`, strokeWidth: 3 * px }}>{chosen.text}</text>;
     }
     return <svg ref={isLarge ? largeSvg : svg} className="roads-svg" role="group"
-      viewBox={`${crop.left} ${crop.top} ${crop.width} ${crop.height}`}
-      style={!isLarge && grown ? { height: crop.height * sized.scale } : undefined}
+      viewBox={`${now.view.left} ${now.view.top} ${now.view.width} ${now.view.height}`}
+      style={isLarge ? undefined : { height: now.view.height * now.view.scale }}
       aria-label="技术谱系路网：人工智能 → 资料库 → 技术体系 → 研究方向 → 主题 → 项目"
       tabIndex={0} onKeyDown={e => {
         if (!isLarge && e.target === e.currentTarget && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); changeMode(!engaged); return; }
@@ -556,18 +551,15 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
       onClickCapture={e => { if (!isLarge) blankClicks.current = (e.target as Element).closest(".roads-node") ? 0 : Math.min(2, blankClicks.current + 1); }}
       onDoubleClick={e => { if (!isLarge && blankClicks.current === 2 && !(e.target as Element).closest(".roads-node")) { e.preventDefault(); changeMode(!engaged); } }}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
-        {(["library", "system", "direction", "theme", "project"] as Kind[]).map((k) => nodes.some((p) => p.node.kind === k)
-          ? <circle key={k} r={RADII[k] * sized.spread} className="roads-ring" /> : null)}
+        {now.rings.slice(1).map((r, i) => <circle key={i} r={r} className="roads-ring" />)}
         {nodes.filter((p) => p.node.parent).map((p) => {
-          const parent = layout.get(p.node.parent!)!;
-          const a = shown.get(parent.node.id) ?? parent, b = shown.get(p.node.id) ?? p;
           const width = 1 + Math.sqrt(p.node.items / maxItems) * 16;
-          return <path key={`r${p.node.id}`} d={road({ ...parent, ...a }, { ...p, ...b })}
+          return <path key={`r${p.node.id}`} d={road(fork(p.node.parent!), spot(p.node.id))}
             className={`roads-road${lit && !lit.has(p.node.id) ? " is-dim" : ""}${lit?.has(p.node.id) ? " is-lit" : ""}`}
             style={{ stroke: hue(p.node.library), strokeWidth: width }} />;
         })}
         {nodes.map((p) => {
-          const at = shown.get(p.node.id) ?? p, n = p.node;
+          const at = spot(p.node.id), n = p.node;
           const r = nodeRadius(n, maxItems);
           const isOpen = open.has(n.id);
           return <g key={n.id} className={`roads-node is-${n.kind}${n.unplaced ? " is-unplaced" : ""}${lit && !lit.has(n.id) ? " is-dim" : ""}${active === n.id ? " is-active" : ""}`}
@@ -582,13 +574,13 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             {n.kind === "root" ? <circle r={r} className="roads-core" />
               : <circle r={r} style={{ fill: n.kind === "library" ? hue(n.library) : maturityVar(n.maturity), stroke: hue(n.library) }}
                 className={n.expandable && !isOpen ? "is-closed" : ""} />}
-            {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text> : label(p, r, px)}
+            {n.kind === "root" ? <text className="roads-core-text" textAnchor="middle" dy="5">人工智能</text> : label(n, at.angle, r)}
             {n.expandable && !isOpen && n.kind !== "root" && r > 6 * px ? <text className="roads-plus" textAnchor="middle" dy={3.5 * px} style={{ fontSize: 11 * px }}>+</text> : null}
             {active === n.id && n.kind !== "root" && n.kind !== "more" && n.kind !== "project" ? <g className="roads-chip" role="button" tabIndex={0} aria-label={`${n.name} 详情`}
-              transform={`translate(0,${r + 6 * px}) scale(${px})`}
+              transform={`translate(${(-Math.cos(at.angle) * (r + 16 * px)).toFixed(2)},${(-Math.sin(at.angle) * (r + 16 * px)).toFixed(2)}) scale(${px})`}
               onClick={(e) => { e.stopPropagation(); if (!map.suppressClick()) showDetail(n); }}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); showDetail(n); } }}>
-              <rect x={-22} y={0} width={44} height={19} rx={9.5} /><text x={0} y={13.5} textAnchor="middle">详情 ›</text>
+              <rect x={-22} y={-9.5} width={44} height={19} rx={9.5} /><text x={0} y={4} textAnchor="middle">详情 ›</text>
             </g> : null}
           </g>;
         })}
@@ -616,7 +608,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             onClick={e => { if (e.detail && touchHandled.current) { touchHandled.current = false; return; } touchHandled.current = false; changeMode(!engaged); }}>
             {engaged ? "✓ 图谱操作中" : "↕ 浏览页面"}
           </button>
-          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。展开的层级多时，各层向外展开、图框随之加高，名称不重叠。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
+          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。展开只向外生长：子节点从名称末尾分叉，图框随之加高，名称不重叠。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
             {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
           </>}>图例与操作</Hint>
           <button type="button" onClick={expandSystems}>展开全部技术体系</button>

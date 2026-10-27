@@ -61,8 +61,8 @@
 .domain-lens button {
   cursor: pointer;
   transition:
-    background-color 100ms,
-    transform 100ms;
+    background-color var(--dur-quick),
+    transform var(--dur-quick);
 }
 .domain-lens button:active {
   transform: translateY(1px);
@@ -240,7 +240,7 @@
   fill: var(--terrain-dot);
   stroke: var(--canvas);
   stroke-width: 1.5;
-  transition: fill 200ms;
+  transition: fill var(--dur-small);
 }
 .lens-node[data-selected="true"] .lens-dot {
   fill: var(--terrain-dot-on);
@@ -256,8 +256,8 @@
   opacity: 0;
   r: var(--node-radius);
   transition:
-    r 160ms,
-    opacity 160ms;
+    r var(--dur-quick),
+    opacity var(--dur-quick);
 }
 .lens-node[data-active="true"] .lens-halo {
   opacity: 0.16;
@@ -283,7 +283,7 @@
 
 .lens-axis-readout,
 .lens-node-tooltip {
-  animation: lens-fade 120ms both;
+  animation: lens-fade var(--dur-quick) both;
 }
 .lens-axis-readout rect {
   fill: var(--terrain-dot-on);
@@ -357,8 +357,8 @@
   opacity: 0;
   visibility: hidden;
   transition:
-    transform 320ms var(--ease-panel),
-    opacity 180ms;
+    transform var(--dur-panel) var(--ease-panel),
+    opacity var(--dur-small);
 }
 .lens-inspector.is-open {
   transform: translateX(0);
@@ -383,7 +383,7 @@
   scrollbar-width: thin;
   min-height: 0;
   flex: 1;
-  animation: lens-detail-in 180ms both;
+  animation: lens-detail-in var(--dur-small) both;
 }
 .lens-detail-body h3 {
   font-size: var(--text-group);
@@ -588,8 +588,8 @@
 }
 .lens-year-bar {
   transition:
-    y 250ms,
-    height 250ms;
+    y var(--dur-small),
+    height var(--dur-small);
 }
 .lens-year-total {
   font-size: var(--text-body);

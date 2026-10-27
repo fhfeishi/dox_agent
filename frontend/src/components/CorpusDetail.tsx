@@ -9,7 +9,7 @@ import { CorpusFiles } from "./CorpusFiles";
 import { TargetReports } from "./TargetReports";
 import { TopicAdmin } from "./TopicManager";
 import { ProjectOverview } from "./ProjectOverview";
-import { Button, Pill } from "./ui";
+import { Button, Pill, Segmented } from "./ui";
 import { useLayout } from "../layout";
 
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
@@ -118,16 +118,13 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {/* One row of views, one shown at a time in this page (query 2026-1013 2012); views and the
               menu stay together on the right, so a narrow page wraps them as one group. */}
           <div className="ml-auto flex items-center gap-[10px]">
-          {!corpus.missing ? <nav aria-label="库内视图" className="flex flex-wrap items-center gap-[2px] rounded-lg bg-[var(--surface)] p-[3px]">
-            {VIEWS.map(([key, label]) => (
-              <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key}
-                className={`whitespace-nowrap rounded-md px-[12px] py-[7px] text-body transition-colors motion-reduce:transition-none ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
-                {label}
-              </button>
-            ))}
+          {!corpus.missing ? <nav aria-label="库内视图">
+            {/* Only the administrator manages a system library's files; others read them (前端审查 R5). */}
+            <Segmented label="库内视图" value={view} onChange={showView}
+              options={VIEWS.map(([key, name]) => [key, key === "files" && !admin ? "资料" : name] as const)} />
           </nav> : null}
           {/* After reload the local flag resets, but a server-side import may still be running. */}
-          <ManageMenu corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"} isActive={isActive}
+          <ManageMenu admin={admin} corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"} isActive={isActive}
             onRename={() => setEditing(true)} onDescribe={() => setEditingDescription(true)} run={run} onClose={onClose} />
           </div>
         </div>
@@ -137,9 +134,10 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-body leading-[1.5] outline-none focus:border-[var(--primary)]" />
           <Button size="sm" disabled={busy} onClick={() => void run(async () => { await setCorpusDescription(corpus.id, description.trim()); setEditingDescription(false); })}>保存</Button>
           <Button size="sm" variant="ghost" onClick={() => { setEditingDescription(false); setDescription(corpus.description ?? ""); }}>取消</Button>
-        </div> : <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
+        </div> : admin ? <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
           className="mt-[4px] block max-w-[900px] text-left text-body leading-[1.6] text-[var(--steel)] hover:text-[var(--ink)]">
-          {corpus.description || "添加说明：这个资料库收录什么资料"}</button>}
+          {corpus.description || "添加说明：这个资料库收录什么资料"}</button>
+          : corpus.description ? <p className="mt-[4px] max-w-[900px] text-body leading-[1.6] text-[var(--steel)]">{corpus.description}</p> : null}
         {notice ? <p role="alert" className="mt-[6px] text-caption text-[var(--red)]">{notice}</p> : null}
       </header>
 
@@ -165,7 +163,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             <div role="status" className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--tint-peach)] px-3 py-2 text-body text-[var(--charcoal)]">
               <b>{corpus.job.status === "interrupted" ? "上次刷新因服务重启中断" : corpus.job.status === "partial" ? `上次刷新部分完成：${corpus.job.errors.length} 项失败` : "上次刷新失败"}</b>
               <span className="text-[var(--slate)]">现有索引保留{corpus.job.ended_at ? ` · ${new Date(corpus.job.ended_at).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" })}` : ""}</span>
-              <button type="button" className="ml-auto text-[var(--link)] hover:underline disabled:opacity-50" disabled={busy || ingestBusy} onClick={() => runCorpusIngest(corpus.id)}>再次刷新</button>
+              {admin ? <button type="button" className="ml-auto text-[var(--link)] hover:underline disabled:opacity-50" disabled={busy || ingestBusy} onClick={() => runCorpusIngest(corpus.id)}>再次刷新</button> : null}
             </div>
           ) : corpus.job ? <p role="status" className="text-caption text-[var(--steel)]">
             {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :
@@ -184,7 +182,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             />
           ) : null}
           {corpusView === "files" ? (admin ? <TopicAdmin corpusId={corpus.id} /> : null) : (
-            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <details className="mt-5"><summary className="cursor-pointer text-body text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details> : null}</>
+            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <FileLevel corpusId={corpus.id} /> : null}</>
           )}
         </>
       )}
@@ -194,8 +192,8 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
 }
 
 /** One menu for everything that changes a library (query 2026-1013 1522), instead of a row of buttons. */
-function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose }: {
-  corpus: CorpusInfo; busy: boolean; isActive: boolean; onRename: () => void; onDescribe: () => void;
+function ManageMenu({ admin, corpus, busy, isActive, onRename, onDescribe, run, onClose }: {
+  admin: boolean; corpus: CorpusInfo; busy: boolean; isActive: boolean; onRename: () => void; onDescribe: () => void;
   run: (action: () => Promise<void>) => Promise<void>; onClose: () => void;
 }) {
   const { corpusIds, setSearchCorpusIds, runCorpusIngest } = useApp();
@@ -212,11 +210,13 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
   const item = "block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)] disabled:opacity-40";
   const pick = (action: () => void) => () => { setOpen(false); action(); };
   const groupOf = groups?.groups.find((g) => g.members.includes(corpus.id))?.id ?? "";
+  // Others keep only the conversation items: the library itself is the administrator's (D-20261027-1).
+  if (!admin && corpus.missing) return null;
   return <div ref={box} className="relative">
-    <Button size="sm" variant="outline" onClick={() => setOpen(!open)}>管理 ▾</Button>
+    <Button size="sm" variant="outline" onClick={() => setOpen(!open)}>{admin ? "管理 ▾" : "用于对话 ▾"}</Button>
     {open ? <div role="menu" aria-label="管理资料库" className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[220px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
       {!corpus.missing ? <>
-        <>
+        {admin ? <>
         <button type="button" role="menuitem" className={item} onClick={pick(onRename)}>重命名</button>
         <button type="button" role="menuitem" className={item} onClick={pick(onDescribe)}>编辑说明</button>
         {groups ? <label className="flex items-center gap-2 px-3 py-1.5 text-body">分组
@@ -225,12 +225,12 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
             <option value="">未分组</option>{groups.groups.map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select></label> : null}
         <div className="my-1 border-t border-[var(--hairline)]" />
-        </>
+        </> : null}
         {isActive ? <button type="button" role="menuitem" className={item} disabled={corpusIds.length <= 1}
           onClick={pick(() => setSearchCorpusIds(corpusIds.filter((id) => id !== corpus.id)))}>从当前对话移除</button>
           : <button type="button" role="menuitem" className={item} disabled={corpusIds.length >= 6} onClick={pick(() => setSearchCorpusIds([...corpusIds, corpus.id]))}>加入当前对话</button>}
         {!(corpusIds.length === 1 && isActive) ? <button type="button" role="menuitem" className={item} onClick={pick(() => setSearchCorpusIds([corpus.id]))}>当前对话只用此库</button> : null}
-        <>
+        {admin ? <>
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => void runCorpusIngest(corpus.id))}>刷新本库</button>
         <div className="my-1 border-t border-[var(--hairline)]" />
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => {
@@ -239,10 +239,22 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
         <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
           if (window.confirm(`删除资料库「${corpus.name}」及其源文件和索引？此操作不可撤销。`)) void run(async () => { await deleteCorpus(corpus.id, true); onClose(); });
         })}>删除资料库及文件</button>
-        </>
+        </> : null}
       </> : <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
         if (window.confirm(`仅移除「${corpus.name}」的失效登记？不会删除磁盘文件。`)) void run(async () => { await deleteCorpus(corpus.id); onClose(); });
       })}>移除失效记录</button>}
     </div> : null}
   </div>;
+}
+
+/**
+ * 文件级整理与只读对照, folded under 技术研判. Its lists run to thousands of entries, so they are built
+ * only once it is opened (前端审查 O4), not hidden in the page from the start.
+ */
+function FileLevel({ corpusId }: { corpusId: string }) {
+  const [open, setOpen] = useState(false);
+  return <details className="mt-5" onToggle={(e) => setOpen(e.currentTarget.open)}>
+    <summary className="cursor-pointer text-body text-[var(--steel)]">文件级整理与只读对照</summary>
+    {open ? <TargetReports corpusId={corpusId} /> : null}
+  </details>;
 }

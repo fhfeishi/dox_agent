@@ -4,7 +4,7 @@ import asyncio
 from datetime import UTC, datetime, timedelta
 from uuid import uuid4
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 
 from ..parsers import parse_web
 from ..web_search import allowed_result, search_web
@@ -122,9 +122,13 @@ def install(app, ctx):
             raise HTTPException(502, "抓取失败，请检查解析器安装、会话或网站访问权限") from exc
 
     @router.post("/api/web/confirm/{preview_id}")
-    async def confirm(preview_id: str, payload: WebConfirmRequest):
+    async def confirm(preview_id: str, payload: WebConfirmRequest, request: Request):
         if bool(payload.target_corpus_id) == payload.save_for_run:
             raise HTTPException(422, "请选择一个目标资料库或仅用于本次运行")
+        # Using a page for one run is everyone's; adding it to a system library is the administrator's
+        # (D-20261027-1).
+        if payload.target_corpus_id and request.state.user[1] != "admin":
+            raise HTTPException(403, "只有管理员可以把网页加入系统资料库")
         async with app.state.import_lock:
             app.state.previews = prune_web_entries(app.state.previews, datetime.now(UTC))
             current = app.state.previews.get(preview_id)

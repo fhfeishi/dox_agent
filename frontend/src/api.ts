@@ -107,6 +107,41 @@ async function jsonOrThrow(response: Response, fallback: string) {
   return payload;
 }
 
+/**
+ * Personal libraries (D-20261027-1): an account's own named references to system-library documents.
+ * `library_missing` marks a reference whose system library is gone.
+ */
+export type PersonalRef = { corpus_id: string; doc_id: string; title: string; library_missing?: boolean };
+export type PersonalLibrary = { id: string; name: string; description: string; revision: number; created_at: string; updated_at: string;
+  corpus_ids: string[]; refs: PersonalRef[] };
+export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs"> & { count: number };
+
+export async function fetchPersonalLibraries(signal?: AbortSignal): Promise<PersonalLibrarySummary[]> {
+  return jsonOrThrow(await fetch("/api/personal-libraries", { signal }), "个人资料库读取失败");
+}
+
+export async function fetchPersonalLibrary(id: string, signal?: AbortSignal): Promise<PersonalLibrary> {
+  return jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { signal }), "个人资料库读取失败");
+}
+
+export async function createPersonalLibrary(name: string, refs: PersonalRef[] = [], description = ""): Promise<PersonalLibrary> {
+  const response = await fetch("/api/personal-libraries", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, description, refs: refs.map(({ corpus_id, doc_id, title }) => ({ corpus_id, doc_id, title })) }) });
+  return jsonOrThrow(response, "新建个人资料库失败");
+}
+
+export async function changePersonalLibrary(id: string, change: { revision: number; name?: string; description?: string;
+  add?: PersonalRef[]; remove?: PersonalRef[] }): Promise<PersonalLibrary> {
+  const strip = (refs?: PersonalRef[]) => (refs ?? []).map(({ corpus_id, doc_id, title }) => ({ corpus_id, doc_id, title }));
+  const response = await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { method: "PATCH", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...change, add: strip(change.add), remove: strip(change.remove) }) });
+  return jsonOrThrow(response, "保存个人资料库失败");
+}
+
+export async function deletePersonalLibrary(id: string): Promise<void> {
+  await jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { method: "DELETE" }), "删除个人资料库失败");
+}
+
 /** K6: corpus create / rename (display name) / delete (derived data only unless purging source). */
 export async function createCorpus(name: string): Promise<CorpusInfo> {
   const response = await fetch("/api/corpora", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });

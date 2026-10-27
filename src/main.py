@@ -41,6 +41,8 @@ from .custom_templates import (
 from .intelligence import router as intelligence_router
 from .jobs import Jobs
 from .knowledge import Knowledge
+from .personal_libraries import PersonalLibraries
+from .personal_libraries import router as personal_libraries_router
 from .project_index import IndexPreparing, ProjectIndex
 from .project_similarity import ProjectSimilarity
 from .prompt_skills import (
@@ -72,6 +74,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             app.state.knowledge.source_root = info.source_dir
         app.state.settings = settings
         app.state.corpus_groups = GroupStore(settings.state_dir / "workspace.sqlite3")
+        app.state.personal_libraries = PersonalLibraries(settings.state_dir / "workspace.sqlite3")
         app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
         # W3-A: run snapshots live with the other application-level state.
@@ -177,6 +180,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     install_auth(app, settings.user_dir)
 
     app.include_router(corpus_groups_router)
+    app.include_router(personal_libraries_router)
     app.include_router(workspace_router)
     app.include_router(intelligence_router)
     app.include_router(review_router)
@@ -232,7 +236,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # Keep library paths in sync with frontend/src/router.tsx (:corpusId children).
         # Only known application routes use the SPA entry; missing APIs/assets stay 404.
         page_route = re.fullmatch(
-            r"(?:library(?:/(?P<corpus>[^/.]+)(?:/(?:documents(?:/[^/.]+)?|targets/four-facets))?)?"
+            r"(?:library(?:/mine/[^/.]+|/(?P<corpus>[^/.]+)(?:/(?:documents(?:/[^/.]+)?|targets/four-facets))?)?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
             r"|home|results(?:/[^/.]+)?|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:

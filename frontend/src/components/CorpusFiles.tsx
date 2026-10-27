@@ -1,6 +1,7 @@
 import { AnalysisWorkspace } from "./AnalysisWorkspace";
 import { droppedFiles } from "../folderUpload";
 import { useAuth } from "../auth";
+import { AddToPersonal } from "./PersonalLibrary";
 import { useSearchParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
@@ -8,10 +9,10 @@ import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, searchCorpus, upl
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 import { fundMetaFromPath } from "../fundMeta";
-import { projectQuery } from "../projects";
+import { outputsQuery, projectQuery, type Project } from "../projects";
 import { ProjectList } from "./ProjectList";
 import { loadDocumentMarkdown } from "../documentText";
-import { Button } from "./ui";
+import { Button, Segmented } from "./ui";
 
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
@@ -42,8 +43,9 @@ export function CorpusFiles({
   type UploadState = "waiting" | "uploading" | "indexed" | "parse-error" | "upload-error" | "stopped";
   type UploadItem = { file: File; path: string; state: UploadState; detail?: string };
   const client = useQueryClient();
-  // Any account adds, renames and deletes files (query 2026-1016 0919); the folder path on disk is the administrator's.
-  const showPath = useAuth().role === "admin";
+  // A system library's files are the administrator's to add, rename and delete (D-20261027-1).
+  const admin = useAuth().role === "admin";
+  const showPath = admin;
   const result = useQuery({ queryKey: ["library", corpusId, "files"],
     queryFn: ({ signal }) => fetchCorpusFiles(corpusId, signal), enabled: connected });
   const listing = result.data;
@@ -82,8 +84,20 @@ export function CorpusFiles({
   // 按项目 is the default list (query 2026-1016 1814): a comparison is between projects, not files.
   const byFile = params.get("by") === "file";
   const projectsResult = useQuery({ ...projectQuery(corpusId), enabled: connected });
-  const projects = projectsResult.data?.projects ?? [];
-  const pendingDocs = new Set(projects.filter((p) => p.identity_status === "pending").flatMap((p) => p.files.map((f) => f.document.doc_id)));
+  const allProjects = projectsResult.data?.projects ?? [];
+  // 前端审查 A1/A2: narrow the projects by start year, or to those still lacking an approved amount or an
+  // achievement list (the same rule as the 补录 to-do: identified projects the statistics cannot count).
+  const year = params.get("year") ?? "";
+  const lack = params.get("lack") ?? "";
+  const outputs = useQuery({ ...outputsQuery(corpusId), enabled: connected && !byFile });
+  const identified = allProjects.filter((p) => p.identity_status === "identified");
+  const funded = (p: Project) => p.start_year !== null && !p.funding_conflicts.includes("awarded")
+    && p.funding.some((m) => m.scope === "awarded" && m.amount_yuan !== null);
+  const lacking = { funding: identified.filter((p) => !funded(p)), outputs: outputs.data ? identified.filter((p) => !outputs.data.projects[p.project_id]) : [] };
+  const years = [...new Set(allProjects.flatMap((p) => p.start_year ? [p.start_year] : []))].sort((a, b) => b - a);
+  const projects = (lack === "funding" ? lacking.funding : lack === "outputs" ? lacking.outputs : allProjects)
+    .filter((p) => !year || String(p.start_year) === year);
+  const pendingDocs = new Set(allProjects.filter((p) => p.identity_status === "pending").flatMap((p) => p.files.map((f) => f.document.doc_id)));
   const [page, setPage] = useState(0);
   const [mode, setMode] = useState("name");
   const [bodyQuery, setBodyQuery] = useState("");
@@ -200,14 +214,15 @@ export function CorpusFiles({
   return (
     // Upload is a toolbar action and the whole panel takes a drop (前端审查 O2): reading comes first.
     <div className={`relative mt-[14px] rounded-[12px] border bg-[var(--canvas)] p-[14px] text-body ${dragging ? "border-[var(--primary)]" : "border-[var(--hairline)]"}`}
-      onDragOver={(e) => { if (busy || !connected) return; e.preventDefault(); setDragging(true); }}
+      onDragOver={(e) => { if (busy || !connected || !admin) return; e.preventDefault(); setDragging(true); }}
       onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false); }}
       onDrop={(e) => { e.preventDefault(); setDragging(false);
-        if (!busy && connected) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
+        if (!busy && connected && admin) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
       }}>
       {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-[12px] border-2 border-dashed border-[var(--primary)] bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
       <div className="flex flex-wrap items-center gap-[8px]">
         <h3 className="mr-auto font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
+        {admin ? <>
         <span className="text-caption text-[var(--stone)]" title="支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。">可拖入文件或文件夹</span>
         <Button size="sm" variant="primary" icon="plus" iconSize={12} disabled={busy || !connected} onClick={() => inputRef.current?.click()}>上传文件</Button>
         <Button size="sm" variant="outline" disabled={busy || !connected} onClick={() => folderRef.current?.click()}>上传文件夹</Button>
@@ -220,6 +235,7 @@ export function CorpusFiles({
             e.target.value = "";
             if (selected.length) void uploadFiles(selected.map((file) => ({ file, path: file.name })));
           }} />
+        </> : null}
       </div>
       <div className="mt-[10px] space-y-[10px]">
         {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
@@ -244,7 +260,7 @@ export function CorpusFiles({
               aria-label="搜索资料"
               value={search}
               onChange={(event) => updateFilter("q", event.target.value)}
-              placeholder={mode === "content" ? "输入正文主题（至少两个字）" : "按文件名搜索"}
+              placeholder={mode === "content" ? "输入正文主题（至少两个字）" : "搜索项目名、批准号、负责人或文件名"}
               className="font-app w-full border-0 bg-transparent text-caption text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
             />
           </label>
@@ -253,15 +269,22 @@ export function CorpusFiles({
           </button>)}
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <div role="group" aria-label="列表方式" className="flex rounded-lg bg-[var(--surface)] p-0.5 text-caption">
-            {([["", "按项目"], ["file", "按文件"]] as const).map(([key, label]) => <button key={label} type="button" aria-pressed={(key === "file") === byFile}
-              onClick={() => updateFilter("by", key)} className={`rounded-md px-2.5 py-1.5 ${(key === "file") === byFile ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)]"}`}>{label}</button>)}
-          </div>
-          <select aria-label="搜索方式" value={mode} onChange={(e) => setMode(e.target.value)} className="rounded-lg border bg-[var(--primary-soft)] p-2 text-caption">
-            <option value="name">文件名搜索</option><option value="content">正文检索</option>
-          </select>
+          <Segmented label="列表方式" value={byFile ? "file" : "project"} onChange={(key) => updateFilter("by", key === "file" ? "file" : "")}
+            options={[["project", "按项目"], ["file", "按文件"]]} />
+          <Segmented label="搜索方式" value={mode} onChange={setMode} options={[["name", "按名称"], ["content", "按正文"]]} />
+          {!byFile ? <>
+            <select aria-label="立项年" value={year} onChange={(e) => updateFilter("year", e.target.value)} className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-caption">
+              <option value="">全部年份</option>{years.map((y) => <option key={y} value={y}>{y} 年立项</option>)}
+            </select>
+            <select aria-label="缺失信息" value={lack} onChange={(e) => updateFilter("lack", e.target.value)} className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-caption">
+              <option value="">全部项目</option>
+              <option value="funding">未记录批准资助金额 · {lacking.funding.length}</option>
+              <option value="outputs">未列成果 · {outputs.data ? lacking.outputs.length : "…"}</option>
+            </select>
+          </> : null}
           <span className="text-caption text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : `${projects.length} 个项目`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
           {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-caption text-[var(--link)]">清空选择</button> : null}
+          {selectedDocs.length ? <AddToPersonal refs={selectedDocs.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} /> : null}
           {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-caption text-[var(--link)]"
             onClick={() => setSelectedIds([...new Set([...selectedIds, ...searchedRows.flatMap((row) => row.document && row.status === "indexed" ? [row.document.doc_id] : [])])].slice(0, 20))}>
             勾选搜索结果（最多 20 份）</button> : null}
@@ -273,8 +296,8 @@ export function CorpusFiles({
         </div>
         {!byFile ? <ProjectList projects={mode === "content" && needle ? projects.filter((p) => p.files.some((f) => matchIds.has(f.document.doc_id))) : projects}
           files={files} selectedIds={selectedIds} onToggle={toggleMany} onPreview={onPreview} busy={busy}
-          query={mode === "content" ? "" : search}
-          onDelete={(rel) => { if (window.confirm(`删除源文件「${rel}」并从索引移除？`)) void run(async () => { await deleteCorpusFile(corpusId, rel); }); }} /> : <>
+          query={mode === "content" ? "" : search} filtered={Boolean(year || lack)}
+          onDelete={admin ? (rel) => { if (window.confirm(`删除源文件「${rel}」并从索引移除？`)) void run(async () => { await deleteCorpusFile(corpusId, rel); }); } : undefined} /> : <>
         <ul aria-label="资料列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
           {pageRows.map(({ key, file, document, status }) => (
             <li key={key} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
@@ -326,10 +349,10 @@ export function CorpusFiles({
                   {file.duplicate_of ? <span className="shrink-0 rounded bg-[var(--danger-bg)] px-1.5 py-0.5 text-caption text-[var(--danger-fg)]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
                   {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
-                  {status === "error" ? (
+                  {status === "error" && admin ? (
                     <Button size="sm" disabled={busy || !connected} onClick={() => void run(onRetryImport)}>重试本库待处理项</Button>
                   ) : null}
-                  <>
+                  {admin ? <>
                   <button
                     type="button"
                     aria-label={`重命名 ${file.rel_path}`}
@@ -354,7 +377,7 @@ export function CorpusFiles({
                   >
                     <Icon name="trash" size={12} />
                   </button>
-                  </>
+                  </> : null}
                 </>
               )}
             </li>

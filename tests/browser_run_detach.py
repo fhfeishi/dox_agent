@@ -182,7 +182,10 @@ async def main():
 
                 # 3. A library refresh cut off by a restart is reported as such, not forgotten.
                 (root / "import_delay").write_text("120")
+                # Refreshing a system library is the administrator's (D-20261027-1); the user then sees the outcome.
+                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
                 assert (await page.request.post(f"{origin}/api/corpora/{quote(corpus_id)}/ingest")).ok
+                await page.request.post(origin + "/api/auth/login", data={"username": "user", "password": "123456"})
                 await page.wait_for_timeout(1000)
                 os.kill(child.pid, signal.SIGKILL)
                 child.wait(timeout=10)

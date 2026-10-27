@@ -2,6 +2,7 @@
 
 import io
 import sqlite3
+from contextlib import closing
 
 import pytest
 from docx import Document as DocxDocument
@@ -193,7 +194,8 @@ def test_new_artifact_version_does_not_overwrite_the_old_version(tmp_path):
 
 def test_user_existing_artifact_database_migrates_without_claiming_old_output_verified(tmp_path):
     path = tmp_path / "artifacts.sqlite3"
-    with sqlite3.connect(path) as db:
+    # Closed before the store migrates it: Windows refuses to replace a file that is still open.
+    with closing(sqlite3.connect(path)) as db, db:
         db.execute("CREATE TABLE artifact_versions (artifact_id TEXT NOT NULL, version INTEGER NOT NULL, "
                    "created_at TEXT NOT NULL, markdown TEXT NOT NULL DEFAULT '', "
                    "citations TEXT NOT NULL DEFAULT '[]', PRIMARY KEY (artifact_id, version))")

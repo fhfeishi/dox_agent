@@ -122,7 +122,7 @@ def install(app, ctx):
         # KM-S2: file counts read the source dir + manifest, so keep them off the event loop.
         return await asyncio.to_thread(lambda: [corpus_payload(info) for info in items])
 
-    @router.post("/api/corpora", status_code=201)
+    @router.post("/api/corpora", status_code=201, dependencies=ADMIN_ONLY)
     async def create_corpus(payload: CorpusCreate):
         """K6: create a new self-contained corpus directory (source/datadb/vectordb)."""
         name = payload.name.strip()
@@ -147,7 +147,7 @@ def install(app, ctx):
             raise HTTPException(500, "资料库创建后未能扫描到")
         return corpus_payload(info)
 
-    @router.patch("/api/corpora/{corpus_id}")
+    @router.patch("/api/corpora/{corpus_id}", dependencies=ADMIN_ONLY)
     async def rename_corpus(request: Request, payload: CorpusRename, corpus_id: str):
         """KB-5b: rename syncs ``.knowledge/<dir>``; stable corpus_id and doc ids are kept."""
         name = payload.name.strip()
@@ -210,7 +210,7 @@ def install(app, ctx):
         items = await asyncio.to_thread(scan_corpora, settings)
         return corpus_payload(next(item for item in items if item.id == corpus_id))
 
-    @router.put("/api/corpora/{corpus_id}/description")
+    @router.put("/api/corpora/{corpus_id}/description", dependencies=ADMIN_ONLY)
     async def set_corpus_description(request: Request, corpus_id: str, payload: CorpusDescription):
         """W2: user-editable short note, separate from the directory name (which stays canonical)."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -236,7 +236,7 @@ def install(app, ctx):
         items = await asyncio.to_thread(scan_corpora, settings)
         return corpus_payload(next(item for item in items if item.id == corpus_id))
 
-    @router.delete("/api/corpora/{corpus_id}")
+    @router.delete("/api/corpora/{corpus_id}", dependencies=ADMIN_ONLY)
     async def delete_corpus(corpus_id: str, purge_source: bool = False):
         """K6: delete derived data by default; ``purge_source=true`` also removes source files."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -335,7 +335,7 @@ def install(app, ctx):
         refreshed = await asyncio.to_thread(scan_corpora, settings)
         return corpus_payload(next(item for item in refreshed if item.id == corpus_id))
 
-    @router.post("/api/corpora/{corpus_id}/ingest", status_code=202)
+    @router.post("/api/corpora/{corpus_id}/ingest", status_code=202, dependencies=ADMIN_ONLY)
     async def corpus_ingest(request: Request, corpus_id: str, force: bool = False):
         """H2/K13: import one corpus; ``force`` re-parses everything (e.g. after a parser change)."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -533,7 +533,7 @@ def install(app, ctx):
         files, misplaced = await asyncio.to_thread(listing)
         return {"source_dir": str(info.source_dir), "files": files, "misplaced_files": misplaced}
 
-    @router.post("/api/corpora/{corpus_id}/files", status_code=201)
+    @router.post("/api/corpora/{corpus_id}/files", status_code=201, dependencies=ADMIN_ONLY)
     async def upload_corpus_file(corpus_id: str, upload: UploadFile = File(...), relative_path: str | None = None):
         """K7: stream an md/pdf/txt into ``source/`` then import incrementally."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -597,7 +597,7 @@ def install(app, ctx):
                 "skipped": report["skipped"], "deleted": report["deleted"], "errors": own,
                 "duplicate_of": copies.get(name, "")}
 
-    @router.delete("/api/corpora/{corpus_id}/files")
+    @router.delete("/api/corpora/{corpus_id}/files", dependencies=ADMIN_ONLY)
     async def delete_corpus_file(corpus_id: str, rel_path: str):
         """K7: remove a source file and its indexed document."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -609,7 +609,7 @@ def install(app, ctx):
         await asyncio.to_thread(remove_target, info, doc_id)
         return {"rel_path": rel_path, "doc_id": doc_id}
 
-    @router.patch("/api/corpora/{corpus_id}/files")
+    @router.patch("/api/corpora/{corpus_id}/files", dependencies=ADMIN_ONLY)
     async def rename_corpus_file(corpus_id: str, payload: FileRename):
         """K7: rename a source file and re-index under the new path."""
         info = await asyncio.to_thread(find_corpus, corpus_id)

@@ -133,27 +133,32 @@ def test_single_administrator_store_moves_into_accounts(tmp_path):
 
 
 def test_library_regeneration_and_shared_templates_are_for_administrators(tmp_path):
-    """Permissions are enforced by the server, not only by hidden buttons. Libraries themselves are
-    everyone's to keep (query 2026-1016 0919); regenerating their structure stays the administrator's."""
+    """Permissions are enforced by the server, not only by hidden buttons. System libraries are the
+    administrator's to create, change and delete (D-20261027-1, replacing query 2026-1016 0919), as is
+    regenerating their structure; each account keeps its own personal libraries instead."""
     app = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
                               user_dir=tmp_path/"usr"))
     with TestClient(app) as client:
         client.cookies.clear()
         client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
         assert client.get("/api/corpora").status_code == 200
-        assert client.post("/api/corpora", json={"name": "领导新建"}).status_code == 201
+        assert client.post("/api/corpora", json={"name": "领导新建"}).status_code == 403
         # Leaders also use the workbench (query 2026-1013 1842): a review evidence request reaches its handler.
         assert client.post("/api/review/evidence", json={}).status_code == 422
         assert client.post("/api/auth/guides", json={"key": "leader"}).status_code == 200
         assert client.post("/api/auth/password", json={"old": "123456", "new": "boss"}).status_code == 200
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "user", "password": "123456"})
-        created = client.post("/api/corpora", json={"name": "用户新建"})
-        assert created.status_code == 201
-        assert client.post("/api/corpus-groups", json={"revision": 0, "action": "create", "name": "组"}).status_code != 403
-        assert client.delete("/api/corpora/anything").status_code != 403
+        assert client.post("/api/corpora", json={"name": "用户新建"}).status_code == 403
+        assert client.post("/api/corpus-groups", json={"revision": 0, "action": "create", "name": "组"}).status_code == 403
+        assert client.delete("/api/corpora/anything").status_code == 403
+        assert client.put("/api/corpora/anything/description", json={"description": "x"}).status_code == 403
+        assert client.post("/api/corpora/anything/files").status_code == 403
+        assert client.post("/api/corpora/anything/ingest").status_code == 403
         for path in ("lineage", "hierarchy", "target", "reassociate", "topics"):
-            assert client.post(f"/api/corpora/{created.json()['id']}/{path}", json={}).status_code == 403, path
+            assert client.post(f"/api/corpora/anything/{path}", json={}).status_code == 403, path
+        assert client.post("/api/web/confirm/x", json={"target_corpus_id": "anything"}).status_code == 403
+        assert client.post("/api/personal-libraries", json={"name": "我的"}).status_code == 201
         # Analysis stays open to users: a topic summary request reaches its handler (404 for an unknown library).
         assert client.post("/api/corpora/none/topic-summary", json={"dimension": "技术", "name": "x"}).status_code != 403
         # Shared analysis tasks and review templates are maintained by administrators (节点审查 D2);

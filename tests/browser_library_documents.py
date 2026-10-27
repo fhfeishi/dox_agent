@@ -64,7 +64,7 @@ async def main():
                 await expect(listing.get_by_role("listitem")).to_have_count(40)
                 await page.get_by_role("button",name="下一页",exact=True).click()
                 await expect(listing.get_by_role("listitem")).to_have_count(5)
-                await page.get_by_label("搜索方式").select_option("content")
+                await page.get_by_role("group",name="搜索方式").get_by_role("button",name="按正文").click()
                 await page.get_by_label("搜索资料",exact=True).fill("量子传感")
                 await expect(listing.get_by_role("listitem")).to_have_count(2)
                 await listing.get_by_role("checkbox").nth(0).check()
@@ -223,12 +223,47 @@ async def main():
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("region",name="开始工作").get_by_role("link")).to_have_count(4)
                 await expect(page.get_by_role("button",name="新建对话",exact=True)).to_have_count(0)  # query 2026-1016 1037
-                # Users keep libraries too (query 2026-1016 0919); regenerating structure stays the administrator's.
-                created = await page.request.post(origin+"/api/corpora",data={"name":"用户资料库"})
-                assert created.status == 201, created.status
-                assert (await page.request.post(origin+f"/api/corpora/{quote((await created.json())['id'])}/lineage",data={})).status == 403
+                # System libraries are the administrator's; a user gathers material in a personal library
+                # of references instead (D-20261027-1).
+                assert (await page.request.post(origin+"/api/corpora",data={"name":"用户资料库"})).status == 403
+                assert (await page.request.post(origin+f"/api/corpora/{quote(cid)}/lineage",data={})).status == 403
                 await page.goto(origin+"/library")
-                await expect(page.get_by_role("button",name="新建资料库")).to_be_visible()
+                await expect(page.get_by_role("button",name="新建资料库")).to_have_count(0)
+                await expect(page.get_by_role("button",name="新建个人资料库")).to_be_visible()
+                await page.goto(origin+"/library/"+quote(cid)+"/documents")
+                guide=page.get_by_role("button",name="知道了")
+                if await guide.count(): await guide.click()
+                await expect(page.get_by_role("button",name="上传文件")).to_have_count(0)
+                await expect(page.get_by_role("button",name="资料",exact=True)).to_be_visible()
+                projects=page.get_by_role("list",name="项目列表")
+                # 前端审查 A1/A2: narrow by start year, or to projects still missing an approved amount.
+                await page.get_by_label("立项年").select_option("2021")
+                await expect(projects.get_by_role("listitem")).to_have_count(2)
+                await page.get_by_label("缺失信息").select_option("funding")
+                await expect(projects).to_contain_text("没有符合筛选的项目。")
+                await expect(page).to_have_url(re.compile(r"lack=funding"))
+                await page.get_by_label("缺失信息").select_option("")
+                await page.get_by_label("立项年").select_option("")
+                await projects.get_by_role("checkbox").first.check()
+                await page.get_by_role("button",name=re.compile("^加入个人资料库")).click()
+                adding=page.get_by_role("dialog",name="加入个人资料库")
+                await adding.get_by_label("新个人资料库名称").fill("课题资料")
+                await adding.get_by_role("button",name="新建并加入").click()
+                await expect(page.get_by_text("已加入个人资料库「课题资料」",exact=False)).to_be_visible()
+                await page.goto(origin+"/library")
+                await page.get_by_role("button",name="打开个人资料库 课题资料").click()
+                await expect(page.get_by_role("heading",name="课题资料",exact=True)).to_be_visible()
+                mine=page.get_by_role("region",name="验收")
+                await expect(mine.get_by_role("listitem")).to_have_count(1)
+                await expect(mine).to_contain_text("量子报告")
+                await page.reload()  # a direct link to a personal library opens the application
+                await mine.get_by_role("button",name="预览 ›").click()
+                await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("量子传感")
+                await page.keyboard.press("Escape")
+                await page.get_by_role("button",name="就此提问",exact=True).click()
+                await expect(page).to_have_url(re.compile(r"/chat$"))
+                await expect(page.get_by_role("textbox",name="问题",exact=True)).to_have_value(re.compile("^请概括这些资料"))
+                await expect(page.get_by_role("button",name=re.compile("^资料范围："))).to_contain_text("1")
                 await page.goto(origin+"/home")
                 await page.screenshot(path=str(shots/"user.png"))
                 await page.set_viewport_size({"width":390,"height":844})

@@ -13,7 +13,7 @@ import { LineageRoadmap } from "./LineageRoadmap";
 import { Tier } from "./StageMarks";
 import { OutputsPanel } from "./OutputsPanel";
 import { SceneFlow } from "./SceneFlow";
-import { Button } from "./ui";
+import { Button, Segmented } from "./ui";
 import { Chart } from "./Charts";
 import { fetchDocuments } from "../useDocuments";
 import { useLayout } from "../layout";
@@ -213,15 +213,22 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const regenerate = role !== "admin" ? null : <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
     {busy ? "生成中…" : data.state === "missing" ? "生成四维归纳" : "重新生成"}</Button>;
   return <section aria-label="场景层级" className="mt-5 space-y-4">
-    <div role="tablist" aria-label="技术研判" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
+    {/* One row of switches (前端审查 O3, V1): the five dimensions as tabs on a neutral track, each with its
+        chart colour as a dot, and the lineage's own views beside them, instead of five coloured cards
+        over a second row of tabs. */}
+    <div className="flex flex-wrap items-center gap-2">
+    <div role="tablist" aria-label="技术研判" className="flex max-w-full gap-[2px] overflow-x-auto rounded-[10px] bg-[var(--line-cool-soft)] p-[3px]">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
-        className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
-        style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
-        <span className="block text-emphasis font-semibold md:text-group" style={{ color: DIM_COLOR[key] }}>{key}</span>
-        <span className="hidden text-caption text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
+        className={`flex shrink-0 items-center gap-[7px] rounded-[8px] px-[12px] py-[6px] text-left transition-[background-color,box-shadow] duration-[var(--dur-quick)] ${dim === key ? "bg-[var(--canvas)] shadow-sm" : "hover:bg-[var(--canvas)]/60"}`}>
+        <span aria-hidden="true" className="size-[8px] shrink-0 rounded-full" style={{ background: DIM_COLOR[key] }} />
+        <span className={`text-body ${dim === key ? "font-semibold text-[var(--heading)]" : "text-[var(--text-2)]"}`}>{key}</span>{" "}
+        <span className="hidden text-caption text-[var(--text-3)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
           : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类" : key === "问题" ? "个核心问题" : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
+    </div>
+    {dim === "技术谱系" ? <Segmented tabs label="技术谱系视图" value={lineageView} onChange={(key) => go({ lineage: key === "overview" ? "" : key })}
+      options={LINEAGE_VIEWS} className="ml-auto" /> : null}
     </div>
     <p className="text-body text-[var(--steel)]">{PURPOSE[dim]}</p>
     {notice ? <p role="alert" className="text-body text-[var(--red)]">{notice}</p> : null}
@@ -229,11 +236,6 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
     {/* 总览, the five-level lineage and the road map one at a time, so the chosen one has the whole
         page (query 2026-1013 2012); a technique picked in one is selected in the others. */}
     {dim === "技术谱系" ? <>
-      <div role="tablist" aria-label="技术谱系视图" className="inline-flex gap-1 rounded-lg bg-[var(--surface)] p-1">
-        {LINEAGE_VIEWS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={lineageView === key}
-          onClick={() => go({ lineage: key === "overview" ? "" : key })}
-          className={`rounded-md px-3 py-1 text-body ${lineageView === key ? "bg-[var(--canvas)] font-semibold shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
-      </div>
       {lineageView === "overview" ? <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
         onDim={(d, scene) => go({ dim: d, scene, node: "" })} /> : null}
       {lineageView === "tree" ? <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}

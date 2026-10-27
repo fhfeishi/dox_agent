@@ -12,10 +12,13 @@ const name = (path: string) => path.split("/").at(-1) ?? path;
  * attention is said on the row — an unconfirmed project identity, a file that repeats another — so it
  * is seen where the material is chosen. Files that could not be read are listed after the projects.
  */
-export function ProjectList({ projects, files, selectedIds, onToggle, onPreview, onDelete, busy, query }: {
+export function ProjectList({ projects, files, selectedIds, onToggle, onPreview, onDelete, busy, query, filtered = false }: {
   projects: Project[]; files: CorpusFile[]; selectedIds: string[];
   onToggle: (docIds: string[], on: boolean) => void; onPreview?: (document: DocumentInfo) => void;
-  onDelete: (relPath: string) => void; busy: boolean; query: string;
+  /** Absent when the account may not delete files (only administrators maintain system libraries). */
+  onDelete?: (relPath: string) => void; busy: boolean; query: string;
+  /** A year or missing-information filter narrowed the list, so an empty one says that, not “no projects”. */
+  filtered?: boolean;
 }) {
   const [open, setOpen] = useState<string[]>([]);
   const [limit, setLimit] = useState(60);
@@ -62,17 +65,17 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
                 <span className="min-w-0 flex-1 truncate text-[var(--slate)]" title={file?.rel_path}>{file ? name(file.rel_path) : document.title}</span>
                 {file?.duplicate_of ? <span className="shrink-0 text-[var(--danger-fg)]">与 {name(file.duplicate_of)} 内容相同</span> : null}
                 {onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
-                {file?.duplicate_of ? <button type="button" disabled={busy} onClick={() => onDelete(file.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button> : null}
+                {file?.duplicate_of && onDelete ? <button type="button" disabled={busy} onClick={() => onDelete(file.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button> : null}
               </li>; })}
             {copies.filter((f) => !own.includes(f.rel_path)).map((f) => <li key={f.rel_path} className="flex items-center gap-2 pl-5">
               <span className="min-w-0 flex-1 truncate text-[var(--stone)]" title={f.rel_path}>{name(f.rel_path)}</span>
               <span className="shrink-0 text-[var(--danger-fg)]">与 {name(f.duplicate_of!)} 内容相同，未单独计入</span>
-              <button type="button" disabled={busy} onClick={() => onDelete(f.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button>
+              {onDelete ? <button type="button" disabled={busy} onClick={() => onDelete(f.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button> : null}
             </li>)}
           </ul> : null}
         </li>;
       })}
-      {!shown.length ? <li className="px-3 py-2 text-caption text-[var(--stone)]">{needle ? "没有匹配的项目。" : "还没有可识别的项目。"}</li> : null}
+      {!shown.length ? <li className="px-3 py-2 text-caption text-[var(--stone)]">{needle ? "没有匹配的项目。" : filtered ? "没有符合筛选的项目。" : "还没有可识别的项目。"}</li> : null}
       {shown.length > limit ? <li><button type="button" onClick={() => setLimit(limit + 60)} className="w-full rounded-lg py-2 text-caption text-[var(--link)] hover:bg-[var(--surface)]">
         显示更多（已显示 {limit} / {shown.length} 个项目）</button></li> : null}
     </ul>
@@ -81,7 +84,7 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
       <ul aria-label="未入库的文件" className="mt-2 space-y-1">{unread.map((f) => <li key={f.rel_path} className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate" title={f.rel_path}>{name(f.rel_path)}</span>
         <span className="max-w-[50%] shrink-0 truncate text-[var(--red)]" title={f.reason}>{f.status === "error" ? `读取失败：${(f.reason || "").split(":")[0] || "原因未记录"}` : f.status === "new" ? "待导入" : "源文件缺失"}</span>
-        <button type="button" disabled={busy} onClick={() => onDelete(f.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除</button>
+        {onDelete ? <button type="button" disabled={busy} onClick={() => onDelete(f.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除</button> : null}
       </li>)}</ul>
     </details> : null}
   </div>;

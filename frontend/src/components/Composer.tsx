@@ -385,10 +385,13 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             <p className="mt-[2px] text-[var(--stone)]">预览有效至 {item.expires_at}</p>
             <div className="mt-[5px] flex flex-wrap items-center gap-[6px]">
               <button type="button" disabled={webBusy} onClick={() => void acceptWeb(item.preview_id, "run")} className="rounded border px-[7px] py-[3px]">仅用于本次运行</button>
+              {/* Adding to a system library is the administrator's (D-20261027-1). */}
+              {role === "admin" ? <>
               <select aria-label="网页目标资料库" value={webTarget} onChange={(event) => setWebTarget(event.target.value)} className="rounded border px-[5px] py-[3px]">
                 <option value="">选择目标库</option>{corpora.filter((corpus) => !corpus.missing).map((corpus) => <option key={corpus.id} value={corpus.id}>{corpus.name}</option>)}
               </select>
               <button type="button" disabled={webBusy || !webTarget} onClick={() => void acceptWeb(item.preview_id, "corpus")} className="rounded border px-[7px] py-[3px] disabled:opacity-50">加入所选资料库</button>
+              </> : null}
             </div>
           </div>)}
         </div> : null}
@@ -552,7 +555,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                     />
                   )}
                   <span className="mx-[2px] my-[5px] block h-px bg-[var(--hairline-soft)]" />
-                  <PopItem
+                  {role === "admin" ? <PopItem
                     title="导入文件"
                     description="PDF / Word / Markdown / TXT"
                     icon={<Icon name="upload" size={14} strokeWidth={1.9} />}
@@ -560,8 +563,8 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                       setPopOpen(false);
                       setUploadTarget(corpusIds.length === 1 ? corpusIds[0] : ""); setUploadOpen(true);
                     }}
-                  />
-                  <PopItem title="指定网址" description="先预览，再选择本次运行或一个资料库" onClick={() => {
+                  /> : null}
+                  <PopItem title="指定网址" description={role === "admin" ? "先预览，再选择本次运行或一个资料库" : "先预览，再用于本次运行"} onClick={() => {
                     setPopOpen(false); setWebMode("url"); setWebOpen(true);
                   }} />
                   <PopItem title="受控搜索" description="限定域名与时间，勾选结果后再抓取" onClick={() => {

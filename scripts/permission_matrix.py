@@ -60,7 +60,11 @@ CAPABILITIES = [
     ("资料库结构重新生成与目录重新关联", ADMIN, r"^/api/corpora/[^/]+/(reassociate|target|topics|lineage|hierarchy)"),
     ("共享分析任务与 Prompt/Skill", ADMIN, r"^/api/(tasks/custom|prompt-skills)"),
     ("审查模版与指南（含应用）", ADMIN, r"^/api/review/(rules|guidelines|applied)"),
-    ("资料库与资料维护", ALL, r"^/api/(corpora|corpus-groups|groups)"),
+    # Topic summaries are analysis anyone may run; everything else that changes a system library is the
+    # administrator's (D-20261027-1). Personal libraries are each account's own.
+    ("主题综合（分析）", ALL, r"^/api/corpora/[^/]+/topic-summary"),
+    ("系统资料库与资料维护", ADMIN, r"^/api/(corpora|corpus-groups|groups)"),
+    ("个人资料库（本人）", ALL, r"^/api/personal-libraries"),
     # Every role may call these; the record decides (author or administrator, design/系统.md §5).
     ("删除报告（作者或管理员，按记录判断）", ALL, r"^/api/artifacts/\{artifact_id\}(/purge)?$"),
     ("对话、会话与工作区", ALL, r"^/api/(chat|workspace|sessions|compose|answers)"),

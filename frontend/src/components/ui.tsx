@@ -29,13 +29,15 @@ export function Pill({ tone = "gray", children }: { tone?: Tone; children: React
 
 type ButtonVariant = "primary" | "outline" | "ghost" | "quiet";
 
+// Interaction levels (领导体验优化 §4.1): primary = L1, one per area; outline = L2, open / export / expand,
+// whose border turns primary on hover; ghost = L3, toolbar and icon actions.
 const BUTTON: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--primary)] text-white hover:bg-[var(--primary-pressed)] border border-transparent",
+    "bg-[var(--primary)] text-white hover:bg-[var(--primary-pressed)] active:translate-y-px border border-transparent",
   outline:
-    "bg-[var(--canvas)] text-[var(--ink)] border border-[var(--hairline-strong)] hover:bg-[var(--surface)]",
+    "bg-[var(--canvas)] text-[var(--heading)] border border-[var(--line-cool-strong)] hover:border-[var(--primary)] hover:text-[var(--primary)]",
   ghost:
-    "bg-transparent text-[var(--slate)] border border-transparent hover:bg-[var(--surface)]",
+    "bg-transparent text-[var(--text-2)] border border-transparent hover:bg-[var(--selected-cool)]",
   quiet:
     "bg-transparent text-[var(--slate)] border border-[var(--hairline)] hover:border-[var(--hairline-strong)] hover:text-[var(--charcoal)]",
 };
@@ -78,12 +80,31 @@ export function Button({
       title={title}
       disabled={disabled}
       onClick={onClick}
-      className={`font-app inline-flex shrink-0 items-center gap-[6px] rounded-[6px] font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON[variant]} ${sizeCls} ${className}`}
+      className={`font-app inline-flex shrink-0 items-center gap-[6px] rounded-[6px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-[var(--dur-quick)] disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON[variant]} ${sizeCls} ${className}`}
     >
       {icon ? <Icon name={icon} size={iconSize} /> : null}
       {children}
     </button>
   );
+}
+
+/* ------------------------------------------------------------ Segmented */
+
+/**
+ * The one switch (领导体验优化 §4.1 L4): a track with the chosen option raised in white. Views, list
+ * modes and categories use it instead of each page writing its own. `tabs` gives tab semantics (the
+ * option changes what the panel below shows); otherwise options are pressed buttons.
+ */
+export function Segmented<T extends string>({ label, value, options, onChange, tabs = false, className = "" }: {
+  label: string; value: T; options: readonly (readonly [T, ReactNode])[]; onChange: (value: T) => void; tabs?: boolean; className?: string;
+}) {
+  return <div role={tabs ? "tablist" : "group"} aria-label={label}
+    className={`inline-flex shrink-0 flex-wrap items-center gap-[2px] rounded-[8px] bg-[var(--line-cool-soft)] p-[3px] ${className}`}>
+    {options.map(([key, name]) => <button key={key} type="button" onClick={() => onChange(key)}
+      {...(tabs ? { role: "tab", "aria-selected": value === key } : { "aria-pressed": value === key })}
+      className={`whitespace-nowrap rounded-[6px] px-[12px] py-[5px] text-body transition-[background-color,color,box-shadow] duration-[var(--dur-quick)] ${value === key
+        ? "bg-[var(--canvas)] font-semibold text-[var(--heading)] shadow-sm" : "text-[var(--text-3)] hover:text-[var(--heading)]"}`}>{name}</button>)}
+  </div>;
 }
 
 /* ----------------------------------------------------------- ToolButton */

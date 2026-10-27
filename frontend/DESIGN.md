@@ -92,6 +92,18 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 
 完整列表以 `globals.css` 为准。
 
+## 交互层级与动效（2026-10-27）
+
+来源：`.logsdev/tasks/领导体验优化-20261026/README.md` §4、`.logsdev/前端审查-20261027.md`。
+
+- **按钮**：`Button variant="primary"` 每个区域最多一个（主操作）；`outline` 用于打开、导出、展开（冷色描边，悬停变主色）；`ghost` 用于工具栏和图标操作。
+- **切换**：视图、列表方式、分类一律用 `Segmented`（`ui.tsx`），改变下方内容的用 `tabs`；不要在页面里手写轨道加白底按钮。
+- **可点卡片**：整张可点，末尾 `打开 ›`，悬停边框变主色加轻阴影；附加信息用角落 ⓘ，不在卡片底部再放一排按钮。
+- **中性色**：只有一套冷灰。正文 `--text-2`，说明 `--text-3`，线 `--line-cool*`，底 `--surface*`；旧名 `--slate`、`--steel`、`--stone`、`--charcoal` 已改为同样的冷色值，新代码直接用新名。
+- **颜色角色**：`--primary` 只给可交互的东西；`--focus-data` 是数据焦点；维度、领域的颜色只做小色点或图表数据色，不做大面积卡片底色。
+- **动效**：只用 `--dur-quick`（悬停、按下）、`--dur-small`（浮层、菜单）、`--dur-panel`（侧栏、页签内容）、`--dur-layout`（图表、谱系重排）四档和 `--ease-out`；“减少动态效果”由 `globals.css` 的全局规则统一处理。
+- **大列表**：折叠区里成千条的内容只在展开时渲染。
+
 ## 不要做
 
 1. 不引入 shadcn，不运行 `ui-component-sourcing`（本仓无 `components.json`）。

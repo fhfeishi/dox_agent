@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .agent.corpora import scan_corpora
+from .auth import ADMIN_ONLY
 from .core.db import connect, migrate
 from .workspace import SCHEMA as WORKSPACE_SCHEMA  # one schema for the shared workspace.sqlite3
 
@@ -82,7 +83,7 @@ def list_groups(request: Request):
     return request.app.state.corpus_groups.get()
 
 
-@router.post("")
+@router.post("", dependencies=ADMIN_ONLY)
 def change_groups(change: Change, request: Request):
     return request.app.state.corpus_groups.change(
         change, {c.id for c in scan_corpora(request.app.state.settings)}

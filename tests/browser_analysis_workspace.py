@@ -69,7 +69,9 @@ async def main():
                 actions = 0
                 async def act(locator):
                     nonlocal actions; actions += 1; await locator.click()
-                await page.request.post(origin+"/api/auth/login", data={"username": "user", "password": "123456"})
+                # Adding files to a system library is the administrator's (D-20261027-1); the journey after it
+                # (compare, report) is the same for every role.
+                await page.request.post(origin+"/api/auth/login", data={"username": "admin", "password": "123456"})
                 await page.goto(origin+"/home")
                 await page.evaluate("""async()=>{for(const k of ['home','overview','chat','library','tasks','review','intelligence','results']) await fetch('/api/auth/guides',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:k})})}""")
                 # 1. Receive: a folder upload; only the unreadable file is reported as failed.

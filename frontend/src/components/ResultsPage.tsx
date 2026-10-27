@@ -8,7 +8,7 @@ import { canDeleteArtifact, changeArtifactLifecycle, fetchArtifacts, type Artifa
 import { useAuth } from "../auth";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
-import { Pill } from "./ui";
+import { Button, Pill, Segmented } from "./ui";
 import { useLayout } from "../layout";
 
 type Group = "all" | "analysis" | "review" | "intelligence" | "trash";
@@ -139,14 +139,9 @@ export function ResultsPage() {
   <div className="@container mx-auto w-full max-w-[var(--page-max)] space-y-5 px-5 py-7 sm:px-8">
     <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
       <h1 className="text-page font-semibold text-[var(--ink)]">报告中心</h1>
-      <div role="tablist" aria-label="报告中心视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
-        {([["reports", "报告"], ["period", "周期总结"]] as const).map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={view === key}
-          onClick={() => setView(key)} className={`rounded-lg px-4 py-1.5 text-body ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
-      </div>
-      {role === "admin" ? <div role="group" aria-label="查看范围" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
-        {([["mine", "我的"], ["all", "全部账户"]] as const).map(([key, label]) => <button key={key} type="button" aria-pressed={scope === key}
-          onClick={() => filter({ scope: key === "all" ? "all" : "" })} className={`rounded-lg px-3 py-1.5 text-body ${scope === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
-      </div> : null}
+      <Segmented tabs label="报告中心视图" value={view} onChange={setView} options={[["reports", "报告"], ["period", "周期总结"]]} />
+      {role === "admin" ? <Segmented label="查看范围" value={scope} onChange={(key) => filter({ scope: key === "all" ? "all" : "" })}
+        options={[["mine", "我的"], ["all", "全部账户"]]} /> : null}
       <p className="basis-full text-body text-[var(--steel)] @3xl:basis-auto">{scope === "all" ? "全部账户" : `账户 ${username}`}{view === "period"
         ? "：按一周至一年汇总期内完成与进行中的工作，可生成总结报告。" : `：生成的报告与保存到报告中心的回答${role === "admin" && scope === "mine" ? "（含未记录生成人的早期报告）" : ""}。`}</p>
     </header>
@@ -174,11 +169,8 @@ export function ResultsPage() {
     <section aria-label="报告列表" className="space-y-3">
       {/* Categories and search stay in view while a long list scrolls. */}
       <div className="sticky top-0 z-10 -mx-1 flex flex-wrap items-center gap-2 bg-[var(--canvas)]/95 px-1 py-2 backdrop-blur">
-        <div role="tablist" aria-label="报告分类" className="flex flex-wrap gap-1 rounded-xl bg-[var(--surface)] p-1">
-          {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => filter({ group: key })}
-            className={`rounded-lg px-3 py-1.5 text-body ${group === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
-            {label} <span className="tabular-nums text-caption text-[var(--stone)]">{count(key) ?? "…"}</span></button>)}
-        </div>
+        <Segmented tabs label="报告分类" value={group} onChange={(key) => filter({ group: key })}
+          options={GROUPS.map(([key, label]) => [key, <>{label} <span className="tabular-nums text-caption text-[var(--muted-cool)]">{count(key) ?? "…"}</span></>] as const)} />
         <div className="flex min-w-[260px] flex-1 flex-wrap justify-end gap-2">
         <input aria-label="按标题搜索报告" value={query} onChange={(e) => filter({ q: e.target.value })} placeholder="按标题搜索"
           className="min-w-[140px] flex-1 rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body outline-none focus:border-[var(--primary)] @3xl:max-w-[220px]" />
@@ -205,8 +197,15 @@ export function ResultsPage() {
       {group === "trash" ? <p className="text-caption text-[var(--stone)]">删除后保留 7 天，到期自动清理且不可恢复。资料审查记录不进入回收站。</p> : null}
       {artifacts && artifacts.length >= 200 ? <p className="text-caption text-[var(--stone)]">分析与情报报告显示最近 200 份，顶部统计包含全部报告。</p> : null}
       {!loaded && error ? null : !loaded ? <p role="status" className="py-6 text-center text-body text-[var(--steel)]">正在读取报告…</p>
-        : !shown.length ? <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] py-8 text-center text-body text-[var(--steel)]">
-          {needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成，或把对话中的回答保存到报告中心。"}</p>
+        : !shown.length ? <div className="rounded-xl border border-dashed border-[var(--line-cool-strong)] py-8 text-center text-body text-[var(--text-3)]">
+          <p>{needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成，或把对话中的回答保存到报告中心。"}</p>
+          {/* An empty list says where the first report comes from, one click away (前端审查 V3). */}
+          {!needle && !library && state === "all" && group !== "trash" ? <div className="mt-3 flex flex-wrap justify-center gap-2">
+            <Button size="sm" onClick={() => navigate("/tasks")}>去存量分析</Button>
+            <Button size="sm" onClick={() => navigate("/review/formal")}>去资料审查</Button>
+            <Button size="sm" onClick={() => navigate("/intelligence")}>去情报分析</Button>
+          </div> : null}
+        </div>
         : <ul className="divide-y divide-[var(--hairline)] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
           {shown.map((row) => <li key={row.key} className="px-4 py-3 hover:bg-[var(--surface)]">
             {/* Two lines that fit any width: title and actions, then what it is and when (query 2026-1015 1639). */}

@@ -92,7 +92,8 @@ export interface AppValue {
   ingestBusy: boolean;
   runCorpusIngest: (id: string) => Promise<void>;
   startCorpusChat: (id: string) => Promise<void>;
-  startResearch: (corpusId: string, docIds: string[] | null, taskId: string, question: string) => Promise<void>;
+  /** One library, or several (a personal library's references span up to six system libraries). */
+  startResearch: (corpusId: string | string[], docIds: string[] | null, taskId: string, question: string) => Promise<void>;
   askInTask: (taskId: string, question: string) => Promise<void>;
   targetJobs: Record<string, string>;
   rememberTargetJob: (corpusId: string, jobId: string) => void;
@@ -831,14 +832,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
       options: { ...options, task_id: task, corpus_ids: [corpus], allowed_doc_ids: docIds.length ? [...new Set(docIds)] : null } });
   }
 
-  async function startResearch(corpus: string, docIds: string[] | null, task: string, question: string) {
+  async function startResearch(corpus: string | string[], docIds: string[] | null, task: string, question: string) {
     if ((docIds !== null && !docIds.length) || !question.trim()) throw new Error("请选择资料并填写研究问题");
+    const ids = [...new Set(Array.isArray(corpus) ? corpus : [corpus])];
+    if (!ids.length || ids.length > 6) throw new Error("一次提问可涉及 1 至 6 个系统资料库，请减少资料来源");
     setSessionBusy(true);
     try {
       await settleActiveRun();
       await workspace.saveNow(latestTurns.current, options);
-      await workspace.select(undefined, task, corpus);
-      await workspace.saveCorpusSelection(corpus, true, [corpus], { allowed_doc_ids: docIds === null ? null : [...new Set(docIds)] });
+      await workspace.select(undefined, task, ids[0]);
+      await workspace.saveCorpusSelection(ids[0], true, ids, { allowed_doc_ids: docIds === null ? null : [...new Set(docIds)] });
       setEditing(null);
       setInput(question.trim());
       setError("");

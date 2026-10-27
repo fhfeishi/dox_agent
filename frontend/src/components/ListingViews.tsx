@@ -10,11 +10,12 @@ import { useNavigate } from "react-router";
 import { TemplateLibrary, readText } from "./TemplateLibrary";
 import { useLayout } from "../layout";
 
+// One neutral icon tile for every task (前端审查 V1): the icon tells them apart, colour is kept for data.
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
-  { tint: "var(--tint-mint)", fg: "var(--ok-fg)", icon: "checklist" },
-  { tint: "var(--tint-lavender)", fg: "var(--lav-fg)", icon: "competitors" },
-  { tint: "var(--tint-sky)", fg: "var(--info-fg)", icon: "forecast" },
-  { tint: "var(--tint-peach)", fg: "var(--orange-fg)", icon: "reports" },
+  { tint: "var(--surface-cool)", fg: "var(--primary)", icon: "checklist" },
+  { tint: "var(--surface-cool)", fg: "var(--primary)", icon: "competitors" },
+  { tint: "var(--surface-cool)", fg: "var(--primary)", icon: "forecast" },
+  { tint: "var(--surface-cool)", fg: "var(--primary)", icon: "reports" },
 ];
 
 function ViewShell({
@@ -139,7 +140,8 @@ export function TasksView() {
                   <span className="flex flex-wrap items-center gap-[8px] text-body font-semibold text-[var(--ink)]">
                     {task.name}
                     {task.id === taskId ? <Pill tone="lav">当前</Pill> : null}
-                    <Pill tone={task.kind === "custom" ? "lav" : "sky"}>{task.kind === "custom" ? `我的任务 · ${statusLabel(task)}` : "内置"}</Pill>
+                    {/* Built-in is the usual case and says nothing; only an account's own task is marked. */}
+                    {task.kind === "custom" ? <Pill tone="lav">{`我的任务 · ${statusLabel(task)}`}</Pill> : null}
                   </span>
                   <span className="text-body leading-[1.6] text-[var(--steel)]">{task.description}</span>
                   {manage && task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-caption leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}

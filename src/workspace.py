@@ -22,6 +22,9 @@ SCHEMA = [
     "CREATE TABLE IF NOT EXISTS corpus_groups (id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER, payload TEXT)",
     "CREATE TABLE IF NOT EXISTS model_checks (connection TEXT PRIMARY KEY,status TEXT NOT NULL,latency_ms INTEGER,"
     " error TEXT,checked_at TEXT,source TEXT)",
+    # Personal libraries (personal_libraries.py, D-20261027-1): one row per library, its owner's only.
+    "CREATE TABLE IF NOT EXISTS personal_libraries (id TEXT PRIMARY KEY, owner TEXT NOT NULL, revision INTEGER NOT NULL,"
+    " payload TEXT NOT NULL); CREATE INDEX IF NOT EXISTS personal_libraries_owner ON personal_libraries(owner)",
 ]
 
 

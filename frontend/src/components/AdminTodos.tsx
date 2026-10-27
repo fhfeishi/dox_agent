@@ -46,7 +46,7 @@ export function useAdminTodos(enabled = true) {
     ...libs.filter(l => l.research_records && (l.research_records.funded < l.projects || l.research_records.listed < l.projects)).map(l => ({
       key: "records" + l.corpus_id, group: "补录" as const, what: `${short(l.name)}：补录批准资助金额 / 成果列表`,
       detail: `${Math.max(0,l.projects-l.research_records!.funded)} 个项目未记录批准资助金额，${Math.max(0,l.projects-l.research_records!.listed)} 个项目未列成果`,
-      action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files"),
+      action: "查看缺失项目", go: () => navigate(`/library/${encodeURIComponent(l.corpus_id)}/documents?lack=funding`),
       missing: { funding: Math.max(0, l.projects - l.research_records!.funded), listed: Math.max(0, l.projects - l.research_records!.listed) } })),
     ...corpora.filter((c) => libraryProblems(c).length).map((c) => ({ key: "lib" + c.id, group: "资料处理" as const,
       what: `${short(c.name)}：${libraryProblems(c).join("、")}`,

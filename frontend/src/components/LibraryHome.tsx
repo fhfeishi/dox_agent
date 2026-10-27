@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router";
-import { useQuery } from "@tanstack/react-query";
-import { createCorpus, fetchCorpusGroups, postCorpusGroups, type CorpusGroups } from "../api";
+import { useNavigate, useSearchParams } from "react-router";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { createCorpus, createPersonalLibrary, fetchCorpusGroups, postCorpusGroups, type CorpusGroups } from "../api";
+import { useAuth } from "../auth";
+import { personalLibrariesQuery } from "./PersonalLibrary";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { libraryOverviewQuery } from "../libraryQueries";
@@ -32,9 +34,9 @@ export function useGroups() {
 /**
  * 资料库 (query 2026-1013 2012): every library as a card — name, what it holds, how many reports and
  * projects, where its projects concentrate — by group, with search. A card opens the library in the
- * same workspace; 信息 previews it on the right without leaving. Administrators create libraries
- * and groups here and rename or dissolve groups in place. The same page serves every role; the
- * maintenance controls follow the server's administrator rule.
+ * same workspace; 信息 previews it on the right without leaving. Above them, the account's own
+ * personal libraries (D-20261027-1), which anyone creates. System libraries and their groups are the
+ * administrator's to create, rename and dissolve; the controls follow the server's rule.
  */
 export function LibraryHome() {
   const { corpora, corporaError, corporaLoaded, refreshCorpora } = useApp();
@@ -45,6 +47,11 @@ export function LibraryHome() {
   const overview = useQuery({ ...libraryOverviewQuery() });
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const admin = useAuth().role === "admin";
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const personal = useQuery(personalLibrariesQuery());
+  const [personalName, setPersonalName] = useState<string | null>(null);
   const groups = data?.groups ?? [];
   const grouped = new Set(groups.flatMap((g) => g.members));
   const sections = [...groups.map((g) => ({ id: g.id, name: g.name, ids: g.members })),
@@ -58,13 +65,41 @@ export function LibraryHome() {
     <div className="mx-auto max-w-[var(--page-max)] space-y-6">
       <header className="flex flex-wrap items-center gap-3">
         <h1 className="text-page font-semibold">资料库</h1>
-        {corporaLoaded ? <span className="text-body text-[var(--steel)]">{corpora.length} 个资料库</span> : null}
         <span className="flex-1" />
         <input type="search" aria-label="搜索资料库" placeholder="搜索资料库名称或说明" value={search.get("q") ?? ""}
           onChange={(e) => setSearch((old) => { const next = new URLSearchParams(old); if (e.target.value) next.set("q", e.target.value); else next.delete("q"); return next; }, { replace: true })}
           className="w-[240px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body" />
-        {/* Every account keeps libraries and their groups (query 2026-1016 0919). */}
-        <>
+      </header>
+      {corporaError || error ? <p role="alert" className="text-body text-[var(--red)]">{corporaError || error}</p> : null}
+      <section aria-label="我的资料库" className="space-y-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 className="text-emphasis font-semibold">我的资料库{personal.data ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{personal.data.length} 个 · 仅自己可见，只引用系统资料库中的资料</span> : null}</h2>
+          <span className="flex-1" />
+          {personalName !== null ? <form className="flex gap-1.5" onSubmit={(e) => {
+            e.preventDefault();
+            void act(async () => { const created = await createPersonalLibrary(personalName.trim()); setPersonalName(null);
+              await queryClient.invalidateQueries({ queryKey: ["personal-libraries"] }); navigate(`/library/mine/${created.id}`); });
+          }}>
+            <input autoFocus aria-label="个人资料库名称" placeholder="个人资料库名称" required value={personalName} onChange={(e) => setPersonalName(e.target.value)}
+              className="w-[180px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body" />
+            <Button type="submit" variant="primary">创建</Button>
+            <button type="button" className="text-body text-[var(--steel)]" onClick={() => setPersonalName(null)}>取消</button>
+          </form> : <Button variant="outline" icon="plus" iconSize={13} onClick={() => setPersonalName("")}>新建个人资料库</Button>}
+        </div>
+        {personal.data?.length ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{personal.data.map((library) =>
+          <button key={library.id} type="button" onClick={() => navigate(`/library/mine/${library.id}`)} aria-label={`打开个人资料库 ${library.name}`}
+            className="group rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 text-left transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-sm">
+            <b className="block truncate text-emphasis">{library.name}</b>
+            {library.description ? <span className="mt-1 line-clamp-2 block text-body text-[var(--steel)]">{library.description}</span> : null}
+            <span className="mt-2 block text-body text-[var(--slate)]">{library.count} 份资料 · 来自 {library.corpus_ids.length} 个系统资料库</span>
+            <span aria-hidden="true" className="mt-2 block text-caption text-[var(--link)] transition-transform group-hover:translate-x-0.5">打开 ›</span>
+          </button>)}</div>
+          : personal.data ? <p className="text-body text-[var(--steel)]">把一项工作用到的资料集中在一处：新建后，在系统资料库里勾选项目，点“加入个人资料库”。</p> : null}
+      </section>
+      <div className="flex flex-wrap items-center gap-2 border-t border-[var(--hairline)] pt-5">
+        <h2 className="text-emphasis font-semibold">系统资料库{corporaLoaded ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{corpora.length} 个{admin ? "" : " · 由管理员维护"}</span> : null}</h2>
+        <span className="flex-1" />
+        {admin ? <>
           {creating ? <form className="flex gap-1.5" onSubmit={(e) => {
             e.preventDefault();
             void act(async () => { const created = await createCorpus(name.trim()); setName(""); setCreating(false); refreshCorpora(); openCorpus(created.id, "files"); });
@@ -77,17 +112,16 @@ export function LibraryHome() {
             <Icon name="plus" size={14} />新建资料库</button>}
           {data ? <button type="button" onClick={() => { const next = window.prompt("新分组名称"); if (next?.trim()) void act(() => changeGroups(data.revision, "create", "", next.trim())); }}
             className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">新建分组</button> : null}
-        </>
-      </header>
-      {corporaError || error ? <p role="alert" className="text-body text-[var(--red)]">{corporaError || error}</p> : null}
-      {!corpora.length ? <p className="text-body text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可点“新建资料库”。" : "正在读取资料库…"}</p> : null}
+        </> : null}
+      </div>
+      {!corpora.length ? <p className="text-body text-[var(--steel)]">{corporaLoaded ? (admin ? "还没有系统资料库，可点“新建资料库”。" : "还没有系统资料库，请联系管理员。") : "正在读取资料库…"}</p> : null}
       {sections.map((section) => {
         const ids = section.ids.filter(visible);
         if (!ids.length && (!section.id || query)) return null;
         return <section key={section.id || "_"} aria-label={section.name || "资料库"}>
           {section.name ? <div className="group mb-2 flex items-center gap-2">
             <h2 className="text-body font-semibold text-[var(--steel)]">{section.name} · {ids.length}</h2>
-            {section.id && data ? <span className="flex gap-2 text-caption text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
+            {section.id && data && admin ? <span className="flex gap-2 text-caption text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
               <button type="button" onClick={() => { const next = window.prompt("分组名称", section.name); if (next?.trim()) void act(() => changeGroups(data.revision, "rename", section.id, next.trim())); }}>改名</button>
               <button type="button" onClick={() => { if (window.confirm(`解散分组「${section.name}」？其中的资料库回到未分组，不会删除。`)) void act(() => changeGroups(data.revision, "dissolve", section.id)); }}>解散</button>
             </span> : null}

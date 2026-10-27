@@ -89,7 +89,7 @@ def _append_sources(document, citations: list[dict]) -> None:
             if item.get("page"):
                 details.append(f"第 {item['page']} 页")
             if item.get("corpus_id"):
-                details.append(f"知识库 {item['corpus_id']}")
+                details.append(f"资料库 {item['corpus_id']}")
         suffix = f"（{"；".join(details)}）" if details else ""
         _add_text(document.add_paragraph(), f"[{number}] {title}{suffix}")
 

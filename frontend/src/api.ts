@@ -83,7 +83,7 @@ export async function saveDomainReport(corpusId: string): Promise<ArtifactSummar
 
 export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
   const response = await fetch("/api/corpora", signal ? { signal } : undefined);
-  if (!response.ok) throw new Error("知识库列表不可用（" + response.status + "）");
+  if (!response.ok) throw new Error("资料库列表不可用（" + response.status + "）");
   return response.json();
 }
 
@@ -110,7 +110,7 @@ async function jsonOrThrow(response: Response, fallback: string) {
 /** K6: corpus create / rename (display name) / delete (derived data only unless purging source). */
 export async function createCorpus(name: string): Promise<CorpusInfo> {
   const response = await fetch("/api/corpora", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });
-  return jsonOrThrow(response, "创建知识库失败") as Promise<CorpusInfo>;
+  return jsonOrThrow(response, "创建资料库失败") as Promise<CorpusInfo>;
 }
 
 export async function renameCorpus(corpusId: string, name: string): Promise<CorpusInfo> {
@@ -129,7 +129,7 @@ export async function setCorpusDescription(corpusId: string, description: string
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/description`, {
     method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ description }),
   });
-  return jsonOrThrow(response, "保存知识库说明失败") as Promise<CorpusInfo>;
+  return jsonOrThrow(response, "保存资料库说明失败") as Promise<CorpusInfo>;
 }
 
 export async function deleteCorpus(corpusId: string, purgeSource = false): Promise<void> {
@@ -593,7 +593,7 @@ export async function streamChat(messages: Message[], runIdOrSignal: string | Ab
     const message = typeof detail === "string"
       ? detail
       : detail?.missing === true
-        ? "此会话绑定的知识库目录已缺失，请重新选择后重试"
+        ? "此会话绑定的资料库目录已缺失，请重新选择后重试"
         : "请求失败（" + response.status + "）";
     throw new ApiError(message, detail);
   }

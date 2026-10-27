@@ -143,7 +143,7 @@ async def main():
                 await page.get_by_role("link",name="资料库",exact=True).click()
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
-                await page.get_by_role("button",name="打开",exact=True).first.click()
+                await page.get_by_role("button",name=re.compile("^打开资料库")).first.click()
                 await expect(page.get_by_role("button",name="技术研判",exact=True)).to_have_attribute("aria-pressed","true")
                 await page.set_viewport_size({"width":390,"height":844})
                 assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth+1")

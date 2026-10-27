@@ -229,11 +229,11 @@ async def main():
 
             await page.goto(origin + "/chat")
             # 交互方案 §3.1：范围改为输入框上方对话库 chip，"当前对话：…"重复文字已删除。
-            await expect(page.get_by_role("button", name=re.compile("^对话知识库：.*演示库"))).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^对话资料库：.*演示库"))).to_be_visible()
 
             # ---- 进入库内的技术研判 ------------------------------------------------
             await page.get_by_role("link", name="资料库", exact=True).click()
-            await page.get_by_role("button", name="打开", exact=True).first.click()  # the library cards (query 2026-1013 2012)
+            await page.get_by_role("button", name=re.compile("^打开资料库")).first.click()  # the library cards (query 2026-1013 2012)
             await page.get_by_role("button", name="技术研判", exact=True).first.click()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):

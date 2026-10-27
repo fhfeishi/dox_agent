@@ -74,7 +74,7 @@ async def main():
                 await page.evaluate("""async()=>{for(const k of ['home','overview','chat','library','tasks','review','intelligence','results']) await fetch('/api/auth/guides',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:k})})}""")
                 # 1. Receive: a folder upload; only the unreadable file is reported as failed.
                 await act(page.get_by_role("link", name="资料库", exact=True))
-                await act(page.get_by_role("button", name="打开", exact=True).first)
+                await act(page.get_by_role("button", name=re.compile("^打开资料库")).first)
                 guide = page.get_by_role("button", name="知道了")
                 if await guide.count(): await guide.click()
                 await page.get_by_label("上传文件夹", exact=True).set_input_files(str(pack)); actions += 1
@@ -144,7 +144,7 @@ async def main():
                 await page.screenshot(path=str(Path(".logsdev/verification/query-20261020-1719")/"workspace-reopened.png"))
                 # 6. 存量分析 opens the task's conversation with its walkthrough (query 2026-1020 1719).
                 await page.goto(origin+"/tasks")
-                await page.get_by_role("button", name="开始分析").nth(1).click()
+                await page.locator("article").filter(has_text="对比分析").get_by_role("button", name="开始分析").first.click()
                 await expect(page).to_have_url(re.compile(r"/chat$"))
                 guide = page.get_by_role("dialog", name="对比分析使用指引")
                 await expect(guide).to_contain_text("第 1/5 步")

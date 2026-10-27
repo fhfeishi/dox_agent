@@ -582,7 +582,7 @@ export function Inspector() {
             {inspectorTarget.doc.focus ? (
               <TargetFocusedText doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} quote={inspectorTarget.doc.focus} />
             ) : (
-              <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} />
+              <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} tools={false} />
             )}
           </>
         ) : null}
@@ -616,7 +616,7 @@ export function Inspector() {
             </SectionTitle>
             <Card className="mb-[10px]">
               <div className="text-body font-medium text-[var(--ink)]">
-                {currentCorpus?.name ?? "未选择知识库"}
+                {currentCorpus?.name ?? "未选择资料库"}
               </div>
               <div className="mt-[6px] flex flex-wrap items-center gap-[8px] text-caption text-[var(--stone)]">
                 <Pill tone={corpusReady ? "mint" : "yellow"}>
@@ -720,7 +720,7 @@ export function Inspector() {
             </p>
             {!corpusReady ? (
               <Card>
-                <p className="text-body text-[var(--steel)]">知识库就绪后即可浏览。</p>
+                <p className="text-body text-[var(--steel)]">资料库就绪后即可浏览。</p>
               </Card>
             ) : (
               <div className="flex flex-col gap-[6px]">
@@ -746,7 +746,7 @@ export function Inspector() {
                 ))}
                 {!documents.length ? (
                   <Card>
-                    <p className="text-body text-[var(--steel)]">当前知识库还没有已入库文档。</p>
+                    <p className="text-body text-[var(--steel)]">当前资料库还没有已入库文档。</p>
                   </Card>
                 ) : null}
               </div>

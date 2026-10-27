@@ -21,7 +21,7 @@ export function turnToMarkdown(meta: TurnExportMeta, attempt: Attempt): string {
   const stamp = meta.exportedAt ?? new Date().toISOString();
   const parts = [
     `# ${meta.question || "回答"}`,
-    `> 导出时间：${stamp} · 知识库：${meta.corpusName || "未选择"} · 任务：${meta.taskName || "专业问答"}`,
+    `> 导出时间：${stamp} · 资料库：${meta.corpusName || "未选择"} · 任务：${meta.taskName || "专业问答"}`,
     "## 回答",
     attempt.answer,
   ];
@@ -38,7 +38,7 @@ export function turnWordDocumentHtml(meta: TurnExportMeta, bodyHtml: string): st
   const title = meta.question || "回答";
   const header =
     `<h1>${escapeHtml(title)}</h1>` +
-    `<p>导出时间：${escapeHtml(stamp)} · 知识库：${escapeHtml(meta.corpusName || "未选择")} · 任务：${escapeHtml(meta.taskName || "专业问答")}</p>`;
+    `<p>导出时间：${escapeHtml(stamp)} · 资料库：${escapeHtml(meta.corpusName || "未选择")} · 任务：${escapeHtml(meta.taskName || "专业问答")}</p>`;
   return (
     `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" ` +
     `xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">` +

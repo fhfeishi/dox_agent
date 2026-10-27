@@ -70,7 +70,7 @@ def prompt_lines(task: str, elements: list[str], intents: list[str], domains: li
     into the free note: the question must carry the same ``YYYY—YYYY`` phrase the retriever filters
     on, and a note's wording must not be able to swallow it. An empty span adds no line.
     """
-    lines = [f"任务：{task}", f"知识库：{'、'.join(domains) or '未指定'}"]
+    lines = [f"任务：{task}", f"资料库：{'、'.join(domains) or '未指定'}"]
     if note:
         lines.append(f"使用者已输入：{note}")
     if period:

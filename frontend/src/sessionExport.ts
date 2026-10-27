@@ -14,7 +14,7 @@ export function sessionToMarkdown(meta: SessionExportMeta, turns: Turn[]): strin
   const done = turns.filter((turn) => turn.outcome === "completed" && turn.answer);
   const stamp = meta.exportedAt ?? new Date().toISOString();
   const header =
-    `# ${meta.title || "会话导出"}\n\n> 导出时间：${stamp} · 知识库：以各轮记录为准 · ` +
+    `# ${meta.title || "会话导出"}\n\n> 导出时间：${stamp} · 资料库：以各轮记录为准 · ` +
     `任务：${meta.taskName || "专业问答"} · 共 ${done.length} 轮`;
   const blocks = done.map((turn, i) => {
     const sources = turn.sources.length

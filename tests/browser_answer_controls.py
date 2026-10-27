@@ -62,7 +62,7 @@ async def check_workspace_panels(page, origin):
     field = page.get_by_role("textbox", name="问题", exact=True)
     await expect(field).to_have_value(re.compile("^综合梳理"))
     before = await field.bounding_box()
-    await page.get_by_role("button", name=re.compile("^对话知识库：")).click()
+    await page.get_by_role("button", name=re.compile("^对话资料库：")).click()
     await expect(page.get_by_role("dialog", name="对话资料库", exact=True)).to_be_visible()
     await page.get_by_role("button", name="点选提问", exact=True).click()
     await expect(quick).to_be_visible()
@@ -77,13 +77,13 @@ async def check_workspace_panels(page, origin):
     await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=libraries_data))
     # A reload reads the new library inventory, as in a real session returning after a library import.
     await page.reload()
-    await page.get_by_role("button", name=re.compile("^对话知识库：")).click()
+    await page.get_by_role("button", name=re.compile("^对话资料库：")).click()
     libraries = page.get_by_role("dialog", name="对话资料库", exact=True)
     for i in range(2, 7):
         await libraries.get_by_role("checkbox", name=f"当前对话使用 资料库{i}", exact=True).check()
     await expect(libraries.get_by_role("checkbox", name="当前对话使用 资料库7", exact=True)).to_be_disabled()
     await expect(libraries.get_by_role("checkbox", name="当前对话使用 缺失库", exact=True)).to_be_disabled()
-    search = libraries.get_by_role("textbox", name="搜索知识库范围")
+    search = libraries.get_by_role("textbox", name="搜索资料库范围")
     await search.fill("资料库7")
     await libraries.get_by_role("button", name="仅使用此库", exact=True).click()
     await expect(libraries.get_by_role("checkbox", name="当前对话使用 资料库7", exact=True)).to_be_checked()
@@ -99,7 +99,13 @@ async def check_workspace_panels(page, origin):
     await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
     # Leave the original answer-controls journey with its original task and empty input.
     await page.goto(origin + "/chat?task=task1")
-    await page.get_by_role("dialog", name="精准问答使用指引").get_by_role("button", name="跳过").click()
+    # A walkthrough shows by itself once per task (前端审查 Q3); 使用指引 beside the task opens it again.
+    guide = page.get_by_role("dialog", name="精准问答使用指引")
+    await expect(page.get_by_role("button", name="使用指引", exact=True)).to_be_visible()
+    await expect(guide).to_have_count(0)
+    await page.get_by_role("button", name="使用指引", exact=True).click()
+    await guide.get_by_role("button", name="跳过").click()
+    await expect(guide).to_have_count(0)
 
 
 async def show_technical(page):

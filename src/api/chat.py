@@ -98,10 +98,10 @@ def install(app, ctx):
             for cid in payload.corpus_ids:
                 info = await asyncio.to_thread(find_corpus, cid)
                 if info is None:
-                    raise HTTPException(404, "知识库不存在")
+                    raise HTTPException(404, "资料库不存在")
                 if info.missing:
                     raise HTTPException(409, {"missing": True, "corpus_id": cid,
-                                              "message": "该知识库目录已缺失，请重新关联或解绑"})
+                                              "message": "该资料库目录已缺失，请重新关联或解绑"})
                 selected.append((cid, info))
             selected_infos = selected
             chat_knowledge = KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected])
@@ -112,10 +112,10 @@ def install(app, ctx):
         elif payload.corpus_id is not None:
             info = await asyncio.to_thread(find_corpus, payload.corpus_id)
             if info is None:
-                raise HTTPException(404, "知识库不存在")
+                raise HTTPException(404, "资料库不存在")
             if info.missing:
                 raise HTTPException(409, {"missing": True, "corpus_id": payload.corpus_id,
-                                          "message": "该知识库目录已缺失，请重新关联或解绑"})
+                                          "message": "该资料库目录已缺失，请重新关联或解绑"})
             selected_infos = [(info.id, info)]
             chat_knowledge = knowledge_for(info)
             chat_preparation = "ready" if chat_knowledge.current() else "empty"
@@ -152,7 +152,7 @@ def install(app, ctx):
                         for item in web_snapshots]
 
         if not selected_infos and not web_snapshots:
-            raise HTTPException(409, "尚无可用知识库，请先新建知识库并添加文档")
+            raise HTTPException(409, "尚无可用资料库，请先新建资料库并添加文档")
         if payload.allowed_doc_ids:
             selected_memberships = {doc_id: [] for doc_id in payload.allowed_doc_ids}
             stale_docs = []
@@ -168,11 +168,11 @@ def install(app, ctx):
             if stale_docs:
                 raise HTTPException(409, {"message": "限定资料已变化或不可用，请重新选择范围", "documents": stale_docs})
             if any(not owners for owners in selected_memberships.values()):
-                raise HTTPException(422, "限定文档必须属于本次选择的知识库")
+                raise HTTPException(422, "限定文档必须属于本次选择的资料库")
             if any(len(owners) != 1 for owners in selected_memberships.values()):
-                raise HTTPException(422, "限定文档在所选知识库中的归属不唯一")
+                raise HTTPException(422, "限定文档在所选资料库中的归属不唯一")
         if chat_preparation != "ready" and not web_snapshots:
-            raise HTTPException(409, "所选知识库尚无已入库文档或当前可检索资料，请刷新或从范围移除后重试")
+            raise HTTPException(409, "所选资料库尚无已入库文档或当前可检索资料，请刷新或从范围移除后重试")
         # W6-A: confirmed snapshots let the run proceed, but the corpus keeps its real
         # preparation state; neither the run event nor the snapshot may claim it is ready.
 

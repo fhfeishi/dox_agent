@@ -63,7 +63,7 @@ class GroupStore:
                 if change.group_id and not group:
                     raise HTTPException(404, "分组不存在")
                 if change.group_id and change.corpus_id not in known:
-                    raise HTTPException(422, "知识库不存在")
+                    raise HTTPException(422, "资料库不存在")
                 for item in groups:
                     item["members"] = [cid for cid in item["members"] if cid != change.corpus_id]
                 if group:

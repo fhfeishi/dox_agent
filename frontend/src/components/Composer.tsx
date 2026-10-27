@@ -221,7 +221,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
     } finally { setWebBusy(false); }
   }
   async function acceptWeb(previewId: string, destination: "run" | "corpus") {
-    if (destination === "corpus" && !webTarget) { setWebError("请选择目标知识库"); return; }
+    if (destination === "corpus" && !webTarget) { setWebError("请选择目标资料库"); return; }
     setWebBusy(true); setWebError("");
     try {
       const result = await confirmWeb(previewId, destination === "run"
@@ -233,7 +233,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
         showToast("网页快照已加入本次运行范围");
       } else {
         void refreshCorpora();
-        showToast("网页资料已加入所选知识库");
+        showToast("网页资料已加入所选资料库");
       }
     } catch (error) {
       setWebError(error instanceof Error ? error.message : "网页确认失败");
@@ -270,7 +270,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
   const shortName = (id: string) => (corpora.find((c) => c.id === id)?.name ?? `不可用（${id}）`).replace(/^自然科学基金-/, "");
   const libraryNames = corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、");
   // What the next send will use, in one line; shown on the task label rather than as a row of its own.
-  const runConfig = `本次配置：${activeTask?.name ?? taskId} · ${libraryNames || "未选择知识库"} · ${options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · ${options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}${role === "admin" ? ` · ${model || "模型未记录"}` : ""} · ${taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}`;
+  const runConfig = `本次配置：${activeTask?.name ?? taskId} · ${libraryNames || "未选择资料库"} · ${options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · ${options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}${role === "admin" ? ` · ${model || "模型未记录"}` : ""} · ${taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}`;
 
   return (
     <div className="chat-composer shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[24px] pb-[14px]">
@@ -280,25 +280,25 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
           <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <span className="min-w-0 flex-1">
               {corporaError
-                ? `知识库列表读取失败：${corporaError}`
+                ? `资料库列表读取失败：${corporaError}`
                 : !corporaLoaded
                   ? CORPORA_COPY.loading
                   : !corpora.length
-                  ? "尚无知识库，可新建知识库或刷新列表。"
+                  ? "尚无资料库，可新建资料库或刷新列表。"
                   : !corpusIds.length
-                    ? "请选择当前对话使用的 1 至 6 个知识库。"
+                    ? "请选择当前对话使用的 1 至 6 个资料库。"
                     : corpusIds.length > 6
-                      ? `此会话原范围包含 ${corpusIds.length} 个知识库，超过 6 个上限，请修复范围后再发送。`
+                      ? `此会话原范围包含 ${corpusIds.length} 个资料库，超过 6 个上限，请修复范围后再发送。`
                       : corpusIds.some((id) => !corpora.some((item) => item.id === id))
-                        ? "此会话原范围含未知知识库，请修复范围后再发送。"
+                        ? "此会话原范围含未知资料库，请修复范围后再发送。"
                         : corpusIds.some((id) => corpora.find((item) => item.id === id)?.missing)
-                          ? "此会话原范围含目录缺失的知识库，请移除或重新关联。"
+                          ? "此会话原范围含目录缺失的资料库，请移除或重新关联。"
                           : "当前对话使用的范围不可用。"}
             </span>
             {corporaError ? <Button size="sm" onClick={() => refreshCorpora()}>重试刷新</Button> : null}
             {!corporaError && corporaLoaded && repairScope ? (
               <Button size="sm" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
-                {corpora.length ? "选择知识库" : "新建知识库"}
+                {corpora.length ? "选择资料库" : "新建资料库"}
               </Button>
             ) : null}
           </div>
@@ -385,10 +385,10 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             <p className="mt-[2px] text-[var(--stone)]">预览有效至 {item.expires_at}</p>
             <div className="mt-[5px] flex flex-wrap items-center gap-[6px]">
               <button type="button" disabled={webBusy} onClick={() => void acceptWeb(item.preview_id, "run")} className="rounded border px-[7px] py-[3px]">仅用于本次运行</button>
-              <select aria-label="网页目标知识库" value={webTarget} onChange={(event) => setWebTarget(event.target.value)} className="rounded border px-[5px] py-[3px]">
+              <select aria-label="网页目标资料库" value={webTarget} onChange={(event) => setWebTarget(event.target.value)} className="rounded border px-[5px] py-[3px]">
                 <option value="">选择目标库</option>{corpora.filter((corpus) => !corpus.missing).map((corpus) => <option key={corpus.id} value={corpus.id}>{corpus.name}</option>)}
               </select>
-              <button type="button" disabled={webBusy || !webTarget} onClick={() => void acceptWeb(item.preview_id, "corpus")} className="rounded border px-[7px] py-[3px] disabled:opacity-50">加入所选知识库</button>
+              <button type="button" disabled={webBusy || !webTarget} onClick={() => void acceptWeb(item.preview_id, "corpus")} className="rounded border px-[7px] py-[3px] disabled:opacity-50">加入所选资料库</button>
             </div>
           </div>)}
         </div> : null}
@@ -433,7 +433,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
         {activeTask?.kind === "custom" ? (
           <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <div className="flex flex-wrap items-center gap-[7px]">
-              <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
+              <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个资料库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
               {versionUpdateAvailable ? <Button size="sm" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
               }}>升级到最新版</Button> : null}
@@ -471,7 +471,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
 
         {problem ? <p role="status" className="my-2 text-body text-[var(--red)]">{problem}{options.allowed_doc_ids?.length === 0 && <button onClick={() => setOptions(o => ({ ...o, allowed_doc_ids: null }))}>使用所选库全部资料</button>}</p> : null}
         {workspace.saveState !== "saved" ? <p role="status" className="my-2 text-body">{workspace.saveState === "saving" ? "正在保存范围…" : "范围未保存"}{workspace.saveState === "failed" && <button onClick={() => void workspace.retrySave().catch(() => undefined)}>重试保存</button>}</p> : null}
-        {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标知识库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标知识库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
+        {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标资料库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标资料库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
           {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
           <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget, "files"); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
         {/* input */}
@@ -502,7 +502,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 ? "修改后按 Enter 重新发送…"
                 : taskId === "task4"
                   ? "描述报告需求：领域、年份范围、模版（成果/热点/未来/综合）…"
-                  : "基于当前知识库提问，或点击 + 选择一项任务…"
+                  : "基于当前资料库提问，或点击 + 选择一项任务…"
             }
             className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-body leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
           />
@@ -561,7 +561,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                       setUploadTarget(corpusIds.length === 1 ? corpusIds[0] : ""); setUploadOpen(true);
                     }}
                   />
-                  <PopItem title="指定网址" description="先预览，再选择本次运行或一个知识库" onClick={() => {
+                  <PopItem title="指定网址" description="先预览，再选择本次运行或一个资料库" onClick={() => {
                     setPopOpen(false); setWebMode("url"); setWebOpen(true);
                   }} />
                   <PopItem title="受控搜索" description="限定域名与时间，勾选结果后再抓取" onClick={() => {
@@ -572,12 +572,12 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             </div>
 
             <button ref={corpusButton} type="button" data-guide="chat-scope" aria-expanded={corpusOpen}
-              aria-label={`对话知识库：${libraryNames || "未选择"}`} title={libraryNames || "选择对话知识库"}
+              aria-label={`对话资料库：${libraryNames || "未选择"}`} title={libraryNames || "选择对话资料库"}
               onClick={() => { setCorpusOpen((v) => !v); setPopOpen(false); }}
               className="font-app inline-flex h-[30px] max-w-[260px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
               <Icon name="library" size={15} />
               <span className="truncate">{autoCorpus ? "自动 · " : ""}{corpusIds.length
-                ? `${shortName(corpusIds[0])}${corpusIds.length > 1 ? ` 等 ${corpusIds.length} 个` : ""}` : "选择知识库"}</span>
+                ? `${shortName(corpusIds[0])}${corpusIds.length > 1 ? ` 等 ${corpusIds.length} 个` : ""}` : "选择资料库"}</span>
             </button>
 
             <button
@@ -659,7 +659,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
         </div>
 
         <p className="mt-[6px] min-h-[18px] text-center text-caption text-[var(--stone)]" role="status">
-          {status || (empty ? "DoxAgent 会基于当前知识库作答并标注来源；重要结论建议核对原文" : "")}
+          {status || (empty ? "DoxAgent 会基于当前资料库作答并标注来源；重要结论建议核对原文" : "")}
         </p>
       </div>
     </div>

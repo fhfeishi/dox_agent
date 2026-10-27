@@ -188,7 +188,7 @@ async def main():
             await page.goto(origin + "/chat")
             await page.get_by_role("link", name="资料库", exact=True).click()
             # 资料库 opens on the cards (query 2026-1013 2012); a card opens the library in place.
-            await page.get_by_role("button", name="打开", exact=True).first.click()
+            await page.get_by_role("button", name=re.compile("^打开资料库")).first.click()
             await page.get_by_role("button", name="技术研判", exact=True).first.click()
 
             block = page.get_by_label("场景层级", exact=True)

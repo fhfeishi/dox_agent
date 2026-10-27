@@ -21,8 +21,8 @@ const time = (value: string) => {
 /**
  * What a material is, before its text (upgrade plan F3b): its title, library, type and project years
  * first; size, pages, import time, state and version one click away. A field the record does not hold
- * says so instead of being guessed. The actions are the material's own: read it enlarged, download the
- * original, ask about it.
+ * says so instead of being guessed. The actions are the material's own, in one row: ask about it,
+ * read it enlarged, download the original.
  */
 export function DocumentCard({ doc, page, corpusId }: { doc: DocumentInfo; page: number | null; corpusId: string }) {
   const { corpora, startResearch, sessionBusy } = useApp();
@@ -61,9 +61,9 @@ export function DocumentCard({ doc, page, corpusId }: { doc: DocumentInfo; page:
     </p>
     {project ? <p className="text-caption text-[var(--steel)]">所属项目：{project.title || "未命名项目"}{project.number ? `（${project.number}）` : ""}{project.identity_status === "pending" ? " · 身份待核对" : ""}</p> : null}
     <div className="flex flex-wrap gap-[8px]">
-      <Button size="sm" variant="primary" onClick={() => openFullPreview(doc, page, corpusId, true)}>放大阅读</Button>
+      <Button size="sm" variant="primary" disabled={sessionBusy} onClick={() => void ask()}>就此提问</Button>
+      <Button size="sm" variant="outline" onClick={() => openFullPreview(doc, page, corpusId, true)}>放大阅读</Button>
       <a href={download} download className="inline-flex h-[28px] items-center rounded-[6px] border border-[var(--hairline-strong)] px-[10px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">下载原文</a>
-      <Button size="sm" variant="outline" disabled={sessionBusy} onClick={() => void ask()}>就此提问</Button>
     </div>
     {asking ? <p role="alert" className="text-caption text-[var(--red)]">{asking}</p> : null}
     <details className="rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[6px] text-caption text-[var(--steel)]">

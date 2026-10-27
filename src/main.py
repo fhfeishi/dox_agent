@@ -206,16 +206,16 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if corpus is None:
             info = await asyncio.to_thread(default_corpus_info, settings)
             if info is None:
-                raise HTTPException(409, "尚无知识库，请先新建知识库")
+                raise HTTPException(409, "尚无资料库，请先新建资料库")
             if info.missing:
-                raise HTTPException(409, "首个知识库目录缺失，请先处理该目录")
+                raise HTTPException(409, "首个资料库目录缺失，请先处理该目录")
             return knowledge_for(info)
         info = await asyncio.to_thread(find_corpus, corpus)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
             raise HTTPException(409, {"missing": True, "corpus_id": corpus,
-                                      "message": "该知识库目录已缺失，请重新关联或解绑"})
+                                      "message": "该资料库目录已缺失，请重新关联或解绑"})
         return knowledge_for(info)
 
     # Each domain installs its own router (card B2), in the order the routes were declared; what they

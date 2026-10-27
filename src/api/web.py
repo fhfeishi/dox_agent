@@ -38,7 +38,7 @@ def install(app, ctx):
         except ValueError as exc:
             raise HTTPException(502, str(exc)) from exc
         except (TimeoutError, OSError) as exc:
-            raise HTTPException(502, "搜索服务暂时不可用；本地知识库未受影响") from exc
+            raise HTTPException(502, "搜索服务暂时不可用；本地资料库未受影响") from exc
         results = []
         seen = set()
         for item in found:
@@ -89,7 +89,7 @@ def install(app, ctx):
             async with app.state.import_lock:
                 search["selected"].discard(result_id)
             logger.warning("search result preview failed: %s", type(exc).__name__)
-            raise HTTPException(502, "所选网页抓取失败；可以重试或保留本地知识库范围") from exc
+            raise HTTPException(502, "所选网页抓取失败；可以重试或保留本地资料库范围") from exc
         fetched_at = datetime.now(UTC)
         preview_id = uuid4().hex
         expires_at = fetched_at + timedelta(minutes=15)
@@ -124,7 +124,7 @@ def install(app, ctx):
     @router.post("/api/web/confirm/{preview_id}")
     async def confirm(preview_id: str, payload: WebConfirmRequest):
         if bool(payload.target_corpus_id) == payload.save_for_run:
-            raise HTTPException(422, "请选择一个目标知识库或仅用于本次运行")
+            raise HTTPException(422, "请选择一个目标资料库或仅用于本次运行")
         async with app.state.import_lock:
             app.state.previews = prune_web_entries(app.state.previews, datetime.now(UTC))
             current = app.state.previews.get(preview_id)
@@ -134,7 +134,7 @@ def install(app, ctx):
             if payload.target_corpus_id:
                 info = await asyncio.to_thread(find_corpus, payload.target_corpus_id)
                 if info is None or info.missing:
-                    raise HTTPException(409, "目标知识库已不可用，请重新选择")
+                    raise HTTPException(409, "目标资料库已不可用，请重新选择")
                 result = await asyncio.to_thread(knowledge_for(info).put, current["doc"])
             snapshot = await asyncio.to_thread(app.state.web_snapshots.save, current["doc"],
                                                fetched_at=current["fetched_at"],

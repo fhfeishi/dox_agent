@@ -19,4 +19,4 @@ def test_no_span_means_no_line():
 
 def test_span_survives_an_empty_selection():
     lines = prompt_lines("对比分析", [], [], ["AI与医疗"], period="2016—2026")
-    assert lines[:3] == ["任务：对比分析", "知识库：AI与医疗", "时间范围：2016—2026"]
+    assert lines[:3] == ["任务：对比分析", "资料库：AI与医疗", "时间范围：2016—2026"]

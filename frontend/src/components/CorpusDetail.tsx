@@ -115,8 +115,9 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           <Pill tone={status.tone}>{status.label}</Pill>
           <span className="text-caption text-[var(--stone)]">{KIND_LABEL[corpus.kind] ?? corpus.kind} · {corpus.docs_count} 份</span>
           {isActive ? <Pill tone="lav">当前对话使用</Pill> : null}
-          <span className="flex-1" />
-          {/* One row of views, one shown at a time in this page (query 2026-1013 2012). */}
+          {/* One row of views, one shown at a time in this page (query 2026-1013 2012); views and the
+              menu stay together on the right, so a narrow page wraps them as one group. */}
+          <div className="ml-auto flex items-center gap-[10px]">
           {!corpus.missing ? <nav aria-label="库内视图" className="flex flex-wrap items-center gap-[2px] rounded-lg bg-[var(--surface)] p-[3px]">
             {VIEWS.map(([key, label]) => (
               <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key}
@@ -128,6 +129,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {/* After reload the local flag resets, but a server-side import may still be running. */}
           <ManageMenu corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"} isActive={isActive}
             onRename={() => setEditing(true)} onDescribe={() => setEditingDescription(true)} run={run} onClose={onClose} />
+          </div>
         </div>
         {editingDescription ? <div className="mt-[8px] flex items-start gap-[8px]">
           <textarea autoFocus aria-label="资料库说明" rows={2} maxLength={1000} value={description} onChange={(event) => setDescription(event.target.value)}

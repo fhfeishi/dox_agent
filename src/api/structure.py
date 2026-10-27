@@ -336,10 +336,10 @@ def install(app, ctx):
         """AC-12: per-corpus field coverage and content-free unmatched-document list."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
             raise HTTPException(409, {"missing": True, "corpus_id": corpus_id,
-                                      "message": "该知识库目录已缺失，请重新关联或解绑"})
+                                      "message": "该资料库目录已缺失，请重新关联或解绑"})
         if info.sqlite is None:
             return {"corpus_id": corpus_id, "total": 0,
                     "period": {"hits": 0, "missing": 0}, "category": {"hits": 0, "missing": 0},

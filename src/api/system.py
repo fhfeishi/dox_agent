@@ -49,7 +49,7 @@ def install(app, ctx):
         for corpus_id in payload.corpus_ids:
             info = await asyncio.to_thread(find_corpus, corpus_id)
             if info is None:
-                raise HTTPException(404, "知识库不存在")
+                raise HTTPException(404, "资料库不存在")
             names.append(info.name)
             libraries.append(info)
         # The first library's own scene / problem / system names: material for a thin selection, drawn

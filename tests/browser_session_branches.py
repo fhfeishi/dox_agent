@@ -83,7 +83,7 @@ async def main():
             await page.goto(origin)
             await page.get_by_role("link", name="对话工作台", exact=True).click()
             # New sessions auto-select the first corpus directory; no confirmation gate.
-            await expect(page.get_by_role("button", name=re.compile("^对话知识库：.*演示库"))).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^对话资料库：.*演示库"))).to_be_visible()
             await ask("第一问")
             await ask("第二问")
             assert len(store) == 1, f"expected one session, got {len(store)}"
@@ -95,11 +95,11 @@ async def main():
             assert all(body.get("session_key") for body in chat_bodies), chat_bodies
 
             # Given the session range changed after both answers, replay actions retain each turn's original range.
-            await page.get_by_role("button", name=re.compile("^对话知识库：")).click()
+            await page.get_by_role("button", name=re.compile("^对话资料库：")).click()
             await page.get_by_role("checkbox",name="当前对话使用 新范围库",exact=True).check()
             await page.get_by_role("checkbox",name="当前对话使用 演示库",exact=True).uncheck()
-            await page.get_by_role("button", name=re.compile("^对话知识库：")).click()
-            await expect(page.get_by_role("button", name=re.compile("^对话知识库：.*新范围库"))).to_be_visible()
+            await page.get_by_role("button", name=re.compile("^对话资料库：")).click()
+            await expect(page.get_by_role("button", name=re.compile("^对话资料库：.*新范围库"))).to_be_visible()
 
             # regenerate the last turn: same session scope, new run id
             first_run = chat_bodies[-1]["run_id"]

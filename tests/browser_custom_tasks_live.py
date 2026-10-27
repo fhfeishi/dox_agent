@@ -94,7 +94,7 @@ async def main():
 
                 async def start_task(name):
                     await page.goto(origin+"/tasks")
-                    await page.locator("article").filter(has_text=name).get_by_role("button",name="开始分析",exact=True).click()
+                    await page.locator("article").filter(has_text=name).get_by_role("button",name=re.compile("^开始(分析|提问)$")).click()
                     await expect(page.get_by_role("textbox",name="问题",exact=True)).to_be_visible()
 
                 # Editor creation/archive is covered by browser_task_templates; this journey checks
@@ -117,7 +117,7 @@ async def main():
                 fixed_template = page.get_by_role("combobox", name="报告模版")
                 await expect(fixed_template).to_be_disabled()
                 await expect(fixed_template).to_have_value(custom_template["id"])
-                await page.get_by_role("combobox", name="报告知识库").select_option(corpus_id)
+                await page.get_by_role("combobox", name="报告资料库").select_option(corpus_id)
                 await page.get_by_role("button", name="生成报告").click()
                 await expect(page.get_by_text("实测专项报告")).to_be_visible()
                 report_session_key = await page.evaluate("localStorage.getItem('dox-agent-session')")
@@ -141,7 +141,7 @@ async def main():
                 await page.reload()
                 regenerate = page.get_by_role("button", name="重新生成").first
                 await expect(regenerate).to_be_visible()
-                await page.get_by_role("combobox", name="报告知识库").select_option(corpus_id)
+                await page.get_by_role("combobox", name="报告资料库").select_option(corpus_id)
                 async with page.expect_response(lambda response: response.url.endswith("/api/reports")
                                                 and response.request.method == "POST") as response_info:
                     await regenerate.click()
@@ -167,7 +167,7 @@ async def main():
                 assert session["data"]["options"].get("task_params", {}) == {}
                 # The old intake keeps its v1 template after the session moves to v2.
                 await expect(page.get_by_role("combobox", name="报告模版").first).to_have_value(custom_template["id"])
-                await page.get_by_role("combobox", name="报告知识库").first.select_option(corpus_id)
+                await page.get_by_role("combobox", name="报告资料库").first.select_option(corpus_id)
                 async with page.expect_response(lambda response: response.url.endswith("/api/reports")
                                                 and response.request.method == "POST") as old_report_response:
                     await page.get_by_role("button", name="重新生成").first.click()
@@ -199,7 +199,7 @@ async def main():
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="生成报告")).to_be_visible()
                 await expect(page.get_by_role("combobox", name="报告模版")).to_have_value("comprehensive")
-                await page.get_by_role("combobox", name="报告知识库").select_option(corpus_id)
+                await page.get_by_role("combobox", name="报告资料库").select_option(corpus_id)
                 async with page.expect_response(lambda response: response.url.endswith("/api/reports")
                                                 and response.request.method == "POST") as response_info:
                     await page.get_by_role("button", name="生成报告").click()

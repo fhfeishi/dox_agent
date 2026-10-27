@@ -97,18 +97,18 @@ export function LibraryHome() {
             const info = row(id);
             const fields = (info?.fields ?? []).slice(0, 2).map(([n]) => n).join("、");
             const state = c.missing ? "目录缺失" : c.job?.status === "running" ? "导入中" : c.preparation === "error" ? "加载失败" : !c.docs_count ? "空库" : "";
-            return <article key={id} className="flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] transition-colors hover:border-[var(--primary)]">
-              <button type="button" onClick={() => openCorpus(id)} className="flex-1 p-4 text-left">
+            // The whole card opens the library; its information is the ⓘ in the corner (前端审查 V2).
+            return <article key={id} className="group relative flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-sm">
+              <button type="button" onClick={() => openCorpus(id)} aria-label={`打开资料库 ${short(c.name)}`} className="flex-1 p-4 pr-11 text-left">
                 <span className="flex items-center gap-2"><b className="min-w-0 flex-1 truncate text-emphasis" title={c.name}>{short(c.name)}</b>
                   {state ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 text-caption text-[var(--warn-fg)]">{state}</span> : null}</span>
-                <span className="mt-1 line-clamp-2 block min-h-[2.5em] text-body leading-5 text-[var(--steel)]">{c.description || "暂无说明"}</span>
+                {c.description ? <span className="mt-1 line-clamp-2 block text-body leading-5 text-[var(--steel)]">{c.description}</span> : null}
                 <span className="mt-2 block text-body text-[var(--slate)]">报告 {c.docs_count} 份{info ? ` · 项目 ${info.projects} 个` : ""}</span>
                 {fields ? <span className="mt-0.5 block truncate text-caption text-[var(--stone)]">主要应用领域：{fields}</span> : null}
+                <span aria-hidden="true" className="mt-2 block text-caption text-[var(--link)] transition-transform group-hover:translate-x-0.5">打开 ›</span>
               </button>
-              <div className="flex border-t border-[var(--hairline)] text-body">
-                <button type="button" onClick={() => openCorpus(id)} className="flex-1 py-2 text-[var(--primary)] hover:bg-[var(--canvas)]">打开</button>
-                <button type="button" onClick={() => showInspector({ kind: "corpus", corpusId: id })} className="flex-1 border-l border-[var(--hairline)] py-2 text-[var(--slate)] hover:bg-[var(--canvas)]">信息</button>
-              </div>
+              <button type="button" onClick={() => showInspector({ kind: "corpus", corpusId: id })} aria-label={`${short(c.name)} 的信息`} title="资料库信息"
+                className="absolute right-2 top-2 grid size-8 place-items-center rounded-md text-[var(--steel)] hover:bg-[var(--canvas)] hover:text-[var(--ink)]">ⓘ</button>
             </article>;
           })}</div>
         </section>;

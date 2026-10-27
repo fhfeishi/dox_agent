@@ -468,23 +468,23 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     setBusy(true);
     setError("");
     try {
-      if (!scopeIds.includes(corpusId)) throw new Error("请确认本次报告使用的单一知识库");
+      if (!scopeIds.includes(corpusId)) throw new Error("请确认本次报告使用的单一资料库");
       let docIds: string[] | undefined;
       if (allowedDocIds?.length) {
         const [docs, files] = await Promise.all([
-          fetchDocuments(corpusId, { failure: "无法读取所选知识库的文档范围" }), fetchCorpusFiles(corpusId),
+          fetchDocuments(corpusId, { failure: "无法读取所选资料库的文档范围" }), fetchCorpusFiles(corpusId),
         ]);
         // The current document list omits stale entries; keep their manifest membership
         // so an explicit selection reaches the server and receives a conflict response.
         const corpusDocIds = new Set([...docs.map((doc) => doc.doc_id),
           ...files.files.map((file) => file.doc_id).filter((id): id is string => Boolean(id))]);
         docIds = allowedDocIds.filter((id) => corpusDocIds.has(id));
-        if (!docIds.length) throw new Error("所选知识库中没有本轮限定的资料，请调整资料范围后重新发起报告");
+        if (!docIds.length) throw new Error("所选资料库中没有本轮限定的资料，请调整资料范围后重新发起报告");
       }
       const selectedTemplate = templateOptions.find((item) => item.id === templateId);
       const customReportTask = reportTask?.kind === "custom" && reportTask?.engine_task_id === "task4";
       const boundTemplateIsCustom = availableTemplates.find((item) => item.id === templateId)?.kind === "custom";
-      if (!ready) throw new Error("请确认报告知识库、主题和年份范围");
+      if (!ready) throw new Error("请确认报告资料库、主题和年份范围");
       const request = { domain: domain.trim(), year_from: yearFrom, year_to: yearTo,
         fund_type: fundType.trim(), focus: focus.trim(), purpose: purpose.trim(),
         audience: audience.trim(), length: length.trim(), illustrated, report_mode: reportMode, template_id: templateId,
@@ -538,8 +538,8 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           {domain || "待指定主题"} · 项目年份 {yearFrom}–{yearTo} · {fundType || "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
         </span>
         <label className="text-caption text-[var(--slate)]">
-          报告知识库
-          <select aria-label="报告知识库" value={corpusId} disabled={busy}
+          报告资料库
+          <select aria-label="报告资料库" value={corpusId} disabled={busy}
             onChange={(event) => {
               setCorpusId(event.target.value);
               if (!domainEdited.current && (!domain || params?.sources?.domain === "corpus")) {
@@ -547,7 +547,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
               }
             }}
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
-            <option value="">请选择单一知识库</option>
+            <option value="">请选择单一资料库</option>
             {scopeIds.map((id) => <option key={id} value={id}>{corpora.find((item) => item.id === id)?.name ?? id}</option>)}
           </select>
         </label>
@@ -919,7 +919,7 @@ export function EmptyState({ task, onPick }: { task?: { id: string; name: string
       <p className="text-body font-semibold tracking-[0.3px] text-[var(--primary)]">你的知识，有据可循</p>
       <h1 className="mt-[10px] text-page leading-[1.3] font-semibold text-[var(--ink)]">{task ? task.name : "从一个好问题开始。"}</h1>
       <p className="mt-[8px] max-w-[600px] text-body leading-[1.7] text-[var(--steel)]">
-        {task?.description || "需要时查阅知识库资料并逐条标注来源。"}
+        {task?.description || "需要时查阅资料库资料并逐条标注来源。"}
       </p>
       {examples.length ? <div className="mt-[16px] space-y-[6px]">
         {examples.map((question) => (

@@ -24,7 +24,7 @@ test("user turn markdown includes question, answer, header and source line", () 
     attempt,
   );
   assert.match(md, /# 问题\?/);
-  assert.match(md, /知识库：库/);
+  assert.match(md, /资料库：库/);
   assert.match(md, /结论 \[1\]/);
   assert.match(md, /1\. 报告A · 第3页/);
 });

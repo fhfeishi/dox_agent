@@ -285,9 +285,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
   const { corpora, error: corporaError, loaded: corporaLoaded, refresh: refreshCorpora } = useCorpora(connected);
+  // With nothing chosen yet, start on the library with the most material, not the first by name
+  // (前端审查 A4); later sessions keep whatever was used last.
+  const fullest = corpora.filter((c) => !c.missing).sort((a, b) => (b.docs_count ?? 0) - (a.docs_count ?? 0))[0] ?? null;
   const currentCorpus = corpusId
     ? corpora.find((c) => c.id === corpusId) ?? null
-    : corpora.find((c) => !c.missing) ?? null;
+    : fullest;
   const effectiveCorpusId = currentCorpus?.id;
   const { documents, error: documentsError, refresh: refreshBaseDocuments } = useDocuments(
     connected,
@@ -298,9 +301,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!workspace.loaded || !corporaLoaded || corporaError || corpusIds.length || corpusId) return;
-    const first = corpora.find((item) => !item.missing);
-    if (first) void workspace.saveCorpusSelection(first.id, true, [first.id]);
-  }, [workspace.loaded, corporaLoaded, corporaError, corpora, corpusIds.length, corpusId]);
+    if (fullest) void workspace.saveCorpusSelection(fullest.id, true, [fullest.id]);
+  }, [workspace.loaded, corporaLoaded, corporaError, corpora, corpusIds.length, corpusId]); // eslint-disable-line react-hooks/exhaustive-deps
   async function refreshDocuments() {
     await Promise.all([refreshBaseDocuments(), refreshScopeDocuments()]);
   }
@@ -338,9 +340,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
           !state.ready
             ? (role === "admin" ? "请在 .env 配置模型密钥后重启" : "分析服务暂不可用，请联系管理员")
             : data.preparation === "running"
-              ? "知识库正在加载"
+              ? "资料库正在加载"
               : data.preparation === "error"
-                ? "知识库加载失败"
+                ? "资料库加载失败"
                 : "服务已连接 · " + data.model,
         );
       } catch {
@@ -752,7 +754,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   async function startCorpusChat(id: string) {
     const corpus = corpora.find((item) => item.id === id);
     if (!corpus || corpus.missing) {
-      setError("该知识库目录不可用，请先重新关联");
+      setError("该资料库目录不可用，请先重新关联");
       return;
     }
     // Card chat starts a separate session; changing the current scope would rewrite the existing conversation.
@@ -875,7 +877,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const corpusId = source.corpus_id || effectiveCorpusId || "";
     try {
       // Citation identity belongs to its source corpus; never infer kind or reuse another library's list.
-      const items = await fetchDocuments(corpusId, { failure: "无法读取引用所属知识库" });
+      const items = await fetchDocuments(corpusId, { failure: "无法读取引用所属资料库" });
       const doc = items.find((item) => item.doc_id === source.doc_id);
       if (!doc) throw new Error("引用文档已移除或尚未完成索引");
       if (source.version && doc.version !== source.version) throw new Error("引用文档已更新，请重新提问");
@@ -892,12 +894,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   function setSearchCorpusIds(ids: string[]) {
     setAutoCorpus(false);
     if (controller.current) {
-      setError("回答进行中，暂不能更改知识库范围");
+      setError("回答进行中，暂不能更改资料库范围");
       return;
     }
     const selected = [...new Set(ids)];
     if (selected.length < 1 || selected.length > 6) {
-      setError("检索范围必须包含 1 至 6 个知识库");
+      setError("检索范围必须包含 1 至 6 个资料库");
       return;
     }
     const unavailable = selected.find((id) => {
@@ -905,7 +907,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return !item || item.missing;
     });
     if (unavailable) {
-      setError("目录缺失的知识库不能加入检索范围；请先移除或重新关联");
+      setError("目录缺失的资料库不能加入检索范围；请先移除或重新关联");
       return;
     }
     setCorpusIds(selected);
@@ -920,11 +922,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setOptions(nextOptions);
     if (options.allowed_doc_ids && nextOptions.allowed_doc_ids) {
       const count = options.allowed_doc_ids.length - nextOptions.allowed_doc_ids.length;
-      setStatus(count ? `已移除 ${count} 份指定资料，剩余 ${nextOptions.allowed_doc_ids.length} 份` : "下一次提问将使用新的知识库范围；限定模式不自动加入新资料");
+      setStatus(count ? `已移除 ${count} 份指定资料，剩余 ${nextOptions.allowed_doc_ids.length} 份` : "下一次提问将使用新的资料库范围；限定模式不自动加入新资料");
     }
     setCorpusConfirmed(true);
     void workspace.saveCorpusSelection(corpusId || selected[0], true, selected, nextOptions)
-      .catch((error) => setError(`知识库范围保存失败：${(error as Error).message}`));
+      .catch((error) => setError(`资料库范围保存失败：${(error as Error).message}`));
     setError("");
   }
 
@@ -956,7 +958,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const failed: string[] = [];
     try {
       const before = corpora;
-      setStatus("正在扫描知识库目录…");
+      setStatus("正在扫描资料库目录…");
       await refreshCorpora();
       const discovered = await fetchCorpora();
       const previousIds = new Set(before.map((item) => item.id));

@@ -48,7 +48,7 @@ async def search_web(query: str, domains: list[str], time_filter: str, limit: in
                 json=payload,
             )
     except httpx.RequestError as exc:
-        raise ValueError("搜索服务暂时不可用；本地知识库未受影响") from exc
+        raise ValueError("搜索服务暂时不可用；本地资料库未受影响") from exc
     if response.status_code >= 400:
         raise ValueError(f"网络搜索失败（HTTP {response.status_code}）")
     data = response.json()

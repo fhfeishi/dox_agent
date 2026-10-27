@@ -20,7 +20,7 @@ def main():
     if args.action == "ingest":
         info = default_corpus_info(settings)
         if info is None:
-            result = {"error": "没有可导入的默认知识库"}
+            result = {"error": "没有可导入的默认资料库"}
         else:
             result = import_defaults(store, settings, root=info.source_dir, parsed_root=info.root / "parsed")
     elif args.action == "search":

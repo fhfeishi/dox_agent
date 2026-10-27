@@ -86,6 +86,6 @@ export const router = createBrowserRouter([{
       { path: "evidence", lazy: async () => ({ Component: (await import("./components/review/ReviewEvidence")).ReviewEvidence }) },
       { path: "runs/:id", lazy: async () => ({ Component: (await import("./components/review/ReviewReport")).ReviewRunPage }) },
     ] },
-    { path: "*", Component: () => <p className="p-6">页面不存在。<a href="/library">返回知识库</a></p> },
+    { path: "*", Component: () => <p className="p-6">页面不存在。<a href="/library">返回资料库</a></p> },
   ],
 }]);

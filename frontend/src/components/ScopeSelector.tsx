@@ -23,7 +23,7 @@ export function ScopeSelector({
   const groups = new Map<string, { name: string; items: DocumentInfo[] }>();
   for (const document of visible) {
     const key = document.corpus_id ?? document.corpus_name ?? "default";
-    const group = groups.get(key) ?? { name: document.corpus_name ?? "知识库", items: [] };
+    const group = groups.get(key) ?? { name: document.corpus_name ?? "资料库", items: [] };
     group.items.push(document);
     groups.set(key, group);
   }

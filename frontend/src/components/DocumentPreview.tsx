@@ -63,20 +63,22 @@ export function DocumentPreview({
   );
 }
 
-/** Non-PDF fallback: the normalized text reader. */
-export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: string }) {
+/**
+ * Non-PDF fallback: the normalized text reader. Its own download and new-window links serve the
+ * enlarged reader; the side panel passes `tools={false}`, where the material card above already
+ * offers asking, enlarging and downloading.
+ */
+export function TextPreview({ doc, corpus, tools = true }: { doc: DocumentInfo | null; corpus?: string; tools?: boolean }) {
   const [text, setText] = useState("");
   const [markdown, setMarkdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [raw, setRaw] = useState(false);
   useEffect(() => {
     if (!doc) return;
     let cancelled = false;
     setLoading(true);
     setError("");
     setText("");
-    setRaw(false);
     setMarkdown(false);
     loadPreviewText(doc, corpus)
       .then((result) => {
@@ -105,12 +107,7 @@ export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?
       ) : null}
       {!loading && !error ? (
         <>
-          <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-caption">
-            {markdown ? (
-              <button type="button" className="text-[var(--link)] hover:underline" onClick={() => setRaw((value) => !value)}>
-                {raw ? "渲染 Markdown" : "查看原文"}
-              </button>
-            ) : null}
+          {tools ? <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-caption">
             <button
               type="button"
               className="text-[var(--link)] hover:underline"
@@ -125,8 +122,8 @@ export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?
             >
               新窗口打开
             </button>
-          </div>
-          {markdown && !raw ? (
+          </div> : null}
+          {markdown ? (
             <div className="markdown">
               <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                 {text}
@@ -138,7 +135,7 @@ export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?
             </pre>
           )}
           <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-caption text-[var(--stone)]">
-            这是知识库规范化正文预览，不等于原始 PDF 文件。
+            这是资料库规范化正文预览，不等于原始 PDF 文件。
           </p>
         </>
       ) : null}

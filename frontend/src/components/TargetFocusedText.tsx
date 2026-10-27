@@ -96,7 +96,7 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
         </pre>
       )}
       <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-caption text-[var(--stone)]">
-        这是知识库规范化正文预览，不等于原始 PDF 文件。
+        这是资料库规范化正文预览，不等于原始 PDF 文件。
       </p>
     </>
   );

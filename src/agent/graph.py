@@ -161,7 +161,7 @@ def intake_reply(params: dict) -> tuple[str, bool]:
     known_text = "；".join(known)
     if not params.get("domain"):
         prefix = f"已记录：{known_text}。\n" if known_text else ""
-        return prefix + "请指定这份报告的研究主题，或先选择有领域说明的单个知识库。", False
+        return prefix + "请指定这份报告的研究主题，或先选择有领域说明的单个资料库。", False
     return f"已整理报告需求：{known_text}。可在下方调整范围，然后直接生成报告。", True
 
 
@@ -300,7 +300,7 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         retrieval = state.get("retrieval")
         if retrieval is not None and retrieval.reason == "direct":
             return "未能从问题中识别可检索的主题词，请补充具体主题、项目或任务后重试。"
-        return "当前知识库中没有匹配的报告。请补充文档或调整问题范围后重试。"
+        return "当前资料库中没有匹配的报告。请补充文档或调整问题范围后重试。"
 
     async def answer(state: State):
         writer = get_stream_writer()

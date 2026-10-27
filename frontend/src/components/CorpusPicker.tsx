@@ -11,7 +11,7 @@ export function CorpusPicker({ corpora, selectedIds, onToggle, onUseOnly, onDeta
   const visible = corpora.filter(c => `${c.name} ${c.domain} ${c.kind}`.toLowerCase().includes(query.trim().toLowerCase()));
   return <div className="corpus-picker">
     <div className="corpus-picker-top">
-      <div className="flex items-center gap-[8px]"><input aria-label="搜索知识库范围" value={query} onChange={e => setQuery(e.target.value)} placeholder="搜索库名或领域" className="min-w-0 flex-1 rounded-[8px] border border-[var(--hairline-strong)] px-[12px] py-[9px]" />
+      <div className="flex items-center gap-[8px]"><input aria-label="搜索资料库范围" value={query} onChange={e => setQuery(e.target.value)} placeholder="搜索库名或领域" className="min-w-0 flex-1 rounded-[8px] border border-[var(--hairline-strong)] px-[12px] py-[9px]" />
         {query ? <button type="button" onClick={() => setQuery("")} className="text-[var(--link)]">清空</button> : null}</div>
       <div aria-label="已选资料库" className="mt-[10px] flex flex-wrap gap-[6px]">
         {selectedIds.map(id => <span key={id} className="inline-flex max-w-full items-center gap-[6px] rounded-[6px] bg-[var(--primary-soft)] px-[9px] py-[5px] text-body text-[var(--primary-pressed)]">
@@ -21,7 +21,7 @@ export function CorpusPicker({ corpora, selectedIds, onToggle, onUseOnly, onDeta
       </div>
       <p className="mt-[8px] text-body text-[var(--steel)]">勾选多库 · 最多 6 个 · 仅影响后续提问</p>
     </div>
-    <ul aria-label="知识库" className="corpus-picker-list">
+    <ul aria-label="资料库" className="corpus-picker-list">
       {visible.map(c => {
         const selected = selectedIds.includes(c.id);
         const blocked = disabled || Boolean(c.missing) || (selected ? selectedIds.length <= 1 : selectedIds.length >= 6);
@@ -34,7 +34,7 @@ export function CorpusPicker({ corpora, selectedIds, onToggle, onUseOnly, onDeta
           <button type="button" disabled={disabled || c.missing || (selected && selectedIds.length === 1)} onClick={() => onUseOnly(c.id)} className="corpus-use-only">仅使用此库</button>
         </li>;
       })}
-      {!visible.length && <li>没有匹配的知识库 <button onClick={() => setQuery("")}>清空搜索</button></li>}
+      {!visible.length && <li>没有匹配的资料库 <button onClick={() => setQuery("")}>清空搜索</button></li>}
     </ul>
   </div>;
 }

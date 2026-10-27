@@ -46,7 +46,7 @@ async def main():
                 for _ in range(2):
                     assert (await page.request.post(f"{origin}/api/tasks/custom", data={"source_task_id": "task1"})).status == 201
                 await page.goto(f"{origin}/tasks")
-                cards = page.locator("article").filter(has=page.get_by_role("button", name="开始分析"))
+                cards = page.locator("article").filter(has=page.get_by_role("button", name=re.compile("^开始(分析|提问)$")))
                 inspector = page.get_by_role("complementary", name="预览面板")
                 await expect(cards).to_have_count(6)
 

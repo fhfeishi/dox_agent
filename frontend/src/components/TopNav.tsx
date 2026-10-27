@@ -106,7 +106,13 @@ export function TopNav() {
   useEffect(() => { setFolded(false); }, [role]);
   const { search } = useLocation();
   const current = (to: string) => isCurrent(to, pathname, search);
-  const isOn = (entry: NavEntry) => nav === entry.key || Boolean(entry.pages?.some((page) => pathname.startsWith(new URL(page.to, "http://local").pathname)));
+  // One entry lit at a time (前端审查 V4). A menu page with a query (/chat?task=task2) is that menu's
+  // only when the query matches; while it does, the plain entry for the same path (对话工作台) yields.
+  const hits = (page: { to: string }) => { const url = new URL(page.to, "http://local");
+    return url.search ? current(page.to) : pathname.startsWith(url.pathname); };
+  const menuQuery = barFor(role).some((item) => (item.kind === "entry" ? [item.entry] : item.entries)
+    .some((entry) => entry.pages?.some((page) => new URL(page.to, "http://local").search && current(page.to))));
+  const isOn = (entry: NavEntry) => entry.pages ? nav === entry.key || entry.pages.some(hits) : nav === entry.key && !menuQuery;
   // One entry, whatever the role: a link, or a menu of its pages.
   const entryTab = (entry: NavEntry) => entry.pages
     ? <MenuTab key={entry.label} label={entry.label} sections={entry.pages} active={isOn(entry)} current={current} />

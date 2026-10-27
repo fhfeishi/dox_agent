@@ -82,6 +82,15 @@ async function loadDocumentText(doc: DocumentInfo, corpus?: string): Promise<{ t
 }
 
 /** Preview loader shared by the document panel and the four-facet evidence reader. */
+/**
+ * Imported Markdown starts with a YAML block (`---` … `---`) holding the record's fields. Rendered as
+ * Markdown its closing `---` turns the whole block into one heading, and the body already repeats the
+ * fields in its 项目信息 table, so previews show the text after it.
+ */
+export function withoutFrontMatter(text: string) {
+  return text.replace(/^\uFEFF?---\r?\n[\s\S]*?\r?\n---[ \t]*(\r?\n|$)/, "");
+}
+
 export async function loadPreviewText(
   doc: DocumentInfo,
   corpus?: string,
@@ -90,11 +99,12 @@ export async function loadPreviewText(
   if (markdown) {
     try {
       const result = await loadDocumentMarkdown(doc, corpus);
-      if (result.text.trim()) return { text: result.text, markdown: true };
+      if (result.text.trim()) return { text: withoutFrontMatter(result.text), markdown: true };
     } catch {
       /* fall back to the windowed reader (e.g. pre-markdown corpora) */
     }
   }
   const result = await loadDocumentText(doc, corpus);
-  return { text: result.text, markdown: markdown || result.kind === "official" || result.parser.includes("markdown") };
+  const rendered = markdown || result.kind === "official" || result.parser.includes("markdown");
+  return { text: rendered ? withoutFrontMatter(result.text) : result.text, markdown: rendered };
 }

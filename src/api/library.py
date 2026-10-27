@@ -129,9 +129,9 @@ def install(app, ctx):
         root = corpus_root_for(settings)
         target = (root / name).resolve()
         if not valid_corpus_name(name) or not target.is_relative_to(root.resolve()):
-            raise HTTPException(422, "知识库名称非法")
+            raise HTTPException(422, "资料库名称非法")
         if target.exists():
-            raise HTTPException(409, "同名知识库已存在")
+            raise HTTPException(409, "同名资料库已存在")
         def create_dirs():
             for role in (SOURCE_DIRNAME, DB_DIRNAME, VECTOR_DIRNAME):
                 (target / role).mkdir(parents=True, exist_ok=True)
@@ -144,7 +144,7 @@ def install(app, ctx):
         items = await asyncio.to_thread(scan_corpora, settings)
         info = next((item for item in items if item.rel_path == name), None)
         if info is None:
-            raise HTTPException(500, "知识库创建后未能扫描到")
+            raise HTTPException(500, "资料库创建后未能扫描到")
         return corpus_payload(info)
 
     @router.patch("/api/corpora/{corpus_id}")
@@ -152,21 +152,21 @@ def install(app, ctx):
         """KB-5b: rename syncs ``.knowledge/<dir>``; stable corpus_id and doc ids are kept."""
         name = payload.name.strip()
         if not valid_corpus_name(name):
-            raise HTTPException(422, "知识库名称非法")
+            raise HTTPException(422, "资料库名称非法")
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "目录缺失的知识库不能重命名")
+            raise HTTPException(409, "目录缺失的资料库不能重命名")
         if info.root.name == name:
             return corpus_payload(info)
         root = corpus_root_for(settings)
         target = (root / name).resolve()
         same_case_directory = info.root.name.lower() == name.lower()
         if not target.is_relative_to(root) or (target.exists() and not same_case_directory):
-            raise HTTPException(409, "同名知识库已存在")
+            raise HTTPException(409, "同名资料库已存在")
         if request.app.state.jobs.busy("import", corpus_id) or request.app.state.import_lock.locked():
-            raise HTTPException(409, "知识库正在上传或导入，暂不能重命名")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能重命名")
         old = info.root
 
         def do_rename():
@@ -200,7 +200,7 @@ def install(app, ctx):
                 raise
 
         if request.app.state.import_lock.locked():
-            raise HTTPException(409, "知识库正在上传或导入，暂不能重命名")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能重命名")
         await request.app.state.import_lock.acquire()
         try:
             await asyncio.to_thread(do_rename)
@@ -215,11 +215,11 @@ def install(app, ctx):
         """W2: user-editable short note, separate from the directory name (which stays canonical)."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "目录缺失的知识库不能编辑说明")
+            raise HTTPException(409, "目录缺失的资料库不能编辑说明")
         if request.app.state.import_lock.locked():
-            raise HTTPException(409, "知识库正在上传或导入，暂不能修改说明")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能修改说明")
 
         def save():
             overrides = load_corpus_overrides(settings)
@@ -241,10 +241,10 @@ def install(app, ctx):
         """K6: delete derived data by default; ``purge_source=true`` also removes source files."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if (app.state.jobs.busy("import", corpus_id) or app.state.jobs.busy("target", corpus_id)
                 or app.state.import_lock.locked()):
-            raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能删除")
         def remove():
             if not info.missing:
                 if purge_source:
@@ -261,7 +261,7 @@ def install(app, ctx):
                 save_corpus_overrides(settings, overrides)
 
         if app.state.import_lock.locked():
-            raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能删除")
         await app.state.import_lock.acquire()
         try:
             await asyncio.to_thread(remove)
@@ -275,9 +275,9 @@ def install(app, ctx):
         """Explicitly reconnect a missing stable corpus id to an unclaimed directory."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if not info.missing:
-            raise HTTPException(409, "该知识库目录仍存在，无需重新关联")
+            raise HTTPException(409, "该资料库目录仍存在，无需重新关联")
         directory = payload.directory.strip()
         if not valid_corpus_name(directory):
             raise HTTPException(422, "目标目录名称非法")
@@ -287,7 +287,7 @@ def install(app, ctx):
             raise HTTPException(422, "不能关联符号链接目录")
         target = target_path.resolve()
         if not target.is_relative_to(root) or not target.is_dir():
-            raise HTTPException(404, "所选目录不存在或不在知识库根目录")
+            raise HTTPException(404, "所选目录不存在或不在资料库根目录")
         candidates = await asyncio.to_thread(scan_corpora, settings)
         target_info = next((item for item in candidates if item.rel_path == directory and not item.missing), None)
         if target_info is None:
@@ -299,10 +299,10 @@ def install(app, ctx):
                                and owner[1].get("generated") and not owner[1].get("created"))
         configured = any(str(entry.get("path", "")).strip("/") == directory for entry in settings.corpora or [])
         if (owner and not generated_owner) or configured:
-            raise HTTPException(409, "所选目录已归属于另一个知识库，请选择未关联的目录")
+            raise HTTPException(409, "所选目录已归属于另一个资料库，请选择未关联的目录")
         if (request.app.state.jobs.busy("import", corpus_id) or request.app.state.jobs.busy("import", target_info.id)
                 or request.app.state.import_lock.locked()):
-            raise HTTPException(409, "知识库正在上传或导入，暂不能重新关联")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能重新关联")
 
         def save_reassociation():
             previous = overrides.get(corpus_id, {})
@@ -323,7 +323,7 @@ def install(app, ctx):
                 raise
 
         if request.app.state.import_lock.locked():
-            raise HTTPException(409, "知识库正在上传或导入，暂不能重新关联")
+            raise HTTPException(409, "资料库正在上传或导入，暂不能重新关联")
         await request.app.state.import_lock.acquire()
         try:
             await asyncio.to_thread(save_reassociation)
@@ -340,11 +340,11 @@ def install(app, ctx):
         """H2/K13: import one corpus; ``force`` re-parses everything (e.g. after a parser change)."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "知识库目录已缺失，刷新和入库前请先重新关联或移除失效记录")
+            raise HTTPException(409, "资料库目录已缺失，刷新和入库前请先重新关联或移除失效记录")
         if request.app.state.jobs.busy("import", corpus_id):
-            raise HTTPException(409, "该知识库正在导入")
+            raise HTTPException(409, "该资料库正在导入")
         # An explicit refresh may initialize source/; ordinary GET requests never do.
         try:
             await asyncio.to_thread(info.source_dir.mkdir, parents=True, exist_ok=True)
@@ -369,15 +369,15 @@ def install(app, ctx):
             # On the event loop: start() schedules the work there (its two small writes are quick).
             return request.app.state.jobs.start("import", corpus_id, run, job, params={"force": force})
         except JobBusy as exc:
-            raise HTTPException(409, "该知识库正在导入") from exc
+            raise HTTPException(409, "该资料库正在导入") from exc
 
     @router.get("/api/corpora/{corpus_id}/reports")
     async def target_reports(corpus_id: str):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "知识库目录已缺失")
+            raise HTTPException(409, "资料库目录已缺失")
         if info.sqlite is None:
             return []
         return await asyncio.to_thread(list_target_reports, info, knowledge_for(info))
@@ -386,9 +386,9 @@ def install(app, ctx):
     async def target_report_detail(corpus_id: str, doc_id: str):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "知识库目录已缺失")
+            raise HTTPException(409, "资料库目录已缺失")
         try:
             return await asyncio.to_thread(target_detail, info, knowledge_for(info), doc_id)
         except TargetMissing as exc:
@@ -400,11 +400,11 @@ def install(app, ctx):
     async def target_extract(request: Request, corpus_id: str, payload: TargetExtractRequest):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "知识库目录已缺失")
+            raise HTTPException(409, "资料库目录已缺失")
         if request.app.state.jobs.busy("target", corpus_id):
-            raise HTTPException(409, "该知识库正在生成四维信息")
+            raise HTTPException(409, "该资料库正在生成四维信息")
         knowledge = knowledge_for(info)
         current_ids = {doc["doc_id"] for doc in await asyncio.to_thread(knowledge.current)}
         missing = [doc_id for doc_id in payload.doc_ids if doc_id not in current_ids]
@@ -435,7 +435,7 @@ def install(app, ctx):
             return request.app.state.jobs.start("target", corpus_id, run_target_job, job,
                                                 params={"doc_ids": payload.doc_ids, "force": payload.force})
         except JobBusy as exc:
-            raise HTTPException(409, "该知识库正在生成四维信息") from exc
+            raise HTTPException(409, "该资料库正在生成四维信息") from exc
 
     @router.get("/api/corpora/{corpus_id}/target/jobs/{job_id}")
     async def target_job(corpus_id: str, job_id: str):
@@ -500,9 +500,9 @@ def install(app, ctx):
         """Read source file status without creating an index database."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         if info.missing:
-            raise HTTPException(409, "知识库目录已缺失")
+            raise HTTPException(409, "资料库目录已缺失")
         manifest = await asyncio.to_thread(knowledge_for(info).files) if info.sqlite is not None else {}
         current_ids = ({doc["doc_id"] for doc in await asyncio.to_thread(knowledge_for(info).current)}
                        if info.sqlite is not None else set())
@@ -538,7 +538,7 @@ def install(app, ctx):
         """K7: stream an md/pdf/txt into ``source/`` then import incrementally."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         name = safe_file_name(upload.filename or "")
         if relative_path is not None:
             parts = relative_path.replace("\\", "/").split("/")
@@ -602,7 +602,7 @@ def install(app, ctx):
         """K7: remove a source file and its indexed document."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         target = await asyncio.to_thread(source_file, info, rel_path)
         await asyncio.to_thread(target.unlink)
         doc_id = await asyncio.to_thread(knowledge_for(info).drop_file, rel_path)
@@ -614,7 +614,7 @@ def install(app, ctx):
         """K7: rename a source file and re-index under the new path."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
-            raise HTTPException(404, "知识库不存在")
+            raise HTTPException(404, "资料库不存在")
         old = await asyncio.to_thread(source_file, info, payload.rel_path)
         new_name = safe_file_name(payload.new_name)
         new = (old.parent / new_name).resolve()
@@ -636,9 +636,9 @@ def install(app, ctx):
         else:
             info = await asyncio.to_thread(find_corpus, corpus)
             if info is None:
-                raise HTTPException(404, "知识库不存在")
+                raise HTTPException(404, "资料库不存在")
             if info.missing:
-                raise HTTPException(409, "该知识库目录已缺失")
+                raise HTTPException(409, "该资料库目录已缺失")
             kn = knowledge_for(info) if info.sqlite is not None else None
             if kn is None:
                 return []  # Read-only listing never creates a database for an empty corpus.

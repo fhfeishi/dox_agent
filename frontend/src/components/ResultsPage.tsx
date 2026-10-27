@@ -133,11 +133,6 @@ export function ResultsPage() {
   const open = (row: Row) => row.runId ? void navigate(`/review/runs/${encodeURIComponent(row.runId)}?return=${encodeURIComponent("/results?" + search.toString())}`)
     : showInspector({ kind: "artifact", artifactId: row.key });
   const link = "text-body text-[var(--link)] hover:underline disabled:opacity-40";
-  const stat = (label: string, value: number | undefined, note?: string) => <div className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3">
-    <p className="text-caption text-[var(--steel)]">{label}</p>
-    <p className="mt-1 text-page font-semibold tabular-nums text-[var(--ink)]">{value ?? "…"}</p>
-    {note ? <p className="text-caption text-[var(--stone)]">{note}</p> : null}
-  </div>;
 
   // The page scrolls on its own, like the other pages: the app frame is one screen high (query 2026-1015 1700).
   return <main className="min-h-0 flex-1 overflow-y-auto">
@@ -157,15 +152,13 @@ export function ResultsPage() {
     </header>
 
     {view === "period" ? <PeriodSummary scope={scope} /> : <>
-    <section aria-label="报告统计" className="grid grid-cols-2 gap-3 @2xl:grid-cols-4">
-      {stat("已完成报告", totals.data?.completed.total, totals.data ? `一周内新完成 ${totals.data.recent_completed}` : undefined)}
-      {stat("存量分析", totals.data?.completed.analysis)}
-      {stat("资料审查", totals.data?.completed.review)}
-      {stat("情报分析", totals.data?.completed.intelligence)}
-    </section>
-    {totals.error ? <p role="alert" className="text-caption text-[var(--red)]">报告统计暂不可读</p> : null}
-    {totals.data && (totals.data.active || totals.data.failed) ? <p className="-mt-3 text-body text-[var(--steel)]">
-      另有生成中 {totals.data.active} 份、未完成 {totals.data.failed} 份，未计入已完成。</p> : null}
+    {/* One line instead of four number cards: the counts per kind are on the tabs below (前端审查 R3). */}
+    <p role="region" aria-label="报告统计" className="text-body text-[var(--steel)]">
+      {totals.error ? <span role="alert" className="text-[var(--red)]">报告统计暂不可读</span> : totals.data ? <>
+        已完成 <b className="tabular-nums text-[var(--ink)]">{totals.data.completed.total}</b> 份 · 一周内新完成 <span className="tabular-nums">{totals.data.recent_completed}</span> 份
+        {totals.data.active || totals.data.failed ? `；另有生成中 ${totals.data.active} 份、未完成 ${totals.data.failed} 份，未计入已完成` : ""}
+      </> : "正在读取报告统计…"}
+    </p>
 
     {working.length ? <section aria-label="处理中" className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
       <h2 className="mb-2 text-body font-semibold">处理中 · {working.length}<span className="ml-2 text-caption font-normal text-[var(--stone)]">可离开本页，完成后在下方列表打开</span></h2>

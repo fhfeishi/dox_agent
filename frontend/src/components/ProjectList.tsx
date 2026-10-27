@@ -7,7 +7,8 @@ const name = (path: string) => path.split("/").at(-1) ?? path;
 
 /**
  * 资料管理 by project (query 2026-1016 1814): one row per project with its years, number and lead;
- * ticking a project ticks all its readable files, and the row expands to its files. What needs
+ * ticking a project ticks all its readable files. A project with one file opens it from its title
+ * (前端审查 O1: nearly every project has one report); one with several expands to its files. What needs
  * attention is said on the row — an unconfirmed project identity, a file that repeats another — so it
  * is seen where the material is chosen. Files that could not be read are listed after the projects.
  */
@@ -37,18 +38,21 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
         const copies = files.filter((f) => f.duplicate_of && (own.includes(f.duplicate_of) || own.includes(f.rel_path)));
         const pending = p.identity_status === "pending";
         const expanded = open.includes(p.project_id);
+        const single = onPreview && p.files.length === 1 && !copies.length ? p.files[0].document : null;
         return <li key={p.project_id} className={`rounded-lg border border-l-4 px-3 py-2 text-caption transition-colors ${picked ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
           <div className="flex items-center gap-3">
             <input type="checkbox" aria-label={`选择项目 ${p.title}`} checked={picked === ids.length && ids.length > 0}
               ref={(el) => { if (el) el.indeterminate = picked > 0 && picked < ids.length; }} onChange={() => onToggle(ids, picked < ids.length)} />
-            <button type="button" onClick={() => toggleOpen(p.project_id)} aria-expanded={expanded} className="min-w-0 flex-1 text-left">
+            <button type="button" onClick={() => single ? onPreview!(single) : toggleOpen(p.project_id)} aria-expanded={single ? undefined : expanded}
+              className="min-w-0 flex-1 text-left">
               <span className="block truncate text-body font-medium text-[var(--ink)]">{p.title}</span>
               <span className="block truncate text-caption text-[var(--stone)]">
                 {p.start_year ? `${p.start_year}–${p.end_year ?? "?"}` : "年份待核对"} · {p.number || "批准号待核对"}{p.admin ? ` · ${p.admin}` : ""}</span>
             </button>
             {pending ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]" title={p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"}>项目待核对</span> : null}
             {copies.length ? <span className="shrink-0 rounded bg-[var(--danger-bg)] px-1.5 py-0.5 text-caption text-[var(--danger-fg)]">含重复内容 {copies.length}</span> : null}
-            <button type="button" onClick={() => toggleOpen(p.project_id)} className="shrink-0 text-[var(--steel)] hover:text-[var(--ink)]">{p.files.length} 份文件 {expanded ? "▴" : "▾"}</button>
+            {single ? <button type="button" onClick={() => onPreview!(single)} className="shrink-0 text-[var(--link)] hover:underline">预览 ›</button>
+              : <button type="button" onClick={() => toggleOpen(p.project_id)} className="shrink-0 text-[var(--steel)] hover:text-[var(--ink)]">{p.files.length} 份文件 {expanded ? "▴" : "▾"}</button>}
           </div>
           {expanded ? <ul aria-label={`${p.title} 的文件`} className="mt-2 space-y-1 border-t border-[var(--hairline)] pt-2 pl-7">
             {p.files.map(({ document }) => { const file = byDoc.get(document.doc_id);

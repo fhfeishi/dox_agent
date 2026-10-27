@@ -173,7 +173,6 @@ export function ChatView() {
   const guided = guideTask ? tasks.find((item) => item.id === guideTask) : undefined;
   // Only the four built-in tasks have a walkthrough; a custom task opens without one.
   const guideSteps = guided ? taskGuide(guided, DEFAULTS[guided.id]?.elements) : [];
-  const [mute, setMute] = useState(false);
   const { guidesSeen, seeGuide } = useAuth();  // the walkthrough covers the area's three-step card
 
   // Follow a streaming answer only while the reader is at the bottom (query 2026-1020 1719: the
@@ -214,11 +213,13 @@ export function ChatView() {
         <span className="max-w-[32%] truncate text-body font-semibold tracking-[-0.1px] text-[var(--ink)]">
           {activeTitle || "新对话"}
         </span>
-        {activeTask ? (
+        {activeTask ? (<>
           <span data-guide="chat-task" className="shrink-0 rounded-full bg-[var(--primary-soft)] px-[7px] py-[2px] text-caption font-semibold text-[var(--primary)]">
             {activeTask.name}
           </span>
-        ) : (
+          {taskGuide(activeTask, DEFAULTS[activeTask.id]?.elements).length ? <button type="button" onClick={() => setGuideTask(activeTask.id)}
+            className="shrink-0 text-caption text-[var(--link)] hover:underline">使用指引</button> : null}
+        </>) : (
           <span className="shrink-0 rounded-full bg-[var(--tint-mint)] px-[7px] py-[2px] text-caption font-semibold text-[var(--green)]">
             专业问答
           </span>
@@ -226,7 +227,7 @@ export function ChatView() {
         {corpusIds.length ? (
           <span className="hidden shrink-0 items-center gap-[5px] text-caption text-[var(--stone)] md:inline-flex">
             <Icon name="library" size={12} strokeWidth={2} />
-            对话库：{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、")}
+            资料库：{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、")}
           </span>
         ) : null}
 
@@ -448,10 +449,11 @@ export function ChatView() {
       </div>
 
       <Composer guideTarget={guided ? guideTarget : undefined} />
+      {/* Shown by itself once per task (前端审查 Q3: kept, quieter); 使用指引 beside the task opens it again. */}
       {guided && guideSteps.length ? (
         <CoachMarks label={`${guided.name}使用指引`} steps={guideSteps} onStepChange={setGuideTarget}
-          onClose={() => { if (mute) muteGuide(guided.id); setGuideTask(null); setMute(false); if (!guidesSeen.includes("chat")) seeGuide("chat"); }}
-          footer={<label className="flex items-center gap-[6px]"><input type="checkbox" checked={mute} onChange={(e) => setMute(e.target.checked)} />以后进入“{guided.name}”时不再自动显示</label>} />
+          onClose={() => { muteGuide(guided.id); setGuideTask(null); if (!guidesSeen.includes("chat")) seeGuide("chat"); }}
+          footer={<span>之后可点任务名旁的“使用指引”再次查看</span>} />
       ) : null}
     </section>
   );

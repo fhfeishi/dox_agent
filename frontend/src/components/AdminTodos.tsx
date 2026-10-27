@@ -11,7 +11,9 @@ import { Button } from "./ui";
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
 export type TodoGroup = "资料处理" | "结构更新" | "身份核对" | "补录" | "未完成任务";
-export type Todo = { key: string; group: TodoGroup; what: string; detail: string; action: string; go: () => void };
+export type Todo = { key: string; group: TodoGroup; what: string; detail: string; action: string; go: () => void;
+  /** 补录 only: how many projects lack an approved amount and an achievement list. */
+  missing?: { funding: number; listed: number } };
 export const TODO_GROUPS: TodoGroup[] = ["资料处理", "结构更新", "身份核对", "补录", "未完成任务"];
 
 /** Whether a library needs a look before its material can be read and searched as expected. */
@@ -44,7 +46,8 @@ export function useAdminTodos(enabled = true) {
     ...libs.filter(l => l.research_records && (l.research_records.funded < l.projects || l.research_records.listed < l.projects)).map(l => ({
       key: "records" + l.corpus_id, group: "补录" as const, what: `${short(l.name)}：补录批准资助金额 / 成果列表`,
       detail: `${Math.max(0,l.projects-l.research_records!.funded)} 个项目未记录批准资助金额，${Math.max(0,l.projects-l.research_records!.listed)} 个项目未列成果`,
-      action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files") })),
+      action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files"),
+      missing: { funding: Math.max(0, l.projects - l.research_records!.funded), listed: Math.max(0, l.projects - l.research_records!.listed) } })),
     ...corpora.filter((c) => libraryProblems(c).length).map((c) => ({ key: "lib" + c.id, group: "资料处理" as const,
       what: `${short(c.name)}：${libraryProblems(c).join("、")}`,
       detail: c.missing ? "重新关联目录或移除失效记录" : "在资料管理中查看原因、重试或替换文件", action: "打开资料管理",
@@ -74,9 +77,29 @@ export function useAdminTodos(enabled = true) {
   return { todos, ready, errors, libs };
 }
 
+/**
+ * One line for a kind of to-do that repeats across libraries (前端审查 R2): 首页 says “11 个资料库需补录”
+ * once and leads to the full list on 资料库建设, instead of eleven identical rows.
+ */
+function folded(todos: Todo[], onAll: () => void): Todo[] {
+  const out: Todo[] = [];
+  for (const group of TODO_GROUPS) {
+    const items = todos.filter((t) => t.group === group);
+    if (items.length < 3) { out.push(...items); continue; }
+    const funding = items.reduce((n, t) => n + (t.missing?.funding ?? 0), 0), listed = items.reduce((n, t) => n + (t.missing?.listed ?? 0), 0);
+    out.push({ key: "fold" + group, group, action: "查看清单", go: onAll,
+      what: group === "补录" ? `${items.length} 个资料库需补录批准资助金额 / 成果列表` : `${items.length} 项${group}`,
+      detail: group === "补录" ? `共 ${funding} 个项目未记录批准资助金额，${listed} 个项目未列成果` : items.slice(0, 2).map((t) => t.what).join("；") + (items.length > 2 ? " 等" : "") });
+  }
+  return out;
+}
+
 /** The list itself: grouped, the first few shown, the rest one click away; an all-clear when empty. */
-export function AdminTodoList({ todos, ready, errors, limit = 6 }: { todos: Todo[]; ready: boolean; errors: string[]; limit?: number }) {
+export function AdminTodoList({ todos: every, ready, errors, limit = 6, onAll }: { todos: Todo[]; ready: boolean; errors: string[]; limit?: number;
+  /** Given on 首页: repeated kinds fold into one line that opens the full list. */
+  onAll?: () => void }) {
   const [all, setAll] = useState(false);
+  const todos = onAll ? folded(every, onAll) : every;
   const shown = all ? todos : todos.slice(0, limit);
   // A failure is said, and what did load still shows; the all-clear only when everything was read.
   const failure = errors.length ? <p role="alert" className="text-body text-[var(--red)]">部分数据读取失败：{errors.join("；")}。以下仅列出已读取的事项。</p> : null;

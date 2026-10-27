@@ -41,7 +41,7 @@ def test_export_appends_a_readable_source_appendix():
     text = "\n".join(paragraph.text for paragraph in document.paragraphs)
 
     assert "引用来源" in text
-    assert "[1] 癫痫报告（第 3 页；知识库 c1）" in text
+    assert "[1] 癫痫报告（第 3 页；资料库 c1）" in text
     assert "[2] 公开资料（https://example.com/a；抓取于 2026-09-24T00:00:00+00:00）" in text
     assert "主要发现 [1]" in text
 

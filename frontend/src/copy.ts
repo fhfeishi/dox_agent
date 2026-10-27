@@ -9,7 +9,8 @@ export const TERMS = {
   build: { name: "资料库建设", retired: [] },
   domains: { name: "领域分析", retired: [] },
   workbench: { name: "工作台", retired: ["开始今天的工作"] },
-  library: { name: "资料库", retired: [] },
+  // One word for a library everywhere (query 2026-1027 前端审查答复).
+  library: { name: "资料库", retired: ["知识库", "对话库"] },
   libraryFiles: { name: "资料管理", retired: ["资料文件"] },
   libraryBrowse: { name: "资料查阅", retired: [] },
   research: { name: "技术研判", retired: ["研究归纳", "四维浏览"] },

@@ -78,7 +78,7 @@ function WorkHome() {
       {admin ? <>
         <section aria-label="需要处理">
           <h2 className="mb-3 text-emphasis font-semibold text-[var(--heading)]">需要处理{maintenance.ready ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{maintenance.todos.length} 项</span> : null}</h2>
-          <AdminTodoList todos={maintenance.todos} ready={maintenance.ready} errors={maintenance.errors} limit={5} />
+          <AdminTodoList todos={maintenance.todos} ready={maintenance.ready} errors={maintenance.errors} limit={5} onAll={() => navigate("/overview/build")} />
         </section>
         <section aria-label="资料处理">
           <h2 className="mb-3 text-emphasis font-semibold text-[var(--heading)]">资料处理<span className="ml-2 text-caption font-normal text-[var(--steel)]">点资料库名打开资料管理</span></h2>

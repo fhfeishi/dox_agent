@@ -272,7 +272,7 @@ export function QuickAsk({ open, onClose }: { open: boolean; onClose: () => void
           {pending ? "正在生成问题…" : "生成问题"}
           {pending ? null : <i className="not-italic" aria-hidden="true">→</i>}
         </button>}
-        {task !== taskId ? <span className="w-full text-caption text-[var(--stone)]">将新建「{TASKS.find(([id]) => id === task)![1]}」会话，沿用当前知识库</span> : null}
+        {task !== taskId ? <span className="w-full text-caption text-[var(--stone)]">将新建「{TASKS.find(([id]) => id === task)![1]}」会话，沿用当前资料库</span> : null}
         {error ? <span role="alert" className="w-full text-caption text-[var(--red)]">{error}</span> : null}
       </div>
     </div>

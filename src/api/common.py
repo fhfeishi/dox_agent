@@ -94,7 +94,7 @@ class ChatRequest(BaseModel):
     @classmethod
     def corpus_ids_are_unique(cls, value: list[str] | None):
         if value is not None and len(value) != len(set(value)):
-            raise ValueError("corpus_ids 不能包含重复知识库")
+            raise ValueError("corpus_ids 不能包含重复资料库")
         return value
 
     @field_validator("web_snapshot_ids")

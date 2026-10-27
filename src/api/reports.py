@@ -154,7 +154,7 @@ def install(app, ctx):
                 stored_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
                 if set(payload.doc_ids) & (stored_ids - available_ids):
                     raise HTTPException(409, "报告限定资料已变化或不可用，请重新选择范围")
-                raise HTTPException(422, "报告限定文档必须属于指定知识库")
+                raise HTTPException(422, "报告限定文档必须属于指定资料库")
         try:
             return await asyncio.to_thread(preflight_report, kn, payload.model_dump())
         except ScopeChanged as exc:
@@ -171,7 +171,7 @@ def install(app, ctx):
                 stored_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
                 if set(payload.doc_ids) & (stored_ids - available_ids):
                     raise HTTPException(409, "报告限定资料已变化或不可用，请重新选择范围")
-                raise HTTPException(422, "报告限定文档必须属于指定知识库")
+                raise HTTPException(422, "报告限定文档必须属于指定资料库")
         try:
             scope = await asyncio.to_thread(preflight_report, kn, payload.model_dump())
         except ScopeChanged as exc:

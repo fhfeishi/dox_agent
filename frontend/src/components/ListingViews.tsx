@@ -154,7 +154,7 @@ export function TasksView() {
                   <span className="flex-1" />
                   <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
                     onClick={() => void navigate(`/chat?task=${encodeURIComponent(task.id)}`)}
-                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">开始分析</button>
+                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">{(task.engine_task_id ?? task.id) === "task1" ? "开始提问" : "开始分析"}</button>
                 </div>
               </article>
             );

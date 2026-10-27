@@ -35,7 +35,7 @@ export function IntelligenceView() {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [resultId, setResultId] = useState("");
-  const chosenCorpus = corpus || corpusIds[0] || corpora[0]?.id || "";
+  const chosenCorpus = corpus || corpusIds[0] || [...corpora].filter((c) => !c.missing).sort((a, b) => (b.docs_count ?? 0) - (a.docs_count ?? 0))[0]?.id || "";
   async function upload(files: FileList | null, isTemplate = false) {
     if (!files) return;
     if (!isTemplate && inputs.length + files.length > 6) { setError("一次最多选择 6 份外部材料"); return; }

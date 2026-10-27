@@ -138,7 +138,7 @@ async def import_text(payload: TextImport, request: Request):
     import asyncio
 
     if request.app.state.preparation == "running":
-        raise HTTPException(409, "知识库正在初始化，请稍后补充")
+        raise HTTPException(409, "资料库正在初始化，请稍后补充")
     async with request.app.state.import_lock:
         doc = Document(title=payload.title, origin=payload.origin.strip() or "manual:" + uuid4().hex,
                        kind="text", parser="manual", pages=[Page(number=1, text=payload.text)])

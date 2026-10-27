@@ -8,7 +8,7 @@ from pydantic import AliasChoices, Field, SecretStr, field_validator, model_vali
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
-# 方案 A（每个直接子目录 = 一个自包含知识库）：
+# 方案 A（每个直接子目录 = 一个自包含资料库）：
 # .knowledge/<corpus>/ 内含 source/（原始文件）、datadb/（sqlite）、vectordb/（向量库）。
 CORPORA_ROOT_DEFAULT = DOX_AGENT_ROOT / ".knowledge"
 
@@ -40,7 +40,7 @@ class Settings(BaseSettings):
     # Model calls always connect directly and never use the system proxy (HTTP(S)_PROXY); there is
     # no switch (user, 2026-10-20). An old MODEL_USE_PROXY line in .env is ignored.
     # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.
-    # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。
+    # 语料根：其下每个直接子目录是一个自包含资料库（source/datadb/vectordb）。
     corpora_root: Path = CORPORA_ROOT_DEFAULT
     # 应用级状态目录（会话/报告/覆盖）；缺省从 corpora_root 派生为 <corpora_root>/.state。
     state_dir: Path | None = None

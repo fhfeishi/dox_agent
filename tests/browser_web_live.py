@@ -86,8 +86,8 @@ async def main():
                 second = page.get_by_text("two · https://example.com/two").locator("..")
 
                 # When the first goes to a non-first corpus, the second can still bind to this run.
-                await first.get_by_role("combobox", name="网页目标知识库").select_option(beta_id)
-                await first.get_by_role("button", name="加入所选知识库").click()
+                await first.get_by_role("combobox", name="网页目标资料库").select_option(beta_id)
+                await first.get_by_role("button", name="加入所选资料库").click()
                 await expect(second).to_be_visible()
                 await second.get_by_role("button", name="仅用于本次运行").click()
                 await expect(page.get_by_text("1 个指定网址快照")).to_be_visible()

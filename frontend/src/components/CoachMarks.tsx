@@ -55,8 +55,8 @@ export function CoachMarks({ steps, label, onClose, footer, onStepChange }: { st
       {rect ? (
         <div aria-hidden="true" className="pointer-events-none fixed rounded-[12px] ring-2 ring-[var(--primary)]"
           style={{ left: rect.left - pad, top: rect.top - pad, width: rect.width + pad * 2, height: rect.height + pad * 2,
-            boxShadow: "0 0 0 9999px rgba(15, 23, 42, 0.55)" }} />
-      ) : <div aria-hidden="true" className="fixed inset-0 bg-[rgba(15,23,42,0.55)]" />}
+            boxShadow: "0 0 0 9999px rgba(15, 23, 42, 0.22)" }} />
+      ) : <div aria-hidden="true" className="fixed inset-0 bg-[rgba(15,23,42,0.22)]" />}
       <div role="dialog" aria-label={label} aria-modal="true"
         className="fixed max-h-[calc(100dvh-24px)] w-[340px] max-w-[calc(100vw-24px)] overflow-y-auto rounded-[14px] bg-[var(--canvas)] p-[16px] shadow-2xl"
         style={card ?? { left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>

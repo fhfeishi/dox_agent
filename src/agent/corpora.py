@@ -94,11 +94,11 @@ def _read_corpus_override_data(settings) -> dict:
     except FileNotFoundError:
         return {}
     except (OSError, ValueError) as exc:
-        raise ValueError(f"知识库记录文件无法读取或已损坏：{path}") from exc
+        raise ValueError(f"资料库记录文件无法读取或已损坏：{path}") from exc
     if not isinstance(value, dict):
-        raise ValueError(f"知识库记录文件格式无效：{path}")
+        raise ValueError(f"资料库记录文件格式无效：{path}")
     if any(not isinstance(entry, dict) for entry in value.values()):
-        raise ValueError(f"知识库记录文件包含无效条目：{path}")
+        raise ValueError(f"资料库记录文件包含无效条目：{path}")
     return value
 
 

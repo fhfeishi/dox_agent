@@ -198,51 +198,38 @@ export function CorpusFiles({
   const currentPage = Math.min(page, Math.max(0, Math.ceil(searchedRows.length / 40) - 1));
   const pageRows = searchedRows.slice(currentPage * 40, (currentPage + 1) * 40);
   return (
-    <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-body">
-      <h3 className="font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
+    // Upload is a toolbar action and the whole panel takes a drop (前端审查 O2): reading comes first.
+    <div className={`relative mt-[14px] rounded-[12px] border bg-[var(--canvas)] p-[14px] text-body ${dragging ? "border-[var(--primary)]" : "border-[var(--hairline)]"}`}
+      onDragOver={(e) => { if (busy || !connected) return; e.preventDefault(); setDragging(true); }}
+      onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false); }}
+      onDrop={(e) => { e.preventDefault(); setDragging(false);
+        if (!busy && connected) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
+      }}>
+      {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-[12px] border-2 border-dashed border-[var(--primary)] bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
+      <div className="flex flex-wrap items-center gap-[8px]">
+        <h3 className="mr-auto font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
+        <span className="text-caption text-[var(--stone)]" title="支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。">可拖入文件或文件夹</span>
+        <Button size="sm" variant="primary" icon="plus" iconSize={12} disabled={busy || !connected} onClick={() => inputRef.current?.click()}>上传文件</Button>
+        <Button size="sm" variant="outline" disabled={busy || !connected} onClick={() => folderRef.current?.click()}>上传文件夹</Button>
+        <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
+          onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
+            void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
+        <input ref={inputRef} type="file" aria-label="上传源文件" multiple accept=".md,.markdown,.txt,.pdf,.docx" disabled={busy || !connected} className="sr-only"
+          onChange={(e) => {
+            const selected = Array.from(e.target.files ?? []);
+            e.target.value = "";
+            if (selected.length) void uploadFiles(selected.map((file) => ({ file, path: file.name })));
+          }} />
+      </div>
       <div className="mt-[10px] space-y-[10px]">
         {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
-          在知识库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
+          在资料库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
         {showPath && listing?.source_dir ? <details className="break-all text-caption text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
           本地资料目录：<code>{listing.source_dir}</code>
           <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
         </p></details> : null}
-        {/* Every account adds, renames and deletes files (query 2026-1016 0919). */}
-        <>
-        <div className={`rounded-xl border-2 border-dashed p-4 transition-colors ${dragging ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface-soft)]"}`}
-          onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
-          onDrop={(e) => { e.preventDefault(); setDragging(false);
-            if (!busy && connected) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
-          }}>
-          <div className="flex flex-wrap items-center gap-[8px]">
-            <Button variant="primary" icon="plus" iconSize={13} disabled={busy || !connected} onClick={() => inputRef.current?.click()}>选择文件</Button>
-            <button type="button" disabled={busy || !connected} onClick={() => folderRef.current?.click()} className="rounded-lg border bg-[var(--canvas)] px-3 py-2 text-caption">选择文件夹</button>
-            <span className="text-caption text-[var(--steel)]">或将文件、文件夹拖入此处</span>
-            <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
-              onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
-                void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
-            <input
-              ref={inputRef}
-              type="file"
-              aria-label="上传源文件"
-              multiple
-              accept=".md,.markdown,.txt,.pdf,.docx"
-              disabled={busy || !connected}
-              className="sr-only"
-              onChange={(e) => {
-                const selected = Array.from(e.target.files ?? []);
-                e.target.value = "";
-                if (selected.length) void uploadFiles(selected.map((file) => ({ file, path: file.name })));
-              }}
-            />
-          </div>
-          <p className="mt-[6px] text-caption text-[var(--stone)]">
-            支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。
-          </p>
-          {busy ? <button type="button" className="mt-[6px] text-caption text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
-        </div>
-        </>
+        {busy ? <button type="button" className="text-caption text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
         {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-caption">
           {uploads.map((item) => <li key={item.path} className="flex gap-[8px]">
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>

@@ -64,85 +64,118 @@ export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
 
 /**
  * One personal library: its references grouped by the system library they come from. A reference opens
- * the document's preview; one whose document or library is gone says so and can be removed. 就此提问
- * starts a conversation limited to these documents (up to six system libraries, as any question).
+ * the document's preview. Each source is checked on its own (前端复审 P1-2, P1-3): while its document list
+ * is read the page says so; a read that failed offers a retry and is never shown as a removed document;
+ * only a list read in full, or a deleted system library, marks a reference as gone. 就此提问 uses the ticked
+ * references (all usable ones at first), so one question can use part of the library without changing it,
+ * within six system libraries as any question.
  */
 export function PersonalLibraryPage() {
   const { libraryId = "" } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { corpora, startResearch, sessionBusy } = useApp();
+  const { corpora, corporaLoaded, startResearch, sessionBusy } = useApp();
   const { openPreview } = useLayout();
   const library = useQuery({ queryKey: ["personal-libraries", libraryId], queryFn: ({ signal }) => fetchPersonalLibrary(libraryId, signal) });
-  const corpusIds = library.data?.corpus_ids ?? [];
+  const data = library.data;
+  const corpusIds = data?.corpus_ids ?? [];
+  const gone = (id: string) => Boolean(data?.refs.some((ref) => ref.corpus_id === id && ref.library_missing))
+    || Boolean(corpora.find((c) => c.id === id)?.missing) || (corporaLoaded && !corpora.some((c) => c.id === id));
   const documents = useQueries({ queries: corpusIds.map((id) => ({ queryKey: ["documents", id], queryFn: ({ signal }: { signal: AbortSignal }) => fetchDocuments(id, { signal }),
-    enabled: !corpora.find((c) => c.id === id)?.missing })) });
-  const docs = new Map<string, DocumentInfo>();
-  documents.forEach((query) => query.data?.forEach((doc) => docs.set(doc.doc_id, doc)));
-  const loadedDocs = documents.every((query) => !query.isPending);
+    enabled: !gone(id) })) });
+  type Source = "checking" | "failed" | "gone" | "read";
+  const source = new Map<string, { state: Source; docs: Map<string, DocumentInfo>; retry: () => void }>();
+  corpusIds.forEach((id, i) => {
+    const query = documents[i];
+    const state: Source = gone(id) ? "gone" : query?.isError ? "failed" : query?.isSuccess ? "read" : "checking";
+    source.set(id, { state, docs: new Map((query?.data ?? []).map((doc) => [doc.doc_id, doc])), retry: () => void query?.refetch() });
+  });
+  const key = (ref: PersonalRef) => ref.corpus_id + "\u0000" + ref.doc_id;
+  const docOf = (ref: PersonalRef) => source.get(ref.corpus_id)?.docs.get(ref.doc_id);
+  const [unticked, setUnticked] = useState<Set<string>>(new Set());
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
   const [error, setError] = useState("");
-  const data = library.data;
   async function save(change: Parameters<typeof changePersonalLibrary>[1]) {
     setError("");
     try {
       const next = await changePersonalLibrary(libraryId, change);
       queryClient.setQueryData(["personal-libraries", libraryId], next);
       await queryClient.invalidateQueries({ queryKey: ["personal-libraries"], exact: true });
-    } catch (e) { setError((e as Error).message); }
-  }
-  async function ask() {
-    if (!data) return;
-    setError("");
-    try {
-      const present = data.refs.filter((ref) => docs.has(ref.doc_id));
-      await startResearch([...new Set(present.map((ref) => ref.corpus_id))], present.map((ref) => ref.doc_id), "task1",
-        "请概括这些资料的研究目标、方法与主要结论，并逐条给出出处。");
-      navigate("/chat");
-    } catch (e) { setError((e as Error).message); }
+      return true;
+    } catch (e) { setError((e as Error).message); return false; }
   }
   if (library.error) return <main className="p-8"><p role="alert" className="text-body text-[var(--red)]">{(library.error as Error).message}</p>
     <Link to="/library" className="text-body text-[var(--link)] hover:underline">← 全部资料库</Link></main>;
   if (!data) return <main className="p-8 text-body text-[var(--steel)]">正在读取个人资料库…</main>;
-  const usable = data.refs.filter((ref) => docs.has(ref.doc_id));
-  const askProblem = !usable.length ? "还没有可用的资料" : corpusIds.length > 6 ? "一次提问最多涉及 6 个系统资料库，请移除部分来源" : "";
+  const usable = data.refs.filter((ref) => docOf(ref));
+  const chosen = usable.filter((ref) => !unticked.has(key(ref)));
+  const checking = [...source.values()].some((item) => item.state === "checking");
+  const failed = data.refs.filter((ref) => source.get(ref.corpus_id)?.state === "failed");
+  const lostRef = (ref: PersonalRef) => { const state = source.get(ref.corpus_id)?.state; return state === "gone" || (state === "read" && !docOf(ref)); };
+  const missing = data.refs.filter(lostRef).length;
+  const chosenSources = new Set(chosen.map((ref) => ref.corpus_id));
+  const askProblem = checking ? "正在核对资料，稍候即可提问" : !chosen.length ? "请勾选至少一份可用资料"
+    : chosenSources.size > 6 ? `已勾选的资料来自 ${chosenSources.size} 个系统资料库，一次提问最多 6 个，请取消部分来源的勾选` : "";
+  async function ask() {
+    setError("");
+    try {
+      await startResearch([...chosenSources], chosen.map((ref) => ref.doc_id), "task1", "请概括这些资料的研究目标、方法与主要结论，并逐条给出出处。");
+      navigate("/chat");
+    } catch (e) { setError((e as Error).message); }
+  }
+  const tick = (ref: PersonalRef, on: boolean) => setUnticked((old) => { const next = new Set(old); if (on) next.delete(key(ref)); else next.add(key(ref)); return next; });
   return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8">
     <div className="mx-auto max-w-[var(--page-max)] space-y-5">
       <header className="space-y-2">
         <Link to="/library" className="text-body text-[var(--link)] hover:underline">← 全部资料库</Link>
         <div className="flex flex-wrap items-center gap-3">
-          {editing ? <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); if (name.trim()) void save({ revision: data.revision, name: name.trim() }).then(() => setEditing(false)); }}>
+          {editing ? <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); if (name.trim()) void save({ revision: data.revision, name: name.trim() }).then((ok) => { if (ok) setEditing(false); }); }}>
             <input autoFocus aria-label="个人资料库名称" value={name} onChange={(e) => setName(e.target.value)} className="w-[260px] rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-emphasis font-semibold" />
             <Button type="submit" size="sm" variant="primary">保存</Button><Button size="sm" variant="ghost" onClick={() => setEditing(false)}>取消</Button>
           </form> : <h1 className="text-page font-semibold">{data.name}</h1>}
           <span className="rounded-md bg-[var(--surface-cool)] px-2 py-0.5 text-caption text-[var(--muted-cool)]">个人资料库</span>
           <span className="text-body text-[var(--steel)]">{data.refs.length} 份资料 · 来自 {corpusIds.length} 个系统资料库</span>
           <span className="flex-1" />
-          <Button variant="primary" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>就此提问</Button>
+          <Button variant="primary" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>
+            {failed.length || chosen.length < usable.length ? `用已勾选的 ${chosen.length} 份提问` : "就此提问"}</Button>
           {!editing ? <Button variant="outline" onClick={() => { setName(data.name); setEditing(true); }}>重命名</Button> : null}
           <Button variant="outline" onClick={() => {
             if (window.confirm(`删除个人资料库「${data.name}」？只删除这份清单，系统资料库中的原文不受影响。`))
               void deletePersonalLibrary(libraryId).then(() => queryClient.invalidateQueries({ queryKey: ["personal-libraries"] })).then(() => navigate("/library"), (e) => setError((e as Error).message));
           }}>删除</Button>
         </div>
-        {askProblem && data.refs.length ? <p className="text-caption text-[var(--steel)]">{askProblem}</p> : null}
+        {data.refs.length ? <p role="status" className="text-caption text-[var(--steel)]">
+          {checking ? "正在核对资料…" : `可用 ${usable.length} 份 · 已勾选 ${chosen.length} 份`}
+          {failed.length ? `；${failed.length} 份所在资料库读取失败，未包含在提问中` : ""}
+          {missing > 0 ? `；${missing} 份原资料已不在系统资料库中` : ""}
+          {askProblem && !checking ? `。${askProblem}` : ""}</p> : null}
         {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
       </header>
       {!data.refs.length ? <p className="rounded-xl border border-dashed border-[var(--line-cool-strong)] px-4 py-6 text-body text-[var(--steel)]">
         还没有资料。打开一个<Link to="/library" className="text-[var(--link)] hover:underline">系统资料库</Link>，勾选项目后点“加入个人资料库”。</p> : null}
       {corpusIds.map((corpusId) => {
         const corpus = corpora.find((c) => c.id === corpusId);
+        const state = source.get(corpusId)!;
         const refs = data.refs.filter((ref) => ref.corpus_id === corpusId);
-        return <section key={corpusId} aria-label={corpus ? short(corpus.name) : "已删除的系统资料库"} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
-          <h2 className="mb-2 px-1 text-body font-semibold text-[var(--steel)]">{corpus ? short(corpus.name) : "已删除的系统资料库"} · {refs.length}</h2>
+        const title = corpus ? short(corpus.name) : "已删除的系统资料库";
+        return <section key={corpusId} aria-label={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
+          <div className="mb-2 flex items-center gap-2 px-1">
+            <h2 className="text-body font-semibold text-[var(--steel)]">{title} · {refs.length}</h2>
+            {state.state === "checking" ? <span role="status" className="text-caption text-[var(--stone)]">正在核对…</span> : null}
+            {state.state === "failed" ? <><span role="alert" className="text-caption text-[var(--danger-fg)]">资料清单读取失败，引用仍保留</span>
+              <button type="button" onClick={state.retry} className="text-caption text-[var(--link)] hover:underline">重试</button></> : null}
+          </div>
           <ul className="space-y-1">{refs.map((ref) => {
-            const doc = docs.get(ref.doc_id), meta = fundMetaFromPath(doc?.rel_path || ref.title);
-            const gone = ref.library_missing || (loadedDocs && !doc);
+            const doc = docOf(ref), meta = fundMetaFromPath(doc?.rel_path || ref.title);
+            const lost = lostRef(ref);
             return <li key={ref.doc_id} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-[var(--surface)]">
+              <input type="checkbox" aria-label={`本次提问使用 ${meta?.title || ref.title || ref.doc_id}`} disabled={!doc}
+                checked={Boolean(doc) && !unticked.has(key(ref))} onChange={(e) => tick(ref, e.target.checked)} />
               <button type="button" disabled={!doc} onClick={() => doc && openPreview(doc, null, corpusId)} className="min-w-0 flex-1 text-left disabled:cursor-default">
                 <span className="block truncate text-body font-medium text-[var(--ink)]">{meta?.title || doc?.title || ref.title || ref.doc_id}</span>
-                <span className="block truncate text-caption text-[var(--stone)]">{gone ? "原资料已不在系统资料库中" : meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title}</span>
+                <span className="block truncate text-caption text-[var(--stone)]">{lost ? (state.state === "gone" ? "所在系统资料库已删除" : "原资料已不在系统资料库中")
+                  : `${state.state === "failed" ? "暂时无法读取 · " : ""}${meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title ?? (state.state === "failed" ? "" : "正在核对…")}`}</span>
               </button>
               {doc ? <button type="button" onClick={() => openPreview(doc, null, corpusId)} className="shrink-0 text-caption text-[var(--link)] hover:underline">预览 ›</button> : null}
               <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => void save({ revision: data.revision, remove: [ref] })}

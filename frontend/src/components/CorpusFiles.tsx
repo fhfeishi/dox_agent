@@ -9,7 +9,7 @@ import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, searchCorpus, upl
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 import { fundMetaFromPath } from "../fundMeta";
-import { outputsQuery, projectQuery, type Project } from "../projects";
+import { outputsQuery, projectQuery } from "../projects";
 import { ProjectList } from "./ProjectList";
 import { loadDocumentMarkdown } from "../documentText";
 import { Button, Segmented } from "./ui";
@@ -85,17 +85,21 @@ export function CorpusFiles({
   const byFile = params.get("by") === "file";
   const projectsResult = useQuery({ ...projectQuery(corpusId), enabled: connected });
   const allProjects = projectsResult.data?.projects ?? [];
-  // 前端审查 A1/A2: narrow the projects by start year, or to those still lacking an approved amount or an
-  // achievement list (the same rule as the 补录 to-do: identified projects the statistics cannot count).
+  // 前端审查 A1/A2: narrow the projects by start year, or to what still needs a look. The funding figures
+  // leave out a project for one of three reasons, each its own filter (前端复审 P1-1): no approved amount,
+  // an amount in conflict, or no start year.
   const year = params.get("year") ?? "";
   const lack = params.get("lack") ?? "";
   const outputs = useQuery({ ...outputsQuery(corpusId), enabled: connected && !byFile });
   const identified = allProjects.filter((p) => p.identity_status === "identified");
-  const funded = (p: Project) => p.start_year !== null && !p.funding_conflicts.includes("awarded")
-    && p.funding.some((m) => m.scope === "awarded" && m.amount_yuan !== null);
-  const lacking = { funding: identified.filter((p) => !funded(p)), outputs: outputs.data ? identified.filter((p) => !outputs.data.projects[p.project_id]) : [] };
+  const lacking = {
+    funding: identified.filter((p) => !p.funding.some((m) => m.scope === "awarded" && m.amount_yuan !== null)),
+    conflict: identified.filter((p) => p.funding_conflicts.includes("awarded")),
+    year: identified.filter((p) => p.start_year === null),
+    outputs: outputs.data ? identified.filter((p) => !outputs.data.projects[p.project_id]) : [],
+  };
   const years = [...new Set(allProjects.flatMap((p) => p.start_year ? [p.start_year] : []))].sort((a, b) => b - a);
-  const projects = (lack === "funding" ? lacking.funding : lack === "outputs" ? lacking.outputs : allProjects)
+  const projects = (lack in lacking ? lacking[lack as keyof typeof lacking] : allProjects)
     .filter((p) => !year || String(p.start_year) === year);
   const pendingDocs = new Set(allProjects.filter((p) => p.identity_status === "pending").flatMap((p) => p.files.map((f) => f.document.doc_id)));
   const [page, setPage] = useState(0);
@@ -207,6 +211,10 @@ export function CorpusFiles({
     ? visibleRows.filter((row) => `${row.file.rel_path} ${row.document?.title ?? ""}`.toLowerCase().includes(needle))
     : visibleRows;
   const matchIds = new Set(matches.data?.hits.map((hit) => hit.doc_id) ?? []);
+  // The projects actually listed: filters, then the body search or the name search (ProjectList applies the
+  // same name rule), so the count above the list is the list's own (前端复审 P2-2).
+  const listedProjects = (mode === "content" && needle ? projects.filter((p) => p.files.some((f) => matchIds.has(f.document.doc_id))) : projects)
+    .filter((p) => mode === "content" || !needle || `${p.title} ${p.number} ${p.files.map((f) => f.document.title).join(" ")}`.toLowerCase().includes(needle));
   const searchedRows = mode === "content" && needle
     ? visibleRows.filter((row) => row.document && matchIds.has(row.document.doc_id)) : namedRows;
   const currentPage = Math.min(page, Math.max(0, Math.ceil(searchedRows.length / 40) - 1));
@@ -279,10 +287,12 @@ export function CorpusFiles({
             <select aria-label="缺失信息" value={lack} onChange={(e) => updateFilter("lack", e.target.value)} className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-caption">
               <option value="">全部项目</option>
               <option value="funding">未记录批准资助金额 · {lacking.funding.length}</option>
+              <option value="conflict">批准资助金额待核对 · {lacking.conflict.length}</option>
+              <option value="year">立项年待核对 · {lacking.year.length}</option>
               <option value="outputs">未列成果 · {outputs.data ? lacking.outputs.length : "…"}</option>
             </select>
           </> : null}
-          <span className="text-caption text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : `${projects.length} 个项目`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
+          <span className="text-caption text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : listedProjects.length === allProjects.length ? `${allProjects.length} 个项目` : `找到 ${listedProjects.length} 个项目 / 共 ${allProjects.length} 个`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
           {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-caption text-[var(--link)]">清空选择</button> : null}
           {selectedDocs.length ? <AddToPersonal refs={selectedDocs.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} /> : null}
           {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-caption text-[var(--link)]"
@@ -294,7 +304,7 @@ export function CorpusFiles({
           {matches.isFetching && mode === "content" ? <span role="status">正在检索正文…</span> : null}
           {mode === "content" && matches.error ? <span role="alert">{matches.error.message}</span> : null}
         </div>
-        {!byFile ? <ProjectList projects={mode === "content" && needle ? projects.filter((p) => p.files.some((f) => matchIds.has(f.document.doc_id))) : projects}
+        {!byFile ? <ProjectList projects={listedProjects}
           files={files} selectedIds={selectedIds} onToggle={toggleMany} onPreview={onPreview} busy={busy}
           query={mode === "content" ? "" : search} filtered={Boolean(year || lack)}
           onDelete={admin ? (rel) => { if (window.confirm(`删除源文件「${rel}」并从索引移除？`)) void run(async () => { await deleteCorpusFile(corpusId, rel); }); } : undefined} /> : <>

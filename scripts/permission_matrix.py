@@ -59,7 +59,10 @@ CAPABILITIES = [
     ("本人登录、口令与指南", ALL, r"^/api/auth/"),
     ("资料库结构重新生成与目录重新关联", ADMIN, r"^/api/corpora/[^/]+/(reassociate|target|topics|lineage|hierarchy)"),
     ("共享分析任务与 Prompt/Skill", ADMIN, r"^/api/(tasks/custom|prompt-skills)"),
-    ("审查模版与指南（含应用）", ADMIN, r"^/api/review/(rules|guidelines|applied)"),
+    # Everyone keeps own review templates; the record decides who changes one (D-20261028-1). Choosing
+    # everyone's default template stays the administrator's.
+    ("设为全员默认审查模版", ADMIN, r"^/api/review/applied"),
+    ("审查模版与指南（共享模版管理员、个人模版本人，按记录判断）", ALL, r"^/api/review/(rules|guidelines)"),
     # Topic summaries are analysis anyone may run; everything else that changes a system library is the
     # administrator's (D-20261027-1). Personal libraries are each account's own.
     ("主题综合（分析）", ALL, r"^/api/corpora/[^/]+/topic-summary"),

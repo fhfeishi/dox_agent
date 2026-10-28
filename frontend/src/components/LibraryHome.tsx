@@ -52,6 +52,7 @@ export function LibraryHome() {
   const queryClient = useQueryClient();
   const personal = useQuery(personalLibrariesQuery());
   const [personalName, setPersonalName] = useState<string | null>(null);
+  const personalShown = (personal.data ?? []).filter((library) => !query || library.name.toLowerCase().includes(query) || library.description.toLowerCase().includes(query));
   const groups = data?.groups ?? [];
   const grouped = new Set(groups.flatMap((g) => g.members));
   const sections = [...groups.map((g) => ({ id: g.id, name: g.name, ids: g.members })),
@@ -86,7 +87,8 @@ export function LibraryHome() {
             <button type="button" className="text-body text-[var(--steel)]" onClick={() => setPersonalName(null)}>取消</button>
           </form> : <Button variant="outline" icon="plus" iconSize={13} onClick={() => setPersonalName("")}>新建个人资料库</Button>}
         </div>
-        {personal.data?.length ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{personal.data.map((library) =>
+        {/* The page's search covers both kinds of library (前端复审 P2-1). */}
+        {personalShown.length ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{personalShown.map((library) =>
           <button key={library.id} type="button" onClick={() => navigate(`/library/mine/${library.id}`)} aria-label={`打开个人资料库 ${library.name}`}
             className="group rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 text-left transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-sm">
             <b className="block truncate text-emphasis">{library.name}</b>
@@ -94,6 +96,7 @@ export function LibraryHome() {
             <span className="mt-2 block text-body text-[var(--slate)]">{library.count} 份资料 · 来自 {library.corpus_ids.length} 个系统资料库</span>
             <span aria-hidden="true" className="mt-2 block text-caption text-[var(--link)] transition-transform group-hover:translate-x-0.5">打开 ›</span>
           </button>)}</div>
+          : personal.data?.length && query ? <p className="text-body text-[var(--steel)]">没有名称或说明匹配“{query}”的个人资料库。</p>
           : personal.data ? <p className="text-body text-[var(--steel)]">把一项工作用到的资料集中在一处：新建后，在系统资料库里勾选项目，点“加入个人资料库”。</p> : null}
       </section>
       <div className="flex flex-wrap items-center gap-2 border-t border-[var(--hairline)] pt-5">

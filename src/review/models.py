@@ -64,6 +64,9 @@ class RulePack(BaseModel):
     generation: dict = Field(default_factory=dict)
     guideline_ids: list[str] = Field(default_factory=list, max_length=5)
     confirmed: bool = False
+    # Whose template it is (D-20261028-1): "" for shared ones (built-in, earlier, or an administrator's),
+    # else the account that made it. The server sets it; a value sent back by a client is ignored.
+    owner: str = Field(default="", max_length=80)
 
 
 class AppliedChoice(BaseModel):

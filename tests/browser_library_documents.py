@@ -239,6 +239,7 @@ async def main():
                 # 前端审查 A1/A2: narrow by start year, or to projects still missing an approved amount.
                 await page.get_by_label("立项年").select_option("2021")
                 await expect(projects.get_by_role("listitem")).to_have_count(2)
+                await expect(page.get_by_label("缺失信息").locator("option")).to_have_text(["全部项目", "未记录批准资助金额 · 0", "批准资助金额待核对 · 0", "立项年待核对 · 0", re.compile("^未列成果 · ")])
                 await page.get_by_label("缺失信息").select_option("funding")
                 await expect(projects).to_contain_text("没有符合筛选的项目。")
                 await expect(page).to_have_url(re.compile(r"lack=funding"))
@@ -256,6 +257,23 @@ async def main():
                 mine=page.get_by_role("region",name="验收")
                 await expect(mine.get_by_role("listitem")).to_have_count(1)
                 await expect(mine).to_contain_text("量子报告")
+                # A source that cannot be read is said to be unreadable, never removed, and is left out of a
+                # question only with the user seeing it (前端复审 P1-2, P1-3).
+                await page.route(re.compile(r".*/api/documents\?corpus=.*"), lambda r: r.fulfill(status=503, json={"detail": "暂不可用"}))
+                await page.reload()
+                await expect(mine.get_by_role("alert")).to_contain_text("资料清单读取失败，引用仍保留", timeout=20000)
+                await expect(mine).not_to_contain_text("原资料已不在")
+                await expect(page.get_by_role("button",name=re.compile("提问$"))).to_be_disabled()
+                await page.unroute(re.compile(r".*/api/documents\?corpus=.*"))
+                await expect(mine).to_contain_text("暂时无法读取")
+                await mine.get_by_role("button",name="重试").click()
+                await expect(mine.get_by_role("alert")).to_have_count(0)
+                await expect(mine).not_to_contain_text("暂时无法读取")
+                await expect(mine.get_by_role("checkbox")).to_be_checked()
+                await mine.get_by_role("checkbox").uncheck()
+                await expect(page.get_by_role("button",name="用已勾选的 0 份提问")).to_be_disabled()
+                await mine.get_by_role("checkbox").check()
+                await expect(page.get_by_role("button",name="就此提问",exact=True)).to_be_enabled()
                 await page.reload()  # a direct link to a personal library opens the application
                 await mine.get_by_role("button",name="预览 ›").click()
                 await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("量子传感")

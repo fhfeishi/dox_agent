@@ -77,6 +77,29 @@ def require(kind, id):
     return value
 
 
+# Review templates (D-20261028-1): shared ones ("" owner: built-in, earlier, or an administrator's) are
+# everyone's to read and use and the administrator's to change; every account also keeps its own,
+# seen and changed by that account only.
+def account(request: Request) -> tuple[str, str]:
+    return request.state.user[0], request.state.user[1]
+
+
+def rule_visible(rule: dict, request: Request) -> bool:
+    return rule.get("owner", "") in ("", account(request)[0])
+
+
+def rule_editable(rule: dict, request: Request) -> bool:
+    username, role = account(request)
+    return rule.get("owner", "") == ("" if role == "admin" else username)
+
+
+def visible_rule(id: str, request: Request) -> dict:
+    rule = require("rule", id)
+    if not rule_visible(rule, request):
+        raise HTTPException(404, "记录不存在。")
+    return rule
+
+
 def public_doc(doc):
     return {k: v for k, v in doc.items() if k not in ("pages", "path", "blocks")}
 
@@ -264,16 +287,21 @@ def original(id: str):
 
 
 @router.get("/rules")
-def rules():
-    return db.all_items("rule")
+def rules(request: Request):
+    return [rule for rule in db.all_items("rule") if rule_visible(rule, request)]
 
 
-@router.post("/rules", dependencies=ADMIN_ONLY)
-def save_rule(rule: RulePack):
+@router.post("/rules")
+def save_rule(rule: RulePack, request: Request):
     data = rule.model_dump(mode="json")
     if data["id"].startswith("builtin-") or data["source_kind"] == "builtin":
         raise HTTPException(403, "内置模版只读，请复制后编辑。")
     old = db.get("rule", rule.id)
+    if old and not rule_editable(old, request):
+        raise HTTPException(403 if rule_visible(old, request) else 404,
+                            "共享模版由管理员维护，请复制后编辑为自己的模版。" if rule_visible(old, request) else "记录不存在。")
+    username, role = account(request)
+    data["owner"] = old.get("owner", "") if old else ("" if role == "admin" else username)
     if old and old.get("kind") and old["kind"] != data["kind"]:
         raise HTTPException(422, "已保存模版不能改变审查类型，请另存为新模版。")
     known = [c["original"] for v in db.all_items("rule_version") for c in v.get("checks", []) if c.get("original")]
@@ -286,13 +314,16 @@ def save_rule(rule: RulePack):
     return publish(data, old)
 
 
-@router.delete("/rules/{id}", dependencies=ADMIN_ONLY)
-def delete_rule(id: str):
+@router.delete("/rules/{id}")
+def delete_rule(id: str, request: Request):
     """删除 a template (query 2026-1014 1737): it leaves the list and the workbench; reviews already run
-    keep the version they used. Built-in templates are read only. Administrators only (auth)."""
-    rule = require("rule", id)
+    keep the version they used. Built-in templates are read only; a shared template is the
+    administrator's to delete, an account's own template that account's (D-20261028-1)."""
+    rule = visible_rule(id, request)
     if id.startswith("builtin-") or rule.get("source_kind") == "builtin":
         raise HTTPException(403, "内置模版不能删除。")
+    if not rule_editable(rule, request):
+        raise HTTPException(403, "共享模版由管理员维护。")
     rule["archived"] = True
     db.save("rule", rule)
     return {"id": id, "archived": True}
@@ -325,6 +356,8 @@ def apply_rule(choice: AppliedChoice):
             raise HTTPException(422, "模版类型与审查类型不一致。")
         if rule.get("archived"):
             raise HTTPException(422, "模版已删除，不能应用。")
+        if rule.get("owner", ""):
+            raise HTTPException(422, "个人模版只供本人选用，不能设为所有人的默认模版。")
         if not rule.get("confirmed"):
             raise HTTPException(422, "草稿模版需先核对并启用，才能应用。")
     stored = db.get("applied", "default") or {"id": "default"}
@@ -334,7 +367,8 @@ def apply_rule(choice: AppliedChoice):
 
 
 @router.get("/rules/{id}/versions/{version}")
-def rule_version(id: str, version: int):
+def rule_version(id: str, version: int, request: Request):
+    visible_rule(id, request)
     return require("rule_version", f"{id}-v{version}")
 
 
@@ -345,8 +379,8 @@ def proposal_blocks(doc):
 
 
 @router.get("/documents/{id}/mappings")
-def mappings(id: str, rule_id: str):
-    doc, rule = require("document", id), require("rule", rule_id)
+def mappings(id: str, rule_id: str, request: Request):
+    doc, rule = require("document", id), visible_rule(rule_id, request)
     blocks = proposal_blocks(doc)
     saved = db.get("mapping", f"{id}:{rule_id}") or {}
     return {"rule_id": rule_id, "rule_version": rule["version"], "revision": saved.get("revision", 0),
@@ -357,8 +391,8 @@ def mappings(id: str, rule_id: str):
 
 
 @router.put("/documents/{id}/mappings")
-def save_mappings(id: str, update: MappingUpdate):
-    doc, rule = require("document", id), require("rule", update.rule_id)
+def save_mappings(id: str, update: MappingUpdate, request: Request):
+    doc, rule = require("document", id), visible_rule(update.rule_id, request)
     blocks = {b["id"] for b in proposal_blocks(doc)}
     key = f"{id}:{update.rule_id}"
     saved = db.get("mapping", key) or {}
@@ -376,16 +410,16 @@ def save_mappings(id: str, update: MappingUpdate):
               "targets": {k: v for k, v in targets.items() if k in chosen},
               "mappings": [row.model_dump() for row in chosen.values()]}
     db.save("mapping", record)
-    return mappings(id, update.rule_id)
+    return mappings(id, update.rule_id, request)
 
 
-@router.post("/rules/validate", dependencies=ADMIN_ONLY)
+@router.post("/rules/validate")
 def validate_rule(rule: RulePack):
     return rule.model_dump(mode="json")
 
 
-@router.post("/guidelines/plan", dependencies=ADMIN_ONLY)
-async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form("formal")):
+@router.post("/guidelines/plan")
+async def plan_guidelines(request: Request, files: list[UploadFile] = File(...), kind: str = Form("formal")):
     if not model_configured():
         raise HTTPException(400, "请先配置审查模型，检查清单由大模型生成。")
     if not 1 <= len(files) <= 5:
@@ -405,6 +439,8 @@ async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form(
         if kind not in ("formal", "professional"):
             raise HTTPException(422, "请选择形式或专业模版。")
         draft = await run_in_threadpool(guidelines.generate, documents, kind)
+        username, role = account(request)
+        draft["owner"] = "" if role == "admin" else username
         return publish(draft, None)
     except ModelError as e:
         raise HTTPException(502, str(e)) from e
@@ -616,7 +652,7 @@ def new_run(req: ReviewRequest, request: Request):
     sheet = require("document", req.information_sheet_id) if req.information_sheet_id else None
     if sheet and sheet["id"] == doc["id"]:
         raise HTTPException(422, "正文和信息表须分别指定，不能用同一文件冒充两份材料")
-    current = require("rule", req.rule_id)
+    current = visible_rule(req.rule_id, request)
     if current.get("kind") != req.kind:
         raise HTTPException(422, "模版类型与审查任务不一致，请选择对应类型的模版")
     if req.rule_version != current["version"]:

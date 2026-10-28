@@ -66,6 +66,15 @@ function emptyCheck(kind: ReviewKind): ReviewCheck {
       strength: "advisory", method: "model", needed_materials: [], source: "用户编写", quote: "", page: null, enabled: true, evidence_need: "internal", execution: null };
 }
 
+/**
+ * Who may change a template (D-20261028-1): shared ones are the administrator's, an account's own are
+ * that account's. Everyone reads and uses shared templates and copies them to edit.
+ */
+function canEdit(rule: ReviewRule, admin: boolean, username: string) {
+  const builtin = rule.id.startsWith("builtin-") || rule.source_kind === "builtin";
+  return !builtin && (rule.owner ? rule.owner === username : admin);
+}
+
 function strip(rule: ReviewRule): ReviewRule {
   const { scenario: _scenario, ...rest } = rule;
   void _scenario;
@@ -78,7 +87,7 @@ const UPLOAD_KINDS: { kind: ReviewKind; lead: string }[] = [
 ];
 
 export function ReviewTemplates() {
-  const { role } = useAuth();
+  const { role, username } = useAuth();
   const navigate = useNavigate();
   const [rules, setRules] = useState<ReviewRule[]>([]);
   const [applied, setApplied] = useState<ReviewApplied>({ formal: null, professional: null });
@@ -130,11 +139,11 @@ export function ReviewTemplates() {
   const take = (files: FileList | null | undefined) => { const list = Array.from(files ?? []); if (list.length && !busy) void upload(list); };
 
   return (
-    <Shell title="审查模版" description="模版规定一次审查检查什么。上传规范或要求文档，系统整理成模版草稿；核对后应用，新的审查就默认按它来。">
+    <Shell title="审查模版" description={admin ? "模版规定一次审查检查什么。上传规范或要求文档，系统整理成模版草稿；核对后应用，新的审查就默认按它来。"
+      : "模版规定一次审查检查什么。管理员维护的共享模版可直接选用或复制修改；你也可以上传规范或手动新建自己的模版，只有自己可见，审查时选用。"}>
       <Notice text={error} error />
       <Notice text={notice} />
-      {/* Review templates are shared, so administrators maintain them (节点审查 D2); others read and choose. */}
-      {!admin ? <p className="mb-5 text-body text-[var(--steel)]">审查模版由管理员维护；这里可以查看各模版检查什么，在审查时选用。</p> : <>
+      {/* Everyone makes templates the same way (D-20261028-1): a user's are their own, an administrator's shared. */}
       <section aria-label="上传规范生成模版" className="mb-6 rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-5">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <h2 className="text-emphasis font-semibold text-[var(--ink)]">上传规范，自动生成审查模版</h2>
@@ -175,14 +184,14 @@ export function ReviewTemplates() {
         <ol className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-caption text-[var(--slate)]">
           <li><b className="text-[var(--primary-pressed)]">①</b> 上传规范</li>
           <li><b className="text-[var(--primary-pressed)]">②</b> 核对草稿，保存并启用</li>
-          <li><b className="text-[var(--primary-pressed)]">③</b> 应用：新的审查默认使用</li>
+          <li><b className="text-[var(--primary-pressed)]">③</b> {admin ? "应用：新的审查默认使用" : "审查时选用"}</li>
           <li className="text-[var(--stone)]">也可手动新建：
             <button type="button" className="text-[var(--link)]" onClick={() => void navigate("/review/templates/new?kind=formal")}>形式模版</button> ·{" "}
             <button type="button" className="text-[var(--link)]" onClick={() => void navigate("/review/templates/new?kind=professional")}>专业模版</button>
           </li>
         </ol>
       </section>
-      {legacy.length ? (
+      {admin && legacy.length ? (
         <section className="mb-6 rounded-xl border border-[var(--warn-line)] bg-[var(--tint-yellow)] p-4">
           <h2 className="text-body font-semibold">旧版检查清单 · 需选择审查类型</h2>
           <p className="mt-1 text-caption text-[var(--slate)]">这些清单在通用模版之前建立，系统无法确定用于形式还是专业审查。选择后另存为新版本草稿，原清单内容不删除。</p>
@@ -195,7 +204,6 @@ export function ReviewTemplates() {
           ))}
         </section>
       ) : null}
-      </>}
       {(["formal", "professional"] as ReviewKind[]).map((kind) => {
         const list = rules.filter((rule) => rule.kind === kind && !rule.archived);
         const current = list.find((rule) => rule.id === applied[kind]) ?? list.find((rule) => rule.id === "builtin-" + kind);
@@ -208,7 +216,7 @@ export function ReviewTemplates() {
               {applied[kind] ? null : <span className="text-[var(--stone)]">（内置，未应用其他模版）</span>}</span> : null}
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {[...list].sort((a, b) => order(a) - order(b)).map((rule) => <TemplateTile key={rule.id} rule={rule} admin={admin}
+            {[...list].sort((a, b) => order(a) - order(b)).map((rule) => <TemplateTile key={rule.id} rule={rule} admin={admin} editable={canEdit(rule, admin, username)}
               applied={rule.id === applied[kind]} onApply={(on) => void apply(rule, on)} onDelete={() => void remove(rule)} />)}
           </div>
         </section>;
@@ -222,8 +230,8 @@ export function ReviewTemplates() {
  * 应用 / 取消应用 decides whether new reviews of its kind start with it (query 2026-1021 1629). A draft
  * cannot be applied before it is checked and enabled, so it offers 核对并启用 instead.
  */
-function TemplateTile({ rule, admin, applied, onApply, onDelete }: {
-  rule: ReviewRule; admin: boolean; applied: boolean; onApply: (on: boolean) => void; onDelete: () => void;
+function TemplateTile({ rule, admin, editable, applied, onApply, onDelete }: {
+  rule: ReviewRule; admin: boolean; editable: boolean; applied: boolean; onApply: (on: boolean) => void; onDelete: () => void;
 }) {
   const { showInspector } = useLayout();
   const builtin = rule.id.startsWith("builtin-") || rule.source_kind === "builtin";
@@ -236,19 +244,21 @@ function TemplateTile({ rule, admin, applied, onApply, onDelete }: {
           <strong className="text-body text-[var(--ink)]">{rule.name}</strong>
           {applied ? <span className="rounded-[4px] bg-[var(--primary)] px-[7px] py-[2px] text-caption font-semibold text-white">应用中</span> : null}
           <Pill tone="lav">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
+          {rule.owner ? <Pill tone="sky">我的</Pill> : null}
           {rule.confirmed ? null : <Pill tone="yellow">草稿 · 待核对</Pill>}
         </span>
         <span className="mt-2 block text-caption text-[var(--steel)]">v{rule.version} · 启用 {rule.checks.filter((check) => check.enabled).length}/{rule.checks.length} 项 · {rule.checks.filter((c) => c.enabled).slice(0, 4).map((c) => c.title).join("、")}</span>
       </button>
       <div className="mt-3 flex flex-wrap items-center gap-2">
-        {admin && rule.confirmed && !builtin ? (applied
+        {admin && editable && rule.confirmed ? (applied
           ? <button type="button" className={action} onClick={() => onApply(false)}>取消应用</button>
           : <Button size="sm" variant="primary" onClick={() => onApply(true)}>应用</Button>) : null}
-        {admin && !rule.confirmed && !builtin ? <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}?edit=1`}>核对并启用</Link> : null}
+        {editable && !rule.confirmed ? <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}?edit=1`}>核对并启用</Link> : null}
         <button type="button" className={action} onClick={() => showInspector({ kind: "review-template", templateId: rule.id })}>预览</button>
-        <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}`}>{admin ? "修改" : "查看全部条目"}</Link>
-        {admin && !builtin ? <button type="button" className="rounded-md px-2 py-1 text-caption text-[var(--stone)] hover:text-[var(--red)]" onClick={onDelete}>删除</button> : null}
-        {builtin ? <span className="text-caption text-[var(--stone)]">内置，未应用其他模版时默认使用；修改时另存为新模版</span> : null}
+        <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}`}>{editable ? "修改" : "查看全部条目"}</Link>
+        {editable ? <button type="button" className="rounded-md px-2 py-1 text-caption text-[var(--stone)] hover:text-[var(--red)]" onClick={onDelete}>删除</button> : null}
+        {builtin ? <span className="text-caption text-[var(--stone)]">内置，未应用其他模版时默认使用；修改时另存为新模版</span>
+          : !editable ? <span className="text-caption text-[var(--stone)]">共享模版，由管理员维护；可复制后修改为自己的模版</span> : null}
       </div>
     </article>
   );
@@ -256,7 +266,8 @@ function TemplateTile({ rule, admin, applied, onApply, onDelete }: {
 
 export function ReviewTemplateDetail() {
   const { id = "" } = useParams();
-  const { role } = useAuth();
+  const { role, username } = useAuth();
+  const admin = role === "admin";
   const [search] = useSearchParams();
   const navigate = useNavigate();
   const back = search.get("back") ?? "";
@@ -292,10 +303,10 @@ export function ReviewTemplateDetail() {
         setDraft(start); setBaseline(""); setEnable(false);
       } else if (search.get("edit")) {
         const current = list.find((rule) => rule.id === id);
-        if (current && current.source_kind !== "builtin") {
+        if (current && canEdit(current, admin, username)) {
           setDraft(structuredClone(current)); setBaseline(JSON.stringify(current));
           // A draft just generated from uploaded rules: the page exists to check it, then use it.
-          setEnable(current.confirmed || generated); setApplyOnSave(generated);
+          setEnable(current.confirmed || generated); setApplyOnSave(generated && admin && !current.owner);
         }
       }
     }).catch((cause) => setError((cause as Error).message));
@@ -391,16 +402,17 @@ export function ReviewTemplateDetail() {
         <div className="mt-4 flex flex-wrap gap-2">
           {editing ? <>
             <label className="flex items-center gap-2 text-body"><input type="checkbox" checked={enable} onChange={(e) => { setEnable(e.target.checked); if (!e.target.checked) setApplyOnSave(false); }} />保存后启用（可用于审查）</label>
-            <label className={`flex items-center gap-2 text-body ${enable ? "" : "text-[var(--stone)]"}`}><input type="checkbox" disabled={!enable} checked={enable && applyOnSave} onChange={(e) => setApplyOnSave(e.target.checked)} />并应用（新的{REVIEW_KIND_LABEL[kind]}默认使用）</label>
+            {/* Only a shared template becomes everyone's default, and only the administrator sets it. */}
+            {admin && !draft?.owner ? <label className={`flex items-center gap-2 text-body ${enable ? "" : "text-[var(--stone)]"}`}><input type="checkbox" disabled={!enable} checked={enable && applyOnSave} onChange={(e) => setApplyOnSave(e.target.checked)} />并应用（新的{REVIEW_KIND_LABEL[kind]}默认使用）</label> : null}
             <span className="flex-1" />
             <Button variant="primary" disabled={busy} onClick={() => void save()}>{busy ? "保存中…" : enable ? (applyOnSave ? "保存、启用并应用" : "保存并启用") : "保存为草稿"}</Button>
             <Button onClick={() => { if (id === "new") void navigate(-1); else { setDraft(null); setBaseline(""); } }}>{dirty ? "放弃修改" : "退出编辑"}</Button>
           </> : <>
             {rule.confirmed ? <Button variant="primary" onClick={() => void navigate(workbench + (workbench.includes("?") ? "&" : "?") + "template=" + encodeURIComponent(rule.id))}>用它审查一次</Button> : null}
-            {role === "admin" && rule.confirmed && rule.source_kind !== "builtin"
+            {admin && !rule.owner && rule.confirmed && rule.source_kind !== "builtin"
               ? <Button onClick={() => void toggleApplied(!isApplied)}>{isApplied ? "取消应用" : "应用（新审查默认使用）"}</Button> : null}
-            {role === "admin" ? <Button onClick={() => void navigate(`/review/templates/new?from=${encodeURIComponent(rule.id)}${back ? "&back=" + encodeURIComponent(back) : ""}`)}>复制编辑</Button> : null}
-            {role === "admin" && rule.source_kind !== "builtin" ? <Button onClick={() => { setDraft(structuredClone(rule)); setBaseline(JSON.stringify(rule)); setEnable(rule.confirmed); }}>编辑</Button> : null}
+            <Button onClick={() => void navigate(`/review/templates/new?from=${encodeURIComponent(rule.id)}${back ? "&back=" + encodeURIComponent(back) : ""}`)}>复制编辑</Button>
+            {canEdit(rule, admin, username) ? <Button onClick={() => { setDraft(structuredClone(rule)); setBaseline(JSON.stringify(rule)); setEnable(rule.confirmed); }}>编辑</Button> : null}
             <span className="flex-1" />
             <Link className="self-center text-body text-[var(--link)]" to={back ? workbench : "/review/templates"}>{back ? "返回审查工作台" : "返回模版列表"}</Link>
           </>}

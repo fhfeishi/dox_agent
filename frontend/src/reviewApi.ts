@@ -64,6 +64,8 @@ export type ReviewCheck = {
 };
 export type ReviewKind = "formal" | "professional";
 export type ReviewRule = {
+  /** "" for a shared template (built-in or an administrator's); else the account it belongs to (D-20261028-1). */
+  owner?: string;
   kind?: ReviewKind | null;
   source_kind?: "builtin" | "manual" | "upload";
   archived?: boolean;

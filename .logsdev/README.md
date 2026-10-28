@@ -11,6 +11,7 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 
 | 位置 | 内容 |
 |---|---|
+| [前端复审-20261027.md](前端复审-20261027.md) | 最新前端变更复审、个人库与筛选反馈问题、优化优先级 |
 | [query.md](query.md)、`query-archive/` | 用户原文；已关闭的条目按月归档 |
 | [PROJECT.md](PROJECT.md)、[ITERATION.md](ITERATION.md)、[DECISIONS.md](DECISIONS.md)、`DECISIONS-archive.md`、[cleanup-log.md](cleanup-log.md) | 正式要求、当前工作、决定、接入前的历史决定、删除登记 |
 | [design/系统.md](design/系统.md)、[design/界面.md](design/界面.md) | 现行设计载体 |

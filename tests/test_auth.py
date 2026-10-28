@@ -161,11 +161,14 @@ def test_library_regeneration_and_shared_templates_are_for_administrators(tmp_pa
         assert client.post("/api/personal-libraries", json={"name": "我的"}).status_code == 201
         # Analysis stays open to users: a topic summary request reaches its handler (404 for an unknown library).
         assert client.post("/api/corpora/none/topic-summary", json={"dimension": "技术", "name": "x"}).status_code != 403
-        # Shared analysis tasks and review templates are maintained by administrators (节点审查 D2);
+        # Shared analysis tasks are maintained by administrators (节点审查 D2);
         # report templates stay open because 情报分析 saves a user's own template.
         assert client.post("/api/tasks/custom", json={"source_task_id": "task1"}).status_code == 403
-        assert client.post("/api/review/rules", json={}).status_code == 403
-        assert client.delete("/api/review/rules/builtin-formal").status_code == 403  # deleting templates too
+        # Every account keeps its own review templates (D-20261028-1): saving reaches validation, while
+        # choosing everyone's default and deleting shared templates stay the administrator's.
+        assert client.post("/api/review/rules", json={}).status_code == 422
+        assert client.put("/api/review/applied", json={"kind": "formal", "rule_id": None}).status_code == 403
+        assert client.delete("/api/review/rules/builtin-formal").status_code == 403
         assert client.post("/api/templates/custom", json={}).status_code != 403
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "admin", "password": "123456"})

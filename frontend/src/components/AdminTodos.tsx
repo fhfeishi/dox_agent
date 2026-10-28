@@ -45,7 +45,7 @@ export function useAdminTodos(enabled = true) {
   const todos: Todo[] = [
     ...libs.filter(l => l.research_records && (l.research_records.funded < l.projects || l.research_records.listed < l.projects)).map(l => ({
       key: "records" + l.corpus_id, group: "补录" as const, what: `${short(l.name)}：补录批准资助金额 / 成果列表`,
-      detail: `${Math.max(0,l.projects-l.research_records!.funded)} 个项目未记录批准资助金额，${Math.max(0,l.projects-l.research_records!.listed)} 个项目未列成果`,
+      detail: `${Math.max(0,l.projects-l.research_records!.funded)} 个项目未计入经费统计（缺金额、金额待核对或立项年待核对），${Math.max(0,l.projects-l.research_records!.listed)} 个项目未列成果`,
       action: "查看缺失项目", go: () => navigate(`/library/${encodeURIComponent(l.corpus_id)}/documents?lack=funding`),
       missing: { funding: Math.max(0, l.projects - l.research_records!.funded), listed: Math.max(0, l.projects - l.research_records!.listed) } })),
     ...corpora.filter((c) => libraryProblems(c).length).map((c) => ({ key: "lib" + c.id, group: "资料处理" as const,
@@ -89,7 +89,7 @@ function folded(todos: Todo[], onAll: () => void): Todo[] {
     const funding = items.reduce((n, t) => n + (t.missing?.funding ?? 0), 0), listed = items.reduce((n, t) => n + (t.missing?.listed ?? 0), 0);
     out.push({ key: "fold" + group, group, action: "查看清单", go: onAll,
       what: group === "补录" ? `${items.length} 个资料库需补录批准资助金额 / 成果列表` : `${items.length} 项${group}`,
-      detail: group === "补录" ? `共 ${funding} 个项目未记录批准资助金额，${listed} 个项目未列成果` : items.slice(0, 2).map((t) => t.what).join("；") + (items.length > 2 ? " 等" : "") });
+      detail: group === "补录" ? `共 ${funding} 个项目未计入经费统计，${listed} 个项目未列成果` : items.slice(0, 2).map((t) => t.what).join("；") + (items.length > 2 ? " 等" : "") });
   }
   return out;
 }

@@ -279,10 +279,40 @@ async def main():
                     path=str(screenshots / "professional-mobile.png"), full_page=True, animations="disabled"
                 )
                 assert await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 2")
+
+                # A user's template page works like the administrator's (D-20261028-1): shared templates are
+                # read and copied; the copy is the user's own, edited, enabled and deleted by them.
+                own = await browser.new_context(viewport={"width": 1440, "height": 900})
+                mine = await own.new_page()
+                mine.on("pageerror", lambda e: errors.append(str(e)))
+                mine.on("dialog", lambda dialog: asyncio.ensure_future(dialog.accept()))
+                await mine.request.post(origin + "/api/auth/login", data={"username": "user", "password": "123456"})
+                for key in ("home", "review"):
+                    await mine.request.post(origin + "/api/auth/guides", data={"key": key})
+                await mine.goto(origin + "/review/templates")
+                await expect(mine.get_by_role("region", name="上传规范生成模版")).to_be_visible()
+                shared = mine.locator("article").filter(has_text="通用形式审查示例（副本）")
+                await expect(shared).to_contain_text("共享模版，由管理员维护")
+                await expect(shared.get_by_role("button", name="删除")).to_have_count(0)
+                await mine.goto(origin + "/review/templates/builtin-formal")
+                await mine.get_by_role("button", name="复制编辑", exact=True).click()
+                await expect(mine.get_by_role("heading", name="编辑模版", exact=True)).to_be_visible()
+                await expect(mine.get_by_label("并应用", exact=False)).to_have_count(0)
+                await mine.get_by_label("保存后启用（可用于审查）").check()
+                await mine.get_by_role("button", name="保存并启用", exact=True).click()
+                await expect(mine.get_by_text("已保存并启用 v1。", exact=True)).to_be_visible()
+                await mine.goto(origin + "/review/templates")
+                copy = mine.locator("article").filter(has=mine.get_by_text("我的", exact=True))
+                await expect(copy).to_have_count(1)
+                await expect(copy.get_by_role("link", name="修改")).to_be_visible()
+                await expect(copy.get_by_role("button", name="应用")).to_have_count(0)
+                await copy.get_by_role("button", name="删除").click()
+                await expect(mine.locator("article").filter(has=mine.get_by_text("我的", exact=True))).to_have_count(0)
+                await own.close()
                 assert not errors, errors
                 await browser.close()
                 print(
-                    "PASS: five entries, project grouping/chart/relations, intelligence report, generic template preview/copy/edit/use, section mapping, layered formal/professional reports, source reader and narrow layout"
+                    "PASS: five entries, project grouping/chart/relations, intelligence report, generic template preview/copy/edit/use, a user's own template, section mapping, layered formal/professional reports, source reader and narrow layout"
                 )
         finally:
             server.should_exit = True

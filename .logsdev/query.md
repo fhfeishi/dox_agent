@@ -155,3 +155,9 @@ owner - 领域分析 - 01 研究领域总览   板块设计优化：
 
 其余的按照你的推荐进行优化
 → 去向：待处理；分批实施，见 [任务记录](tasks/task-03-前端优化实施-20261027.md)。
+
+
+## 2026-1028 codex 复审与审查模版
+
+你检查一下codex给出的优化方案，查看仓库的新增文件就好，合适的部分你可以尝试更新；然后 user的资料审查模板 也应该跟admin的资料审查模板是一样的界面，基本功能齐全；
+→ 去向：已实施，未提交（`src/review/*`、`frontend/src/components/{ReviewTemplates,PersonalLibrary,CorpusFiles,LibraryHome,Guide,AdminTodos}.tsx` 与测试）；见 [任务记录](tasks/task-03-前端优化实施-20261027.md)。

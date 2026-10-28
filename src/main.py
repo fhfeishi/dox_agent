@@ -41,7 +41,8 @@ from .custom_templates import (
 from .intelligence import router as intelligence_router
 from .jobs import Jobs
 from .knowledge import Knowledge
-from .personal_libraries import PersonalLibraries
+from .personal_libraries import MINE as PERSONAL_UPLOADS
+from .personal_libraries import PersonalLibraries, find_uploads
 from .personal_libraries import router as personal_libraries_router
 from .project_index import IndexPreparing, ProjectIndex
 from .project_similarity import ProjectSimilarity
@@ -186,6 +187,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     app.include_router(review_router)
 
     def find_corpus(corpus_id: str) -> CorpusInfo | None:
+        if corpus_id.startswith(PERSONAL_UPLOADS):
+            return find_uploads(app, corpus_id)
         for info in scan_corpora(settings):
             if info.id == corpus_id:
                 return info
@@ -226,6 +229,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     # share from here travels in ctx.
     ctx = SimpleNamespace(settings=settings, knowledge=knowledge, graph_factory=graph_factory,
                           find_corpus=find_corpus, knowledge_for=knowledge_for, knowledge_for_request=knowledge_for_request)
+    app.state.corpus_ctx = ctx  # personal-library uploads are indexed with the same per-library Knowledge
     for domain in (api_system, api_assets, api_library, api_web, api_chat, api_structure, api_domains, api_reports):
         domain.install(app, ctx)
 

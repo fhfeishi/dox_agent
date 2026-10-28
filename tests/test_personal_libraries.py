@@ -56,3 +56,61 @@ def test_a_personal_library_keeps_references_and_belongs_to_its_owner(tmp_path):
         assert read["refs"][0]["library_missing"] is True and read["refs"][0]["title"] == "报告二"
         assert client.delete(f"/api/personal-libraries/{library['id']}").status_code == 200
         assert client.get("/api/personal-libraries").json() == []
+
+
+def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
+    """D-20261028-2: a file uploaded to a personal library is parsed under the owner's workspace, can be
+    listed and previewed like any library document, is invisible to everyone else, and goes with it."""
+    app = create_app(Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
+                              user_dir=tmp_path / "usr"))
+    with TestClient(app) as client:
+        login(client, "user")
+        library = client.post("/api/personal-libraries", json={"name": "我的笔记"}).json()
+        url = f"/api/personal-libraries/{library['id']}/files"
+        uploaded = client.post(url, files={"upload": ("调研笔记.md", "# 调研笔记\n\n联邦学习在医疗影像中的应用。".encode(), "text/markdown")})
+        assert uploaded.status_code == 201, uploaded.text
+        body = uploaded.json()
+        mine = "mine-" + library["id"]
+        assert [(r["corpus_id"], r["doc_id"], r["title"], r["library_missing"]) for r in body["library"]["refs"]] == \
+            [(mine, body["doc_id"], "调研笔记.md", False)]
+        source = tmp_path / "usr" / "user" / "workspace" / "libraries" / library["id"] / "source" / "调研笔记.md"
+        assert source.is_file()
+        listed = client.get("/api/personal-libraries").json()
+        assert listed[0]["count"] == 1 and listed[0]["uploads"] == 1
+
+        docs = client.get("/api/documents", params={"corpus": mine})
+        assert docs.status_code == 200 and [d["doc_id"] for d in docs.json()] == [body["doc_id"]]
+        preview = client.get(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine})
+        assert preview.status_code == 200 and "联邦学习" in preview.text
+        # Same name again is refused, not replaced; unsupported kinds are refused before saving.
+        assert client.post(url, files={"upload": ("调研笔记.md", b"x", "text/markdown")}).status_code == 409
+        assert client.post(url, files={"upload": ("a.exe", b"x", "application/octet-stream")}).status_code == 415
+        assert client.post(url, files={"upload": ("../逃逸.md", b"# x", "text/markdown")}).json()["name"] == "逃逸.md"
+
+        # Another account, administrator included, cannot reach the uploads by their id.
+        for other in ("owner", "admin"):
+            login(client, other)
+            assert client.get("/api/documents", params={"corpus": mine}).status_code == 404
+            assert client.get(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine}).status_code == 404
+            assert client.post(url, files={"upload": ("b.md", b"# b", "text/markdown")}).status_code == 404
+            other_library = client.post("/api/personal-libraries", json={"name": "x"}).json()
+            assert client.patch(f"/api/personal-libraries/{other_library['id']}", json={
+                "revision": other_library["revision"], "add": [{"corpus_id": mine, "doc_id": body["doc_id"]}]}).status_code == 422
+
+        # The owner may also add the upload to another personal library of their own.
+        login(client, "user")
+        second = client.post("/api/personal-libraries", json={"name": "汇总", "refs": [{"corpus_id": mine, "doc_id": body["doc_id"], "title": "调研笔记.md"}]})
+        assert second.status_code == 201
+
+        # Removing it from the library it was uploaded to deletes the file and the document.
+        current = client.get(f"/api/personal-libraries/{library['id']}").json()
+        removed = client.patch(f"/api/personal-libraries/{library['id']}", json={
+            "revision": current["revision"], "remove": [{"corpus_id": mine, "doc_id": body["doc_id"]}]})
+        assert removed.status_code == 200 and [r["title"] for r in removed.json()["refs"]] == ["逃逸.md"]
+        assert not source.exists()
+        assert body["doc_id"] not in [d["doc_id"] for d in client.get("/api/documents", params={"corpus": mine}).json()]
+
+        # Deleting the library deletes its upload folder; the other library's reference is then marked gone.
+        assert client.delete(f"/api/personal-libraries/{library['id']}").status_code == 200
+        assert not source.parent.parent.exists()
+        assert client.get(f"/api/personal-libraries/{second.json()['id']}").json()["refs"][0]["library_missing"] is True

@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { changePersonalLibrary, createPersonalLibrary, deletePersonalLibrary, fetchPersonalLibraries, fetchPersonalLibrary,
-  type PersonalLibrarySummary, type PersonalRef } from "../api";
+  uploadPersonalFile, UPLOADS_PREFIX, type PersonalLibrary, type PersonalLibrarySummary, type PersonalRef } from "../api";
 import { fundMetaFromPath } from "../fundMeta";
 import { useLayout } from "../layout";
 import { useApp } from "../store";
 import { fetchDocuments, type DocumentInfo } from "../useDocuments";
+import { SlideOver } from "./SlideOver";
 import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
@@ -62,8 +63,99 @@ export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
   </div>;
 }
 
+const UPLOAD_ACCEPT = ".pdf,.docx,.md,.markdown,.txt";
+const fileName = (doc: DocumentInfo) => (doc.rel_path || doc.origin || "").split(/[\\/]/).pop() || doc.title;
+
 /**
- * One personal library: its references grouped by the system library they come from. A reference opens
+ * 添加资料 (D-20261028-2): pick documents from one system library or another of the account's personal
+ * libraries, or take the whole of it, then tidy up on the page by unticking and removing what is not
+ * wanted. Documents already in the library are shown but cannot be ticked again.
+ */
+function AddDocuments({ library, open, onClose, onAdded }: { library: PersonalLibrary; open: boolean; onClose: () => void;
+  onAdded: (next: PersonalLibrary, added: number) => void }) {
+  const { corpora } = useApp();
+  const personal = useQuery({ ...personalLibrariesQuery(), enabled: open });
+  const systems = corpora.filter((c) => !c.missing);
+  const others = (personal.data ?? []).filter((item) => item.id !== library.id && item.count > 0);
+  const [from, setFrom] = useState("");
+  const source = from || (systems[0] ? `system:${systems[0].id}` : "");
+  const [kind, id] = [source.slice(0, source.indexOf(":")), source.slice(source.indexOf(":") + 1)];
+  const docs = useQuery({ queryKey: ["documents", id], queryFn: ({ signal }) => fetchDocuments(id, { signal }), enabled: open && kind === "system" && Boolean(id) });
+  const refs = useQuery({ queryKey: ["personal-libraries", id], queryFn: ({ signal }) => fetchPersonalLibrary(id, signal), enabled: open && kind === "personal" });
+  const items: { ref: PersonalRef; title: string; sub: string }[] = kind === "system"
+    ? (docs.data ?? []).map((doc) => { const meta = fundMetaFromPath(doc.rel_path || ""); const title = fileName(doc);
+      return { ref: { corpus_id: id, doc_id: doc.doc_id, title }, title: meta?.title || doc.title || title,
+        sub: meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : title }; })
+    : (refs.data?.refs ?? []).filter((ref) => !ref.library_missing).map((ref) => { const meta = fundMetaFromPath(ref.title);
+      return { ref: { corpus_id: ref.corpus_id, doc_id: ref.doc_id, title: ref.title }, title: meta?.title || ref.title || ref.doc_id,
+        sub: meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : ref.corpus_id.startsWith(UPLOADS_PREFIX) ? "上传的文件" : "" }; });
+  const key = (ref: PersonalRef) => ref.corpus_id + "\u0000" + ref.doc_id;
+  const have = new Set(library.refs.map(key));
+  const [q, setQ] = useState("");
+  const shown = items.filter((item) => !q.trim() || (item.title + item.sub).toLowerCase().includes(q.trim().toLowerCase()));
+  const addable = shown.filter((item) => !have.has(key(item.ref)));
+  const [picked, setPicked] = useState<Set<string>>(new Set());
+  const chosen = items.filter((item) => picked.has(key(item.ref)) && !have.has(key(item.ref)));
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  useEffect(() => { setPicked(new Set()); setQ(""); }, [source]);
+  useEffect(() => { if (!open) { setPicked(new Set()); setError(""); } }, [open]);
+  const loading = kind === "system" ? docs.isLoading : refs.isLoading;
+  const failed = kind === "system" ? docs.isError : refs.isError;
+  async function add(list: typeof items) {
+    if (!list.length) return;
+    setBusy(true); setError("");
+    try {
+      const next = await changePersonalLibrary(library.id, { revision: library.revision, add: list.map((item) => item.ref) });
+      onAdded(next, list.length);
+    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+  }
+  const sourceName = kind === "system" ? short(systems.find((c) => c.id === id)?.name ?? "") : others.find((item) => item.id === id)?.name ?? "";
+  const allIn = items.length > 0 && items.every((item) => have.has(key(item.ref)));
+  return <SlideOver open={open} onClose={onClose} sizeKey="personal-add" eyebrow={`添加到「${library.name}」`} title="从资料库选择"
+    meta="勾选需要的资料，或把整个资料库加进来后，在页面上移出不需要的。系统资料库的资料只保存引用。"
+    footer={<div className="flex w-full flex-wrap items-center gap-2">
+      {error ? <p role="alert" className="w-full text-caption text-[var(--red)]">{error}</p> : null}
+      <Button variant="primary" disabled={busy || !chosen.length} onClick={() => void add(chosen)}>{chosen.length ? `加入所选 ${chosen.length} 份` : "加入所选"}</Button>
+      <Button variant="outline" disabled={busy || loading || allIn || !items.length} onClick={() => void add(items.filter((item) => !have.has(key(item.ref))))}
+        title={allIn ? "这个资料库的资料都已加入" : ""}>{allIn ? "已全部加入" : `加入「${sourceName}」全部 ${items.filter((item) => !have.has(key(item.ref))).length} 份`}</Button>
+    </div>}>
+    <div className="space-y-3">
+      <label className="block text-caption text-[var(--steel)]">来源
+        <select aria-label="来源资料库" value={source} onChange={(e) => setFrom(e.target.value)}
+          className="mt-1 block w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body text-[var(--ink)]">
+          <optgroup label="系统资料库">{systems.map((c) => <option key={c.id} value={`system:${c.id}`}>{short(c.name)}</option>)}</optgroup>
+          {others.length ? <optgroup label="我的其他个人资料库">{others.map((item) => <option key={item.id} value={`personal:${item.id}`}>{item.name}（{item.count} 份）</option>)}</optgroup> : null}
+        </select>
+      </label>
+      <div className="flex items-center gap-2">
+        <input type="search" aria-label="筛选资料" placeholder="按标题、批准号或负责人筛选" value={q} onChange={(e) => setQ(e.target.value)}
+          className="min-w-0 flex-1 rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body" />
+        <label className="flex shrink-0 items-center gap-1.5 text-caption text-[var(--steel)]">
+          <input type="checkbox" aria-label="全选筛选结果" disabled={!addable.length}
+            checked={addable.length > 0 && addable.every((item) => picked.has(key(item.ref)))}
+            onChange={(e) => setPicked((old) => { const next = new Set(old); addable.forEach((item) => e.target.checked ? next.add(key(item.ref)) : next.delete(key(item.ref))); return next; })} />
+          全选{q.trim() ? "筛选结果" : ""}</label>
+      </div>
+      <p role="status" className="text-caption text-[var(--steel)]">{loading ? "正在读取资料…" : failed ? "" : `${shown.length} 份${q.trim() ? "符合筛选" : ""} · 已勾选 ${chosen.length} 份`}</p>
+      {failed ? <p role="alert" className="text-body text-[var(--danger-fg)]">资料清单读取失败，请稍后重试。</p> : null}
+      <ul className="space-y-0.5">{shown.map((item) => { const k = key(item.ref), already = have.has(k);
+        return <li key={k}><label className={`flex items-center gap-3 rounded-lg px-2 py-1.5 ${already ? "opacity-60" : "cursor-pointer hover:bg-[var(--surface)]"}`}>
+          <input type="checkbox" disabled={already} checked={already || picked.has(k)} aria-label={`选择 ${item.title}`}
+            onChange={(e) => setPicked((old) => { const next = new Set(old); if (e.target.checked) next.add(k); else next.delete(k); return next; })} />
+          <span className="min-w-0 flex-1"><span className="block truncate text-body text-[var(--ink)]">{item.title}</span>
+            <span className="block truncate text-caption text-[var(--stone)]">{already ? "已在这个个人资料库中" : item.sub}</span></span>
+        </label></li>; })}</ul>
+      {!loading && !failed && !items.length ? <p className="text-body text-[var(--steel)]">这个资料库还没有资料。</p> : null}
+    </div>
+  </SlideOver>;
+}
+
+type Upload = { name: string; state: "uploading" | "done" | "failed"; error?: string };
+
+/**
+ * One personal library: its documents grouped by where they come from — a system library, or the files
+ * uploaded to this (or another of the account's) personal library. A reference opens
  * the document's preview. Each source is checked on its own (前端复审 P1-2, P1-3): while its document list
  * is read the page says so; a read that failed offers a retry and is never shown as a removed document;
  * only a list read in full, or a deleted system library, marks a reference as gone. 就此提问 uses the ticked
@@ -75,12 +167,15 @@ export function PersonalLibraryPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { corpora, corporaLoaded, startResearch, sessionBusy } = useApp();
-  const { openPreview } = useLayout();
+  const { openPreview, showToast } = useLayout();
+  const personal = useQuery(personalLibrariesQuery());
   const library = useQuery({ queryKey: ["personal-libraries", libraryId], queryFn: ({ signal }) => fetchPersonalLibrary(libraryId, signal) });
   const data = library.data;
-  const corpusIds = data?.corpus_ids ?? [];
+  // The account's own uploads come first, then each library the references come from.
+  const corpusIds = [...(data?.corpus_ids ?? [])].sort((x, y) => Number(y === `${UPLOADS_PREFIX}${libraryId}`) - Number(x === `${UPLOADS_PREFIX}${libraryId}`));
   const gone = (id: string) => Boolean(data?.refs.some((ref) => ref.corpus_id === id && ref.library_missing))
-    || Boolean(corpora.find((c) => c.id === id)?.missing) || (corporaLoaded && !corpora.some((c) => c.id === id));
+    || (!id.startsWith(UPLOADS_PREFIX) && (Boolean(corpora.find((c) => c.id === id)?.missing) || (corporaLoaded && !corpora.some((c) => c.id === id))));
+  const ownUploads = UPLOADS_PREFIX + libraryId;
   const documents = useQueries({ queries: corpusIds.map((id) => ({ queryKey: ["documents", id], queryFn: ({ signal }: { signal: AbortSignal }) => fetchDocuments(id, { signal }),
     enabled: !gone(id) })) });
   type Source = "checking" | "failed" | "gone" | "read";
@@ -96,12 +191,33 @@ export function PersonalLibraryPage() {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const [adding, setAdding] = useState(false);
+  const [uploads, setUploads] = useState<Upload[]>([]);
+  const [dragging, setDragging] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
+  function settle(next: PersonalLibrary) {
+    queryClient.setQueryData(["personal-libraries", libraryId], next);
+    void queryClient.invalidateQueries({ queryKey: ["personal-libraries"], exact: true });
+    void queryClient.invalidateQueries({ queryKey: ["documents", ownUploads] });
+  }
+  // One file at a time: each is parsed before the next starts, and the server takes one import at a time anyway.
+  async function upload(files: File[]) {
+    if (!files.length) return;
+    setUploads((old) => [...old.filter((item) => item.state === "uploading"), ...files.map((file) => ({ name: file.name, state: "uploading" as const }))]);
+    for (const file of files) {
+      try {
+        const result = await uploadPersonalFile(libraryId, file);
+        settle(result.library);
+        setUploads((old) => old.map((item) => item.name === file.name && item.state === "uploading" ? { ...item, state: "done" } : item));
+      } catch (e) {
+        setUploads((old) => old.map((item) => item.name === file.name && item.state === "uploading" ? { ...item, state: "failed", error: (e as Error).message } : item));
+      }
+    }
+  }
   async function save(change: Parameters<typeof changePersonalLibrary>[1]) {
     setError("");
     try {
-      const next = await changePersonalLibrary(libraryId, change);
-      queryClient.setQueryData(["personal-libraries", libraryId], next);
-      await queryClient.invalidateQueries({ queryKey: ["personal-libraries"], exact: true });
+      settle(await changePersonalLibrary(libraryId, change));
       return true;
     } catch (e) { setError((e as Error).message); return false; }
   }
@@ -116,7 +232,7 @@ export function PersonalLibraryPage() {
   const missing = data.refs.filter(lostRef).length;
   const chosenSources = new Set(chosen.map((ref) => ref.corpus_id));
   const askProblem = checking ? "正在核对资料，稍候即可提问" : !chosen.length ? "请勾选至少一份可用资料"
-    : chosenSources.size > 6 ? `已勾选的资料来自 ${chosenSources.size} 个系统资料库，一次提问最多 6 个，请取消部分来源的勾选` : "";
+    : chosenSources.size > 6 ? `已勾选的资料来自 ${chosenSources.size} 个资料库，一次提问最多 6 个，请取消部分来源的勾选` : "";
   async function ask() {
     setError("");
     try {
@@ -124,8 +240,38 @@ export function PersonalLibraryPage() {
       navigate("/chat");
     } catch (e) { setError((e as Error).message); }
   }
+  const dropped = data.refs.filter((ref) => docOf(ref) && unticked.has(key(ref)));
+  const isUpload = (ref: PersonalRef) => ref.corpus_id === ownUploads;
+  function remove(refs: PersonalRef[]) {
+    const files = refs.filter(isUpload).length;
+    if (files && !window.confirm(refs.length === 1 ? `移出「${refs[0].title}」？这是上传的文件，移出后文件一并删除。`
+      : `移出 ${refs.length} 份资料？其中 ${files} 份是上传的文件，会一并删除；其余只移出引用。`)) return;
+    void save({ revision: data!.revision, remove: refs }).then((ok) => {
+      if (!ok) return;
+      setUnticked((old) => { const next = new Set(old); refs.forEach((ref) => next.delete(key(ref))); return next; });
+      showToast(`已移出 ${refs.length} 份资料`);
+    });
+  }
+  const sourceTitle = (corpusId: string) => {
+    if (corpusId === ownUploads) return "我上传的文件";
+    if (corpusId.startsWith(UPLOADS_PREFIX)) {
+      const other = personal.data?.find((item) => UPLOADS_PREFIX + item.id === corpusId);
+      return other ? `上传到「${other.name}」的文件` : "已删除的个人资料库中的上传";
+    }
+    const corpus = corpora.find((c) => c.id === corpusId);
+    return corpus ? short(corpus.name) : "已删除的系统资料库";
+  };
   const tick = (ref: PersonalRef, on: boolean) => setUnticked((old) => { const next = new Set(old); if (on) next.delete(key(ref)); else next.add(key(ref)); return next; });
-  return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8">
+  return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8"
+    onDragOver={(e) => { if (e.dataTransfer.types.includes("Files")) { e.preventDefault(); setDragging(true); } }}
+    onDragLeave={(e) => { if (e.currentTarget === e.target) setDragging(false); }}
+    onDrop={(e) => { if (!e.dataTransfer.files.length) return; e.preventDefault(); setDragging(false); void upload([...e.dataTransfer.files]); }}>
+    {dragging ? <div aria-hidden="true" className="pointer-events-none fixed inset-4 z-50 grid place-items-center rounded-2xl border-2 border-dashed border-[var(--primary)] bg-[color-mix(in_srgb,var(--canvas)_85%,transparent)] text-emphasis font-semibold text-[var(--primary)]">
+      松开即上传到「{data.name}」</div> : null}
+    <AddDocuments library={data} open={adding} onClose={() => setAdding(false)}
+      onAdded={(next, added) => { settle(next); setAdding(false); showToast(`已加入 ${added} 份资料`); }} />
+    <input ref={fileInput} type="file" multiple accept={UPLOAD_ACCEPT} hidden aria-label="选择要上传的文件"
+      onChange={(e) => { const files = [...(e.target.files ?? [])]; e.target.value = ""; void upload(files); }} />
     <div className="mx-auto max-w-[var(--page-max)] space-y-5">
       <header className="space-y-2">
         <Link to="/library" className="text-body text-[var(--link)] hover:underline">← 全部资料库</Link>
@@ -135,13 +281,16 @@ export function PersonalLibraryPage() {
             <Button type="submit" size="sm" variant="primary">保存</Button><Button size="sm" variant="ghost" onClick={() => setEditing(false)}>取消</Button>
           </form> : <h1 className="text-page font-semibold">{data.name}</h1>}
           <span className="rounded-md bg-[var(--surface-cool)] px-2 py-0.5 text-caption text-[var(--muted-cool)]">个人资料库</span>
-          <span className="text-body text-[var(--steel)]">{data.refs.length} 份资料 · 来自 {corpusIds.length} 个系统资料库</span>
+          <span className="text-body text-[var(--steel)]">{data.refs.length} 份资料{corpusIds.some((id) => !id.startsWith(UPLOADS_PREFIX))
+            ? ` · 引用 ${corpusIds.filter((id) => !id.startsWith(UPLOADS_PREFIX)).length} 个系统资料库` : ""}{data.refs.some(isUpload) ? ` · 上传 ${data.refs.filter(isUpload).length} 份` : ""}</span>
           <span className="flex-1" />
+          <Button variant="outline" icon="plus" iconSize={13} onClick={() => setAdding(true)}>添加资料</Button>
+          <Button variant="outline" onClick={() => fileInput.current?.click()}>上传文件</Button>
           <Button variant="primary" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>
             {failed.length || chosen.length < usable.length ? `用已勾选的 ${chosen.length} 份提问` : "就此提问"}</Button>
           {!editing ? <Button variant="outline" onClick={() => { setName(data.name); setEditing(true); }}>重命名</Button> : null}
           <Button variant="outline" onClick={() => {
-            if (window.confirm(`删除个人资料库「${data.name}」？只删除这份清单，系统资料库中的原文不受影响。`))
+            if (window.confirm(`删除个人资料库「${data.name}」？${data.refs.some(isUpload) ? "上传到这里的文件会一并删除；" : ""}系统资料库中的原文不受影响。`))
               void deletePersonalLibrary(libraryId).then(() => queryClient.invalidateQueries({ queryKey: ["personal-libraries"] })).then(() => navigate("/library"), (e) => setError((e as Error).message));
           }}>删除</Button>
         </div>
@@ -149,16 +298,24 @@ export function PersonalLibraryPage() {
           {checking ? "正在核对资料…" : `可用 ${usable.length} 份 · 已勾选 ${chosen.length} 份`}
           {failed.length ? `；${failed.length} 份所在资料库读取失败，未包含在提问中` : ""}
           {missing > 0 ? `；${missing} 份原资料已不在系统资料库中` : ""}
-          {askProblem && !checking ? `。${askProblem}` : ""}</p> : null}
+          {askProblem && !checking ? `。${askProblem}` : ""}
+          {dropped.length ? <button type="button" onClick={() => remove(dropped)} className="ml-2 text-[var(--link)] hover:underline">移出未勾选的 {dropped.length} 份</button> : null}</p> : null}
+        {uploads.length ? <ul aria-label="上传进度" className="space-y-1 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2">
+          {uploads.map((item, i) => <li key={item.name + i} className="flex items-center gap-2 px-1 text-body">
+            <span className="min-w-0 flex-1 truncate">{item.name}</span>
+            <span role={item.state === "failed" ? "alert" : "status"} className={`shrink-0 text-caption ${item.state === "failed" ? "text-[var(--danger-fg)]" : item.state === "done" ? "text-[var(--ok-fg)]" : "text-[var(--steel)]"}`}>
+              {item.state === "uploading" ? "正在上传并解析…" : item.state === "done" ? "已加入" : item.error}</span>
+          </li>)}
+          {uploads.every((item) => item.state !== "uploading") ? <li><button type="button" onClick={() => setUploads([])} className="px-1 text-caption text-[var(--link)] hover:underline">收起</button></li> : null}
+        </ul> : null}
         {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
       </header>
       {!data.refs.length ? <p className="rounded-xl border border-dashed border-[var(--line-cool-strong)] px-4 py-6 text-body text-[var(--steel)]">
-        还没有资料。打开一个<Link to="/library" className="text-[var(--link)] hover:underline">系统资料库</Link>，勾选项目后点“加入个人资料库”。</p> : null}
+        还没有资料。点“添加资料”从系统资料库或其他个人资料库挑选，点“上传文件”或把文件拖到这里加入自己的文件（PDF、Word、Markdown、TXT）。</p> : null}
       {corpusIds.map((corpusId) => {
-        const corpus = corpora.find((c) => c.id === corpusId);
         const state = source.get(corpusId)!;
         const refs = data.refs.filter((ref) => ref.corpus_id === corpusId);
-        const title = corpus ? short(corpus.name) : "已删除的系统资料库";
+        const title = sourceTitle(corpusId);
         return <section key={corpusId} aria-label={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
           <div className="mb-2 flex items-center gap-2 px-1">
             <h2 className="text-body font-semibold text-[var(--steel)]">{title} · {refs.length}</h2>
@@ -174,11 +331,11 @@ export function PersonalLibraryPage() {
                 checked={Boolean(doc) && !unticked.has(key(ref))} onChange={(e) => tick(ref, e.target.checked)} />
               <button type="button" disabled={!doc} onClick={() => doc && openPreview(doc, null, corpusId)} className="min-w-0 flex-1 text-left disabled:cursor-default">
                 <span className="block truncate text-body font-medium text-[var(--ink)]">{meta?.title || doc?.title || ref.title || ref.doc_id}</span>
-                <span className="block truncate text-caption text-[var(--stone)]">{lost ? (state.state === "gone" ? "所在系统资料库已删除" : "原资料已不在系统资料库中")
+                <span className="block truncate text-caption text-[var(--stone)]">{lost ? (state.state === "gone" ? (corpusId.startsWith(UPLOADS_PREFIX) ? "所在个人资料库已删除" : "所在系统资料库已删除") : "原资料已不在所在资料库中")
                   : `${state.state === "failed" ? "暂时无法读取 · " : ""}${meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title ?? (state.state === "failed" ? "" : "正在核对…")}`}</span>
               </button>
               {doc ? <button type="button" onClick={() => openPreview(doc, null, corpusId)} className="shrink-0 text-caption text-[var(--link)] hover:underline">预览 ›</button> : null}
-              <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => void save({ revision: data.revision, remove: [ref] })}
+              <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => remove([ref])}
                 className="shrink-0 text-caption text-[var(--steel)] hover:text-[var(--red)]">移出</button>
             </li>;
           })}</ul>

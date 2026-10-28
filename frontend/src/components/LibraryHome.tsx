@@ -74,7 +74,7 @@ export function LibraryHome() {
       {corporaError || error ? <p role="alert" className="text-body text-[var(--red)]">{corporaError || error}</p> : null}
       <section aria-label="我的资料库" className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-emphasis font-semibold">我的资料库{personal.data ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{personal.data.length} 个 · 仅自己可见，只引用系统资料库中的资料</span> : null}</h2>
+          <h2 className="text-emphasis font-semibold">我的资料库{personal.data ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{personal.data.length} 个 · 仅自己可见</span> : null}</h2>
           <span className="flex-1" />
           {personalName !== null ? <form className="flex gap-1.5" onSubmit={(e) => {
             e.preventDefault();
@@ -93,11 +93,11 @@ export function LibraryHome() {
             className="group rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 text-left transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-sm">
             <b className="block truncate text-emphasis">{library.name}</b>
             {library.description ? <span className="mt-1 line-clamp-2 block text-body text-[var(--steel)]">{library.description}</span> : null}
-            <span className="mt-2 block text-body text-[var(--slate)]">{library.count} 份资料 · 来自 {library.corpus_ids.length} 个系统资料库</span>
+            <span className="mt-2 block text-body text-[var(--slate)]">{library.count} 份资料{library.uploads ? ` · 上传 ${library.uploads} 份` : ""}</span>
             <span aria-hidden="true" className="mt-2 block text-caption text-[var(--link)] transition-transform group-hover:translate-x-0.5">打开 ›</span>
           </button>)}</div>
           : personal.data?.length && query ? <p className="text-body text-[var(--steel)]">没有名称或说明匹配“{query}”的个人资料库。</p>
-          : personal.data ? <p className="text-body text-[var(--steel)]">把一项工作用到的资料集中在一处：新建后，在系统资料库里勾选项目，点“加入个人资料库”。</p> : null}
+          : personal.data ? <p className="text-body text-[var(--steel)]">把一项工作用到的资料集中在一处：新建后，从系统资料库挑选，或上传自己的文件。</p> : null}
       </section>
       <div className="flex flex-wrap items-center gap-2 border-t border-[var(--hairline)] pt-5">
         <h2 className="text-emphasis font-semibold">系统资料库{corporaLoaded ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{corpora.length} 个{admin ? "" : " · 由管理员维护"}</span> : null}</h2>

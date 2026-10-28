@@ -35,12 +35,14 @@ def local_path_in_roots(origin: str, settings) -> tuple[Path, str] | None:
         path = Path(origin).resolve()
     except OSError:
         return None
-    # H1/§10: raw corpora live under CORPORA_ROOT (default .knowledge); single allowed root.
+    # H1/§10: raw corpora live under CORPORA_ROOT (default .knowledge); personal-library uploads under
+    # the accounts' workspaces (D-20261028-2), reached only through their owner's library.
     root = Path(settings.corpora_root).resolve()
-    try:
-        return path, path.relative_to(root).as_posix()
-    except ValueError:
-        pass
+    for allowed in (root, Path(settings.user_dir).resolve()):
+        try:
+            return path, path.relative_to(allowed).as_posix()
+        except ValueError:
+            pass
     # A database copied from another machine or clone keeps that machine's absolute origin
     # (e.g. /home/<user>/…/.knowledge/<corpus>/source/x.pdf). Map the part after the root's own
     # directory name onto this root; anything climbing out of it is still refused.

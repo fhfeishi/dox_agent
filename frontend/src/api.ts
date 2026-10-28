@@ -108,13 +108,15 @@ async function jsonOrThrow(response: Response, fallback: string) {
 }
 
 /**
- * Personal libraries (D-20261027-1): an account's own named references to system-library documents.
- * `library_missing` marks a reference whose system library is gone.
+ * Personal libraries (D-20261027-1, D-20261028-2): an account's own named set of documents — references to
+ * system-library documents, and files the owner uploaded (library id `mine-<personal library id>`).
+ * `library_missing` marks a reference whose library is gone.
  */
+export const UPLOADS_PREFIX = "mine-";
 export type PersonalRef = { corpus_id: string; doc_id: string; title: string; library_missing?: boolean };
 export type PersonalLibrary = { id: string; name: string; description: string; revision: number; created_at: string; updated_at: string;
   corpus_ids: string[]; refs: PersonalRef[] };
-export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs"> & { count: number };
+export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs"> & { count: number; uploads: number };
 
 export async function fetchPersonalLibraries(signal?: AbortSignal): Promise<PersonalLibrarySummary[]> {
   return jsonOrThrow(await fetch("/api/personal-libraries", { signal }), "个人资料库读取失败");
@@ -136,6 +138,13 @@ export async function changePersonalLibrary(id: string, change: { revision: numb
   const response = await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { method: "PATCH", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...change, add: strip(change.add), remove: strip(change.remove) }) });
   return jsonOrThrow(response, "保存个人资料库失败");
+}
+
+/** Upload one file into a personal library; it is parsed, indexed and added to the library. */
+export async function uploadPersonalFile(id: string, file: File): Promise<{ library: PersonalLibrary; doc_id: string; name: string }> {
+  const body = new FormData();
+  body.append("upload", file);
+  return jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}/files`, { method: "POST", body }), "上传失败");
 }
 
 export async function deletePersonalLibrary(id: string): Promise<void> {

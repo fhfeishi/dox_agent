@@ -4,7 +4,6 @@ real `kill -9`; the report writer is a stand-in whose duration the test sets thr
 import asyncio
 import os
 import re
-import signal
 import socket
 import subprocess
 import sys
@@ -156,7 +155,7 @@ async def main():
                 (root / "delay").write_text("120")
                 await request_report(page, origin, corpus_id, "中断后重试的报告")
                 await page.wait_for_timeout(1500)
-                os.kill(child.pid, signal.SIGKILL)
+                child.kill()
                 child.wait(timeout=10)
                 (root / "delay").write_text("2")
                 child, origin = start(root)
@@ -187,7 +186,7 @@ async def main():
                 assert (await page.request.post(f"{origin}/api/corpora/{quote(corpus_id)}/ingest")).ok
                 await page.request.post(origin + "/api/auth/login", data={"username": "user", "password": "123456"})
                 await page.wait_for_timeout(1000)
-                os.kill(child.pid, signal.SIGKILL)
+                child.kill()
                 child.wait(timeout=10)
                 (root / "import_delay").write_text("0")
                 child, origin = start(root)

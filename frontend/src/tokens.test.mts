@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -5,7 +6,7 @@ import { join, relative } from 'node:path';
 
 // Upgrade plan U1 (design/界面.md §4): text sizes and UI colours come from styles/globals.css.
 // Hard-coded values are how body text drifted to 11–13px and one grey-blue became twenty.
-const root = new URL('.', import.meta.url).pathname;
+const root = fileURLToPath(new URL('.', import.meta.url));
 function sources(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
     const path = join(dir, name);
@@ -13,7 +14,7 @@ function sources(dir: string): string[] {
     return /\.tsx?$/.test(name) && !name.includes('.test.') ? [path] : [];
   });
 }
-const files = sources(root).map((path) => ({ path: relative(root, path), text: readFileSync(path, 'utf8') }));
+const files = sources(root).map((path) => ({ path: relative(root, path).replaceAll("\\", "/"), text: readFileSync(path, 'utf8') }));
 
 // Colours that encode data, not chrome: each chart keeps its palette next to its legend.
 const DATA_COLOURS = new Set([

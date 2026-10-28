@@ -12,7 +12,7 @@ import re
 import shutil
 import tempfile
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from uuid import uuid4
 
 from fastapi import APIRouter, File, HTTPException, Request, UploadFile
@@ -245,7 +245,7 @@ def delete_library(library_id: str, request: Request):
 
 
 def safe_upload_name(name: str) -> str:
-    name = Path(name.replace("\\", "/")).name.strip()
+    name = PurePosixPath(name.replace("\\", "/")).name.strip()
     if not name or name.startswith(".") or re.search(r'[<>:"|?*\x00-\x1f]', name):
         raise HTTPException(422, "文件名非法")
     if Path(name).suffix.lower() not in SOURCE_SUFFIXES:

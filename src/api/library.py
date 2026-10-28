@@ -451,11 +451,12 @@ def install(app, ctx):
         return target
 
     def safe_file_name(name: str) -> str:
-        name = Path(name or "").name.strip()
+        name = (name or "").strip()
+        if unsafe_name(name):
+            raise HTTPException(422, '文件名含不允许的字符：" ` $ < > | * ? : \\ 或控制字符')
+        name = Path(name).name
         if not name or name.startswith(".") or name in {".", ".."}:
             raise HTTPException(422, "文件名非法")
-        if unsafe_name(name):  # F1
-            raise HTTPException(422, '文件名含不允许的字符：" ` $ < > | * ? : \\ 或控制字符')
         if Path(name).suffix.lower() not in SOURCE_SUFFIXES:
             raise HTTPException(415, "仅支持 md/markdown/txt/pdf/docx")
         return name

@@ -85,6 +85,11 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
         # Same name again is refused, not replaced; unsupported kinds are refused before saving.
         assert client.post(url, files={"upload": ("调研笔记.md", b"x", "text/markdown")}).status_code == 409
         assert client.post(url, files={"upload": ("a.exe", b"x", "application/octet-stream")}).status_code == 415
+        # Basename extraction must not consume a Windows drive-like prefix and silently rename it.
+        for invalid in ("a:b.md", "folder/a:b.md"):
+            response = client.post(url, files={"upload": (invalid, b"# rejected", "text/markdown")})
+            assert response.status_code == 422, (invalid, response.text)
+        assert sorted(p.name for p in source.parent.iterdir()) == ["调研笔记.md"]
         assert client.post(url, files={"upload": ("../逃逸.md", b"# x", "text/markdown")}).json()["name"] == "逃逸.md"
 
         # Another account, administrator included, cannot reach the uploads by their id.

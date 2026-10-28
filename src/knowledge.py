@@ -11,6 +11,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
+from .core.db import connect
+
 
 class Page(BaseModel):
     number: int = Field(ge=1)
@@ -96,8 +98,8 @@ class Knowledge:
 
     def connect(self):
         if uri := getattr(self, "_memory_uri", None):
-            return sqlite3.connect(uri, uri=True, timeout=30)
-        return sqlite3.connect(self.path, timeout=30)
+            return connect(uri, uri=True, timeout=30)
+        return connect(self.path, timeout=30)
 
     def freeze(self) -> "Knowledge":
         """Copy one committed SQLite view for a chat run, then verify its source scope."""

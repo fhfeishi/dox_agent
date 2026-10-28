@@ -218,7 +218,7 @@ async def main():
             await expect(page.get_by_role("heading", name="引用正文", exact=True)).to_be_visible()
             await page.get_by_role("button", name="关闭预览面板", exact=True).click()
             await article.get_by_role("button", name="复制答案", exact=True).click()
-            assert await page.evaluate("navigator.clipboard.readText()") == "**答案版本1**\n\n```python\nprint(1)\n```"
+            assert (await page.evaluate("navigator.clipboard.readText()")).replace("\r\n", "\n") == "**答案版本1**\n\n```python\nprint(1)\n```"
             await article.get_by_role("button", name="重新生成").click()
             await expect(article.get_by_role("button", name="重新生成")).to_be_enabled()
             requests = await page.evaluate("window.requests")

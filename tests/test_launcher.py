@@ -114,7 +114,8 @@ def test_serve_stops_without_waiting_for_background_jobs(tmp_path):
         port = probe.getsockname()[1]
     launcher_dir = Path(__file__).resolve().parents[1] / "src"
     code = f"import sys; sys.path.insert(0, {str(launcher_dir)!r}); import launcher; launcher.serve('127.0.0.1', {port}, 'jobapp:app')"
-    process = subprocess.Popen([sys.executable, "-c", code], cwd=tmp_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    process = subprocess.Popen([sys.executable, "-c", code], cwd=tmp_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                               creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0)
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     try:
         for _ in range(100):
@@ -126,7 +127,7 @@ def test_serve_stops_without_waiting_for_background_jobs(tmp_path):
         else:
             raise AssertionError("service did not start")
         started = time.monotonic()
-        process.send_signal(signal.SIGINT)
+        process.send_signal(signal.CTRL_BREAK_EVENT if sys.platform == "win32" else signal.SIGINT)
         assert process.wait(timeout=10) == 0
         assert time.monotonic() - started < 5
     finally:

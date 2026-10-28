@@ -1,3 +1,4 @@
+
 """E MVP: report storage, generation and export (R1, markdown only)."""
 
 import asyncio
@@ -12,6 +13,7 @@ from PIL import Image, ImageDraw
 
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
+from src.core.db import connect as closing_connect
 from src.knowledge import Document, Knowledge, Page
 from src.parsers import import_defaults, sha256_file
 from src.reports import (
@@ -390,7 +392,7 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
             {"type": "chart", "index": 1, "bbox": [0, .5, 1, 1],
              "content": [{"type": "chart_body", "image_path": "images/bottom.jpg"},
                          {"type": "chart_caption", "content": [{"type": "text", "content": "图3 云边协同架构上下图"}]}]}]}]}
-    (parsed / "middle_json.json").write_text(json.dumps(middle, ensure_ascii=False))
+    (parsed / "middle_json.json").write_text(json.dumps(middle, ensure_ascii=False), encoding="utf-8")
     doc = store.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
                              pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                                     Page(number=3, text="边缘计算拓扑"), Page(number=4, text="组合图")],
@@ -451,12 +453,11 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
 
 
 def test_report_store_migrates_legacy_schema(tmp_path):
-    import sqlite3
 
     from src.artifact_migration import migrate
     from src.artifacts import ArtifactStore
     state=tmp_path/"state"; state.mkdir()
-    with sqlite3.connect(state/"reports.sqlite3") as db:
+    with closing_connect(state/"reports.sqlite3") as db:
         db.execute("CREATE TABLE reports (id TEXT PRIMARY KEY, created_at TEXT,params TEXT,markdown TEXT)")
         db.execute("INSERT INTO reports VALUES ('r1','2026-01-01','{}','# 原始报告')")
     migrate(state,tmp_path/"backup")

@@ -4,6 +4,7 @@ import hashlib
 import io
 import json
 import re
+from contextlib import closing
 from pathlib import Path
 
 import pypdfium2
@@ -43,10 +44,11 @@ def _verified_image(pdf_path: Path, page_idx: int, bbox: list, image_path: Path)
             if original.width < 320 or original.height < 200 or len(data) > 8_000_000:
                 return None
             image = ImageOps.grayscale(ImageOps.fit(original, (128, 128)))
-        pdf = pypdfium2.PdfDocument(pdf_path)
-        if page_idx >= len(pdf):
-            return None
-        rendered = pdf[page_idx].render(scale=2).to_pil().convert("RGB")
+        with closing(pypdfium2.PdfDocument(pdf_path)) as pdf:
+            if page_idx >= len(pdf):
+                return None
+            with closing(pdf[page_idx]) as page, closing(page.render(scale=2)) as bitmap:
+                rendered = bitmap.to_pil().convert("RGB")
         crop = rendered.crop((round(bbox[0] * rendered.width), round(bbox[1] * rendered.height),
                               round(bbox[2] * rendered.width), round(bbox[3] * rendered.height)))
         reference = ImageOps.grayscale(ImageOps.fit(crop, (128, 128)))

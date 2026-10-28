@@ -19,6 +19,8 @@ import tempfile
 from dataclasses import dataclass, replace
 from pathlib import Path
 
+from ..core.db import connect
+
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
 # Project-metadata archives reuse the same naming convention as Markdown, so both kinds
 # mark a corpus as ``fund`` and feed the filename-derived metadata.
@@ -60,7 +62,7 @@ def rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str
     if not db_path.is_file():
         return
     old_prefix, new_prefix = str(old_root.resolve()), str(new_root.resolve())
-    with sqlite3.connect(db_path) as db:
+    with connect(db_path) as db:
         rows = db.execute("SELECT id, payload FROM docs").fetchall()
         changed = 0
         for doc_id, payload in rows:
@@ -180,12 +182,12 @@ def _docs_count(sqlite_path: Path) -> int:
     connection with a timeout — the file already exists here, so nothing is created.
     """
     try:
-        with sqlite3.connect(f"file:{sqlite_path.as_posix()}?mode=ro", uri=True, timeout=30) as db:
+        with connect(f"file:{sqlite_path.as_posix()}?mode=ro", uri=True, timeout=30) as db:
             return int(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0])
     except (OSError, sqlite3.Error):
         pass
     try:
-        with sqlite3.connect(sqlite_path, timeout=30) as db:
+        with connect(sqlite_path, timeout=30) as db:
             return int(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0])
     except (OSError, sqlite3.Error):
         return 0

@@ -12,6 +12,7 @@ import math
 import sqlite3
 from pathlib import Path
 
+from .core.db import connect
 from .retrieval import _query_terms
 
 _profiles: dict[str, tuple[tuple, set[str], set[str]]] = {}
@@ -58,7 +59,7 @@ def _titles(db: Path | None) -> list[str]:
     if not db or not db.exists():
         return []
     try:
-        with sqlite3.connect(f"file:{db}?mode=ro", uri=True, timeout=5) as con:
+        with connect(f"file:{db}?mode=ro", uri=True, timeout=5) as con:
             return [row[0] or "" for row in con.execute("SELECT json_extract(payload, '$.title') FROM docs")]
     except sqlite3.Error:
         return []

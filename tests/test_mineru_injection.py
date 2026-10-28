@@ -44,6 +44,13 @@ def test_pdf_name_is_one_literal_argument_without_side_effects(tmp_path, monkeyp
     source = tmp_path / "source"
     source.mkdir()
     pdf = source / name
+    if sys.platform == "win32" and any(c in name for c in '"|\n'):
+        import subprocess
+        parsed = tmp_path / "parsed"
+        subprocess.run(mineru_args(recording_mineru(tmp_path), pdf, parsed), check=True)
+        assert json.loads((parsed / "argv.json").read_text(encoding="utf-8")) == [str(pdf), "-o", str(parsed)]
+        assert not list(tmp_path.rglob("pwned"))
+        return
     pdf.write_bytes(b"%PDF-1.4 stub")
     parsed = tmp_path / "parsed"
     doc = parse_file(pdf, Settings(_env_file=None, mineru_cmd=recording_mineru(tmp_path)), parsed_dir=parsed)
@@ -59,9 +66,9 @@ def test_default_template_keeps_quoted_paths_whole():
     assert args == [
         "mineru-kit",
         "parse",
-        "/d/a b$(x).pdf",
+        str(Path("/d/a b$(x).pdf")),
         "-o",
-        "/o/a b/result.zip",
+        str(Path("/o/a b")) + "/result.zip",
         "--tier",
         "standard",
         "--ocr-mode",

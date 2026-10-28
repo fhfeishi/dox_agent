@@ -1,5 +1,7 @@
 """K0 (app-level session DB) and K0b (corpus-scoped read/file); §10 layout."""
 
+from pathlib import Path
+
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
@@ -301,7 +303,7 @@ def test_rename_rolls_back_directory_and_origins_when_registry_write_fails(tmp_p
         assert (tmp_path / "knowledge" / "旧名" / "source" / "报告.md").is_file()
         assert not (tmp_path / "knowledge" / "新名").exists()
         store = Knowledge(tmp_path / "knowledge" / "旧名" / "datadb" / "knowledge.sqlite3")
-        assert store.get(doc_id)["origin"].endswith("旧名/source/报告.md")
+        assert Path(store.get(doc_id)["origin"]).as_posix().endswith("旧名/source/报告.md")
 
 
 def test_reimport_after_corpus_rename_keeps_doc_id(tmp_path):

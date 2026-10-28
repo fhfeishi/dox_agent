@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -6,7 +7,7 @@ import { RETIRED, TERMS } from './copy.ts';
 import { NAV } from './navigation.ts';
 
 // Upgrade plan U3: a renamed concept must not linger anywhere a person can read it.
-const root = new URL('.', import.meta.url).pathname;
+const root = fileURLToPath(new URL('.', import.meta.url));
 function sources(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
     const path = join(dir, name);

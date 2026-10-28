@@ -42,10 +42,10 @@ class _Closing(sqlite3.Connection):
             self.close()
 
 
-def connect(path: Path | str, *, timeout: float = TIMEOUT, readonly: bool = False) -> sqlite3.Connection:
+def connect(path: Path | str, *, timeout: float = TIMEOUT, readonly: bool = False, uri: bool = False) -> sqlite3.Connection:
     """A connection that commits (or rolls back) and closes at the end of its ``with`` block."""
     target = f"file:{Path(path).as_posix()}?mode=ro" if readonly else str(path)
-    db = sqlite3.connect(target, timeout=timeout, uri=readonly, factory=_Closing)
+    db = sqlite3.connect(target, timeout=timeout, uri=readonly or uri, factory=_Closing)
     db.execute("PRAGMA foreign_keys = ON")
     return db
 

@@ -183,10 +183,14 @@ def serve(host: str, port: int, app: str = "src.main:app") -> int:
     marked interrupted when the service next starts.
     """
     import logging
+    import signal
 
     import uvicorn
 
     sys.path.insert(0, str(Path.cwd()))  # src.main is imported from the project root
+    if os.name == "nt":
+        # Uvicorn re-raises console events after cleanup. Handle Ctrl+Break like Ctrl+C.
+        signal.signal(signal.SIGBREAK, signal.default_int_handler)
     server = uvicorn.Server(uvicorn.Config(app, host=host, port=port, loop="asyncio", timeout_graceful_shutdown=5))
     try:
         server.run()

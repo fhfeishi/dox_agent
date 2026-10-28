@@ -1,3 +1,4 @@
+
 """W3-B: minimal Artifact store, reports compatibility, run linkage and DOCX export."""
 
 import io
@@ -11,6 +12,7 @@ from fastapi.testclient import TestClient
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.artifacts import ArtifactStore
+from src.core.db import connect as closing_connect
 from src.docx_export import markdown_to_docx
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
@@ -520,11 +522,11 @@ def test_offline_migration_preserves_edits_and_normalizes_all_session_branches(t
     store=ArtifactStore(state/"artifacts.sqlite3")
     store.create("edited",type="report",title="用户标题",markdown="# 旧初版",run_id="r1")
     store.add_version("edited",markdown="# 用户修订")
-    with sqlite3.connect(state/"reports.sqlite3") as db:
+    with closing_connect(state/"reports.sqlite3") as db:
         db.execute("CREATE TABLE reports (id TEXT,created_at TEXT,params TEXT,markdown TEXT,session_key TEXT,run_id TEXT,corpus_id TEXT)")
         db.execute("INSERT INTO reports VALUES ('old','2026-01-01','{}','# 生成原文','s','r1','c')")
         db.execute("INSERT INTO reports VALUES ('old2','2026-01-02','{}','# 旧报告','s','','c')")  # legacy row without run_id
-    with sqlite3.connect(state/"workspace.sqlite3") as db:
+    with closing_connect(state/"workspace.sqlite3") as db:
         db.execute("CREATE TABLE records(id TEXT,kind TEXT,revision INTEGER,payload TEXT)")
         db.execute("INSERT INTO records VALUES ('s','sessions',1,?)",(json.dumps({"data":{"branches":[{"turns":[{"previousAttempts":[{"report":{"report_id":"old","markdown":"# 生成原文"}}]}]}]}}),))
     migrate(state,tmp_path/"backup")
@@ -537,7 +539,7 @@ def test_offline_migration_preserves_edits_and_normalizes_all_session_branches(t
     assert migrated.get_report("old2")["markdown"] == "# 旧报告"
     assert migrated.get_report("old2")["generated_version"] == 1
     assert migrated.add_version("edited",markdown="# 新修订")["version"] == 4
-    with sqlite3.connect(state/"workspace.sqlite3") as db:
+    with closing_connect(state/"workspace.sqlite3") as db:
         payload=db.execute("SELECT payload FROM records").fetchone()[0]
         assert "markdown" not in payload and "old" in payload
     assert (tmp_path/"backup"/"reports.sqlite3").is_file()

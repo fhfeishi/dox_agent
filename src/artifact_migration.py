@@ -8,6 +8,7 @@ import sqlite3
 from pathlib import Path
 
 from .artifacts import ArtifactStore
+from .core.db import connect
 
 
 def report_references(value):
@@ -25,7 +26,7 @@ def report_references(value):
 
 
 def backup_database(source, target):
-    with sqlite3.connect(f"file:{source}?mode=ro", uri=True) as old, sqlite3.connect(target) as new:
+    with connect(f"file:{source}?mode=ro", uri=True) as old, connect(target) as new:
         old.backup(new)
         if new.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError(f"数据库校验失败: {source.name}")
@@ -71,7 +72,7 @@ def migrate(state: Path, backup: Path):
     store = ArtifactStore(stage / "artifacts.sqlite3")
     reports = backup / "reports.sqlite3"
     if reports.exists():
-        with sqlite3.connect(reports) as db:
+        with connect(reports) as db:
             db.row_factory = sqlite3.Row
             rows = [dict(row) for row in db.execute("SELECT * FROM reports")]
         with store.connect() as db:
@@ -168,7 +169,7 @@ def migrate(state: Path, backup: Path):
         if db.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("成果库校验失败")
         if old_artifact.exists():
-            with sqlite3.connect(old_artifact) as old:
+            with connect(old_artifact) as old:
                 for aid, version, markdown in old.execute(
                     "SELECT artifact_id,version,markdown FROM artifact_versions"
                 ):
@@ -190,7 +191,7 @@ def migrate(state: Path, backup: Path):
     workspace = backup / "workspace.sqlite3"
     if workspace.exists():
         backup_database(workspace, stage / "workspace.sqlite3")
-        with sqlite3.connect(stage / "workspace.sqlite3") as db:
+        with connect(stage / "workspace.sqlite3") as db:
             for key, payload in db.execute("SELECT id,payload FROM records WHERE kind='sessions'").fetchall():
                 value = json.loads(payload)
 

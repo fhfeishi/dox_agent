@@ -12,3 +12,4 @@
 - 原 API 集成用例已扩展，修复前失败（before.log），修复后通过（personal.log），没有新增重复测试或跳过原断言。
 - 最终全部在 D:\chyCodespace\dox_agent 运行：Python 368 项、前端 59 项、10 条浏览器主流程、构建/TypeScript、ruff、87 个写接口权限矩阵全部通过。证据 `.logsdev/verification/Windows收尾-6221f12/`。
 - 使用临时数据与服务，未调用真实模型；触屏只覆盖模拟。此前 UI 审查建议是独立建议，不计入本轮 Windows 缺陷修复范围。
+- 2026-10-29：合并远端 5d52e3d 与本地 df25dce，产品源码保持与 df25dce 一致；新增执行 12 条 EXTRA 浏览器流程全部通过，结合上轮覆盖全部 22 条浏览器路径。本轮无新增产品缺陷，证据 .logsdev/verification/Windows扩展回归-20261029/RESULTS.md。

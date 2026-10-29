@@ -1,5 +1,7 @@
 """Personal libraries (D-20261027-1): references to system-library documents, each account's own."""
 
+import time
+
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
@@ -9,6 +11,16 @@ from src.main import create_app
 def login(client, name):
     client.cookies.clear()
     assert client.post("/api/auth/login", json={"username": name, "password": "123456"}).status_code == 200
+
+
+def settled(client, library_id):
+    """The library once its upload queue is empty (failed files stay listed)."""
+    for _ in range(200):
+        library = client.get(f"/api/personal-libraries/{library_id}").json()
+        if all(item["state"] == "failed" for item in library["uploads"]):
+            return library
+        time.sleep(0.05)
+    raise AssertionError(library["uploads"])
 
 
 def test_a_personal_library_keeps_references_and_belongs_to_its_owner(tmp_path):
@@ -68,11 +80,13 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
         library = client.post("/api/personal-libraries", json={"name": "我的笔记"}).json()
         url = f"/api/personal-libraries/{library['id']}/files"
         uploaded = client.post(url, files={"upload": ("调研笔记.md", "# 调研笔记\n\n联邦学习在医疗影像中的应用。".encode(), "text/markdown")})
-        assert uploaded.status_code == 201, uploaded.text
-        body = uploaded.json()
+        assert uploaded.status_code == 202 and uploaded.json() == {"name": "调研笔记.md", "state": "queued"}
+        # Parsing runs in the background; the file joins the library when it is indexed.
+        read = settled(client, library["id"])
         mine = "mine-" + library["id"]
-        assert [(r["corpus_id"], r["doc_id"], r["title"], r["library_missing"]) for r in body["library"]["refs"]] == \
-            [(mine, body["doc_id"], "调研笔记.md", False)]
+        assert read["uploads"] == []
+        assert [(r["corpus_id"], r["title"], r["library_missing"]) for r in read["refs"]] == [(mine, "调研笔记.md", False)]
+        body = {"doc_id": read["refs"][0]["doc_id"]}
         source = tmp_path / "usr" / "user" / "workspace" / "libraries" / library["id"] / "source" / "调研笔记.md"
         assert source.is_file()
         listed = client.get("/api/personal-libraries").json()
@@ -86,6 +100,18 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
         assert client.post(url, files={"upload": ("调研笔记.md", b"x", "text/markdown")}).status_code == 409
         assert client.post(url, files={"upload": ("a.exe", b"x", "application/octet-stream")}).status_code == 415
         assert client.post(url, files={"upload": ("../逃逸.md", b"# x", "text/markdown")}).json()["name"] == "逃逸.md"
+        # A GBK text (common from Chinese Windows tools) is read; an empty one fails, stays listed with
+        # its reason and is not parsed again, until the owner removes it.
+        assert client.post(url, files={"upload": ("旧笔记.txt", "国产工具保存的笔记".encode("gbk"), "text/plain")}).status_code == 202
+        assert client.post(url, files={"upload": ("空白.md", b"   ", "text/markdown")}).status_code == 202
+        read = settled(client, library["id"])
+        assert [r["title"] for r in read["refs"]] == ["调研笔记.md", "逃逸.md", "旧笔记.txt"]
+        assert [(u["name"], u["state"], u["error"]) for u in read["uploads"]] == [("空白.md", "failed", "解析结果为空，未入库")]
+        gbk = next(r for r in read["refs"] if r["title"] == "旧笔记.txt")
+        assert "国产工具" in client.get(f"/api/documents/{gbk['doc_id']}/file", params={"corpus": mine}).content.decode("gbk")
+        assert client.delete(f"{url}/调研笔记.md").status_code == 404  # only a failed file is removed here
+        assert client.delete(f"{url}/空白.md").status_code == 200
+        assert client.get(f"/api/personal-libraries/{library['id']}").json()["uploads"] == []
 
         # Another account, administrator included, cannot reach the uploads by their id.
         for other in ("owner", "admin"):
@@ -106,7 +132,7 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
         current = client.get(f"/api/personal-libraries/{library['id']}").json()
         removed = client.patch(f"/api/personal-libraries/{library['id']}", json={
             "revision": current["revision"], "remove": [{"corpus_id": mine, "doc_id": body["doc_id"]}]})
-        assert removed.status_code == 200 and [r["title"] for r in removed.json()["refs"]] == ["逃逸.md"]
+        assert removed.status_code == 200 and [r["title"] for r in removed.json()["refs"]] == ["逃逸.md", "旧笔记.txt"]
         assert not source.exists()
         assert body["doc_id"] not in [d["doc_id"] for d in client.get("/api/documents", params={"corpus": mine}).json()]
 

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { changePersonalLibrary, createPersonalLibrary, deletePersonalLibrary, fetchPersonalLibraries, fetchPersonalLibrary,
-  uploadPersonalFile, UPLOADS_PREFIX, type PersonalLibrary, type PersonalLibrarySummary, type PersonalRef } from "../api";
+  removeFailedUpload, uploadPersonalFile, UPLOADS_PREFIX, type PersonalLibrary, type PersonalLibrarySummary, type PersonalRef } from "../api";
 import { fundMetaFromPath } from "../fundMeta";
 import { useLayout } from "../layout";
 import { useApp } from "../store";
@@ -151,7 +151,8 @@ function AddDocuments({ library, open, onClose, onAdded }: { library: PersonalLi
   </SlideOver>;
 }
 
-type Upload = { name: string; state: "uploading" | "done" | "failed"; error?: string };
+/** A file on its way to the server, or one the server refused (wrong kind, same name, too large). */
+type Sending = { name: string; error?: string };
 
 /**
  * One personal library: its documents grouped by where they come from — a system library, or the files
@@ -169,7 +170,9 @@ export function PersonalLibraryPage() {
   const { corpora, corporaLoaded, startResearch, sessionBusy } = useApp();
   const { openPreview, showToast } = useLayout();
   const personal = useQuery(personalLibrariesQuery());
-  const library = useQuery({ queryKey: ["personal-libraries", libraryId], queryFn: ({ signal }) => fetchPersonalLibrary(libraryId, signal) });
+  // While uploads wait or parse, the library is read every two seconds; each finished file appears in it.
+  const library = useQuery({ queryKey: ["personal-libraries", libraryId], queryFn: ({ signal }) => fetchPersonalLibrary(libraryId, signal),
+    refetchInterval: (query) => query.state.data?.uploads?.some((item) => item.state !== "failed") ? 2000 : false });
   const data = library.data;
   // The account's own uploads come first, then each library the references come from.
   const corpusIds = [...(data?.corpus_ids ?? [])].sort((x, y) => Number(y === `${UPLOADS_PREFIX}${libraryId}`) - Number(x === `${UPLOADS_PREFIX}${libraryId}`));
@@ -192,27 +195,31 @@ export function PersonalLibraryPage() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
-  const [uploads, setUploads] = useState<Upload[]>([]);
+  const [sending, setSending] = useState<Sending[]>([]);
+  const uploadedCount = data?.refs.filter((ref) => ref.corpus_id === ownUploads).length ?? 0;
+  useEffect(() => { void queryClient.invalidateQueries({ queryKey: ["documents", ownUploads] }); }, [uploadedCount, ownUploads, queryClient]);
   const [dragging, setDragging] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   function settle(next: PersonalLibrary) {
-    queryClient.setQueryData(["personal-libraries", libraryId], next);
+    queryClient.setQueryData<PersonalLibrary>(["personal-libraries", libraryId], (old) => ({ ...next, uploads: next.uploads ?? old?.uploads }));
     void queryClient.invalidateQueries({ queryKey: ["personal-libraries"], exact: true });
-    void queryClient.invalidateQueries({ queryKey: ["documents", ownUploads] });
   }
-  // One file at a time: each is parsed before the next starts, and the server takes one import at a time anyway.
+  // Files are sent one after another; the server queues them and parses one at a time.
   async function upload(files: File[]) {
     if (!files.length) return;
-    setUploads((old) => [...old.filter((item) => item.state === "uploading"), ...files.map((file) => ({ name: file.name, state: "uploading" as const }))]);
+    setSending((old) => [...old.filter((item) => !item.error), ...files.map((file) => ({ name: file.name }))]);
     for (const file of files) {
       try {
-        const result = await uploadPersonalFile(libraryId, file);
-        settle(result.library);
-        setUploads((old) => old.map((item) => item.name === file.name && item.state === "uploading" ? { ...item, state: "done" } : item));
+        await uploadPersonalFile(libraryId, file);
+        setSending((old) => old.filter((item) => item.name !== file.name || item.error));
       } catch (e) {
-        setUploads((old) => old.map((item) => item.name === file.name && item.state === "uploading" ? { ...item, state: "failed", error: (e as Error).message } : item));
+        setSending((old) => old.map((item) => item.name === file.name && !item.error ? { ...item, error: (e as Error).message } : item));
       }
+      await library.refetch();
     }
+  }
+  async function dropFailed(name: string) {
+    try { await removeFailedUpload(libraryId, name); await library.refetch(); } catch (e) { setError((e as Error).message); }
   }
   async function save(change: Parameters<typeof changePersonalLibrary>[1]) {
     setError("");
@@ -300,13 +307,19 @@ export function PersonalLibraryPage() {
           {missing > 0 ? `；${missing} 份原资料已不在系统资料库中` : ""}
           {askProblem && !checking ? `。${askProblem}` : ""}
           {dropped.length ? <button type="button" onClick={() => remove(dropped)} className="ml-2 text-[var(--link)] hover:underline">移出未勾选的 {dropped.length} 份</button> : null}</p> : null}
-        {uploads.length ? <ul aria-label="上传进度" className="space-y-1 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2">
-          {uploads.map((item, i) => <li key={item.name + i} className="flex items-center gap-2 px-1 text-body">
+        {sending.length || data.uploads?.length ? <ul aria-label="上传进度" className="space-y-1 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2">
+          {sending.map((item, i) => <li key={"s" + item.name + i} className="flex items-center gap-2 px-1 text-body">
             <span className="min-w-0 flex-1 truncate">{item.name}</span>
-            <span role={item.state === "failed" ? "alert" : "status"} className={`shrink-0 text-caption ${item.state === "failed" ? "text-[var(--danger-fg)]" : item.state === "done" ? "text-[var(--ok-fg)]" : "text-[var(--steel)]"}`}>
-              {item.state === "uploading" ? "正在上传并解析…" : item.state === "done" ? "已加入" : item.error}</span>
+            {item.error ? <><span role="alert" className="shrink-0 text-caption text-[var(--danger-fg)]">{item.error}</span>
+              <button type="button" onClick={() => setSending((old) => old.filter((other) => other !== item))} className="shrink-0 text-caption text-[var(--link)] hover:underline">知道了</button></>
+              : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">正在上传…</span>}
           </li>)}
-          {uploads.every((item) => item.state !== "uploading") ? <li><button type="button" onClick={() => setUploads([])} className="px-1 text-caption text-[var(--link)] hover:underline">收起</button></li> : null}
+          {(data.uploads ?? []).map((item) => <li key={"u" + item.name} className="flex items-center gap-2 px-1 text-body">
+            <span className="min-w-0 flex-1 truncate">{item.name}</span>
+            {item.state === "failed" ? <><span role="alert" className="min-w-0 truncate text-caption text-[var(--danger-fg)]" title={item.error}>解析失败：{item.error}</span>
+              <button type="button" onClick={() => void dropFailed(item.name)} className="shrink-0 text-caption text-[var(--link)] hover:underline">删除</button></>
+              : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">{item.state === "parsing" ? "正在解析…（PDF 可能要几分钟，可以先离开）" : "排队等待解析"}</span>}
+          </li>)}
         </ul> : null}
         {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
       </header>

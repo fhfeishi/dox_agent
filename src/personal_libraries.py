@@ -28,7 +28,8 @@ from .agent.corpora import (
 )
 from .auth import CURRENT_USER
 from .core.db import connect, migrate
-from .parsers import import_defaults
+from .jobs import JobBusy
+from .parsers import import_one
 from .workspace import SCHEMA as WORKSPACE_SCHEMA  # one schema for the shared workspace.sqlite3
 
 router = APIRouter(prefix="/api/personal-libraries")
@@ -200,7 +201,11 @@ def create_library(payload: LibraryCreate, request: Request):
 
 @router.get("/{library_id}")
 def read_library(library_id: str, request: Request):
-    return with_status(request.app.state.personal_libraries.get(owner(request), library_id), known_libraries(request))
+    """The library, its references, and ``uploads``: files still waiting, being parsed, or that failed."""
+    library = request.app.state.personal_libraries.get(owner(request), library_id)
+    info = uploads_info(request.app.state.settings, owner(request), library)
+    busy = request.app.state.jobs.busy("import", info.id)
+    return {**with_status(library, known_libraries(request)), "uploads": upload_states(request.app, info, busy)}
 
 
 @router.patch("/{library_id}")
@@ -235,9 +240,12 @@ def drop_uploads(kn, info: CorpusInfo, doc_ids: list[str]) -> None:
 
 
 @router.delete("/{library_id}")
-def delete_library(library_id: str, request: Request):
+async def delete_library(library_id: str, request: Request):
     """Deleting a personal library also deletes the files uploaded to it."""
     library = request.app.state.personal_libraries.get(owner(request), library_id)
+    run_id = request.app.state.jobs.keys.get(("import", MINE + library_id))
+    if run_id and not request.app.state.jobs.tasks[run_id].done():
+        request.app.state.jobs.tasks[run_id].cancel()  # its uploads are about to go
     request.app.state.personal_libraries.delete(owner(request), library_id)
     request.app.state.corpus_knowledge.pop(MINE + library_id, None)
     shutil.rmtree(uploads_info(request.app.state.settings, owner(request), library).root, ignore_errors=True)
@@ -253,10 +261,99 @@ def safe_upload_name(name: str) -> str:
     return name
 
 
-@router.post("/{library_id}/files", status_code=201)
+def source_files(info: CorpusInfo) -> dict[str, Path]:
+    """Uploaded files by name, oldest first (the order they are parsed in); unfinished writes excluded."""
+    if not info.source_dir.is_dir():
+        return {}
+    files = [path for path in info.source_dir.iterdir() if path.is_file() and not path.name.startswith(".")]
+    return {path.name: path for path in sorted(files, key=lambda path: path.stat().st_mtime_ns)}
+
+
+def manifest(app, info: CorpusInfo) -> dict[str, dict]:
+    return app.state.corpus_ctx.knowledge_for(info).files() if info.sqlite is not None else {}
+
+
+def upload_states(app, info: CorpusInfo, busy: bool) -> list[dict]:
+    """Files not (yet) in the library: ``queued`` and ``parsing`` while the queue runs, ``failed`` with
+    the parser's reason. A failed file stays until the owner removes it, so it is not parsed again."""
+    files = manifest(app, info)
+    states, first = [], True
+    for name in source_files(info):
+        entry = files.get(name)
+        if entry and entry["status"] == "error":
+            states.append({"name": name, "state": "failed", "error": entry["last_error"] or "解析失败"})
+        elif not entry:
+            states.append({"name": name, "state": "parsing" if busy and first else "queued", "error": ""})
+            first = False
+    return states
+
+
+def start_queue(app, owner_: str, library_id: str) -> None:
+    """Parse this library's waiting uploads one at a time (sharing the import lock with the system
+    libraries, so one MinerU runs at a time), adding each to the library as soon as it is indexed.
+    If a run is already going it picks the new file up; one that has just finished checks again."""
+    store = app.state.personal_libraries
+    info = uploads_info(app.state.settings, owner_, store.get(owner_, library_id))
+    jobs = app.state.jobs
+
+    async def work(progress, report):
+        done = failed = 0
+        while True:
+            library = await asyncio.to_thread(store.get, owner_, library_id)
+            current = uploads_info(app.state.settings, owner_, library)
+            kn = app.state.corpus_ctx.knowledge_for(current)
+            files = await asyncio.to_thread(kn.files)
+            waiting = [(name, path) for name, path in (await asyncio.to_thread(source_files, current)).items() if name not in files]
+            if not waiting:
+                return {"status": "done", "completed": done, "failed": failed}
+            name, path = waiting[0]
+            report(current=name)
+            async with app.state.import_lock:
+                outcome = await asyncio.to_thread(import_one, kn, app.state.settings, path, name, None,
+                                                  parsed_root=current.root / "parsed")
+            if isinstance(outcome, Exception):
+                failed += 1
+                continue
+            done += 1
+            await asyncio.to_thread(add_ref, store, owner_, library_id, Ref(corpus_id=current.id, doc_id=outcome["doc_id"], title=name))
+
+    run_id = jobs.keys.get(("import", info.id))
+    if run_id and not jobs.tasks[run_id].done():
+        jobs.tasks[run_id].add_done_callback(lambda _: again(app, owner_, library_id))
+        return
+    try:
+        jobs.start("import", info.id, work, {"status": "running", "completed": 0, "failed": 0})
+    except JobBusy:
+        pass
+
+
+def again(app, owner_: str, library_id: str) -> None:
+    store = app.state.personal_libraries
+    if store.owner_of(library_id) != owner_:
+        return  # deleted meanwhile
+    info = uploads_info(app.state.settings, owner_, store.get(owner_, library_id))
+    files = manifest(app, info)
+    if any(name not in files for name in source_files(info)):
+        start_queue(app, owner_, library_id)
+
+
+def add_ref(store, owner_: str, library_id: str, ref: Ref) -> None:
+    for _ in range(5):  # the library may change in another tab meanwhile
+        library = store.get(owner_, library_id)
+        try:
+            store.change(owner_, library_id, LibraryChange(revision=library["revision"], add=[ref]))
+            return
+        except HTTPException as exc:
+            if exc.status_code != 409:
+                raise
+    raise RuntimeError("个人资料库持续在别处修改，上传的文件未能加入")
+
+
+@router.post("/{library_id}/files", status_code=202)
 async def upload_file(library_id: str, request: Request, upload: UploadFile = File(...)):
-    """Upload one file into a personal library: saved under the owner's workspace, parsed and indexed,
-    then added to the library. A file with the same name is refused rather than replaced."""
+    """Upload one file into a personal library. It is saved under the owner's workspace and queued;
+    parsing runs in the background and adds it to the library when done (``uploads`` on the library
+    shows where it is). A file with the same name is refused rather than replaced."""
     store = request.app.state.personal_libraries
     library = await asyncio.to_thread(store.get, owner(request), library_id)
     name = safe_upload_name(upload.filename or "")
@@ -278,35 +375,26 @@ async def upload_file(library_id: str, request: Request, upload: UploadFile = Fi
         finally:
             Path(temporary).unlink(missing_ok=True)
 
+    try:
+        await asyncio.to_thread(save)
+    except FileExistsError as exc:
+        raise HTTPException(409, "这个资料库里已有同名文件，请改名后上传") from exc
+    except ValueError as exc:
+        raise HTTPException(413, str(exc)) from exc
+    start_queue(request.app, owner(request), library_id)
+    return {"name": name, "state": "queued"}
+
+
+@router.delete("/{library_id}/files/{name}")
+async def remove_failed_upload(library_id: str, name: str, request: Request):
+    """Remove an uploaded file that failed to parse (an indexed one is removed with the library's PATCH)."""
+    library = await asyncio.to_thread(request.app.state.personal_libraries.get, owner(request), library_id)
+    info = uploads_info(request.app.state.settings, owner(request), library)
+    entry = (await asyncio.to_thread(manifest, request.app, info)).get(name)
+    path = info.source_dir / name
+    if Path(name).name != name or entry is None or entry["status"] != "error" or not path.is_file():
+        raise HTTPException(404, "没有这个解析失败的文件")
     async with request.app.state.import_lock:
-        try:
-            await asyncio.to_thread(save)
-        except FileExistsError as exc:
-            raise HTTPException(409, "这个资料库里已有同名文件，请改名后上传") from exc
-        except ValueError as exc:
-            raise HTTPException(413, str(exc)) from exc
-        info = uploads_info(request.app.state.settings, owner(request), library)
-        kn = request.app.state.corpus_ctx.knowledge_for(info)
-        report = await asyncio.to_thread(import_defaults, kn, request.app.state.settings,
-                                         root=info.source_dir, parsed_root=info.root / "parsed")
-        docs = await asyncio.to_thread(kn.current)
-    resolved = target.resolve()
-    doc = next((d for d in docs if Path(d["origin"]).resolve() == resolved), None)
-    errors = [error for error in report["errors"] if error.get("source") == name]
-    if doc is None:
-        # Not indexed: keep nothing behind, so the same name can be tried again.
-        await asyncio.to_thread(target.unlink, True)
-        await asyncio.to_thread(kn.drop_file, name)
-        raise HTTPException(422, f"文件解析失败（{errors[0]['error']}），未加入资料库" if errors else "文件解析失败，未加入资料库")
-    for _ in range(3):  # the library may have changed in another tab meanwhile
-        current = await asyncio.to_thread(store.get, owner(request), library_id)
-        try:
-            changed = await asyncio.to_thread(store.change, owner(request), library_id, LibraryChange(
-                revision=current["revision"], add=[Ref(corpus_id=info.id, doc_id=doc["doc_id"], title=name)]))
-            break
-        except HTTPException as exc:
-            if exc.status_code != 409:
-                raise
-    else:
-        raise HTTPException(409, "个人资料库正在别处修改，请刷新后重试")
-    return {"library": with_status(changed, await asyncio.to_thread(known_libraries, request)), "doc_id": doc["doc_id"], "name": name}
+        await asyncio.to_thread(path.unlink)
+        await asyncio.to_thread(request.app.state.corpus_ctx.knowledge_for(info).drop_file, name)
+    return {"removed": name}

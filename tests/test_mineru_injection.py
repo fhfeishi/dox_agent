@@ -70,7 +70,7 @@ def test_default_template_keeps_quoted_paths_whole():
         "-o",
         str(Path("/o/a b")) + "/result.zip",
         "--tier",
-        "standard",
+        "basic",
         "--ocr-mode",
         "auto",
         "--format",

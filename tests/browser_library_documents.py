@@ -286,10 +286,16 @@ async def main():
                 # from a library (or the whole of it), and what is not wanted is unticked and removed.
                 await page.go_back()
                 await expect(page.get_by_role("heading",name="课题资料",exact=True)).to_be_visible()
-                await page.get_by_label("选择要上传的文件").set_input_files(files=[{"name":"我的调研笔记.md","mimeType":"text/markdown","buffer":"# 调研笔记\n量子传感实验记录".encode()}])
+                await page.get_by_label("选择要上传的文件").set_input_files(files=[
+                    {"name":"我的调研笔记.md","mimeType":"text/markdown","buffer":"# 调研笔记\n量子传感实验记录".encode()},
+                    {"name":"空白.md","mimeType":"text/markdown","buffer":b"   "}])
                 uploaded=page.get_by_role("region",name="我上传的文件")
-                await expect(uploaded.get_by_role("listitem")).to_have_count(1, timeout=20000)
-                await expect(page.get_by_role("list",name="上传进度")).to_contain_text("已加入")
+                await expect(uploaded.get_by_role("listitem")).to_have_count(1, timeout=20000)  # parsed in the background
+                progress=page.get_by_role("list",name="上传进度")
+                await expect(progress.get_by_role("listitem")).to_have_count(1, timeout=20000)
+                await expect(progress).to_contain_text("解析失败：解析结果为空")
+                await progress.get_by_role("button",name="删除").click()
+                await expect(progress).to_have_count(0)
                 await uploaded.get_by_role("button",name="预览 ›").click()
                 await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("量子传感实验记录")
                 await page.keyboard.press("Escape")

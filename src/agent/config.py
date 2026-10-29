@@ -59,9 +59,12 @@ class Settings(BaseSettings):
     firecrawl_base_url: str = "https://api.firecrawl.dev"
     # K13: mineru CLI (external). Template must contain {pdf} and {out}; run once per PDF.
     # `zip` emits markdown.md + middle_json.json (+images) in one parse.
-    mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}/result.zip" --tier standard --ocr-mode auto --format zip'
+    # Local MinerU (资料库数据接口 E1, 2026-10-28): on CPU the basic tier parses 2.5–5.5 s a page and
+    # finished every sample within 14 minutes, while standard timed out at 20 minutes on all three; one
+    # document gets at most 20 minutes (user, Q4). Use --tier standard on a machine with a GPU.
+    mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}/result.zip" --tier basic --ocr-mode auto --format zip'
     mineru_home: Path | None = None
-    mineru_timeout: float = Field(default=3600, ge=30, le=7200)
+    mineru_timeout: float = Field(default=1200, ge=30, le=7200)
     # Removed 8 settings nothing read any more (F4/Q3, 2026-10-19): max_research_steps, max_rounds,
     # evidence_routing, max_searches, max_reads, model_context_tokens, answer_reserve_tokens,
     # research_timeout. Old .env values are ignored (extra="ignore"). See .logsdev/cleanup-log.md;

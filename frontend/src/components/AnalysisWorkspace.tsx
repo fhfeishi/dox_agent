@@ -150,9 +150,9 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
   const reporting = reports.some((t) => t.state === "checking" || t.state === "generating");
   const right = inspectorOpen ? "xl:right-[calc(var(--inspector-width)+20px)]" : "";
 
-  return <section aria-label="分析工作区"
+  return <section aria-label="与资料对话"
     className={`${PANEL_SHELL} panel-motion panel-enter fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--dock-width)] sm:max-w-[calc(100vw-20px)] ${right}`}>
-    <PanelHeader title="分析工作区" subtitle={`${WORKSPACE_TASK_LABEL}${task && TASK_NAME[task] && task !== "task1" ? ` · ${TASK_NAME[task]}` : ""} · 记入会话历史`}
+    <PanelHeader title="与资料对话" subtitle={`${WORKSPACE_TASK_LABEL}${task && TASK_NAME[task] && task !== "task1" ? ` · ${TASK_NAME[task]}` : ""} · 记入会话历史`}
       actions={<>
         <PanelSizeSwitch value={dockSize} onChange={setDockSize} />
         <PanelButton label="开始新的分析" disabled={busy || reporting || sessionBusy || !turns.length} onClick={() => void fresh()}><Icon name="refresh" size={14} /></PanelButton>

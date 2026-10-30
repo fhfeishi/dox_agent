@@ -107,7 +107,7 @@ def test_user_upload_parse_failure_stays_saved_and_can_be_retried(tmp_path):
     assert len(files) == 1
     assert {key: files[0][key] for key in ("rel_path", "size", "status", "doc_id")} == {
         "rel_path": "broken.txt", "size": 9, "status": "error", "doc_id": None}
-    assert "UnicodeDecodeError" in files[0]["reason"]
+    assert files[0]["reason"] == "文本编码无法识别，请另存为 UTF-8 后上传"
 
 
 def test_upload_after_a_broken_file_reports_only_its_own_result(tmp_path):

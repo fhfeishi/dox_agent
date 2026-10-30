@@ -100,7 +100,7 @@ async def sign_in(page, origin):
 
 async def request_report(page, origin, corpus_id, topic):
     await page.goto(f"{origin}/library/{quote(corpus_id)}/documents?workspace=1&task=task4")
-    work = page.get_by_role("region", name="分析工作区")
+    work = page.get_by_role("region", name="与资料对话")
     await work.get_by_role("button", name="生成报告…").click()
     form = work.get_by_role("form", name="生成报告")
     await form.get_by_label("报告主题").fill(topic)

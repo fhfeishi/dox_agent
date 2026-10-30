@@ -226,12 +226,24 @@ def _kill_process_group(process) -> None:
         pass
 
 
+def read_text_file(path: Path) -> str:
+    """TXT/Markdown in UTF-8 (with or without BOM), or the GB18030 family most Chinese Windows tools
+    still write (资料库数据接口 §2.1); anything else is refused rather than read as mojibake."""
+    raw = path.read_bytes()
+    for encoding in ("utf-8-sig", "gb18030"):
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    raise ValueError("文本编码无法识别，请另存为 UTF-8 后上传")
+
+
 def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None,
                reuse_cache: bool = True) -> Document:
     suffix = path.suffix.lower()
     markdown = ""
     if suffix in {".txt", ".md", ".markdown"}:
-        markdown = path.read_text(encoding="utf-8-sig")
+        markdown = read_text_file(path)
         pages = [Page(number=1, text=markdown)]
         # Markdown keeps its own parser label so previews render it instead of a raw <pre>.
         parser = "markdown" if suffix in {".md", ".markdown"} else "utf8"
@@ -351,46 +363,15 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
     imported, errors = [], []
     for rel, path in current.items():
         prev = manifest.get(rel)
-        digest = ""
-        try:
-            stat = path.stat()
-            if not force and prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
-                skipped += 1
-                continue
-            digest = sha256_file(path)
-            if not force and prev and prev["status"] == "indexed" and prev["sha256"] == digest:
-                knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
-                skipped += 1
-                continue
-            changed_pdf = path.suffix.lower() == ".pdf" and (force or not prev or prev["sha256"] != digest)
-            # A changed PDF must never publish its new source hash with the old MinerU cache.
-            # Parse into a digest-specific directory so a failed attempt keeps the prior cache.
-            parsed_dir = (parsed_root / rel / ".versions" / digest if changed_pdf and parsed_root
-                          else parsed_root / rel if parsed_root else None)
-            document = parse_file(path, settings, parsed_dir=parsed_dir, reuse_cache=not changed_pdf)
-            if sha256_file(path) != digest:
-                raise ValueError("源文件在解析期间发生变化")
-            # KB-5/T1: reuse the manifest doc_id so a rename/reimport updates in place.
-            blocks = None
-            # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
-            # the page-level fallback. Both forms publish with the body in one transaction.
-            if parsed_root is not None and path.suffix.lower() == ".pdf":
-                blocks = read_mineru_blocks(parsed_dir) or None
-            result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"),
-                                   source_file=(rel, stat.st_size, stat.st_mtime_ns, digest), blocks=blocks)
-            imported.append(result)
+        outcome = import_one(knowledge, settings, path, rel, prev, force=force, parsed_root=parsed_root)
+        if outcome == "skipped":
+            skipped += 1
+        elif isinstance(outcome, Exception):
+            errors.append({"source": path.name, "error": type(outcome).__name__})
+        else:
+            imported.append(outcome)
             updated += 1 if prev else 0
             added += 0 if prev else 1
-        except Exception as exc:  # noqa: BLE001 - retain other sources on parser failure
-            errors.append({"source": path.name, "error": type(exc).__name__})
-            try:
-                stat = path.stat()
-                knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
-                                      (prev or {}).get("doc_id"), "error", digest,
-                                      # Our own ValueErrors are written for the reader; anything else names its type.
-                                      str(exc) if type(exc) is ValueError else f"{type(exc).__name__}: {exc}")
-            except OSError:
-                pass
 
     deleted = 0
     for rel in list(manifest):
@@ -400,6 +381,49 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
         deleted += 1
     return {"imported": imported, "errors": errors, "added": added, "updated": updated,
             "skipped": skipped, "deleted": deleted, "scanned": len(current)}
+
+
+
+def import_one(knowledge, settings: Settings, path: Path, rel: str, prev: dict | None, *, force: bool = False,
+               parsed_root: Path | None = None):
+    """Import one source file: ``"skipped"`` when unchanged, the stored result when indexed, or the
+    exception when it failed (also recorded in the manifest with a reason the reader can use)."""
+    digest = ""
+    try:
+        stat = path.stat()
+        if not force and prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
+            return "skipped"
+        digest = sha256_file(path)
+        if not force and prev and prev["status"] == "indexed" and prev["sha256"] == digest:
+            knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
+            return "skipped"
+        changed_pdf = path.suffix.lower() == ".pdf" and (force or not prev or prev["sha256"] != digest)
+        # A changed PDF must never publish its new source hash with the old MinerU cache.
+        # Parse into a digest-specific directory so a failed attempt keeps the prior cache.
+        parsed_dir = (parsed_root / rel / ".versions" / digest if changed_pdf and parsed_root
+                      else parsed_root / rel if parsed_root else None)
+        document = parse_file(path, settings, parsed_dir=parsed_dir, reuse_cache=not changed_pdf)
+        if sha256_file(path) != digest:
+            raise ValueError("源文件在解析期间发生变化")
+        # KB-5/T1: reuse the manifest doc_id so a rename/reimport updates in place.
+        blocks = None
+        # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
+        # the page-level fallback. Both forms publish with the body in one transaction.
+        if parsed_root is not None and path.suffix.lower() == ".pdf":
+            blocks = read_mineru_blocks(parsed_dir) or None
+        result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"),
+                               source_file=(rel, stat.st_size, stat.st_mtime_ns, digest), blocks=blocks)
+        return result
+    except Exception as exc:  # noqa: BLE001 - retain other sources on parser failure
+        try:
+            stat = path.stat()
+            knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
+                                  (prev or {}).get("doc_id"), "error", digest,
+                                  # Our own ValueErrors are written for the reader; anything else names its type.
+                                  str(exc) if type(exc) is ValueError else f"{type(exc).__name__}: {exc}")
+        except OSError:
+            pass
+        return exc
 
 
 def collect_sources(root: Path) -> list[Path]:

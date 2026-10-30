@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import { useLocation, useMatch, useNavigate } from "react-router";
-import { useAuth } from "./auth";
 import type { DocumentInfo } from "./useDocuments";
 import { usePanelSize, type PanelSize } from "./panelSize";
 
@@ -98,7 +97,6 @@ export function useLayout(): LayoutValue {
 }
 
 export function LayoutProvider({ children }: { children: ReactNode }) {
-  const { role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
@@ -208,8 +206,8 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
     requestAnimationFrame(() => evidenceTrigger.current?.focus());
   }
 
-  // A library opens on its files (query 2026-1014 1642); 技术研判 is one click away.
-  function openCorpus(id: string, view: "files" | "target" = role === "leader" ? "target" : "files") {
+  // A library opens on its files (query 2026-1014 1642), for a leader too (query 2026-1030 1117); 技术研判 is one click away.
+  function openCorpus(id: string, view: "files" | "target" = "files") {
     setInspectorOpen(false);
     setDrawerOpen(false);
     setPreviewDoc(null);

@@ -1,7 +1,7 @@
 import { AnalysisWorkspace } from "./AnalysisWorkspace";
 import { droppedFiles } from "../folderUpload";
 import { useAuth } from "../auth";
-import { AddToPersonal } from "./PersonalLibrary";
+import { AddToPersonal, UploadToPersonal } from "./PersonalLibrary";
 import { useSearchParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
@@ -54,7 +54,8 @@ export function CorpusFiles({
   const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState<{ rel: string; name: string } | null>(null);
   const [params, setParams] = useSearchParams();
-  const filter = params.get("status") ?? "all";
+  // Status is upkeep: only the administrator filters by it (前端审查 2026-1030).
+  const filter = admin ? params.get("status") ?? "all" : "all";
   const search = params.get("q") ?? "";
   function updateFilter(key: string, value: string) {
     setParams((current) => { const next = new URLSearchParams(current);
@@ -219,40 +220,90 @@ export function CorpusFiles({
     ? visibleRows.filter((row) => row.document && matchIds.has(row.document.doc_id)) : namedRows;
   const currentPage = Math.min(page, Math.max(0, Math.ceil(searchedRows.length / 40) - 1));
   const pageRows = searchedRows.slice(currentPage * 40, (currentPage + 1) * 40);
+  // 前端审查 2026-1030 (版本 B): filters with their counts in a left column, reading on the right; the
+  // library's upkeep (status, upload) is the administrator's and sits at the column's foot.
+  const facet = (active: boolean) => `flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-left text-body transition-colors duration-[var(--dur-quick)] ${active
+    ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--text-2)] hover:bg-[var(--surface)]"}`;
+  const railHead = "mb-1.5 px-2 text-caption font-semibold text-[var(--text-3)]";
+  const LACKS: [keyof typeof lacking, string][] = [["funding", "未记录批准资助金额"], ["conflict", "批准资助金额待核对"], ["year", "立项年待核对"], ["outputs", "未列成果"]];
   return (
-    // Upload is a toolbar action and the whole panel takes a drop (前端审查 O2): reading comes first.
-    <div className={`relative mt-[14px] rounded-[12px] border bg-[var(--canvas)] p-[14px] text-body ${dragging ? "border-[var(--primary)]" : "border-[var(--hairline)]"}`}
+    <div className={`relative mt-[14px] grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start ${dragging ? "rounded-[12px] outline-2 outline-dashed outline-[var(--primary)]" : ""}`}
       onDragOver={(e) => { if (busy || !connected || !admin) return; e.preventDefault(); setDragging(true); }}
       onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false); }}
       onDrop={(e) => { e.preventDefault(); setDragging(false);
         if (!busy && connected && admin) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
       }}>
-      {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-[12px] border-2 border-dashed border-[var(--primary)] bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
-      <div className="flex flex-wrap items-center gap-[8px]">
-        <h3 className="mr-auto font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
-        {admin ? <>
-        <span className="text-caption text-[var(--stone)]" title="支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。">可拖入文件或文件夹</span>
-        <Button size="sm" variant="primary" icon="plus" iconSize={12} disabled={busy || !connected} onClick={() => inputRef.current?.click()}>上传文件</Button>
-        <Button size="sm" variant="outline" disabled={busy || !connected} onClick={() => folderRef.current?.click()}>上传文件夹</Button>
-        <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
-          onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
-            void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
-        <input ref={inputRef} type="file" aria-label="上传源文件" multiple accept=".md,.markdown,.txt,.pdf,.docx" disabled={busy || !connected} className="sr-only"
-          onChange={(e) => {
-            const selected = Array.from(e.target.files ?? []);
-            e.target.value = "";
-            if (selected.length) void uploadFiles(selected.map((file) => ({ file, path: file.name })));
-          }} />
+      {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-[12px] bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
+      <aside aria-label="筛选资料" className="flex flex-col gap-5 lg:sticky lg:top-4">
+        {/* 添加资料 (query 2026-1030 1117): one place for every role. A system library is the administrator's
+            (D-20261027-1), so the administrator adds here and every account can take files into its own library. */}
+        <section aria-label="添加资料" className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface-soft)] p-3">
+          <h3 className="mb-1 text-body font-semibold text-[var(--ink)]">添加资料</h3>
+          {admin ? <>
+            <p className="mb-2 text-caption text-[var(--text-3)]">上传到本资料库，入库后所有账号可用。</p>
+          <div className="grid grid-cols-2 gap-2">
+            <Button variant="primary" icon="upload" className="justify-center" disabled={busy || !connected} onClick={() => inputRef.current?.click()}>上传文件</Button>
+            <Button variant="outline" className="justify-center" disabled={busy || !connected} onClick={() => folderRef.current?.click()}>上传文件夹</Button>
+          </div>
+          <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
+            onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
+              void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
+          <input ref={inputRef} type="file" aria-label="上传源文件" multiple accept=".md,.markdown,.txt,.pdf,.docx" disabled={busy || !connected} className="sr-only"
+            onChange={(e) => {
+              const selected = Array.from(e.target.files ?? []);
+              e.target.value = "";
+              if (selected.length) void uploadFiles(selected.map((file) => ({ file, path: file.name })));
+            }} />
+          <p className="mt-2 px-1 text-caption text-[var(--text-3)]" title="支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。">也可把文件或文件夹拖到列表上</p>
+          {showPath && listing?.source_dir ? <details className="mt-1 break-all px-1 text-caption text-[var(--text-3)]"><summary className="cursor-pointer">本地资料目录</summary><p>
+            <code>{listing.source_dir}</code>
+            <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
+          </p></details> : null}
+            <div className="mt-3 space-y-2 border-t border-[var(--hairline)] pt-3">
+              <p className="text-caption text-[var(--text-3)]">也可放进我的资料库</p>
+              <UploadToPersonal />
+              <AddToPersonal block label={`整库加入我的资料库 · ${documents.length} 份`} refs={documents.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} />
+            </div>
+          </> : <div className="space-y-2">
+            <p className="text-caption text-[var(--text-3)]">本库由管理员维护。你的文件和本库资料可放进自己的资料库，一起提问分析。</p>
+            <UploadToPersonal primary />
+            <AddToPersonal block label={`整库加入我的资料库 · ${documents.length} 份`} refs={documents.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} />
+            <p className="px-1 text-caption text-[var(--text-3)]">只要其中几份：在列表中勾选，再从底部加入。</p>
+          </div>}
+        </section>
+        <div>
+          <h3 className={railHead}>列表方式</h3>
+          <Segmented label="列表方式" value={byFile ? "file" : "project"} onChange={(key) => updateFilter("by", key === "file" ? "file" : "")}
+            options={[["project", "按项目"], ["file", "按文件"]]} />
+        </div>
+        {!byFile ? <>
+          <div role="group" aria-label="立项年">
+            <h3 className={railHead}>立项年</h3>
+            <button type="button" aria-pressed={!year} className={facet(!year)} onClick={() => updateFilter("year", "")}>全部<span className="tabular-nums text-[var(--text-3)]">{allProjects.length}</span></button>
+            {years.map((y) => <button key={y} type="button" aria-pressed={year === String(y)} className={facet(year === String(y))} onClick={() => updateFilter("year", String(y))}>
+              {y}<span className="tabular-nums text-[var(--text-3)]">{allProjects.filter((p) => p.start_year === y).length}</span></button>)}
+          </div>
+          <div role="group" aria-label="待核对">
+            <h3 className={railHead}>待核对</h3>
+            {LACKS.map(([key, label]) => <button key={key} type="button" aria-pressed={lack === key} className={facet(lack === key)}
+              onClick={() => updateFilter("lack", lack === key ? "" : key)}>
+              {label}<span className="tabular-nums text-[var(--text-3)]">{key === "outputs" && !outputs.data ? "…" : lacking[key].length}</span></button>)}
+          </div>
         </> : null}
-      </div>
-      <div className="mt-[10px] space-y-[10px]">
+        {admin ? <div className="border-t border-[var(--hairline)] pt-4">
+          <h3 className={railHead}>入库状态</h3>
+          <div role="group" aria-label="筛选文档状态" className="flex flex-wrap gap-1 px-1">
+            {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" aria-pressed={filter === key} onClick={() => updateFilter("status", key)}
+              className={`rounded-full px-[9px] py-[3px] text-caption ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--text-2)] hover:bg-[var(--surface)]"}`}>
+              {{ all: "全部", pending: "待处理", indexed: "已入库", failed: "失败" }[key]} <span className={key === "failed" && counts.failed ? "text-[var(--danger-fg)]" : "text-[var(--text-3)]"}>{counts[key]}</span>
+            </button>)}
+          </div>
+        </div> : null}
+      </aside>
+      <div className="min-w-0 space-y-[10px] text-body">
         {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
-          在资料库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
+          在资料库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
-        {showPath && listing?.source_dir ? <details className="break-all text-caption text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
-          本地资料目录：<code>{listing.source_dir}</code>
-          <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
-        </p></details> : null}
         {busy ? <button type="button" className="text-caption text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
         {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-caption">
           {uploads.map((item) => <li key={item.path} className="flex gap-[8px]">
@@ -261,54 +312,37 @@ export function CorpusFiles({
             {item.detail ? <span className="max-w-[180px] truncate text-[var(--red)]" title={item.detail}>{item.detail}</span> : null}
           </li>)}
         </ul> : null}
-        <div className="flex flex-wrap items-center gap-[6px]" aria-label="筛选文档状态">
-          <label className="flex min-w-[160px] flex-1 items-center gap-[6px] rounded-[7px] border border-[var(--hairline)] bg-[var(--canvas)] px-[8px] py-[5px] text-[var(--stone)] focus-within:border-[var(--primary)]">
+        <div className="flex flex-wrap items-center gap-2">
+          <label className="flex min-w-[240px] flex-1 items-center gap-[6px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] py-[3px] pr-[3px] pl-[10px] text-[var(--stone)] focus-within:border-[var(--primary)]">
             <Icon name="search" size={12} />
             <input
               aria-label="搜索资料"
               value={search}
               onChange={(event) => updateFilter("q", event.target.value)}
               placeholder={mode === "content" ? "输入正文主题（至少两个字）" : "搜索项目名、批准号、负责人或文件名"}
-              className="font-app w-full border-0 bg-transparent text-caption text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
+              className="font-app min-w-0 flex-1 border-0 bg-transparent py-[3px] text-body text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
             />
+            <Segmented label="搜索方式" value={mode} onChange={setMode} options={[["name", "名称"], ["content", "正文"]]} />
           </label>
-          {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" onClick={() => updateFilter("status", key)} className={`rounded-full px-[9px] py-[4px] text-caption ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
-            {{ all: "全部", pending: "待处理", indexed: "已入库", failed: "失败" }[key]} {counts[key]}
-          </button>)}
+          {!chatOpen ? <Button size="lg" variant="primary" icon="chat" iconSize={16} className="!h-auto !w-auto self-stretch px-[18px]" onClick={() => setChatOpen(true)}
+            title={selectedDocs.length ? "用已勾选的资料提问、生成报告" : "就本资料库提问；勾选资料可缩小范围"}>{selectedDocs.length ? `与已选 ${selectedDocs.length} 份资料对话` : "与资料对话"}</Button> : null}
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <Segmented label="列表方式" value={byFile ? "file" : "project"} onChange={(key) => updateFilter("by", key === "file" ? "file" : "")}
-            options={[["project", "按项目"], ["file", "按文件"]]} />
-          <Segmented label="搜索方式" value={mode} onChange={setMode} options={[["name", "按名称"], ["content", "按正文"]]} />
-          {!byFile ? <>
-            <select aria-label="立项年" value={year} onChange={(e) => updateFilter("year", e.target.value)} className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-caption">
-              <option value="">全部年份</option>{years.map((y) => <option key={y} value={y}>{y} 年立项</option>)}
-            </select>
-            <select aria-label="缺失信息" value={lack} onChange={(e) => updateFilter("lack", e.target.value)} className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-caption">
-              <option value="">全部项目</option>
-              <option value="funding">未记录批准资助金额 · {lacking.funding.length}</option>
-              <option value="conflict">批准资助金额待核对 · {lacking.conflict.length}</option>
-              <option value="year">立项年待核对 · {lacking.year.length}</option>
-              <option value="outputs">未列成果 · {outputs.data ? lacking.outputs.length : "…"}</option>
-            </select>
-          </> : null}
-          <span className="text-caption text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : listedProjects.length === allProjects.length ? `${allProjects.length} 个项目` : `找到 ${listedProjects.length} 个项目 / 共 ${allProjects.length} 个`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
-          {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-caption text-[var(--link)]">清空选择</button> : null}
-          {selectedDocs.length ? <AddToPersonal refs={selectedDocs.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} /> : null}
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span role="status" className="text-caption text-[var(--text-3)]">
+            <b className="mr-1 text-emphasis font-semibold text-[var(--ink)]">{byFile ? searchedRows.length : listedProjects.length}</b>
+            {byFile ? "份资料" : listedProjects.length === allProjects.length ? "个项目" : `个项目符合筛选 / 共 ${allProjects.length} 个`}
+            {mode === "content" ? "（正文检索最多返回 100 份相关资料）" : ""}</span>
           {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-caption text-[var(--link)]"
             onClick={() => setSelectedIds([...new Set([...selectedIds, ...searchedRows.flatMap((row) => row.document && row.status === "indexed" ? [row.document.doc_id] : [])])].slice(0, 20))}>
             勾选搜索结果（最多 20 份）</button> : null}
-          <span className="flex-1" />
-          {!chatOpen ? <button type="button" onClick={() => setChatOpen(true)}
-            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-caption font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">分析工作区{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
-          {matches.isFetching && mode === "content" ? <span role="status">正在检索正文…</span> : null}
-          {mode === "content" && matches.error ? <span role="alert">{matches.error.message}</span> : null}
+          {matches.isFetching && mode === "content" ? <span role="status" className="text-caption">正在检索正文…</span> : null}
+          {mode === "content" && matches.error ? <span role="alert" className="text-caption text-[var(--red)]">{matches.error.message}</span> : null}
         </div>
         {!byFile ? <ProjectList projects={listedProjects}
           files={files} selectedIds={selectedIds} onToggle={toggleMany} onPreview={onPreview} busy={busy}
           query={mode === "content" ? "" : search} filtered={Boolean(year || lack)}
           onDelete={admin ? (rel) => { if (window.confirm(`删除源文件「${rel}」并从索引移除？`)) void run(async () => { await deleteCorpusFile(corpusId, rel); }); } : undefined} /> : <>
-        <ul aria-label="资料列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
+        <ul aria-label="资料列表" className="space-y-1 rounded-xl border border-[var(--hairline)] p-1">
           {pageRows.map(({ key, file, document, status }) => (
             <li key={key} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
               className={`group relative flex min-h-[58px] flex-wrap items-center gap-3 rounded-lg border border-l-4 px-3 py-2 text-caption transition-[background-color,border-color] duration-150 ${document && selectedIds.includes(document.doc_id) ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
@@ -403,11 +437,12 @@ export function CorpusFiles({
         {chatOpen ? <AnalysisWorkspace corpusId={corpusId} corpusName={corpusName} documents={selectedDocs} onBusy={setChatBusy} projects={projects} task={workspaceTask}
           sessionId={params.get("session") ?? undefined} onRestore={(ids) => setSelectedIds(ids.slice(0, 20))}
           onRemove={(ids) => setSelectedIds((old) => old.filter((item) => !ids.includes(item)))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
-          // Ticking files offers the conversation without opening it over the list.
+          // What to do with ticked files is said in one place: this bar.
           : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
             <span className="whitespace-nowrap text-[var(--slate)]">已选 <b className="text-[var(--ink)]">{selectedDocs.length}</b> 份资料</span>
             <button type="button" onClick={() => setSelectedIds([])} className="whitespace-nowrap text-body text-[var(--steel)] hover:text-[var(--ink)]">清空</button>
-            <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">分析这些资料</button>
+            <AddToPersonal up refs={selectedDocs.map((d) => ({ corpus_id: corpusId, doc_id: d.doc_id, title: (d.rel_path || d.origin || "").split(/[\\/]/).pop() || d.title }))} />
+            <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">与这些资料对话</button>
           </div> : null}
         {notice || result.error ? (
           <p role="alert" className="text-caption text-[var(--red)]">

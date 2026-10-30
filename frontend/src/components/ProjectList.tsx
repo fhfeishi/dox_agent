@@ -31,7 +31,7 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
   const toggleOpen = (id: string) => setOpen((old) => old.includes(id) ? old.filter((x) => x !== id) : [...old, id]);
 
   return <div className="space-y-1">
-    <ul aria-label="项目列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
+    <ul aria-label="项目列表" className="space-y-1 rounded-xl border border-[var(--hairline)] p-1">
       {shown.slice(0, limit).map((p) => {
         const ids = p.files.map((f) => f.document.doc_id);
         const picked = ids.filter((id) => selectedIds.includes(id)).length;

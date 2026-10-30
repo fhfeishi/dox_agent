@@ -214,7 +214,7 @@ async def main():
                 # Templates are chosen freely in the analysis workspace (a bound task offers only its own):
                 # the published version stays selectable while a new draft is open, and the label says so.
                 await page.goto(f"{origin}/library/{quote(corpus_id)}/documents?workspace=1&task=task4")
-                work=page.get_by_role("region",name="分析工作区")
+                work=page.get_by_role("region",name="与资料对话")
                 await work.get_by_role("button",name="生成报告…").click()
                 await expect(work.get_by_role("combobox",name="报告模版").locator("option",has_text=re.compile(r"（已发布 v\d+，另有草稿）"))).to_have_count(1)
                 await browser.close()

@@ -114,9 +114,11 @@ async function jsonOrThrow(response: Response, fallback: string) {
  */
 export const UPLOADS_PREFIX = "mine-";
 export type PersonalRef = { corpus_id: string; doc_id: string; title: string; library_missing?: boolean };
+/** An uploaded file not (yet) in the library: waiting, being parsed, or failed with the parser's reason. */
+export type PendingUpload = { name: string; state: "queued" | "parsing" | "failed"; error: string };
 export type PersonalLibrary = { id: string; name: string; description: string; revision: number; created_at: string; updated_at: string;
-  corpus_ids: string[]; refs: PersonalRef[] };
-export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs"> & { count: number; uploads: number };
+  corpus_ids: string[]; refs: PersonalRef[]; uploads?: PendingUpload[] };
+export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs" | "uploads"> & { count: number; uploads: number };
 
 export async function fetchPersonalLibraries(signal?: AbortSignal): Promise<PersonalLibrarySummary[]> {
   return jsonOrThrow(await fetch("/api/personal-libraries", { signal }), "个人资料库读取失败");
@@ -140,11 +142,15 @@ export async function changePersonalLibrary(id: string, change: { revision: numb
   return jsonOrThrow(response, "保存个人资料库失败");
 }
 
-/** Upload one file into a personal library; it is parsed, indexed and added to the library. */
-export async function uploadPersonalFile(id: string, file: File): Promise<{ library: PersonalLibrary; doc_id: string; name: string }> {
+/** Upload one file into a personal library; it is queued, parsed in the background and then added. */
+export async function uploadPersonalFile(id: string, file: File): Promise<{ name: string; state: "queued" }> {
   const body = new FormData();
   body.append("upload", file);
   return jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}/files`, { method: "POST", body }), "上传失败");
+}
+
+export async function removeFailedUpload(id: string, name: string): Promise<void> {
+  await jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}/files/${encodeURIComponent(name)}`, { method: "DELETE" }), "删除失败");
 }
 
 export async function deletePersonalLibrary(id: string): Promise<void> {

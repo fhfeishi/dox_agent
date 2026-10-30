@@ -16,7 +16,7 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | [PROJECT.md](PROJECT.md)、[ITERATION.md](ITERATION.md)、[DECISIONS.md](DECISIONS.md)、`DECISIONS-archive.md`、[cleanup-log.md](cleanup-log.md) | 正式要求、当前工作、决定、接入前的历史决定、删除登记 |
 | [design/系统.md](design/系统.md)、[design/界面.md](design/界面.md) | 现行设计载体 |
 | [tasks/](tasks/) | 任务记录：[02 谱系交互实施 1026](tasks/task-02-谱系交互实施-20261026.md)、[领导体验优化 1026](tasks/领导体验优化-20261026/README.md)、[收尾规划 1023](tasks/收尾规划-20261023/README.md)、[升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md)、[Q1 接续](tasks/upgrade-Q1-20261019.md)、[A1 验收](tasks/A1-验收-20261021/README.md)、[资料整理到对比报告](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系](tasks/lineage-task/README.md) |
-| `owner-首页-design/`、`owner-领域分析-design/`、`owner-问答-design/`、`资料库数据接口-design/` | 专题目录（本地保存、不入库）：首页、领域分析、对话工作台的设计迭代与候选，以及资料库数据接口（AI Native 补充链路）的方案探索；领域分析的候选稿与口径约束见 [owner-领域分析-design/README.md](owner-领域分析-design/README.md)（当前为 wkbd-designer v3：场景 × 技术体系二维地图） |
+| `owner-首页-design/`、`owner-领域分析-design/`、`owner-问答-design/`、`资料库数据接口-design/`、`资料管理-design/` | 专题目录（本地保存、不入库）：首页、领域分析、对话工作台的设计迭代与候选，资料库数据接口（AI Native 补充链路）的方案探索，以及资料管理界面重构的两版原型；领域分析的候选稿与口径约束见 [owner-领域分析-design/README.md](owner-领域分析-design/README.md)（当前为 wkbd-designer v3：场景 × 技术体系二维地图） |
 | [前端审查-20261027.md](前端审查-20261027.md) | 工作文档：全站前端审查与优化建议（草案） |
 | [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |

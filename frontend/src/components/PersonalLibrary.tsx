@@ -8,6 +8,7 @@ import { useLayout } from "../layout";
 import { useApp } from "../store";
 import { fetchDocuments, type DocumentInfo } from "../useDocuments";
 import { SlideOver } from "./SlideOver";
+import { Icon } from "./Icons";
 import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
@@ -17,14 +18,8 @@ export const personalLibrariesQuery = () => ({ queryKey: ["personal-libraries"],
  * 加入个人资料库 (D-20261027-1): the documents ticked in a system library go into one of the account's
  * personal libraries, or a new one named here. Only references are kept; nothing is copied.
  */
-export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
-  const queryClient = useQueryClient();
-  const { showToast } = useLayout();
-  const libraries = useQuery(personalLibrariesQuery());
-  const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
+/** Closes a popover on an outside click or Escape. */
+function useDismiss(open: boolean, setOpen: (open: boolean) => void) {
   const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
@@ -32,7 +27,20 @@ export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
     const escape = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     document.addEventListener("mousedown", close); document.addEventListener("keydown", escape);
     return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", escape); };
-  }, [open]);
+  }, [open, setOpen]);
+  return box;
+}
+
+/** `up` opens the list above the button, for the selection bar at the foot of the page; `label` names a whole-library add. */
+export function AddToPersonal({ refs, up = false, label, block = false }: { refs: PersonalRef[]; up?: boolean; label?: string; block?: boolean }) {
+  const queryClient = useQueryClient();
+  const { showToast } = useLayout();
+  const libraries = useQuery(personalLibrariesQuery());
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const box = useDismiss(open, setOpen);
   async function add(target: PersonalLibrarySummary | null) {
     setBusy(true); setError("");
     try {
@@ -44,8 +52,9 @@ export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
     } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
   }
   return <div ref={box} className="relative">
-    <Button size="sm" variant="outline" disabled={!refs.length} onClick={() => setOpen(!open)}>加入个人资料库{refs.length ? ` · ${refs.length} 份` : ""}</Button>
-    {open ? <div role="dialog" aria-label="加入个人资料库" className="absolute right-0 top-[calc(100%+6px)] z-[60] w-[280px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2 shadow-xl">
+    <Button size={block ? "md" : "sm"} variant="outline" icon={block ? "book" : undefined} className={block ? "w-full justify-center" : ""} disabled={!refs.length} onClick={() => setOpen(!open)}>
+      {label ?? `加入个人资料库${refs.length ? ` · ${refs.length} 份` : ""}`}</Button>
+    {open ? <div role="dialog" aria-label="加入个人资料库" className={`absolute right-0 ${up ? "bottom-[calc(100%+10px)]" : "top-[calc(100%+6px)]"} z-[60] w-[280px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2 shadow-xl`}>
       <p className="px-2 py-1 text-caption text-[var(--steel)]">只保存引用，原文仍在系统资料库</p>
       <ul className="max-h-[220px] overflow-y-auto">
         {(libraries.data ?? []).map((library) => <li key={library.id}>
@@ -57,6 +66,60 @@ export function AddToPersonal({ refs }: { refs: PersonalRef[] }) {
         <input aria-label="新个人资料库名称" placeholder="新建个人资料库" value={name} onChange={(e) => setName(e.target.value)}
           className="min-w-0 flex-1 rounded-md border border-[var(--hairline-strong)] px-2 py-1 text-body" />
         <Button type="submit" size="sm" variant="primary" disabled={busy || !name.trim()}>新建并加入</Button>
+      </form>
+      {error ? <p role="alert" className="px-2 pt-1 text-caption text-[var(--red)]">{error}</p> : null}
+    </div> : null}
+  </div>;
+}
+
+/**
+ * 上传到我的资料库 (query 2026-1030 1117): a system library is the administrator's, so from its 资料管理 an
+ * account sends its own files to one of its personal libraries, or a new one named here; they are parsed in
+ * the background there (D-20261028-2). The file chooser opens on the click itself, before any request.
+ */
+export function UploadToPersonal({ primary = false }: { primary?: boolean }) {
+  const queryClient = useQueryClient();
+  const { showToast } = useLayout();
+  const libraries = useQuery(personalLibrariesQuery());
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const target = useRef<PersonalLibrarySummary | string | null>(null);
+  const input = useRef<HTMLInputElement>(null);
+  const box = useDismiss(open, setOpen);
+  const choose = (into: PersonalLibrarySummary | string) => { target.current = into; setError(""); input.current?.click(); };
+  async function upload(files: File[]) {
+    const into = target.current;
+    if (!into || !files.length) return;
+    setBusy(true); setError("");
+    try {
+      const library = typeof into === "string" ? await createPersonalLibrary(into) : into;
+      const failed: string[] = [];
+      for (const file of files) {
+        try { await uploadPersonalFile(library.id, file); } catch (e) { failed.push(`${file.name}：${(e as Error).message}`); }
+      }
+      await queryClient.invalidateQueries({ queryKey: ["personal-libraries"] });
+      if (failed.length < files.length) showToast(`已上传 ${files.length - failed.length} 份到「${library.name}」，正在后台解析`);
+      if (failed.length) setError(failed.join("；")); else { setOpen(false); setName(""); }
+    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+  }
+  return <div ref={box} className="relative">
+    <Button variant={primary ? "primary" : "outline"} icon="upload" className="w-full justify-center" disabled={busy} onClick={() => setOpen(!open)}>{busy ? "正在上传…" : "上传到我的资料库 ▾"}</Button>
+    <input ref={input} type="file" multiple accept={UPLOAD_ACCEPT} aria-label="选择要上传到我的资料库的文件" className="sr-only"
+      onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = ""; void upload(files); }} />
+    {open ? <div role="dialog" aria-label="上传到我的资料库" className="absolute left-0 top-[calc(100%+6px)] z-[60] w-[280px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2 shadow-xl">
+      <p className="px-2 py-1 text-caption text-[var(--steel)]">系统资料库由管理员维护。你的文件放进自己的资料库，后台解析后可与本库资料一起分析。</p>
+      <ul className="max-h-[220px] overflow-y-auto">
+        {(libraries.data ?? []).map((library) => <li key={library.id}>
+          <button type="button" disabled={busy} onClick={() => choose(library)} className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body hover:bg-[var(--surface)] disabled:opacity-50">
+            <span className="min-w-0 flex-1 truncate">{library.name}</span><span className="shrink-0 text-caption text-[var(--stone)]">{library.count} 份</span>
+          </button></li>)}
+      </ul>
+      <form className="mt-1 flex gap-1.5 border-t border-[var(--hairline)] px-1 pt-2" onSubmit={(e) => { e.preventDefault(); if (name.trim()) choose(name.trim()); }}>
+        <input aria-label="新个人资料库名称" placeholder="新建个人资料库" value={name} onChange={(e) => setName(e.target.value)}
+          className="min-w-0 flex-1 rounded-md border border-[var(--hairline-strong)] px-2 py-1 text-body" />
+        <Button type="submit" size="sm" variant="primary" disabled={busy || !name.trim()}>新建并上传</Button>
       </form>
       {error ? <p role="alert" className="px-2 pt-1 text-caption text-[var(--red)]">{error}</p> : null}
     </div> : null}
@@ -196,6 +259,10 @@ export function PersonalLibraryPage() {
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
   const [sending, setSending] = useState<Sending[]>([]);
+  const [q, setQ] = useState("");
+  const [only, setOnly] = useState("");
+  const [menu, setMenu] = useState(false);
+  const menuBox = useDismiss(menu, setMenu);
   const uploadedCount = data?.refs.filter((ref) => ref.corpus_id === ownUploads).length ?? 0;
   useEffect(() => { void queryClient.invalidateQueries({ queryKey: ["documents", ownUploads] }); }, [uploadedCount, ownUploads, queryClient]);
   const [dragging, setDragging] = useState(false);
@@ -269,7 +336,18 @@ export function PersonalLibraryPage() {
     return corpus ? short(corpus.name) : "已删除的系统资料库";
   };
   const tick = (ref: PersonalRef, on: boolean) => setUnticked((old) => { const next = new Set(old); if (on) next.delete(key(ref)); else next.add(key(ref)); return next; });
-  return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8"
+  // 前端审查 2026-1030 (版本 B, as 资料管理): sources with their counts on the left, reading on the right,
+  // what to do with the ticked documents in the bar at the foot.
+  const needle = q.trim().toLowerCase();
+  const titleOf = (ref: PersonalRef) => { const doc = docOf(ref), meta = fundMetaFromPath(doc?.rel_path || ref.title);
+    return { doc, meta, title: meta?.title || doc?.title || ref.title || ref.doc_id }; };
+  const matches = (ref: PersonalRef) => { if (!needle) return true; const { meta, title } = titleOf(ref);
+    return `${title} ${ref.title} ${meta ? `${meta.projectNo} ${meta.pi}` : ""}`.toLowerCase().includes(needle); };
+  const shownSources = corpusIds.filter((id) => !only || id === only);
+  const facet = (active: boolean) => `flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-left text-body transition-colors duration-[var(--dur-quick)] ${active
+    ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--text-2)] hover:bg-[var(--surface)]"}`;
+  const railHead = "mb-1.5 px-2 text-caption font-semibold text-[var(--text-3)]";
+  return <main className="min-h-0 flex-1 overflow-y-auto px-5 pt-7 pb-28 sm:px-8"
     onDragOver={(e) => { if (e.dataTransfer.types.includes("Files")) { e.preventDefault(); setDragging(true); } }}
     onDragLeave={(e) => { if (e.currentTarget === e.target) setDragging(false); }}
     onDrop={(e) => { if (!e.dataTransfer.files.length) return; e.preventDefault(); setDragging(false); void upload([...e.dataTransfer.files]); }}>
@@ -280,7 +358,7 @@ export function PersonalLibraryPage() {
     <input ref={fileInput} type="file" multiple accept={UPLOAD_ACCEPT} hidden aria-label="选择要上传的文件"
       onChange={(e) => { const files = [...(e.target.files ?? [])]; e.target.value = ""; void upload(files); }} />
     <div className="mx-auto max-w-[var(--page-max)] space-y-5">
-      <header className="space-y-2">
+      <header className="space-y-2 border-b border-[var(--hairline)] pb-4">
         <Link to="/library" className="text-body text-[var(--link)] hover:underline">← 全部资料库</Link>
         <div className="flex flex-wrap items-center gap-3">
           {editing ? <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); if (name.trim()) void save({ revision: data.revision, name: name.trim() }).then((ok) => { if (ok) setEditing(false); }); }}>
@@ -291,69 +369,106 @@ export function PersonalLibraryPage() {
           <span className="text-body text-[var(--steel)]">{data.refs.length} 份资料{corpusIds.some((id) => !id.startsWith(UPLOADS_PREFIX))
             ? ` · 引用 ${corpusIds.filter((id) => !id.startsWith(UPLOADS_PREFIX)).length} 个系统资料库` : ""}{data.refs.some(isUpload) ? ` · 上传 ${data.refs.filter(isUpload).length} 份` : ""}</span>
           <span className="flex-1" />
-          <Button variant="outline" icon="plus" iconSize={13} onClick={() => setAdding(true)}>添加资料</Button>
-          <Button variant="outline" onClick={() => fileInput.current?.click()}>上传文件</Button>
-          <Button variant="primary" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>
-            {failed.length || chosen.length < usable.length ? `用已勾选的 ${chosen.length} 份提问` : "就此提问"}</Button>
-          {!editing ? <Button variant="outline" onClick={() => { setName(data.name); setEditing(true); }}>重命名</Button> : null}
-          <Button variant="outline" onClick={() => {
-            if (window.confirm(`删除个人资料库「${data.name}」？${data.refs.some(isUpload) ? "上传到这里的文件会一并删除；" : ""}系统资料库中的原文不受影响。`))
-              void deletePersonalLibrary(libraryId).then(() => queryClient.invalidateQueries({ queryKey: ["personal-libraries"] })).then(() => navigate("/library"), (e) => setError((e as Error).message));
-          }}>删除</Button>
-        </div>
-        {data.refs.length ? <p role="status" className="text-caption text-[var(--steel)]">
-          {checking ? "正在核对资料…" : `可用 ${usable.length} 份 · 已勾选 ${chosen.length} 份`}
-          {failed.length ? `；${failed.length} 份所在资料库读取失败，未包含在提问中` : ""}
-          {missing > 0 ? `；${missing} 份原资料已不在系统资料库中` : ""}
-          {askProblem && !checking ? `。${askProblem}` : ""}
-          {dropped.length ? <button type="button" onClick={() => remove(dropped)} className="ml-2 text-[var(--link)] hover:underline">移出未勾选的 {dropped.length} 份</button> : null}</p> : null}
-        {sending.length || data.uploads?.length ? <ul aria-label="上传进度" className="space-y-1 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2">
-          {sending.map((item, i) => <li key={"s" + item.name + i} className="flex items-center gap-2 px-1 text-body">
-            <span className="min-w-0 flex-1 truncate">{item.name}</span>
-            {item.error ? <><span role="alert" className="shrink-0 text-caption text-[var(--danger-fg)]">{item.error}</span>
-              <button type="button" onClick={() => setSending((old) => old.filter((other) => other !== item))} className="shrink-0 text-caption text-[var(--link)] hover:underline">知道了</button></>
-              : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">正在上传…</span>}
-          </li>)}
-          {(data.uploads ?? []).map((item) => <li key={"u" + item.name} className="flex items-center gap-2 px-1 text-body">
-            <span className="min-w-0 flex-1 truncate">{item.name}</span>
-            {item.state === "failed" ? <><span role="alert" className="min-w-0 truncate text-caption text-[var(--danger-fg)]" title={item.error}>解析失败：{item.error}</span>
-              <button type="button" onClick={() => void dropFailed(item.name)} className="shrink-0 text-caption text-[var(--link)] hover:underline">删除</button></>
-              : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">{item.state === "parsing" ? "正在解析…（PDF 可能要几分钟，可以先离开）" : "排队等待解析"}</span>}
-          </li>)}
-        </ul> : null}
-        {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
-      </header>
-      {!data.refs.length ? <p className="rounded-xl border border-dashed border-[var(--line-cool-strong)] px-4 py-6 text-body text-[var(--steel)]">
-        还没有资料。点“添加资料”从系统资料库或其他个人资料库挑选，点“上传文件”或把文件拖到这里加入自己的文件（PDF、Word、Markdown、TXT）。</p> : null}
-      {corpusIds.map((corpusId) => {
-        const state = source.get(corpusId)!;
-        const refs = data.refs.filter((ref) => ref.corpus_id === corpusId);
-        const title = sourceTitle(corpusId);
-        return <section key={corpusId} aria-label={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
-          <div className="mb-2 flex items-center gap-2 px-1">
-            <h2 className="text-body font-semibold text-[var(--steel)]">{title} · {refs.length}</h2>
-            {state.state === "checking" ? <span role="status" className="text-caption text-[var(--stone)]">正在核对…</span> : null}
-            {state.state === "failed" ? <><span role="alert" className="text-caption text-[var(--danger-fg)]">资料清单读取失败，引用仍保留</span>
-              <button type="button" onClick={state.retry} className="text-caption text-[var(--link)] hover:underline">重试</button></> : null}
+          {/* Renaming and deleting are rare; they share one menu instead of a row of buttons. */}
+          <div ref={menuBox} className="relative">
+            <Button size="sm" variant="outline" onClick={() => setMenu(!menu)}>管理 ▾</Button>
+            {menu ? <div role="menu" aria-label="管理个人资料库" className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[200px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
+              <button type="button" role="menuitem" className="block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)]"
+                onClick={() => { setMenu(false); setName(data.name); setEditing(true); }}>重命名</button>
+              <button type="button" role="menuitem" className="block w-full rounded-md px-3 py-1.5 text-left text-body text-[var(--red)] hover:bg-[var(--surface)]" onClick={() => {
+                setMenu(false);
+                if (window.confirm(`删除个人资料库「${data.name}」？${data.refs.some(isUpload) ? "上传到这里的文件会一并删除；" : ""}系统资料库中的原文不受影响。`))
+                  void deletePersonalLibrary(libraryId).then(() => queryClient.invalidateQueries({ queryKey: ["personal-libraries"] })).then(() => navigate("/library"), (e) => setError((e as Error).message));
+              }}>删除个人资料库</button>
+            </div> : null}
           </div>
-          <ul className="space-y-1">{refs.map((ref) => {
-            const doc = docOf(ref), meta = fundMetaFromPath(doc?.rel_path || ref.title);
-            const lost = lostRef(ref);
-            return <li key={ref.doc_id} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-[var(--surface)]">
-              <input type="checkbox" aria-label={`本次提问使用 ${meta?.title || ref.title || ref.doc_id}`} disabled={!doc}
-                checked={Boolean(doc) && !unticked.has(key(ref))} onChange={(e) => tick(ref, e.target.checked)} />
-              <button type="button" disabled={!doc} onClick={() => doc && openPreview(doc, null, corpusId)} className="min-w-0 flex-1 text-left disabled:cursor-default">
-                <span className="block truncate text-body font-medium text-[var(--ink)]">{meta?.title || doc?.title || ref.title || ref.doc_id}</span>
-                <span className="block truncate text-caption text-[var(--stone)]">{lost ? (state.state === "gone" ? (corpusId.startsWith(UPLOADS_PREFIX) ? "所在个人资料库已删除" : "所在系统资料库已删除") : "原资料已不在所在资料库中")
-                  : `${state.state === "failed" ? "暂时无法读取 · " : ""}${meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title ?? (state.state === "failed" ? "" : "正在核对…")}`}</span>
-              </button>
-              {doc ? <button type="button" onClick={() => openPreview(doc, null, corpusId)} className="shrink-0 text-caption text-[var(--link)] hover:underline">预览 ›</button> : null}
-              <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => remove([ref])}
-                className="shrink-0 text-caption text-[var(--steel)] hover:text-[var(--red)]">移出</button>
-            </li>;
-          })}</ul>
-        </section>;
-      })}
+        </div>
+      </header>
+      <div className="grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start">
+        <aside aria-label="筛选资料" className="flex flex-col gap-5 lg:sticky lg:top-0">
+          {corpusIds.length ? <div role="group" aria-label="来源">
+            <h2 className={railHead}>来源</h2>
+            <button type="button" aria-pressed={!only} className={facet(!only)} onClick={() => setOnly("")}>全部<span className="tabular-nums text-[var(--text-3)]">{data.refs.length}</span></button>
+            {corpusIds.map((id) => <button key={id} type="button" aria-pressed={only === id} className={facet(only === id)} onClick={() => setOnly(only === id ? "" : id)}>
+              <span className="min-w-0 truncate">{sourceTitle(id)}</span><span className="shrink-0 tabular-nums text-[var(--text-3)]">{data.refs.filter((ref) => ref.corpus_id === id).length}</span></button>)}
+          </div> : null}
+          <div className={corpusIds.length ? "border-t border-[var(--hairline)] pt-4" : ""}>
+            <h2 className={railHead}>补充资料</h2>
+            <div className="flex flex-wrap gap-2 px-1">
+              <Button size="sm" variant="outline" icon="plus" iconSize={12} onClick={() => setAdding(true)}>添加资料</Button>
+              <Button size="sm" variant="outline" onClick={() => fileInput.current?.click()}>上传文件</Button>
+            </div>
+            <p className="mt-2 px-2 text-caption text-[var(--text-3)]">“添加资料”从系统资料库或其他个人资料库挑选；也可把 PDF、Word、Markdown、TXT 拖到页面上。</p>
+          </div>
+        </aside>
+        <div className="min-w-0 space-y-3">
+          {data.refs.length ? <label className="flex items-center gap-[6px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[6px] text-[var(--stone)] focus-within:border-[var(--primary)]">
+            <Icon name="search" size={12} />
+            <input aria-label="搜索资料" value={q} onChange={(e) => setQ(e.target.value)} placeholder="搜索项目名、批准号、负责人或文件名"
+              className="font-app min-w-0 flex-1 border-0 bg-transparent text-body text-[var(--ink)] outline-none placeholder:text-[var(--stone)]" />
+          </label> : null}
+          {data.refs.length ? <p role="status" className="text-caption text-[var(--steel)]">
+            {checking ? "正在核对资料…" : `可用 ${usable.length} 份 · 已勾选 ${chosen.length} 份`}
+            {failed.length ? `；${failed.length} 份所在资料库读取失败，未包含在提问中` : ""}
+            {missing > 0 ? `；${missing} 份原资料已不在系统资料库中` : ""}
+            {askProblem && !checking ? `。${askProblem}` : ""}</p> : null}
+          {sending.length || data.uploads?.length ? <ul aria-label="上传进度" className="space-y-1 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2">
+            {sending.map((item, i) => <li key={"s" + item.name + i} className="flex items-center gap-2 px-1 text-body">
+              <span className="min-w-0 flex-1 truncate">{item.name}</span>
+              {item.error ? <><span role="alert" className="shrink-0 text-caption text-[var(--danger-fg)]">{item.error}</span>
+                <button type="button" onClick={() => setSending((old) => old.filter((other) => other !== item))} className="shrink-0 text-caption text-[var(--link)] hover:underline">知道了</button></>
+                : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">正在上传…</span>}
+            </li>)}
+            {(data.uploads ?? []).map((item) => <li key={"u" + item.name} className="flex items-center gap-2 px-1 text-body">
+              <span className="min-w-0 flex-1 truncate">{item.name}</span>
+              {item.state === "failed" ? <><span role="alert" className="min-w-0 truncate text-caption text-[var(--danger-fg)]" title={item.error}>解析失败：{item.error}</span>
+                <button type="button" onClick={() => void dropFailed(item.name)} className="shrink-0 text-caption text-[var(--link)] hover:underline">删除</button></>
+                : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">{item.state === "parsing" ? "正在解析…（PDF 可能要几分钟，可以先离开）" : "排队等待解析"}</span>}
+            </li>)}
+          </ul> : null}
+          {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
+          {!data.refs.length ? <p className="rounded-xl border border-dashed border-[var(--line-cool-strong)] px-4 py-6 text-body text-[var(--steel)]">
+            还没有资料。点左侧“添加资料”从系统资料库或其他个人资料库挑选，点“上传文件”或把文件拖到这里加入自己的文件（PDF、Word、Markdown、TXT）。</p> : null}
+          {shownSources.map((corpusId) => {
+            const state = source.get(corpusId)!;
+            const all = data.refs.filter((ref) => ref.corpus_id === corpusId);
+            const refs = all.filter(matches);
+            const title = sourceTitle(corpusId);
+            if (needle && !refs.length) return null;
+            return <section key={corpusId} aria-label={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
+              <div className="mb-2 flex items-center gap-2 px-1">
+                <h2 className="text-body font-semibold text-[var(--steel)]">{title} · {needle ? `${refs.length} / ${all.length}` : all.length}</h2>
+                {state.state === "checking" ? <span role="status" className="text-caption text-[var(--stone)]">正在核对…</span> : null}
+                {state.state === "failed" ? <><span role="alert" className="text-caption text-[var(--danger-fg)]">资料清单读取失败，引用仍保留</span>
+                  <button type="button" onClick={state.retry} className="text-caption text-[var(--link)] hover:underline">重试</button></> : null}
+              </div>
+              <ul className="space-y-1">{refs.map((ref) => {
+                const { doc, meta, title: name } = titleOf(ref);
+                const lost = lostRef(ref);
+                return <li key={ref.doc_id} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-[var(--surface)]">
+                  <input type="checkbox" aria-label={`本次提问使用 ${name}`} disabled={!doc}
+                    checked={Boolean(doc) && !unticked.has(key(ref))} onChange={(e) => tick(ref, e.target.checked)} />
+                  <button type="button" disabled={!doc} onClick={() => doc && openPreview(doc, null, corpusId)} className="min-w-0 flex-1 text-left disabled:cursor-default">
+                    <span className="block truncate text-body font-medium text-[var(--ink)]">{name}</span>
+                    <span className="block truncate text-caption text-[var(--stone)]">{lost ? (state.state === "gone" ? (corpusId.startsWith(UPLOADS_PREFIX) ? "所在个人资料库已删除" : "所在系统资料库已删除") : "原资料已不在所在资料库中")
+                      : `${state.state === "failed" ? "暂时无法读取 · " : ""}${meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title ?? (state.state === "failed" ? "" : "正在核对…")}`}</span>
+                  </button>
+                  {doc ? <button type="button" onClick={() => openPreview(doc, null, corpusId)} className="shrink-0 text-caption text-[var(--link)] hover:underline">预览 ›</button> : null}
+                  <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => remove([ref])}
+                    className="shrink-0 text-caption text-[var(--steel)] hover:text-[var(--red)]">移出</button>
+                </li>;
+              })}</ul>
+            </section>;
+          })}
+          {needle && !shownSources.some((id) => data.refs.some((ref) => ref.corpus_id === id && matches(ref))) ? <p className="text-body text-[var(--steel)]">没有匹配的资料。</p> : null}
+        </div>
+      </div>
     </div>
+    {data.refs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
+      <span className="whitespace-nowrap text-[var(--slate)]">已勾选 <b className="text-[var(--ink)]">{chosen.length}</b> / {usable.length} 份</span>
+      {dropped.length ? <button type="button" onClick={() => remove(dropped)} className="whitespace-nowrap text-body text-[var(--steel)] hover:text-[var(--red)]">移出未勾选的 {dropped.length} 份</button> : null}
+      <Button variant="primary" className="rounded-full" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>
+        {failed.length || chosen.length < usable.length ? `用已勾选的 ${chosen.length} 份提问` : "就此提问"}</Button>
+    </div> : null}
   </main>;
 }

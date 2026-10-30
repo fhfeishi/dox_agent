@@ -23,7 +23,6 @@ const VIEWS: [View, string][] = [["files", "资料管理"], ["target", "技术�
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
   const {
     corpora,
-    corpusIds,
     refreshCorpora,
     runCorpusIngest,
     ingestBusy,
@@ -63,7 +62,6 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     if (key === "files") { setCorpusView("files"); return; }
     void navigate(`/library/${encodeURIComponent(corpus.id)}/targets/four-facets${key === "target" ? "" : `?projectView=${key}`}`);
   };
-  const isActive = corpusIds.includes(corpus.id);
   const status =
     corpus.missing
       ? { label: "目录缺失", tone: "rose" as const }
@@ -114,7 +112,6 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           </>}
           <Pill tone={status.tone}>{status.label}</Pill>
           <span className="text-caption text-[var(--stone)]">{KIND_LABEL[corpus.kind] ?? corpus.kind} · {corpus.docs_count} 份</span>
-          {isActive ? <Pill tone="lav">当前对话使用</Pill> : null}
           {/* One row of views, one shown at a time in this page (query 2026-1013 2012); views and the
               menu stay together on the right, so a narrow page wraps them as one group. */}
           <div className="ml-auto flex items-center gap-[10px]">

@@ -234,7 +234,9 @@ async def main():
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("button",name="上传文件")).to_have_count(0)
-                await expect(page.get_by_role("button",name="资料",exact=True)).to_be_visible()
+                await expect(page.get_by_role("button",name="资料管理",exact=True)).to_be_visible()
+                # Conversation libraries are chosen in the composer, not on the library page (query 2026-1030).
+                await expect(page.get_by_role("button",name=re.compile("用于对话|管理 ▾"))).to_have_count(0)
                 projects=page.get_by_role("list",name="项目列表")
                 # 前端审查 A1/A2: narrow by start year, or to projects still missing an approved amount.
                 await page.get_by_label("立项年").select_option("2021")

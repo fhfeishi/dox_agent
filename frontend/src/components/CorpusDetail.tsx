@@ -119,13 +119,12 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               menu stay together on the right, so a narrow page wraps them as one group. */}
           <div className="ml-auto flex items-center gap-[10px]">
           {!corpus.missing ? <nav aria-label="库内视图">
-            {/* Only the administrator manages a system library's files; others read them (前端审查 R5). */}
-            <Segmented label="库内视图" value={view} onChange={showView}
-              options={VIEWS.map(([key, name]) => [key, key === "files" && !admin ? "资料" : name] as const)} />
+            {/* One label for every role (query 2026-1030); what each role may change is decided inside the view. */}
+            <Segmented label="库内视图" value={view} onChange={showView} options={VIEWS} />
           </nav> : null}
           {/* After reload the local flag resets, but a server-side import may still be running. */}
-          <ManageMenu admin={admin} corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"} isActive={isActive}
-            onRename={() => setEditing(true)} onDescribe={() => setEditingDescription(true)} run={run} onClose={onClose} />
+          {admin ? <ManageMenu corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"}
+            onRename={() => setEditing(true)} onDescribe={() => setEditingDescription(true)} run={run} onClose={onClose} /> : null}
           </div>
         </div>
         {editingDescription ? <div className="mt-[8px] flex items-start gap-[8px]">
@@ -191,12 +190,13 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
   );
 }
 
-/** One menu for everything that changes a library (query 2026-1013 1522), instead of a row of buttons. */
-function ManageMenu({ admin, corpus, busy, isActive, onRename, onDescribe, run, onClose }: {
-  admin: boolean; corpus: CorpusInfo; busy: boolean; isActive: boolean; onRename: () => void; onDescribe: () => void;
+/** One menu for everything that changes a library (query 2026-1013 1522), instead of a row of buttons.
+ * Only the administrator has it: choosing libraries for a conversation lives in the composer (query 2026-1030). */
+function ManageMenu({ corpus, busy, onRename, onDescribe, run, onClose }: {
+  corpus: CorpusInfo; busy: boolean; onRename: () => void; onDescribe: () => void;
   run: (action: () => Promise<void>) => Promise<void>; onClose: () => void;
 }) {
-  const { corpusIds, setSearchCorpusIds, runCorpusIngest } = useApp();
+  const { runCorpusIngest } = useApp();
   const groups = useGroups();
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
@@ -210,13 +210,10 @@ function ManageMenu({ admin, corpus, busy, isActive, onRename, onDescribe, run, 
   const item = "block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)] disabled:opacity-40";
   const pick = (action: () => void) => () => { setOpen(false); action(); };
   const groupOf = groups?.groups.find((g) => g.members.includes(corpus.id))?.id ?? "";
-  // Others keep only the conversation items: the library itself is the administrator's (D-20261027-1).
-  if (!admin && corpus.missing) return null;
   return <div ref={box} className="relative">
-    <Button size="sm" variant="outline" onClick={() => setOpen(!open)}>{admin ? "管理 ▾" : "用于对话 ▾"}</Button>
+    <Button size="sm" variant="outline" onClick={() => setOpen(!open)}>管理 ▾</Button>
     {open ? <div role="menu" aria-label="管理资料库" className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[220px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
       {!corpus.missing ? <>
-        {admin ? <>
         <button type="button" role="menuitem" className={item} onClick={pick(onRename)}>重命名</button>
         <button type="button" role="menuitem" className={item} onClick={pick(onDescribe)}>编辑说明</button>
         {groups ? <label className="flex items-center gap-2 px-3 py-1.5 text-body">分组
@@ -225,12 +222,6 @@ function ManageMenu({ admin, corpus, busy, isActive, onRename, onDescribe, run, 
             <option value="">未分组</option>{groups.groups.map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select></label> : null}
         <div className="my-1 border-t border-[var(--hairline)]" />
-        </> : null}
-        {isActive ? <button type="button" role="menuitem" className={item} disabled={corpusIds.length <= 1}
-          onClick={pick(() => setSearchCorpusIds(corpusIds.filter((id) => id !== corpus.id)))}>从当前对话移除</button>
-          : <button type="button" role="menuitem" className={item} disabled={corpusIds.length >= 6} onClick={pick(() => setSearchCorpusIds([...corpusIds, corpus.id]))}>加入当前对话</button>}
-        {!(corpusIds.length === 1 && isActive) ? <button type="button" role="menuitem" className={item} onClick={pick(() => setSearchCorpusIds([corpus.id]))}>当前对话只用此库</button> : null}
-        {admin ? <>
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => void runCorpusIngest(corpus.id))}>刷新本库</button>
         <div className="my-1 border-t border-[var(--hairline)]" />
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => {
@@ -239,7 +230,6 @@ function ManageMenu({ admin, corpus, busy, isActive, onRename, onDescribe, run, 
         <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
           if (window.confirm(`删除资料库「${corpus.name}」及其源文件和索引？此操作不可撤销。`)) void run(async () => { await deleteCorpus(corpus.id, true); onClose(); });
         })}>删除资料库及文件</button>
-        </> : null}
       </> : <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
         if (window.confirm(`仅移除「${corpus.name}」的失效登记？不会删除磁盘文件。`)) void run(async () => { await deleteCorpus(corpus.id); onClose(); });
       })}>移除失效记录</button>}

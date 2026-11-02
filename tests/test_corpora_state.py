@@ -8,7 +8,7 @@ from src.agent.config import Settings
 from src.agent.corpora import rewrite_origins, scan_corpora
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app, workspace_path
-from src.parsers import import_defaults
+from src.parsers import import_defaults, sha256_file
 
 
 def settings_for(tmp_path):
@@ -23,8 +23,10 @@ def seed_corpus(tmp_path, name):
     raw = source / "报告.md"
     raw.write_text("报告正文", encoding="utf-8")
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3")
+    stat = raw.stat()  # a corpus document is listed in its manifest (preview resolves it there)
     doc_id = store.put(Document(title="报告", origin=str(raw), kind="text", parser="utf8",
-                                pages=[Page(number=1, text="正文")]))["doc_id"]
+                                pages=[Page(number=1, text="正文")]),
+                       source_file=("报告.md", stat.st_size, stat.st_mtime_ns, sha256_file(raw)))["doc_id"]
     return doc_id, raw
 
 

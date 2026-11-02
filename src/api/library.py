@@ -669,12 +669,16 @@ def install(app, ctx):
             raise HTTPException(404, "文档不存在") from exc
         if version and version != doc["version"]:
             raise HTTPException(422, "文档已更新，请重新搜索")
+        # P0-3 / security High#1: the file is the one this corpus's manifest lists under its own
+        # source directory. The stored origin is never a path to open: it may name another account's file.
+        manifest = await asyncio.to_thread(kn.files)
+        rel = next((item["rel_path"] for item in manifest.values() if item["doc_id"] == doc_id), None)
+        root = kn.source_root.resolve() if kn.source_root is not None else None
+        path = (root / rel).resolve() if root is not None and rel is not None else None
+        if path is None or not path.is_relative_to(root) or not path.is_file():
+            raise HTTPException(404, "该文档不是本资料库内的本地文件，或原文已被移动")
         if doc_id not in {item["doc_id"] for item in await asyncio.to_thread(kn.current)}:
             raise HTTPException(409, "原文件已变化或不可用，旧版本原文无法预览")
-        resolved = local_path_in_roots(doc["origin"], settings)
-        path = resolved[0] if resolved else None
-        if path is None or not path.is_file():
-            raise HTTPException(404, "该文档不是报告根目录内的本地文件，或原文已被移动")
         media_type = FILE_MEDIA_TYPES.get(path.suffix.lower())
         if media_type is None:
             raise HTTPException(415, "该文件类型不支持网页预览")

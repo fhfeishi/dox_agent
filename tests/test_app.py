@@ -439,11 +439,12 @@ def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_p
 
 def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):
     app, store = setup(tmp_path)
-    source = tmp_path / ".knowledge" / "preview-test" / "source" / "report.pdf"
-    source.parent.mkdir(parents=True)
+    source = tmp_path / ".knowledge" / "fixture" / "source" / "report.pdf"
     source.write_bytes(b"%PDF-1.4\n%%EOF")
+    stat = source.stat()  # preview serves the file this corpus's manifest lists (P0-3)
     doc = store.put(Document(title="report.pdf", origin=str(source), kind="pdf", parser="test",
-                             pages=[Page(number=1, text="page")]))
+                             pages=[Page(number=1, text="page")]),
+                    source_file=("report.pdf", stat.st_size, stat.st_mtime_ns, "sha"))
     doc_id, version = doc["doc_id"], doc["version"]
 
     with TestClient(app) as client:
@@ -941,3 +942,24 @@ def test_each_intelligence_purpose_has_its_own_template(tmp_path):
     outlines = [tuple(line for line in report_template(t).splitlines() if line.startswith("## ")) for t in templates]
     assert len(set(outlines)) == 5  # five different structures, not one outline under five names
     assert all(item["focus"] for item in purposes)
+
+
+def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_path):
+    # P0-3 / security High#1: the origin of a document without a manifest entry named another
+    # account's upload and passed the root-only check; preview now resolves the corpus manifest.
+    app, store = setup(tmp_path)
+    other = tmp_path / "usr" / "someone" / "uploads" / "secret.md"  # under settings.user_dir
+    other.parent.mkdir(parents=True)
+    other.write_text("someone else's file", encoding="utf-8")
+    forged = store.put(Document(title="x", origin=str(other), kind="text", parser="markdown",
+                                pages=[Page(number=1, text="x")]))
+    own = tmp_path / ".knowledge" / "fixture" / "source" / "own.md"
+    own.write_text("own file", encoding="utf-8")
+    stat = own.stat()
+    listed = store.put(Document(title="own", origin=str(own), kind="text", parser="markdown",
+                                pages=[Page(number=1, text="own file")]),
+                       source_file=("own.md", stat.st_size, stat.st_mtime_ns, "sha"))
+    with TestClient(app) as client:
+        assert client.get(f"/api/documents/{forged['doc_id']}/file").status_code == 404
+        served = client.get(f"/api/documents/{listed['doc_id']}/file")
+    assert served.status_code == 200 and served.text == "own file"

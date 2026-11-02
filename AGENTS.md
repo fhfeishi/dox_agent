@@ -4,17 +4,19 @@
 
 动态记录的职责、映射、记录格式、状态表和规则与检查的对照都在 [.agents/DOCUMENTS.md](.agents/DOCUMENTS.md)，文中“载体”等术语也在其中定义。通用原则适用于所有任务，具体方法按当前任务读取下表。用户当前明确指令与本规范的默认做法不一致时，指出差异后按指令执行；需要长期改变做法的，经用户确认后修改规范，并按 DOCUMENTS 记入决定载体。以下三条是底线，不属于可被指令替换的默认做法：不编造接口、参数、事实或检查结果；不得未经明确同意覆盖他人未提交的修改；任何地方都不泄露密钥。规则文件之间不一致时以本文为准，`.agents/` 下的文件只细化、不改变本文。
 
+dox_agent开发、测试说明：本项目windows wsl2 ubuntu-22.04 端(简称为wsl端)完成开发、测试，wsl端项目的本的路经：/home/mvr/wslcodespace/dox_agent；windows端的路经：D:\chyCodespace\dox_agent，测试的时候注意分支的状态，windows端的测试也是必要的，但是通常是在wsl端测试并推送了项目之后，就需要windows端git pull origin main（注意分支名称、一般是合并推送到main之后才完整的测试windows端）。
+
+
 ## 通用原则
 
 - 用户需求可以来自当前交互、派发任务、Issue、PR 或项目约定的需求载体。先读取当前指令和派发上下文；query 未更新不代表当前没有需求。
 - 依据有效要求工作，区分用户原意、整理稿、正式要求、实现和验证。当前明确指令看起来会修改已确认要求时，明确变更并同步正式需求载体；是否构成变更不清楚时再询问。不改断言或验收条件来迁就实现；要求本身有问题时提请用户确认。
 - 以产品唯一负责人的角度理解需求、实现并优化设计，交付让用户满意的产品。用户的指令也可能偏离本意：发现字面指令与推断的本意不一致，或有更好的方案时，把差异和方案摆给用户决定；确认前仍以字面指令为依据，不自行改变要求、验收条件或授权范围。
-- 文字难以完整表达意图。确认需求和交付时，按需用图表、示意图、原型、动画、布局、颜色或可交互演示补充或替代文字，帮用户看到并纠正偏差；大胆构思，多做尝试、原型和实测，这类探索（见 [development.md](.agents/rules/development.md) 的“原型与调查”）不是修复失败，不计入连续失败次数，也不越过授权范围和底线；简单任务按规模取舍，不为呈现而呈现。界面上不为已有内容再加一层重复的标签或说明，让版面和结构自己说话。
+- 文字难以完整表达意图。确认需求和交付时，按需用图表、示意图、原型、动画、布局、颜色或可交互演示补充或替代文字，帮用户看到并纠正偏差；大胆构思，多做尝试、原型和实测，这类探索（见 [development.md](.agents/rules/development.md) 的“原型与调查”）不是修复失败，不计入连续失败次数，也不越过授权范围和底线；简单任务按规模取舍，不为呈现而呈现。
 - 证据按 [verification.md](.agents/rules/verification.md) 的证据选择表取：满足默认证据，或写明理由采用表中例外；测试取舍见同一文件。
 - 选择满足当前要求的最小充分方案；不为假设需求增加抽象、配置、依赖或流程。重大且难以撤销的选择按规划规则比较方案。
 - 新旧逻辑冲突时删除旧设计、整体替换，不为兼容旧实现叠加开关、分支或适配层；旧代码不是需求来源。
 - 已授权工作继续执行；遇到超出授权的选择或真实歧义才澄清。
-- 事情没做完就继续做，不要只总结下一步。
 - 保留用户原文和未提交修改（覆盖他人未提交修改的底线见上），只读取当前任务需要的材料；简单且当次完成的任务直接交付，只在确需接续、并行协调或保存决策结果时增加记录。
 - 记录只增不减会让载体失效：超过 DOCUMENTS 的载体上限时按其中的出口收口（归档或改写），不为容纳更多内容放宽上限。
 - 完成、通过、已确认一类的声明都需要可定位的证据，未验证的明确标注（不编造见上方底线）。文档、计划或说明本身不构成证据。
@@ -30,8 +32,13 @@
 | 接续工作 | 派发指定的任务记录、Git 差异、有效要求；未拆分任务记录时读 INTERACTION |
 | 写作或文档审查 | [writing.md](.agents/rules/writing.md)、被审材料 |
 | 产出调研、审查或方案文档 | [writing.md](.agents/rules/writing.md)、DOCUMENTS 的“工作文档” |
-| 新增或替换 React 组件、动画或页面块 | [ui-component-sourcing](.agents/skills/ui-component-sourcing/SKILL.md) |
-| 界面原型、演示页、图表或视觉探索 | 本机已安装的 baoyu-design（安装产物不入库；未安装则跳过） |
+| 在 `.logsdev/` 新建文件或目录，保存截图、原型或设计稿 | DOCUMENTS 的“信息放在哪里”和“工作文档”、`.logsdev/README.md` 的索引 |
+| 改前端 UI / 样式 / 布局 / 聊天或 PDF 面板（**默认入口**） | [DESIGN.md](frontend/DESIGN.md)、[dox-ui](.agents/skills/dox-ui/SKILL.md) |
+| 定新视觉方向（整页气质，非小改） | [frontend-design](.agents/skills/frontend-design/SKILL.md)（先读 DESIGN.md） |
+| 改完后审查可达性与 Web UI 约定 | [web-design-guidelines](.agents/skills/web-design-guidelines/SKILL.md) |
+| 做界面原型、演示页、PPT/幻灯片、图表或视觉探索（每页最多 2 版） | [baoyu-design](.agents/skills/baoyu-design/SKILL.md) |
+| 设计或实现图表、统计卡片、可视化看板（原型或前端） | [dataviz](.agents/skills/dataviz/SKILL.md)（配色仍用 DESIGN.md 的 token） |
+| 新增或替换 React 组件（**仅当**存在 `components.json` / shadcn；本仓默认不要） | [ui-component-sourcing](.agents/skills/ui-component-sourcing/SKILL.md) |
 | 写项目申请 | [项目申请专家](.agents/experts/project-application/AGENT.md) |
 | 做存量分析 | [存量分析专家](.agents/experts/stock-analyst/AGENT.md) |
 | 做情报分析 | [情报分析专家](.agents/experts/intel-analyst/AGENT.md) |

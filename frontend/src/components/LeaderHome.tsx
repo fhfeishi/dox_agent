@@ -29,16 +29,22 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
   </div>;
 }
 
-/** Six-level maturity spread as one thin bar, with the share at level 4 or above beside it. */
-function MaturityStrip({ row }: { row: LibraryOverview }) {
+/**
+ * The maturity cells of one preview row: a 100 % stacked bar of the 0–5 levels that stretches with the
+ * row, so the rows read together as one chart, then the share at level 4 or above (the dark tail).
+ */
+function MaturityCells({ row }: { row: LibraryOverview }) {
   const dist = row.lineage.maturity ?? [];
-  if (!dist.some(Boolean)) return <span className="w-[6.5rem] text-right text-caption text-[var(--muted-cool-soft)]">未建谱系</span>;
-  return <span className="flex w-[6.5rem] items-center justify-end gap-2" title={dist.map((c, i) => `${i} ${MATURITY_NAMES[i]}：${c} 条`).join("\n")}>
-    <span aria-hidden="true" className="flex h-1.5 w-14 overflow-hidden rounded-full bg-[var(--track)]">
-      {dist.map((c, i) => c ? <i key={i} className="block h-full" style={{ flex: c, background: `var(--m-${i})` }} /> : null)}
+  if (!dist.some(Boolean)) return <>
+    <span className="text-caption text-[var(--muted-cool-soft)]">未建谱系</span>
+    <span className="text-right text-caption text-[var(--muted-cool-soft)]">—</span>
+  </>;
+  return <>
+    <span aria-hidden="true" className="flex h-2 overflow-hidden rounded-full bg-[var(--track)]" title={dist.map((c, i) => `${i} ${MATURITY_NAMES[i]}：${c} 条`).join("\n")}>
+      {dist.map((c, i) => c ? <i key={i} className="block h-full border-r border-white last:border-r-0" style={{ flex: c, background: `var(--m-${i})` }} /> : null)}
     </span>
-    <span className="w-9 text-right text-caption tabular-nums text-[var(--text-2)]">{pct(row.lineage.high_share ?? 0)}</span>
-  </span>;
+    <span className="text-right text-body font-medium tabular-nums text-[var(--heading)]">{pct(row.lineage.high_share ?? 0)}</span>
+  </>;
 }
 
 /**
@@ -86,29 +92,40 @@ function LibraryOverviewPanel({ rows, chosen, choose, open, previewing }: {
       </div>
     </div>
 
-    {/* Light preview rows, not a card grid: name over its technology count, projects, maturity, 预览 ›.
-        Units sit in the cells, so the two columns need no header row. */}
-    <div className="border-t border-[var(--line-cool-soft)] bg-[var(--surface-cool)]/40 px-3 pt-3 pb-3">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-2 pb-2">
-        <h3 className="text-body font-semibold text-[var(--heading)]">资料库预览</h3>
-        <p className="text-caption text-[var(--muted-cool)]">条带为成熟度 0–5 档占比，数字为 <HelpTerm text={MATURITY_TIP}>成熟 4 以上</HelpTerm> 的条目比例</p>
-      </div>
-      <ul aria-label="资料库预览" className="grid gap-x-6 gap-y-px @4xl:grid-cols-2">{rows.map((r) => {
-        const on = r.corpus_id === previewing;
-        const tech = r.lineage.items ? `${r.lineage.items.toLocaleString("zh-CN")} 条技术 · ${r.lineage.systems} 个体系` : "未建谱系";
-        return <li key={r.corpus_id}>
-          <button type="button" onClick={() => open(r.corpus_id)} aria-label={`预览 ${short(r.name)}：${r.projects} 个项目，${tech}`}
-            className={`group grid w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-4 rounded-lg px-2 py-2 text-left transition-colors focus-visible:outline-2 focus-visible:outline-[var(--primary)] @md:grid-cols-[minmax(0,1fr)_auto_auto_auto] ${on ? "bg-[var(--selected-cool)]" : "hover:bg-white"}`}>
-            <span className="min-w-0">
-              <b className="block truncate text-body font-medium text-[var(--heading)]" title={short(r.name)}>{short(r.name)}</b>
-              <span className="block truncate text-caption tabular-nums text-[var(--text-3)]">{tech}</span>
+    {/* One table, not a two-column card grid (query 2026-11-02 02布局返工): the header, the list and each
+        row share the same column tracks through subgrid, so names, counts, bars and 预览 line up down the
+        whole list. The maturity bar takes the spare width, so the wide row is a chart instead of a gap.
+        Narrow sections drop the technology count and 预览 › (the whole row still opens the preview). */}
+    <div className="border-t border-[var(--line-cool-soft)] px-5 pt-4 pb-3">
+      <h3 className="pb-2 text-body font-semibold text-[var(--heading)]">资料库预览</h3>
+      <div className="grid grid-cols-[minmax(5.5em,1fr)_auto_minmax(4rem,1.4fr)_auto] gap-x-4 @2xl:grid-cols-[minmax(7em,10em)_auto_auto_minmax(8rem,1fr)_auto_auto] @2xl:gap-x-6">
+        <div aria-hidden="true" className="col-span-full grid grid-cols-subgrid items-end border-b border-[var(--line-cool)] px-2 pb-1.5 text-caption text-[var(--muted-cool)]">
+          <span>资料库</span>
+          <span className="hidden text-right @2xl:block">技术条目 · 体系</span>
+          <span className="text-right">项目</span>
+          <span className="flex flex-wrap items-center gap-x-2">成熟度
+            <span className="flex flex-wrap items-center gap-x-1">{MATURITY_NAMES.map((_, i) =>
+              <span key={i} className="flex items-center gap-0.5 tabular-nums" title={`${i} ${MATURITY_NAMES[i]}`}><i className="block size-2 rounded-sm" style={{ background: `var(--m-${i})` }} />{i}</span>)}
             </span>
-            <span className="text-right text-caption text-[var(--text-3)]"><b className="text-body font-semibold tabular-nums text-[var(--text-2)]">{r.projects}</b> 项目</span>
-            <MaturityStrip row={r} />
-            <span aria-hidden="true" className={`hidden w-12 text-right text-caption text-[var(--link)] transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 @md:block ${on ? "opacity-100" : "opacity-40"}`}>预览 ›</span>
-          </button>
-        </li>;
-      })}</ul>
+          </span>
+          <span className="text-right"><HelpTerm text={MATURITY_TIP}>4 档以上</HelpTerm></span>
+          <span className="hidden @2xl:block" />
+        </div>
+        <ul aria-label="资料库预览" className="col-span-full grid grid-cols-subgrid">{rows.map((r) => {
+          const on = r.corpus_id === previewing;
+          const tech = r.lineage.items ? `${r.lineage.items.toLocaleString("zh-CN")} 条技术 · ${r.lineage.systems} 个体系` : "未建谱系";
+          return <li key={r.corpus_id} className="col-span-full grid grid-cols-subgrid border-b border-[var(--line-cool-soft)] last:border-b-0">
+            <button type="button" onClick={() => open(r.corpus_id)} aria-label={`预览 ${short(r.name)}：${r.projects} 个项目，${tech}`}
+              className={`group col-span-full grid grid-cols-subgrid items-center rounded-md px-2 py-2 text-left transition-colors focus-visible:outline-2 focus-visible:outline-[var(--primary)] ${on ? "bg-[var(--selected-cool)]" : "hover:bg-[var(--surface-cool)]"}`}>
+              <b className={`truncate text-body ${on ? "font-semibold" : "font-medium"} text-[var(--heading)]`} title={short(r.name)}>{short(r.name)}</b>
+              <span className="hidden text-right text-caption tabular-nums text-[var(--text-3)] @2xl:block">{r.lineage.items ? <><span className="text-[var(--text-2)]">{r.lineage.items.toLocaleString("zh-CN")}</span> 条 · {r.lineage.systems} 个</> : "—"}</span>
+              <span className="text-right text-body font-semibold tabular-nums text-[var(--heading)]">{r.projects}</span>
+              <MaturityCells row={r} />
+              <span aria-hidden="true" className="hidden items-center gap-0.5 text-caption font-medium text-[var(--link)] @2xl:flex">预览<span className={`transition-transform group-hover:translate-x-0.5 ${on ? "translate-x-0.5" : ""}`}>›</span></span>
+            </button>
+          </li>;
+        })}</ul>
+      </div>
     </div>
   </div>;
 }

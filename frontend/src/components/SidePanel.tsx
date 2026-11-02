@@ -88,7 +88,7 @@ export function SidePanel() {
           {childrenOf(session.id).map((child) => (
             <li key={child.id}><button type="button" disabled={!workspace.loaded || sessionBusy}
               onClick={() => void switchSession(child.id)}
-              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-caption text-[var(--steel)] transition-colors hover:bg-[var(--surface-sink)] disabled:opacity-40">
+              className="w-full truncate rounded-md px-[8px] py-[6px] text-left text-caption text-[var(--steel)] transition-colors hover:bg-[var(--surface-sink)] disabled:opacity-40">
               {child.title} <span className="text-[var(--stone)]">· 历史分支</span>
             </button></li>
           ))}
@@ -106,7 +106,7 @@ export function SidePanel() {
           aria-label="＋ 新的问答"
           disabled={!workspace.loaded || sessionBusy}
           onClick={() => void switchSession()}
-          className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] bg-[var(--primary)] px-[14px] py-[9px] text-body font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
+          className="font-app flex w-full items-center justify-center gap-[7px] rounded-lg bg-[var(--primary)] px-[14px] py-[9px] text-body font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
         >
           <Icon name="plus" size={15} strokeWidth={2} />
           新建对话
@@ -241,9 +241,9 @@ export function SidePanel() {
                 {progress.completed} / {progress.total}
               </b>
             </div>
-            <div className="h-[4px] overflow-hidden rounded-[3px] bg-[var(--hairline)]">
+            <div className="h-[4px] overflow-hidden rounded-sm bg-[var(--hairline)]">
               <i
-                className="block h-full rounded-[3px] bg-[var(--primary)]"
+                className="block h-full rounded-sm bg-[var(--primary)]"
                 style={{ width: `${Math.round((progress.completed / progress.total) * 100)}%` }}
               />
             </div>
@@ -296,11 +296,11 @@ function SessionRow({
         <input
           autoFocus
           aria-label="会话标题"
-          className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-body text-[var(--ink)] outline-none focus:border-[var(--primary)]"
+          className="font-app min-w-0 flex-1 rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-body text-[var(--ink)] outline-none focus:border-[var(--primary)]"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
         />
-        <button type="submit" className="rounded-[6px] px-[6px] py-[5px] text-caption text-[var(--link)]">
+        <button type="submit" className="rounded-md px-[6px] py-[5px] text-caption text-[var(--link)]">
           保存
         </button>
         <button type="button" className="px-[4px] text-caption text-[var(--steel)]" onClick={() => setEditing(null)}>
@@ -316,14 +316,14 @@ function SessionRow({
         type="button"
         disabled={disabled}
         onClick={onSelect}
-        className={`font-app flex min-w-0 flex-1 items-center gap-[9px] rounded-[6px] px-[8px] py-[8px] text-left transition-colors disabled:opacity-40 ${
+        className={`font-app flex min-w-0 flex-1 items-center gap-[9px] rounded-md px-[8px] py-[8px] text-left transition-colors disabled:opacity-40 ${
           active ? "bg-[var(--surface-press)] font-medium text-[var(--ink)]" : "text-[var(--slate)] hover:bg-[var(--surface-sink)]"
         }`}
       >
         <span className="min-w-0 flex-1 truncate text-body">{title || "未命名会话"}</span>
         {pinned ? <span className="shrink-0 text-caption text-[var(--primary)]">置顶</span> : null}
         {taskName && (
-          <span className="shrink-0 rounded-[4px] bg-[var(--tint-lavender)] px-[5px] py-[1px] text-caption font-semibold text-[var(--purple)]">
+          <span className="shrink-0 rounded-sm bg-[var(--tint-lavender)] px-[5px] py-[1px] text-caption font-semibold text-[var(--purple)]">
             {taskName}
           </span>
         )}
@@ -331,13 +331,13 @@ function SessionRow({
       <span className="hidden shrink-0 items-center gap-[2px] group-hover:flex">
         <button type="button" aria-label={pinned ? "取消置顶会话" : "置顶会话"}
           title={pinned ? "取消置顶" : "置顶"}
-          className="rounded-[5px] px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
+          className="rounded-sm px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
           onClick={onPin}>{pinned ? "取消" : "置顶"}</button>
         <button
           type="button"
           aria-label="重命名会话"
           title="重命名"
-          className="grid size-[22px] place-items-center rounded-[5px] text-[var(--steel)] hover:bg-[var(--surface)]"
+          className="grid size-[22px] place-items-center rounded-sm text-[var(--steel)] hover:bg-[var(--surface)]"
           onClick={() => {
             setDraft(title);
             setEditing(id);
@@ -348,22 +348,22 @@ function SessionRow({
         {confirming ? (
           <>
             <button type="button" aria-label="确认删除会话"
-              className="rounded-[5px] px-[4px] py-[2px] text-caption text-[var(--red)] hover:bg-[var(--surface)]"
+              className="rounded-sm px-[4px] py-[2px] text-caption text-[var(--red)] hover:bg-[var(--surface)]"
               onClick={() => { setConfirming(false); onDelete(); }}>确认删除</button>
             <button type="button" aria-label="取消删除会话"
-              className="rounded-[5px] px-[4px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
+              className="rounded-sm px-[4px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
               onClick={() => setConfirming(false)}>取消</button>
           </>
         ) : (
           <button type="button" aria-label="删除会话" title="删除会话"
-            className="rounded-[5px] px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
+            className="rounded-sm px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
             onClick={() => setConfirming(true)}>删除</button>
         )}
         <button
           type="button"
           aria-label="归档会话"
           title="归档"
-          className="grid size-[22px] place-items-center rounded-[5px] text-[var(--steel)] hover:bg-[var(--surface)]"
+          className="grid size-[22px] place-items-center rounded-sm text-[var(--steel)] hover:bg-[var(--surface)]"
           onClick={onArchive}
         >
           <Icon name="archive" size={12} />

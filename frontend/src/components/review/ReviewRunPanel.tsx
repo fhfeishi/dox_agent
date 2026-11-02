@@ -32,7 +32,7 @@ export function ReviewRunPanel() {
       {!ordered.length ? <p className="px-[10px] py-3 text-body text-[var(--stone)]">还没有审核任务。</p> : null}
       {ordered.map((run) => (
         <Link key={run.id} to={`/review/runs/${run.id}`}
-          className="mt-[2px] flex items-center gap-[6px] rounded-[8px] px-[10px] py-[6px] text-body text-[var(--slate)] hover:bg-[var(--surface)]">
+          className="mt-[2px] flex items-center gap-[6px] rounded-lg px-[10px] py-[6px] text-body text-[var(--slate)] hover:bg-[var(--surface)]">
           <Icon name={run.status === "completed" ? "checklist" : run.status === "running" ? "reload" : "warning"} size={13} strokeWidth={1.9} />
           <span className="min-w-0 flex-1 truncate">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
           <span className="text-caption text-[var(--stone)]">{run.status === "completed" ? "已完成" : run.status === "running" ? "进行中" : "未完成"}</span>

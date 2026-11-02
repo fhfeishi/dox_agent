@@ -68,6 +68,7 @@ export const NODE_KINDS = {
   system: "技术体系",
   direction: "研究方向",
 };
+/** quads and verdicts run top-left, top-right, bottom-left, bottom-right; a verdict reads a quadrant (query 2026-1030 1624). */
 export const LENSES = {
   base: {
     name: "家底与深度",
@@ -75,6 +76,7 @@ export const LENSES = {
     x: "技术条目数（对数）",
     y: "平均成熟度",
     quads: ["小而精", "量大且深", "少且浅", "铺得宽 · 沉不下去"],
+    verdicts: ["条目不多但做得深，可作为特色放大", "家底厚、也做得深，是优势领域", "刚起步，先观察或补基础", "条目多但停在早期档，需推向验证与应用"],
   },
   money: {
     name: "投入与产出",
@@ -82,6 +84,7 @@ export const LENSES = {
     x: "项目平均批准资助（万元）",
     y: "项目平均成果（项）",
     quads: ["少投多产", "多投多产", "少投少产", "多投少产"],
+    verdicts: ["单位投入产出高", "投入大，产出也大", "规模小，投入产出都低", "投入大而成果少，值得复盘"],
   },
   impact: {
     name: "成果与落地",
@@ -89,6 +92,7 @@ export const LENSES = {
     x: "项目平均成果（项）",
     y: "4–5 档技术占比（%）",
     quads: ["少而落地", "多产且落地", "两头都弱", "论文多 · 落地少"],
+    verdicts: ["成果不多，但技术走得远", "成果多，技术也走到场景", "成果少，技术也在早期", "成果以论文为主，技术停在早期"],
   },
 } as const;
 export type AtlasMeasure = {

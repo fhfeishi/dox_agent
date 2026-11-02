@@ -21,7 +21,7 @@ export function ReviewPageShell({ title, description = "", children }: { title: 
         <span className="flex-1" />
         {TABS.map((tab) => (
           <Link key={tab.to} to={tab.keep && materials ? tab.to + "?" + materials : tab.to} aria-current={pathname.startsWith(tab.to) ? "page" : undefined}
-            className={`rounded-[7px] px-[11px] py-[6px] text-caption hover:bg-[var(--surface)] ${pathname.startsWith(tab.to) ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>
+            className={`rounded-md px-[11px] py-[6px] text-caption hover:bg-[var(--surface)] ${pathname.startsWith(tab.to) ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>
             {tab.label}
           </Link>
         ))}

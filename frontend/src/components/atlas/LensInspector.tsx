@@ -201,6 +201,9 @@ export function LensInspector({
                 </Info>
               </div>
             ) : null}
+            {selected && quadrant !== null ? (
+              <p className="lens-verdict">{v.verdicts[quadrant]}</p>
+            ) : null}
             {missingMoney || missingOutputs ? (
               <div className="lens-coverage">
                 <Info

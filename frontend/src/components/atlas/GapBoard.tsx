@@ -13,7 +13,7 @@ import { SlideOver } from "../SlideOver";
  * Left, 哪里有缺口: three tabs — 空白技术 (the lineage review found no project covering it), 待解问题
  * (a scene problem not yet solved), 未覆盖组合 (a system the domain uses in three or more scenes, missing
  * from this one) — with a distribution bar; each row opens to say why it is a gap and offers 加入候选池,
- * 在 01 定位 and 在 02 谱系中看; chips below narrow the tab to one library.
+ * 在领域格局定位 and 在技术谱系中看; chips below narrow the tab to one library.
  * Right, 下一步可以先做什么: the tab's openings on two counted axes — 已有基础 (projects in the library
  * that already work on it) and 影响面 (projects in the scene it would serve) — as a quadrant or a ranked
  * list; a click puts it in the 候选池, whose two buttons open the export and proposal previews; both
@@ -357,8 +357,8 @@ export function GapBoard({ data, onLocate, onReveal }: {
               <p className="basis">已有基础：{o.basis}</p>
               <div className="gap-acts">
                 <button type="button" className="primary" onClick={() => flip(o)}>{inPool.has(o.key) ? "移出候选池" : "加入候选池"}</button>
-                <button type="button" onClick={() => onLocate(o.domainId)}>在 01 定位</button>
-                <button type="button" onClick={() => onReveal(o.domainId, o.system)}>在 02 谱系中看</button>
+                <button type="button" onClick={() => onLocate(o.domainId)}>在领域格局定位</button>
+                <button type="button" onClick={() => onReveal(o.domainId, o.system)}>在技术谱系中看</button>
               </div>
             </div> : null}
           </li>;

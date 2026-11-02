@@ -75,7 +75,7 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
   const archived = (t: TemplateSummary) => Boolean(t.archived) || t.status === "archived";
   const live = templates.filter((t) => !archived(t));
   const gone = templates.filter(archived);
-  const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
+  const action = "rounded-md border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
   return <section aria-label={area === "analysis" ? "报告模版库" : "情报分析模版库"} className="space-y-[10px]">
     <div className="flex flex-wrap items-center gap-[8px]">
       <h2 className="text-emphasis font-semibold text-[var(--ink)]">{area === "analysis" ? "报告模版" : "情报分析模版"} · {live.length}</h2>
@@ -92,7 +92,7 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
       {live.map((t) => {
         const sections = sectionsOf(t.content);
         const custom = t.kind === "custom";
-        return <article key={t.id} className="flex flex-col gap-[6px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px]">
+        return <article key={t.id} className="flex flex-col gap-[6px] rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-[12px]">
           <button type="button" onClick={() => showInspector({ kind: "template", templateId: t.id })} className="flex flex-col gap-[6px] text-left">
             <span className="flex flex-wrap items-center gap-[6px] text-body font-semibold text-[var(--ink)]">{t.name}<Pill tone={custom ? "lav" : "sky"}>{statusLabel(t)}</Pill></span>
             <span className="line-clamp-2 text-caption leading-[1.5] text-[var(--steel)]">{sections.length ? `${sections.length} 节：${sections.join(" · ")}` : t.purpose || "无章节"}</span>
@@ -100,13 +100,13 @@ export function TemplateLibrary({ area }: { area: TemplateArea }) {
           <div className="mt-auto flex flex-wrap items-center gap-[6px] pt-[4px]">
             <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id })}>预览</button>
             <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id, edit: true })}>修改</button>
-            {custom ? <button type="button" className="rounded-[6px] px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45" disabled={busy} onClick={() => void remove(t)}>删除</button>
+            {custom ? <button type="button" className="rounded-md px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45" disabled={busy} onClick={() => void remove(t)}>删除</button>
               : <span className="text-caption text-[var(--stone)]">内置，不可删除；修改时另存为新模版</span>}
           </div>
         </article>;
       })}
     </div>
-    {showArchived && gone.length ? <ul aria-label="已删除的模版" className="space-y-[6px] rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[12px] text-body">
+    {showArchived && gone.length ? <ul aria-label="已删除的模版" className="space-y-[6px] rounded-lg border border-dashed border-[var(--hairline-strong)] p-[12px] text-body">
       {gone.map((t) => <li key={t.id} className="flex items-center gap-[8px]">
         <button type="button" className="text-left text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "template", templateId: t.id })}>{t.name}</button>
         <span className="text-[var(--stone)]">v{t.version}</span>

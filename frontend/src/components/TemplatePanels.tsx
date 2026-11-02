@@ -19,8 +19,8 @@ import { useLayout } from "../layout";
 export const TEMPLATES_CHANGED = "dox-templates-changed";
 const announce = () => window.dispatchEvent(new Event(TEMPLATES_CHANGED));
 
-const field = "mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-caption text-[var(--ink)]";
-const outlineBox = "font-code mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-caption leading-[1.6] text-[var(--ink)]";
+const field = "mt-[4px] w-full rounded-md border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-caption text-[var(--ink)]";
+const outlineBox = "font-code mt-[4px] w-full rounded-md border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-caption leading-[1.6] text-[var(--ink)]";
 const VARIABLES = ["domain", "year_range", "year_from", "year_to", "fund_type", "focus"];
 
 const archivedOf = (item: { status?: string; archived?: boolean }) => item.status === "archived" || Boolean(item.archived);
@@ -53,7 +53,7 @@ export function sectionsOf(content = "") {
 
 function Outline({ text }: { text: string }) {
   return text.trim()
-    ? <div className="markdown mt-[10px] rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[12px] py-[8px]"><Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown></div>
+    ? <div className="markdown mt-[10px] rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] px-[12px] py-[8px]"><Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown></div>
     : <p className="mt-[10px] text-caption text-[var(--stone)]">还没有大纲。</p>;
 }
 
@@ -80,10 +80,10 @@ function Lifecycle({ item, busy, onDelete, onArchive }: {
 
 function ParameterEditor({ parameters, onChange }: { parameters: TaskParameter[]; onChange: (next: TaskParameter[]) => void }) {
   const change = (index: number, value: Partial<TaskParameter>) => onChange(parameters.map((item, i) => i === index ? { ...item, ...value } : item));
-  return <details className="rounded-[8px] border border-[var(--hairline)] px-[10px] py-[7px] text-caption text-[var(--slate)]">
+  return <details className="rounded-lg border border-[var(--hairline)] px-[10px] py-[7px] text-caption text-[var(--slate)]">
     <summary className="cursor-pointer">高级：运行时输入参数（{parameters.length}）</summary>
     <p className="mt-[6px] text-caption text-[var(--stone)]">需要用户每次运行时填写的值，例如关注的技术方向。大多数任务不需要。</p>
-    {parameters.map((item, index) => <div key={index} className="mt-[8px] rounded-[6px] border border-[var(--hairline)] p-[7px] text-caption">
+    {parameters.map((item, index) => <div key={index} className="mt-[8px] rounded-md border border-[var(--hairline)] p-[7px] text-caption">
       <div className="flex gap-[5px]">
         <input aria-label={`参数${index + 1}名称`} value={item.key} onChange={(e) => change(index, { key: e.target.value })} placeholder="英文标识" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
         <input aria-label={`参数${index + 1}标签`} value={item.label} onChange={(e) => change(index, { label: e.target.value })} placeholder="显示名称" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
@@ -209,14 +209,14 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
       <div className="mt-[6px] flex flex-wrap gap-[6px]">
         {(task.kind === "custom" ? (bound ? [bound] : []) : library.filter((t) => t.kind !== "custom")).map((t) =>
           <button key={t.id} type="button" onClick={() => showInspector({ kind: "template", templateId: t.id })}
-            className="rounded-[6px] border border-[var(--hairline)] px-[8px] py-[5px] text-caption text-[var(--link)] hover:bg-[var(--primary-soft)]">{t.name}</button>)}
+            className="rounded-md border border-[var(--hairline)] px-[8px] py-[5px] text-caption text-[var(--link)] hover:bg-[var(--primary-soft)]">{t.name}</button>)}
         {task.kind === "custom" && !bound ? <span className="text-[var(--stone)]">未绑定，编辑时从模版库选择</span> : null}
       </div>
     </div> : null}
     {task.parameters?.length ? <p className="mt-[10px] text-caption text-[var(--slate)]">运行时填写：{task.parameters.map((p) => p.label).join("、")}</p> : null}
     {task.kind !== "custom" && task.prompt ? <details className="mt-[12px] text-caption text-[var(--slate)]">
       <summary className="cursor-pointer">内置执行规则（只读）</summary>
-      <pre className="font-code mt-[6px] max-h-[260px] overflow-auto whitespace-pre-wrap rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-caption leading-[1.6] text-[var(--ink)]">{task.prompt}</pre>
+      <pre className="font-code mt-[6px] max-h-[260px] overflow-auto whitespace-pre-wrap rounded-md border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-caption leading-[1.6] text-[var(--ink)]">{task.prompt}</pre>
     </details> : null}
     {task.kind === "custom" ? <p className="mt-[10px] text-caption text-[var(--stone)]">执行方式沿用内置“{tasks.find((t) => t.id === engine)?.name ?? engine}”，大纲在其规则之上细化。</p> : null}
   </Card>;

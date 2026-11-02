@@ -3,7 +3,7 @@
   grid-template-columns: minmax(0, 1fr) clamp(400px, 29%, 560px);
   align-items: start;
   border: 1px solid var(--line-cool);
-  border-radius: 14px;
+  border-radius: var(--radius-xl);
   overflow: clip;
   background: var(--canvas);
   color: var(--heading);
@@ -33,14 +33,14 @@
   flex-shrink: 0;
   gap: 3px;
   padding: 3px;
-  border-radius: 9px;
+  border-radius: var(--radius-lg);
   background: var(--line-cool-soft);
 }
 .lens-views button {
   font-size: var(--text-body);
   padding: 7px 12px;
   min-height: 32px;
-  border-radius: 7px;
+  border-radius: var(--radius-md);
   color: var(--steel);
   background: transparent;
   border: 0;
@@ -85,7 +85,7 @@
   font-size: var(--text-body);
   height: 32px;
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 .lens-secondary:hover {
   background: var(--selected-cool);
@@ -97,7 +97,7 @@
   height: 36px;
   width: 100%;
   padding: 7px 10px;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--terrain-dot-on);
 }
 .lens-primary:hover {
@@ -111,7 +111,7 @@
   font-size: var(--text-body);
   background: var(--canvas);
   border: 1px solid var(--line-cool);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   color: var(--primary);
   flex-shrink: 0;
 }
@@ -136,7 +136,7 @@
   font-size: var(--text-body);
   background: var(--canvas);
   border: 1px solid var(--line-cool-strong);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   min-height: 32px;
   padding: 3px 8px;
   max-width: 250px;
@@ -306,7 +306,7 @@
   max-width: 300px;
   pointer-events: none;
   padding: 12px 14px;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--heading);
   color: var(--canvas);
   font-size: var(--text-body);
@@ -340,7 +340,7 @@
 }
 .lens-insufficient span {
   border: 1px solid var(--line-cool);
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   padding: 3px 6px;
 }
 .lens-inspector {
@@ -442,7 +442,7 @@
   color: var(--terrain-amber-ink);
   background: var(--terrain-amber-soft);
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   margin: 0 0 10px;
 }
 .lens-detail-body h4 {
@@ -552,7 +552,7 @@
   display: inline-block;
   width: 7px;
   height: 7px;
-  border-radius: 1px;
+  border-radius: var(--radius-xs);
   background: currentColor;
   margin-right: 5px;
 }
@@ -617,7 +617,7 @@
   padding: 12px;
   background: var(--heading);
   color: var(--canvas);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   pointer-events: none;
   font-size: var(--text-body);
   line-height: 1.7;
@@ -738,7 +738,7 @@
     height: auto;
     z-index: 30;
     border: 1px solid var(--line-cool);
-    border-radius: 12px;
+    border-radius: var(--radius-xl);
     box-shadow: -8px 8px 24px var(--line-cool);
   }
   .lens-top {
@@ -771,5 +771,245 @@
   .lens-year-band {
     padding-top: 8px;
     padding-bottom: 8px;
+  }
+}
+
+/* 象限评价 and the year window, under the map (query 2026-1030 1624). */
+.lens-verdicts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 4px var(--lens-pad) 14px;
+  list-style: none;
+}
+.lens-verdicts li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-cool);
+  font-size: var(--text-caption);
+  line-height: 18px;
+  color: var(--slate);
+}
+.lens-verdicts li[data-quad="1"] { background: var(--terrain-panel); }
+.lens-verdicts li[data-quad="3"] { background: var(--terrain-amber-soft); }
+.lens-verdicts b { flex-shrink: 0; color: var(--heading); font-weight: 600; }
+.lens-verdict {
+  margin: 6px 0 0;
+  font-size: var(--text-caption);
+  line-height: 18px;
+  color: var(--slate);
+}
+.lens-window-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 2px var(--lens-pad) 0;
+  font-size: var(--text-caption);
+  color: var(--steel);
+}
+@media (max-width: 720px) {
+  .lens-verdicts { grid-template-columns: minmax(0, 1fr); }
+}
+/* 年度投入 (query 2026-1030 1747): a tall stacked chart and its analysis column. */
+.domain-lens[data-part="years"] {
+  grid-template-columns: minmax(0, 1fr) clamp(320px, 27%, 440px);
+  align-items: stretch;
+}
+.domain-lens[data-part="years"] .lens-year-band {
+  border-top: 0;
+  background: var(--canvas);
+}
+.lens-year-part {
+  stroke: var(--canvas);
+  stroke-width: 1;
+  transition: opacity var(--dur-quick);
+}
+.lens-year-legend-stack {
+  display: grid;
+  gap: 2px;
+}
+.lens-year-legend-stack .lens-legend-total {
+  margin-bottom: 4px;
+  color: var(--steel);
+  font-weight: 400;
+}
+.lens-year-legend-stack .lens-legend-total::before {
+  display: none;
+}
+.lens-year-legend-stack span {
+  display: block;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lens-year-legend-stack span[data-on="false"] {
+  opacity: 0.35;
+}
+.lens-year-legend-stack em {
+  font-style: normal;
+  color: var(--ink);
+}
+.lens-tip-row {
+  display: grid !important;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.5;
+}
+.lens-tip-row i {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-xs);
+}
+.lens-tip-row em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+}
+.lens-year-story {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px var(--lens-pad);
+  border-left: 1px solid var(--line-cool);
+  background: var(--surface-cool);
+}
+.lens-year-story header {
+  display: grid;
+  gap: 2px;
+}
+.lens-year-story header > span {
+  font-size: var(--text-caption);
+  color: var(--steel);
+}
+.lens-year-story h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--text-group);
+  font-weight: 600;
+  color: var(--heading);
+}
+.lens-year-story h3 b {
+  font-size: var(--text-page);
+  font-variant-numeric: tabular-nums;
+}
+.lens-year-story h3 small {
+  font-size: var(--text-caption);
+  font-weight: 400;
+  color: var(--steel);
+}
+.lens-year-story header button {
+  justify-self: start;
+  margin-top: 4px;
+}
+.lens-year-lines {
+  display: grid;
+  gap: 6px;
+}
+.lens-year-lines li {
+  position: relative;
+  padding-left: 14px;
+  font-size: var(--text-body);
+  line-height: 22px;
+  color: var(--ink);
+}
+.lens-year-lines li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terrain-amber);
+}
+.lens-year-missing {
+  font-size: var(--text-caption);
+  color: var(--terrain-amber-ink);
+}
+.lens-year-story h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-cool);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--heading);
+}
+.lens-year-story h4 span {
+  font-size: var(--text-caption);
+  font-weight: 400;
+  color: var(--steel);
+}
+.lens-year-rows {
+  display: grid;
+  gap: 2px;
+  margin-top: -8px;
+}
+.domain-lens .lens-year-rows button {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto 66px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  text-align: left;
+}
+.domain-lens .lens-year-rows button:hover {
+  background: var(--canvas);
+}
+.domain-lens .lens-year-rows button[aria-pressed="true"] {
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--line-cool-strong);
+}
+.lens-year-rows i {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-xs);
+}
+.lens-year-row-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.lens-year-row-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--heading);
+}
+.lens-year-row-value small {
+  display: inline-block;
+  min-width: 34px;
+  margin-left: 6px;
+  text-align: right;
+  font-weight: 400;
+  color: var(--steel);
+}
+.lens-year-rows svg {
+  width: 66px;
+  height: 18px;
+}
+@media (max-width: 1023px) {
+  .domain-lens[data-part="years"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lens-year-story {
+    border-left: 0;
+    border-top: 1px solid var(--line-cool);
   }
 }

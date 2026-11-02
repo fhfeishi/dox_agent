@@ -227,17 +227,17 @@ export function CorpusFiles({
   const railHead = "mb-1.5 px-2 text-caption font-semibold text-[var(--text-3)]";
   const LACKS: [keyof typeof lacking, string][] = [["funding", "未记录批准资助金额"], ["conflict", "批准资助金额待核对"], ["year", "立项年待核对"], ["outputs", "未列成果"]];
   return (
-    <div className={`relative mt-[14px] grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start ${dragging ? "rounded-[12px] outline-2 outline-dashed outline-[var(--primary)]" : ""}`}
+    <div className={`relative mt-[14px] grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start ${dragging ? "rounded-xl outline-2 outline-dashed outline-[var(--primary)]" : ""}`}
       onDragOver={(e) => { if (busy || !connected || !admin) return; e.preventDefault(); setDragging(true); }}
       onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false); }}
       onDrop={(e) => { e.preventDefault(); setDragging(false);
         if (!busy && connected && admin) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
       }}>
-      {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-[12px] bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
+      {dragging ? <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 grid place-items-center rounded-xl bg-[var(--primary-soft)]/90 text-body font-medium text-[var(--primary-pressed)]">松开即上传到本资料库</div> : null}
       <aside aria-label="筛选资料" className="flex flex-col gap-5 lg:sticky lg:top-4">
         {/* 添加资料 (query 2026-1030 1117): one place for every role. A system library is the administrator's
             (D-20261027-1), so the administrator adds here and every account can take files into its own library. */}
-        <section aria-label="添加资料" className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface-soft)] p-3">
+        <section aria-label="添加资料" className="rounded-xl border border-[var(--hairline)] bg-[var(--surface-soft)] p-3">
           <h3 className="mb-1 text-body font-semibold text-[var(--ink)]">添加资料</h3>
           {admin ? <>
             <p className="mb-2 text-caption text-[var(--text-3)]">上传到本资料库，入库后所有账号可用。</p>
@@ -301,11 +301,11 @@ export function CorpusFiles({
         </div> : null}
       </aside>
       <div className="min-w-0 space-y-[10px] text-body">
-        {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
+        {listing?.misplaced_files.length ? <p role="status" className="rounded-lg bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
           在资料库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
         {busy ? <button type="button" className="text-caption text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
-        {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-caption">
+        {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-lg bg-[var(--surface-soft)] p-[8px] text-caption">
           {uploads.map((item) => <li key={item.path} className="flex gap-[8px]">
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>
             <span className="shrink-0 text-[var(--stone)]">{{ waiting: "等待", uploading: "上传并处理", indexed: "已入库", "parse-error": "已保存，解析失败", "upload-error": "上传失败", stopped: "已停止，未上传" }[item.state]}</span>
@@ -313,7 +313,7 @@ export function CorpusFiles({
           </li>)}
         </ul> : null}
         <div className="flex flex-wrap items-center gap-2">
-          <label className="flex min-w-[240px] flex-1 items-center gap-[6px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] py-[3px] pr-[3px] pl-[10px] text-[var(--stone)] focus-within:border-[var(--primary)]">
+          <label className="flex min-w-[240px] flex-1 items-center gap-[6px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] py-[3px] pr-[3px] pl-[10px] text-[var(--stone)] focus-within:border-[var(--primary)]">
             <Icon name="search" size={12} />
             <input
               aria-label="搜索资料"
@@ -364,7 +364,7 @@ export function CorpusFiles({
                   <input
                     autoFocus
                     aria-label="文件名"
-                    className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-caption outline-none focus:border-[var(--primary)]"
+                    className="font-app min-w-0 flex-1 rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-caption outline-none focus:border-[var(--primary)]"
                     value={editing.name}
                     onChange={(e) => setEditing({ ...editing, name: e.target.value })}
                   />
@@ -401,7 +401,7 @@ export function CorpusFiles({
                     type="button"
                     aria-label={`重命名 ${file.rel_path}`}
                     disabled={busy || chatBusy}
-                    className="grid size-[22px] shrink-0 place-items-center rounded-[5px] text-[var(--steel)] hover:bg-[var(--surface)]"
+                    className="grid size-[22px] shrink-0 place-items-center rounded-sm text-[var(--steel)] hover:bg-[var(--surface)]"
                     onClick={() => setEditing({ rel: file.rel_path, name: file.rel_path.split("/").at(-1) ?? file.rel_path })}
                   >
                     <Icon name="edit" size={12} />
@@ -410,7 +410,7 @@ export function CorpusFiles({
                     type="button"
                     aria-label={`删除 ${file.rel_path}`}
                     disabled={busy || chatBusy}
-                    className="grid size-[22px] shrink-0 place-items-center rounded-[5px] text-[var(--red)] hover:bg-[var(--surface)]"
+                    className="grid size-[22px] shrink-0 place-items-center rounded-sm text-[var(--red)] hover:bg-[var(--surface)]"
                     onClick={() => {
                       if (window.confirm(`删除源文件「${file.rel_path}」并从索引移除？`)) {
                         void run(async () => {

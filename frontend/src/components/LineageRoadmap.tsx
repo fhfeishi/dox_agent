@@ -363,7 +363,7 @@ export function LineageRoadmap({ lineage, title, selected, onSelect }: { lineage
         <p className="mb-1.5 text-caption font-medium tracking-wider text-[#8b949e]">R3（点击定位）</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">{nodes.map((n, i) => n.level === 3 ? <button key={n.key} type="button"
           className="flex items-center gap-2 rounded-md px-1 py-0.5 text-left text-caption text-[#57606a] hover:bg-[#f1f2f6] hover:text-[#1f2328]" onClick={() => choose(i)}>
-          <i className={`size-2.5 shrink-0 rounded-[3px] ${n.blank ? "border border-dashed border-[#9AA2AC]" : ""}`} style={{ background: n.blank ? undefined : n.color }} />
+          <i className={`size-2.5 shrink-0 rounded-sm ${n.blank ? "border border-dashed border-[#9AA2AC]" : ""}`} style={{ background: n.blank ? undefined : n.color }} />
           <span className="truncate">{n.name}</span>
           <em className="ml-auto not-italic tabular-nums text-[#8b949e]">{n.blank ? (n.blank === "gap" ? "空白" : "萌芽") : n.projects}</em></button> : null)}</div>
       </div>

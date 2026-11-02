@@ -45,7 +45,7 @@ export function OpsDrawer() {
           aria-label="断开连接"
           title={connected ? "断开连接" : "已断开"}
           disabled={!connected}
-          className="grid size-[30px] place-items-center rounded-[6px] text-[var(--slate)] hover:bg-[var(--surface)] disabled:opacity-40"
+          className="grid size-[30px] place-items-center rounded-md text-[var(--slate)] hover:bg-[var(--surface)] disabled:opacity-40"
           onClick={() => {
             setDrawerOpen(false);
             void disconnect();

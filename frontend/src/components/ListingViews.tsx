@@ -104,8 +104,8 @@ export function TasksView() {
     });
   }
 
-  const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
-  const danger = "rounded-[6px] px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45";
+  const action = "rounded-md border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
+  const danger = "rounded-md px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45";
   // The store keeps archived tasks so old sessions still resolve their names; the page splits them.
   const isArchived = (item: { archived?: boolean; status?: string }) => Boolean(item.archived) || item.status === "archived";
   const liveTasks = tasks.filter((t) => !isArchived(t));
@@ -132,9 +132,9 @@ export function TasksView() {
             const usable = task.status !== "draft" || Boolean(task.version);
             return (
               <article key={task.id}
-                className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]">
+                className="font-app flex flex-col gap-[10px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]">
                 <button type="button" onClick={() => showInspector({ kind: "task", taskId: task.id })} className="flex flex-col gap-[10px] text-left">
-                  <span className="grid size-[34px] place-items-center rounded-[8px]" style={{ background: style.tint, color: style.fg }}>
+                  <span className="grid size-[34px] place-items-center rounded-lg" style={{ background: style.tint, color: style.fg }}>
                     <Icon name={style.icon} size={16} strokeWidth={1.9} />
                   </span>
                   <span className="flex flex-wrap items-center gap-[8px] text-body font-semibold text-[var(--ink)]">
@@ -144,7 +144,7 @@ export function TasksView() {
                     {task.kind === "custom" ? <Pill tone="lav">{`我的任务 · ${statusLabel(task)}`}</Pill> : null}
                   </span>
                   <span className="text-body leading-[1.6] text-[var(--steel)]">{task.description}</span>
-                  {manage && task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-caption leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
+                  {manage && task.output_hint ? <span className="rounded-md bg-[var(--surface-soft)] px-[8px] py-[5px] text-caption leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
                 </button>
                 <div className="mt-auto flex flex-wrap items-center gap-[6px] border-t border-[var(--hairline)] pt-[10px]">
                   <button type="button" className={action} onClick={() => showInspector({ kind: "task", taskId: task.id })}>预览</button>
@@ -156,7 +156,7 @@ export function TasksView() {
                   <span className="flex-1" />
                   <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
                     onClick={() => void navigate(`/chat?task=${encodeURIComponent(task.id)}`)}
-                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">{(task.engine_task_id ?? task.id) === "task1" ? "开始提问" : "开始分析"}</button>
+                    className="rounded-md bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">{(task.engine_task_id ?? task.id) === "task1" ? "开始提问" : "开始分析"}</button>
                 </div>
               </article>
             );
@@ -164,7 +164,7 @@ export function TasksView() {
       {/* 存量分析's own report templates (query 2026-1014 1820); 情报分析's are on its page. */}
       <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div>
       {showArchived ? (
-        <section aria-label="已归档" className="col-span-full rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[14px]">
+        <section aria-label="已归档" className="col-span-full rounded-lg border border-dashed border-[var(--hairline-strong)] p-[14px]">
           <h2 className="text-body font-semibold text-[var(--ink)]">已归档的任务模版 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
           {!archivedTasks.length ? <p className="mt-[8px] text-caption text-[var(--stone)]">没有已归档的任务模版。</p> : null}
           <ul className="mt-[8px] space-y-[6px] text-body">

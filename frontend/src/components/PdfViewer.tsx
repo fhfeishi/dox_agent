@@ -89,7 +89,7 @@ export function PdfViewer({
           key={current}
           title="PDF 预览"
           src={`${fileUrl}#page=${current}`}
-          className="min-h-0 w-full flex-1 rounded-[10px] border border-[var(--hairline)] bg-white"
+          className="min-h-0 w-full flex-1 rounded-lg border border-[var(--hairline)] bg-white"
         />
       ) : null}
       <p className="pt-[10px] text-caption text-[var(--stone)]">

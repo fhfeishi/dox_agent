@@ -246,7 +246,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
 
   const root = useMemo(() => build(data, trees, open, full), [data, open, full, treeKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // 在 02 谱系中看 from 03: open that library (and system), make it the active branch, bring it into view.
+  // 在技术谱系中看 from 03: open that library (and system), make it the active branch, bring it into view.
   useEffect(() => {
     if (!reveal) return;
     const sid = reveal.system ? `${reveal.library}/${reveal.system}` : "";
@@ -281,7 +281,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     setFull((old) => new Set([...old, ...themes]));
   }
   const [font, setFont] = useState(14);
-  // The embedded frame: its width, and its default height (the CSS clamp(520px, 76vh, 1240px)).
+  // The embedded frame: its width, and its default height (the CSS --lineage-h).
   const [frame, setFrame] = useState({ width: 1100, height: 700 });
   const maxItems = Math.max(...data.domains.map((d) => d.items));
   const arranged = useMemo(() => arrange(root, font, maxItems), [root, font, maxItems]);
@@ -317,7 +317,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const measure = () => {
       if (svg.current) setFrame((old) => {
         const width = svg.current!.getBoundingClientRect().width || old.width;
-        const height = Math.min(1240, Math.max(520, innerHeight * 0.76));
+        const height = Math.min(680, Math.max(420, innerHeight - 340));
         return width === old.width && height === old.height ? old : { width, height };
       });
       if (largeSvg.current && large) {

@@ -97,7 +97,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             if (name.trim()) void run(async () => { await renameCorpus(corpus.id, name.trim()); setEditing(false); });
           }}>
             <input autoFocus aria-label="资料库名称" value={name} onChange={(e) => setName(e.target.value)}
-              className="font-app w-[260px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-emphasis font-semibold outline-none focus:border-[var(--primary)]" />
+              className="font-app w-[260px] rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-emphasis font-semibold outline-none focus:border-[var(--primary)]" />
             <Button type="submit" size="sm" disabled={busy || !name.trim()}>保存</Button>
             <Button variant="ghost" size="sm" onClick={() => { setEditing(false); setName(corpus.name); }}>取消</Button>
           </form> : <>
@@ -127,7 +127,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
         {editingDescription ? <div className="mt-[8px] flex items-start gap-[8px]">
           <textarea autoFocus aria-label="资料库说明" rows={2} maxLength={1000} value={description} onChange={(event) => setDescription(event.target.value)}
             placeholder="简要说明这个资料库收录什么资料（可选）"
-            className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-body leading-[1.5] outline-none focus:border-[var(--primary)]" />
+            className="font-app min-w-0 flex-1 rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-body leading-[1.5] outline-none focus:border-[var(--primary)]" />
           <Button size="sm" disabled={busy} onClick={() => void run(async () => { await setCorpusDescription(corpus.id, description.trim()); setEditingDescription(false); })}>保存</Button>
           <Button size="sm" variant="ghost" onClick={() => { setEditingDescription(false); setDescription(corpus.description ?? ""); }}>取消</Button>
         </div> : admin ? <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
@@ -139,11 +139,11 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-5 py-[18px] sm:px-8">
       {corpus.missing ? (
-        <section className="space-y-[10px] rounded-[10px] border border-[var(--danger-line)] bg-[var(--danger-bg)] p-[14px] text-caption">
+        <section className="space-y-[10px] rounded-lg border border-[var(--danger-line)] bg-[var(--danger-bg)] p-[14px] text-caption">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>
           <p className="text-[var(--steel)]">若你已在资料库根目录中重新放置或改名该文件夹，请明确选择对应目录。系统不会按相似名称自动合并。</p>
           <div className="flex flex-wrap gap-[8px]">
-            <select aria-label="重新关联目录" className="min-w-[180px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px]" value={directory} onChange={(event) => setDirectory(event.target.value)}>
+            <select aria-label="重新关联目录" className="min-w-[180px] rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px]" value={directory} onChange={(event) => setDirectory(event.target.value)}>
               <option value="">选择未关联目录</option>
               {corpora.filter((candidate) => !candidate.missing && candidate.id !== corpus.id).map((candidate) => <option key={candidate.id} value={candidate.rel_path}>{candidate.name} · {candidate.rel_path}</option>)}
             </select>

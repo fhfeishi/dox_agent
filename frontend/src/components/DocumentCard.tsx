@@ -63,10 +63,10 @@ export function DocumentCard({ doc, page, corpusId }: { doc: DocumentInfo; page:
     <div className="flex flex-wrap gap-[8px]">
       <Button size="sm" variant="primary" disabled={sessionBusy} onClick={() => void ask()}>就此提问</Button>
       <Button size="sm" variant="outline" onClick={() => openFullPreview(doc, page, corpusId, true)}>放大阅读</Button>
-      <a href={download} download className="inline-flex h-[28px] items-center rounded-[6px] border border-[var(--hairline-strong)] px-[10px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">下载原文</a>
+      <a href={download} download className="inline-flex h-[28px] items-center rounded-md border border-[var(--hairline-strong)] px-[10px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">下载原文</a>
     </div>
     {asking ? <p role="alert" className="text-caption text-[var(--red)]">{asking}</p> : null}
-    <details className="rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[6px] text-caption text-[var(--steel)]">
+    <details className="rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[6px] text-caption text-[var(--steel)]">
       <summary className="cursor-pointer select-none">文件信息</summary>
       <dl className="mt-[6px] grid grid-cols-[5em_minmax(0,1fr)] gap-x-[8px] gap-y-[3px]">
         <dt>大小</dt><dd>{file ? size(file.size) : files.isPending ? "读取中…" : "未记录"}</dd>

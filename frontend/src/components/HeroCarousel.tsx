@@ -31,7 +31,7 @@ function LibraryBars({ rows, value, label, colorOf, nameOf, missing }: { rows: L
     <ul className="space-y-[5px]">{shown.map((r, i) => <li key={r.corpus_id} title={`${short(r.name)}：${label(r)}`} className="grid grid-cols-[6.5em_minmax(0,1fr)] items-center gap-3 text-caption leading-[14px]">
       <span className="truncate text-right text-[#dbe4ee]">{nameOf(r)}</span>
       <span className="flex min-w-0 items-center gap-2">
-        <span className="hero-bar h-[11px] shrink-0 rounded-[3px]" style={{ width: `calc((100% - 8.5em) * ${value(r) / max})`, minWidth: 3, background: colorOf(r.corpus_id), animationDelay: `${i * 45}ms` }} />
+        <span className="hero-bar h-[11px] shrink-0 rounded-sm" style={{ width: `calc((100% - 8.5em) * ${value(r) / max})`, minWidth: 3, background: colorOf(r.corpus_id), animationDelay: `${i * 45}ms` }} />
         <span className="shrink-0 whitespace-nowrap tabular-nums text-[#c9d4e1]">{label(r)}</span>
       </span>
     </li>)}</ul>
@@ -66,7 +66,7 @@ function YearStack({ rows, groups: gs, years, value, unit, nameOf }: { rows: Lib
         </g>; })}
     </svg>
     <figcaption className="mt-1.5 flex flex-wrap gap-x-3.5 gap-y-1 text-caption text-[#c9d4e1]">
-      {present.map((g) => <span key={g.key} title={g.name} className="inline-flex items-center gap-1.5"><span className="inline-block size-2 rounded-[2px]" style={{ background: g.color }} />{nameOf(g)}</span>)}
+      {present.map((g) => <span key={g.key} title={g.name} className="inline-flex items-center gap-1.5"><span className="inline-block size-2 rounded-xs" style={{ background: g.color }} />{nameOf(g)}</span>)}
     </figcaption>
   </figure>;
 }

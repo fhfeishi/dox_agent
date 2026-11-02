@@ -142,7 +142,7 @@ async def main():
                 await guide.get_by_role("button", name="跳过").click()
                 await page.goto(origin + "/library")
                 await dismiss(page)
-                await expect(page.get_by_text(re.compile(r"^\d+ 个资料库$"))).to_be_visible(timeout=120000)
+                await expect(page.get_by_role("heading", name=re.compile(r"^系统资料库\s*\d+ 个$"))).to_be_visible(timeout=120000)
                 await shot(page, "admin-06-library")
                 await page.goto(origin + "/review/formal")
                 await dismiss(page)
@@ -187,6 +187,7 @@ async def main():
                 await page.get_by_role("dialog", name="技术研判使用指引").get_by_role("button", name="跳过").click()
                 await page.goto(origin + "/overview/domains")
                 await dismiss(page)
+                await expect(page.get_by_role("navigation", name="领域分析分屏")).to_be_visible(timeout=180000)
                 await shot(page, "leader-05-domains")
 
                 # User: the same bar order as the administrator.

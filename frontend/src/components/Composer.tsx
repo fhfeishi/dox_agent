@@ -28,10 +28,10 @@ function PopItem({
     <button
       type="button"
       onClick={onClick}
-      className="font-app flex w-full items-start gap-[10px] rounded-[6px] px-[9px] py-[8px] text-left hover:bg-[var(--surface)]"
+      className="font-app flex w-full items-start gap-[10px] rounded-md px-[9px] py-[8px] text-left hover:bg-[var(--surface)]"
     >
       <span
-        className="grid size-[26px] shrink-0 place-items-center rounded-[6px] bg-[var(--tint-lavender)] text-[var(--purple)]"
+        className="grid size-[26px] shrink-0 place-items-center rounded-md bg-[var(--tint-lavender)] text-[var(--purple)]"
         style={tone ? { background: tone } : undefined}
       >
         {icon ?? <Icon name="tasks" size={14} strokeWidth={1.9} />}
@@ -277,7 +277,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
       {/* 点选提问 anchors to this column: it opens above the composer instead of pushing the page. */}
       <div className="relative mx-auto w-full max-w-[960px]">
         {!scopeReady ? (
-          <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
+          <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <span className="min-w-0 flex-1">
               {corporaError
                 ? `资料库列表读取失败：${corporaError}`
@@ -304,14 +304,14 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
           </div>
         ) : null}
         {editing ? (
-          <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[var(--lav-line)] bg-[var(--primary-soft)] px-[10px] py-[7px] text-caption text-[var(--primary-pressed)]">
+          <div className="mb-[8px] flex items-center gap-[8px] rounded-lg border border-[var(--lav-line)] bg-[var(--primary-soft)] px-[10px] py-[7px] text-caption text-[var(--primary-pressed)]">
             <Icon name="edit" size={13} strokeWidth={1.9} />
             <span className="flex-1">
               正在编辑第 {editing.index + 1} 轮的提问 · 确认后将从这条消息重新生成回答
             </span>
             <button
               type="button"
-              className="font-app rounded-[5px] px-[7px] py-[2px] text-caption font-medium hover:bg-[var(--lav-bg)]"
+              className="font-app rounded-sm px-[7px] py-[2px] text-caption font-medium hover:bg-[var(--lav-bg)]"
               onClick={() => setEditing(null)}
             >
               取消
@@ -319,7 +319,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
           </div>
         ) : null}
         {(customTask || missingCustomTask) && !taskReady ? (
-          <div role="status" className="mb-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[7px] text-caption text-[var(--steel)]">
+          <div role="status" className="mb-[8px] rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[7px] text-caption text-[var(--steel)]">
             {taskVersionState === "missing" ? "此旧会话未记录任务版本，已阻止发送。" : taskVersionState === "failed" ? `${taskVersionError} 可从成组状态备份恢复，或新建最新版会话。` : "正在读取此会话固定的任务版本…"}
             {latestVersion ? <div className="mt-[5px] flex flex-wrap items-center gap-[7px]">
               {workspace.taskVersion ? <span>当前 v{workspace.taskVersion} / 最新 v{latestVersion}</span> : <span>最新 v{latestVersion}</span>}
@@ -345,7 +345,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
 
         {!editing ? <QuickAsk key={workspace.active} open={quickOpen} onClose={() => setQuickOpen(false)} /> : null}
 
-        {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption">
+        {webOpen ? <div className="mb-[8px] rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption">
           <div className="mb-[7px] flex gap-[5px]">
             <button type="button" onClick={() => setWebMode("url")} className={webMode === "url" ? "font-semibold text-[var(--primary)]" : "text-[var(--stone)]"}>指定网址</button>
             <span>·</span>
@@ -434,7 +434,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
         ) : null}
 
         {activeTask?.kind === "custom" ? (
-          <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
+          <div className="mb-[8px] rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <div className="flex flex-wrap items-center gap-[7px]">
               <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个资料库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
               {versionUpdateAvailable ? <Button size="sm" onClick={() => {
@@ -478,7 +478,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
           {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
           <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget, "files"); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
         {/* input */}
-        <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
+        <div className="rounded-xl border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea
             data-guide="chat-input"
             ref={taRef}
@@ -517,12 +517,12 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 title="任务 / 附件"
                 aria-expanded={popOpen}
                 onClick={() => setPopOpen((v) => !v)}
-                className="grid size-[30px] place-items-center rounded-[6px] border border-[var(--hairline)] text-[var(--slate)] hover:bg-[var(--surface)]"
+                className="grid size-[30px] place-items-center rounded-md border border-[var(--hairline)] text-[var(--slate)] hover:bg-[var(--surface)]"
               >
                 <Icon name="plus" size={16} strokeWidth={1.9} />
               </button>
               {popOpen ? (
-                <div className="absolute bottom-[calc(100%+8px)] left-0 z-[60] w-[296px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
+                <div className="absolute bottom-[calc(100%+8px)] left-0 z-[60] w-[296px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
                   <div className="px-[9px] pt-[8px] pb-[5px] text-caption font-semibold tracking-[0.6px] text-[var(--stone)] uppercase">
                     任务模版
                   </div>
@@ -577,7 +577,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             <button ref={corpusButton} type="button" data-guide="chat-scope" aria-expanded={corpusOpen}
               aria-label={`对话资料库：${libraryNames || "未选择"}`} title={libraryNames || "选择对话资料库"}
               onClick={() => { setCorpusOpen((v) => !v); setPopOpen(false); }}
-              className="font-app inline-flex h-[30px] max-w-[260px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
+              className="font-app inline-flex h-[30px] max-w-[260px] items-center gap-[6px] rounded-md px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
               <Icon name="library" size={15} />
               <span className="truncate">{autoCorpus ? "自动 · " : ""}{corpusIds.length
                 ? `${shortName(corpusIds[0])}${corpusIds.length > 1 ? ` 等 ${corpusIds.length} 个` : ""}` : "选择资料库"}</span>
@@ -588,7 +588,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
               type="button"
               onClick={() => { setScopeOpen((v) => !v); setPopOpen(false); }}
               aria-expanded={scopeOpen}
-              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
+              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-md px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
             >
               <Icon name="list" size={15} />
               资料范围：
@@ -596,7 +596,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             </button>
 
             {options.web_snapshot_ids?.length ? (
-              <span className="inline-flex h-[30px] items-center gap-[4px] rounded-[6px] bg-[var(--tint-sky)] px-[9px] text-caption text-[var(--info-fg)]">
+              <span className="inline-flex h-[30px] items-center gap-[4px] rounded-md bg-[var(--tint-sky)] px-[9px] text-caption text-[var(--info-fg)]">
                 {options.web_snapshot_ids.length} 个指定网址快照
                 <button type="button" aria-label="清除本次网页范围" className="ml-[2px] hover:text-[var(--ink)]"
                   onClick={() => setOptions((current) => ({ ...current, web_snapshot_ids: [] }))}>×</button>
@@ -606,7 +606,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             {!editing ? (
               <button type="button" onClick={() => { setQuickOpen((open) => !open); setPopOpen(false); }}
                 aria-expanded={quickOpen} aria-controls="quick-ask-panel"
-                className={`font-app inline-flex h-[30px] items-center gap-[5px] rounded-[6px] px-[9px] text-body transition-colors ${quickOpen
+                className={`font-app inline-flex h-[30px] items-center gap-[5px] rounded-md px-[9px] text-body transition-colors ${quickOpen
                   ? "bg-[var(--primary-soft)] font-medium text-[var(--primary-pressed)]"
                   : "text-[var(--slate)] hover:bg-[var(--surface)]"}`}>
                 <Icon name="checklist" size={15} />
@@ -617,7 +617,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
             <span className="flex-1" />
 
             <span
-              className="font-app hidden h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--stone)] sm:inline-flex"
+              className="font-app hidden h-[30px] items-center gap-[6px] rounded-md px-[9px] text-body text-[var(--stone)] sm:inline-flex"
               aria-label="本次运行配置"
               title={runConfig}
             >
@@ -631,7 +631,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 title="停止"
                 aria-label="停止"
                 onClick={stop}
-                className="grid size-[32px] place-items-center rounded-[8px] bg-[var(--charcoal)] text-white transition-colors hover:bg-[var(--ink)]"
+                className="grid size-[32px] place-items-center rounded-lg bg-[var(--charcoal)] text-white transition-colors hover:bg-[var(--ink)]"
               >
                 <Icon name="close" size={15} strokeWidth={2.2} />
               </button>
@@ -642,7 +642,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 aria-label="确认修改并重新询问"
                 disabled={!editing.text.trim()}
                 onClick={() => void confirmEdit()}
-                className="grid size-[32px] place-items-center rounded-[8px] bg-[var(--primary)] text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:bg-[var(--hairline)] disabled:text-[var(--muted)]"
+                className="grid size-[32px] place-items-center rounded-lg bg-[var(--primary)] text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:bg-[var(--hairline)] disabled:text-[var(--muted)]"
               >
                 <Icon name="send" size={15} strokeWidth={2.1} />
               </button>
@@ -653,7 +653,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 aria-label="发送 ↑"
                 disabled={!canSend}
                 onClick={() => void send()}
-                className="grid size-[32px] place-items-center rounded-[8px] bg-[var(--primary)] text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:bg-[var(--hairline)] disabled:text-[var(--muted)]"
+                className="grid size-[32px] place-items-center rounded-lg bg-[var(--primary)] text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:bg-[var(--hairline)] disabled:text-[var(--muted)]"
               >
                 <Icon name="send" size={15} strokeWidth={2.1} />
               </button>

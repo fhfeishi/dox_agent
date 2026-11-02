@@ -182,20 +182,20 @@ export function QuickAsk({ open, onClose }: { open: boolean; onClose: () => void
     <div id="quick-ask-panel" ref={panel} role="dialog" aria-label="点选提问" data-guide="chat-quick"
       className="quick-ask composer-panel" style={open ? undefined : { display: "none" }}>
       <div className="flex shrink-0 items-center gap-[8px] border-b border-[var(--hairline-soft)] px-[14px] py-[10px]">
-        <span className="grid size-[24px] shrink-0 place-items-center rounded-[7px] bg-[var(--primary-soft)] text-[var(--primary)]">
+        <span className="grid size-[24px] shrink-0 place-items-center rounded-md bg-[var(--primary-soft)] text-[var(--primary)]">
           <Icon name="checklist" size={14} strokeWidth={1.9} />
         </span>
         <span className="text-body font-semibold text-[var(--ink)]">点选提问</span>
         <span className="min-w-0 flex-1 truncate text-caption text-[var(--stone)]">选好后生成问题，填入输入框，可再改</span>
         <button type="button" aria-label="关闭点选提问" onClick={onClose}
-          className="grid size-[24px] shrink-0 place-items-center rounded-[6px] text-[var(--stone)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--ink)]">
+          className="grid size-[24px] shrink-0 place-items-center rounded-md text-[var(--stone)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--ink)]">
           <Icon name="close" size={13} strokeWidth={2.1} />
         </button>
       </div>
 
       <div className="scrollbar-thin min-h-0 flex-1 space-y-[11px] overflow-y-auto px-[14px] py-[12px]">
         {note ? <Row label="已输入" hint="生成的问题以这段文字为核心，点选的条件围绕它展开">
-          <span className="min-w-0 max-w-full truncate rounded-[6px] bg-[var(--surface)] px-[9px] py-[4px] text-caption text-[var(--ink)]" title={note}>{note}</span>
+          <span className="min-w-0 max-w-full truncate rounded-md bg-[var(--surface)] px-[9px] py-[4px] text-caption text-[var(--ink)]" title={note}>{note}</span>
         </Row> : null}
         <Row label="任务">
           {TASKS.map(([id, name]) => <Chip key={id} on={task === id} onClick={() => setTask(id)}>{name}</Chip>)}
@@ -237,10 +237,10 @@ export function QuickAsk({ open, onClose }: { open: boolean; onClose: () => void
           <span className="font-medium text-[var(--slate)]">生成的问题</span>
           {drafts.length > 1 ? <span className="inline-flex items-center gap-[2px]">
             <button type="button" aria-label="上一版" disabled={shown === 0} onClick={() => setShown(shown - 1)}
-              className="grid size-[18px] place-items-center rounded-[4px] hover:bg-[var(--surface)] disabled:opacity-30">‹</button>
+              className="grid size-[18px] place-items-center rounded-sm hover:bg-[var(--surface)] disabled:opacity-30">‹</button>
             <span className="tabular-nums">{shown + 1} / {drafts.length}</span>
             <button type="button" aria-label="下一版" disabled={shown === drafts.length - 1} onClick={() => setShown(shown + 1)}
-              className="grid size-[18px] place-items-center rounded-[4px] hover:bg-[var(--surface)] disabled:opacity-30">›</button>
+              className="grid size-[18px] place-items-center rounded-sm hover:bg-[var(--surface)] disabled:opacity-30">›</button>
           </span> : null}
         </div>
         <p className="text-body leading-[1.65] text-[var(--ink)]">{draft.question}</p>
@@ -257,18 +257,18 @@ export function QuickAsk({ open, onClose }: { open: boolean; onClose: () => void
         </span>
         <span className="flex-1" />
         <button type="button" onClick={reset}
-          className="rounded-[6px] px-[9px] py-[5px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">重置</button>
+          className="rounded-md px-[9px] py-[5px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">重置</button>
         {draft ? <>
           <button type="button" disabled={pending || busy || sessionBusy} onClick={() => void generate()}
-            className="inline-flex items-center gap-[5px] rounded-[7px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[11px] py-[5px] text-body text-[var(--slate)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary-pressed)] disabled:opacity-45">
+            className="inline-flex items-center gap-[5px] rounded-md border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[11px] py-[5px] text-body text-[var(--slate)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary-pressed)] disabled:opacity-45">
             {pending ? "正在换角度…" : "换一个角度"}
           </button>
           <button type="button" disabled={pending || busy || sessionBusy} onClick={() => void use()}
-            className="inline-flex items-center gap-[5px] rounded-[7px] bg-[var(--primary)] px-[13px] py-[6px] text-body text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-45">
+            className="inline-flex items-center gap-[5px] rounded-md bg-[var(--primary)] px-[13px] py-[6px] text-body text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-45">
             填入输入框<i className="not-italic" aria-hidden="true">→</i>
           </button>
         </> : <button type="button" disabled={pending || busy || sessionBusy || !(picked || note)} onClick={() => void generate()}
-          className="inline-flex items-center gap-[5px] rounded-[7px] bg-[var(--primary)] px-[13px] py-[6px] text-body text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-45">
+          className="inline-flex items-center gap-[5px] rounded-md bg-[var(--primary)] px-[13px] py-[6px] text-body text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-45">
           {pending ? "正在生成问题…" : "生成问题"}
           {pending ? null : <i className="not-italic" aria-hidden="true">→</i>}
         </button>}

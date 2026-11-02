@@ -18,7 +18,7 @@ export const TONE_BG: Record<Tone, string> = {
 export function Pill({ tone = "gray", children }: { tone?: Tone; children: ReactNode }) {
   return (
     <span
-      className={`inline-block rounded-[4px] px-[7px] py-[2px] text-caption leading-[1.45] font-semibold ${TONE_BG[tone]}`}
+      className={`inline-block rounded-sm px-[7px] py-[2px] text-caption leading-[1.45] font-semibold ${TONE_BG[tone]}`}
     >
       {children}
     </span>
@@ -80,7 +80,7 @@ export function Button({
       title={title}
       disabled={disabled}
       onClick={onClick}
-      className={`font-app inline-flex shrink-0 items-center gap-[6px] rounded-[6px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-[var(--dur-quick)] disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON[variant]} ${sizeCls} ${className}`}
+      className={`font-app inline-flex shrink-0 items-center gap-[6px] rounded-md font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-[var(--dur-quick)] disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON[variant]} ${sizeCls} ${className}`}
     >
       {icon ? <Icon name={icon} size={iconSize} /> : null}
       {children}
@@ -99,10 +99,10 @@ export function Segmented<T extends string>({ label, value, options, onChange, t
   label: string; value: T; options: readonly (readonly [T, ReactNode])[]; onChange: (value: T) => void; tabs?: boolean; className?: string;
 }) {
   return <div role={tabs ? "tablist" : "group"} aria-label={label}
-    className={`inline-flex shrink-0 flex-wrap items-center gap-[2px] rounded-[8px] bg-[var(--line-cool-soft)] p-[3px] ${className}`}>
+    className={`inline-flex shrink-0 flex-wrap items-center gap-[2px] rounded-lg bg-[var(--line-cool-soft)] p-[3px] ${className}`}>
     {options.map(([key, name]) => <button key={key} type="button" onClick={() => onChange(key)}
       {...(tabs ? { role: "tab", "aria-selected": value === key } : { "aria-pressed": value === key })}
-      className={`whitespace-nowrap rounded-[6px] px-[12px] py-[5px] text-body transition-[background-color,color,box-shadow] duration-[var(--dur-quick)] ${value === key
+      className={`whitespace-nowrap rounded-md px-[12px] py-[5px] text-body transition-[background-color,color,box-shadow] duration-[var(--dur-quick)] ${value === key
         ? "bg-[var(--canvas)] font-semibold text-[var(--heading)] shadow-sm" : "text-[var(--text-3)] hover:text-[var(--heading)]"}`}>{name}</button>)}
   </div>;
 }
@@ -129,7 +129,7 @@ export function ToolButton({
       type="button"
       title={title ?? label}
       onClick={onClick}
-      className={`font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] text-body transition-colors ${
+      className={`font-app inline-flex h-[30px] items-center gap-[6px] rounded-md text-body transition-colors ${
         label ? "px-[10px]" : "w-[30px] justify-center"
       } ${
         active
@@ -170,7 +170,7 @@ export function PanelRow({
     <button
       type="button"
       onClick={onClick}
-      className={`font-app flex w-full items-center gap-[9px] rounded-[6px] px-[8px] py-[8px] text-left transition-colors ${
+      className={`font-app flex w-full items-center gap-[9px] rounded-md px-[8px] py-[8px] text-left transition-colors ${
         active
           ? "bg-[var(--surface-press)] font-medium text-[var(--ink)]"
           : "text-[var(--slate)] hover:bg-[var(--surface-sink)]"
@@ -216,7 +216,7 @@ export function SearchField({
   ariaLabel?: string;
 }) {
   return (
-    <label className="mx-[14px] mb-[10px] flex items-center gap-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-[var(--stone)] focus-within:border-[var(--primary)]">
+    <label className="mx-[14px] mb-[10px] flex items-center gap-[8px] rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-[var(--stone)] focus-within:border-[var(--primary)]">
       <Icon name="search" size={14} />
       <input
         value={value}
@@ -234,7 +234,7 @@ export function SearchField({
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] px-[14px] py-[13px] ${className}`}
+      className={`rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[14px] py-[13px] ${className}`}
     >
       {children}
     </div>

@@ -402,7 +402,7 @@ export function PersonalLibraryPage() {
           </div>
         </aside>
         <div className="min-w-0 space-y-3">
-          {data.refs.length ? <label className="flex items-center gap-[6px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[6px] text-[var(--stone)] focus-within:border-[var(--primary)]">
+          {data.refs.length ? <label className="flex items-center gap-[6px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[6px] text-[var(--stone)] focus-within:border-[var(--primary)]">
             <Icon name="search" size={12} />
             <input aria-label="搜索资料" value={q} onChange={(e) => setQ(e.target.value)} placeholder="搜索项目名、批准号、负责人或文件名"
               className="font-app min-w-0 flex-1 border-0 bg-transparent text-body text-[var(--ink)] outline-none placeholder:text-[var(--stone)]" />

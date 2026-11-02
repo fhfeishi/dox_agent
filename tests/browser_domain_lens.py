@@ -81,22 +81,33 @@ def tree_records(corpus_id):
         for name in ['技术体系0','技术体系0/交叉']]}
 
 
+def project_records(corpus_id):
+    """Project-level 四维 records for 关键技术's 技术档案 (same project ids as tree_records)."""
+    def facet(*items): return {'items':[{'id':f'{n}-{i}','name':n,'desc':'','status':st,'doc_id':'doc-02','version':'v1'} for i,(n,st) in enumerate(items)],'covered_files':1,'evidence_files':1}
+    return {'corpus_id':corpus_id,'projects':[{'project_id':f'p{i}','number':str(100000+i),'title':f'示例项目{i}','identity_status':'identified',
+        'start_year':2020,'end_year':None,'year_conflict':False,'files':[],'funding':[],'funding_conflicts':[],
+        'facets':{'问题':facet(('样本不足',None)),'技术':facet((f'本主题技术{i}',None),('另一项技术',None)),'成果':facet(('原型系统','已取得')),'场景':facet(('临床筛查',None))}}
+        for i in range(15)],'coverage':{'files':0,'identified_projects':15,'pending_identity_records':0,'dimensions':{},'funding':{}}}
+
+
 async def mock_domain_routes(page,overview,atlas):
     await page.route('**/api/corpora',lambda r:r.fulfill(json=[{'id':'domain-0','name':'AI与研究领域0','indexed_count':9,'docs_count':9,'missing':False,'kind':'fund','job':None}]))
     await page.route('**/api/domains/overview',lambda r:r.fulfill(json=overview))
     await page.route('**/api/domains/atlas',lambda r:r.fulfill(json=atlas))
     await page.route('**/api/domains/*/tree',lambda r:r.fulfill(json=tree_records(r.request.url.split('/')[-2])))
+    await page.route('**/api/corpora/*/projects',lambda r:r.fulfill(json=project_records(r.request.url.split('/')[-2])))
     await page.route('**/api/documents/doc-02/markdown*',lambda r:r.fulfill(json={'text':'# 02 原文校验\n\n原文入口保持可用。','version':'v1'}))
 
 async def check_simplified(page,origin,shots):
     reports=[]
     for width in (1366,1440,1920):
         await page.set_viewport_size({"width":width,"height":900 if width<1920 else 1080})
-        await page.goto(origin+"/overview/domains")
+        await page.goto(origin+"/overview/domains?screen=landscape")
         await page.locator(".lens-node").first.wait_for(timeout=60000)
         await settle(page)
-        band=await page.locator('.lens-band-svg').bounding_box()
-        assert band and band['y']+band['height']<=await page.evaluate('innerHeight'),band
+        # 领域格局 is its own screen: the year band lives in 年度投入, the four verdicts sit under the map.
+        await expect(page.locator('.lens-band-svg')).to_have_count(0)
+        await expect(page.get_by_role('list',name='象限评价').locator('li')).to_have_count(4)
         lens=page.locator(".domain-lens")
         await expect(lens.get_by_role('group',name='缩放',exact=True)).to_have_count(0)
         plot_box=await page.locator('.lens-plot').bounding_box()
@@ -177,7 +188,7 @@ async def check_simplified(page,origin,shots):
                 back_durations.append(back_ms)
         # Six ordinary clicks during the 420ms return animation must not be lost.
         from urllib.parse import urlencode
-        await page.goto(origin+'/overview/domains?'+urlencode({'layer':system,'node':leaf_id}))
+        await page.goto(origin+'/overview/domains?'+urlencode({'screen':'landscape','layer':system,'node':leaf_id}))
         await page.locator('.lens-node').first.wait_for(timeout=60000)
         await settle(page)
         fast_box=await page.locator('.lens-plot').bounding_box()
@@ -205,17 +216,6 @@ async def check_simplified(page,origin,shots):
         assert await page.evaluate("new URL(location.href).searchParams.get('layer')") is None
         await expect(page.get_by_role('button',name='⇄ 对比',exact=True)).to_have_count(0)
         await expect(page.locator(".lens-pair-names")).to_be_visible()
-        map_height=(await page.locator('.lens-plot').bounding_box())['height']
-        await page.get_by_role('radio',name='资金（万元）',exact=True).click()
-        await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
-        colors=await page.locator('.lens-year-legend span').evaluate_all('es=>es.map(e=>getComputedStyle(e).color)')
-        assert len(set(colors))==2,colors
-        overlaps=await page.locator('.lens-band-svg [data-year]').evaluate_all("""gs=>gs.filter(g=>{
-            const ts=[...g.children].filter(n=>n.tagName.toLowerCase()==='g').flatMap(n=>[...n.querySelectorAll('text')]).filter(t=>t.textContent.trim());
-            if(ts.length<2)return false;const[a,b]=ts.map(t=>t.getBoundingClientRect());return a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;
-        }).length""")
-        assert overlaps==0,overlaps
-        assert abs((await page.locator('.lens-plot').bounding_box())['height']-map_height)<2
         await blank(page)
         await expect(page.locator(".lens-pair-names")).to_have_count(0)
         await blank(page)
@@ -237,15 +237,6 @@ async def check_simplified(page,origin,shots):
         await b.focus();await page.keyboard.press('Shift+Enter')
         await expect(page.locator('.lens-pair-names')).to_be_visible()
         await blank(page);await blank(page)
-        await page.get_by_role("radio",name="资金（万元）",exact=True).click()
-        await page.locator('.lens-band-svg [data-year="2021"]').click()
-        await settle(page)
-        await expect(page.get_by_role("button",name="清除年份范围")).to_be_visible()
-        await page.get_by_role("button",name="清除年份范围").click()
-        await settle(page)
-        await page.get_by_role("button",name="展开各领域 ▾",exact=True).click()
-        await expect(page.locator(".lens-matrix")).to_be_visible()
-        await page.get_by_role("button",name="收起各领域 ▴",exact=True).click()
         inventory=await lens.evaluate("""root=>{
           const out=[];const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;
           while(n=walker.nextNode()){
@@ -274,7 +265,7 @@ async def check_simplified(page,origin,shots):
         assert geometry['minRadius']>=8 and geometry['maxRadius']<=30 and geometry['maxDistance']<=40 and geometry['collisions']==0,geometry
         # A legacy pin link is migrated once; no old interaction mode remains.
         from urllib.parse import urlencode
-        await page.goto(origin+'/overview/domains?'+urlencode({'pin':domain}))
+        await page.goto(origin+'/overview/domains?'+urlencode({'screen':'landscape','pin':domain}))
         await page.locator('.lens-node').first.wait_for(timeout=60000)
         await expect(status).to_contain_text('已选中')
         assert await page.evaluate("new URL(location.href).searchParams.get('pin')") is None
@@ -298,8 +289,95 @@ async def check_simplified(page,origin,shots):
         reports.append({'width':width,'plot':plot_box,'small_text':len(inventory),'geometry':geometry,'enter_ms':duration,'back_ms':back_durations})
     return reports
 
-async def check_retained(page,origin,shots):
+async def check_screens(page,origin,shots):
+    """领域分析分屏: 总览 by default, one screen at a time from the fixed bar, each screen in the address."""
+    await page.set_viewport_size({'width':1440,'height':900})
     await page.goto(origin+'/overview/domains')
+    screens=page.get_by_role('navigation',name='领域分析分屏')
+    await expect(screens.get_by_role('button',name='总览',exact=True)).to_have_attribute('aria-pressed','true')
+    await expect(screens.get_by_role('button')).to_have_count(6)
+    findings=page.get_by_role('list',name='先给结论').get_by_role('button')
+    await expect(findings).to_have_count(3)
+    await expect(page.get_by_role('region',name='各领域').get_by_role('button')).to_have_count(11)
+    await expect(page.locator('.lens-plot')).to_have_count(0)
+    await page.screenshot(path=str(shots/'screen-summary.png'))
+    # A domain card opens 领域格局 with that domain chosen.
+    await page.get_by_role('button',name='在领域格局中定位 AI与研究领域3',exact=True).click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('screen')==='landscape'")
+    await expect(screens.get_by_role('button',name='领域格局',exact=True)).to_have_attribute('aria-pressed','true')
+    await page.wait_for_function("new URL(location.href).searchParams.get('node')==='domain-3'")
+    await expect(page.locator('.lens-verdict')).to_be_visible()
+    # The bar stays on top while a screen scrolls.
+    await page.locator('main').evaluate('e=>e.scrollTop=e.scrollHeight')
+    bar=await page.locator('.atlas-bar').bounding_box();main=await page.locator('main').bounding_box()
+    assert abs(bar['y']-main['y'])<2,(bar,main)
+    await page.go_back()
+    await expect(screens.get_by_role('button',name='总览',exact=True)).to_have_attribute('aria-pressed','true')
+    # 结论三 leads to 缺口与机会; GapBoard's own checks live in browser_gap_board.
+    await findings.nth(2).click()
+    await expect(screens.get_by_role('button',name='缺口与机会',exact=True)).to_have_attribute('aria-pressed','true')
+    # 年度投入 with 全部领域: one stacked bar per year, a segment per domain, and the analysis beside it.
+    await screens.get_by_role('button',name='年度投入',exact=True).click()
+    await expect(page.locator('.lens-band-svg')).to_have_attribute('data-stacked','true')
+    await expect(page.locator('.lens-band-svg [data-year="2021"] .lens-year-part')).to_have_count(11)
+    story=page.get_by_role('complementary',name='年度分析')
+    await expect(story).to_contain_text('高峰在')
+    await expect(story.locator('.lens-year-rows button')).to_have_count(11)
+    await expect(page.get_by_role('button',name='展开详情',exact=True)).to_have_count(0)
+    await story.locator('.lens-year-rows button').first.click()
+    await expect(story.locator('.lens-year-rows button').first).to_have_attribute('aria-pressed','true')
+    chosen=await page.evaluate("new URL(location.href).searchParams.get('node')")
+    assert chosen,page.url
+    await expect(page.locator(f'.lens-band-svg [data-year="2021"] .lens-year-part[data-node="{chosen}"]')).to_have_attribute('opacity','1')
+    await page.locator('.lens-band-svg [data-year="2021"]').click()
+    await expect(story.get_by_role('heading',level=3)).to_contain_text('2021 年')
+    await expect(story).to_contain_text('占全部年份的')
+    await page.screenshot(path=str(shots/'screen-years.png'))
+    await story.get_by_role('button',name='看全部年份',exact=True).click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')===null")
+    # A second click enters the domain, as on the map: its systems share projects, so they are not stacked.
+    await story.locator('.lens-year-rows button').first.click()
+    await page.wait_for_function("id=>new URL(location.href).searchParams.get('layer')===id",arg=chosen)
+    await expect(page.locator('.lens-band-svg')).to_have_attribute('data-stacked','false')
+    await expect(story).to_contain_text('各技术体系')
+    # 关键技术: domain → 体系 → 方向 → 主题 → 技术条目, then the technology's file.
+    await screens.get_by_role('button',name='关键技术',exact=True).click()
+    await expect(page.get_by_role('group',name='选择领域').get_by_role('button',name='研究领域0',exact=False).first).to_have_attribute('aria-pressed','true')
+    file=page.get_by_role('complementary',name='技术档案')
+    await expect(file).to_contain_text('逐层点到技术条目')
+    # The tree opens to the 主题 column at once, like 五级谱系; each box opens the next column to its right.
+    techtree=page.get_by_role('group',name='关键技术谱系')
+    await expect(techtree.get_by_role('button',name='主题：',exact=False).first).to_be_visible()
+    for label,name in [('技术体系','技术体系0/交叉'),('研究方向','研究方向1'),('主题','主题1')]:
+        await techtree.get_by_role('button',name=f'{label}：{name}',exact=True).click()
+        await expect(techtree.get_by_role('button',name=f'{label}：{name}',exact=True)).to_have_attribute('aria-pressed','true')
+    await techtree.get_by_role('button',name='技术条目：本主题技术4',exact=True).click()
+    await expect(file.get_by_role('heading',name='本主题技术4')).to_be_visible()
+    await expect(file).to_contain_text('第 3 档')
+    await expect(file).to_contain_text('依据：样机验证')
+    await expect(file).to_contain_text('样本不足')
+    await expect(file).to_contain_text('已取得')
+    await expect(file).to_contain_text('同一项目')
+    await page.screenshot(path=str(shots/'screen-tech.png'))
+    # The matrix reading lists one cell's technologies; the reading survives a reload.
+    await page.get_by_role('button',name='成熟度矩阵',exact=True).click()
+    table=page.get_by_role('table',name='技术体系 × 成熟度')
+    await expect(table).to_be_visible()
+    await table.locator('button[title*="原型样机"]').first.click()
+    await expect(page.get_by_role('region',name='所选格子的技术')).to_contain_text('本主题技术')
+    saved=page.url;await page.reload();await expect(page.get_by_role('table',name='技术体系 × 成熟度')).to_be_visible();assert page.url==saved
+    await page.screenshot(path=str(shots/'screen-tech-matrix.png'))
+    # Phone width: the bar scrolls sideways inside itself, never the page.
+    await page.set_viewport_size({'width':390,'height':844})
+    await page.goto(origin+'/overview/domains')
+    await expect(screens).to_be_visible()
+    assert await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+    await page.screenshot(path=str(shots/'screen-summary-390.png'))
+    await page.set_viewport_size({'width':1440,'height':900})
+
+
+async def check_retained(page,origin,shots):
+    await page.goto(origin+'/overview/domains?screen=landscape')
     await page.locator('.lens-node').first.wait_for(timeout=60000)
     await settle(page)
     await click_node(page.locator('.lens-node').first)
@@ -316,18 +394,39 @@ async def check_retained(page,origin,shots):
     assert await plot.locator('.lens-dot').evaluate_all("es=>es.map(e=>[e.getAttribute('cx'),e.getAttribute('cy'),e.getAttribute('r')])")==positions
     assert await page.locator('.lens-why').inner_text()==before
     await page.locator('main').evaluate('e=>e.scrollTop=0')
-    await page.get_by_role('radio',name='资金（万元）',exact=True).click()
+    # 投入与产出 makes funding the band's measure; the band itself is on the 年度投入 screen.
+    await page.locator('.lens-views').first.get_by_role('button',name='投入与产出',exact=True).click()
+    await settle(page)
+    # A comparison pair carries over: the band draws the two in their own colours.
+    await page.locator('.lens-node').last.focus();await page.keyboard.press('Shift+Enter')
+    await expect(page.locator('.lens-pair-names')).to_be_visible()
+    screens=page.get_by_role('navigation',name='领域分析分屏')
+    await screens.get_by_role('button',name='年度投入',exact=True).click()
+    await expect(screens.get_by_role('button',name='年度投入',exact=True)).to_have_attribute('aria-pressed','true')
+    await expect(page.locator('.lens-plot')).to_have_count(0)
+    await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
+    colors=await page.locator('.lens-year-legend span').evaluate_all('es=>es.map(e=>getComputedStyle(e).color)')
+    assert len(set(colors))==2,colors
+    overlaps=await page.locator('.lens-band-svg [data-year]').evaluate_all("""gs=>gs.filter(g=>{
+        const ts=[...g.children].filter(n=>n.tagName.toLowerCase()==='g').flatMap(n=>[...n.querySelectorAll('text')]).filter(t=>t.textContent.trim());
+        if(ts.length<2)return false;const[a,b]=ts.map(t=>t.getBoundingClientRect());return a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;
+    }).length""")
+    assert overlaps==0,overlaps
     await page.get_by_role('radio',name='资金（万元）',exact=True).press('ArrowRight')
     await expect(page.get_by_role('radio',name='技术（条）',exact=True)).to_have_attribute('aria-checked','true')
-    await page.locator('.lens-views').first.get_by_role('button',name='投入与产出',exact=True).click()
-    await expect(page.get_by_role('radio',name='资金（万元）',exact=True)).to_have_attribute('aria-checked','true')
-    await settle(page)
+    await page.get_by_role('radio',name='资金（万元）',exact=True).click()
     await page.locator('.lens-band-svg [data-year="2019"]').click()
     await page.wait_for_function("new URL(location.href).searchParams.get('from')==='2019'")
+    # The window chosen here filters 领域格局 too, which says so and offers the way back.
+    await screens.get_by_role('button',name='领域格局',exact=True).click()
     await settle(page)
+    await expect(page.locator('.lens-window-note')).to_contain_text('2019')
     await expect(page.locator('.lens-median-tag')).to_have_count(0)
     await expect(page.locator('.lens-empty')).to_be_visible()
-    await page.get_by_role('button',name='清除年份范围').click()
+    await page.get_by_role('button',name='看全部年份',exact=True).click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('from')===null")
+    await expect(page.locator('.lens-window-note')).to_have_count(0)
+    await screens.get_by_role('button',name='年度投入',exact=True).click()
     await page.wait_for_function("new URL(location.href).searchParams.get('from')===null")
     await settle(page)
     node=await page.evaluate("new URL(location.href).searchParams.get('node')")
@@ -343,7 +442,36 @@ async def check_retained(page,origin,shots):
     await expect(page.locator('.lens-matrix tbody tr').filter(has_text='AI与研究领域10').locator('td').last).to_have_text('未记录')
     await expect(page.locator('.lens-band-svg [data-year="2019"] .lens-year-total')).to_have_text('0')
     saved=page.url;await page.reload();await expect(page.locator('.lens-matrix')).to_be_visible();assert page.url==saved
+    await screens.get_by_role('button',name='技术谱系',exact=True).click()
     await check_roads(page,shots)
+    await check_lineage_tree(page,shots)
+
+
+async def check_lineage_tree(page,shots):
+    """技术谱系 放射图|树状图: the tree is the same lineage as a tree opening to the right, kept in the address."""
+    await page.set_viewport_size({'width':1440,'height':900})
+    views=page.get_by_role('group',name='谱系视图')
+    await expect(views.get_by_role('button',name='放射图',exact=True)).to_have_attribute('aria-pressed','true')
+    await views.get_by_role('button',name='树状图',exact=True).click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('roads')==='tree'")
+    await expect(views.get_by_role('button',name='树状图',exact=True)).to_have_attribute('aria-pressed','true')
+    tree=page.get_by_role('group',name='技术谱系树状图')
+    await expect(page.locator('.roads-svg')).to_have_count(0)
+    await expect(tree.get_by_role('button',name='领域：',exact=False)).to_have_count(11)
+    # The opened domain unfolds to its themes; a theme's projects are the next step, twelve at first.
+    await expect(tree.get_by_role('button',name='主题：',exact=False).first).to_be_visible()
+    await tree.get_by_role('button',name='主题：主题1',exact=True).click()
+    await expect(tree.get_by_role('button',name='项目：',exact=False)).to_have_count(12)
+    await tree.get_by_role('button',name='显示其余 3 项',exact=True).click()
+    await expect(tree.get_by_role('button',name='项目：',exact=False)).to_have_count(15)
+    await tree.get_by_role('button',name='项目：示例项目4',exact=True).click()
+    await expect(page.get_by_role('complementary',name='预览面板').get_by_role('heading',name='示例项目4')).to_be_visible()
+    await page.screenshot(path=str(shots/'02-tree.png'))
+    saved=page.url;await page.reload();await expect(page.get_by_role('group',name='技术谱系树状图')).to_be_visible();assert page.url==saved
+    await page.keyboard.press('Escape')
+    await views.get_by_role('button',name='放射图',exact=True).click()
+    await page.wait_for_function("new URL(location.href).searchParams.get('roads')===null")
+    await expect(page.locator('.roads-svg').first).to_be_visible()
 
 
 LABEL_OVERLAPS='''(svg)=>{
@@ -370,12 +498,19 @@ async def check_roads(page,shots):
     box = await road.bounding_box()
     group = road.locator(":scope > g")
     before_view = await group.get_attribute("transform")
+    # The frame fits one screen (--lineage-h), so a shorter window gives the page room to scroll.
+    viewport=page.viewport_size
+    await page.set_viewport_size({'width':viewport['width'],'height':560})
     scroller=page.locator('main')
-    scroll_before=await scroller.evaluate('e=>e.scrollTop')
-    await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.6)
+    scroll_before=await scroller.evaluate('e=>(e.scrollTop=e.scrollHeight,e.scrollTop)')
+    assert scroll_before>=10,scroll_before
+    box = await road.bounding_box()
+    await page.mouse.move(box["x"]+box["width"]*.6, box["y"]+box["height"]*.3)
     await page.mouse.wheel(0, -300)
     await page.wait_for_function('(top)=>document.querySelector("main").scrollTop<top-10',arg=scroll_before,timeout=3000)
     await expect(group).to_have_attribute('transform',before_view)
+    await page.set_viewport_size(viewport)
+    await road.scroll_into_view_if_needed()
     frame=page.locator('.roads:not(.roads-large-content)')
     mode=frame.get_by_role('button',name='进入图谱操作',exact=True)
     await expect(mode).to_have_attribute('aria-pressed','false')
@@ -519,7 +654,7 @@ async def check_roads_touch(browser,origin,overview,atlas):
     page=await context.new_page()
     await login(page,origin)
     await mock_domain_routes(page,overview,atlas)
-    await page.goto(origin+'/overview/domains')
+    await page.goto(origin+'/overview/domains?screen=lineage')
     road=page.locator('.roads:not(.roads-large-content) > .roads-svg')
     await road.scroll_into_view_if_needed()
     frame=page.locator('.roads:not(.roads-large-content)')
@@ -569,13 +704,14 @@ async def main():
                 errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
                 await login(page,origin)
                 await mock_domain_routes(page,overview,atlas)
+                await check_screens(page,origin,shots)
                 values=await check_simplified(page,origin,shots)
                 await check_retained(page,origin,shots)
                 await check_roads_touch(browser,origin,overview,atlas)
                 (shots/'results.json').write_text(json.dumps(values,ensure_ascii=False,indent=2),encoding='utf-8')
                 assert not errors,errors
                 await browser.close()
-                print('PASS 01 single-click state machine, back steps, siblings, hover isolation, comparison, visuals and legacy URLs')
+                print('PASS 分屏 bar, 总览, 关键技术; 01 single-click state machine, back steps, siblings, hover isolation, comparison, visuals and legacy URLs')
         finally:
             server.should_exit=True;thread.join(timeout=15);listener.close()
 

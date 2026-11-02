@@ -44,7 +44,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
     return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
   };
   const fields = extraction?.fields ?? {};
-  const inputCls = "mt-[3px] w-full rounded-[7px] border border-[var(--hairline)] bg-[var(--canvas)] px-[8px] py-[6px] text-body";
+  const inputCls = "mt-[3px] w-full rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-[8px] py-[6px] text-body";
   const field = (key: keyof ReviewMetadata, type: "text" | "number" = "text", hint = "") => (
     <label key={key} className="block text-caption text-[var(--slate)]">
       {REVIEW_FIELD_LABEL[key] ?? key}
@@ -60,7 +60,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
     </label>
   );
   return (
-    <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
+    <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
       <div className="mb-[8px] flex flex-wrap items-center gap-[8px]">
         <strong className="text-body text-[var(--ink)]">基本信息核对</strong>
         {doc.confirmed_at && !touched.size ? <Pill tone="mint">已确认</Pill> : touched.size ? <Pill tone="yellow">有未保存修改</Pill> : <Pill tone="yellow">待确认</Pill>}
@@ -506,7 +506,7 @@ export function ReviewWorkbench() {
               catch (cause) { setError((cause as Error).message); }
             }} />
           {reviewKind === "formal" && template ? (
-            <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
+            <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
               <strong className="text-body">章节对应核对</strong>
               <p className="mb-3 mt-1 text-caption text-[var(--steel)]">模版中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
               <SectionMapping doc={doc} rule={template} onSummary={setMapping} />
@@ -514,7 +514,7 @@ export function ReviewWorkbench() {
           ) : null}
           {reviewKind === "professional" ? (
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
+              <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
                 <strong className="text-body">对照资料库</strong>
                 <p className="mt-1 text-caption text-[var(--steel)]">选择一个子资料库，系统从中检索与申请书最相近的报告，读取全文作为对比参考。</p>
                 <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_auto]">
@@ -537,7 +537,7 @@ export function ReviewWorkbench() {
                 </div>
 
               </div>
-              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
+              <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
                 <strong className="text-body">评价方式</strong>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "update"} onChange={() => setMode("update")} /><span>更新建议（默认）：面向修改与下次申报，使用今天之前的已选材料。</span></label>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "historical"} onChange={() => setMode("historical")} /><span>历史评价：按指定评价时点，只采用日期明确且不晚于该时点的材料。</span></label>
@@ -545,7 +545,7 @@ export function ReviewWorkbench() {
               </div>
             </div>
           ) : null}
-          <details className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
+          <details className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
             <summary className="cursor-pointer text-body font-semibold">补充信息表（可选）</summary>
             <p className="my-2 text-caption text-[var(--steel)]">信息表与正文分别保存；两处事实冲突时并列展示，不固定只信其一。</p>
             <select aria-label="选择申报信息表" className="mr-3 rounded border p-2 text-caption" value={sheetId} onChange={(e) => remember("sheet", e.target.value)}>
@@ -577,7 +577,7 @@ function RunList({ runs }: { runs: ReviewRun[] }) {
       <div className="mt-[8px] grid gap-[8px]">
         {runs.map((run) => (
           <Link key={run.id} to={`/review/runs/${run.id}`}
-            className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption hover:border-[var(--primary)]">
+            className="rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption hover:border-[var(--primary)]">
             <span className="block text-body font-semibold text-[var(--ink)]">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
             <span className="mt-[3px] block text-[var(--steel)]">
               {REVIEW_STATUS_LABEL[run.status] ?? run.status} · {run.rule?.name ?? "模版"} v{run.rule?.version ?? "-"}

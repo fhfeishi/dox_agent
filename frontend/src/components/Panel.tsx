@@ -39,13 +39,13 @@ export function PanelSizeSwitch({ value, onChange }: { value: PanelSize; onChang
  * The shared look of the right-hand panels (query 2026-1015 1553): the preview panel and the library
  * chat use the same shell, header (back, title over a one-line subtitle, actions) and tabs.
  */
-export const PANEL_SHELL = "flex flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-8px_0_28px_-12px_rgba(15,23,42,0.18)] sm:rounded-[14px]";
+export const PANEL_SHELL = "flex flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-8px_0_28px_-12px_rgba(15,23,42,0.18)] sm:rounded-xl";
 
 export function PanelButton({ label, onClick, active, disabled, children }: {
   label: string; onClick: () => void; active?: boolean; disabled?: boolean; children: ReactNode;
 }) {
   return <button type="button" aria-label={label} title={label} onClick={onClick} disabled={disabled}
-    className={`grid size-[28px] shrink-0 place-items-center rounded-[7px] text-body transition-colors disabled:opacity-40 ${active
+    className={`grid size-[28px] shrink-0 place-items-center rounded-md text-body transition-colors disabled:opacity-40 ${active
       ? "bg-[var(--primary-soft)] text-[var(--primary)]" : "text-[var(--steel)] hover:bg-[var(--surface)] hover:text-[var(--ink)]"}`}>{children}</button>;
 }
 

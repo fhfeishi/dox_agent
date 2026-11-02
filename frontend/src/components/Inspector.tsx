@@ -59,7 +59,7 @@ function SessionReports({ sessionKey }: { sessionKey: string }) {
   if (!items.length) return <p className="mb-[14px] text-caption leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存到报告中心”；专项报告在对话中的报告卡生成。</p>;
   return <ul className="mb-[14px] space-y-[6px]">{items.map((item) => <li key={item.artifact_id}>
     <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
-      className="block w-full truncate rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-body text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
+      className="block w-full truncate rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-body text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
   </li>)}</ul>;
 }
 
@@ -412,7 +412,7 @@ export function Inspector() {
                   <dt className="text-[var(--stone)]">模版 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
                 </details>
-                {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-body">
+                {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-lg bg-[var(--tint-rose)] px-[10px] py-[8px] text-body">
                   <p className="font-semibold text-[var(--red)]">{artifact.interrupted ? "已中断，可重试" : "生成未完成"}</p>
                   {artifact.fail_reason ? <p className="mt-[2px] text-[var(--slate)]">{artifact.fail_reason}</p> : null}
                   {artifact.type === "report" && artifact.lifecycle !== "trashed" ? artifact.task_id === "intelligence"
@@ -435,7 +435,7 @@ export function Inspector() {
                       void fetchArtifact(inspectorTarget.artifactId, Number(event.target.value), true).then(setArtifact,
                         (error) => setArtifactSaveError(error instanceof Error ? error.message : "版本读取失败"));
                     }}
-                    className="rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[7px] py-[4px]">
+                    className="rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-[7px] py-[4px]">
                     {artifactVersions.map((item) => <option key={item.version} value={item.version}>版本 {item.version} · {item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "已完成"}</option>)}
                   </select>
                 </label> : null}
@@ -446,7 +446,7 @@ export function Inspector() {
                   {artifact.figures?.length ? <a href={artifactExportUrl(artifact.artifact_id, "zip", artifact.version)}>下载图文 ZIP</a>
                     : <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}-v${artifact.version}.md`)}>下载 .md</Button>}
                   <a href={artifactExportUrl(artifact.artifact_id, "docx", artifact.version)}
-                     className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">
+                     className="font-app inline-flex h-[26px] items-center rounded-md px-[8px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">
                     导出 .docx
                   </a>
                   {!artifact.legacy ? <Button size="sm" variant="ghost" onClick={() => {
@@ -490,7 +490,7 @@ export function Inspector() {
                 </div> : null}
                 {editingArtifact ? <div className="mt-[12px]">
                   <textarea aria-label="报告正文 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
-                    className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption leading-[1.6] text-[var(--ink)]" />
+                    className="min-h-[260px] w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption leading-[1.6] text-[var(--ink)]" />
                   <div className="mt-[8px] flex flex-wrap gap-[7px]">
                     <Button size="sm" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("draft")}>保存草稿</Button>
                     <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
@@ -598,7 +598,7 @@ export function Inspector() {
             {webSnapshot ? <>
               <p className="break-all text-caption text-[var(--stone)]">{webSnapshot.url} · 抓取 {webSnapshot.fetched_at} · 版本 {webSnapshot.version}</p>
               {webSnapshot.search_query ? <p className="mt-[5px] text-caption text-[var(--steel)]">搜索词：{webSnapshot.search_query} · 域名：{webSnapshot.search_domains?.join("、") || "未记录"} · 时间：{webSnapshot.search_time_filter === "month" ? "近一月" : webSnapshot.search_time_filter === "year" ? "近一年" : "不限"}</p> : null}
-              <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-caption">
+              <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-caption">
                 <Markdown remarkPlugins={[remarkGfm]}>{webSnapshot.markdown}</Markdown>
               </div>
             </> : !webError ? <p className="text-caption text-[var(--stone)]">正在读取…</p> : null}
@@ -670,7 +670,7 @@ export function Inspector() {
               return (
                 <Card key={`${n}-${i}`}>
                   <div className="flex items-start gap-[8px]">
-                    <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-caption font-bold text-white">
+                    <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-sm bg-[var(--primary)] text-caption font-bold text-white">
                       {n}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -729,9 +729,9 @@ export function Inspector() {
                     key={doc.doc_id}
                     type="button"
                     onClick={() => openDocument(doc.doc_id)}
-                    className="flex items-center gap-[11px] rounded-[8px] px-[8px] py-[9px] text-left transition-colors hover:bg-[var(--surface)]"
+                    className="flex items-center gap-[11px] rounded-lg px-[8px] py-[9px] text-left transition-colors hover:bg-[var(--surface)]"
                   >
-                    <span className="grid size-[26px] shrink-0 place-items-center rounded-[5px] bg-[var(--tint-sky)] text-[var(--link)]">
+                    <span className="grid size-[26px] shrink-0 place-items-center rounded-sm bg-[var(--tint-sky)] text-[var(--link)]">
                       <Icon name="doc" size={13} />
                     </span>
                     <span className="min-w-0 flex-1">

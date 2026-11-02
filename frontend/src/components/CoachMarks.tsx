@@ -53,12 +53,12 @@ export function CoachMarks({ steps, label, onClose, footer, onStepChange }: { st
   return (
     <div data-coachmarks className="fixed inset-0 z-[200]" aria-live="polite">
       {rect ? (
-        <div aria-hidden="true" className="pointer-events-none fixed rounded-[12px] ring-2 ring-[var(--primary)]"
+        <div aria-hidden="true" className="pointer-events-none fixed rounded-xl ring-2 ring-[var(--primary)]"
           style={{ left: rect.left - pad, top: rect.top - pad, width: rect.width + pad * 2, height: rect.height + pad * 2,
             boxShadow: "0 0 0 9999px rgba(15, 23, 42, 0.22)" }} />
       ) : <div aria-hidden="true" className="fixed inset-0 bg-[rgba(15,23,42,0.22)]" />}
       <div role="dialog" aria-label={label} aria-modal="true"
-        className="fixed max-h-[calc(100dvh-24px)] w-[340px] max-w-[calc(100vw-24px)] overflow-y-auto rounded-[14px] bg-[var(--canvas)] p-[16px] shadow-2xl"
+        className="fixed max-h-[calc(100dvh-24px)] w-[340px] max-w-[calc(100vw-24px)] overflow-y-auto rounded-xl bg-[var(--canvas)] p-[16px] shadow-2xl"
         style={card ?? { left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
         <div className="flex items-center gap-[6px]">
           {steps.map((_, i) => <span key={i} aria-hidden="true" className={`h-[4px] rounded-full transition-all ${i === index ? "w-[18px] bg-[var(--primary)]" : "w-[6px] bg-[var(--hairline-strong)]"}`} />)}
@@ -71,9 +71,9 @@ export function CoachMarks({ steps, label, onClose, footer, onStepChange }: { st
           <button type="button" onClick={onClose} className="text-caption text-[var(--steel)] hover:underline">跳过</button>
           <span className="flex-1" />
           {index > 0 ? <button type="button" onClick={() => setIndex(index - 1)}
-            className="rounded-[8px] border border-[var(--hairline-strong)] px-[12px] py-[5px] text-body hover:bg-[var(--surface)]">上一步</button> : null}
+            className="rounded-lg border border-[var(--hairline-strong)] px-[12px] py-[5px] text-body hover:bg-[var(--surface)]">上一步</button> : null}
           <button type="button" autoFocus onClick={() => last ? onClose() : setIndex(index + 1)}
-            className="rounded-[8px] bg-[var(--primary)] px-[14px] py-[5px] text-body text-white hover:bg-[var(--primary-pressed)]">{last ? "开始使用" : "下一步"}</button>
+            className="rounded-lg bg-[var(--primary)] px-[14px] py-[5px] text-body text-white hover:bg-[var(--primary-pressed)]">{last ? "开始使用" : "下一步"}</button>
         </div>
       </div>
     </div>

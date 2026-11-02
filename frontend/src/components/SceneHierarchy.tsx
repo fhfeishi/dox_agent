@@ -217,10 +217,10 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
         chart colour as a dot, and the lineage's own views beside them, instead of five coloured cards
         over a second row of tabs. */}
     <div className="flex flex-wrap items-center gap-2">
-    <div role="tablist" aria-label="技术研判" className="flex max-w-full gap-[2px] overflow-x-auto rounded-[10px] bg-[var(--line-cool-soft)] p-[3px]">
+    <div role="tablist" aria-label="技术研判" className="flex max-w-full gap-[2px] overflow-x-auto rounded-lg bg-[var(--line-cool-soft)] p-[3px]">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
-        className={`flex shrink-0 items-center gap-[7px] rounded-[8px] px-[12px] py-[6px] text-left transition-[background-color,box-shadow] duration-[var(--dur-quick)] ${dim === key ? "bg-[var(--canvas)] shadow-sm" : "hover:bg-[var(--canvas)]/60"}`}>
+        className={`flex shrink-0 items-center gap-[7px] rounded-lg px-[12px] py-[6px] text-left transition-[background-color,box-shadow] duration-[var(--dur-quick)] ${dim === key ? "bg-[var(--canvas)] shadow-sm" : "hover:bg-[var(--canvas)]/60"}`}>
         <span aria-hidden="true" className="size-[8px] shrink-0 rounded-full" style={{ background: DIM_COLOR[key] }} />
         <span className={`text-body ${dim === key ? "font-semibold text-[var(--heading)]" : "text-[var(--text-2)]"}`}>{key}</span>{" "}
         <span className="hidden text-caption text-[var(--text-3)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")

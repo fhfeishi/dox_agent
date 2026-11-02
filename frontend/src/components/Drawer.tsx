@@ -79,7 +79,7 @@ export function Drawer({
             type="button"
             aria-label="关闭 ✕"
             onClick={onClose}
-            className="grid size-[30px] shrink-0 place-items-center rounded-[6px] text-[var(--slate)] hover:bg-[var(--surface)]"
+            className="grid size-[30px] shrink-0 place-items-center rounded-md text-[var(--slate)] hover:bg-[var(--surface)]"
           >
             <Icon name="close" size={16} strokeWidth={1.9} />
           </button>

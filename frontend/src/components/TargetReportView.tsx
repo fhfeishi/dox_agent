@@ -70,7 +70,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
 
       <ul className="space-y-[8px]">
         {active.items.map((item) => (
-          <li key={item.id} className="rounded-[10px] border border-[var(--hairline)] p-[10px]">
+          <li key={item.id} className="rounded-lg border border-[var(--hairline)] p-[10px]">
             <div className="flex items-start gap-[6px]">
               <span className="min-w-0 flex-1 font-medium text-[var(--charcoal)]">{item.name}</span>
               {item.status ? <Pill tone="lav">{item.status}</Pill> : null}
@@ -93,7 +93,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
       </ul>
 
       {relations.length ? (
-        <div className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] p-[10px]">
+        <div className="rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] p-[10px]">
           <p className="text-caption font-medium text-[var(--charcoal)]">提取记录的原文关联（{active.key}）</p>
           <ul className="mt-[4px] space-y-[3px] text-caption text-[var(--steel)]">
             {relations.map((relation, position) => (

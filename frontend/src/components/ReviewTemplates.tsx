@@ -242,7 +242,7 @@ function TemplateTile({ rule, admin, editable, applied, onApply, onDelete }: {
       <button type="button" onClick={() => showInspector({ kind: "review-template", templateId: rule.id })} className="text-left">
         <span className="flex flex-wrap items-center gap-2">
           <strong className="text-body text-[var(--ink)]">{rule.name}</strong>
-          {applied ? <span className="rounded-[4px] bg-[var(--primary)] px-[7px] py-[2px] text-caption font-semibold text-white">应用中</span> : null}
+          {applied ? <span className="rounded-sm bg-[var(--primary)] px-[7px] py-[2px] text-caption font-semibold text-white">应用中</span> : null}
           <Pill tone="lav">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
           {rule.owner ? <Pill tone="sky">我的</Pill> : null}
           {rule.confirmed ? null : <Pill tone="yellow">草稿 · 待核对</Pill>}
@@ -388,7 +388,7 @@ export function ReviewTemplateDetail() {
           ) : <h2 className="min-w-0 flex-1 text-group font-semibold">{rule.name}</h2>}
           <Pill tone="lav">{REVIEW_KIND_LABEL[kind]}</Pill>
           <Pill tone="gray">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
-          {isApplied && !editing ? <span className="rounded-[4px] bg-[var(--primary)] px-[7px] py-[2px] text-caption font-semibold text-white">应用中</span> : null}
+          {isApplied && !editing ? <span className="rounded-sm bg-[var(--primary)] px-[7px] py-[2px] text-caption font-semibold text-white">应用中</span> : null}
           <Pill tone={editing ? "yellow" : rule.confirmed ? "mint" : "yellow"}>{editing ? (dirty ? "未保存" : "编辑中") : rule.confirmed ? `已启用 · v${rule.version}` : `草稿 · v${rule.version}`}</Pill>
         </div>
         {editing ? (

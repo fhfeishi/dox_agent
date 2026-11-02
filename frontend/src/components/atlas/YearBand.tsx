@@ -33,6 +33,7 @@ export function YearBand({
   onExpanded,
   onFix,
   onYearFix,
+  hue,
 }: {
   model: AtlasModel;
   ids: string[];
@@ -48,6 +49,8 @@ export function YearBand({
   onExpanded: (v: boolean) => void;
   onFix: (id: string) => void;
   onYearFix: (id: string, y: number) => void;
+  /** The domain's colour, the same as in 技术谱系 and the 首页 banner. */
+  hue: (id: string) => string;
 }) {
   const { drag, draft, setDraft } = useAnnualGestures();
   const controls = useRef<HTMLDivElement>(null);
@@ -60,7 +63,6 @@ export function YearBand({
     [viewport, setViewport] = useState({
       width: 750,
       font: 14,
-      compact: false,
     });
   useLayoutEffect(() => {
     const el = canvas.current;
@@ -70,12 +72,8 @@ export function YearBand({
         font =
           parseFloat(getComputedStyle(el).getPropertyValue("--text-body")) ||
           14;
-      const compact =
-        globalThis.innerWidth > 850 && globalThis.innerHeight <= 1000;
       setViewport((old) =>
-        old.width === width && old.font === font && old.compact === compact
-          ? old
-          : { width, font, compact },
+        old.width === width && old.font === font ? old : { width, font },
       );
     };
     const observer = new ResizeObserver(read);
@@ -89,10 +87,15 @@ export function YearBand({
   }, [years.length]);
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
-    trim = viewport.compact ? 110 : 0,
-    bandHeight = ((baseline ? 270 : 180) - trim) * scale;
-  const baseY = ((baseline ? 248 : 160) - trim) * scale,
-    barMax = ((baseline ? 190 : 128) - trim) * scale;
+    bandHeight = (baseline ? 460 : 420) * scale;
+  // 全部领域 (query 2026-1030 1747): each year's bar is stacked from the domains, largest at the bottom.
+  // Inside a domain the systems share projects, so they are not stacked; nor is a comparison.
+  const stacked = !scope && !baseline;
+  const baseY = bandHeight - 22 * scale,
+    barMax = baseY - (baseline ? 78 : 30) * scale;
+  const order = stacked
+    ? [...ids].sort((a, b) => model.measure(b)[metric] - model.measure(a)[metric])
+    : [];
   const focus: string[] = chosen
     ? baseline
       ? [baseline, chosen]
@@ -316,7 +319,17 @@ export function YearBand({
       </div>
       <div ref={canvas} className="lens-year-scroll">
         <div className="lens-year-chart" style={{ width: viewport.width }}>
-          <p className="lens-year-legend" style={{ width: bandLeft - 14 }}>
+          {stacked ? (
+            <p className="lens-year-legend lens-year-legend-stack" style={{ width: bandLeft - 14 }}>
+              <b className="lens-legend-total">柱内由上到下</b>
+              {[...order].reverse().map((id) => (
+                <span key={id} title={model.nodes.get(id)?.name} data-on={!chosen || chosen === id}
+                  style={{ color: hue(id) }}>
+                  <em>{model.nodes.get(id)?.name.replace(/^AI与/, "")}</em>
+                </span>
+              ))}
+            </p>
+          ) : <p className="lens-year-legend" style={{ width: bandLeft - 14 }}>
             {focus.map((id, i) => (
               <span
                 key={id}
@@ -328,7 +341,7 @@ export function YearBand({
               </span>
             ))}
             <b className="lens-legend-total">当年合计</b>
-          </p>
+          </p>}
           <svg
             width={viewport.width}
             height={bandHeight}
@@ -337,7 +350,7 @@ export function YearBand({
             role="group"
             aria-label="选择立项年份，点选或拖动框选，Esc取消，方向键单年，Home恢复全部"
             className="lens-band-svg"
-            data-comparison-extra={baseline ? 90 * scale : 0}
+            data-stacked={stacked}
             data-selecting={draft !== null}
             onPointerDown={beginYearSelection}
             onPointerMove={previewYearRange}
@@ -380,24 +393,50 @@ export function YearBand({
                     height={bandHeight}
                     fill={inWindow(y) ? "var(--terrain-empty)" : "transparent"}
                   />
-                  <rect
-                    className="lens-year-bar lens-year-total-bar"
-                    x={x + 12}
-                    y={baseY - (sums[i] / peak) * barMax}
-                    width={w - 24}
-                    height={(sums[i] / peak) * barMax}
-                    fill="var(--track)"
-                  />
+                  {stacked ? (
+                    order.reduce<{ top: number; parts: React.ReactNode[] }>(
+                      (acc, id) => {
+                        const v = model.measure(id, { from: y, to: y })[metric],
+                          h = (v / peak) * barMax;
+                        if (!h) return acc;
+                        acc.top -= h;
+                        acc.parts.push(
+                          <rect
+                            key={id}
+                            className="lens-year-bar lens-year-part"
+                            data-node={id}
+                            x={x + 10}
+                            y={acc.top}
+                            width={w - 20}
+                            height={h}
+                            fill={hue(id)}
+                            opacity={(!chosen || chosen === id) && inWindow(y) ? 1 : 0.28}
+                          />,
+                        );
+                        return acc;
+                      },
+                      { top: baseY, parts: [] },
+                    ).parts
+                  ) : (
+                    <rect
+                      className="lens-year-bar lens-year-total-bar"
+                      x={x + 12}
+                      y={baseY - (sums[i] / peak) * barMax}
+                      width={w - 24}
+                      height={(sums[i] / peak) * barMax}
+                      fill="var(--track)"
+                    />
+                  )}
                   <text
                     className="lens-year-total"
                     x={x + w / 2}
-                    y={14 * scale}
+                    y={stacked ? baseY - (sums[i] / peak) * barMax - 6 * scale : 14 * scale}
                     textAnchor="middle"
                     fill="var(--muted-cool)"
                   >
                     {sumText(i)}
                   </text>
-                  {focus.map((id, j) => {
+                  {(stacked ? [] : focus).map((id, j) => {
                     const d = model.measure(id, { from: y, to: y }),
                       h = (d[metric] / peak) * barMax,
                       bx =
@@ -478,7 +517,20 @@ export function YearBand({
             {tip.year}年 · {ANNUAL_NAMES[metric]}
           </b>
           <span>当年合计 {sumText(years.indexOf(tip.year))}</span>
-          {focus.map((id) => {
+          {stacked
+            ? order
+                .map((id) => ({ id, v: model.measure(id, { from: tip.year, to: tip.year })[metric] }))
+                .filter((r) => r.v)
+                .sort((a, b) => b.v - a.v)
+                .map((r) => (
+                  <span key={r.id} className="lens-tip-row">
+                    <i style={{ background: hue(r.id) }} />
+                    {model.nodes.get(r.id)?.name.replace(/^AI与/, "")}
+                    <em>{fmt(r.v)}</em>
+                  </span>
+                ))
+            : null}
+          {(stacked ? [] : focus).map((id) => {
             const d = model.measure(id, { from: tip.year, to: tip.year });
             return (
               <span key={id}>

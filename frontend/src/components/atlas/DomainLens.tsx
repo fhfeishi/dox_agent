@@ -24,6 +24,8 @@ import {
 import type { LibraryOverview } from "../../api";
 import { LibraryPreviewDrawer } from "../LibraryPreviewDrawer";
 import { YearBand } from "./YearBand";
+import { YearStory } from "./YearStory";
+import { libraryColor } from "../../libraryColors";
 import { LensInspector } from "./LensInspector";
 import { DomainPlot } from "./DomainPlot";
 import { useAtlasMotion, type LayerMotion } from "./useAtlasMotion";
@@ -32,6 +34,8 @@ import "./domain-lens.css";
 type Props = {
   libraries: LibraryOverview[];
   reveal?: { id: string; at: number };
+  /** 领域格局 shows the quadrant map, 年度投入 the year band; both read and write the same address (query 2026-1030 1624). */
+  part: "map" | "years";
 };
 export function DomainLens(props: Props) {
   const query = useQuery(atlasQuery);
@@ -49,7 +53,7 @@ export function DomainLens(props: Props) {
     );
   return <LensMap data={query.data} {...props} />;
 }
-function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
+function LensMap({ data, libraries, reveal, part }: Props & { data: AtlasData }) {
   const model = useMemo(() => buildAtlas(data), [data]);
   const [search, setSearch] = useSearchParams();
   const requested = search.get("layer");
@@ -118,6 +122,9 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
     scope ?? "root",
     navigation.current,
   );
+  const quadCounts = [0, 0, 0, 0];
+  for (const p of home.points)
+    quadCounts[(p.y > home.my ? 0 : 2) + (p.x > home.mx ? 1 : 0)]++;
   const current = selected
     ? model.measure(selected, window)
     : levelMeasure(model, ids, scope, window);
@@ -271,24 +278,20 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
   useLayoutEffect(() => {
     const el = wrap.current,
       main = stage.current;
-    if (!el || !main) return;
+    if (!main) return;
     function read() {
       const font =
-        parseFloat(getComputedStyle(el!).getPropertyValue("--text-emphasis")) ||
+        parseFloat(getComputedStyle(el ?? main!).getPropertyValue("--text-emphasis")) ||
         16;
+      // Without the map (年度投入) the stage is only the year band.
       const box = main!.getBoundingClientRect(),
-        plot = el!.getBoundingClientRect(),
+        plot = el?.getBoundingClientRect() ?? box,
         matrix = main!.querySelector(".lens-matrix");
       const header = plot.top - box.top,
         footer =
           box.bottom -
           plot.bottom -
           (matrix?.getBoundingClientRect().height ?? 0);
-      const comparisonExtra = Number(
-        main!
-          .querySelector(".lens-band-svg")
-          ?.getAttribute("data-comparison-extra") ?? 0,
-      );
       const viewport = main!.closest("main");
       const viewportBox = viewport?.getBoundingClientRect();
       const available =
@@ -302,7 +305,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
         height: Math.round(
           Math.max(
             globalThis.innerWidth > 850 ? 464 : 414,
-            Math.min(1120, available - header - footer + comparisonExtra),
+            Math.min(1120, available - header - footer),
           ),
         ),
         font,
@@ -331,13 +334,14 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       read();
       // Chrome may deliver an automatic scroll after pointerenter. Preserve the
       // node under the pointer and refresh the tooltip's viewport coordinates.
-      setGuide(
-        el.querySelector<SVGGElement>(".lens-node:hover")?.dataset.node ?? null,
-      );
+      if (el)
+        setGuide(
+          el.querySelector<SVGGElement>(".lens-node:hover")?.dataset.node ?? null,
+        );
     };
     viewport?.addEventListener("scroll", scrolled, { passive: true });
     const observer = new ResizeObserver(read);
-    observer.observe(el);
+    if (el) observer.observe(el);
     observer.observe(main);
     if (viewport) observer.observe(viewport);
     globalThis.addEventListener("resize", read);
@@ -386,6 +390,8 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       });
     }
   }
+  const hue = (id: string) =>
+    libraryColor(libraries, model.nodes.get(id)?.domain ?? id);
   return (
     <div
       className="domain-lens"
@@ -393,11 +399,12 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
       data-layer={scope ?? ""}
       data-moving={moving}
       data-details={open ? "open" : "closed"}
+      data-part={part}
       style={{ "--lens-stage-height": `${panelHeight}px` } as CSSProperties}
     >
       <div className="lens-main" ref={stage}>
         <div className="lens-top">
-          <div className="lens-views">
+          {part === "map" ? <div className="lens-views">
             {(Object.keys(LENSES) as Lens[]).map((k) => (
               <button
                 type="button"
@@ -417,7 +424,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
                 {LENSES[k].name}
               </button>
             ))}
-          </div>
+          </div> : null}
           <nav className="lens-crumbs" aria-label="当前分析层级">
             {scope ? (
               <button
@@ -467,7 +474,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
               </span>
             ) : null}
           </nav>
-          {!open && (
+          {part === "map" && !open && (
             <button
               type="button"
               className="lens-secondary"
@@ -477,6 +484,13 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
             </button>
           )}
         </div>
+        {part === "map" ? <>
+        {window !== ALL_YEARS ? (
+          <p className="lens-window-note" role="status">
+            只看 {window.from === window.to ? `${window.from} 年` : `${window.from}–${window.to} 年`}立项
+            <button type="button" className="lens-secondary" onClick={() => update({ from: null, to: null })}>看全部年份</button>
+          </p>
+        ) : null}
         <DomainPlot
           layout={layout}
           home={home}
@@ -511,6 +525,12 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
               ))}
           </div>
         ) : null}
+        <ul className="lens-verdicts" aria-label="象限评价">
+          {LENSES[lens].quads.map((name, i) => (
+            <li key={name} data-quad={i}><b>{name} {quadCounts[i]}</b>{LENSES[lens].verdicts[i]}</li>
+          ))}
+        </ul>
+        </> : (
         <YearBand
           model={model}
           ids={ids}
@@ -533,9 +553,29 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
           onYearFix={(id, year) =>
             update({ node: id, from: String(year), to: String(year) })
           }
+          hue={hue}
         />
+        )}
       </div>
-      <LensInspector
+      {part === "years" ? (
+        <YearStory
+          model={model}
+          ids={ids}
+          scope={scope}
+          years={data.years}
+          window={window}
+          metric={metric}
+          chosen={selected}
+          hue={hue}
+          onChoose={selectRow}
+          onWindow={(w) =>
+            update({
+              from: w.from === null ? null : String(w.from),
+              to: w.to === null ? null : String(w.to),
+            })
+          }
+        />
+      ) : <LensInspector
         model={model}
         d={current}
         selected={selected}
@@ -548,7 +588,7 @@ function LensMap({ data, libraries, reveal }: Props & { data: AtlasData }) {
         onClose={() => setOpen(false)}
         onSelectRow={selectRow}
         showLibrary={showLibrary}
-      />
+      />}
       <LibraryPreviewDrawer
         row={preview}
         onClose={() => setPreview(null)}

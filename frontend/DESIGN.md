@@ -101,6 +101,7 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 - **可点卡片**：整张可点，末尾 `打开 ›`，悬停边框变主色加轻阴影；附加信息用角落 ⓘ，不在卡片底部再放一排按钮。
 - **中性色**：只有一套冷灰。正文 `--text-2`，说明 `--text-3`，线 `--line-cool*`，底 `--surface*`；旧名 `--slate`、`--steel`、`--stone`、`--charcoal` 已改为同样的冷色值，新代码直接用新名。
 - **颜色角色**：`--primary` 只给可交互的东西；`--focus-data` 是数据焦点；维度、领域的颜色只做小色点或图表数据色，不做大面积卡片底色。
+- **圆角**：只用六档（`globals.css` 的 `--radius-*`，类名 `rounded-xs…2xl`）：xs 2px 图表标记与色块 · sm 4px 标签、徽标、小格子 · md 6px 按钮、输入框、小控件 · lg 8px 菜单、提示、列表行、分段轨道 · xl 12px 卡片与面板 · 2xl 16px 大容器、对话框、页头横幅；胶囊和圆点用 `rounded-full`。写 `rounded-[7px]` 或 CSS 里的像素圆角会被 `tokens.test.mts` 拒绝。
 - **动效**：只用 `--dur-quick`（悬停、按下）、`--dur-small`（浮层、菜单）、`--dur-panel`（侧栏、页签内容）、`--dur-layout`（图表、谱系重排）四档和 `--ease-out`；“减少动态效果”由 `globals.css` 的全局规则统一处理。
 - **大列表**：折叠区里成千条的内容只在展开时渲染。
 

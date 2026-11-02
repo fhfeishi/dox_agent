@@ -20,7 +20,7 @@ export function ReviewEvidence() {
 
   useEffect(() => { void fetchReviewEvidence().then(setItems).catch((cause) => setError((cause as Error).message)); }, []);
   const reload = async () => setItems(await fetchReviewEvidence());
-  const input = "rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-body";
+  const input = "rounded-md border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-body";
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
@@ -49,7 +49,7 @@ export function ReviewEvidence() {
       {!items.length ? <p className="mt-[6px] text-body text-[var(--stone)]">证据库为空；没有直接相关文献时，评议只评价申请书内部论证。</p> : null}
       <div className="mt-[8px] grid gap-[8px]">
         {items.map((item) => (
-          <div key={item.id} className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption">
+          <div key={item.id} className="rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption">
             {item.filename ? <button type="button" className="text-left text-body font-semibold text-[var(--link)] hover:underline"
               onClick={() => showInspector({ kind: "review-source", fileId: item.id, page: 1, title: item.filename, evidence: true })}>{item.title}</button>
               : <a className="text-body font-semibold text-[var(--link)]" href={item.url} target="_blank" rel="noreferrer">{item.title}</a>}
@@ -58,7 +58,7 @@ export function ReviewEvidence() {
         ))}
       </div>
 
-      <details className="mt-[18px] rounded-[10px] border border-[var(--hairline)] p-[12px] text-caption">
+      <details className="mt-[18px] rounded-lg border border-[var(--hairline)] p-[12px] text-caption">
         <summary className="cursor-pointer text-body text-[var(--steel)]">其他方式：联网题录检索（需外网）、手工录入</summary>
         <div className="mt-[10px] flex flex-wrap items-end gap-[8px]">
           <label className="text-caption text-[var(--slate)]">检索词<input value={query} onChange={(event) => setQuery(event.target.value)} className={"ml-[6px] " + input} /></label>

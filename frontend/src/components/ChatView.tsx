@@ -34,13 +34,13 @@ function UserRow({
           <span className="text-caption font-normal text-[var(--stone)]">{time}</span>
           我
           {editing ? (
-            <span className="rounded-[4px] bg-[var(--primary-soft)] px-[5px] py-[1px] text-caption font-semibold text-[var(--primary)]">
+            <span className="rounded-sm bg-[var(--primary-soft)] px-[5px] py-[1px] text-caption font-semibold text-[var(--primary)]">
               编辑中
             </span>
           ) : null}
         </div>
         <div
-          className={`question-text rounded-[12px] border bg-[var(--primary-soft-2)] px-[18px] py-[14px] text-emphasis leading-[1.75] whitespace-pre-wrap break-words text-[var(--ink)] ${
+          className={`question-text rounded-xl border bg-[var(--primary-soft-2)] px-[18px] py-[14px] text-emphasis leading-[1.75] whitespace-pre-wrap break-words text-[var(--ink)] ${
             editing
               ? "border-[var(--primary)] ring-3 ring-[var(--primary-soft)]"
               : "border-[var(--hairline-soft)]"
@@ -56,7 +56,7 @@ function UserRow({
           <button
             type="button"
             onClick={onCopy}
-            className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]"
+            className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]"
           >
             <Icon name="copy" size={13} strokeWidth={1.9} />
             复制
@@ -65,7 +65,7 @@ function UserRow({
             type="button"
             onClick={onEdit}
             title={`编辑第 ${index + 1} 轮提问，将从这条消息重新生成回答`}
-            className={`font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption ${
+            className={`font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption ${
               editing
                 ? "bg-[var(--primary-soft)] font-medium text-[var(--primary-pressed)]"
                 : "text-[var(--slate)] hover:bg-[var(--surface)]"
@@ -76,7 +76,7 @@ function UserRow({
           </button>
         </div>
       </div>
-      <span className="font-app grid size-[26px] shrink-0 place-items-center rounded-[8px] bg-[var(--tint-gray)] text-caption font-semibold text-[var(--slate)]">
+      <span className="font-app grid size-[26px] shrink-0 place-items-center rounded-lg bg-[var(--tint-gray)] text-caption font-semibold text-[var(--slate)]">
         我
       </span>
     </article>
@@ -242,7 +242,7 @@ export function ChatView() {
             title="导出当前会话"
           />
           {exportOpen ? (
-            <div className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[230px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
+            <div className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[230px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
               <button
                 type="button"
                 aria-label="导出会话为 Markdown"
@@ -255,7 +255,7 @@ export function ChatView() {
                   );
                   showToast("已导出会话 Markdown");
                 }}
-                className="font-app block w-full rounded-[6px] px-[9px] py-[8px] text-left text-body text-[var(--charcoal)] hover:bg-[var(--surface)] disabled:opacity-40"
+                className="font-app block w-full rounded-md px-[9px] py-[8px] text-left text-body text-[var(--charcoal)] hover:bg-[var(--surface)] disabled:opacity-40"
               >
                 导出会话为 Markdown
               </button>
@@ -266,7 +266,7 @@ export function ChatView() {
                   setExportOpen(false);
                   exportChat();
                 }}
-                className="font-app block w-full rounded-[6px] px-[9px] py-[8px] text-left text-body text-[var(--charcoal)] hover:bg-[var(--surface)]"
+                className="font-app block w-full rounded-md px-[9px] py-[8px] text-left text-body text-[var(--charcoal)] hover:bg-[var(--surface)]"
               >
                 导出诊断 JSON
               </button>
@@ -288,13 +288,13 @@ export function ChatView() {
           {!connected ? (
             <section
               role="alert"
-              className="mb-[18px] flex items-center justify-between gap-3 rounded-[12px] border border-[var(--tint-peach)] bg-[var(--tint-peach)]/40 px-[14px] py-[11px] text-body text-[var(--orange-fg)]"
+              className="mb-[18px] flex items-center justify-between gap-3 rounded-xl border border-[var(--tint-peach)] bg-[var(--tint-peach)]/40 px-[14px] py-[11px] text-body text-[var(--orange-fg)]"
             >
               <span>已断开连接；历史仍可查看，未完成的回答不会作为上下文。</span>
               <button
                 type="button"
                 onClick={() => setConnected(true)}
-                className="font-app shrink-0 rounded-[6px] bg-[var(--primary)] px-[10px] py-[5px] text-caption font-medium text-white hover:bg-[var(--primary-pressed)]"
+                className="font-app shrink-0 rounded-md bg-[var(--primary)] px-[10px] py-[5px] text-caption font-medium text-white hover:bg-[var(--primary-pressed)]"
               >
                 重新连接
               </button>
@@ -336,7 +336,7 @@ export function ChatView() {
                   onEdit={() => void beginEdit(i)}
                 />
                 <article className="chat-answer mb-[40px] flex gap-[14px]">
-                  <span className="grid size-[26px] shrink-0 place-items-center rounded-[8px] bg-[var(--navy)]">
+                  <span className="grid size-[26px] shrink-0 place-items-center rounded-lg bg-[var(--navy)]">
                     <BrandMark size={14} />
                   </span>
                   <div className="min-w-0 flex-1 pt-[2px]">
@@ -369,7 +369,7 @@ export function ChatView() {
                       onOpenSource={handleOpenSource}
                     />
                     {!!turn.previousAttempts.length ? (
-                      <details className="mt-[16px] rounded-[12px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[14px] py-[11px]">
+                      <details className="mt-[16px] rounded-xl border border-[var(--hairline)] bg-[var(--surface-soft)] px-[14px] py-[11px]">
                         <summary className="cursor-pointer text-body text-[var(--steel)]">
                           之前的回答 · {turn.previousAttempts.length} 个版本
                         </summary>
@@ -403,7 +403,7 @@ export function ChatView() {
             ))}
 
           {viewingBranch ? (
-            <section aria-label="分支查看" className="mb-[26px] rounded-[12px] border border-[var(--lav-line)] bg-[var(--canvas)] p-[18px]">
+            <section aria-label="分支查看" className="mb-[26px] rounded-xl border border-[var(--lav-line)] bg-[var(--canvas)] p-[18px]">
               <div className="mb-[14px] flex flex-wrap items-center justify-between gap-2">
                 <h2 className="text-body font-semibold text-[var(--ink)]">
                   {viewingBranch.label} · 从第 {viewingBranch.fromIndex + 1} 轮起
@@ -424,7 +424,7 @@ export function ChatView() {
               </div>
               {viewingBranch.turns.map((turn, i) => (
                 <div key={`${turn.runId}-${i}`} className="mb-[20px]">
-                  <div className="mb-[10px] ml-auto max-w-[85%] rounded-[12px] bg-[var(--surface)] px-[14px] py-[9px] text-body whitespace-pre-wrap text-[var(--ink)]">
+                  <div className="mb-[10px] ml-auto max-w-[85%] rounded-xl bg-[var(--surface)] px-[14px] py-[9px] text-body whitespace-pre-wrap text-[var(--ink)]">
                     {turn.question}
                   </div>
                   <MessageView attempt={turn} compact />
@@ -434,7 +434,7 @@ export function ChatView() {
           ) : null}
 
           {error ? (
-            <p role="alert" className="mt-[6px] rounded-[8px] bg-[var(--tint-rose)]/40 px-[12px] py-[8px] text-body text-[var(--rose-fg)]">
+            <p role="alert" className="mt-[6px] rounded-lg bg-[var(--tint-rose)]/40 px-[12px] py-[8px] text-body text-[var(--rose-fg)]">
               {error}
             </p>
           ) : null}

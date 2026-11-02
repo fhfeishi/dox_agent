@@ -44,7 +44,7 @@ export function ScopeSelector({
       </div>
       <input
         aria-label="筛选资料"
-        className="font-app mb-[8px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-body outline-none focus:border-[var(--primary)]"
+        className="font-app mb-[8px] w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-body outline-none focus:border-[var(--primary)]"
         placeholder="按标题或来源筛选"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}

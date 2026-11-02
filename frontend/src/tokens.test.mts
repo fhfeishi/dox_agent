@@ -46,3 +46,21 @@ test('interface colours come from the colour roles; only charts keep their own p
     [...text.matchAll(/#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\b/g)].map((match) => `${path}: ${match[0]}`));
   assert.deepEqual(offending, []);
 });
+
+// Corner radius: the six steps in globals.css (--radius-xs … --radius-2xl), never a pixel value.
+test('corners use the radius scale, never an arbitrary pixel radius', () => {
+  const offending = files.flatMap(({ path, text }) =>
+    [...text.matchAll(/(?<![\w-])rounded(?:-(?:t|b|l|r|tl|tr|bl|br|s|e))?-\[[^\]]+\]/g)].map((match) => `${path}: ${match[0]}`));
+  assert.deepEqual(offending, []);
+});
+
+test('stylesheets round corners with var(--radius-*), 0, 50% or 999px only', () => {
+  const sheets = ['styles/globals.css', 'components/atlas/domain-lens.css'];
+  const offending = sheets.flatMap((path) => {
+    const text = readFileSync(join(root, path), 'utf8');
+    return [...text.matchAll(/border-(?:top-|bottom-)?(?:left-|right-)?radius:\s*([^;]+);/g)]
+      .filter((match) => !match[1].trim().split(/\s+/).every((v) => /^(?:var\(--radius-(?:xs|sm|md|lg|xl|2xl)\)|0|50%|999px|inherit)$/.test(v.replace(/!important$/, '').trim() || '0')))
+      .map((match) => `${path}: ${match[0]}`);
+  });
+  assert.deepEqual(offending, []);
+});

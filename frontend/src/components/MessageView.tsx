@@ -74,7 +74,7 @@ function Trace({ attempt, live, corpusName, onOpenSource, technical }: {
   let stage = 0;
 
   return (
-    <div className="mb-[16px] overflow-hidden rounded-[12px] border border-[var(--hairline)] bg-[var(--surface-soft)]">
+    <div className="mb-[16px] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--surface-soft)]">
       <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}
         className="font-app flex w-full items-center gap-[8px] px-[12px] py-[9px] text-left hover:bg-[var(--surface)]">
         <Icon name="chevronRight" size={13} strokeWidth={2}
@@ -103,7 +103,7 @@ function Trace({ attempt, live, corpusName, onOpenSource, technical }: {
                 <p className="flex flex-wrap items-center gap-[5px]">
                   <span>检索词</span>
                   {terms.length ? terms.map((term) => (
-                    <span key={term} className="rounded-[5px] bg-[var(--canvas)] px-[6px] py-[1px] text-[var(--charcoal)] ring-1 ring-[var(--hairline)]">{term}</span>
+                    <span key={term} className="rounded-sm bg-[var(--canvas)] px-[6px] py-[1px] text-[var(--charcoal)] ring-1 ring-[var(--hairline)]">{term}</span>
                   )) : <span>{searches[0]?.reports.length ? "按问题整体匹配（资料较少，未单独提取检索词）" : "未识别"}</span>}
                 </p>
                 <p>
@@ -127,9 +127,9 @@ function Trace({ attempt, live, corpusName, onOpenSource, technical }: {
                         const cited = sourceOf(report.doc_id);
                         const missing = round.terms.filter((term) => !report.matched.includes(term));
                         return (
-                          <li key={report.doc_id} className="rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[8px]">
+                          <li key={report.doc_id} className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[8px]">
                             <div className="flex items-start gap-[7px]">
-                              {cited ? <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-caption font-bold text-white">{cited.number}</span> : null}
+                              {cited ? <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-sm bg-[var(--primary)] text-caption font-bold text-white">{cited.number}</span> : null}
                               {cited && onOpenSource
                                 ? <button type="button" onClick={() => onOpenSource(cited.source, cited.number)}
                                     className="min-w-0 text-left text-body text-[var(--charcoal)] hover:text-[var(--primary)] hover:underline">{report.title}</button>
@@ -302,9 +302,9 @@ function Sources({ attempt, onOpenSource }: { attempt: Attempt; onOpenSource?: (
               type="button"
               onClick={() => onOpenSource(s, n)}
               title={[`引用编号：${numbers.join("、")}`, ...(s.locations?.map((location) => `${location.heading}：${location.snippet}`) ?? [s.snippet])].join("\n")}
-              className="font-app flex max-w-[320px] items-center gap-[7px] rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[6px] text-left transition-colors hover:border-[var(--hairline-strong)] hover:bg-[var(--surface-soft)]"
+              className="font-app flex max-w-[320px] items-center gap-[7px] rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[6px] text-left transition-colors hover:border-[var(--hairline-strong)] hover:bg-[var(--surface-soft)]"
             >
-              <span className="grid size-[15px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-caption font-bold text-white">
+              <span className="grid size-[15px] shrink-0 place-items-center rounded-sm bg-[var(--primary)] text-caption font-bold text-white">
                 {n}
               </span>
               <span className="truncate text-caption text-[var(--charcoal)]">{label}</span>
@@ -312,9 +312,9 @@ function Sources({ attempt, onOpenSource }: { attempt: Attempt; onOpenSource?: (
           ) : (
             <span
               key={j}
-              className="flex max-w-[320px] items-center gap-[7px] rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[6px]"
+              className="flex max-w-[320px] items-center gap-[7px] rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[6px]"
             >
-              <span className="grid size-[15px] shrink-0 place-items-center rounded-[4px] bg-[var(--slate)] text-caption font-bold text-white">
+              <span className="grid size-[15px] shrink-0 place-items-center rounded-sm bg-[var(--slate)] text-caption font-bold text-white">
                 {n}
               </span>
               <span className="truncate text-caption text-[var(--charcoal)]">{label}</span>
@@ -530,7 +530,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     }
   }
   return (
-    <div className="mt-[12px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
+    <div className="mt-[12px] rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
       {taskLoadError ? <p role="alert" className="text-caption text-[var(--red)]">{taskLoadError}</p> : null}
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-body font-medium text-[var(--slate)]">专项报告</span>
@@ -576,7 +576,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           type="button"
           disabled={busy || !ready}
           onClick={() => void generate()}
-          className="ml-auto rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-50"
+          className="ml-auto rounded-md bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-50"
         >
           {busy ? "生成中…" : report ? "重新生成" : "生成报告"}
         </button>
@@ -668,7 +668,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       {reportState ? <p role="status">{reportState} · 请到报告中心的回收站查看或还原。</p> : null}
       {report ? (
         <div className="mt-[8px]">
-          <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
+          <div className="markdown max-h-[360px] overflow-auto rounded-lg border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
             <ReportMarkdown sources={report.params?.visible_sources} onOpenSource={handleOpenSource} markdown={report.markdown} figures={report.figures} reportId={report.report_id} />
           </div>
           <div className="mt-[6px] flex gap-[10px] text-caption">
@@ -766,7 +766,7 @@ export function MessageView({
                   type="button"
                   title={source.title}
                   aria-label={`[${n}]`}
-                  className="font-app mx-[2px] inline-block h-[16px] rounded-[4px] bg-[var(--primary-soft)] px-[4px] align-[1px] text-caption leading-[16px] font-semibold text-[var(--primary)] hover:bg-[var(--lav-bg)]"
+                  className="font-app mx-[2px] inline-block h-[16px] rounded-sm bg-[var(--primary-soft)] px-[4px] align-[1px] text-caption leading-[16px] font-semibold text-[var(--primary)] hover:bg-[var(--lav-bg)]"
                   onClick={() => onOpenSource(source, n)}
                 >
                   {n}
@@ -795,7 +795,7 @@ export function MessageView({
         <p className="text-body leading-[1.72] text-[var(--charcoal)]">
           {running ? "正在检索并组织答案" : "未生成回答"}
           {running ? (
-            <span className="animate-caret ml-[2px] inline-block h-[15px] w-[7px] translate-y-[2px] rounded-[1px] bg-[var(--primary)]" />
+            <span className="animate-caret ml-[2px] inline-block h-[15px] w-[7px] translate-y-[2px] rounded-xs bg-[var(--primary)]" />
           ) : null}
         </p>
       )}
@@ -812,7 +812,7 @@ export function MessageView({
             type="button"
             disabled={!attempt.answer || running}
             onClick={() => void copy()}
-            className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+            className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
           >
             <Icon name="copy" size={13} strokeWidth={1.9} />
             {copyState === "copied" ? "已复制" : "复制答案"}
@@ -824,7 +824,7 @@ export function MessageView({
                 aria-label="导出此回答为 Markdown"
                 disabled={!attempt.answer || running}
                 onClick={() => onExport("md")}
-                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
               >
                 <Icon name="download" size={13} strokeWidth={1.9} />
                 导出 MD
@@ -834,7 +834,7 @@ export function MessageView({
                 aria-label="导出此回答为 Word"
                 disabled={!attempt.answer || running}
                 onClick={() => onExport("word")}
-                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
               >
                 <Icon name="download" size={13} strokeWidth={1.9} />
                 导出 Word
@@ -847,7 +847,7 @@ export function MessageView({
               aria-label="保存到报告中心"
               onClick={onSaveArtifact}
               title="把这条回答连同引用来源保存到报告中心"
-              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
             >
               <Icon name="library" size={13} strokeWidth={1.9} />
               保存到报告中心
@@ -859,7 +859,7 @@ export function MessageView({
               disabled={running}
               onClick={onRegenerate}
               title="沿用此版本生效配置重新生成"
-              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
             >
               <Icon name="refresh" size={13} strokeWidth={1.9} />
               重新生成
@@ -871,7 +871,7 @@ export function MessageView({
               disabled={!attempt.answer || running}
               onClick={onDraft}
               title="把这条回答载入输入框，改完作为新提问发送"
-              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
             >
               <Icon name="edit" size={13} strokeWidth={1.9} />
               改后重发
@@ -924,7 +924,7 @@ export function EmptyState({ task, onPick }: { task?: { id: string; name: string
       {examples.length ? <div className="mt-[16px] space-y-[6px]">
         {examples.map((question) => (
           <button key={question} type="button" onClick={() => onPick(question)}
-            className="flex w-full max-w-[600px] items-center gap-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] px-[12px] py-[8px] text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">
+            className="flex w-full max-w-[600px] items-center gap-[8px] rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-[12px] py-[8px] text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">
             <Icon name="chevronRight" size={12} strokeWidth={2.2} className="shrink-0 text-[var(--stone)]" />{question}
           </button>
         ))}

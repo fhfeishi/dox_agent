@@ -1,4 +1,3 @@
-AGENTS.md
 CLAUDE.md
 .env
 .venv/
@@ -16,7 +15,9 @@ temp/
 
 # 编辑器设置按机器各自保存：Windows 解释器在 .venv\Scripts\python.exe，WSL/Linux 在 .venv/bin/python。
 .vscode/
-.agents/
+# 规则、检查与本机 skill 仍不入库。产品专家资产（.agents/experts/）入库。
+.agents/*
+!.agents/experts/
 data/
 .workbuddy/*
 # .knowledge：跟踪新 clone 直接可用所需的资料与整理结果（各库 source/parsed/target/datadb、

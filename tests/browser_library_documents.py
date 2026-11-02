@@ -186,7 +186,10 @@ async def main():
                 # 资料库概览 is back to bars, radar and library cards (query 2026-1022 1606); a card opens the
                 # shared right-hand slide-out, and a leader sees no admin to-do list there.
                 await expect(page.get_by_role("group",name="各领域项目数").get_by_role("button")).to_have_count(1)
-                await page.get_by_label("资料库卡片").get_by_role("button").first.click()
+                # Choosing a domain only moves the chart; preview rows open the drawer (query 2026-11-02 首页02).
+                await page.get_by_role("group",name="各领域项目数").get_by_role("button").first.click()
+                await expect(page.get_by_role("dialog",name=re.compile("资料库预览"))).to_have_count(0)
+                await page.get_by_role("list",name="资料库预览",exact=True).get_by_role("button").first.click()
                 drawer=page.get_by_role("dialog",name=re.compile("资料库预览"))
                 await expect(drawer.get_by_role("button",name=re.compile("进入资料库"))).to_be_visible()
                 await expect(drawer.get_by_text("需要处理")).to_have_count(0)

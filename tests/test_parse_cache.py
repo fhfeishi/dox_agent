@@ -615,6 +615,24 @@ def test_every_tier_failing_names_each_attempt(lib):
     assert lib.body() == "# A" and lib.leftovers() == []
 
 
+@pytest.mark.xfail(strict=False, reason="profile from last attempt not selected; see 06:05 产品静审")
+@pytest.mark.parametrize("standard", [{"blank": 3}, {"blank": 2}, {"fail": True}],
+                         ids=["worse", "equal", "failed"])
+def test_retained_basic_profile_identifies_selected_attempt(lib, standard):
+    """The published profile must describe the retained body, not the last retry."""
+    tiered(lib)
+    write_pdf(lib.pdf, pages=5, tag="v2")
+    lib.mineru(label="B", pages=5, basic={"blank": 2}, standard={"label": "S", **standard})
+    assert not lib.run()["errors"]
+    lib.assert_settled("B")
+    cache = lib.canonical()
+    assert [attempt["tier"] for attempt in cache["attempts"]] == ["basic", "standard"]
+    assert cache["quality"]["coverage"] == 0.6
+    assert lib.leftovers() == []
+    assert "--tier basic" in cache["profile"]
+    assert "--tier standard" not in cache["profile"]
+
+
 @pytest.mark.parametrize("fallback", [None, "", "flash", "basic"])
 def test_no_retry_when_fallback_is_off_flash_or_the_same_tier(lib, fallback, monkeypatch):
     if fallback is None:
@@ -672,18 +690,29 @@ def test_page_count_falls_back_to_pypdf(tmp_path, monkeypatch):
     assert parse_cache.pdf_page_count(pdf) is None
 
 
-def test_parse_quality_counts_unreadable_characters():
+@pytest.mark.parametrize("text, unreadable", [
+    ("坏\ufffd字\x01" * 4, 8),
+    ("\r\x0b字\r\x0b字\t\n字\x0b\r", 2),
+    ("字\x7f\x80\x85\x9f字", 0),
+])
+def test_parse_quality_counts_unreadable_characters(text, unreadable):
+    """Count U+FFFD/low controls after strip, not OCR failure or DEL/C1; exclude NL/TAB."""
     from src.parse_cache import parse_quality
-    quality = parse_quality(["正常文字" * 10, "", "坏\ufffd字\x01" * 4], expected=4)
+    quality = parse_quality(["正常文字" * 10, "", text], expected=4)
     assert quality["pages"] == 4 and quality["parsed_pages"] == 3
     assert quality["pages_with_text"] == 1 and quality["coverage"] == 0.25
-    assert quality["unreadable_chars"] == 8
+    assert quality["unreadable_chars"] == unreadable
 
 
-def test_parse_quality_counts_sparse_pages():
+@pytest.mark.parametrize("lengths, sparse, with_text", [
+    ([400, 400, 400, 400, 1], 1, 4),
+    ([9, 10, 90, 110, 200, 200], 1, 4),
+])
+def test_parse_quality_counts_sparse_pages(lengths, sparse, with_text):
+    """Even lists average the middle pair; exactly 10% is not sparse (no OCR verdict)."""
     from src.parse_cache import parse_quality
-    quality = parse_quality(["字" * 400] * 4 + ["图"], expected=5)
-    assert quality["sparse_pages"] == 1 and quality["pages_with_text"] == 4
+    quality = parse_quality(["字" * length for length in lengths], expected=len(lengths))
+    assert quality["sparse_pages"] == sparse and quality["pages_with_text"] == with_text
     # No text at all leaves no median to compare against; coverage already reports that document.
     assert parse_quality(["", ""], expected=2)["sparse_pages"] == 0
 

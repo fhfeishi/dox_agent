@@ -22,6 +22,7 @@ from .knowledge import Document, Page, content_version_of, is_virtual_rel
 from .parse_cache import (
     CACHE_FILE,
     LEGACY,
+    cache_state,
     canonical_dir,
     complete,
     drop_marker,
@@ -491,13 +492,17 @@ def _parse_pdf_cached(path: Path, rel: str, digest: str, settings: Settings, par
     markdown, pages = parse_pdf_pages(path, settings, staging)
     if not any(page.text.strip() for page in pages):
         raise ValueError("解析结果为空，未入库")
+    # Page guard: the parse must cover the PDF's whole page tree; a count that cannot be read on
+    # either side does not pass (no completion marker is written for an unchecked parse).
     expected, got = pdf_page_count(path), output_page_count(staging)
-    if expected is not None and got is not None and got != expected:
+    if expected is None or got is None:
+        raise ValueError("无法核对解析页数（原件页数或解析结果页数读不出），未入库")
+    if got != expected:
         raise ValueError(f"解析页数与原件不符（{got}/{expected} 页），未入库")
     blocks = read_mineru_blocks(staging)
     # The completion marker goes last: a staging directory with cache.json holds a whole parse.
     write_cache(staging, rel=rel, source_sha=digest, version=content_version_of(pages, markdown),
-                profile=parser_profile(settings), pages=got if got is not None else len(pages))
+                profile=parser_profile(settings), pages=got)
     return _pdf_document(path, markdown, pages), blocks, staging
 
 
@@ -562,7 +567,7 @@ def reconcile_cache(knowledge, path: Path, rel: str, prev: dict, parsed_root: Pa
         if (count := _legacy_pages(path, canonical)) is not None:
             write_cache(canonical, rel=rel, source_sha=source_sha, version=None, profile=LEGACY, pages=count)
             return "skipped"
-    logger.info("parse cache %s for %s", "cache_mismatch" if canonical.exists() else "cache_missing", rel)
+    logger.info("parse cache %s for %s", cache_state(parsed_root, rel, source_sha, version), rel)
     return "skipped"
 
 
@@ -591,8 +596,10 @@ def _republish(knowledge, path: Path, rel: str, prev: dict, staging: Path, parse
 def collect_sources(root: Path, *, refused: list[Path] | None = None) -> list[Path]:
     """Recursively collect regular source files without following links or hiding scan errors.
 
-    A file name with ``:`` could collide with a virtual manifest rel (``manual:<id>``); it is left
-    out and, when ``refused`` is given, appended there for the caller to report."""
+    A ``:`` in any part of the path relative to ``root`` (file or folder name) could make the rel
+    look like a virtual manifest rel (``manual:<id>``); such a file is left out and, when ``refused``
+    is given, appended there for the caller to report. Only the relative parts are checked, so a
+    Windows drive in ``root`` (``C:\\``) is never refused."""
     base = Path(root)
     if not base.is_dir():
         raise FileNotFoundError(f"资料目录不可读取：{base}")
@@ -607,7 +614,7 @@ def collect_sources(root: Path, *, refused: list[Path] | None = None) -> list[Pa
         for name in sorted(files):
             path = parent / name
             if not path.is_symlink() and path.suffix.lower() in SOURCE_SUFFIXES and path.is_file():
-                if ":" in name:
+                if any(":" in part for part in path.relative_to(base).parts):
                     if refused is not None:
                         refused.append(path)
                     continue

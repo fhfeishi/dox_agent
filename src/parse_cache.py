@@ -120,23 +120,47 @@ def pdf_page_count(path: Path) -> int | None:
 def complete(directory: Path, rel: str, source_sha: str) -> dict | None:
     """The ``cache.json`` of a complete parse of ``rel`` at ``source_sha``, else None.
 
-    Complete: the marker parses with every field, names this rel and sha, the products read back
-    with text, and (unless it is an adopted legacy cache) their content version equals the marker's.
+    Complete: the marker parses with every field and names this rel and sha; the middle JSON and
+    the markdown both read back, with text; and the content version re-derived from the products
+    equals the marker's. ``version = null`` is accepted only for an adopted legacy cache in the
+    canonical directory, never for a staging parse.
     """
     info = read_cache(directory)
     if info is None or info["rel"] != rel or info["source_sha256"] != source_sha:
         return None
-    if directory.parent.name == STAGING and directory.name != f"{staging_key(rel)}-{source_sha}":
+    staged = directory.parent.name == STAGING
+    if staged and directory.name != f"{staging_key(rel)}-{source_sha}":
+        return None
+    if info["version"] is None and (staged or info["profile"] != LEGACY):
+        return None
+    if output_page_count(directory) is None:
         return None
     try:
         markdown, pages, _ = load_output(directory)
     except (OSError, ValueError):
         return None
-    if not any(page.text.strip() for page in pages):
+    if not markdown.strip() or not any(page.text.strip() for page in pages):
         return None
     if info["version"] is not None and content_version_of(pages, markdown) != info["version"]:
         return None
     return info
+
+
+def cache_state(parsed_root: Path, rel: str, source_sha: str, version: str | None) -> str:
+    """Read-only parse-cache state of an indexed PDF, for the stage view (P0-4) and the logs.
+
+    ``ok`` / ``legacy`` (canonical agrees), ``promotion_pending`` (published, not promoted),
+    ``publish_pending`` (complete staging not yet published), ``cache_mismatch``, ``cache_missing``.
+    """
+    staging = staging_dir(parsed_root, rel, source_sha)
+    pending = complete(staging, rel, source_sha) if staging.is_dir() else None
+    if pending is not None:
+        return "promotion_pending" if pending["version"] == version else "publish_pending"
+    canonical = canonical_dir(parsed_root, rel)
+    info = read_cache(canonical)
+    if publishes(info, source_sha, version):
+        return "legacy" if info["version"] is None else "ok"
+    return "cache_mismatch" if canonical.exists() else "cache_missing"
 
 
 def publishes(info: dict | None, source_sha: str, version: str | None) -> bool:

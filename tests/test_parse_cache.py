@@ -19,7 +19,7 @@ from pypdf import PdfWriter
 
 from src.agent.config import Settings
 from src.knowledge import Knowledge
-from src.parse_cache import CACHE_FILE, LEGACY, STAGING, TRASH, read_cache, staging_dir
+from src.parse_cache import CACHE_FILE, LEGACY, STAGING, TRASH, cache_state, read_cache, staging_dir
 from src.parsers import import_defaults, sha256_file
 
 REL = "a.pdf"
@@ -54,7 +54,10 @@ label = cfg["label"]
 text = "" if cfg.get("empty") else label
 pages = [{{"page_idx": i, "blocks": [{{"type": "text", "content": [{{"type": "text", "content": text + " p" + str(i + 1)}}]}}]}}
          for i in range(cfg["pages"])] if not cfg.get("empty") else [{{"page_idx": i, "blocks": []}} for i in range(cfg["pages"])]
-(out / "middle_json.json").write_text(json.dumps({{"pages": pages}}), encoding="utf-8")
+if cfg.get("no_middle"):
+    (out / "x_content_list.json").write_text(json.dumps([{{"type": "text", "text": label, "page_idx": 0}}]))
+else:
+    (out / "middle_json.json").write_text(json.dumps({{"pages": pages}}), encoding="utf-8")
 """
 
 
@@ -99,6 +102,9 @@ class Lib:
     def body(self) -> str:
         return self.store.read_markdown(self.entry["doc_id"])
 
+    def state(self) -> str:
+        return cache_state(self.parsed, REL, self.entry["sha256"], self.doc["version"])
+
     def canonical(self) -> dict | None:
         return read_cache(self.parsed / REL)
 
@@ -120,6 +126,7 @@ class Lib:
 
     def assert_settled(self, label: str, **kwargs):
         self.assert_published(label, **kwargs)
+        assert self.state() == "ok"
         assert self.leftovers() == []
         assert not (self.parsed / STAGING).exists() and not (self.parsed / TRASH).exists()
 
@@ -251,6 +258,8 @@ def test_put_failure_keeps_complete_staging_for_reuse(lib, monkeypatch, case, ki
     assert lib.doc["version"] == old_version and lib.body() == "# A"
     staged = [read_cache(path) for path in (lib.parsed / STAGING).glob("*")]
     assert len(staged) == 1 and staged[0]["version"] != old_version
+    if case == "same-sha":
+        assert lib.state() == "publish_pending"
     calls = lib.calls
     monkeypatch.undo()
     lib.open()
@@ -279,6 +288,8 @@ def test_promotion_failure_never_rolls_back_the_published_manifest(lib, monkeypa
         assert report["imported"][0]["promotion_pending"] is True
     if row == "F6":
         assert not (lib.parsed / REL).exists()  # I2: canonical in trash, staging not renamed yet
+    # I1/I2 wait for promotion; I3 (F7) already has the new canonical parse and only trash is left.
+    assert lib.state() == ("ok" if row == "F7" else "promotion_pending")
     calls = lib.calls
     lib.open()
     assert lib.run()["errors"] == []
@@ -350,6 +361,7 @@ def test_cache_mismatch_without_staging_flags_and_ignores_cache(lib, damage):
     assert lib.calls == calls and lib.doc["version"] == version
     assert lib.doc["doc_id"] in {doc["doc_id"] for doc in lib.store.current()}
     assert marker.read_text() == before
+    assert lib.state() == "cache_mismatch"
 
 
 def test_missing_cache_keeps_current_and_flags_stage(lib):
@@ -360,6 +372,7 @@ def test_missing_cache_keeps_current_and_flags_stage(lib):
     assert lib.calls == calls
     assert lib.doc["doc_id"] in {doc["doc_id"] for doc in lib.store.current()}
     assert not (lib.parsed / REL).exists()
+    assert lib.state() == "cache_missing"
 
 
 def make_legacy(lib, pages=2):
@@ -383,6 +396,7 @@ def test_first_import_adopts_legacy_cache_without_mineru(tmp_path):
     assert (cache["profile"], cache["version"], cache["source_sha256"], cache["pages"]) == (
         LEGACY, None, sha256_file(lib.pdf), 2)
     assert lib.body() == "# L" and lib.doc["doc_id"] in {doc["doc_id"] for doc in lib.store.current()}
+    assert lib.state() == "legacy"
     # A legacy cache counts as consistent on the skip path (reconcile #3/#4).
     assert lib.run()["skipped"] == 1 and lib.calls == 0
 
@@ -409,7 +423,7 @@ def test_legacy_cache_failing_the_guard_on_skip_path_is_not_adopted(lib):
     (lib.parsed / REL / CACHE_FILE).unlink()
     make_legacy(lib, pages=5)
     assert lib.run()["skipped"] == 1 and lib.calls == 1
-    assert lib.canonical() is None  # cache_mismatch: not adopted, not reparsed
+    assert lib.canonical() is None and lib.state() == "cache_mismatch"  # not adopted, not reparsed
     assert lib.doc["doc_id"] in {doc["doc_id"] for doc in lib.store.current()}
 
 
@@ -491,3 +505,35 @@ def test_profile_change_reuses_cache(lib):
     lib.settings = Settings(_env_file=None, mineru_cmd=lib.settings.mineru_cmd + " --tier pro")
     assert lib.run()["skipped"] == 1 and lib.calls == 1
     assert "--tier" not in lib.canonical()["profile"]
+
+
+@pytest.mark.parametrize("damage", ["null-version", "no-middle", "no-markdown"])
+def test_staging_without_version_or_required_products_is_incomplete(lib, damage):
+    """B2 completeness: version null is only for an adopted canonical legacy cache; a staging parse
+    needs its middle JSON and its markdown."""
+    staging = staging_dir(lib.parsed, REL, lib.entry["sha256"])
+    shutil.copytree(lib.parsed / REL, staging)
+    if damage == "null-version":
+        data = json.loads((staging / CACHE_FILE).read_text())
+        (staging / CACHE_FILE).write_text(json.dumps({**data, "version": None, "profile": LEGACY}))
+    else:
+        (staging / ("middle_json.json" if damage == "no-middle" else "full.md")).unlink()
+    assert lib.run()["skipped"] == 1
+    assert lib.calls == 1
+    lib.assert_settled("A")
+
+
+@pytest.mark.parametrize("problem", ["no-middle", "unreadable-pdf"])
+def test_unchecked_page_count_is_not_published(lib, problem):
+    """F2: a page count that cannot be read on either side does not pass the guard."""
+    if problem == "unreadable-pdf":
+        lib.pdf.write_bytes(b"not a pdf")
+        lib.mineru(label="B")
+    else:
+        write_pdf(lib.pdf, tag="v2")
+        lib.mineru(label="B", no_middle=True)
+    report = lib.run()
+    assert report["errors"] and lib.entry["status"] == "error"
+    assert "无法核对解析页数" in lib.entry["last_error"]
+    assert all(read_cache(path) is None for path in (lib.parsed / STAGING).glob("*"))
+    assert lib.body() == "# A"

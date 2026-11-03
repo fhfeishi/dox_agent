@@ -1,11 +1,14 @@
 """P0-3 B1: every published document has a manifest entry; manual text and web pages are virtual ones."""
+import sqlite3
+import sys
+
 import pytest
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page, backfill_virtual_manifest
-from src.parsers import import_defaults
+from src.parsers import collect_sources, import_defaults
 from tests.helpers import put_unlisted
 from tests.test_app import setup
 
@@ -167,3 +170,90 @@ def test_backfill_virtual_manifest_is_idempotent_and_reports_local_orphans(tmp_p
     again = backfill_virtual_manifest(store, apply=True)
     assert again["virtual"] == [] and again["local_orphans"] == dry["local_orphans"]
     assert orphan["doc_id"] not in {doc["doc_id"] for doc in store.current()}
+
+
+@pytest.mark.skipif(sys.platform == "win32", reason="Windows forbids ':' in names")
+@pytest.mark.parametrize("bad", ["manual:folder/a.md", "web:folder/a.md", "normal/bad:folder/deeper/a.md"])
+def test_collect_sources_rejects_colon_in_directory_parts(tmp_path, bad):
+    """B1-1: a folder named like a virtual rel must not make its files look virtual."""
+    root = tmp_path / "source"
+    (root / bad).parent.mkdir(parents=True)
+    (root / bad).write_text("冒号目录", encoding="utf-8")
+    (root / "normal").mkdir(exist_ok=True)
+    (root / "normal" / "ok.md").write_text("正常", encoding="utf-8")
+    refused: list = []
+    assert collect_sources(root, refused=refused) == [root / "normal" / "ok.md"]
+    assert refused == [root / bad]
+    assert collect_sources(root) == [root / "normal" / "ok.md"]
+
+
+@pytest.mark.skipif(sys.platform == "win32", reason="Windows forbids ':' in names")
+def test_directory_colon_is_reported_not_indexed(tmp_path):
+    root = tmp_path / "source"
+    (root / "manual:folder").mkdir(parents=True)
+    (root / "manual:folder" / "a.md").write_text("冒号目录", encoding="utf-8")
+    (root / "normal").mkdir()
+    (root / "normal" / "ok.md").write_text("正常", encoding="utf-8")
+    store = Knowledge(tmp_path / "datadb" / "knowledge.sqlite3", source_root=root)
+    report = import_defaults(store, Settings(_env_file=None), root=root)
+    assert report["errors"] == [{"source": "a.md", "error": "UnsafeName"}]
+    assert (report["scanned"], report["added"]) == (1, 1)
+    assert list(store.files()) == ["normal/ok.md"]
+    assert [doc["title"] for doc in store.current()] == ["ok"]
+
+
+@pytest.mark.skipif(sys.platform != "win32", reason="needs a real drive-letter root")
+def test_collect_sources_accepts_windows_drive_root(tmp_path):
+    root = tmp_path / "source"
+    (root / "normal").mkdir(parents=True)
+    (root / "normal" / "a.md").write_text("正常", encoding="utf-8")
+    assert ":" in str(root)
+    refused: list = []
+    assert collect_sources(root, refused=refused) == [root / "normal" / "a.md"] and refused == []
+
+
+def table_rows(store: Knowledge) -> dict:
+    with store.connect() as db:
+        return {table: sorted(db.execute(f"SELECT * FROM {table}").fetchall())
+                for table in ("docs", "doc_pages", "doc_markdown", "chunks", "files")}
+
+
+@pytest.mark.parametrize("existing", [False, True])
+def test_put_failure_mid_transaction_rolls_back_everything(tmp_path, existing):
+    """Body, pages, markdown, chunks and the manifest entry are one transaction: the manifest
+    insert is the last statement, and its failure leaves every table as it was."""
+    store = Knowledge(tmp_path / "knowledge.sqlite3")
+    if existing:
+        store.put(web_page("旧 正文"))
+    before = table_rows(store)
+    with store.connect() as db:
+        db.execute("CREATE TRIGGER refuse BEFORE INSERT ON files BEGIN SELECT RAISE(ABORT, 'injected'); END")
+    with pytest.raises(sqlite3.IntegrityError, match="injected"):
+        store.put(web_page("新 正文"))
+    assert table_rows(store) == before
+
+
+def test_unlisted_and_unindexed_documents_are_not_searchable(tmp_path):
+    """U16: neither a history row without a manifest entry nor a virtual entry that is not indexed
+    is current, so neither is retrieved even though both still have chunks."""
+    store = Knowledge(tmp_path / "knowledge.sqlite3")
+    history = put_unlisted(store, Document(title="旧", origin="/old/a.md", kind="text", parser="utf8",
+                                           pages=[Page(number=1, text="孤立词汇 历史")]))
+    failed = store.put(web_page("孤立词汇 网页"))
+    entry = store.files()["web:" + failed["doc_id"]]
+    store.record_file(entry["rel_path"], entry["size"], 0, entry["sha256"], failed["doc_id"], "error")
+    with store.connect() as db:
+        assert db.execute("SELECT COUNT(*) FROM chunks").fetchone()[0] >= 2
+    assert store.current() == []
+    assert store.search("孤立词汇") == []
+    assert {doc["doc_id"] for doc in store.all()} == {history["doc_id"], failed["doc_id"]}
+
+
+def test_backfill_dry_run_writes_nothing(tmp_path):
+    store = Knowledge(tmp_path / "knowledge.sqlite3")
+    put_unlisted(store, web_page("网页 正文"))
+    put_unlisted(store, Document(title="孤儿", origin="/abs/x.pdf", kind="pdf", parser="mineru",
+                                 pages=[Page(number=1, text="本地")]))
+    before = table_rows(store)
+    assert backfill_virtual_manifest(store, apply=False)["virtual"]
+    assert table_rows(store) == before

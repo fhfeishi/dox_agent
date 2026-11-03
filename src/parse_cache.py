@@ -164,6 +164,11 @@ def promote(parsed_root: Path, rel: str, staging: Path) -> None:
     os.replace(staging, canonical)
     if trash.exists():
         shutil.rmtree(trash)
+    for name in (STAGING, TRASH):
+        try:
+            (parsed_root / name).rmdir()  # only when nothing else is pending there
+        except OSError:
+            pass
 
 
 def sweep(parsed_root: Path, sources: dict[str, Path]) -> None:

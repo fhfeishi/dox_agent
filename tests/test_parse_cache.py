@@ -121,6 +121,7 @@ class Lib:
     def assert_settled(self, label: str, **kwargs):
         self.assert_published(label, **kwargs)
         assert self.leftovers() == []
+        assert not (self.parsed / STAGING).exists() and not (self.parsed / TRASH).exists()
 
 
 @pytest.fixture

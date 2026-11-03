@@ -150,6 +150,4 @@ async def import_text(payload: TextImport, request: Request):
             result = await asyncio.to_thread(request.app.state.knowledge.put, doc)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
-        if request.app.state.preparation == "error":
-            request.app.state.preparation = "ready"
         return result

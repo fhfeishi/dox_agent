@@ -56,6 +56,7 @@ datadb/knowledge.sqlite3          docs / doc_pages / doc_markdown / chunks / fil
 | `scripts/commit_target_drafts.py` | 05 提取 | 把人工/会话内产出的 `draft.json` 过同一套校验后落盘 | 直接执行 | 按 doc_id 覆盖写 |
 | `scripts/derive_target_events.py` | 05 提取 | 从正文「专利/论文/样机/部署/试验」叙述段落派生 `events` | **试跑**，需 `--apply` | 事件 id 由 `type+date+desc` 派生，重跑幂等 |
 | `scripts/verify_targets.py` | 06 验收 | 复刻 `src/targets.py` 的 current/stale 判定，逐库统计 | 只读 | 无副作用 |
+| `scripts/stage_report.py` | 巡检 | P0-4 阶段视图：逐库 source / parse / search / extract 计数（`src/stages.py`） | 只读 | 不写库、不写缓存、不调 MinerU |
 
 ## 目录
 
@@ -92,12 +93,11 @@ python datapipe/scripts/extract_targets.py
 # 2) 契约复验：docs / target 文件 / current / missing / stale / outputs / events / rejected
 python datapipe/scripts/verify_targets.py
 
-# 3) 资料构成与解析覆盖（在 .knowledge/ 下执行）
-cd .knowledge && for d in */; do printf '%-34s pdf=%s md=%s parsed=%s\n' "${d%/}" \
-  "$(find "$d/source" -type f -name '*.pdf' | wc -l)" \
-  "$(find "$d/source" -type f \( -name '*.md' -o -name '*.markdown' \) | wc -l)" \
-  "$(find "$d/parsed" -type f -name middle_json.json 2>/dev/null | wc -l)"; done
+# 3) 阶段视图：逐库 source / parse / search / extract 四组计数（P0-4，只读）
+python datapipe/scripts/stage_report.py           # 加 --json 输出每份文件的阶段
 ```
+
+第 3 条以前是数 `source/`、`parsed/` 文件的 shell 循环：它只数文件，会把 `.versions` 的旧目录重复计入，也分不清“有缓存但还没发布”“原件变了但旧正文仍可检索”。现在改用 `src/stages.py` 的 `stage_view`，与库卡片和 `verify_targets.py` 同一套判定；`parse` 对 Markdown 源记为 `none`（只有 PDF 才解析），对 P0-1 之前的旧缓存记 `cached` 并注明 `legacy-unmarked`。
 
 读法：`parsed < pdf` 表示还有 PDF 未解析（导入时会现跑 MinerU）；`parsed > pdf` 是孤儿缓存（源文件已删/改名），不会再被命中；`docs` 与 `files` 清单不一致时先看导入任务报错。
 

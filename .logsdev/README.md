@@ -18,6 +18,7 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | [tasks/](tasks/) | 任务记录：[02 谱系交互实施 1026](tasks/task-02-谱系交互实施-20261026.md)、[领导体验优化 1026](tasks/领导体验优化-20261026/README.md)、[收尾规划 1023](tasks/收尾规划-20261023/README.md)、[升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md)、[Q1 接续](tasks/upgrade-Q1-20261019.md)、[A1 验收](tasks/A1-验收-20261021/README.md)、[资料整理到对比报告](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系](tasks/lineage-task/README.md) |
 | `owner-首页-design/`、`owner-领域分析-design/`、`owner-问答-design/`、`资料库数据接口-design/`、`资料管理-design/`、`领域分析-分屏-design/` | 专题目录（本地保存、不入库）：首页、领域分析、对话工作台的设计迭代与候选，资料库数据接口（AI Native 补充链路）的方案探索，资料管理界面重构的两版原型，以及领域分析分屏重构 demo（[README](领域分析-分屏-design/README.md)）；领域分析的候选稿与口径约束见 [owner-领域分析-design/README.md](owner-领域分析-design/README.md)（当前为 wkbd-designer v3：场景 × 技术体系二维地图） |
 | `pipeline梳理和优化-20261103/` | 专题目录（本地保存、不入库）：数据线与任务线 pipeline 的总览、讨论稿、中间方案、审查和状态快照；入口 README 记录现行主稿、当前状态与时间线 |
+| `pipeline梳理和优化-20261103/reviews/2026-11-03_Codex-astra_14-55窗_测试补齐.md` | 本轮测试与整理索引；按本轮用户明确要求，仅此轮指定记录例外入库。跳过记录归 `reviews/archive-skips/`，专家旁审归 `reviews/experts/`，不改变专题主稿与其他文件的本地保存方式 |
 | [前端审查-20261027.md](前端审查-20261027.md) | 工作文档：全站前端审查与优化建议（草案） |
 | [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |

@@ -54,8 +54,12 @@ def test_text_import_cannot_take_over_an_indexed_document(tmp_path):
         client.cookies.clear()
         assert client.post("/api/auth/login", json={"username": "user", "password": "123456"}).status_code == 200
         assert client.get("/api/auth/session").json()["role"] == "user"
-        response = client.post("/api/ingest/text", json={"title": "x", "origin": str(source.resolve()),
-                                                       "text": "forged facts"})
+        forged = {"title": "x", "origin": str(source.resolve()), "text": "forged facts"}
+        # 2026-11-03: adding text to a system library is the administrator's, like every other write to
+        # one (D-20261027-1); a normal user is refused before any origin can be forged.
+        assert client.post("/api/ingest/text", json=forged).status_code == 403
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        response = client.post("/api/ingest/text", json=forged)
         assert response.status_code == 200, response.text
         made = response.json()
         for method in (client.get, client.head):

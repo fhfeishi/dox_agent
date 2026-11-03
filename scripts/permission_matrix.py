@@ -66,7 +66,7 @@ CAPABILITIES = [
     # Topic summaries are analysis anyone may run; everything else that changes a system library is the
     # administrator's (D-20261027-1). Personal libraries are each account's own.
     ("主题综合（分析）", ALL, r"^/api/corpora/[^/]+/topic-summary"),
-    ("系统资料库与资料维护", ADMIN, r"^/api/(corpora|corpus-groups|groups)"),
+    ("系统资料库与资料维护", ADMIN, r"^/api/(corpora|corpus-groups|groups|ingest/text)"),
     ("个人资料库（本人）", ALL, r"^/api/personal-libraries"),
     # Every role may call these; the record decides (author or administrator, design/系统.md §5).
     ("删除报告（作者或管理员，按记录判断）", ALL, r"^/api/artifacts/\{artifact_id\}(/purge)?$"),

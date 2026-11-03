@@ -226,15 +226,15 @@ class Accounts:
 
 
 def require_admin(request: Request):
-    """Libraries are everyone's to keep (query 2026-1016 0919): any account may create, rename, describe,
-    group and delete libraries and add, rename, delete and re-import their files. What stays with the
-    administrator is the model-heavy regeneration of a library's structure (four-facet extraction, topic
-    merges, lineage, hierarchy) and re-linking its folder on disk; shared analysis tasks, their prompt
-    assets and review templates are maintained by administrators too (节点审查 D2). Report templates stay
-    open: 情报分析 lets anyone save their own. Each such endpoint declares ``ADMIN_ONLY`` (card B2), and
-    scripts/permission_matrix.py measures the result against design/系统.md §5."""
+    """Administrator-only writes to the system libraries (D-20261027-1 supersedes query 2026-1016 0919):
+    creating, renaming, describing, grouping and deleting them; adding, renaming, deleting and importing
+    their files; adding a manual text; re-linking a folder on disk; and the model-heavy regeneration of
+    their structure (four-facet extraction, topic merges, lineage, hierarchy). Shared analysis tasks,
+    their prompt assets and review templates are the administrator's too (节点审查 D2); report templates
+    stay open because 情报分析 lets anyone save their own. Each such endpoint declares ``ADMIN_ONLY``
+    (card B2), and scripts/permission_matrix.py measures the result against design/系统.md §5."""
     if request.state.user[1] != "admin":
-        raise HTTPException(403, "资料库结构重新生成与共享模版维护需要管理员账户")
+        raise HTTPException(403, "该操作需要管理员账户")
 
 
 ADMIN_ONLY = [Depends(require_admin)]

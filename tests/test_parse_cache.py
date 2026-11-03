@@ -661,3 +661,11 @@ def test_parse_quality_counts_unreadable_characters():
     assert quality["pages_with_text"] == 1 and quality["coverage"] == 0.25
     assert quality["unreadable_chars"] == 8
 
+
+def test_parse_quality_counts_sparse_pages():
+    from src.parse_cache import parse_quality
+    quality = parse_quality(["字" * 400] * 4 + ["图"], expected=5)
+    assert quality["sparse_pages"] == 1 and quality["pages_with_text"] == 4
+    # No text at all leaves no median to compare against; coverage already reports that document.
+    assert parse_quality(["", ""], expected=2)["sparse_pages"] == 0
+

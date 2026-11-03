@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
-from .auth import CURRENT_USER, visible_owners
+from .auth import ADMIN_ONLY, CURRENT_USER, visible_owners
 from .core.db import connect, migrate
 from .knowledge import Document, Page
 
@@ -137,7 +137,7 @@ class TextImport(BaseModel):
     text: str = Field(min_length=1, max_length=500000)
 
 
-@router.post("/ingest/text")
+@router.post("/ingest/text", dependencies=ADMIN_ONLY)
 async def import_text(payload: TextImport, request: Request):
     import asyncio
 

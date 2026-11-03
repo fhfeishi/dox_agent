@@ -133,7 +133,7 @@ BM25 在既有报告预算内选择互补主题资料，复用分词结果，补
 
 | 变量 | 默认值 / 用途 |
 | --- | --- |
-| MODEL_NAME / MODEL_BASE_URL / MODEL_API_KEY | deepseek-chat / https://api.deepseek.com / 空；OpenAI 兼容连接 |
+| MODEL_NAME / MODEL_BASE_URL / MODEL_API_KEY | deepseek-v4-flash / https://api.deepseek.com / 空；OpenAI 兼容连接 |
 | CORPORA_ROOT | 项目下 .knowledge；知识库根目录 |
 | STATE_DIR | CORPORA_ROOT 下 .state；应用状态 |
 | EMBEDDING_PATH / EMBEDDING_DEVICE | 空 / cpu；空时不加载本地 embedding |

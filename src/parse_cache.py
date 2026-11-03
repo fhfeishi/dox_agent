@@ -19,6 +19,7 @@ import logging
 import os
 import shlex
 import shutil
+import statistics
 from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
@@ -156,16 +157,22 @@ def parse_quality(page_texts: list[str], expected: int | None) -> dict:
 
     ``page_texts`` has one entry per page of the parse output, empty pages included. ``coverage``
     is the share of the PDF's pages with text; ``unreadable_chars`` counts U+FFFD and control
-    characters, which only a broken decode produces.
+    characters, which only a broken decode produces. ``sparse_pages`` counts pages under a tenth
+    of the document's median page, which are mostly figures or back covers: a hint for the reader,
+    not a defect (解析质量评分 ②, 2026-11-03).
     """
     total = expected or len(page_texts)
     texts = [text.strip() for text in page_texts]
     with_text = sum(len(text) >= EMPTY_PAGE_CHARS for text in texts)
     joined = "".join(texts)
     unreadable = sum(char == "\ufffd" or (ord(char) < 32 and char not in "\n\t") for char in joined)
+    lengths = [len(text) for text in texts]
+    median = statistics.median(lengths) if lengths else 0
+    sparse = sum(length < 0.1 * median for length in lengths) if median else 0
     return {"pages": total, "parsed_pages": len(page_texts), "pages_with_text": with_text,
             "coverage": round(with_text / total, 3) if total else 0.0, "chars": len(joined),
-            "unreadable_chars": unreadable, "page_count_checked": expected is not None}
+            "unreadable_chars": unreadable, "sparse_pages": sparse,
+            "page_count_checked": expected is not None}
 
 
 def output_page_texts(directory: Path) -> list[str] | None:

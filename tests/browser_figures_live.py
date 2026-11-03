@@ -17,6 +17,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from src.parse_cache import write_cache
 from src.parsers import sha256_file
 from tests.browser_artifacts_live import start_server
 
@@ -41,7 +42,6 @@ async def main():
         ImageDraw.Draw(alternative).ellipse((90, 50, 550, 350), outline="green", width=16)
         cover.save(source, save_all=True, append_images=[chart, alternative])
         source_digest = sha256_file(source)
-        parsed = parsed / ".versions" / source_digest
         (parsed / "images").mkdir(parents=True)
         chart.save(parsed / "images" / "chart.jpg", quality=95)
         alternative.save(parsed / "images" / "alternative.jpg", quality=95)
@@ -58,9 +58,11 @@ async def main():
         doc = knowledge.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
             pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                    Page(number=3, text="边缘计算拓扑")],
-            markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
-        knowledge.record_file(source.name, source.stat().st_size, source.stat().st_mtime_ns,
-                              source_digest, doc["doc_id"], "indexed")
+            markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"),
+            source_file=(source.name, source.stat().st_size, source.stat().st_mtime_ns, source_digest))
+        # P0-1: the canonical parse names the source sha and the published version.
+        write_cache(parsed, rel=source.name, source_sha=source_digest, version=doc["version"],
+                    profile="test", pages=3)
         reports.model_for = lambda settings: FigureModel()
         origin, server, thread, listener = start_server(create_app(settings, knowledge))
         try:

@@ -15,6 +15,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.core.db import connect as closing_connect
 from src.knowledge import Document, Knowledge, Page
+from src.parse_cache import write_cache
 from src.parsers import import_defaults, sha256_file
 from src.reports import (
     generate_markdown,
@@ -369,7 +370,6 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
     ImageDraw.Draw(stacked).ellipse((100, 350, 530, 550), outline="blue", width=12)
     source.parent.mkdir(parents=True, exist_ok=True)
     cover.save(source, save_all=True, append_images=[chart, alternative, stacked])
-    parsed = parsed / ".versions" / sha256_file(source)
     (parsed / "images").mkdir(parents=True)
     chart.save(parsed / "images" / "chart.jpg", quality=95)
     alternative.save(parsed / "images" / "alternative.jpg", quality=95)
@@ -394,12 +394,14 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
              "content": [{"type": "chart_body", "image_path": "images/bottom.jpg"},
                          {"type": "chart_caption", "content": [{"type": "text", "content": "图3 云边协同架构上下图"}]}]}]}]}
     (parsed / "middle_json.json").write_text(json.dumps(middle, ensure_ascii=False), encoding="utf-8")
-    doc = put_listed(store, Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
+    doc = store.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
                              pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                                     Page(number=3, text="边缘计算拓扑"), Page(number=4, text="组合图")],
-                             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
-    store.record_file(source.name, source.stat().st_size, source.stat().st_mtime_ns,
-                      sha256_file(source), doc["doc_id"], "indexed")
+                             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"),
+                    source_file=(source.name, source.stat().st_size, source.stat().st_mtime_ns, sha256_file(source)))
+    # P0-1: the canonical parse names the source sha and the published version it belongs to.
+    write_cache(parsed, rel=source.name, source_sha=sha256_file(source), version=doc["version"],
+                profile="test", pages=4)
     with TestClient(app) as client:
         created = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
             "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),

@@ -70,9 +70,13 @@ def _body(pages: list[dict], markdown: str) -> bytes:
     return json.dumps({"pages": pages, "markdown": markdown}, ensure_ascii=False).encode()
 
 
-def content_version(doc: Document) -> str:
+def content_version_of(pages: list[Page], markdown: str) -> str:
     """L1: the published identity of one parse: page text and markdown, not the source bytes."""
-    return hashlib.sha256(_body([p.model_dump() for p in doc.pages], doc.markdown)).hexdigest()[:20]
+    return hashlib.sha256(_body([p.model_dump() for p in pages], markdown)).hexdigest()[:20]
+
+
+def content_version(doc: Document) -> str:
+    return content_version_of(doc.pages, doc.markdown)
 
 
 class Knowledge:

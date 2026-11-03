@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 
 from ..agent.corpora import (
     DB_DIRNAME,
+    PARSED_DIRNAME,
     SOURCE_DIRNAME,
     SOURCE_SUFFIXES,
     VECTOR_DIRNAME,
@@ -27,13 +28,13 @@ from ..agent.corpora import (
 from ..auth import ADMIN_ONLY
 from ..jobs import JobBusy
 from ..knowledge import is_virtual_rel
-from ..parsers import collect_sources, import_defaults, unsafe_name
+from ..parse_cache import rename_rel
+from ..parsers import collect_sources, forget_source, import_defaults, unsafe_name
 from ..targets import (
     TargetMissing,
     TargetStale,
     extract_target,
     list_target_reports,
-    remove_target,
     target_detail,
 )
 from .common import (
@@ -612,8 +613,7 @@ def install(app, ctx):
             raise HTTPException(404, "资料库不存在")
         target = await asyncio.to_thread(source_file, info, rel_path)
         await asyncio.to_thread(target.unlink)
-        doc_id = await asyncio.to_thread(knowledge_for(info).drop_file, rel_path)
-        await asyncio.to_thread(remove_target, info, doc_id)
+        doc_id = await asyncio.to_thread(forget_source, knowledge_for(info), rel_path, info.root)
         return {"rel_path": rel_path, "doc_id": doc_id}
 
     @router.patch("/api/corpora/{corpus_id}/files", dependencies=ADMIN_ONLY)
@@ -630,7 +630,9 @@ def install(app, ctx):
         if new.exists():
             raise HTTPException(409, "同名文件已存在")
         await asyncio.to_thread(old.rename, new)
-        await asyncio.to_thread(knowledge_for(info).drop_file, payload.rel_path)
+        new_rel = new.relative_to(info.source_dir.resolve()).as_posix()
+        await asyncio.to_thread(rename_rel, info.root / PARSED_DIRNAME, payload.rel_path, new_rel)
+        await asyncio.to_thread(forget_source, knowledge_for(info), payload.rel_path, info.root)
         report = await import_corpus(info)
         return {"rel_path": new.relative_to(info.source_dir.resolve()).as_posix(), "added": report["added"], "updated": report["updated"],
                 "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}

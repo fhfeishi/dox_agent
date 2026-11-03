@@ -381,14 +381,17 @@ class Knowledge:
                         last_error[:300]))
 
     def drop_file(self, rel_path: str) -> str | None:
-        """K1: a missing source file leaves the manifest and the docs table (BM25 excluded)."""
+        """K1 / P0-2: a removed source leaves every table in one transaction — the manifest row, the
+        document, its chunks, page text and markdown. Idempotent: an unknown rel changes nothing.
+        Files outside SQLite (parse cache, target record) are removed by ``parsers.forget_source``."""
         with self.connect() as db:
             row = db.execute("SELECT doc_id FROM files WHERE rel_path=?", (rel_path,)).fetchone()
             db.execute("DELETE FROM files WHERE rel_path=?", (rel_path,))
             doc_id = row[0] if row else None
             if doc_id:
-                db.execute("DELETE FROM docs WHERE id=?", (doc_id,))
-                db.execute("DELETE FROM chunks WHERE doc_id=?", (doc_id,))
+                for table, column in (("docs", "id"), ("chunks", "doc_id"), ("doc_pages", "doc_id"),
+                                      ("doc_markdown", "doc_id")):
+                    db.execute(f"DELETE FROM {table} WHERE {column}=?", (doc_id,))
         self._chunks = None
         return doc_id
 

@@ -240,6 +240,31 @@ def publishes(info: dict | None, source_sha: str, version: str | None) -> bool:
     return info["version"] == version
 
 
+def drop_rel(parsed_root: Path, rel: str) -> None:
+    """P0-2: a removed source leaves no parse behind — its canonical cache and any staging or retry
+    directory of that rel. Idempotent."""
+    shutil.rmtree(canonical_dir(parsed_root, rel), ignore_errors=True)
+    staging_root = parsed_root / STAGING
+    if staging_root.is_dir():
+        for directory in staging_root.glob(f"{staging_key(rel)}-*"):
+            shutil.rmtree(directory, ignore_errors=True)
+
+
+def rename_rel(parsed_root: Path, old: str, new: str) -> None:
+    """A renamed source keeps its parse: move the canonical cache and rewrite the rel it names, so
+    the import under the new name reuses it instead of running MinerU again. Staging of the old rel
+    is dropped. A cache already at the new rel is left alone."""
+    source, target = canonical_dir(parsed_root, old), canonical_dir(parsed_root, new)
+    if source.is_dir() and not target.exists():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        os.replace(source, target)
+        info = read_cache(target)
+        if info is not None:
+            fields = {key: value for key, value in info.items() if key not in ("rel", "written_at")}
+            write_cache(target, rel=new, **{"source_sha": fields.pop("source_sha256"), **fields})
+    drop_rel(parsed_root, old)
+
+
 def promote(parsed_root: Path, rel: str, staging: Path) -> None:
     """Make a published staging parse canonical: canonical → trash, staging → canonical, drop trash.
 

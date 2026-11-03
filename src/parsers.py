@@ -18,7 +18,7 @@ from urllib.parse import urlsplit
 import httpx
 
 from .agent.config import Settings
-from .agent.corpora import SOURCE_SUFFIXES
+from .agent.corpora import PARSED_DIRNAME, SOURCE_SUFFIXES, TARGET_DIRNAME
 from .knowledge import Document, Page, content_version_of, is_virtual_rel
 from .parse_cache import (
     CACHE_FILE,
@@ -27,6 +27,7 @@ from .parse_cache import (
     canonical_dir,
     complete,
     drop_marker,
+    drop_rel,
     load_output,
     output_page_count,
     output_page_texts,
@@ -416,11 +417,24 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
         # Virtual rels (manual text, web pages) have no file on disk by design.
         if rel in current or manifest[rel]["status"] == "removed" or is_virtual_rel(rel):
             continue
-        knowledge.drop_file(rel)
+        forget_source(knowledge, rel, Path(parsed_root).parent if parsed_root is not None else None)
         deleted += 1
     return {"imported": imported, "errors": errors, "added": added, "updated": updated,
             "skipped": skipped, "deleted": deleted, "scanned": len(current)}
 
+
+
+def forget_source(knowledge, rel: str, corpus_root: Path | None) -> str | None:
+    """P0-2: everything derived from one source goes with it — SQLite rows (``drop_file``), the parse
+    cache under ``parsed/`` and the four-dimension record ``target/<doc_id>.json``. Every per-file
+    deletion path (admin delete, rename, import pruning, personal uploads) calls this; deleting a
+    whole library removes its directories instead. Idempotent. Returns the dropped doc_id."""
+    doc_id = knowledge.drop_file(rel)
+    if corpus_root is not None and not is_virtual_rel(rel):
+        drop_rel(Path(corpus_root) / PARSED_DIRNAME, rel)
+    if corpus_root is not None and doc_id:
+        (Path(corpus_root) / TARGET_DIRNAME / f"{doc_id}.json").unlink(missing_ok=True)
+    return doc_id
 
 
 def import_one(knowledge, settings: Settings, path: Path, rel: str, prev: dict | None, *, force: bool = False,

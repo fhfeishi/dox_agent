@@ -32,6 +32,8 @@ SOURCE_SUFFIXES = {".pdf", ".md", ".markdown", ".txt", ".docx"}
 SOURCE_DIRNAME = "source"
 DB_DIRNAME = "datadb"
 VECTOR_DIRNAME = "vectordb"
+PARSED_DIRNAME = "parsed"  # MinerU cache per source rel (src/parse_cache.py)
+TARGET_DIRNAME = "target"  # four-dimension record per doc_id (src/targets.py)
 ROLE_DIRNAMES = frozenset({SOURCE_DIRNAME, DB_DIRNAME, VECTOR_DIRNAME})
 
 

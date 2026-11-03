@@ -1,4 +1,5 @@
 import { useAnnualGestures } from "./useAnnualSelection";
+import { chartHeight } from "./chartFrame";
 import { HelpTerm } from "../HelpTerm";
 import { useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import {
@@ -63,6 +64,7 @@ export function YearBand({
     [viewport, setViewport] = useState({
       width: 750,
       font: 14,
+      chart: 420,
     });
   useLayoutEffect(() => {
     const el = canvas.current;
@@ -72,8 +74,13 @@ export function YearBand({
         font =
           parseFloat(getComputedStyle(el).getPropertyValue("--text-body")) ||
           14;
+      // One drawing height for the three charts (query 2026-11-03 1630), so switching screens
+      // does not jump; see --atlas-chart-h.
+      const chart = chartHeight(el) || 420;
       setViewport((old) =>
-        old.width === width && old.font === font ? old : { width, font },
+        old.width === width && old.font === font && old.chart === chart
+          ? old
+          : { width, font, chart },
       );
     };
     const observer = new ResizeObserver(read);
@@ -87,7 +94,11 @@ export function YearBand({
   }, [years.length]);
   const activeWindow = draft ?? window,
     scale = viewport.font / 12,
-    bandHeight = (baseline ? 460 : 420) * scale;
+    // The bar area draws at the shared chart height; the baseline (one domain against another) keeps
+    // a little extra room for the two lines it compares.
+    bandHeight = Math.round(
+      viewport.chart * (viewport.font / 14) + (baseline ? 40 * scale : 0),
+    );
   // 全部领域 (query 2026-1030 1747): each year's bar is stacked from the domains, largest at the bottom.
   // Inside a domain the systems share projects, so they are not stacked; nor is a comparison.
   const stacked = !scope && !baseline;

@@ -597,9 +597,12 @@ button.ui-page-link { text-decoration: none; }
 .roads-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-caption); color: var(--muted-cool); }
 .roads-tools button { padding: 3px 10px; border-radius: var(--radius-md); border: 1px solid var(--line-cool); background: var(--canvas); color: var(--slate); }
 .roads-tools button:hover { border-color: var(--heading); color: var(--heading); }
+/* 领域分析各交互图的绘图区高度：四象限、年度投入、技术谱系共用一个口径，切换时图区不忽大忽小
+   (query 2026-11-03 1630)。上限留出工具栏、提示行与四象限底部带的位置，1080 高的窗口仍一屏放下。 */
+:root { --atlas-chart-h: clamp(520px, calc(100vh - 350px), 800px); }
 /* 技术谱系's drawing height, shared by the radial map and the tree so switching keeps the frame (query 2026-11-02);
    LineageRoads mirrors it in JS. */
-:root { --lineage-h: clamp(420px, calc(100vh - 340px), 680px); }
+:root { --lineage-h: var(--atlas-chart-h); }
 .roads-svg { display: block; width: 100%; height: var(--lineage-h); cursor: default; touch-action: pan-y pinch-zoom; }
 .roads[data-engaged="true"] { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
 .roads[data-engaged="true"] > .roads-svg, .roads-large-content > .roads-svg { cursor: grab; touch-action: none; }

@@ -5,6 +5,7 @@ import { domainTreeQuery, maturityVar, MATURITY_NAMES, type DomainsOverview, typ
 import { libraryOverviewQuery } from "../../libraryQueries";
 import { libraryColor } from "../../libraryColors";
 import { useLayout } from "../../layout";
+import { chartHeight } from "./chartFrame";
 import { Hint } from "../Hint";
 import { SlideOver } from "../SlideOver";
 import { usePanZoom } from "./usePanZoom";
@@ -317,7 +318,8 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
     const measure = () => {
       if (svg.current) setFrame((old) => {
         const width = svg.current!.getBoundingClientRect().width || old.width;
-        const height = Math.min(680, Math.max(420, innerHeight - 340));
+        // One drawing height for the three charts (query 2026-11-03 1630); see --atlas-chart-h.
+        const height = chartHeight(document.documentElement) || 680;
         return width === old.width && height === old.height ? old : { width, height };
       });
       if (largeSvg.current && large) {

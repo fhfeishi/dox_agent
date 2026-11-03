@@ -49,6 +49,7 @@ if cfg.get("mutate"):
     with open(sys.argv[1], "ab") as handle:
         handle.write(b"%changed")
 if cfg.get("fail"):
+    print(cfg.get("failure_text", ""))
     sys.exit(1)
 out = pathlib.Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 label = cfg["label"]
@@ -438,6 +439,9 @@ def test_new_pdf_cache_is_promoted_after_publish(lib):
     lib.assert_settled("B")
     assert lib.entry["doc_id"] == doc_id
     assert not list(lib.parsed.rglob(".versions"))
+    quality = lib.canonical()["quality"]
+    assert quality["page_count_checked"] is True
+    assert (quality["pages"], quality["parsed_pages"], quality["pages_with_text"], quality["coverage"]) == (2, 2, 2, 1.0)
 
 
 def test_historical_versions_and_trash_are_swept(lib):
@@ -555,27 +559,35 @@ def tiered(lib, fallback="standard"):
                             mineru_fallback_tier=fallback)
 
 
-def test_crash_at_first_tier_retries_at_fallback(lib):
+@pytest.mark.parametrize("failure_text, message", [
+    ("", "PDF 解析失败：原因未知"),
+    ("RuntimeError: INVALID PDF /private/input.pdf", "文件不是有效的 PDF：可能已损坏，或只是改了扩展名"),
+    ("PDF is encrypted", "PDF 设有密码，无法读取"),
+])
+def test_crash_at_first_tier_retries_at_fallback(lib, failure_text, message):
     tiered(lib)
     write_pdf(lib.pdf, tag="v2")
-    lib.mineru(label="B", basic={"fail": True}, standard={"label": "S"})
+    lib.mineru(label="B", basic={"fail": True, "failure_text": failure_text}, standard={"label": "S"})
     assert not lib.run()["errors"]
     lib.assert_settled("S")
     assert lib.calls == 3  # fixture 1 + basic + standard
     attempts = lib.canonical()["attempts"]
     assert [(a["tier"], a["ok"], a["reason"]) for a in attempts] == [("basic", False, "tool_crash"),
                                                                      ("standard", True, "")]
+    assert attempts[0]["message"] == message
     assert "--tier standard" in lib.canonical()["profile"]
 
 
-def test_low_coverage_retries_and_keeps_the_better_parse(lib):
+@pytest.mark.parametrize("blank, label, reasons", [(1, "B", [""]), (3, "S", ["low_coverage", ""])])
+def test_low_coverage_retries_and_keeps_the_better_parse(lib, blank, label, reasons):
     tiered(lib)
     write_pdf(lib.pdf, pages=5, tag="v2")
-    lib.mineru(label="B", pages=5, basic={"blank": 3}, standard={"label": "S", "blank": 1})
+    lib.mineru(label="B", pages=5, basic={"blank": blank}, standard={"label": "S", "blank": 1})
     assert not lib.run()["errors"]
-    lib.assert_settled("S")
+    lib.assert_settled(label)
     cache = lib.canonical()
-    assert [a["reason"] for a in cache["attempts"]] == ["low_coverage", ""]
+    assert [a["reason"] for a in cache["attempts"]] == reasons
+    assert lib.calls == 1 + len(reasons)
     assert cache["quality"]["coverage"] == 0.8 and cache["quality"]["pages_with_text"] == 4
 
 
@@ -603,28 +615,34 @@ def test_every_tier_failing_names_each_attempt(lib):
     assert lib.body() == "# A" and lib.leftovers() == []
 
 
-@pytest.mark.parametrize("fallback", ["", "flash", "basic"])
-def test_no_retry_when_fallback_is_off_flash_or_the_same_tier(lib, fallback):
+@pytest.mark.parametrize("fallback", [None, "", "flash", "basic"])
+def test_no_retry_when_fallback_is_off_flash_or_the_same_tier(lib, fallback, monkeypatch):
+    if fallback is None:
+        monkeypatch.delenv("MINERU_FALLBACK_TIER", raising=False)
+        fallback = Settings(_env_file=None).mineru_fallback_tier
     tiered(lib, fallback)
     write_pdf(lib.pdf, tag="v2")
     lib.mineru(label="B", basic={"fail": True}, flash={"label": "F"}, standard={"label": "S"})
     assert lib.run()["errors"]
     assert lib.calls == 2
+    assert lib.body() == "# A" and lib.leftovers() == []
 
 
-def test_timeout_is_not_retried_at_a_slower_tier(lib, monkeypatch):
+@pytest.mark.parametrize("reason, message", [("timeout", "mineru 解析超时"), ("tool_missing", "无法启动 mineru")])
+def test_unrecoverable_failure_is_not_retried_at_a_slower_tier(lib, monkeypatch, reason, message):
     import src.parsers as parsers
     tiered(lib)
     seen = []
 
-    def timing_out(path, settings, out_dir):
+    def unavailable(path, settings, out_dir):
         seen.append(settings.mineru_cmd)
-        raise parsers.ParseError("timeout", "mineru 解析超时")
-    monkeypatch.setattr(parsers, "parse_pdf_pages", timing_out)
+        raise parsers.ParseError(reason, message)
+    monkeypatch.setattr(parsers, "parse_pdf_pages", unavailable)
     write_pdf(lib.pdf, tag="v2")
     assert lib.run()["errors"]
     assert len(seen) == 1 and "--tier basic" in seen[0]
-    assert lib.entry["last_error"] == "mineru 解析超时"
+    assert lib.entry["last_error"] == message
+    assert lib.body() == "# A" and lib.leftovers() == []
 
 
 def test_legacy_adoption_records_quality(tmp_path):
@@ -668,4 +686,16 @@ def test_parse_quality_counts_sparse_pages():
     assert quality["sparse_pages"] == 1 and quality["pages_with_text"] == 4
     # No text at all leaves no median to compare against; coverage already reports that document.
     assert parse_quality(["", ""], expected=2)["sparse_pages"] == 0
+
+
+@pytest.mark.parametrize("expected, total, coverage, checked", [(None, 3, 0.667, False), (4, 4, 0.5, True)])
+def test_parse_quality_empty_page_boundary(expected, total, coverage, checked):
+    from src.parse_cache import EMPTY_PAGE_CHARS, parse_quality
+    texts = [" \n" + "字" * length + "\t " for length in
+             (EMPTY_PAGE_CHARS - 1, EMPTY_PAGE_CHARS, EMPTY_PAGE_CHARS + 1)]
+    quality = parse_quality(texts, expected=expected)
+    assert quality["pages"] == total and quality["parsed_pages"] == 3
+    assert quality["pages_with_text"] == 2 and quality["coverage"] == coverage
+    assert quality["chars"] == 3 * EMPTY_PAGE_CHARS
+    assert quality["page_count_checked"] is checked
 

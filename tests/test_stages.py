@@ -1,11 +1,13 @@
 """P0-4: the stage view reports each stage separately, and reading it never writes."""
 import json
+import os
 
 import pytest
 
 from src.agent.corpora import CorpusInfo
 from src.knowledge import Document, Knowledge, Page, content_version_of
 from src.parse_cache import load_output, staging_dir, write_cache
+from src.parsers import sha256_file
 from src.stages import stage_view
 from src.targets import PROMPT_VERSION, SCHEMA_VERSION
 
@@ -36,18 +38,24 @@ def view(tmp_path):
     return info, store
 
 
-def test_stage_view_reports_every_stage_separately(tmp_path):
+@pytest.mark.parametrize("first_import", [False, True], ids=["reparse", "first-import"])
+def test_stage_view_reports_every_stage_separately(tmp_path, first_import):
     """A failed re-parse of an unchanged source keeps its published text searchable: ``search``
     stays ``current`` while ``parse`` says ``failed`` — one merged word would hide that."""
     info, store = view(tmp_path)
-    doc = publish(store, info)
+    if first_import:
+        (info.source_dir / "a.md").write_text("正文", encoding="utf-8")
+        doc_id, status, search = None, "error", "none"
+    else:
+        doc_id, status, search = publish(store, info)["doc_id"], "indexed", "current"
     # A parse error is recorded on the manifest row, exactly as a failed re-parse leaves it.
     store.record_file("a.md", 6, (info.source_dir / "a.md").stat().st_mtime_ns, "sha",
-                      doc["doc_id"], "indexed", last_error="超时")
+                      doc_id, status, last_error="超时")
     result = stage_view(store, info)
     row = result["rows"][0]
-    assert (row["source"], row["parse"], row["search"]) == ("present", "failed", "current")
-    assert result["counts"]["search"] == {"current": 1}
+    assert (row["source"], row["parse"], row["search"]) == ("present", "failed", search)
+    assert row["parse_reason"] == "超时"
+    assert result["counts"]["search"] == {search: 1}
     assert result["counts"]["parse"] == {"failed": 1}
     # No four-facet record was written, so extraction has not run for this document.
     assert row["extract"] == "missing"
@@ -56,6 +64,12 @@ def test_stage_view_reports_every_stage_separately(tmp_path):
 def test_stage_view_counts_a_changed_and_a_missing_source(tmp_path):
     info, store = view(tmp_path)
     first = publish(store, info)
+    source = info.source_dir / "a.md"
+    stat = source.stat()
+    store.record_file("a.md", stat.st_size, stat.st_mtime_ns, sha256_file(source), first["doc_id"], "indexed")
+    os.utime(source, ns=(stat.st_atime_ns, stat.st_mtime_ns + 2_000_000_000))
+    row = stage_view(store, info)["rows"][0]
+    assert (row["source"], row["search"]) == ("present", "current")
     (info.source_dir / "a.md").write_text("改过的正文", encoding="utf-8")
     result = stage_view(store, info)
     assert result["rows"][0]["source"] == "changed"

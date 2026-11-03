@@ -4,6 +4,26 @@ from src.knowledge import Document, Page
 from tests.test_app import setup
 
 
+def test_text_ingest_requires_admin_without_publishing_rejected_text(tmp_path):
+    app, store = setup(tmp_path)
+    with TestClient(app) as client:
+        before = store.current()
+        payload = {"title": "Restricted ingestion", "text": "# Restricted\nOnly administrators may publish this."}
+        for username in ("user", "owner"):
+            assert client.post("/api/auth/logout").status_code == 200
+            login = client.post("/api/auth/login", json={"username": username, "password": "123456"})
+            assert login.status_code == 200
+            assert client.post("/api/ingest/text", json=payload).status_code == 403
+            assert store.current() == before
+        assert client.post("/api/auth/logout").status_code == 200
+        assert client.post("/api/ingest/text", json=payload).status_code == 401
+        assert store.current() == before
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        response = client.post("/api/ingest/text", json=payload)
+        assert response.status_code == 200
+        assert store.read_markdown(response.json()["doc_id"]) == payload["text"]
+
+
 def test_sessions_persist_and_reject_stale_writes(tmp_path):
     app, _ = setup(tmp_path)
     record = {"title": "会话", "data": {"turns": [], "options": {}}, "revision": 0}

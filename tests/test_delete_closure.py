@@ -5,11 +5,13 @@ library dropping an uploaded document, and repeated deletion. Deleting a whole l
 directories and is covered by the existing library tests.
 """
 import json
+import shutil
 import sqlite3
 import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
 from fastapi.testclient import TestClient
 from pypdf import PdfWriter
 
@@ -105,13 +107,30 @@ def test_pruning_a_vanished_source_removes_everything_derived(tmp_path):
     assert again["deleted"] == 0 and again["skipped"] == 1
 
 
-def test_forget_source_is_idempotent_and_leaves_other_documents(tmp_path):
+@pytest.mark.parametrize("missing", ["neither", "parsed", "target", "both"])
+def test_forget_source_is_idempotent_and_leaves_other_documents(tmp_path, missing):
     corpus = Corpus(tmp_path / "lib")
     a, b = corpus.add("a.pdf"), corpus.add("b.pdf")
+    if missing in ("parsed", "both"):
+        shutil.rmtree(corpus.parsed / "a.pdf")
+    if missing in ("target", "both"):
+        (corpus.root / "target" / f"{a}.json").unlink()
+    staging = staging_dir(corpus.parsed, "a.pdf", "f" * 64)
+    staging.mkdir(parents=True)
+    staging.with_name(staging.name + "-retry").mkdir()
+    kept_staging = staging_dir(corpus.parsed, "b.pdf", "f" * 64)
+    kept_staging.mkdir()
+    kept_file = kept_staging / "partial.json"
+    kept_file.write_bytes(b"unrelated unfinished parse")
     assert forget_source(corpus.store, "a.pdf", corpus.root) == a
-    corpus.assert_gone("a.pdf", a)
+    assert kept_file.read_bytes() == b"unrelated unfinished parse"
+    assert list((corpus.parsed / STAGING).iterdir()) == [kept_staging]
     assert forget_source(corpus.store, "a.pdf", corpus.root) is None
     assert forget_source(corpus.store, "never.pdf", corpus.root) is None
+    assert kept_file.read_bytes() == b"unrelated unfinished parse"
+    assert list((corpus.parsed / STAGING).iterdir()) == [kept_staging]
+    shutil.rmtree(kept_staging)
+    corpus.assert_gone("a.pdf", a)
     corpus.assert_present("b.pdf", b)
 
 
@@ -127,8 +146,16 @@ def test_rename_keeps_the_parse_and_needs_no_mineru(tmp_path):
     corpus = Corpus(tmp_path / "lib")
     old = corpus.add("old.pdf")
     assert corpus.calls == 1
+    before = read_cache(corpus.parsed / "old.pdf")
+    staging = staging_dir(corpus.parsed, "old.pdf", "f" * 64)
+    staging.mkdir(parents=True)
+    staging.with_name(staging.name + "-retry").mkdir()
     (corpus.source / "old.pdf").rename(corpus.source / "new.pdf")
     rename_rel(corpus.parsed, "old.pdf", "new.pdf")
+    after = read_cache(corpus.parsed / "new.pdf")
+    assert {key: value for key, value in before.items() if key not in ("rel", "written_at")} == {
+        key: value for key, value in after.items() if key not in ("rel", "written_at")}
+    assert not list((corpus.parsed / STAGING).iterdir())
     forget_source(corpus.store, "old.pdf", corpus.root)
     report = import_defaults(corpus.store, corpus.settings, root=corpus.source, parsed_root=corpus.parsed)
     assert report["added"] == 1 and not report["errors"]

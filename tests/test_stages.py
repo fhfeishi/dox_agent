@@ -1,9 +1,11 @@
 """P0-4: the stage view reports each stage separately, and reading it never writes."""
 import json
 
+import pytest
+
 from src.agent.corpora import CorpusInfo
-from src.knowledge import Document, Knowledge, Page
-from src.parse_cache import write_cache
+from src.knowledge import Document, Knowledge, Page, content_version_of
+from src.parse_cache import load_output, staging_dir, write_cache
 from src.stages import stage_view
 
 
@@ -108,3 +110,35 @@ def test_stage_view_is_read_only(tmp_path):
     stage_view(store, info)
     after = {path: path.stat().st_mtime_ns for path in info.root.rglob("*") if path.is_file()}
     assert before == after
+
+
+@pytest.mark.parametrize("published", [False, True], ids=["publish-pending", "promotion-pending"])
+def test_stage_view_keeps_complete_staging_unpublished_or_unpromoted(tmp_path, published):
+    """A read must expose interrupted publication, not publish or promote the staged products."""
+    info, store = view(tmp_path)
+    doc = publish(store, info, rel="pending.pdf")
+    staged = staging_dir(info.root / "parsed", "pending.pdf", "sha")
+    staged.mkdir(parents=True)
+    (staged / "middle_json.json").write_text(json.dumps({"pages": [{"page_idx": 0, "blocks": [
+        {"type": "text", "content": [{"type": "text", "content": "新解析正文"}]}
+    ]}]}), encoding="utf-8")
+    (staged / "full.md").write_text("新解析正文", encoding="utf-8")
+    markdown, pages, _ = load_output(staged)
+    write_cache(staged, rel="pending.pdf", source_sha="sha",
+                version=content_version_of(pages, markdown), profile="mineru", pages=1)
+    if published:
+        stat = (info.source_dir / "pending.pdf").stat()
+        doc = store.put(Document(title="pending.pdf", origin=str((info.source_dir / "pending.pdf").resolve()),
+                                 kind="text", parser="mineru",
+                                 pages=pages, markdown=markdown),
+                        source_file=("pending.pdf", stat.st_size, stat.st_mtime_ns, "sha"))
+    before = {path: (path.read_bytes(), path.stat().st_mtime_ns)
+              for path in info.root.rglob("*") if path.is_file()}
+    result = stage_view(store, info)
+    row = result["rows"][0]
+    assert (row["source"], row["parse"], row["search"]) == ("present", "parsed", "current")
+    assert row["parse_reason"] == ("promotion_pending" if published else "publish_pending")
+    assert result["counts"]["parse"] == {"parsed": 1}
+    assert store.get(doc["doc_id"])["version"] == doc["version"]
+    assert before == {path: (path.read_bytes(), path.stat().st_mtime_ns)
+                      for path in info.root.rglob("*") if path.is_file()}

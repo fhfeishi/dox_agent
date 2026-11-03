@@ -59,8 +59,10 @@ def test_text_import_cannot_take_over_an_indexed_document(tmp_path):
         # one (D-20261027-1); a normal user is refused before any origin can be forged.
         assert client.post("/api/ingest/text", json=forged).status_code == 403
         assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        app.state.preparation = "error"
         response = client.post("/api/ingest/text", json=forged)
         assert response.status_code == 200, response.text
+        assert client.get("/api/health").json()["preparation"] == "error"
         made = response.json()
         for method in (client.get, client.head):
             assert method(f"/api/documents/{made['doc_id']}/file").status_code == 404

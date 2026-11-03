@@ -1,6 +1,7 @@
 """P0-3 B1: every published document has a manifest entry; manual text and web pages are virtual ones."""
 import sqlite3
 import sys
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -105,11 +106,31 @@ def test_counts_exclude_virtual_sources(tmp_path, monkeypatch):
     assert [(item["rel_path"], item["status"]) for item in files] == [("a.md", "indexed")]
 
 
-def test_preview_of_virtual_source_is_404(tmp_path, monkeypatch):
+@pytest.mark.parametrize("username", ["admin", "user"])
+def test_preview_of_virtual_source_is_404(tmp_path, monkeypatch, username):
     app, store = setup(tmp_path)
     with TestClient(app) as client:
         web = confirm(client, monkeypatch, web_page("网页 正文"))
         manual = client.post("/api/ingest/text", json={"title": "笔记", "text": "手工"}).json()
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": username, "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == username
+        source = tmp_path / ".knowledge" / "fixture" / "source"
+        original_resolve = Path.resolve
+        original_stat = Path.stat
+
+        def guarded_resolve(path, *args, **kwargs):
+            if path.is_relative_to(source) and any(part.startswith(("web:", "manual:")) for part in path.parts):
+                pytest.fail("virtual preview must not resolve a source path")
+            return original_resolve(path, *args, **kwargs)
+
+        def guarded_stat(path, *args, **kwargs):
+            if path.is_relative_to(source) and any(part.startswith(("web:", "manual:")) for part in path.parts):
+                pytest.fail("virtual preview must not stat a source path")
+            return original_stat(path, *args, **kwargs)
+
+        monkeypatch.setattr(Path, "resolve", guarded_resolve)
+        monkeypatch.setattr(Path, "stat", guarded_stat)
         for doc_id in (web["doc_id"], manual["doc_id"]):
             assert client.get(f"/api/documents/{doc_id}/file").status_code == 404
             assert client.head(f"/api/documents/{doc_id}/file").status_code == 404

@@ -973,9 +973,17 @@ def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_
         client.cookies.clear()
         assert client.post("/api/auth/login", json={"username": username, "password": "123456"}).status_code == 200
         assert client.get("/api/auth/session").json()["role"] == username
+        documents = client.get("/api/documents")
+        assert documents.status_code == 200
+        assert listed["doc_id"] in {item["doc_id"] for item in documents.json()}
+        assert forged["doc_id"] not in {item["doc_id"] for item in documents.json()}
         assert client.get(f"/api/documents/{forged['doc_id']}/file").status_code == 404
         assert client.head(f"/api/documents/{forged['doc_id']}/file").status_code == 404
         preflight = client.head(f"/api/documents/{listed['doc_id']}/file")
         assert preflight.status_code == 200 and preflight.content == b""
         served = client.get(f"/api/documents/{listed['doc_id']}/file")
+        own.write_text("changed after indexing", encoding="utf-8")
+        for method in (client.get, client.head):
+            stale = method(f"/api/documents/{listed['doc_id']}/file", params={"version": listed["version"]})
+            assert stale.status_code == 409
     assert served.status_code == 200 and served.text == "own file"

@@ -46,10 +46,10 @@ def canonical_dir(parsed_root: Path, rel: str) -> Path:
     return parsed_root / rel
 
 
-def parser_profile(settings) -> str:
+def parser_profile(settings, command: str | None = None) -> str:
     """The MinerU options a parse ran with (recorded only; the cache key stays the source sha, U14)."""
     try:
-        args = shlex.split(settings.mineru_cmd)
+        args = shlex.split(command or settings.mineru_cmd)
     except ValueError:
         return "mineru"
     return " ".join(["mineru", *(arg for arg in args[1:] if "{" not in arg)])
@@ -68,10 +68,18 @@ def read_cache(directory: Path) -> dict | None:
 
 
 def write_cache(directory: Path, *, rel: str, source_sha: str, version: str | None, profile: str,
-                pages: int | None) -> dict:
-    """Write ``cache.json`` atomically; callers write it only after every product is in place."""
+                pages: int | None, attempts: list[dict] | None = None, quality: dict | None = None) -> dict:
+    """Write ``cache.json`` atomically; callers write it only after every product is in place.
+
+    ``attempts`` (one entry per parser run, failed ones included) and ``quality`` are the parse
+    record; both are optional so an adopted legacy cache needs neither.
+    """
     data = {"rel": rel, "source_sha256": source_sha, "version": version, "profile": profile,
             "pages": pages, "written_at": datetime.now(UTC).isoformat()}
+    if attempts is not None:
+        data["attempts"] = attempts
+    if quality is not None:
+        data["quality"] = quality
     temporary = directory / f".{CACHE_FILE}.{uuid4().hex}.tmp"
     temporary.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     try:
@@ -108,13 +116,73 @@ def output_page_count(directory: Path) -> int | None:
     return None
 
 
-def pdf_page_count(path: Path) -> int | None:
-    """Pages of the full page tree (pypdf walks it; ``/Count`` alone is not trusted)."""
+def _pdfium_pages(path: Path) -> int:
+    import pypdfium2
+    document = pypdfium2.PdfDocument(str(path))
     try:
-        from pypdf import PdfReader
-        return len(PdfReader(str(path)).pages)
-    except Exception:  # noqa: BLE001 - an unreadable PDF has no known page count
-        return None
+        return len(document)
+    finally:
+        document.close()
+
+
+def _pypdf_pages(path: Path) -> int:
+    from pypdf import PdfReader
+    return len(PdfReader(str(path)).pages)  # walks the full page tree; ``/Count`` alone is not trusted
+
+
+PAGE_COUNTERS = (("pdfium", _pdfium_pages), ("pypdf", _pypdf_pages))
+
+
+def pdf_page_count(path: Path) -> int | None:
+    """Pages of the PDF: PDFium first, pypdf when PDFium cannot open it; None when neither can.
+
+    On the 91 system-library PDFs (2026-11-03) both readers and pdf-inspector agreed on every file.
+    """
+    for _, counter in PAGE_COUNTERS:
+        try:
+            pages = counter(path)
+        except Exception:  # noqa: BLE001 - try the next reader
+            continue
+        if pages > 0:
+            return pages
+    return None
+
+
+EMPTY_PAGE_CHARS = 20  # a page with less text than this counts as empty for coverage
+
+
+def parse_quality(page_texts: list[str], expected: int | None) -> dict:
+    """Objective, recomputable quality facts of one parse (no score, no model judgement).
+
+    ``page_texts`` has one entry per page of the parse output, empty pages included. ``coverage``
+    is the share of the PDF's pages with text; ``unreadable_chars`` counts U+FFFD and control
+    characters, which only a broken decode produces.
+    """
+    total = expected or len(page_texts)
+    texts = [text.strip() for text in page_texts]
+    with_text = sum(len(text) >= EMPTY_PAGE_CHARS for text in texts)
+    joined = "".join(texts)
+    unreadable = sum(char == "\ufffd" or (ord(char) < 32 and char not in "\n\t") for char in joined)
+    return {"pages": total, "parsed_pages": len(page_texts), "pages_with_text": with_text,
+            "coverage": round(with_text / total, 3) if total else 0.0, "chars": len(joined),
+            "unreadable_chars": unreadable, "page_count_checked": expected is not None}
+
+
+def output_page_texts(directory: Path) -> list[str] | None:
+    """Text of every page in the MinerU middle JSON (empty pages included); None without one."""
+    from .parsers import _block_text
+    candidates = sorted(directory.glob("*.json"), key=lambda path: ("middle" not in path.name, path.name))
+    for candidate in candidates:
+        if candidate.name == CACHE_FILE:
+            continue
+        try:
+            data = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if isinstance(data, dict) and isinstance(data.get("pages"), list):
+            return ["\n".join(_block_text(block) for block in page.get("blocks", []) if isinstance(block, dict))
+                    for page in data["pages"] if isinstance(page, dict)]
+    return None
 
 
 def complete(directory: Path, rel: str, source_sha: str) -> dict | None:

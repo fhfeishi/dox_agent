@@ -10,6 +10,7 @@ import shlex
 import shutil
 import signal
 import subprocess
+import time
 import unicodedata
 from pathlib import Path, PureWindowsPath
 from urllib.parse import urlsplit
@@ -28,6 +29,8 @@ from .parse_cache import (
     drop_marker,
     load_output,
     output_page_count,
+    output_page_texts,
+    parse_quality,
     parser_profile,
     pdf_page_count,
     promote,
@@ -198,6 +201,18 @@ def mineru_failure(output: str) -> str:
     return "PDF 解析失败：" + (last[:120] or "原因未知")
 
 
+class ParseError(ValueError):
+    """A PDF parse that did not produce usable output; ``reason`` is a stable code for the record.
+
+    Codes: ``tool_missing``, ``timeout``, ``tool_crash``, ``empty_output``, ``incomplete_output``
+    (no per-page JSON), ``page_mismatch``.
+    """
+
+    def __init__(self, reason: str, message: str):
+        super().__init__(message)
+        self.reason = reason
+
+
 def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
     """K13: run mineru into ``out_dir`` and return ``(markdown, per-page text)``."""
     shutil.rmtree(out_dir, ignore_errors=True)
@@ -216,19 +231,19 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
         process = subprocess.Popen(args, env=environment, stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT, start_new_session=True)
     except OSError as exc:
-        raise ValueError("无法启动 mineru：" + str(exc)) from exc
+        raise ParseError("tool_missing", "无法启动 mineru：" + str(exc)) from exc
     try:
         output, _ = process.communicate(timeout=settings.mineru_timeout)
     except subprocess.TimeoutExpired:
         _kill_process_group(process)
-        raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
+        raise ParseError("timeout", f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
     if process.returncode != 0:
         text = (output or b"")[-4000:].decode("utf-8", "ignore")
         logger.warning("mineru failed on %s:\n%s", path.name, text)
-        raise ValueError(mineru_failure(text))
+        raise ParseError("tool_crash", mineru_failure(text))
     markdown, pages = read_mineru_output(out_dir)
     if not pages:
-        raise ValueError("mineru 输出为空，未入库")
+        raise ParseError("empty_output", "mineru 输出为空，未入库")
     return markdown, pages
 
 
@@ -485,25 +500,98 @@ def _parse_pdf_cached(path: Path, rel: str, digest: str, settings: Settings, par
         return _pdf_document(path, markdown, pages), blocks, None
     elif first and canonical.is_dir() and not (canonical / CACHE_FILE).exists():
         if (count := _legacy_pages(path, canonical)) is not None:  # decision ① (U1)
-            write_cache(canonical, rel=rel, source_sha=digest, version=None, profile=LEGACY, pages=count)
+            write_cache(canonical, rel=rel, source_sha=digest, version=None, profile=LEGACY, pages=count,
+                        quality=parse_quality(output_page_texts(canonical) or [], count))
             markdown, pages, blocks = load_output(canonical)
             return _pdf_document(path, markdown, pages), blocks, None
-    # parse_pdf_pages empties the staging directory first; the canonical cache is never touched here.
-    markdown, pages = parse_pdf_pages(path, settings, staging)
-    if not any(page.text.strip() for page in pages):
-        raise ValueError("解析结果为空，未入库")
-    # Page guard: the parse must cover the PDF's whole page tree; a count that cannot be read on
-    # either side does not pass (no completion marker is written for an unchecked parse).
-    expected, got = pdf_page_count(path), output_page_count(staging)
-    if expected is None or got is None:
-        raise ValueError("无法核对解析页数（原件页数或解析结果页数读不出），未入库")
-    if got != expected:
-        raise ValueError(f"解析页数与原件不符（{got}/{expected} 页），未入库")
+    # Parsing writes only to staging (and a sibling for the retry); the canonical cache is never touched here.
+    expected = pdf_page_count(path)
+    markdown, pages, got, attempts, quality = _parse_with_retry(path, settings, staging, expected)
     blocks = read_mineru_blocks(staging)
     # The completion marker goes last: a staging directory with cache.json holds a whole parse.
     write_cache(staging, rel=rel, source_sha=digest, version=content_version_of(pages, markdown),
-                profile=parser_profile(settings), pages=got)
+                profile=parser_profile(settings, attempts[-1]["command"]), pages=got,
+                attempts=[{key: value for key, value in attempt.items() if key != "command"} for attempt in attempts],
+                quality=quality)
     return _pdf_document(path, markdown, pages), blocks, staging
+
+
+TIER = re.compile(r"(--tier\s+)(\S+)")
+LOW_COVERAGE = 0.8  # below this share of pages with text, a retry is worth its cost
+NO_RETRY = {"tool_missing", "timeout"}  # a slower tier would not help (timeout) or cannot run
+
+
+def _tier(command: str) -> str:
+    match = TIER.search(command)
+    return match.group(2) if match else ""
+
+
+def _parse_commands(settings: Settings) -> list[str]:
+    """The MinerU command, then the same command at the fallback tier when that differs."""
+    commands = [settings.mineru_cmd]
+    fallback = settings.mineru_fallback_tier.strip()
+    if fallback and fallback != "flash" and _tier(settings.mineru_cmd) and _tier(settings.mineru_cmd) != fallback:
+        commands.append(TIER.sub(lambda match: match.group(1) + fallback, settings.mineru_cmd, count=1))
+    return commands
+
+
+def _one_attempt(path: Path, settings: Settings, command: str, out_dir: Path, expected: int | None):
+    """``(record, (markdown, pages, got, quality) or None)``; usable output may still have low coverage."""
+    record = {"tool": "mineru", "tier": _tier(command), "command": command}
+    start = time.monotonic()
+    try:
+        markdown, pages = parse_pdf_pages(path, settings.model_copy(update={"mineru_cmd": command}), out_dir)
+        texts = output_page_texts(out_dir)
+        if texts is None:
+            raise ParseError("incomplete_output", "解析结果缺少逐页数据，未入库")
+        got = len(texts)
+        if expected is not None and got != expected:
+            raise ParseError("page_mismatch", f"解析页数与原件不符（{got}/{expected} 页），未入库")
+        if not any(page.text.strip() for page in pages):
+            raise ParseError("empty_output", "解析结果为空，未入库")
+    except ParseError as exc:
+        record.update(ok=False, reason=exc.reason, message=str(exc)[:200],
+                      seconds=round(time.monotonic() - start, 1))
+        return record, None
+    quality = parse_quality(texts, expected)
+    record.update(ok=True, reason="low_coverage" if quality["coverage"] < LOW_COVERAGE else "",
+                  coverage=quality["coverage"], seconds=round(time.monotonic() - start, 1))
+    return record, (markdown, pages, got, quality)
+
+
+def _parse_with_retry(path: Path, settings: Settings, staging: Path, expected: int | None):
+    """Parse into ``staging``; when the first tier fails or covers too few pages, retry at the fallback
+    tier into a sibling directory and keep the better result. Raises ``ParseError`` naming every attempt.
+
+    A PDF whose page count no reader can tell is still parsed; its quality says ``page_count_checked:
+    false`` instead of the parse being refused.
+    """
+    attempts: list[dict] = []
+    best: tuple[Path, tuple] | None = None
+    retry_dir = staging.with_name(staging.name + "-retry")
+    for index, command in enumerate(_parse_commands(settings)):
+        out_dir = staging if index == 0 else retry_dir
+        record, result = _one_attempt(path, settings, command, out_dir, expected)
+        attempts.append(record)
+        if result is not None and (best is None or result[3]["coverage"] > best[1][3]["coverage"]):
+            best = (out_dir, result)
+        if record["ok"] and not record["reason"]:
+            break
+        if record.get("reason") in NO_RETRY:
+            break
+    try:
+        if best is None:
+            shutil.rmtree(staging, ignore_errors=True)  # no usable output: nothing to reuse
+            summary = "；".join(f"{attempt['tier'] or 'mineru'}：{attempt['message']}" for attempt in attempts)
+            reason = attempts[-1]["reason"]
+            raise ParseError(reason, summary if len(attempts) > 1 else attempts[0]["message"])
+        out_dir, (markdown, pages, got, quality) = best
+        if out_dir != staging:
+            shutil.rmtree(staging, ignore_errors=True)
+            os.replace(out_dir, staging)
+        return markdown, pages, got, attempts, quality
+    finally:
+        shutil.rmtree(retry_dir, ignore_errors=True)
 
 
 def _record_failure(knowledge, path: Path, rel: str, prev: dict | None, digest: str, after: str,
@@ -511,7 +599,7 @@ def _record_failure(knowledge, path: Path, rel: str, prev: dict | None, digest: 
     """P1/P2 failure. Decision ②: when the source equals the indexed one before and after the attempt,
     the document stays current and only the error is noted; otherwise the entry becomes ``error``."""
     # Our own ValueErrors are written for the reader; anything else names its type.
-    reason = str(exc) if type(exc) is ValueError else f"{type(exc).__name__}: {exc}"
+    reason = str(exc) if type(exc) in (ValueError, ParseError) else f"{type(exc).__name__}: {exc}"
     try:
         stat = path.stat()
         if prev and prev["status"] == "indexed" and digest and digest == prev["sha256"]:
@@ -565,7 +653,8 @@ def reconcile_cache(knowledge, path: Path, rel: str, prev: dict, parsed_root: Pa
         return "skipped"
     if canonical.is_dir() and not (canonical / CACHE_FILE).exists():
         if (count := _legacy_pages(path, canonical)) is not None:
-            write_cache(canonical, rel=rel, source_sha=source_sha, version=None, profile=LEGACY, pages=count)
+            write_cache(canonical, rel=rel, source_sha=source_sha, version=None, profile=LEGACY, pages=count,
+                        quality=parse_quality(output_page_texts(canonical) or [], count))
             return "skipped"
     logger.info("parse cache %s for %s", cache_state(parsed_root, rel, source_sha, version), rel)
     return "skipped"

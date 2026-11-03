@@ -41,6 +41,8 @@ def write_pdf(path: Path, pages: int = 2, tag: str = "v1") -> None:
 FAKE = """
 import json, pathlib, sys
 cfg = json.loads(pathlib.Path({cfg!r}).read_text())
+if "--tier" in sys.argv:
+    cfg = {{**cfg, **cfg.get(sys.argv[sys.argv.index("--tier") + 1], {{}})}}
 calls = pathlib.Path({calls!r})
 calls.write_text(str(int(calls.read_text() or 0) + 1))
 if cfg.get("mutate"):
@@ -52,7 +54,7 @@ out = pathlib.Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 label = cfg["label"]
 (out / "full.md").write_text("# " + label, encoding="utf-8")
 text = "" if cfg.get("empty") else label
-pages = [{{"page_idx": i, "blocks": [{{"type": "text", "content": [{{"type": "text", "content": text + " p" + str(i + 1)}}]}}]}}
+pages = [{{"page_idx": i, "blocks": [{{"type": "text", "content": [{{"type": "text", "content": (text + " page text long enough to count, p" + str(i + 1)) if i >= cfg.get("blank", 0) else ""}}]}}]}}
          for i in range(cfg["pages"])] if not cfg.get("empty") else [{{"page_idx": i, "blocks": []}} for i in range(cfg["pages"])]
 if cfg.get("no_middle"):
     (out / "x_content_list.json").write_text(json.dumps([{{"type": "text", "text": label, "page_idx": 0}}]))
@@ -523,17 +525,139 @@ def test_staging_without_version_or_required_products_is_incomplete(lib, damage)
     lib.assert_settled("A")
 
 
-@pytest.mark.parametrize("problem", ["no-middle", "unreadable-pdf"])
-def test_unchecked_page_count_is_not_published(lib, problem):
-    """F2: a page count that cannot be read on either side does not pass the guard."""
-    if problem == "unreadable-pdf":
-        lib.pdf.write_bytes(b"not a pdf")
-        lib.mineru(label="B")
-    else:
-        write_pdf(lib.pdf, tag="v2")
-        lib.mineru(label="B", no_middle=True)
+def test_output_without_page_json_is_not_published(lib):
+    """F2: a parse without per-page JSON cannot be checked page by page and is not published."""
+    write_pdf(lib.pdf, tag="v2")
+    lib.mineru(label="B", no_middle=True)
     report = lib.run()
     assert report["errors"] and lib.entry["status"] == "error"
-    assert "无法核对解析页数" in lib.entry["last_error"]
+    assert "缺少逐页数据" in lib.entry["last_error"]
     assert all(read_cache(path) is None for path in (lib.parsed / STAGING).glob("*"))
     assert lib.body() == "# A"
+
+
+def test_unreadable_page_count_is_published_with_flag(lib):
+    """PDF 解析鲁棒性: when no reader can count the PDF's pages the parse is still published, and its
+    quality record says the page count was not checked (it used to be refused)."""
+    lib.pdf.write_bytes(b"not a pdf")
+    lib.mineru(label="B")
+    report = lib.run()
+    assert not report["errors"]
+    lib.assert_settled("B")
+    quality = lib.canonical()["quality"]
+    assert quality["page_count_checked"] is False and quality["coverage"] == 1.0
+
+
+# --- PDF 解析鲁棒性 (2026-11-03): tier retry and the parse record --------------------------------
+
+def tiered(lib, fallback="standard"):
+    lib.settings = Settings(_env_file=None, mineru_cmd=lib.settings.mineru_cmd + " --tier basic",
+                            mineru_fallback_tier=fallback)
+
+
+def test_crash_at_first_tier_retries_at_fallback(lib):
+    tiered(lib)
+    write_pdf(lib.pdf, tag="v2")
+    lib.mineru(label="B", basic={"fail": True}, standard={"label": "S"})
+    assert not lib.run()["errors"]
+    lib.assert_settled("S")
+    assert lib.calls == 3  # fixture 1 + basic + standard
+    attempts = lib.canonical()["attempts"]
+    assert [(a["tier"], a["ok"], a["reason"]) for a in attempts] == [("basic", False, "tool_crash"),
+                                                                     ("standard", True, "")]
+    assert "--tier standard" in lib.canonical()["profile"]
+
+
+def test_low_coverage_retries_and_keeps_the_better_parse(lib):
+    tiered(lib)
+    write_pdf(lib.pdf, pages=5, tag="v2")
+    lib.mineru(label="B", pages=5, basic={"blank": 3}, standard={"label": "S", "blank": 1})
+    assert not lib.run()["errors"]
+    lib.assert_settled("S")
+    cache = lib.canonical()
+    assert [a["reason"] for a in cache["attempts"]] == ["low_coverage", ""]
+    assert cache["quality"]["coverage"] == 0.8 and cache["quality"]["pages_with_text"] == 4
+
+
+def test_low_coverage_keeps_first_parse_when_retry_is_worse(lib):
+    tiered(lib)
+    write_pdf(lib.pdf, pages=5, tag="v2")
+    lib.mineru(label="B", pages=5, basic={"blank": 2}, standard={"fail": True})
+    assert not lib.run()["errors"]
+    lib.assert_settled("B")
+    cache = lib.canonical()
+    assert [(a["tier"], a["reason"]) for a in cache["attempts"]] == [("basic", "low_coverage"),
+                                                                     ("standard", "tool_crash")]
+    assert cache["quality"]["coverage"] == 0.6
+    assert lib.leftovers() == []
+
+
+def test_every_tier_failing_names_each_attempt(lib):
+    tiered(lib)
+    write_pdf(lib.pdf, tag="v2")
+    lib.mineru(label="B", basic={"pages": 1}, standard={"fail": True})
+    report = lib.run()
+    assert report["errors"] and lib.entry["status"] == "error"
+    assert "basic：解析页数与原件不符（1/2 页）" in lib.entry["last_error"]
+    assert "standard：PDF 解析失败" in lib.entry["last_error"]
+    assert lib.body() == "# A" and lib.leftovers() == []
+
+
+@pytest.mark.parametrize("fallback", ["", "flash", "basic"])
+def test_no_retry_when_fallback_is_off_flash_or_the_same_tier(lib, fallback):
+    tiered(lib, fallback)
+    write_pdf(lib.pdf, tag="v2")
+    lib.mineru(label="B", basic={"fail": True}, flash={"label": "F"}, standard={"label": "S"})
+    assert lib.run()["errors"]
+    assert lib.calls == 2
+
+
+def test_timeout_is_not_retried_at_a_slower_tier(lib, monkeypatch):
+    import src.parsers as parsers
+    tiered(lib)
+    seen = []
+
+    def timing_out(path, settings, out_dir):
+        seen.append(settings.mineru_cmd)
+        raise parsers.ParseError("timeout", "mineru 解析超时")
+    monkeypatch.setattr(parsers, "parse_pdf_pages", timing_out)
+    write_pdf(lib.pdf, tag="v2")
+    assert lib.run()["errors"]
+    assert len(seen) == 1 and "--tier basic" in seen[0]
+    assert lib.entry["last_error"] == "mineru 解析超时"
+
+
+def test_legacy_adoption_records_quality(tmp_path):
+    lib = Lib(tmp_path)
+    legacy = lib.parsed / REL
+    legacy.mkdir(parents=True)
+    (legacy / "full.md").write_text("# L", encoding="utf-8")
+    (legacy / "middle_json.json").write_text(json.dumps({"pages": [
+        {"page_idx": 0, "blocks": [{"type": "text", "content": "legacy page one text"}]},
+        {"page_idx": 1, "blocks": []}]}), encoding="utf-8")
+    assert lib.run()["added"] == 1 and lib.calls == 0
+    cache = lib.canonical()
+    assert cache["profile"] == LEGACY
+    assert cache["quality"]["pages"] == 2 and cache["quality"]["pages_with_text"] == 1
+
+
+def test_page_count_falls_back_to_pypdf(tmp_path, monkeypatch):
+    import src.parse_cache as parse_cache
+
+    def broken(path):
+        raise RuntimeError("pdfium cannot open")
+    monkeypatch.setattr(parse_cache, "PAGE_COUNTERS", (("pdfium", broken), ("pypdf", parse_cache._pypdf_pages)))
+    pdf = tmp_path / "x.pdf"
+    write_pdf(pdf, pages=3)
+    assert parse_cache.pdf_page_count(pdf) == 3
+    pdf.write_bytes(b"not a pdf")
+    assert parse_cache.pdf_page_count(pdf) is None
+
+
+def test_parse_quality_counts_unreadable_characters():
+    from src.parse_cache import parse_quality
+    quality = parse_quality(["正常文字" * 10, "", "坏\ufffd字\x01" * 4], expected=4)
+    assert quality["pages"] == 4 and quality["parsed_pages"] == 3
+    assert quality["pages_with_text"] == 1 and quality["coverage"] == 0.25
+    assert quality["unreadable_chars"] == 8
+

@@ -18,7 +18,7 @@ import httpx
 
 from .agent.config import Settings
 from .agent.corpora import SOURCE_SUFFIXES
-from .knowledge import Document, Page
+from .knowledge import Document, Page, is_virtual_rel
 from .retrieval import RawBlock
 
 logger = logging.getLogger(__name__)
@@ -356,11 +356,14 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
     if not base.is_dir():
         raise FileNotFoundError(f"资料目录不可读取：{base}")
     current: dict[str, Path] = {}
-    for path in collect_sources(root):
+    refused: list[Path] = []
+    for path in collect_sources(root, refused=refused):
         current[path.resolve().relative_to(base).as_posix()] = path
 
     added = updated = skipped = 0
-    imported, errors = [], []
+    imported = []
+    # P0-3 B1: ``:`` is reserved for virtual rels (manual:/web:); such a file is reported, not indexed.
+    errors = [{"source": path.name, "error": "UnsafeName"} for path in refused]
     for rel, path in current.items():
         prev = manifest.get(rel)
         outcome = import_one(knowledge, settings, path, rel, prev, force=force, parsed_root=parsed_root)
@@ -375,7 +378,8 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
 
     deleted = 0
     for rel in list(manifest):
-        if rel in current or manifest[rel]["status"] == "removed":
+        # Virtual rels (manual text, web pages) have no file on disk by design.
+        if rel in current or manifest[rel]["status"] == "removed" or is_virtual_rel(rel):
             continue
         knowledge.drop_file(rel)
         deleted += 1
@@ -426,8 +430,11 @@ def import_one(knowledge, settings: Settings, path: Path, rel: str, prev: dict |
         return exc
 
 
-def collect_sources(root: Path) -> list[Path]:
-    """Recursively collect regular source files without following links or hiding scan errors."""
+def collect_sources(root: Path, *, refused: list[Path] | None = None) -> list[Path]:
+    """Recursively collect regular source files without following links or hiding scan errors.
+
+    A file name with ``:`` could collide with a virtual manifest rel (``manual:<id>``); it is left
+    out and, when ``refused`` is given, appended there for the caller to report."""
     base = Path(root)
     if not base.is_dir():
         raise FileNotFoundError(f"资料目录不可读取：{base}")
@@ -442,6 +449,10 @@ def collect_sources(root: Path) -> list[Path]:
         for name in sorted(files):
             path = parent / name
             if not path.is_symlink() and path.suffix.lower() in SOURCE_SUFFIXES and path.is_file():
+                if ":" in name:
+                    if refused is not None:
+                        refused.append(path)
+                    continue
                 paths.append(path)
     return paths
 

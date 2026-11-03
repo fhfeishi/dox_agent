@@ -51,6 +51,30 @@ def lines_for(text: str) -> list[str]:
     ]
 
 
+# P0-3 B1: every published document has a manifest row. Non-file sources are named by these exact
+# origin prefixes only (never "contains a colon": ``C:\\a.pdf`` is a local path) and get a virtual rel.
+VIRTUAL_ORIGINS = (("manual:", "manual:"), ("http://", "web:"), ("https://", "web:"))
+VIRTUAL_RELS = ("manual:", "web:")
+
+
+def is_virtual_rel(rel: str) -> bool:
+    """A manifest rel for a non-file source; real rels never hold ``:`` (``collect_sources``)."""
+    return rel.startswith(VIRTUAL_RELS)
+
+
+def virtual_rel(origin: str, doc_id: str) -> str | None:
+    return next((rel + doc_id for prefix, rel in VIRTUAL_ORIGINS if origin.startswith(prefix)), None)
+
+
+def _body(pages: list[dict], markdown: str) -> bytes:
+    return json.dumps({"pages": pages, "markdown": markdown}, ensure_ascii=False).encode()
+
+
+def content_version(doc: Document) -> str:
+    """L1: the published identity of one parse: page text and markdown, not the source bytes."""
+    return hashlib.sha256(_body([p.model_dump() for p in doc.pages], doc.markdown)).hexdigest()[:20]
+
+
 class Knowledge:
     def __init__(self, path: Path, *, settings=None, vectordb_dir: Path | None = None,
                  source_root: Path | None = None):
@@ -156,13 +180,15 @@ class Knowledge:
         # KB-5/T1: callers may pass a stable id (manifest) so a rename/reimport updates in place
         # instead of inserting a second row under the new origin.
         doc_id = doc_id or hashlib.sha256(doc.origin.encode()).hexdigest()[:20]
-        # L1: version covers both the page text and the markdown body.
-        version = hashlib.sha256(
-            json.dumps(
-                {"pages": [p.model_dump() for p in doc.pages], "markdown": doc.markdown},
-                ensure_ascii=False,
-            ).encode()
-        ).hexdigest()[:20]
+        if source_file is None:
+            # P0-3 B1: a local file is only published through its manifest entry; there is no
+            # third, unlisted way in. Manual text and web pages get a virtual entry instead.
+            rel = virtual_rel(doc.origin, doc_id)
+            if rel is None:
+                raise ValueError("本地文件须经清单入库")
+            body = _body([p.model_dump() for p in doc.pages], doc.markdown)
+            source_file = (rel, len(body), 0, hashlib.sha256(body).hexdigest())
+        version = content_version(doc)
         metadata = doc.model_dump(exclude={"pages", "markdown"})
         from .retrieval import RawBlock, chunk_blocks
         chunks = chunk_blocks(doc_id, version, doc.title, blocks if blocks is not None else
@@ -179,13 +205,12 @@ class Knowledge:
             db.executemany("INSERT OR REPLACE INTO chunks VALUES (?,?,?,?,?,?,?)",
                            [(chunk.chunk_id, chunk.doc_id, chunk.version, chunk.title,
                              chunk.heading, chunk.page, chunk.text) for chunk in chunks])
-            if source_file is not None:
-                rel, size, mtime_ns, digest = source_file
-                db.execute("""INSERT OR REPLACE INTO files
-                           (rel_path,size,mtime_ns,sha256,doc_id,status,updated_at,observed_sha256,last_error)
-                           VALUES (?,?,?,?,?,?,?,?,?)""",
-                           (rel, size, mtime_ns, digest, doc_id, "indexed",
-                            datetime.now(UTC).isoformat(), digest, ""))
+            rel, size, mtime_ns, digest = source_file
+            db.execute("""INSERT OR REPLACE INTO files
+                       (rel_path,size,mtime_ns,sha256,doc_id,status,updated_at,observed_sha256,last_error)
+                       VALUES (?,?,?,?,?,?,?,?,?)""",
+                       (rel, size, mtime_ns, digest, doc_id, "indexed",
+                        datetime.now(UTC).isoformat(), digest, ""))
         # The body, chunks and successful manifest pointer become visible together.
         self._chunks = None
         return {
@@ -222,9 +247,10 @@ class Knowledge:
             if frozen_ids is not None and doc["doc_id"] not in frozen_ids:
                 continue
             item = by_id.get(doc["doc_id"])
-            if item and item["status"] != "indexed":
+            # P0-3 B1 / U16: a document without a manifest entry is history, never current.
+            if not item or item["status"] != "indexed":
                 continue
-            if item and self.source_root is not None:
+            if self.source_root is not None and not is_virtual_rel(item["rel_path"]):
                 path = self.source_root / item["rel_path"]
                 try:
                     stat = path.stat()
@@ -235,7 +261,7 @@ class Knowledge:
                             continue
                 except OSError:
                     continue
-            result.append({**doc, "source_sha256": item["sha256"] if item else ""})
+            result.append({**doc, "source_sha256": item["sha256"]})
         return result
 
     def assert_current_sources(self, sources: list[dict]) -> None:
@@ -520,3 +546,32 @@ class KnowledgeGroup:
 
     def source_sha256(self, doc_id: str, corpus_id: str = "") -> str:
         return next((knowledge.source_sha256(doc_id) for cid, knowledge in self.members if cid == corpus_id), "")
+
+
+def backfill_virtual_manifest(knowledge: Knowledge, apply: bool = False) -> dict:
+    """P0-3 B1: list (dry run) or write the virtual manifest rows that pre-B1 documents lack.
+
+    Manual text and web pages get the same row ``put`` now writes, so a rerun changes nothing.
+    A local-path document without a manifest row is not repaired: it stays out of ``current()``
+    and is reported for the owner. The same function serves the dry run and the migration.
+    """
+    with knowledge.connect() as db:
+        listed = {row[0] for row in db.execute("SELECT doc_id FROM files WHERE doc_id IS NOT NULL")}
+        rows = db.execute("SELECT id, payload FROM docs ORDER BY id").fetchall()
+    virtual, orphans = [], []
+    for doc_id, payload in rows:
+        if doc_id in listed:
+            continue
+        origin = json.loads(payload).get("origin", "")
+        rel = virtual_rel(origin, doc_id)
+        if rel is None:
+            orphans.append({"doc_id": doc_id, "origin": origin})
+            continue
+        virtual.append({"doc_id": doc_id, "rel_path": rel, "origin": origin})
+        if apply:
+            pages = [{"number": page["number"], "text": page["text"]} for page in knowledge._pages(doc_id)]
+            with knowledge.connect() as db:
+                row = db.execute("SELECT markdown FROM doc_markdown WHERE doc_id=?", (doc_id,)).fetchone()
+            body = _body(pages, row[0] if row else "")
+            knowledge.record_file(rel, len(body), 0, hashlib.sha256(body).hexdigest(), doc_id, "indexed")
+    return {"applied": apply, "docs": len(rows), "virtual": virtual, "local_orphans": orphans}

@@ -15,6 +15,7 @@ from ..custom_tasks import (
     RESERVED_KEYS,
     TaskParameter,
 )
+from ..knowledge import is_virtual_rel
 from ..web_search import normalize_domain
 
 logger = logging.getLogger(__name__)
@@ -424,7 +425,8 @@ def duplicate_sources(manifest: dict[str, dict]) -> dict[str, str]:
     copies: dict[str, str] = {}
     for rel, entry in sorted(manifest.items(), key=lambda item: (item[1].get("updated_at") or "", item[0])):
         digest = entry.get("sha256") or ""
-        if not digest:
+        # Virtual entries (manual text, web pages) hash their body, not a file; they are no file's copy.
+        if not digest or is_virtual_rel(rel):
             continue
         if digest in first:
             copies[rel] = first[digest]

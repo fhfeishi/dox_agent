@@ -26,6 +26,7 @@ from ..agent.corpora import (
 )
 from ..auth import ADMIN_ONLY
 from ..jobs import JobBusy
+from ..knowledge import is_virtual_rel
 from ..parsers import collect_sources, import_defaults, unsafe_name
 from ..targets import (
     TargetMissing,
@@ -73,12 +74,17 @@ def install(app, ctx):
         current_ids = {doc["doc_id"] for doc in knowledge_for(info).current()} if info.sqlite is not None else set()
         failed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "error")
         on_disk_indexed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("doc_id") in current_ids)
-        removed = sum(1 for rel in manifest if rel not in on_disk)
+        # P0-3 B1: manual text and web pages have no file in source/; they are neither removed nor
+        # pending, and are counted on their own (current entries only), so indexed may exceed source.
+        removed = sum(1 for rel in manifest if rel not in on_disk and not is_virtual_rel(rel))
+        virtual = sum(1 for rel, entry in manifest.items()
+                      if is_virtual_rel(rel) and entry["doc_id"] in current_ids)
         return {
             "source_count": len(on_disk),
             "indexed_count": len(current_ids),
             "pending_count": len(on_disk) - on_disk_indexed - failed + removed,
             "failed_count": failed,
+            "virtual_count": virtual,
         }
 
     def corpus_payload(info: CorpusInfo) -> dict:
@@ -524,7 +530,7 @@ def install(app, ctx):
                               "源文件已变化，请刷新" if status == "pending" else "",
                               "duplicate_of": copies.get(rel, "")})
             for rel, entry in sorted(manifest.items()):
-                if rel not in on_disk:
+                if rel not in on_disk and not is_virtual_rel(rel):
                     items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
             misplaced = sorted(path.name for path in info.root.iterdir()
                                if path.is_file() and not path.is_symlink()
@@ -673,6 +679,9 @@ def install(app, ctx):
         # source directory. The stored origin is never a path to open: it may name another account's file.
         manifest = await asyncio.to_thread(kn.files)
         rel = next((item["rel_path"] for item in manifest.values() if item["doc_id"] == doc_id), None)
+        # P0-3 B1: manual text and web pages have no original file; decide before building any path.
+        if rel is not None and is_virtual_rel(rel):
+            raise HTTPException(404, "该文档不是本资料库内的本地文件，或原文已被移动")
         root = kn.source_root.resolve() if kn.source_root is not None else None
         path = (root / rel).resolve() if root is not None and rel is not None else None
         if path is None or not path.is_relative_to(root) or not path.is_file():

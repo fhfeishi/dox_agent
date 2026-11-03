@@ -47,9 +47,24 @@ def test_text_import_cannot_take_over_an_indexed_document(tmp_path):
     original = store.put(Document(title="report", origin=str(source.resolve()), kind="text", parser="markdown",
                                   pages=[Page(number=1, text="genuine facts")]),
                          source_file=("report.md", stat.st_size, stat.st_mtime_ns, "sha"))
+    manifest = store.files()["report.md"]
+    hits = store.search("genuine")
+    assert hits and {hit["doc_id"] for hit in hits} == {original["doc_id"]}
     with TestClient(app) as client:
-        made = client.post("/api/ingest/text", json={"title": "x", "origin": str(source.resolve()),
-                                                     "text": "forged facts"}).json()
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": "user", "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == "user"
+        response = client.post("/api/ingest/text", json={"title": "x", "origin": str(source.resolve()),
+                                                       "text": "forged facts"})
+        assert response.status_code == 200, response.text
+        made = response.json()
+        for method in (client.get, client.head):
+            assert method(f"/api/documents/{made['doc_id']}/file").status_code == 404
     assert made["doc_id"] != original["doc_id"]
+    assert store.read_markdown(made["doc_id"]) == "forged facts"
     assert store.read_markdown(original["doc_id"]) == "genuine facts"
+    assert store.get(original["doc_id"])["version"] == original["version"]
+    assert store.files()["report.md"] == manifest
+    assert {doc["doc_id"] for doc in store.current()} == {original["doc_id"], made["doc_id"]}
+    assert store.search("genuine", allowed_doc_ids=[original["doc_id"]]) == hits
     assert store.get(made["doc_id"])["origin"].startswith("manual:")

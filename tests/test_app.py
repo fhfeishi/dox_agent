@@ -438,7 +438,8 @@ def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_p
     assert stale.status_code == 404
 
 
-def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):
+@pytest.mark.parametrize("method", ["get", "head"])
+def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path, method):
     app, store = setup(tmp_path)
     source = tmp_path / ".knowledge" / "fixture" / "source" / "report.pdf"
     source.write_bytes(b"%PDF-1.4\n%%EOF")
@@ -449,11 +450,17 @@ def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_sour
     doc_id, version = doc["doc_id"], doc["version"]
 
     with TestClient(app) as client:
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": "user", "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == "user"
+        request = getattr(client, method)
         url = f"/api/documents/{doc_id}/file"
-        assert client.head(url, params={"version": version}).status_code == 200
-        assert client.head(url, params={"version": "old-version"}).status_code == 422
+        assert request(url, params={"version": version}).status_code == 200
+        assert request(url, params={"version": "old-version"}).status_code == 422
+        source.write_bytes(b"%PDF-1.4\nchanged after indexing\n%%EOF")
+        assert request(url, params={"version": version}).status_code == 409
         source.unlink()
-        missing = client.head(url, params={"version": version})
+        missing = request(url, params={"version": version})
 
     assert missing.status_code == 404
 
@@ -945,7 +952,8 @@ def test_each_intelligence_purpose_has_its_own_template(tmp_path):
     assert all(item["focus"] for item in purposes)
 
 
-def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_path):
+@pytest.mark.parametrize("username", ["admin", "user"])
+def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_path, username):
     # P0-3 / security High#1: the origin of a document without a manifest entry named another
     # account's upload and passed the root-only check; preview now resolves the corpus manifest.
     app, store = setup(tmp_path)
@@ -957,10 +965,17 @@ def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_
     own = tmp_path / ".knowledge" / "fixture" / "source" / "own.md"
     own.write_text("own file", encoding="utf-8")
     stat = own.stat()
-    listed = store.put(Document(title="own", origin=str(own), kind="text", parser="markdown",
+    listed = store.put(Document(title="own", origin=str(other), kind="text", parser="markdown",
                                 pages=[Page(number=1, text="own file")]),
+                       doc_id="listed-own-file",
                        source_file=("own.md", stat.st_size, stat.st_mtime_ns, "sha"))
     with TestClient(app) as client:
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": username, "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == username
         assert client.get(f"/api/documents/{forged['doc_id']}/file").status_code == 404
+        assert client.head(f"/api/documents/{forged['doc_id']}/file").status_code == 404
+        preflight = client.head(f"/api/documents/{listed['doc_id']}/file")
+        assert preflight.status_code == 200 and preflight.content == b""
         served = client.get(f"/api/documents/{listed['doc_id']}/file")
     assert served.status_code == 200 and served.text == "own file"

@@ -96,6 +96,8 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
         assert docs.status_code == 200 and [d["doc_id"] for d in docs.json()] == [body["doc_id"]]
         preview = client.get(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine})
         assert preview.status_code == 200 and "联邦学习" in preview.text
+        preflight = client.head(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine})
+        assert preflight.status_code == 200 and preflight.content == b""
         # Same name again is refused, not replaced; unsupported kinds are refused before saving.
         assert client.post(url, files={"upload": ("调研笔记.md", b"x", "text/markdown")}).status_code == 409
         assert client.post(url, files={"upload": ("a.exe", b"x", "application/octet-stream")}).status_code == 415
@@ -118,6 +120,7 @@ def test_uploads_belong_to_their_personal_library_and_its_owner(tmp_path):
             login(client, other)
             assert client.get("/api/documents", params={"corpus": mine}).status_code == 404
             assert client.get(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine}).status_code == 404
+            assert client.head(f"/api/documents/{body['doc_id']}/file", params={"corpus": mine}).status_code == 404
             assert client.post(url, files={"upload": ("b.md", b"# b", "text/markdown")}).status_code == 404
             other_library = client.post("/api/personal-libraries", json={"name": "x"}).json()
             assert client.patch(f"/api/personal-libraries/{other_library['id']}", json={

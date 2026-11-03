@@ -137,7 +137,10 @@ BM25 在既有报告预算内选择互补主题资料，复用分词结果，补
 | CORPORA_ROOT | 项目下 .knowledge；知识库根目录 |
 | STATE_DIR | CORPORA_ROOT 下 .state；应用状态 |
 | EMBEDDING_PATH / EMBEDDING_DEVICE | 空 / cpu；空时不加载本地 embedding |
-| MINERU_CMD / MINERU_HOME | PDF 解析命令与缓存；支持 {pdf}、{out}，默认输出 ZIP |
+| MINERU_CMD / MINERU_HOME | PDF 解析命令与模型缓存目录；`MINERU_CMD` 支持 `{pdf}`、`{out}`，默认输出 ZIP。默认档位 `basic`；`standard` 只在有 GPU 时用，`flash` 是否联网未验证、不用 |
+| MINERU_FALLBACK_TIER / MINERU_TIMEOUT | 空 / 1200；首次解析失败（崩溃、输出为空、页数不符、有文字页不足 80%）时用该档重试一次，默认关闭；超时按秒计 |
+
+模型准备检查（只读，不下载）：`./scripts/models_prepare.sh --check`。它核对三件事：`.models/mineru` 有内容、`MINERU_HOME` 指向项目内且其 `config.yaml` 的 `base_dir` 在本机真实存在、`~/.mineru` 不会覆盖项目配置。**项目里有模型不等于运行时在用**：`base_dir` 从另一台机器复制过来（例如 Windows 的 `C:/...`）时，MinerU 会去找不存在的路径。
 | WEB_PROVIDER | crawl4ai；也支持 firecrawl |
 | RUN_TIMEOUT | 180；对话运行时限 |
 | REVIEW_MODEL_* | 审查模型覆盖配置；未设置时复用 MODEL_*；可写在 .env，也可 export（export 优先） |

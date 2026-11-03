@@ -56,7 +56,7 @@
 
 1. **建库**：`POST /api/corpora`（建齐 `source/`、`datadb/`、`vectordb/` 并登记）。也可直接在根下建目录，下次扫描按 `generated` 发现。
 2. **放资料**：把 `.pdf/.md/.markdown/.txt/.docx` 放进 `source/`，可自由分子目录；**符号链接会被跳过**。
-3. **解析（仅 PDF）**：缓存放到 `parsed/<source 相对路径>/` 即可复用，否则触发 MinerU；无 GPU 用 `--tier flash`（`standard` 约 2.8 min/页，不可行）。
+3. **解析（仅 PDF）**：缓存放到 `parsed/<source 相对路径>/` 即可复用，否则触发 MinerU；默认 `--tier basic`（CPU 上约 2.5–5.5 s/页），`standard` 约 2.8 min/页只在有 GPU 时用，`flash` 是否出机未验证、不用。
 4. **导入**：`POST /api/corpora/{id}/ingest`（202 后台任务）。`force=true` 全量重解析，只在解析器或分块逻辑变更后使用。
 5. **验收**：`GET /api/corpora` 看 `preparation=ready` 与文档数；再抽查 `GET /api/documents/{doc_id}/markdown` 看正文；文件名元数据（年份/批准号/负责人/标题）是否解析正确，用 `GET /api/corpora/{id}/report-metadata` 核对。
 
@@ -127,7 +127,7 @@ du -sh */ .state
 **怎么读这几个数**
 
 - `pdf` 与 `doc` 分开看：只放 Markdown 元数据的库 `pdf=0` 是正常的，不要误判成空库。
-- `parsed` < `pdf`：还有 PDF 未解析，导入时会现跑 MinerU（无 GPU 时必须 `--tier flash`，否则极慢）。
+- `parsed` < `pdf`：还有 PDF 未解析，导入时会现跑 MinerU（默认 `--tier basic`，CPU 上约 2.5–5.5 s/页；`flash` 未验证是否出机，不用）。
 - `parsed` > `pdf`：**异常**，存在孤儿缓存（源文件已删或改名后留在 `parsed/` 的残留），不会再被命中；确认无用后再删，删了不影响检索结果。
 - 文档数与 `source/` 文件数对不上：先看导入任务是否报错，再按本节的状态表处置。
 

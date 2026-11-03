@@ -17,6 +17,7 @@ from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
 from tests.browser_support import login
+from tests.helpers import put_listed
 
 
 def start_server(app):
@@ -49,7 +50,7 @@ async def main():
         settings = Settings(_env_file=None, corpora_root=root / ".knowledge", state_dir=root / "state",
                             model_api_key=SecretStr("offline"), firecrawl_api_key=SecretStr("offline"))
         store = Knowledge(root / ".knowledge" / "alpha" / "datadb" / "knowledge.sqlite3", settings=settings)
-        store.put(Document(title="本地资料", origin="local", kind="text", parser="text",
+        put_listed(store, Document(title="本地资料", origin="local", kind="text", parser="text",
                            pages=[Page(number=1, text="本地资料")]))
         beta_id = corpus_id_for("beta")
 

@@ -7,6 +7,7 @@ from src.agent.corpora import CorpusInfo
 from src.knowledge import Document, Knowledge, Page, content_version_of
 from src.parse_cache import load_output, staging_dir, write_cache
 from src.stages import stage_view
+from src.targets import PROMPT_VERSION, SCHEMA_VERSION
 
 
 def corpus(tmp_path):
@@ -78,20 +79,69 @@ def test_stage_view_reports_a_cached_parse(tmp_path):
     assert stage_view(store, info)["rows"][0]["parse"] == "cached"
 
 
-def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_path):
+@pytest.mark.parametrize("marker", [
+    None,
+    *[pytest.param(marker, marks=pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
+        "An existing damaged or mismatched cache.json is stale, never legacy-unmarked")))
+      for marker in ("corrupt", "source_mismatch", "version_mismatch")],
+])
+def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_path, marker):
     """A cache from before P0-1 has no ``cache.json``; the real libraries are all like this, so
     reading them as ``stale`` would report a fault where there is none. A Markdown source is never
     parsed at all and must not be counted as a missing cache either."""
     info, store = view(tmp_path)
-    publish(store, info, rel="legacy.pdf")
+    doc = publish(store, info, rel="legacy.pdf")
     parsed = info.root / "parsed" / "legacy.pdf"
     parsed.mkdir(parents=True)
-    (parsed / "middle_json.json").write_text(json.dumps({"pages": []}), encoding="utf-8")
+    (parsed / "middle_json.json").write_text(json.dumps({"pages": [{"page_idx": 0, "blocks": [
+        {"type": "text", "content": [{"type": "text", "content": "正文"}]}
+    ]}]}), encoding="utf-8")
     (parsed / "markdown.md").write_text("正文", encoding="utf-8")
+    if marker == "corrupt":
+        (parsed / "cache.json").write_text("{broken", encoding="utf-8")
+    elif marker is not None:
+        write_cache(parsed, rel="legacy.pdf", source_sha="other-source" if marker == "source_mismatch" else "sha",
+                    version="other-version" if marker == "version_mismatch" else doc["version"],
+                    profile="mineru", pages=1)
     publish(store, info, rel="notes.md")
+    before = {path: (path.read_bytes(), path.stat().st_mtime_ns)
+              for path in info.root.rglob("*") if path.is_file()}
     rows = {row["rel_path"]: row for row in stage_view(store, info)["rows"]}
-    assert (rows["legacy.pdf"]["parse"], rows["legacy.pdf"]["parse_reason"]) == ("cached", "legacy-unmarked")
+    assert before == {path: (path.read_bytes(), path.stat().st_mtime_ns)
+                      for path in info.root.rglob("*") if path.is_file()}
     assert rows["notes.md"]["parse"] == "none"
+    expected = ("cached", "legacy-unmarked") if marker is None else ("stale", "cache_mismatch")
+    assert (rows["legacy.pdf"]["parse"], rows["legacy.pdf"]["parse_reason"]) == expected
+
+
+@pytest.mark.parametrize("source_state", ["changed", "missing"])
+@pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
+    "A published target still exists after source changed/missing: extract must not say missing. "
+    "Owner/Opus must choose stale or another state retaining the artifact's existence; "
+    "this test does not authorize making the document searchable again."
+))
+def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, source_state):
+    info, store = view(tmp_path)
+    doc = publish(store, info)
+    target = info.root / "target" / f"{doc['doc_id']}.json"
+    target.write_text(json.dumps({"doc_id": doc["doc_id"], "version": doc["version"],
+                                  "source_hash": "sha", "schema_version": SCHEMA_VERSION,
+                                  "prompt_version": PROMPT_VERSION, "facets": [], "process": {}}), encoding="utf-8")
+    assert stage_view(store, info)["rows"][0]["extract"] == "current"
+    source = info.source_dir / "a.md"
+    if source_state == "changed":
+        source.write_text("已改变且长度不同的原文", encoding="utf-8")
+    else:
+        source.unlink()
+    before = {path: (path.read_bytes(), path.stat().st_mtime_ns)
+              for path in info.root.rglob("*") if path.is_file()}
+    row = stage_view(store, info)["rows"][0]
+    assert before == {path: (path.read_bytes(), path.stat().st_mtime_ns)
+                      for path in info.root.rglob("*") if path.is_file()}
+    assert (row["source"], row["search"]) == (source_state, "superseded")
+    assert store.get(doc["doc_id"])["version"] == doc["version"]
+    assert target.is_file()
+    assert row["extract"] != "missing"
 
 
 def test_stage_view_names_a_missing_pdf_cache(tmp_path):

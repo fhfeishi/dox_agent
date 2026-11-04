@@ -266,7 +266,7 @@ def rename_rel(parsed_root: Path, old: str, new: str) -> None:
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(source, target)
         info = read_cache(target)
-        if info is not None:
+        if info is not None and info["rel"] == old:
             fields = {key: value for key, value in info.items() if key not in ("rel", "written_at")}
             write_cache(target, rel=new, **{"source_sha": fields.pop("source_sha256"), **fields})
     drop_rel(parsed_root, old)

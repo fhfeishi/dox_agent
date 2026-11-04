@@ -142,24 +142,29 @@ def test_virtual_rel_is_dropped_from_sqlite_without_touching_parsed(tmp_path):
     assert (corpus.parsed / "manual:x").is_dir()
 
 
-def test_rename_keeps_the_parse_and_needs_no_mineru(tmp_path):
+@pytest.mark.parametrize("wrong_rel", [False, True])
+def test_rename_keeps_the_parse_and_needs_no_mineru(tmp_path, wrong_rel):
     corpus = Corpus(tmp_path / "lib")
     old = corpus.add("old.pdf")
     assert corpus.calls == 1
     before = read_cache(corpus.parsed / "old.pdf")
+    if wrong_rel:
+        before["rel"] = "another.pdf"
+        (corpus.parsed / "old.pdf" / "cache.json").write_text(json.dumps(before), encoding="utf-8")
     staging = staging_dir(corpus.parsed, "old.pdf", "f" * 64)
     staging.mkdir(parents=True)
     staging.with_name(staging.name + "-retry").mkdir()
     (corpus.source / "old.pdf").rename(corpus.source / "new.pdf")
     rename_rel(corpus.parsed, "old.pdf", "new.pdf")
     after = read_cache(corpus.parsed / "new.pdf")
+    assert after["rel"] == ("another.pdf" if wrong_rel else "new.pdf")
     assert {key: value for key, value in before.items() if key not in ("rel", "written_at")} == {
         key: value for key, value in after.items() if key not in ("rel", "written_at")}
     assert not list((corpus.parsed / STAGING).iterdir())
     forget_source(corpus.store, "old.pdf", corpus.root)
     report = import_defaults(corpus.store, corpus.settings, root=corpus.source, parsed_root=corpus.parsed)
     assert report["added"] == 1 and not report["errors"]
-    assert corpus.calls == 1  # the moved cache was reused
+    assert corpus.calls == (2 if wrong_rel else 1)
     assert read_cache(corpus.parsed / "new.pdf")["rel"] == "new.pdf"
     assert not (corpus.parsed / "old.pdf").exists()
     corpus.assert_gone("old.pdf", old)

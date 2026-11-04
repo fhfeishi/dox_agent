@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { MATURITY_NAMES, domainTreeQuery, maturityVar, type DomainTree, type DomainsOverview, type TreeProject } from "../../domains";
@@ -7,6 +7,9 @@ import { projectQuery } from "../../projects";
 import { useLayout } from "../../layout";
 import { Segmented } from "../ui";
 import { BoxTree, type BoxNode } from "./BoxTree";
+import { fitChart } from "./chartFrame";
+
+const GAP = 40; // between columns, as BoxTree draws them
 
 /**
  * 01 关键技术 (query 2026-1030 1624; named 技术落点 until 1747): from a domain down to its technologies — 技术体系 › 研究方向 › 主题 ›
@@ -93,16 +96,75 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
   })) };
   // As 五级谱系: the first visit opens the largest branch down to its 主题 (four columns); the
   // technologies of a 主题 are the explicit next step.
+  const widths = [180, 240, 240, 240, 300];
   const first: string[] = [];
   for (let n: BoxNode | undefined = root.children?.[0]; n && first.length < 2; n = n.children?.[0]) first.push(n.key);
   const [path, setPath] = useState(first);
-  return <div className="overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
-    <BoxTree root={root} path={path} label="关键技术谱系" heads={["领域", "技术体系", "研究方向", "主题", "技术条目"]} widths={[150, 190, 190, 190, 250]}
+  // The window takes the room the page has left (query 2026-11-04): it used to be a fixed 420 px in
+  // a 1020 px window, which left the drawing small and most of the screen empty.
+  const frame = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(520);
+  // Column widths follow the window's width; the height only decides how tall the rows are.
+  const [widthScale, setWidthScale] = useState(1);
+  useLayoutEffect(() => {
+    const el = frame.current;
+    if (!el) return;
+    const read = () => {
+      const box = el.querySelector<HTMLElement>('[role="region"]') ?? el;
+      const next = fitChart(el, box);
+      setHeight((old) => (Math.abs(old - next) < 1 ? old : next));
+      // Only the columns actually shown count: 领域 + the levels the path has opened (at least 主题),
+      // and 技术条目 once a 主题 is opened. Counting all five made the base too wide, so the columns
+      // shrank while the type grew — which is what truncated the names.
+      const shown = Math.min(widths.length, 4 + (path[3]?.startsWith("i:") ? 1 : 0));
+      // Fit the columns to the room exactly (minus ZoomPan's 16 px padding): when the drawing is
+      // wider than the window the fit scales by width and the height goes unused — which is what
+      // left the tree at 94% with empty space below it.
+      // Fit the drawing to the window's width exactly: BoxTree pads 8 px each side and ZoomPan
+      // another 16, so the drawing must be that much narrower than the window. When the drawing is
+      // wider the fit scales by width and the height goes unused (the tree stayed at 95%).
+      // The drawing's own width is `8 + Σ(column widths + gaps) + 8` (BoxTree), and ZoomPan fits it
+      // into `clientWidth - 16`. Solve for the column scale directly instead of approximating: any
+      // overshoot makes the fit scale by width, which wastes the height (the tree sat at 95%).
+      const room = Math.max(320, box.clientWidth - 16);
+      const gaps = GAP * (shown - 1);
+      const nextScale = Math.min(1.5, Math.max(0.85,
+        (room - 16 - gaps) / widths.slice(0, shown).reduce((sum, w) => sum + w, 0)));
+      setWidthScale((old) => (Math.abs(old - nextScale) < 0.01 ? old : nextScale));
+    };
+    const observer = new ResizeObserver(read);
+    observer.observe(el);
+    const viewport = el.closest("main");
+    if (viewport) observer.observe(viewport);
+    read();
+    return () => observer.disconnect();
+  }, [path.join("|")]);
+  return <div ref={frame} className="overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
+    <BoxTree root={root} path={path} label="关键技术谱系" height={height} widthScale={widthScale}
+      heads={["领域", "技术体系", "研究方向", "主题", "技术条目"]} widths={widths}
       onPath={(next) => { setPath(next); const leaf = next[3]; if (leaf?.startsWith("i:")) { const cut = leaf.lastIndexOf(":"); onItem(leaf.slice(2, cut), Number(leaf.slice(cut + 1))); } }} />
   </div>;
 }
 
 function Matrix({ systems, item, onItem }: { systems: Tree; item: { pid: string; idx: number } | null; onItem: (pid: string, idx: number) => void }) {
+  // The card takes the room the page has left, as the tree does (query 2026-11-04); the table inside
+  // grows with it and its rows keep a comfortable height.
+  const frame = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(480);
+  useLayoutEffect(() => {
+    const el = frame.current;
+    if (!el) return;
+    const read = () => {
+      const next = fitChart(el, el.querySelector("table") ?? el);
+      setHeight((old) => (Math.abs(old - next) < 1 ? old : next));
+    };
+    const observer = new ResizeObserver(read);
+    observer.observe(el);
+    const viewport = el.closest("main");
+    if (viewport) observer.observe(viewport);
+    read();
+    return () => observer.disconnect();
+  }, []);
   const [open, setOpen] = useState<Set<number>>(() => new Set([0]));
   const [cell, setCell] = useState<{ si: number; di: number | null; lv: number } | null>(null);
   const rows = systems.flatMap((s, si) => [{ n: s as Node, si, di: null as number | null },
@@ -110,11 +172,13 @@ function Matrix({ systems, item, onItem }: { systems: Tree; item: { pid: string;
   const levels = rows.map((r) => levelsOf(r.n)), max = Math.max(1, ...levels.flat());
   const chosen = cell ? (cell.di === null ? systems[cell.si] : systems[cell.si]?.directions[cell.di]) : undefined;
   const list = chosen ? flat(chosen).filter(({ it }) => it.maturity === cell!.lv) : [];
-  return <div className="overflow-x-auto rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
-    <table className="w-full border-separate border-spacing-[3px] text-caption" aria-label="技术体系 × 成熟度">
-      <thead><tr><th className="px-2 text-left font-medium text-[var(--text-3)]">技术体系 / 研究方向</th>
-        {LEVELS.map((l) => <th key={l} className="px-1 font-medium whitespace-nowrap text-[var(--text-3)]">{l}</th>)}
-        <th className="font-medium text-[var(--text-3)]">合计</th><th className="font-medium text-[var(--text-3)]">4–5 档</th></tr></thead>
+  // Head row, caption line and the 3 px gaps: what is left is shared by the rows, within a readable
+  // range, so the matrix fills the window without turning into slabs when a domain has few systems.
+  const rowH = Math.round(Math.max(34, Math.min(64, (height - 74) / Math.max(1, rows.length))));
+  return <div ref={frame} className="overflow-x-auto rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
+    <table className="w-full border-separate border-spacing-[3px] text-body" aria-label="技术体系 × 成熟度">
+      <thead><tr className="text-caption">{["技术体系 / 研究方向", ...LEVELS, "合计", "4–5 档"].map((l, i) =>
+        <th key={l} className={`font-medium text-[var(--text-3)] ${i === 0 ? "px-2 text-left" : i < LEVELS.length + 1 ? "px-1 whitespace-nowrap" : ""}`}>{l}</th>)}</tr></thead>
       <tbody>{rows.map((r, i) => {
         const l = levels[i], total = l.reduce((s, v) => s + v, 0), high = total ? Math.round(((l[4] + l[5]) / total) * 100) : 0;
         return <tr key={`${r.si}-${r.di}`}>
@@ -123,11 +187,12 @@ function Matrix({ systems, item, onItem }: { systems: Tree; item: { pid: string;
               className="max-w-full truncate text-left">{open.has(r.si) ? "▾ " : "▸ "}{r.n.name}</button> : r.n.name}</td>
           {l.map((v, lv) => {
             const on = cell?.si === r.si && cell.di === r.di && cell.lv === lv;
-            if (!v) return <td key={lv} className="h-[34px] min-w-[52px] rounded-md bg-[var(--surface-soft)] text-center text-[var(--text-3)]">·</td>;
+            if (!v) return <td key={lv} style={{ height: rowH }} className="min-w-[52px] rounded-md bg-[var(--surface-soft)] text-center text-[var(--text-3)]">·</td>;
             const share = Math.round(12 + 78 * Math.sqrt(v / max)), base = lv === 0 ? "var(--terrain-dot)" : lv >= 4 ? "var(--m-5)" : "var(--primary)";
             return <td key={lv} className="p-0"><button type="button" aria-pressed={on} title={`${r.n.name} · ${LEVELS[lv]}：${v} 条`} onClick={() => setCell({ si: r.si, di: r.di, lv })}
-              className={`h-[34px] w-full min-w-[52px] rounded-md tabular-nums ${on ? "outline-2 -outline-offset-2 outline-[var(--ink)]" : ""}`}
-              style={{ background: `color-mix(in srgb, ${base} ${share}%, white)`, color: share > 50 ? "#fff" : "var(--ink)" }}>{v}</button></td>;
+              style={{ background: `color-mix(in srgb, ${base} ${share}%, white)`, color: share > 50 ? "#fff" : "var(--ink)", height: rowH }}
+              className={`w-full min-w-[52px] rounded-md tabular-nums ${on ? "outline-2 -outline-offset-2 outline-[var(--ink)]" : ""}`}
+              >{v}</button></td>;
           })}
           <td className="pr-2 text-right tabular-nums text-[var(--text-3)]">{total}</td>
           <td className="pr-1"><span className="flex items-center justify-end gap-1.5 text-[var(--text-2)]"><span className="h-[6px] w-[44px] overflow-hidden rounded-full bg-[var(--surface-sink)]"><i className="block h-full bg-[var(--m-5)]" style={{ width: `${high}%` }} /></span>{high}%</span></td>

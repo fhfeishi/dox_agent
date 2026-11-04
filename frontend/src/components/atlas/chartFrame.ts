@@ -24,3 +24,26 @@ export function chartHeight(host: Element): number {
   probe.remove();
   return height;
 }
+
+/** The height a chart inside `frame` may take without pushing the page below the window.
+
+ 关键技术's two readings sat in a column with the domain chips and the level legend above them, and
+ that column left most of the window empty: the tree was 420 px in a 1020 px window, the matrix 479
+ (query 2026-11-04). This returns the room actually left, so a chart can fill it instead of picking
+ a fixed number.
+
+ The chrome is measured from siblings (`frame`'s height minus the chart's own), never from the
+ chart's height, so the result cannot feed back into its own inputs and the ResizeObserver settles.
+ */
+export function fitChart(frame: Element, content: Element, floor = 520, cap = 900): number {
+  const viewport = frame.closest("main");
+  const viewportBox = viewport?.getBoundingClientRect();
+  const box = frame.getBoundingClientRect();
+  const contentBox = content.getBoundingClientRect();
+  const chrome = Math.max(0, box.height - contentBox.height);
+  const available =
+    (viewport?.clientHeight ?? globalThis.innerHeight) -
+    (box.top - (viewportBox?.top ?? 0) + (viewport?.scrollTop ?? globalThis.scrollY)) -
+    12;
+  return Math.round(Math.max(floor, Math.min(cap, available - chrome)));
+}

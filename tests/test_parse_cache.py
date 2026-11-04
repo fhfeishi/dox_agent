@@ -615,7 +615,6 @@ def test_every_tier_failing_names_each_attempt(lib):
     assert lib.body() == "# A" and lib.leftovers() == []
 
 
-@pytest.mark.xfail(strict=False, reason="profile from last attempt not selected; see 06:05 产品静审")
 @pytest.mark.parametrize("standard", [{"blank": 3}, {"blank": 2}, {"fail": True}],
                          ids=["worse", "equal", "failed"])
 def test_retained_basic_profile_identifies_selected_attempt(lib, standard):

@@ -520,11 +520,11 @@ def _parse_pdf_cached(path: Path, rel: str, digest: str, settings: Settings, par
             return _pdf_document(path, markdown, pages), blocks, None
     # Parsing writes only to staging (and a sibling for the retry); the canonical cache is never touched here.
     expected = pdf_page_count(path)
-    markdown, pages, got, attempts, quality = _parse_with_retry(path, settings, staging, expected)
+    markdown, pages, got, attempts, quality, selected_command = _parse_with_retry(path, settings, staging, expected)
     blocks = read_mineru_blocks(staging)
     # The completion marker goes last: a staging directory with cache.json holds a whole parse.
     write_cache(staging, rel=rel, source_sha=digest, version=content_version_of(pages, markdown),
-                profile=parser_profile(settings, attempts[-1]["command"]), pages=got,
+                profile=parser_profile(settings, selected_command), pages=got,
                 attempts=[{key: value for key, value in attempt.items() if key != "command"} for attempt in attempts],
                 quality=quality)
     return _pdf_document(path, markdown, pages), blocks, staging
@@ -581,14 +581,14 @@ def _parse_with_retry(path: Path, settings: Settings, staging: Path, expected: i
     false`` instead of the parse being refused.
     """
     attempts: list[dict] = []
-    best: tuple[Path, tuple] | None = None
+    best: tuple[Path, tuple, str] | None = None
     retry_dir = staging.with_name(staging.name + "-retry")
     for index, command in enumerate(_parse_commands(settings)):
         out_dir = staging if index == 0 else retry_dir
         record, result = _one_attempt(path, settings, command, out_dir, expected)
         attempts.append(record)
         if result is not None and (best is None or result[3]["coverage"] > best[1][3]["coverage"]):
-            best = (out_dir, result)
+            best = (out_dir, result, command)
         if record["ok"] and not record["reason"]:
             break
         if record.get("reason") in NO_RETRY:
@@ -599,11 +599,11 @@ def _parse_with_retry(path: Path, settings: Settings, staging: Path, expected: i
             summary = "；".join(f"{attempt['tier'] or 'mineru'}：{attempt['message']}" for attempt in attempts)
             reason = attempts[-1]["reason"]
             raise ParseError(reason, summary if len(attempts) > 1 else attempts[0]["message"])
-        out_dir, (markdown, pages, got, quality) = best
+        out_dir, (markdown, pages, got, quality), selected_command = best
         if out_dir != staging:
             shutil.rmtree(staging, ignore_errors=True)
             os.replace(out_dir, staging)
-        return markdown, pages, got, attempts, quality
+        return markdown, pages, got, attempts, quality, selected_command
     finally:
         shutil.rmtree(retry_dir, ignore_errors=True)
 

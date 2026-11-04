@@ -10,6 +10,7 @@
 """
 import argparse
 import json
+import sqlite3
 import sys
 from collections import Counter
 from pathlib import Path
@@ -19,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.agent.config import get_settings  # noqa: E402
 from src.agent.corpora import scan_corpora  # noqa: E402
-from src.knowledge import Knowledge  # noqa: E402
+from src.knowledge import ReadOnlyKnowledge  # noqa: E402
 from src.stages import stage_view  # noqa: E402
 
 STAGES = ("source", "parse", "search", "extract")
@@ -41,11 +42,19 @@ def main():
     args = parser.parse_args()
     settings = get_settings()
     rows, total = [], Counter()
-    for info in sorted(scan_corpora(settings), key=lambda i: i.name):
+    try:
+        infos = scan_corpora(settings, readonly=True)
+    except (OSError, ValueError, sqlite3.Error) as exc:
+        print(f"stage_report: refused: {exc}", file=sys.stderr)
+        return 1
+    for info in sorted(infos, key=lambda i: i.name):
         if info.missing or not info.sqlite or not info.sqlite.is_file():
             continue
-        view = stage_view(Knowledge(info.sqlite, settings=settings, vectordb_dir=info.vectordb_dir,
-                                    source_root=info.source_dir), info)
+        try:
+            view = stage_view(ReadOnlyKnowledge(info.sqlite, source_root=info.source_dir), info)
+        except (OSError, ValueError, sqlite3.Error) as exc:
+            print(f"stage_report: refused {info.name}: {exc}", file=sys.stderr)
+            return 1
         rows.append(view)
         total.update({f"{stage}.{value}": n for stage in STAGES
                       for value, n in view["counts"][stage].items()})
@@ -59,4 +68,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

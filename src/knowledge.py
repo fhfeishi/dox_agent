@@ -506,6 +506,33 @@ class Knowledge:
         }
 
 
+class ReadOnlyKnowledge(Knowledge):
+    """Open only the existing schema needed by stage_view, without initialization or dense indexing."""
+
+    def __init__(self, path: Path, *, source_root: Path | None = None):
+        self.path = path
+        self.source_root = source_root
+        self.dense = None
+        self._chunks = None
+        required = {
+            "docs": ("id", "version", "payload"),
+            "files": ("rel_path", "size", "mtime_ns", "sha256", "doc_id", "status",
+                      "updated_at", "observed_sha256", "last_error"),
+            "doc_pages": ("doc_id",),
+        }
+        with self.connect() as db:
+            for table, columns in required.items():
+                actual = tuple(row[1] for row in db.execute(f"PRAGMA table_info({table})"))
+                if not set(columns).issubset(actual):
+                    missing = ", ".join(column for column in columns if column not in actual)
+                    raise ValueError(f"unsupported schema: {table} missing columns: {missing}; no migration performed")
+                if table == "files" and actual[:len(columns)] != columns:
+                    raise ValueError("unsupported schema: files column order; no migration performed")
+
+    def connect(self):
+        return connect(self.path, readonly=True, timeout=30)
+
+
 class KnowledgeGroup:
     """KB-4a: a retrieval set of corpora; delegates retrieval/reading across members.
 

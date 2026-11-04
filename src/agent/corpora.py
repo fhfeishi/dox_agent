@@ -2,8 +2,8 @@
 
 Layout (方案 A, 2026-09-22): ``CORPORA_ROOT/<corpus>/`` holds ``source/`` (raw files,
 possibly nested by domain), ``datadb/`` (sqlite) and ``vectordb/`` (vector store), so one
-corpus can be moved, backed up or deleted as a single directory. Scanning is read-only:
-counting opens sqlite with ``mode=ro`` and never creates files. §10: all persistence lives
+corpus can be moved, backed up or deleted as a single directory. Diagnostic scanning is read-only;
+normal scanning persists discovered registry entries. §10: all persistence lives
 under CORPORA_ROOT; the default corpus is the first present directory in name order, and
 ``.state/`` (a dot dir, skipped by scanning) holds workspace/reports/overrides.
 """
@@ -176,18 +176,17 @@ def default_db_path(settings) -> Path:
     return info.db_dir / "knowledge.sqlite3" if info is not None else Path(settings.state_dir) / "knowledge.sqlite3"
 
 
-def _docs_count(sqlite_path: Path) -> int:
-    """Read the docs count without ever creating the file.
+def _docs_count(sqlite_path: Path, *, readonly: bool = False) -> int:
+    """Count through a read-only connection; diagnostic mode propagates failures.
 
-    Preferred is a read-only URI connection (never creates side files); on filesystems
-    where URI authority or shared access fails (e.g. 9P/UNC mounts) fall back to a plain
-    connection with a timeout — the file already exists here, so nothing is created.
+    Normal management scans retain their writable fallback for shared filesystems.
     """
     try:
-        with connect(f"file:{sqlite_path.as_posix()}?mode=ro", uri=True, timeout=30) as db:
+        with connect(sqlite_path, readonly=True, timeout=30) as db:
             return int(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0])
     except (OSError, sqlite3.Error):
-        pass
+        if readonly:
+            raise
     try:
         with connect(sqlite_path, timeout=30) as db:
             return int(db.execute("SELECT COUNT(*) FROM docs").fetchone()[0])
@@ -207,12 +206,13 @@ def _preparation(count: int, sqlite_exists: bool) -> str:
     return "ready" if count > 0 else ("empty" if sqlite_exists else "uninitialized")
 
 
-def scan_corpora(settings) -> list[CorpusInfo]:
+def scan_corpora(settings, *, readonly: bool = False) -> list[CorpusInfo]:
     """List legal direct child directories in stable name order, including empty corpora.
 
     Raw files live (recursively) under ``<corpus>/source``; sqlite and vector store live in
     ``<corpus>/datadb`` and ``<corpus>/vectordb``. Legacy aliases are retained as metadata but
-    the directory name is the displayed name.
+    the directory name is the displayed name. With readonly=True, registry changes stay in
+    memory and database read failures are reported without a writable fallback.
     """
     root = corpus_root_for(settings)
     raw_persisted = _read_corpus_override_data(settings)
@@ -244,7 +244,10 @@ def scan_corpora(settings) -> list[CorpusInfo]:
             alias = str(persisted_entry.get("alias") or persisted_entry.get("name") or config_entry.get("name") or "")
             db_dir = child / DB_DIRNAME
             sqlite_path = db_dir / "knowledge.sqlite3"
-            count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0
+            try:
+                count = _docs_count(sqlite_path, readonly=readonly) if sqlite_path.is_file() else 0
+            except (OSError, sqlite3.Error) as exc:
+                raise ValueError(f"{child.name}: cannot read docs: {exc}") from exc
             kind = persisted_entry.get("kind") or config_entry.get("kind") or ("fund" if _has_fund_file(source_dir) else "unknown")
             domain = str(persisted_entry.get("domain") or config_entry.get("domain") or child.name)
             description = str(persisted_entry.get("description") or config_entry.get("description") or "")
@@ -265,7 +268,7 @@ def scan_corpora(settings) -> list[CorpusInfo]:
                 persisted[corpus_id] = {**(current or {}), "id": corpus_id, "rel": rel, "alias": alias,
                                         "created": created, "generated": generated}
                 dirty = True
-    if dirty:
+    if dirty and not readonly:
         save_corpus_overrides(settings, persisted)
 
     # KB-5d: stable ids whose directory disappeared are surfaced as ``missing`` (not silently 404).

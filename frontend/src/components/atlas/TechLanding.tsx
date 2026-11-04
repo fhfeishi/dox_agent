@@ -96,7 +96,6 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
   })) };
   // As 五级谱系: the first visit opens the largest branch down to its 主题 (four columns); the
   // technologies of a 主题 are the explicit next step.
-  const widths = [180, 240, 240, 240, 300];
   const first: string[] = [];
   for (let n: BoxNode | undefined = root.children?.[0]; n && first.length < 2; n = n.children?.[0]) first.push(n.key);
   const [path, setPath] = useState(first);
@@ -106,6 +105,10 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
   const [height, setHeight] = useState(520);
   // Column widths follow the window's width; the height only decides how tall the rows are.
   const [widthScale, setWidthScale] = useState(1);
+  // The drawing's labels follow the page's type scale (2K/4K step --text-body up).
+  const [font, setFont] = useState(14);
+  // Base column widths at 14 px; they grow with the type so 4K labels are not clipped.
+  const widths = [180, 240, 240, 240, 300].map((w) => w * (font / 14));
   useLayoutEffect(() => {
     const el = frame.current;
     if (!el) return;
@@ -113,6 +116,8 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
       const box = el.querySelector<HTMLElement>('[role="region"]') ?? el;
       const next = fitChart(el, box);
       setHeight((old) => (Math.abs(old - next) < 1 ? old : next));
+      const body = parseFloat(getComputedStyle(el).getPropertyValue("--text-body")) || 14;
+      setFont((old) => (Math.abs(old - body) < 0.5 ? old : body));
       // Only the columns actually shown count: 领域 + the levels the path has opened (at least 主题),
       // and 技术条目 once a 主题 is opened. Counting all five made the base too wide, so the columns
       // shrank while the type grew — which is what truncated the names.
@@ -128,7 +133,7 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
       // overshoot makes the fit scale by width, which wastes the height (the tree sat at 95%).
       const room = Math.max(320, box.clientWidth - 16);
       const gaps = GAP * (shown - 1);
-      const nextScale = Math.min(1.5, Math.max(0.85,
+      const nextScale = Math.min(2.2, Math.max(0.85,
         (room - 16 - gaps) / widths.slice(0, shown).reduce((sum, w) => sum + w, 0)));
       setWidthScale((old) => (Math.abs(old - nextScale) < 0.01 ? old : nextScale));
     };
@@ -140,7 +145,7 @@ function TechTree({ name, items, systems, onItem }: { name: string; items: numbe
     return () => observer.disconnect();
   }, [path.join("|")]);
   return <div ref={frame} className="overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
-    <BoxTree root={root} path={path} label="关键技术谱系" height={height} widthScale={widthScale}
+    <BoxTree root={root} path={path} label="关键技术谱系" height={height} widthScale={widthScale} font={font}
       heads={["领域", "技术体系", "研究方向", "主题", "技术条目"]} widths={widths}
       onPath={(next) => { setPath(next); const leaf = next[3]; if (leaf?.startsWith("i:")) { const cut = leaf.lastIndexOf(":"); onItem(leaf.slice(2, cut), Number(leaf.slice(cut + 1))); } }} />
   </div>;
@@ -174,15 +179,16 @@ function Matrix({ systems, item, onItem }: { systems: Tree; item: { pid: string;
   const list = chosen ? flat(chosen).filter(({ it }) => it.maturity === cell!.lv) : [];
   // Head row, caption line and the 3 px gaps: what is left is shared by the rows, within a readable
   // range, so the matrix fills the window without turning into slabs when a domain has few systems.
-  const rowH = Math.round(Math.max(34, Math.min(64, (height - 74) / Math.max(1, rows.length))));
+  const rowH = Math.round(Math.max(34, Math.min(96, (height - 74) / Math.max(1, rows.length))));
   return <div ref={frame} className="overflow-x-auto rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
     <table className="w-full border-separate border-spacing-[3px] text-body" aria-label="技术体系 × 成熟度">
       <thead><tr className="text-caption">{["技术体系 / 研究方向", ...LEVELS, "合计", "4–5 档"].map((l, i) =>
-        <th key={l} className={`font-medium text-[var(--text-3)] ${i === 0 ? "px-2 text-left" : i < LEVELS.length + 1 ? "px-1 whitespace-nowrap" : ""}`}>{l}</th>)}</tr></thead>
+        <th key={l} style={i === 0 ? { width: `${100 / (LEVELS.length + 3)}%` } : undefined}
+          className={`font-medium text-[var(--text-3)] ${i === 0 ? "px-2 text-left" : i < LEVELS.length + 1 ? "px-1 whitespace-nowrap" : ""}`}>{l}</th>)}</tr></thead>
       <tbody>{rows.map((r, i) => {
         const l = levels[i], total = l.reduce((s, v) => s + v, 0), high = total ? Math.round(((l[4] + l[5]) / total) * 100) : 0;
         return <tr key={`${r.si}-${r.di}`}>
-          <td className={`max-w-[220px] truncate py-1.5 pr-2 ${r.di === null ? "font-semibold text-[var(--heading)]" : "pl-6 text-[var(--text-2)]"}`} title={r.n.name}>
+          <td style={{ width: `${100 / (LEVELS.length + 3)}%`, maxWidth: 0 }} className={`truncate py-1.5 pr-2 ${r.di === null ? "font-semibold text-[var(--heading)]" : "pl-6 text-[var(--text-2)]"}`} title={r.n.name}>
             {r.di === null ? <button type="button" aria-expanded={open.has(r.si)} onClick={() => setOpen((old) => { const next = new Set(old); if (next.has(r.si)) next.delete(r.si); else next.add(r.si); return next; })}
               className="max-w-full truncate text-left">{open.has(r.si) ? "▾ " : "▸ "}{r.n.name}</button> : r.n.name}</td>
           {l.map((v, lv) => {

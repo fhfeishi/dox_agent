@@ -10,11 +10,11 @@ import pytest
 
 from src.agent.config import Settings
 from src.agent.corpora import scan_corpora
-from src.knowledge import Knowledge
+from src.knowledge import Document, Knowledge, Page
 
 
 @pytest.mark.parametrize("schema", [
-    "current", "unregistered", "legacy_registry", "legacy", "empty", "bad", "missing_pages",
+    "current", "populated", "unregistered", "legacy_registry", "legacy", "empty", "bad", "missing_pages",
 ])
 @pytest.mark.parametrize("json_output", [True, False])
 def test_stage_report_cli_does_not_initialize_or_migrate_sqlite(tmp_path, schema, json_output):
@@ -23,8 +23,15 @@ def test_stage_report_cli_does_not_initialize_or_migrate_sqlite(tmp_path, schema
     database = root / "datadb" / "knowledge.sqlite3"
     database.parent.mkdir(parents=True)
     (root / "source").mkdir()
-    if schema in ("current", "unregistered", "legacy_registry", "missing_pages"):
-        Knowledge(database, source_root=root / "source")
+    if schema in ("current", "populated", "unregistered", "legacy_registry", "missing_pages"):
+        store = Knowledge(database, source_root=root / "source")
+        if schema == "populated":
+            source = root / "source" / "note.md"
+            source.write_text("fixture text", encoding="utf-8")
+            stat = source.stat()
+            store.put(Document(title="note", origin=str(source.resolve()), kind="text", parser="markdown",
+                               pages=[Page(number=1, text="fixture text")]),
+                      source_file=("note.md", stat.st_size, stat.st_mtime_ns, "sha"))
         if schema == "missing_pages":
             with sqlite3.connect(database) as connection:
                 connection.execute("DROP TABLE doc_pages")
@@ -63,15 +70,20 @@ def test_stage_report_cli_does_not_initialize_or_migrate_sqlite(tmp_path, schema
                           if before.get(path, (None,))[0] != after.get(path, (None,))[0])
     assert not changed, (f"CLI modified {changed}; byte changes={byte_changes}; "
                          f"exit={result.returncode}; stderr={result.stderr}")
-    if schema in ("current", "unregistered", "legacy_registry"):
+    if schema in ("current", "populated", "unregistered", "legacy_registry"):
         assert result.returncode == 0, result.stdout + result.stderr
+        documents = int(schema == "populated")
         if json_output:
             rows = json.loads(result.stdout)
             assert len(rows) == 1
-            assert (rows[0]["name"], rows[0]["documents"]) == ("fixture", 0)
+            assert (rows[0]["name"], rows[0]["documents"]) == ("fixture", documents)
+            if documents:
+                assert rows[0]["counts"] == {"source": {"present": 1}, "parse": {"none": 1},
+                                             "search": {"current": 1}, "extract": {"missing": 1}}
+                assert rows[0]["rows"][0]["rel_path"] == "note.md"
         else:
             assert "fixture" in result.stdout
-            assert "库 1 个，条目 0 份" in result.stdout
+            assert f"库 1 个，条目 {documents} 份" in result.stdout
     else:
         assert result.returncode == 1, result.stdout + result.stderr
         assert result.stdout == ""

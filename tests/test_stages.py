@@ -128,7 +128,8 @@ def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_
 
 
 @pytest.mark.parametrize("source_state", ["changed", "missing"])
-def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, source_state):
+@pytest.mark.parametrize("artifact", ["current", "missing", "invalid", "source_mismatch"])
+def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, source_state, artifact):
     info, store = view(tmp_path)
     doc = publish(store, info)
     target = info.root / "target" / f"{doc['doc_id']}.json"
@@ -136,6 +137,17 @@ def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, sou
                                   "source_hash": "sha", "schema_version": SCHEMA_VERSION,
                                   "prompt_version": PROMPT_VERSION, "facets": [], "process": {}}), encoding="utf-8")
     assert stage_view(store, info)["rows"][0]["extract"] == "current"
+    if artifact == "missing":
+        target.unlink()
+    elif artifact == "invalid":
+        target.write_text("{broken", encoding="utf-8")
+    elif artifact == "source_mismatch":
+        record = json.loads(target.read_text(encoding="utf-8"))
+        record["source_hash"] = "another-source"
+        target.write_text(json.dumps(record), encoding="utf-8")
+    expected = artifact if artifact in ("missing", "invalid") else "stale"
+    if artifact != "current":
+        assert stage_view(store, info)["rows"][0]["extract"] == expected
     source = info.source_dir / "a.md"
     if source_state == "changed":
         source.write_text("已改变且长度不同的原文", encoding="utf-8")
@@ -148,8 +160,8 @@ def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, sou
                       for path in info.root.rglob("*") if path.is_file()}
     assert (row["source"], row["search"]) == (source_state, "superseded")
     assert store.get(doc["doc_id"])["version"] == doc["version"]
-    assert target.is_file()
-    assert row["extract"] == "stale"
+    assert target.is_file() is (artifact != "missing")
+    assert row["extract"] == expected
 
 
 def test_stage_view_names_a_missing_pdf_cache(tmp_path):

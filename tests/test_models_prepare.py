@@ -13,7 +13,7 @@ import pytest
 @pytest.mark.parametrize("fault", [
     None, "models", "config", "base_dir",
     "shadow_home", "unset_home", "empty_home", "missing_home", "external_home",
-    "top_level", "external_base_dir", "missing_config_override", "model_override",
+    "top_level", "external_base_dir", "missing_config_override", "model_override", "invalid_yaml",
 ])
 def test_models_prepare_check_reports_disk_faults_without_writing(tmp_path, fault):
     root = tmp_path / "project with spaces"
@@ -34,6 +34,8 @@ def test_models_prepare_check_reports_disk_faults_without_writing(tmp_path, faul
         if fault == "external_base_dir":
             base_dir = external
         config = f"base_dir: {base_dir}\n" if fault == "top_level" else f"model:\n  base_dir: {base_dir}\n"
+        if fault == "invalid_yaml":
+            config = "model: [unterminated"
         (mineru_home / "config.yaml").write_text(config, encoding="utf-8")
     home = tmp_path / "home"
     home.mkdir()

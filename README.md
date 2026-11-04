@@ -139,12 +139,18 @@ BM25 在既有报告预算内选择互补主题资料，复用分词结果，补
 | EMBEDDING_PATH / EMBEDDING_DEVICE | 空 / cpu；空时不加载本地 embedding |
 | MINERU_CMD / MINERU_HOME | PDF 解析命令与模型缓存目录；`MINERU_CMD` 支持 `{pdf}`、`{out}`，默认输出 ZIP。默认档位 `basic`；`standard` 只在有 GPU 时用，`flash` 是否联网未验证、不用 |
 | MINERU_FALLBACK_TIER / MINERU_TIMEOUT | 空 / 1200；首次解析失败（崩溃、输出为空、页数不符、有文字页不足 80%）时用该档重试一次，默认关闭；超时按秒计 |
-
-模型准备检查（只读，不下载）：`./scripts/models_prepare.sh --check`。它核对三件事：`.models/mineru` 有内容、`MINERU_HOME` 指向项目内且其 `config.yaml` 的 `base_dir` 在本机真实存在、`~/.mineru` 不会覆盖项目配置。**项目里有模型不等于运行时在用**：`base_dir` 从另一台机器复制过来（例如 Windows 的 `C:/...`）时，MinerU 会去找不存在的路径。
 | WEB_PROVIDER | crawl4ai；也支持 firecrawl |
 | RUN_TIMEOUT | 180；对话运行时限 |
 | REVIEW_MODEL_* | 审查模型覆盖配置；未设置时复用 MODEL_*；可写在 .env，也可 export（export 优先） |
 | REVIEW_RUN_TIMEOUT / REVIEW_MAX_CALLS | 900 / 32；审查运行预算 |
+
+模型准备检查（只读，不下载）：`./scripts/models_prepare.sh --check`。它读取**运行它的那个环境**里的 `MINERU_HOME`，核对三件事：`.models/mineru` 有内容、`MINERU_HOME` 指向项目内且其 `config.yaml` 的 `base_dir` 在本机真实存在、`~/.mineru` 不会覆盖项目配置。应用自己会读 `.env` 并把 `MINERU_HOME` 传给 `mineru-kit`，所以用 shell 检查时要先带上同一个值：
+
+~~~bash
+MINERU_HOME="$PWD/.models/mineru-home" ./scripts/models_prepare.sh --check
+~~~
+
+**项目里有模型不等于运行时在用**：`base_dir` 从另一台机器复制过来（例如 Windows 的 `C:/...`）时，MinerU 找不到就按相对路径新建 `C:/...` 并重新下载。`.models/` 是每台机器自己的（已 gitignore）：新机器要放好 `.models/mineru`，并在 `.models/mineru-home/config.yaml` 里写本机的绝对 `base_dir`；worktree 没有 `.env` 和 `.models/`，在 worktree 里跑会落回 `~/.mineru`。
 
 不要提交 .env。完整配置见 [src/agent/config.py](src/agent/config.py)，审查模型配置见 [src/review/model_client.py](src/review/model_client.py)。
 

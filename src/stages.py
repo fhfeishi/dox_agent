@@ -18,7 +18,7 @@ from pathlib import Path
 
 from .agent.corpora import PARSED_DIRNAME
 from .knowledge import is_virtual_rel
-from .parse_cache import cache_state
+from .parse_cache import CACHE_FILE, cache_state
 from .targets import _load, _record_state
 
 # ``cache_state`` values: a published cache that agrees, and a complete parse not yet published.
@@ -76,7 +76,8 @@ def _parse_state(entry: dict, version: str | None, parsed_root: Path) -> tuple[s
         # Only PDFs are parsed (MinerU); a text or Markdown source legitimately has no cache, so it
         # has no parse stage to report rather than a missing one.
         return ("none", "") if not rel.lower().endswith(".pdf") else ("stale", "cache_missing")
-    if any(directory.glob("*.json")) and any(directory.glob("*.md")):
+    if (not (directory / CACHE_FILE).exists()
+            and any(directory.glob("*.json")) and any(directory.glob("*.md"))):
         return "cached", "legacy-unmarked"
     return "stale", state
 
@@ -113,15 +114,19 @@ def stage_view(knowledge, info) -> dict:
     value across the documents. Read-only, so it is safe to run against a live library.
     """
     manifest = knowledge.files()
-    current = {doc["doc_id"]: doc for doc in knowledge.current()}
-    current_ids = set(current)
+    current_ids = {doc["doc_id"] for doc in knowledge.current()}
+    published = {doc["doc_id"]: doc for doc in knowledge.all()}
     # The cache must agree with the published version (B3), which is not always the current one.
-    versions = {doc["doc_id"]: doc["version"] for doc in knowledge.all()}
+    versions = {doc_id: doc["version"] for doc_id, doc in published.items()}
     parsed_root = info.root / PARSED_DIRNAME
     rows = []
     for rel, entry in sorted(manifest.items()):
         doc_id = entry["doc_id"] or ""
         parse, reason = _parse_state(entry, versions.get(doc_id), parsed_root)
+        doc = published.get(doc_id)
+        extract = _extract_state(info, {**doc, "source_sha256": entry["sha256"]} if doc else None)
+        if extract == "current" and doc_id not in current_ids:
+            extract = "stale"
         rows.append({
             "rel_path": rel,
             "doc_id": doc_id,
@@ -131,7 +136,7 @@ def stage_view(knowledge, info) -> dict:
             "parse": parse,
             "parse_reason": reason,
             "search": _search_state(entry, current_ids),
-            "extract": _extract_state(info, current.get(doc_id)),
+            "extract": extract,
         })
     counts = {stage: {} for stage in STAGES}
     for row in rows:

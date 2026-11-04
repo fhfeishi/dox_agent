@@ -95,9 +95,7 @@ def test_stage_view_reports_a_cached_parse(tmp_path):
 
 @pytest.mark.parametrize("marker", [
     None,
-    *[pytest.param(marker, marks=pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
-        "An existing damaged or mismatched cache.json is stale, never legacy-unmarked")))
-      for marker in ("corrupt", "source_mismatch", "version_mismatch")],
+    "corrupt", "source_mismatch", "version_mismatch",
 ])
 def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_path, marker):
     """A cache from before P0-1 has no ``cache.json``; the real libraries are all like this, so
@@ -129,11 +127,6 @@ def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_
 
 
 @pytest.mark.parametrize("source_state", ["changed", "missing"])
-@pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
-    "A published target still exists after source changed/missing: extract must not say missing. "
-    "Owner/Opus must choose stale or another state retaining the artifact's existence; "
-    "this test does not authorize making the document searchable again."
-))
 def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, source_state):
     info, store = view(tmp_path)
     doc = publish(store, info)
@@ -155,7 +148,7 @@ def test_stage_view_retains_extract_presence_for_superseded_source(tmp_path, sou
     assert (row["source"], row["search"]) == (source_state, "superseded")
     assert store.get(doc["doc_id"])["version"] == doc["version"]
     assert target.is_file()
-    assert row["extract"] != "missing"
+    assert row["extract"] == "stale"
 
 
 def test_stage_view_names_a_missing_pdf_cache(tmp_path):

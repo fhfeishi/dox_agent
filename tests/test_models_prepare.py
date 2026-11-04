@@ -2,6 +2,7 @@
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -11,19 +12,14 @@ import pytest
                     reason="models_prepare.sh requires a POSIX Bash environment")
 @pytest.mark.parametrize("fault", [
     None, "models", "config", "base_dir",
-    pytest.param("shadow_home", marks=pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
-        "An explicit project MINERU_HOME must not be rejected because unused ~/.mineru exists"))),
-    *[pytest.param(fault, marks=pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
-        "--check must reject an unset, empty, missing or external effective MINERU_HOME")))
-      for fault in ("unset_home", "empty_home", "missing_home", "external_home")],
-    *[pytest.param(fault, marks=pytest.mark.xfail(strict=False, raises=AssertionError, reason=(
-        "--check must validate effective model.base_dir, including YAML nesting and environment overrides")))
-      for fault in ("top_level", "external_base_dir", "missing_config_override", "model_override")],
+    "shadow_home", "unset_home", "empty_home", "missing_home", "external_home",
+    "top_level", "external_base_dir", "missing_config_override", "model_override",
 ])
 def test_models_prepare_check_reports_disk_faults_without_writing(tmp_path, fault):
     root = tmp_path / "project with spaces"
     script = root / "scripts" / "models_prepare.sh"
     script.parent.mkdir(parents=True)
+    (root / ".venv").symlink_to(sys.prefix, target_is_directory=True)
     shutil.copyfile(Path(__file__).resolve().parents[1] / "scripts" / script.name, script)
     models = root / ".models" / "mineru"
     models.mkdir(parents=True)

@@ -3,13 +3,14 @@ import pytest
 from src.agent.config import Settings
 from src.knowledge import Document, Knowledge, Page
 from src.parsers import import_defaults, parse_file, session_for
+from tests.helpers import put_listed
 
 
 def test_search_first_page_keeps_multiple_sources(tmp_path):
     store = Knowledge(tmp_path / "diverse.sqlite3")
-    store.put(Document(title="dominant", origin="one", kind="text", parser="test",
+    put_listed(store, Document(title="dominant", origin="one", kind="text", parser="test",
                        pages=[Page(number=1, text=("shared retrieval term detail\n" * 100))]))
-    second = store.put(Document(title="other", origin="two", kind="text", parser="test",
+    second = put_listed(store, Document(title="other", origin="two", kind="text", parser="test",
                                 pages=[Page(number=1, text="shared retrieval term from another source")]))
     hits = store.search("shared retrieval term", limit=4)
     assert second["doc_id"] in {hit["doc_id"] for hit in hits[:3]}
@@ -17,7 +18,7 @@ def test_search_first_page_keeps_multiple_sources(tmp_path):
 
 def test_search_accepts_task_id_for_task_specific_budget(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="南溪", origin="fixture.txt", kind="text", parser="test",
+    put_listed(store, Document(title="南溪", origin="fixture.txt", kind="text", parser="test",
                        pages=[Page(number=1, text="南溪地基基础施工于2025年10月22日完成")]))
     # The task id selects the retrieval budget (min/max reports); search must forward it.
     assert store.search("南溪地基基础施工", task_id="task2")
@@ -31,21 +32,21 @@ def document(text="南溪地基基础施工于2025年10月22日完成"):
 
 def test_persistence_version_and_chinese_retrieval(tmp_path):
     store = Knowledge(tmp_path / "db")
-    first = store.put(document())
-    assert store.put(document())["changed"] is False
+    first = put_listed(store, document())
+    assert put_listed(store, document())["changed"] is False
     restored = Knowledge(tmp_path / "db")
     hit = restored.search("南溪地基基础施工")[0]
     assert hit["doc_id"] == first["doc_id"]
     assert "2025年10月22日" in restored.read(hit["doc_id"])["text"]
     assert restored.search("unrelatedxyz") == []
-    store.put(document("新版施工时间"))
+    put_listed(store, document("新版施工时间"))
     with pytest.raises(ValueError, match="更新"):
         store.read(first["doc_id"], version=first["version"])
 
 
 def test_read_preserves_page_and_line(tmp_path):
     store = Knowledge(tmp_path / "db")
-    key = store.put(document("甲\n乙\n丙"))["doc_id"]
+    key = put_listed(store, document("甲\n乙\n丙"))["doc_id"]
     assert store.read(key, start_line=2, line_count=1)["text"] == "乙"
     with pytest.raises(ValueError):
         store.read(key, page=9)
@@ -92,10 +93,10 @@ def test_changed_source_is_not_searchable_before_reimport(tmp_path):
 
 def test_run_view_keeps_one_committed_version_until_closed(tmp_path):
     store = Knowledge(tmp_path / "db")
-    first = store.put(document("旧版施工时间"))
+    first = put_listed(store, document("旧版施工时间"))
     frozen = store.freeze()
     try:
-        store.put(document("新版施工时间"))
+        put_listed(store, document("新版施工时间"))
         assert frozen.read_markdown(first["doc_id"], first["version"])
         assert frozen.search("旧版施工时间")
         with pytest.raises(ValueError, match="变化"):
@@ -107,7 +108,7 @@ def test_run_view_keeps_one_committed_version_until_closed(tmp_path):
 def test_user_reads_markdown_and_pages_from_separate_storage(tmp_path):
     # Given a report parsed with both page text and a markdown body
     store = Knowledge(tmp_path / "db")
-    first = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+    first = put_listed(store, Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
                                pages=[Page(number=1, text="第一页正文"), Page(number=2, text="第二页正文")],
                                markdown="# 报告\n\n完整 markdown 正文"))
     # When listing documents
@@ -120,7 +121,7 @@ def test_user_reads_markdown_and_pages_from_separate_storage(tmp_path):
     with pytest.raises(ValueError, match="更新"):
         store.read_markdown(first["doc_id"], "stale-version")
     # And a markdown-only change produces a new version
-    second = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+    second = put_listed(store, Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
                                 pages=[Page(number=1, text="第一页正文"), Page(number=2, text="第二页正文")],
                                 markdown="# 报告\n\n修订后的 markdown"))
     assert second["changed"] and second["version"] != first["version"]
@@ -132,7 +133,7 @@ def test_user_retrieves_reports_from_persisted_chunks(tmp_path):
     store = Knowledge(tmp_path / "db")
     for title, text in (("癫痫网络报告", "癫痫致痫网络的特征识别方法"),
                         ("金融风险报告", "金融风险量化模型")):
-        result = store.put(Document(title=title, origin=title + ".pdf", kind="pdf", parser="mineru",
+        result = put_listed(store, Document(title=title, origin=title + ".pdf", kind="pdf", parser="mineru",
                                     pages=[Page(number=1, text=text)]))
         store.put_chunks(result["doc_id"], result["version"],
                          chunk_blocks(result["doc_id"], result["version"], title, [RawBlock(1, text)]))
@@ -147,7 +148,7 @@ def test_user_stops_seeing_chunks_after_source_removal(tmp_path):
     from src.retrieval import RawBlock, chunk_blocks
     # Given an indexed report
     store = Knowledge(tmp_path / "db")
-    result = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+    result = put_listed(store, Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
                                 pages=[Page(number=1, text="癫痫致痫网络")]))
     store.put_chunks(result["doc_id"], result["version"],
                      chunk_blocks(result["doc_id"], result["version"], "报告",
@@ -188,7 +189,7 @@ def test_session_exact_host_only(tmp_path):
 
 def test_numeric_footer_does_not_outrank_body(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(
+    put_listed(store,
         Document(
             title="runtime evals",
             origin="test.pdf",
@@ -205,6 +206,6 @@ def test_numeric_footer_does_not_outrank_body(tmp_path):
 
 def test_long_single_line_can_be_searched_and_read(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(document("filler " * 6000 + " uniquetarget tail"))
+    put_listed(store, document("filler " * 6000 + " uniquetarget tail"))
     hit = store.search("uniquetarget")[0]
     assert "uniquetarget" in store.read_chunk(hit["chunk_id"], hit["version"])["text"]

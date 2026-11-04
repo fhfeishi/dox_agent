@@ -8,6 +8,7 @@ from src.agent.config import Settings
 from src.agent.graph import build_graph
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from tests.helpers import put_listed
 
 
 class DirectModel:
@@ -50,7 +51,7 @@ def test_api_attaches_client_run_id_to_steps(tmp_path):
     corpus.mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    put_listed(store, Document(title="seed", origin="seed", kind="text", parser="text",
                        pages=[Page(number=1, text="hi")]))
 
     app = create_app(settings, store, lambda *_: Graph())
@@ -68,10 +69,10 @@ def test_a_search_is_traced_in_the_readers_terms_and_kept_with_the_run(tmp_path)
     corpus.mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="2021_2024_62173009_王强_巡检机器人路径规划研究", origin="2021_2024_62173009_王强_巡检机器人路径规划研究.md",
+    put_listed(store, Document(title="2021_2024_62173009_王强_巡检机器人路径规划研究", origin="2021_2024_62173009_王强_巡检机器人路径规划研究.md",
                        kind="text", parser="text",
                        pages=[Page(number=1, text="国家自然科学基金\n# 研究进展\n巡检机器人的路径规划采用多传感器融合。")]))
-    store.put(Document(title="2020_2023_62000001_李华_水稻育种", origin="2020_2023_62000001_李华_水稻育种.md",
+    put_listed(store, Document(title="2020_2023_62000001_李华_水稻育种", origin="2020_2023_62000001_李华_水稻育种.md",
                        kind="text", parser="text", pages=[Page(number=1, text="水稻育种与产量。")]))
 
     app = create_app(settings, store, lambda knowledge, s: build_graph(knowledge, s, DirectModel()))

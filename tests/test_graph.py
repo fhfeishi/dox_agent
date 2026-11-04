@@ -8,6 +8,7 @@ from src.agent import graph
 from src.agent.config import Settings
 from src.agent.graph import build_report_brief, extract_report_params
 from src.knowledge import Document, Knowledge, Page
+from tests.helpers import put_listed
 
 
 class RecordingModel:
@@ -22,7 +23,7 @@ class RecordingModel:
 
 def test_graph_retrieves_selected_reports_and_answers(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="南溪", origin="test", parser="text", kind="text",
+    put_listed(store, Document(title="南溪", origin="test", parser="text", kind="text",
                        pages=[Page(number=1, text="南溪施工完成日期2025年10月22日" * 100),
                               Page(number=2, text="南溪施工的验收记录")]))
     model = RecordingModel()

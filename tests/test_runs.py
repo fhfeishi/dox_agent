@@ -11,6 +11,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from tests.helpers import put_listed
 
 
 class FakeGraph:
@@ -33,7 +34,7 @@ def ready_app(tmp_path, factory=None):
     corpus.mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="seed", origin="2021_2025_P1_张三_seed.md", kind="text", parser="text",
+    put_listed(store, Document(title="seed", origin="2021_2025_P1_张三_seed.md", kind="text", parser="text",
                        pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n正文"))
     cid = corpus_id_for("fixture")
     maker = factory or (lambda corpus_id: FakeGraph(corpus_id))

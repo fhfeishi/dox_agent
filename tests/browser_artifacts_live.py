@@ -22,6 +22,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from tests.browser_support import login
+from tests.helpers import put_listed
 
 
 class OfflineGraph:
@@ -68,7 +69,7 @@ async def main():
         settings = Settings(_env_file=None, corpora_root=corpus_root, state_dir=state_dir, user_dir=root / "usr",
                             model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus_dir / "datadb" / "knowledge.sqlite3", settings=settings)
-        doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
+        doc = put_listed(knowledge, Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
                                      pages=[Page(number=1, text="证据正文")],
                                      markdown="填表日期：2025年\n资助类别：面上项目\n证据正文"))
         for name in ("zz-b", "zz-c"):

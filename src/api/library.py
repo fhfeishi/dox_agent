@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 
 from ..agent.corpora import (
     DB_DIRNAME,
+    PARSED_DIRNAME,
     SOURCE_DIRNAME,
     SOURCE_SUFFIXES,
     VECTOR_DIRNAME,
@@ -26,13 +27,14 @@ from ..agent.corpora import (
 )
 from ..auth import ADMIN_ONLY
 from ..jobs import JobBusy
-from ..parsers import collect_sources, import_defaults, unsafe_name
+from ..knowledge import is_virtual_rel
+from ..parse_cache import rename_rel
+from ..parsers import collect_sources, forget_source, import_defaults, unsafe_name
 from ..targets import (
     TargetMissing,
     TargetStale,
     extract_target,
     list_target_reports,
-    remove_target,
     target_detail,
 )
 from .common import (
@@ -73,12 +75,17 @@ def install(app, ctx):
         current_ids = {doc["doc_id"] for doc in knowledge_for(info).current()} if info.sqlite is not None else set()
         failed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "error")
         on_disk_indexed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("doc_id") in current_ids)
-        removed = sum(1 for rel in manifest if rel not in on_disk)
+        # P0-3 B1: manual text and web pages have no file in source/; they are neither removed nor
+        # pending, and are counted on their own (current entries only), so indexed may exceed source.
+        removed = sum(1 for rel in manifest if rel not in on_disk and not is_virtual_rel(rel))
+        virtual = sum(1 for rel, entry in manifest.items()
+                      if is_virtual_rel(rel) and entry["doc_id"] in current_ids)
         return {
             "source_count": len(on_disk),
             "indexed_count": len(current_ids),
             "pending_count": len(on_disk) - on_disk_indexed - failed + removed,
             "failed_count": failed,
+            "virtual_count": virtual,
         }
 
     def corpus_payload(info: CorpusInfo) -> dict:
@@ -524,7 +531,7 @@ def install(app, ctx):
                               "源文件已变化，请刷新" if status == "pending" else "",
                               "duplicate_of": copies.get(rel, "")})
             for rel, entry in sorted(manifest.items()):
-                if rel not in on_disk:
+                if rel not in on_disk and not is_virtual_rel(rel):
                     items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
             misplaced = sorted(path.name for path in info.root.iterdir()
                                if path.is_file() and not path.is_symlink()
@@ -606,8 +613,7 @@ def install(app, ctx):
             raise HTTPException(404, "资料库不存在")
         target = await asyncio.to_thread(source_file, info, rel_path)
         await asyncio.to_thread(target.unlink)
-        doc_id = await asyncio.to_thread(knowledge_for(info).drop_file, rel_path)
-        await asyncio.to_thread(remove_target, info, doc_id)
+        doc_id = await asyncio.to_thread(forget_source, knowledge_for(info), rel_path, info.root)
         return {"rel_path": rel_path, "doc_id": doc_id}
 
     @router.patch("/api/corpora/{corpus_id}/files", dependencies=ADMIN_ONLY)
@@ -624,7 +630,9 @@ def install(app, ctx):
         if new.exists():
             raise HTTPException(409, "同名文件已存在")
         await asyncio.to_thread(old.rename, new)
-        await asyncio.to_thread(knowledge_for(info).drop_file, payload.rel_path)
+        new_rel = new.relative_to(info.source_dir.resolve()).as_posix()
+        await asyncio.to_thread(rename_rel, info.root / PARSED_DIRNAME, payload.rel_path, new_rel)
+        await asyncio.to_thread(forget_source, knowledge_for(info), payload.rel_path, info.root)
         report = await import_corpus(info)
         return {"rel_path": new.relative_to(info.source_dir.resolve()).as_posix(), "added": report["added"], "updated": report["updated"],
                 "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
@@ -669,12 +677,19 @@ def install(app, ctx):
             raise HTTPException(404, "文档不存在") from exc
         if version and version != doc["version"]:
             raise HTTPException(422, "文档已更新，请重新搜索")
+        # P0-3 / security High#1: the file is the one this corpus's manifest lists under its own
+        # source directory. The stored origin is never a path to open: it may name another account's file.
+        manifest = await asyncio.to_thread(kn.files)
+        rel = next((item["rel_path"] for item in manifest.values() if item["doc_id"] == doc_id), None)
+        # P0-3 B1: manual text and web pages have no original file; decide before building any path.
+        if rel is not None and is_virtual_rel(rel):
+            raise HTTPException(404, "该文档不是本资料库内的本地文件，或原文已被移动")
+        root = kn.source_root.resolve() if kn.source_root is not None else None
+        path = (root / rel).resolve() if root is not None and rel is not None else None
+        if path is None or not path.is_relative_to(root) or not path.is_file():
+            raise HTTPException(404, "该文档不是本资料库内的本地文件，或原文已被移动")
         if doc_id not in {item["doc_id"] for item in await asyncio.to_thread(kn.current)}:
             raise HTTPException(409, "原文件已变化或不可用，旧版本原文无法预览")
-        resolved = local_path_in_roots(doc["origin"], settings)
-        path = resolved[0] if resolved else None
-        if path is None or not path.is_file():
-            raise HTTPException(404, "该文档不是报告根目录内的本地文件，或原文已被移动")
         media_type = FILE_MEDIA_TYPES.get(path.suffix.lower())
         if media_type is None:
             raise HTTPException(415, "该文件类型不支持网页预览")

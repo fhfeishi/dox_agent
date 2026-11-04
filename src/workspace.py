@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
-from .auth import CURRENT_USER, visible_owners
+from .auth import ADMIN_ONLY, CURRENT_USER, visible_owners
 from .core.db import connect, migrate
 from .knowledge import Document, Page
 
@@ -131,24 +131,23 @@ def save_record(kind: str, key: str, record: Record, request: Request):
 
 
 class TextImport(BaseModel):
+    # P0-3: no client `origin`. A new document's id derives from its origin, so a client-chosen one
+    # could name an indexed file and replace that document's body; the server names every manual text.
     title: str = Field(min_length=1, max_length=200)
-    origin: str = Field(default="", max_length=4000)
     text: str = Field(min_length=1, max_length=500000)
 
 
-@router.post("/ingest/text")
+@router.post("/ingest/text", dependencies=ADMIN_ONLY)
 async def import_text(payload: TextImport, request: Request):
     import asyncio
 
     if request.app.state.preparation == "running":
         raise HTTPException(409, "资料库正在初始化，请稍后补充")
     async with request.app.state.import_lock:
-        doc = Document(title=payload.title, origin=payload.origin.strip() or "manual:" + uuid4().hex,
+        doc = Document(title=payload.title, origin="manual:" + uuid4().hex,
                        kind="text", parser="manual", pages=[Page(number=1, text=payload.text)])
         try:
             result = await asyncio.to_thread(request.app.state.knowledge.put, doc)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
-        if request.app.state.preparation == "error":
-            request.app.state.preparation = "ready"
         return result

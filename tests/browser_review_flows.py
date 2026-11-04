@@ -25,6 +25,7 @@ from src.review import routes, storage
 from src.targets import DIMENSIONS, PROMPT_VERSION, SCHEMA_VERSION, _save
 from tests.browser_artifacts_live import start_server
 from tests.browser_support import login
+from tests.helpers import put_listed
 from tests.test_review_flows import FixtureReviewClient
 
 
@@ -75,7 +76,7 @@ async def main():
             path = source / filename
             path.write_text(body)
             documents.append(
-                knowledge.put(
+                put_listed(knowledge,
                     Document(
                         title=title,
                         origin=str(path),

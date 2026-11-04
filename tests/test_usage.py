@@ -10,6 +10,7 @@ from langchain_core.outputs import ChatGeneration, LLMResult
 from src.agent.graph import build_graph
 from src.agent.usage import ModelBudgetExceeded, TurnUsage
 from src.knowledge import Document, Page
+from tests.helpers import put_listed
 from tests.test_app import setup
 
 
@@ -63,7 +64,7 @@ def test_api_counts_answer_and_resets_each_request(tmp_path):
         AIMessage(content="answer", usage_metadata=usage),
     ])
     app, store = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
-    store.put(Document(title="fact", origin="fact", kind="text", parser="test",
+    put_listed(store, Document(title="fact", origin="fact", kind="text", parser="test",
                        pages=[Page(number=1, text="what is recursion " * 20)]))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]

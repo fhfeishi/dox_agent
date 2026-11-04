@@ -60,13 +60,13 @@ python datapipe/scripts/align_parsed_cache.py --apply
 ## 3. 解析（MinerU 缓存）
 
 ```bash
-python datapipe/scripts/parse_missing_pdf.py --tier flash [--limit N] [--timeout 7200]
+python datapipe/scripts/parse_missing_pdf.py --tier basic [--limit N] [--timeout 7200]
 ```
 
 - 输入：`source/**/*.pdf` 中 `parsed/<相对路径>/middle_json.json` 不存在的那些。
 - 产物：`parsed/<source 相对路径>/` 下的 `markdown.md`、`middle_json.json`、`images/`。
 - 续跑：命中缓存即跳过，天然断点续跑；单份超时只影响该份。
-- 本机实测：`--tier flash` 约 7 s/页；`--tier standard` 无 GPU 时约 2.8 min/页，**不要用**。两种档位输出结构相同，代码只依赖 `middle_json.json` 与 `*.md`。
+- 档位：默认 `basic`（应用配置 `MINERU_CMD` 也是 `--tier basic`，CPU 上约 2.5–5.5 s/页）。`standard` 无 GPU 时约 2.8 min/页，只在有 GPU 或内存充足时用（11 GB 的 WSL 上曾拖垮整机）。**不要用 `flash`**：它是否联网、资料会不会出机都未验证。三种档位输出结构相同，代码只依赖 `middle_json.json` 与 `*.md`。
 - 失败处置：单份失败只打印 `FAIL`，不中断整批；失败份下次运行自动重试。`pending/` 下的 PDF 用扁平缓存路径 `parsed/<文件名>/`。
 
 ## 4. 入库
@@ -182,7 +182,7 @@ id 由内容派生，因此同一份正文重复提取得到的 id 稳定，下�
 - **模型调用次数 = 分块段数**：正文按 `review_segments` 切段（每段上限 6000 字符），每段一次调用；单份上限由 `--max-calls`（默认 40）约束，超限则该份标「未完成」而不是无限重试。实测样例（医疗库单份报告）`params.model_calls = 8`。
 - **单份时限**：`--timeout`（默认 900 s）到点即停止并记「未完成」，已完成的分块结果仍会合并保留。
 - **输出被截断**时自动二分该段重读（最多递归 2 层），因此长表格页不会整段丢失，但会增加调用次数。
-- **PDF 解析**：`flash` ≈ 7 s/页；`standard` ≈ 2.8 min/页（无 GPU）。解析缓存是省时间的唯一手段，不要随意删 `parsed/`。
+- **PDF 解析**：`basic` ≈ 2.5–5.5 s/页（CPU）；`standard` ≈ 2.8 min/页（无 GPU）。`flash` 是否联网、资料会不会出机都未验证，不用。解析缓存是省时间的唯一手段，不要随意删 `parsed/`。
 - 单价不写死在文档里：成本按 `model_name` 与调用次数自行核算，`target_v2_report.json` 给出每次运行的实际调用总数。
 
 ## 9. 现状快照（2026-10-17 实测，会漂移）

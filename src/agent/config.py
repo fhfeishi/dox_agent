@@ -64,6 +64,13 @@ class Settings(BaseSettings):
     # document gets at most 20 minutes (user, Q4). Use --tier standard on a machine with a GPU.
     mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}/result.zip" --tier basic --ocr-mode auto --format zip'
     mineru_home: Path | None = None
+    # PDF 解析鲁棒性 (2026-11-03): when the first tier fails (crash, empty output, page mismatch) or
+    # leaves under 80% of pages with text, parse once more at this tier and keep the better result.
+    # Timeouts are not retried at a slower tier; flash is never a fallback (whether it sends files
+    # off the machine is unverified). Off by default: on the 11 GB WSL dev box a standard-tier run
+    # alongside the test suite took the whole VM down (2026-11-03). Set MINERU_FALLBACK_TIER=standard
+    # only on a machine with the memory (or GPU) for the local VLM.
+    mineru_fallback_tier: str = ""
     mineru_timeout: float = Field(default=1200, ge=30, le=7200)
     # Removed 8 settings nothing read any more (F4/Q3, 2026-10-19): max_research_steps, max_rounds,
     # evidence_routing, max_searches, max_reads, model_context_tokens, answer_reserve_tokens,

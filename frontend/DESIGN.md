@@ -3,6 +3,8 @@
 > Agent 改 UI 前必读。唯一入口 skill：`.agents/skills/dox-ui`。  
 > 本文从现有 `globals.css` / `ui.tsx` 抽出，**不是**新设计系统。
 
+本文只管视觉与交互（token、组件复用、交互层级、动效、禁令）；产品目标、证明物与文案语气由需求载体决定，不在本文。
+
 ## 栈（不要换）
 
 - React 19 + Vite + TypeScript + Tailwind CSS v4
@@ -92,6 +94,36 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 
 完整列表以 `globals.css` 为准。
 
+### Token 核心值（速查）
+
+数值仅速查，真源 `frontend/src/styles/globals.css`，改值先改 CSS；数值以 globals 为准，冲突时改代码不另写第二套。
+
+| 变量 | 值 | 用途 |
+|---|---|---|
+| `--heading` | `#1f3147` | 标题 / 强调字 |
+| `--text-2` / `--text-3` | `#3d4b5c` / `#6b7a8c` | 正文 / 说明 |
+| `--canvas` / `--surface` | `#ffffff` / `#f5f7fa` | 画布底 / 表面 |
+| `--line-cool` / `--line-cool-soft` / `--line-cool-strong` | `#e2e7ee` / `#edf0f4` / `#b4c1d2` | 线 / 软线 / 强线 |
+| `--primary` / `--primary-pressed` / `--primary-soft` | `#345a78` / `#25435c` / `#eaf0f5` | 仅可交互主色 / 按下 / 浅主色底 |
+| `--link` | `#2f6289` | 链接 |
+| `--focus-data` | `#2e8b7a` | 数据焦点，不是按钮主色 |
+| `--dur-quick` / `--dur-small` / `--dur-panel` / `--dur-layout` | `120ms` / `200ms` / `320ms` / `520ms` | 四档时长（用途见「交互层级与动效」） |
+| `--ease-out` | `cubic-bezier(.16, 1, .3, 1)` | 统一缓出 |
+
+字号阶（工具类 `text-caption` … `text-display`；大屏 2200px / 3000px 上调见 globals）：
+
+| 阶 | 字号 / 行高 | 用途 |
+|---|---|---|
+| caption | 12 / 16 | 仅辅助说明 |
+| body | 14 / 20 | 正文 |
+| emphasis | 16 / 24 | 强调正文 |
+| group | 18 / 28 | 分组标题 |
+| page | 22 / 30 | 页标题 |
+| stat | 28 / 36 | 数字统计 |
+| display | 38（行高 1） | 仅领导页 banner 大数字 |
+
+字号只用 `--text-*` / `text-*` 阶；`text-[12px]` 之类硬编码像素与 Tailwind 自带字号类会被 `frontend/src/tokens.test.mts` 拒绝。
+
 ## 交互层级与动效（2026-10-27）
 
 来源：`.logsdev/tasks/领导体验优化-20261026/README.md` §4、`.logsdev/前端审查-20261027.md`。
@@ -112,6 +144,9 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 3. 不把营销页套路（大渐变英雄区、三列 icon 卡、全大写眉标）塞进工作台。
 4. 不为“好看”重做整站；与记忆/PDF 相关的三处优先（引用页可点、任务状态面板、章节树）。
 5. 文案：按钮说具体动作（如「保存修改」），错误说明原因和下一步。
+6. 不再引入第二套暖灰中性族（中性色见「交互层级与动效」）。
+7. 不嵌套卡片（卡套卡）。
+8. 正文不用 12px（12 只作 caption）。
 
 ## 推荐流程
 
@@ -119,3 +154,11 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 2. 新气质：再读 `.agents/skills/frontend-design`。  
 3. 改完审查：再读 `.agents/skills/web-design-guidelines`。  
 4. 探索稿：`.agents/skills/baoyu-design`（限 2 版）。
+
+## 交付自检
+
+其余自检项见 `.agents/skills/dox-ui` §3；这里只列本文要求的三项：
+
+- [ ] `frontend/src/tokens.test.mts`（及同目录相关 UI 测试）通过，`./scripts/check.sh quick` 会跑到。
+- [ ] 折叠区未展开时不渲染重内容（见「交互层级与动效」）。
+- [ ] `prefers-reduced-motion` 下无自写冲突动画，全局规则由 `globals.css` 统一处理（见「交互层级与动效」）。

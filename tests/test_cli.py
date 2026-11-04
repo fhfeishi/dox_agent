@@ -9,6 +9,7 @@ from src import cli
 from src.agent import graph
 from src.agent.config import Settings
 from src.knowledge import Document, Knowledge, Page
+from tests.helpers import put_listed
 
 
 class FakeModel:
@@ -18,7 +19,7 @@ class FakeModel:
 
 def seeded_store(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(
+    put_listed(store,
         Document(
             title="南溪",
             origin="test",

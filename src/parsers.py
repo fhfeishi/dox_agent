@@ -10,6 +10,7 @@ import shlex
 import shutil
 import signal
 import subprocess
+import time
 import unicodedata
 from pathlib import Path, PureWindowsPath
 from urllib.parse import urlsplit
@@ -17,8 +18,29 @@ from urllib.parse import urlsplit
 import httpx
 
 from .agent.config import Settings
-from .agent.corpora import SOURCE_SUFFIXES
-from .knowledge import Document, Page
+from .agent.corpora import PARSED_DIRNAME, SOURCE_SUFFIXES, TARGET_DIRNAME
+from .knowledge import Document, Page, content_version_of, is_virtual_rel
+from .parse_cache import (
+    CACHE_FILE,
+    LEGACY,
+    cache_state,
+    canonical_dir,
+    complete,
+    drop_marker,
+    drop_rel,
+    load_output,
+    output_page_count,
+    output_page_texts,
+    parse_quality,
+    parser_profile,
+    pdf_page_count,
+    promote,
+    publishes,
+    read_cache,
+    staging_dir,
+    sweep,
+    write_cache,
+)
 from .retrieval import RawBlock
 
 logger = logging.getLogger(__name__)
@@ -180,6 +202,18 @@ def mineru_failure(output: str) -> str:
     return "PDF 解析失败：" + (last[:120] or "原因未知")
 
 
+class ParseError(ValueError):
+    """A PDF parse that did not produce usable output; ``reason`` is a stable code for the record.
+
+    Codes: ``tool_missing``, ``timeout``, ``tool_crash``, ``empty_output``, ``incomplete_output``
+    (no per-page JSON), ``page_mismatch``.
+    """
+
+    def __init__(self, reason: str, message: str):
+        super().__init__(message)
+        self.reason = reason
+
+
 def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
     """K13: run mineru into ``out_dir`` and return ``(markdown, per-page text)``."""
     shutil.rmtree(out_dir, ignore_errors=True)
@@ -198,19 +232,19 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
         process = subprocess.Popen(args, env=environment, stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT, start_new_session=True)
     except OSError as exc:
-        raise ValueError("无法启动 mineru：" + str(exc)) from exc
+        raise ParseError("tool_missing", "无法启动 mineru：" + str(exc)) from exc
     try:
         output, _ = process.communicate(timeout=settings.mineru_timeout)
     except subprocess.TimeoutExpired:
         _kill_process_group(process)
-        raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
+        raise ParseError("timeout", f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
     if process.returncode != 0:
         text = (output or b"")[-4000:].decode("utf-8", "ignore")
         logger.warning("mineru failed on %s:\n%s", path.name, text)
-        raise ValueError(mineru_failure(text))
+        raise ParseError("tool_crash", mineru_failure(text))
     markdown, pages = read_mineru_output(out_dir)
     if not pages:
-        raise ValueError("mineru 输出为空，未入库")
+        raise ParseError("empty_output", "mineru 输出为空，未入库")
     return markdown, pages
 
 
@@ -356,11 +390,16 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
     if not base.is_dir():
         raise FileNotFoundError(f"资料目录不可读取：{base}")
     current: dict[str, Path] = {}
-    for path in collect_sources(root):
+    refused: list[Path] = []
+    for path in collect_sources(root, refused=refused):
         current[path.resolve().relative_to(base).as_posix()] = path
 
+    if parsed_root is not None:
+        sweep(Path(parsed_root), current)  # B2: before any import reads or writes the cache
     added = updated = skipped = 0
-    imported, errors = [], []
+    imported = []
+    # P0-3 B1: ``:`` is reserved for virtual rels (manual:/web:); such a file is reported, not indexed.
+    errors = [{"source": path.name, "error": "UnsafeName"} for path in refused]
     for rel, path in current.items():
         prev = manifest.get(rel)
         outcome = import_one(knowledge, settings, path, rel, prev, force=force, parsed_root=parsed_root)
@@ -375,59 +414,295 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
 
     deleted = 0
     for rel in list(manifest):
-        if rel in current or manifest[rel]["status"] == "removed":
+        # Virtual rels (manual text, web pages) have no file on disk by design.
+        if rel in current or manifest[rel]["status"] == "removed" or is_virtual_rel(rel):
             continue
-        knowledge.drop_file(rel)
+        forget_source(knowledge, rel, Path(parsed_root).parent if parsed_root is not None else None)
         deleted += 1
     return {"imported": imported, "errors": errors, "added": added, "updated": updated,
             "skipped": skipped, "deleted": deleted, "scanned": len(current)}
 
 
 
+def forget_source(knowledge, rel: str, corpus_root: Path | None) -> str | None:
+    """P0-2: everything derived from one source goes with it — SQLite rows (``drop_file``), the parse
+    cache under ``parsed/`` and the four-dimension record ``target/<doc_id>.json``. Every per-file
+    deletion path (admin delete, rename, import pruning, personal uploads) calls this; deleting a
+    whole library removes its directories instead. Idempotent. Returns the dropped doc_id."""
+    doc_id = knowledge.drop_file(rel)
+    if corpus_root is not None and not is_virtual_rel(rel):
+        drop_rel(Path(corpus_root) / PARSED_DIRNAME, rel)
+    if corpus_root is not None and doc_id:
+        (Path(corpus_root) / TARGET_DIRNAME / f"{doc_id}.json").unlink(missing_ok=True)
+    return doc_id
+
+
 def import_one(knowledge, settings: Settings, path: Path, rel: str, prev: dict | None, *, force: bool = False,
                parsed_root: Path | None = None):
     """Import one source file: ``"skipped"`` when unchanged, the stored result when indexed, or the
-    exception when it failed (also recorded in the manifest with a reason the reader can use)."""
-    digest = ""
+    exception when it failed (also recorded in the manifest with a reason the reader can use).
+
+    P0-1 / B3: three stages with separate failure handling. P1 parses (or reuses a complete staging
+    parse) and validates; P2 publishes body, chunks and manifest in one SQLite transaction; a P1/P2
+    failure is recorded against ``prev`` (decision ②: an unchanged source keeps its current
+    document). P3 promotes the staging parse to the canonical cache *after* publication, in its own
+    try: it never rewrites the manifest, and an unfinished promotion is completed by the next import.
+    """
+    cached = parsed_root is not None and path.suffix.lower() == ".pdf"
+    digest = after = ""
+    staging: Path | None = None
     try:
         stat = path.stat()
-        if not force and prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
-            return "skipped"
+        indexed = bool(prev) and prev["status"] == "indexed"
+        if not force and indexed and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
+            return reconcile_cache(knowledge, path, rel, prev, Path(parsed_root)) if cached else "skipped"
         digest = sha256_file(path)
-        if not force and prev and prev["status"] == "indexed" and prev["sha256"] == digest:
+        if not force and indexed and prev["sha256"] == digest:
             knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
-            return "skipped"
-        changed_pdf = path.suffix.lower() == ".pdf" and (force or not prev or prev["sha256"] != digest)
-        # A changed PDF must never publish its new source hash with the old MinerU cache.
-        # Parse into a digest-specific directory so a failed attempt keeps the prior cache.
-        parsed_dir = (parsed_root / rel / ".versions" / digest if changed_pdf and parsed_root
-                      else parsed_root / rel if parsed_root else None)
-        document = parse_file(path, settings, parsed_dir=parsed_dir, reuse_cache=not changed_pdf)
-        if sha256_file(path) != digest:
+            return reconcile_cache(knowledge, path, rel, prev, Path(parsed_root)) if cached else "skipped"
+        blocks = None
+        if cached:
+            document, blocks, staging = _parse_pdf_cached(path, rel, digest, settings, Path(parsed_root),
+                                                         force=force, first=prev is None)
+        else:
+            changed_pdf = path.suffix.lower() == ".pdf" and (force or not prev or prev["sha256"] != digest)
+            document = parse_file(path, settings, reuse_cache=not changed_pdf)
+        after = sha256_file(path)
+        if after != digest:
+            if staging is not None:
+                shutil.rmtree(staging, ignore_errors=True)  # U10: a parse of bytes that are gone
             raise ValueError("源文件在解析期间发生变化")
         # KB-5/T1: reuse the manifest doc_id so a rename/reimport updates in place.
-        blocks = None
-        # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
-        # the page-level fallback. Both forms publish with the body in one transaction.
-        if parsed_root is not None and path.suffix.lower() == ".pdf":
-            blocks = read_mineru_blocks(parsed_dir) or None
         result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"),
                                source_file=(rel, stat.st_size, stat.st_mtime_ns, digest), blocks=blocks)
-        return result
     except Exception as exc:  # noqa: BLE001 - retain other sources on parser failure
-        try:
-            stat = path.stat()
-            knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
-                                  (prev or {}).get("doc_id"), "error", digest,
-                                  # Our own ValueErrors are written for the reader; anything else names its type.
-                                  str(exc) if type(exc) is ValueError else f"{type(exc).__name__}: {exc}")
-        except OSError:
-            pass
+        _record_failure(knowledge, path, rel, prev, digest, after, exc)
         return exc
+    return _promote_published(Path(parsed_root), rel, staging, result) if staging is not None else result
 
 
-def collect_sources(root: Path) -> list[Path]:
-    """Recursively collect regular source files without following links or hiding scan errors."""
+def _pdf_document(path: Path, markdown: str, pages: list[Page]) -> Document:
+    return Document(title=path.stem, origin=str(path.resolve()), kind="pdf", parser="mineru",
+                    pages=pages, markdown=markdown)
+
+
+def _legacy_pages(path: Path, directory: Path) -> int | None:
+    """Decision ① guard: a pre-P0 cache is adopted only when its middle JSON has as many pages as the
+    PDF's full page tree (N2: a truncated cache). It cannot prove the cache belongs to this source."""
+    expected, got = pdf_page_count(path), output_page_count(directory)
+    if expected is None or got != expected:
+        return None
+    try:
+        _, pages, _ = load_output(directory)
+    except (OSError, ValueError):
+        return None
+    return got if any(page.text.strip() for page in pages) else None
+
+
+def _parse_pdf_cached(path: Path, rel: str, digest: str, settings: Settings, parsed_root: Path, *,
+                      force: bool, first: bool) -> tuple[Document, list, Path | None]:
+    """P1: ``(document, blocks, staging to promote after publication or None)``."""
+    staging = staging_dir(parsed_root, rel, digest)
+    canonical = canonical_dir(parsed_root, rel)
+    if force:
+        drop_marker(staging)
+    elif complete(staging, rel, digest):  # U9: a finished parse of these bytes, e.g. after a failed put
+        markdown, pages, blocks = load_output(staging)
+        return _pdf_document(path, markdown, pages), blocks, staging
+    elif complete(canonical, rel, digest):  # the canonical cache already is this source's parse
+        markdown, pages, blocks = load_output(canonical)
+        return _pdf_document(path, markdown, pages), blocks, None
+    elif first and canonical.is_dir() and not (canonical / CACHE_FILE).exists():
+        if (count := _legacy_pages(path, canonical)) is not None:  # decision ① (U1)
+            write_cache(canonical, rel=rel, source_sha=digest, version=None, profile=LEGACY, pages=count,
+                        quality=parse_quality(output_page_texts(canonical) or [], count))
+            markdown, pages, blocks = load_output(canonical)
+            return _pdf_document(path, markdown, pages), blocks, None
+    # Parsing writes only to staging (and a sibling for the retry); the canonical cache is never touched here.
+    expected = pdf_page_count(path)
+    markdown, pages, got, attempts, quality, selected_command = _parse_with_retry(path, settings, staging, expected)
+    blocks = read_mineru_blocks(staging)
+    # The completion marker goes last: a staging directory with cache.json holds a whole parse.
+    write_cache(staging, rel=rel, source_sha=digest, version=content_version_of(pages, markdown),
+                profile=parser_profile(settings, selected_command), pages=got,
+                attempts=[{key: value for key, value in attempt.items() if key != "command"} for attempt in attempts],
+                quality=quality)
+    return _pdf_document(path, markdown, pages), blocks, staging
+
+
+TIER = re.compile(r"(--tier\s+)(\S+)")
+LOW_COVERAGE = 0.8  # below this share of pages with text, a retry is worth its cost
+NO_RETRY = {"tool_missing", "timeout"}  # a slower tier would not help (timeout) or cannot run
+
+
+def _tier(command: str) -> str:
+    match = TIER.search(command)
+    return match.group(2) if match else ""
+
+
+def _parse_commands(settings: Settings) -> list[str]:
+    """The MinerU command, then the same command at the fallback tier when that differs."""
+    commands = [settings.mineru_cmd]
+    fallback = settings.mineru_fallback_tier.strip()
+    if fallback and fallback != "flash" and _tier(settings.mineru_cmd) and _tier(settings.mineru_cmd) != fallback:
+        commands.append(TIER.sub(lambda match: match.group(1) + fallback, settings.mineru_cmd, count=1))
+    return commands
+
+
+def _one_attempt(path: Path, settings: Settings, command: str, out_dir: Path, expected: int | None):
+    """``(record, (markdown, pages, got, quality) or None)``; usable output may still have low coverage."""
+    record = {"tool": "mineru", "tier": _tier(command), "command": command}
+    start = time.monotonic()
+    try:
+        markdown, pages = parse_pdf_pages(path, settings.model_copy(update={"mineru_cmd": command}), out_dir)
+        texts = output_page_texts(out_dir)
+        if texts is None:
+            raise ParseError("incomplete_output", "解析结果缺少逐页数据，未入库")
+        got = len(texts)
+        if expected is not None and got != expected:
+            raise ParseError("page_mismatch", f"解析页数与原件不符（{got}/{expected} 页），未入库")
+        if not any(page.text.strip() for page in pages):
+            raise ParseError("empty_output", "解析结果为空，未入库")
+    except ParseError as exc:
+        record.update(ok=False, reason=exc.reason, message=str(exc)[:200],
+                      seconds=round(time.monotonic() - start, 1))
+        return record, None
+    quality = parse_quality(texts, expected)
+    record.update(ok=True, reason="low_coverage" if quality["coverage"] < LOW_COVERAGE else "",
+                  coverage=quality["coverage"], seconds=round(time.monotonic() - start, 1))
+    return record, (markdown, pages, got, quality)
+
+
+def _parse_with_retry(path: Path, settings: Settings, staging: Path, expected: int | None):
+    """Parse into ``staging``; when the first tier fails or covers too few pages, retry at the fallback
+    tier into a sibling directory and keep the better result. Raises ``ParseError`` naming every attempt.
+
+    A PDF whose page count no reader can tell is still parsed; its quality says ``page_count_checked:
+    false`` instead of the parse being refused.
+    """
+    attempts: list[dict] = []
+    best: tuple[Path, tuple, str] | None = None
+    retry_dir = staging.with_name(staging.name + "-retry")
+    for index, command in enumerate(_parse_commands(settings)):
+        out_dir = staging if index == 0 else retry_dir
+        record, result = _one_attempt(path, settings, command, out_dir, expected)
+        attempts.append(record)
+        if result is not None and (best is None or result[3]["coverage"] > best[1][3]["coverage"]):
+            best = (out_dir, result, command)
+        if record["ok"] and not record["reason"]:
+            break
+        if record.get("reason") in NO_RETRY:
+            break
+    try:
+        if best is None:
+            shutil.rmtree(staging, ignore_errors=True)  # no usable output: nothing to reuse
+            summary = "；".join(f"{attempt['tier'] or 'mineru'}：{attempt['message']}" for attempt in attempts)
+            reason = attempts[-1]["reason"]
+            raise ParseError(reason, summary if len(attempts) > 1 else attempts[0]["message"])
+        out_dir, (markdown, pages, got, quality), selected_command = best
+        if out_dir != staging:
+            shutil.rmtree(staging, ignore_errors=True)
+            os.replace(out_dir, staging)
+        return markdown, pages, got, attempts, quality, selected_command
+    finally:
+        shutil.rmtree(retry_dir, ignore_errors=True)
+
+
+def _record_failure(knowledge, path: Path, rel: str, prev: dict | None, digest: str, after: str,
+                    exc: Exception) -> None:
+    """P1/P2 failure. Decision ②: when the source equals the indexed one before and after the attempt,
+    the document stays current and only the error is noted; otherwise the entry becomes ``error``."""
+    # Our own ValueErrors are written for the reader; anything else names its type.
+    reason = str(exc) if type(exc) in (ValueError, ParseError) else f"{type(exc).__name__}: {exc}"
+    try:
+        stat = path.stat()
+        if prev and prev["status"] == "indexed" and digest and digest == prev["sha256"]:
+            if (after or sha256_file(path)) == digest:
+                knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, prev["sha256"], prev["doc_id"],
+                                      "indexed", digest, reason)
+                return
+        knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
+                              (prev or {}).get("doc_id"), "error", digest, reason)
+    except OSError:
+        pass
+
+
+def _promote_published(parsed_root: Path, rel: str, staging: Path, result):
+    """P3: never touches the manifest; a failure leaves the staging parse for ``reconcile_cache``."""
+    try:
+        promote(parsed_root, rel, staging)
+    except Exception as exc:  # noqa: BLE001 - the parse is already published
+        logger.warning("parse cache promotion pending for %s: %s", rel, exc)
+        return {**result, "promotion_pending": True} if isinstance(result, dict) else result
+    return result
+
+
+def reconcile_cache(knowledge, path: Path, rel: str, prev: dict, parsed_root: Path):
+    """B3: before an indexed PDF is skipped, bring its cache in line with what SQLite publishes.
+
+    Identities: ``S`` = manifest source sha, ``V`` = ``docs.version``. First match wins:
+    1. complete staging at ``S`` with version ``V`` → published but not promoted: promote;
+    2. complete staging at ``S`` with another version → parsed but not published (e.g. a forced
+       reparse interrupted before put, or put failed): publish it, then promote;
+    3. canonical ``cache.json`` at ``S`` and ``V`` (or an adopted legacy cache) → consistent;
+    4. canonical directory without ``cache.json`` (pre-P0) → adopt as legacy if the page guard holds;
+    5. otherwise a canonical directory that disagrees → ``cache_mismatch``: nothing reads it;
+    6. no cache at all → ``cache_missing``. Neither 5 nor 6 reparses; the document stays current.
+    MinerU never runs here.
+    """
+    source_sha = prev["sha256"]
+    try:
+        version = knowledge.get(prev["doc_id"])["version"] if prev["doc_id"] else None
+    except KeyError:
+        version = None
+    staging = staging_dir(parsed_root, rel, source_sha)
+    pending = complete(staging, rel, source_sha) if staging.is_dir() else None
+    if pending is not None and pending["version"] == version:
+        _promote_published(parsed_root, rel, staging, None)
+        return "skipped"
+    if pending is not None:
+        return _republish(knowledge, path, rel, prev, staging, parsed_root)
+    canonical = canonical_dir(parsed_root, rel)
+    if publishes(read_cache(canonical), source_sha, version):
+        return "skipped"
+    if canonical.is_dir() and not (canonical / CACHE_FILE).exists():
+        if (count := _legacy_pages(path, canonical)) is not None:
+            write_cache(canonical, rel=rel, source_sha=source_sha, version=None, profile=LEGACY, pages=count,
+                        quality=parse_quality(output_page_texts(canonical) or [], count))
+            return "skipped"
+    logger.info("parse cache %s for %s", cache_state(parsed_root, rel, source_sha, version), rel)
+    return "skipped"
+
+
+def _republish(knowledge, path: Path, rel: str, prev: dict, staging: Path, parsed_root: Path):
+    """B3 #2: publish a complete staging parse of the indexed source (no MinerU), then promote it.
+    The source identity is checked again: staging integrity does not prove the source is unchanged."""
+    digest = after = ""
+    try:
+        stat = path.stat()
+        digest = sha256_file(path)
+        if digest != prev["sha256"]:
+            raise ValueError("源文件在解析期间发生变化")
+        markdown, pages, blocks = load_output(staging)
+        document = _pdf_document(path, markdown, pages)
+        after = sha256_file(path)
+        if after != digest:
+            raise ValueError("源文件在解析期间发生变化")
+        result = knowledge.put(document, doc_id=prev["doc_id"],
+                               source_file=(rel, stat.st_size, stat.st_mtime_ns, digest), blocks=blocks)
+    except Exception as exc:  # noqa: BLE001 - same P2 boundary as import_one
+        _record_failure(knowledge, path, rel, prev, digest, after, exc)
+        return exc
+    return _promote_published(parsed_root, rel, staging, result)
+
+
+def collect_sources(root: Path, *, refused: list[Path] | None = None) -> list[Path]:
+    """Recursively collect regular source files without following links or hiding scan errors.
+
+    A ``:`` in any part of the path relative to ``root`` (file or folder name) could make the rel
+    look like a virtual manifest rel (``manual:<id>``); such a file is left out and, when ``refused``
+    is given, appended there for the caller to report. Only the relative parts are checked, so a
+    Windows drive in ``root`` (``C:\\``) is never refused."""
     base = Path(root)
     if not base.is_dir():
         raise FileNotFoundError(f"资料目录不可读取：{base}")
@@ -442,6 +717,10 @@ def collect_sources(root: Path) -> list[Path]:
         for name in sorted(files):
             path = parent / name
             if not path.is_symlink() and path.suffix.lower() in SOURCE_SUFFIXES and path.is_file():
+                if any(":" in part for part in path.relative_to(base).parts):
+                    if refused is not None:
+                        refused.append(path)
+                    continue
                 paths.append(path)
     return paths
 

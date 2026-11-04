@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 import pytest
+from pypdf import PdfWriter
 
 from src.agent.config import Settings
 from src.knowledge import Knowledge
@@ -66,24 +67,36 @@ def test_parse_file_runs_command_and_caches_output(tmp_path):
 
 def test_changed_pdf_does_not_publish_old_parse_cache(tmp_path):
     script = tmp_path / "echo_pdf.py"
+    # P0-1: a real one-page PDF (the page guard reads its page tree) carrying its body as the title;
+    # the fake MinerU writes a one-page middle JSON from it.
     script.write_text(
         "import json, pathlib, sys\n"
+        "from pypdf import PdfReader\n"
         "source = pathlib.Path(sys.argv[1]); out = pathlib.Path(sys.argv[2])\n"
         "out.mkdir(parents=True, exist_ok=True)\n"
-        "text = source.read_bytes().decode()\n"
+        "text = PdfReader(source).metadata.title\n"
         "(out / 'full.md').write_text('填表日期:2025年01月05日\\n' + text, encoding='utf-8')\n"
-        "(out / 'x_content_list.json').write_text(json.dumps([{'type':'text','text':text,'page_idx':0}]))\n",
+        "(out / 'middle_json.json').write_text(json.dumps({'pages': [{'page_idx': 0, 'blocks': [\n"
+        "    {'type': 'text', 'content': [{'type': 'text', 'content': text}]}]}]}))\n",
         encoding="utf-8",
     )
     root = tmp_path / "source"
     root.mkdir()
     pdf = root / "a.pdf"
-    pdf.write_bytes(b"old body")
+
+    def write_pdf(body: str) -> None:
+        writer = PdfWriter()
+        writer.add_blank_page(width=200, height=200)
+        writer.add_metadata({"/Title": body})
+        with pdf.open("wb") as handle:
+            writer.write(handle)
+
+    write_pdf("old body")
     settings = Settings(_env_file=None, mineru_cmd=f"{sys.executable} {script} {{pdf}} {{out}}")
     store = Knowledge(tmp_path / "db", source_root=root)
     parsed = tmp_path / "parsed"
     assert import_defaults(store, settings, root=root, parsed_root=parsed)["added"] == 1
-    pdf.write_bytes(b"new body")
+    write_pdf("new body")
     assert import_defaults(store, settings, root=root, parsed_root=parsed)["updated"] == 1
     # BM25 may match the shared word "body"; verify the published body/version,
     # rather than assuming the query has exact-phrase or AND semantics.

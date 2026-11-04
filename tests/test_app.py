@@ -9,6 +9,7 @@ from src.api import library as library_api
 from src.api import web as web_api
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from tests.helpers import put_listed, put_unlisted
 
 
 def fresh_projects(client, corpus_id):
@@ -156,7 +157,7 @@ def test_user_corpus_overview_reports_source_and_index_status_counts(tmp_path):
 
 def test_api_and_validation(tmp_path):
     app, store = setup(tmp_path)
-    key = store.put(
+    key = put_listed(store,
         Document(
             title="test", origin="test", kind="text", parser="text", pages=[Page(number=1, text="source")]
         )
@@ -175,7 +176,7 @@ def test_api_and_validation(tmp_path):
 def test_document_markdown_endpoint_returns_full_body(tmp_path):
     app, store = setup(tmp_path)
     body = "# 标题\n\n| A | B |\n| --- | --- |\n| 1 | 2 |\n"
-    key = store.put(
+    key = put_listed(store,
         Document(title="README", origin="README.md", kind="text", parser="markdown",
                  pages=[Page(number=1, text=body)], markdown=body)
     )["doc_id"]
@@ -229,7 +230,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
     (dist / "index.html").write_text("research shell")
     monkeypatch.setattr(main_module, "DOX_AGENT_ROOT", tmp_path)
     body = "# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。2022年发表《深度学习病灶识别》，2023年完成医院试验。"
-    saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
+    saved = put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -288,7 +289,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert {r["kind"] for r in v2["rejected"]} >= {"可枚举成果", "事件"}
         assert v2["process"]["status"] == "已完成" and v2["schema_version"] == 2
         assert detail.json()["facets"][0]["items"][0]["evidence"][0]["version"] == saved["version"]
-        extra = store.put(Document(title="申请摘要", origin="2021_2025_P1_张三_abstract.md",
+        extra = put_listed(store, Document(title="申请摘要", origin="2021_2025_P1_张三_abstract.md",
                                    kind="text", parser="markdown", pages=[Page(number=1, text="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。")],
                                    markdown="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。"))
         summary = fresh_projects(client, corpus_id)
@@ -344,7 +345,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         problem = client.get(f"/api/corpora/{corpus_id}/projects").json()["coverage"]["dimensions"]["问题"]["items"]
         assert [(t["name"], t["members"], t["count"]) for t in problem] == [("病灶识别", ["识别困难"], 1)]
 
-        store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
+        put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                            pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
                   doc_id=saved["doc_id"])
         stale = client.get(f"/api/corpora/{corpus_id}/reports/{saved['doc_id']}/target")
@@ -399,14 +400,14 @@ def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_p
 
     app, store = setup(tmp_path)
     body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
-    saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
+    saved = put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
 
     class TargetModel:
         """第一次模型调用期间替换资料：提取器读到的是旧版本，发布前才变。"""
 
         async def ainvoke(self, messages):
-            store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
+            put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
                       doc_id=saved["doc_id"])
             return SimpleNamespace(content='''{
@@ -437,21 +438,29 @@ def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_p
     assert stale.status_code == 404
 
 
-def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):
+@pytest.mark.parametrize("method", ["get", "head"])
+def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path, method):
     app, store = setup(tmp_path)
-    source = tmp_path / ".knowledge" / "preview-test" / "source" / "report.pdf"
-    source.parent.mkdir(parents=True)
+    source = tmp_path / ".knowledge" / "fixture" / "source" / "report.pdf"
     source.write_bytes(b"%PDF-1.4\n%%EOF")
+    stat = source.stat()  # preview serves the file this corpus's manifest lists (P0-3)
     doc = store.put(Document(title="report.pdf", origin=str(source), kind="pdf", parser="test",
-                             pages=[Page(number=1, text="page")]))
+                             pages=[Page(number=1, text="page")]),
+                    source_file=("report.pdf", stat.st_size, stat.st_mtime_ns, "sha"))
     doc_id, version = doc["doc_id"], doc["version"]
 
     with TestClient(app) as client:
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": "user", "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == "user"
+        request = getattr(client, method)
         url = f"/api/documents/{doc_id}/file"
-        assert client.head(url, params={"version": version}).status_code == 200
-        assert client.head(url, params={"version": "old-version"}).status_code == 422
+        assert request(url, params={"version": version}).status_code == 200
+        assert request(url, params={"version": "old-version"}).status_code == 422
+        source.write_bytes(b"%PDF-1.4\nchanged after indexing\n%%EOF")
+        assert request(url, params={"version": version}).status_code == 409
         source.unlink()
-        missing = client.head(url, params={"version": version})
+        missing = request(url, params={"version": version})
 
     assert missing.status_code == 404
 
@@ -468,7 +477,7 @@ def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
             yield {"event": "token", "data": {"text": "answer"}}
 
     app, store = setup(tmp_path, lambda *args: Graph())
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    put_listed(store, Document(title="seed", origin="seed", kind="text", parser="text",
                        pages=[Page(number=1, text="seed")]))
     message = {"role": "user", "content": "问题"}
     with TestClient(app) as client:
@@ -628,7 +637,7 @@ def test_sse_success_and_failure(tmp_path):
             yield {"event": "token", "data": {"text": "answer"}}
 
     app, store = setup(tmp_path, lambda *args: Graph())
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    put_listed(store, Document(title="seed", origin="seed", kind="text", parser="text",
                        pages=[Page(number=1, text="seed")]))
     payload = {"messages": [{"role": "user", "content": "question"}]}
     with TestClient(app) as client:
@@ -642,7 +651,7 @@ def test_sse_success_and_failure(tmp_path):
             yield {}
 
     app, store = setup(tmp_path, lambda *args: Failed())
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    put_listed(store, Document(title="seed", origin="seed", kind="text", parser="text",
                        pages=[Page(number=1, text="seed")]))
     with TestClient(app) as client:
         response = client.post("/api/chat", json=payload)
@@ -685,7 +694,7 @@ def test_background_preparation(tmp_path, monkeypatch, outcome):
 
     store = Knowledge(tmp_path / "db")
     if outcome == "success":
-        store.put(Document(title="Doc", origin="test", kind="local", parser="test", pages=[Page(number=1, text="docs")]))
+        put_listed(store, Document(title="Doc", origin="test", kind="local", parser="test", pages=[Page(number=1, text="docs")]))
     monkeypatch.setattr(main, "Knowledge", lambda *args, **kwargs: store)
     root = tmp_path / ".knowledge"
     (root / "fixture" / "source").mkdir(parents=True)
@@ -941,3 +950,40 @@ def test_each_intelligence_purpose_has_its_own_template(tmp_path):
     outlines = [tuple(line for line in report_template(t).splitlines() if line.startswith("## ")) for t in templates]
     assert len(set(outlines)) == 5  # five different structures, not one outline under five names
     assert all(item["focus"] for item in purposes)
+
+
+@pytest.mark.parametrize("username", ["admin", "user"])
+def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_path, username):
+    # P0-3 / security High#1: the origin of a document without a manifest entry named another
+    # account's upload and passed the root-only check; preview now resolves the corpus manifest.
+    app, store = setup(tmp_path)
+    other = tmp_path / "usr" / "someone" / "uploads" / "secret.md"  # under settings.user_dir
+    other.parent.mkdir(parents=True)
+    other.write_text("someone else's file", encoding="utf-8")
+    forged = put_unlisted(store, Document(title="x", origin=str(other), kind="text", parser="markdown",
+                                          pages=[Page(number=1, text="x")]))
+    own = tmp_path / ".knowledge" / "fixture" / "source" / "own.md"
+    own.write_text("own file", encoding="utf-8")
+    stat = own.stat()
+    listed = store.put(Document(title="own", origin=str(other), kind="text", parser="markdown",
+                                pages=[Page(number=1, text="own file")]),
+                       doc_id="listed-own-file",
+                       source_file=("own.md", stat.st_size, stat.st_mtime_ns, "sha"))
+    with TestClient(app) as client:
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": username, "password": "123456"}).status_code == 200
+        assert client.get("/api/auth/session").json()["role"] == username
+        documents = client.get("/api/documents")
+        assert documents.status_code == 200
+        assert listed["doc_id"] in {item["doc_id"] for item in documents.json()}
+        assert forged["doc_id"] not in {item["doc_id"] for item in documents.json()}
+        assert client.get(f"/api/documents/{forged['doc_id']}/file").status_code == 404
+        assert client.head(f"/api/documents/{forged['doc_id']}/file").status_code == 404
+        preflight = client.head(f"/api/documents/{listed['doc_id']}/file")
+        assert preflight.status_code == 200 and preflight.content == b""
+        served = client.get(f"/api/documents/{listed['doc_id']}/file")
+        own.write_text("changed after indexing", encoding="utf-8")
+        for method in (client.get, client.head):
+            stale = method(f"/api/documents/{listed['doc_id']}/file", params={"version": listed["version"]})
+            assert stale.status_code == 409
+    assert served.status_code == 200 and served.text == "own file"

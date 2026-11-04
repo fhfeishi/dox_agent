@@ -14,6 +14,7 @@ from pathlib import Path
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from . import achievement_list
+from .agent.corpora import TARGET_DIRNAME
 from .agent.models import model_for
 from .prompts import target_instruction
 from .reports import review_segments
@@ -22,7 +23,6 @@ DIMENSIONS = ("场景", "问题", "技术", "成果")
 OUTCOME_STATUSES = ("已取得", "在研", "预期", "原文未明确")
 SCHEMA_VERSION = 2
 PROMPT_VERSION = 2
-TARGET_DIRNAME = "target"
 
 TECH_ROLES = ("关键创新", "配套-感知", "配套-控制", "配套-数据", "配套-通信", "配套-制造", "配套-验证", "未标明")
 ATTRIBUTIONS = ("本项目", "前期成果", "参考文献", "待核对")
@@ -86,11 +86,6 @@ def _save(info, record: dict) -> None:
         os.replace(temporary, _target_path(info, record["doc_id"]))
     finally:
         temporary.unlink(missing_ok=True)
-
-
-def remove_target(info, doc_id: str | None) -> None:
-    if doc_id:
-        _target_path(info, doc_id).unlink(missing_ok=True)
 
 
 def _record_state(record: dict | None, error: str, doc: dict) -> tuple[str, str]:

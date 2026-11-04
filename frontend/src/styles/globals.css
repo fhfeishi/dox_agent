@@ -489,10 +489,12 @@ button.ui-page-link { text-decoration: none; }
 .ui-help-tooltip { position: fixed; z-index: 120; width: 280px; max-width: calc(100vw - 24px); padding: 10px 12px; border-radius: var(--radius-lg); background: var(--heading); color: var(--canvas); font-size: var(--text-body); line-height: 1.6; box-shadow: 0 6px 24px var(--line-cool-strong); pointer-events: none; }
 .ui-disclosure[aria-expanded="true"] { background: var(--selected-cool); border-color: var(--link); }
 .atlas-page { color: var(--ink); }
-.atlas-page > div:last-child { max-width: clamp(1280px, 80vw, 2400px); }
+/* 领域分析 reads across a wide field of charts rather than a paragraph column, so it is not held to
+   --page-max (2240 px): at 4K that left a third of the screen empty beside the drawing. */
+.atlas-page > div:last-child { max-width: clamp(1280px, 90vw, 3600px); }
 /* 领域分析分屏 (query 2026-1030 1624): one row of screen buttons that stays on top while a screen scrolls. */
 .atlas-bar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--hairline); background: color-mix(in srgb, var(--canvas) 95%, transparent); backdrop-filter: blur(8px); }
-.atlas-bar-in { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; max-width: clamp(1280px, 80vw, 2400px); margin-inline: auto; padding: 10px 20px 8px; }
+.atlas-bar-in { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; max-width: clamp(1280px, 90vw, 3600px); margin-inline: auto; padding: 10px 20px 8px; }
 @media (min-width: 640px) { .atlas-bar-in { padding-inline: 32px; } }
 .atlas-bar h1 { display: grid; font-size: var(--text-group); line-height: 24px; font-weight: 600; color: var(--heading); }
 .atlas-bar h1 small { font-size: var(--text-caption); line-height: 18px; font-weight: 400; color: var(--steel); }
@@ -597,9 +599,12 @@ button.ui-page-link { text-decoration: none; }
 .roads-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-caption); color: var(--muted-cool); }
 .roads-tools button { padding: 3px 10px; border-radius: var(--radius-md); border: 1px solid var(--line-cool); background: var(--canvas); color: var(--slate); }
 .roads-tools button:hover { border-color: var(--heading); color: var(--heading); }
+/* 领域分析各交互图的绘图区高度：四象限、年度投入、技术谱系共用一个口径，切换时图区不忽大忽小
+   (query 2026-11-03 1630)。上限留出工具栏、提示行与四象限底部带的位置，1080 高的窗口仍一屏放下。 */
+:root { --atlas-chart-h: clamp(520px, calc(100vh - 350px), 800px); }
 /* 技术谱系's drawing height, shared by the radial map and the tree so switching keeps the frame (query 2026-11-02);
    LineageRoads mirrors it in JS. */
-:root { --lineage-h: clamp(420px, calc(100vh - 340px), 680px); }
+:root { --lineage-h: var(--atlas-chart-h); }
 .roads-svg { display: block; width: 100%; height: var(--lineage-h); cursor: default; touch-action: pan-y pinch-zoom; }
 .roads[data-engaged="true"] { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
 .roads[data-engaged="true"] > .roads-svg, .roads-large-content > .roads-svg { cursor: grab; touch-action: none; }

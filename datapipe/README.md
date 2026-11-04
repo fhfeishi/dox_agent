@@ -50,12 +50,13 @@ datadb/knowledge.sqlite3          docs / doc_pages / doc_markdown / chunks / fil
 | `scripts/acquire_nsfc_meta.mjs` | 01 取数 | `collect` 搜索建候选池 → `plan` 打印计划 → `apply` 落 md 到 `source/` | `plan` 默认 dry-run | 候选池缓存 + 已存在文件跳过 |
 | `scripts/align_parsed_cache.py` | 02 布局 | 补齐角色目录、按批准号去重、把已有 MinerU 缓存复制到 `parsed/<rel>`、`pending/` 归位、清 `Zone.Identifier` | **dry-run**，需 `--apply` | 可重复执行 |
 | `scripts/layout_corpora.py` | 02 布局 | 一次性把旧 `自然科学基金/` 拆成多个领域库、复用缓存、重建 `datadb`+`vectordb`、重写 `corpora.json` | **dry-run**，需 `--apply` | **不可重放**（旧库已删除），仅作布局来源记录 |
-| `scripts/parse_missing_pdf.py` | 03 解析 | 对无缓存的 PDF 调 `mineru-kit`，解压到 `parsed/<rel>` | `--tier flash` | 可续跑，命中缓存即跳过 |
+| `scripts/parse_missing_pdf.py` | 03 解析 | 对无缓存的 PDF 调 `mineru-kit`，解压到 `parsed/<rel>` | `--tier basic`（默认；有 GPU 才考虑 `standard`） | 可续跑，命中缓存即跳过 |
 | `scripts/extract_targets.py` | 05 提取 | 模型分块批处理，产出/升级 `target/*.json` | **只读计划**；`--trial N` 写临时目录；`--apply` 落盘 | 当前版本已完成即跳过，失败件下次重做 |
 | `scripts/extract_targets_rules.py` | 05 提取 | 零模型规则抽取（版式小节 + 报告自带成果列表），走同一套校验 | 默认写盘，加 `--dry` 只统计 | 按文档覆盖写，结果同构 |
 | `scripts/commit_target_drafts.py` | 05 提取 | 把人工/会话内产出的 `draft.json` 过同一套校验后落盘 | 直接执行 | 按 doc_id 覆盖写 |
 | `scripts/derive_target_events.py` | 05 提取 | 从正文「专利/论文/样机/部署/试验」叙述段落派生 `events` | **试跑**，需 `--apply` | 事件 id 由 `type+date+desc` 派生，重跑幂等 |
 | `scripts/verify_targets.py` | 06 验收 | 复刻 `src/targets.py` 的 current/stale 判定，逐库统计 | 只读 | 无副作用 |
+| `scripts/stage_report.py` | 巡检 | P0-4 阶段视图：逐库 source / parse / search / extract 计数（`src/stages.py`） | 只读 | 不写库、不写缓存、不调 MinerU |
 
 ## 目录
 
@@ -92,12 +93,11 @@ python datapipe/scripts/extract_targets.py
 # 2) 契约复验：docs / target 文件 / current / missing / stale / outputs / events / rejected
 python datapipe/scripts/verify_targets.py
 
-# 3) 资料构成与解析覆盖（在 .knowledge/ 下执行）
-cd .knowledge && for d in */; do printf '%-34s pdf=%s md=%s parsed=%s\n' "${d%/}" \
-  "$(find "$d/source" -type f -name '*.pdf' | wc -l)" \
-  "$(find "$d/source" -type f \( -name '*.md' -o -name '*.markdown' \) | wc -l)" \
-  "$(find "$d/parsed" -type f -name middle_json.json 2>/dev/null | wc -l)"; done
+# 3) 阶段视图：逐库 source / parse / search / extract 四组计数（P0-4，只读）
+python datapipe/scripts/stage_report.py           # 加 --json 输出每份文件的阶段
 ```
+
+第 3 条以前是数 `source/`、`parsed/` 文件的 shell 循环：它只数文件，会把 `.versions` 的旧目录重复计入，也分不清“有缓存但还没发布”“原件变了但旧正文仍可检索”。现在改用 `src/stages.py` 的 `stage_view`，与库卡片和 `verify_targets.py` 同一套判定；`parse` 对 Markdown 源记为 `none`（只有 PDF 才解析），对 P0-1 之前的旧缓存记 `cached` 并注明 `legacy-unmarked`。
 
 读法：`parsed < pdf` 表示还有 PDF 未解析（导入时会现跑 MinerU）；`parsed > pdf` 是孤儿缓存（源文件已删/改名），不会再被命中；`docs` 与 `files` 清单不一致时先看导入任务报错。
 
@@ -107,7 +107,7 @@ cd .knowledge && for d in */; do printf '%-34s pdf=%s md=%s parsed=%s\n' "${d%/}
 | --- | --- |
 | `import src.targets` 报 `No module named 'langchain_core'` | 用的是 Windows 侧 Python；换 WSL venv 解释器 |
 | `database is locked` | 应用正在运行；停服务后再读写 `datadb`，或先 `cp` 快照再查 |
-| MinerU 极慢（数分钟/页） | 用了 `--tier standard`（无 GPU 时约 2.8 min/页）；改 `--tier flash`（约 7 s/页） |
+| MinerU 极慢（数分钟/页） | 用了 `--tier standard`（无 GPU 时约 2.8 min/页）；改 `--tier basic`（CPU 上约 2.5–5.5 s/页）。不要用 `flash`：它是否联网、资料会不会出机都未验证 |
 | 导入时整库重跑 MinerU | `parsed/` 与 `source/` 相对路径不对应；先跑 `align_parsed_cache.py` |
 | 提取结果被判 `stale`（资料已更新） | `docs.version`/`source_sha256` 变了，或 `SCHEMA_VERSION`/`PROMPT_VERSION` 升级；重跑提取即可，旧记录不会被静默沿用 |
 | 在 Windows 侧改不动仓库里的既有文件（EPERM） | 该盘为 WSL 9p 挂载，Windows 进程只能新建不能改写既有文件；在 WSL 内编辑。`.cache/legacy-scripts/` 就是因此留下的迁移前副本 |

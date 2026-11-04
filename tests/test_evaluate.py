@@ -1,11 +1,12 @@
 from src.evaluate import evaluate
 from src.knowledge import Document, Knowledge, Page
+from tests.helpers import put_listed
 
 
 def test_user_retrieval_evaluation_reports_recall_dedup_and_no_match(tmp_path):
     # Given one report that answers the query and one unrelated query
     store = Knowledge(tmp_path / "test.sqlite3")
-    store.put(Document(title="癫痫报告", origin="/docs/epilepsy.pdf", kind="text", parser="test",
+    put_listed(store, Document(title="癫痫报告", origin="/docs/epilepsy.pdf", kind="text", parser="test",
                        pages=[Page(number=1, text="癫痫致痫网络的特征识别方法")]))
     # When evaluating both cases
     report = evaluate(store, [

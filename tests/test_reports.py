@@ -15,6 +15,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.core.db import connect as closing_connect
 from src.knowledge import Document, Knowledge, Page
+from src.parse_cache import write_cache
 from src.parsers import import_defaults, sha256_file
 from src.reports import (
     generate_markdown,
@@ -23,6 +24,7 @@ from src.reports import (
     report_category,
     summarize_report_metadata,
 )
+from tests.helpers import put_listed
 from tests.test_app import setup
 from tests.test_artifacts import seed_report
 
@@ -37,7 +39,7 @@ class FakeModel:
 
 
 def add_report_doc(store):
-    store.put(Document(title="报告", origin="/docs/2021_2025_82030037_赵国光_癫痫.pdf",
+    put_listed(store, Document(title="报告", origin="/docs/2021_2025_82030037_赵国光_癫痫.pdf",
                        kind="pdf", parser="mineru", pages=[Page(number=1, text="癫痫致痫网络")],
                        markdown="资助类别:面上项目\n填表日期:2025年01月05日\n# 癫痫致痫网络\n正文"))
 
@@ -45,7 +47,7 @@ def add_report_doc(store):
 def test_report_generation_uses_template_and_selected_reports(tmp_path):
     model = FakeModel()
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="双页报告", origin="2021_2025_P1_张三_two-pages.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="双页报告", origin="2021_2025_P1_张三_two-pages.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="癫痫机制证据"), Page(number=2, text="癫痫治疗证据")],
                        markdown="资助类别:面上项目\n填表日期:2025年01月05日\n# 癫痫致痫网络\n正文"))
     markdown = asyncio.run(generate_markdown(
@@ -64,7 +66,7 @@ def test_report_generation_uses_template_and_selected_reports(tmp_path):
 def test_review_reads_all_eligible_text_without_theme_match(tmp_path):
     store = Knowledge(tmp_path / "db")
     for title in ("第一份", "第二份"):
-        store.put(Document(title=title, origin=f"/docs/2021_2025_P1_张三_{title}.pdf", kind="pdf", parser="mineru",
+        put_listed(store, Document(title=title, origin=f"/docs/2021_2025_P1_张三_{title}.pdf", kind="pdf", parser="mineru",
                            pages=[Page(number=1, text="研究正文")],
                            markdown=f"填表日期:2025年01月05日\n# {title}\n独立研究结果"))
 
@@ -170,13 +172,13 @@ def test_user_report_generation_filters_by_project_period_and_fund_type(tmp_path
     # Given reports inside/outside the explicit project window and fund-type criteria
     store = Knowledge(tmp_path / "db")
     add_report_doc(store)
-    store.put(Document(title="旧项目", origin="2019_2020_P2_李四_old.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="旧项目", origin="2019_2020_P2_李四_old.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="旧项目证据")],
                        markdown="资助类别:面上项目\n填表日期:2025年12月31日\n旧项目证据"))
-    store.put(Document(title="其他类别", origin="2023_2025_P3_王五_other.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="其他类别", origin="2023_2025_P3_王五_other.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="其他类别证据")],
                        markdown="资助类别:重点项目\n填表日期:2025年03月02日\n其他类别证据"))
-    store.put(Document(title="类别缺失", origin="2025_2027_P4_赵六_unknown-category.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="类别缺失", origin="2025_2027_P4_赵六_unknown-category.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="类别未知证据")],
                        markdown="填表日期:2025年06月02日\n类别未知证据"))
     model = FakeModel()
@@ -199,7 +201,7 @@ def test_user_report_generation_filters_by_project_period_and_fund_type(tmp_path
 def test_user_report_generation_ignores_generic_category_labels_in_body(tmp_path):
     # Given a report whose body reuses the generic category label for a different field
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="基金报告", origin="2023_2025_P5_张三_fund.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="基金报告", origin="2023_2025_P5_张三_fund.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="证据")],
                        markdown="资助类别：联合基金项目\n填表日期：2025年12月\n"
                                 "## 项目摘要\n类别：报告/墙报/科普\n项目证据"))
@@ -218,7 +220,7 @@ def test_user_report_generation_ignores_generic_category_labels_in_body(tmp_path
 def test_user_report_generation_accepts_project_filename_without_form_date(tmp_path):
     # Given a project archive with no filing-date field but a valid filename period
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="日期未知", origin="2022_2025_P6_张三_unknown.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="日期未知", origin="2022_2025_P6_张三_unknown.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="证据")], markdown="资助类别:面上项目\n证据"))
     model = FakeModel()
 
@@ -236,7 +238,7 @@ def test_user_report_preflight_and_generation_share_the_same_eligible_scope(tmp_
     for title, origin, header in (("无区间", "unknown", "资助类别:面上项目"),
                           ("旧年份", "2019_2020_P7_李四_old.md", "资助类别:面上项目"),
                           ("其他类别", "2024_2026_P8_王五_other.md", "资助类别:重点项目")):
-        store.put(Document(title=title, origin=origin, kind="text", parser="text",
+        put_listed(store, Document(title=title, origin=origin, kind="text", parser="text",
                            pages=[Page(number=1, text=title)], markdown=header + "\n" + title))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -264,7 +266,7 @@ def test_user_changed_report_scope_requires_a_new_preflight(tmp_path):
         body = {"corpus_id": corpus_id, "domain": "癫痫", "year_from": 2025, "year_to": 2025,
                 "template_id": "comprehensive"}
         old = client.post("/api/reports/preflight", json=body).json()["fingerprint"]
-        store.put(Document(title="新增报告", origin="2023_2025_P9_赵六_new.md", kind="text", parser="text",
+        put_listed(store, Document(title="新增报告", origin="2023_2025_P9_赵六_new.md", kind="text", parser="text",
                            pages=[Page(number=1, text="新证据")], markdown="填表日期:2025年\n新证据"))
 
         # When generation uses the old preflight fingerprint
@@ -303,9 +305,9 @@ def test_user_report_category_marks_conflicts_and_ignores_body_labels():
 
 def test_user_report_metadata_summary_lists_only_missing_field_identifiers(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="可识别报告", origin="2021_2025_P1_张三_known.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="可识别报告", origin="2021_2025_P1_张三_known.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n资助类别：面上项目"))
-    conflict_id = store.put(Document(title="冲突报告", origin="conflict.pdf", kind="pdf", parser="mineru",
+    conflict_id = put_listed(store, Document(title="冲突报告", origin="conflict.pdf", kind="pdf", parser="mineru",
                                      pages=[Page(number=1, text="正文")],
                                      markdown="资助类别：面上项目\n项目类别：重点项目"))["doc_id"]
 
@@ -368,7 +370,6 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
     ImageDraw.Draw(stacked).ellipse((100, 350, 530, 550), outline="blue", width=12)
     source.parent.mkdir(parents=True, exist_ok=True)
     cover.save(source, save_all=True, append_images=[chart, alternative, stacked])
-    parsed = parsed / ".versions" / sha256_file(source)
     (parsed / "images").mkdir(parents=True)
     chart.save(parsed / "images" / "chart.jpg", quality=95)
     alternative.save(parsed / "images" / "alternative.jpg", quality=95)
@@ -396,9 +397,11 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
     doc = store.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
                              pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                                     Page(number=3, text="边缘计算拓扑"), Page(number=4, text="组合图")],
-                             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
-    store.record_file(source.name, source.stat().st_size, source.stat().st_mtime_ns,
-                      sha256_file(source), doc["doc_id"], "indexed")
+                             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"),
+                    source_file=(source.name, source.stat().st_size, source.stat().st_mtime_ns, sha256_file(source)))
+    # P0-1: the canonical parse names the source sha and the published version it belongs to.
+    write_cache(parsed, rel=source.name, source_sha=sha256_file(source), version=doc["version"],
+                profile="test", pages=4)
     with TestClient(app) as client:
         created = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
             "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
@@ -523,7 +526,7 @@ def test_user_report_metadata_endpoint_returns_per_corpus_coverage(tmp_path):
 def test_preflight_explains_missing_filename_period(tmp_path):
     # A period in parsed text does not override the current filename contract.
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="无项目区间", origin="/docs/a.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="无项目区间", origin="/docs/a.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")],
                        markdown="---\nprojectName: 示例\nstartYear: 2022\nendYear: 2025\n---\n\n# 示例\n正文"))
 
@@ -554,7 +557,7 @@ def test_preflight_excludes_changed_source_and_explains_it(tmp_path):
 def test_preflight_reports_the_project_years_it_actually_found(tmp_path):
     # Given a project beginning in 2026 while the window ends in 2025
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="2026 项目", origin="/docs/2026_2028_P2_李四_b.pdf", kind="pdf", parser="mineru",
+    put_listed(store, Document(title="2026 项目", origin="/docs/2026_2028_P2_李四_b.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")],
                        markdown="资助类别:面上项目\n填表日期:2026年02月02日\n# 标题\n正文"))
 

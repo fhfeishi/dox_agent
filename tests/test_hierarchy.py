@@ -16,6 +16,7 @@ from fastapi.testclient import TestClient
 from test_app import setup
 
 from src.knowledge import Document, Page
+from tests.helpers import put_listed
 
 BODY = ("# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n"
         "临床诊疗场景存在病灶识别困难与标注数据不足，项目采用深度学习，形成原型系统，"
@@ -95,7 +96,7 @@ class ExtraTargetModel:
 def _prepared(tmp_path, monkeypatch, target_model=None, body=BODY):
     monkeypatch.setattr("src.targets.model_for", lambda settings: target_model or TargetModel())
     app, store = setup(tmp_path)
-    saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text",
+    saved = put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text",
                               parser="markdown", pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -215,7 +216,7 @@ def test_report_body_carries_the_same_hierarchy_with_its_own_citations(tmp_path)
             return SimpleNamespace(content="# 综合报告\n\n## 发现\n临床诊疗已形成原型 [1]")
 
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="示例报告", origin="/docs/2021_2025_82030037_张三_report.md", kind="pdf",
+    put_listed(store, Document(title="示例报告", origin="/docs/2021_2025_82030037_张三_report.md", kind="pdf",
                        parser="mineru", pages=[Page(number=1, text=BODY)],
                        markdown=f"# 报告\n{BODY}"))
     evidence = [{"item_id": "s1", "doc_id": store.current()[0]["doc_id"],

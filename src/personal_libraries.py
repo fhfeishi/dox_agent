@@ -29,7 +29,7 @@ from .agent.corpora import (
 from .auth import CURRENT_USER
 from .core.db import connect, migrate
 from .jobs import JobBusy
-from .parsers import import_one
+from .parsers import forget_source, import_one
 from .workspace import SCHEMA as WORKSPACE_SCHEMA  # one schema for the shared workspace.sqlite3
 
 router = APIRouter(prefix="/api/personal-libraries")
@@ -236,7 +236,7 @@ def drop_uploads(kn, info: CorpusInfo, doc_ids: list[str]) -> None:
         path = Path(doc["origin"]).resolve()
         if path.is_relative_to(source):
             path.unlink(missing_ok=True)
-            kn.drop_file(path.relative_to(source).as_posix())
+            forget_source(kn, path.relative_to(source).as_posix(), info.root)
 
 
 @router.delete("/{library_id}")
@@ -396,5 +396,5 @@ async def remove_failed_upload(library_id: str, name: str, request: Request):
         raise HTTPException(404, "没有这个解析失败的文件")
     async with request.app.state.import_lock:
         await asyncio.to_thread(path.unlink)
-        await asyncio.to_thread(request.app.state.corpus_ctx.knowledge_for(info).drop_file, name)
+        await asyncio.to_thread(forget_source, request.app.state.corpus_ctx.knowledge_for(info), name, info.root)
     return {"removed": name}

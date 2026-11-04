@@ -233,14 +233,14 @@ def cache_state(parsed_root: Path, rel: str, source_sha: str, version: str | Non
         return "promotion_pending" if pending["version"] == version else "publish_pending"
     canonical = canonical_dir(parsed_root, rel)
     info = read_cache(canonical)
-    if publishes(info, source_sha, version):
+    if publishes(info, rel, source_sha, version):
         return "legacy" if info["version"] is None else "ok"
     return "cache_mismatch" if canonical.exists() else "cache_missing"
 
 
-def publishes(info: dict | None, source_sha: str, version: str | None) -> bool:
+def publishes(info: dict | None, rel: str, source_sha: str, version: str | None) -> bool:
     """A canonical cache agrees with what SQLite publishes for this source (B3 #3/#4)."""
-    if info is None or info["source_sha256"] != source_sha:
+    if info is None or info["rel"] != rel or info["source_sha256"] != source_sha:
         return False
     if info["version"] is None:
         return info["profile"] == LEGACY

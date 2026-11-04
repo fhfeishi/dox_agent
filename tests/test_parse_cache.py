@@ -348,7 +348,7 @@ def test_republish_failure_keeps_old_current_and_retries(lib, monkeypatch):
     lib.assert_settled("B")
 
 
-@pytest.mark.parametrize("damage", ["corrupt", "version", "sha"])
+@pytest.mark.parametrize("damage", ["corrupt", "version", "sha", "rel"])
 def test_cache_mismatch_without_staging_flags_and_ignores_cache(lib, damage):
     """F9 / reconcile #5: the document stays current; the cache is left as it is, never reparsed."""
     marker = lib.parsed / REL / CACHE_FILE
@@ -356,7 +356,7 @@ def test_cache_mismatch_without_staging_flags_and_ignores_cache(lib, damage):
     if damage == "corrupt":
         marker.write_text("{not json")
     else:
-        data["version" if damage == "version" else "source_sha256"] = "0" * 20
+        data[{"version": "version", "sha": "source_sha256", "rel": "rel"}[damage]] = "0" * 20
         marker.write_text(json.dumps(data))
     before = marker.read_text()
     calls, version = lib.calls, lib.doc["version"]

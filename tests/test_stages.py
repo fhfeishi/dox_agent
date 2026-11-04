@@ -95,7 +95,7 @@ def test_stage_view_reports_a_cached_parse(tmp_path):
 
 @pytest.mark.parametrize("marker", [
     None,
-    "corrupt", "source_mismatch", "version_mismatch",
+    "corrupt", "source_mismatch", "version_mismatch", "rel_mismatch",
 ])
 def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_path, marker):
     """A cache from before P0-1 has no ``cache.json``; the real libraries are all like this, so
@@ -112,7 +112,8 @@ def test_stage_view_marks_an_unmarked_legacy_cache_and_leaves_text_unparsed(tmp_
     if marker == "corrupt":
         (parsed / "cache.json").write_text("{broken", encoding="utf-8")
     elif marker is not None:
-        write_cache(parsed, rel="legacy.pdf", source_sha="other-source" if marker == "source_mismatch" else "sha",
+        write_cache(parsed, rel="other.pdf" if marker == "rel_mismatch" else "legacy.pdf",
+                    source_sha="other-source" if marker == "source_mismatch" else "sha",
                     version="other-version" if marker == "version_mismatch" else doc["version"],
                     profile="mineru", pages=1)
     publish(store, info, rel="notes.md")

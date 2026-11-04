@@ -663,7 +663,7 @@ def reconcile_cache(knowledge, path: Path, rel: str, prev: dict, parsed_root: Pa
     if pending is not None:
         return _republish(knowledge, path, rel, prev, staging, parsed_root)
     canonical = canonical_dir(parsed_root, rel)
-    if publishes(read_cache(canonical), source_sha, version):
+    if publishes(read_cache(canonical), rel, source_sha, version):
         return "skipped"
     if canonical.is_dir() and not (canonical / CACHE_FILE).exists():
         if (count := _legacy_pages(path, canonical)) is not None:

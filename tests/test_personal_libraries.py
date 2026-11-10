@@ -14,10 +14,18 @@ def login(client, name):
 
 
 def settled(client, library_id):
-    """The library once its upload queue is empty (failed files stay listed)."""
+    """The library once its upload queue is empty and every parsed file has joined it.
+
+    ``uploads`` empties when the parse is indexed; the reference is added by the same job a moment
+    later (2026-11-06). Reading at that instant saw an indexed file without its reference, so the
+    queue is only settled once the uploads library and the refs agree.
+    """
     for _ in range(200):
         library = client.get(f"/api/personal-libraries/{library_id}").json()
-        if all(item["state"] == "failed" for item in library["uploads"]):
+        indexed = {item["rel_path"] for item in client.get(f"/api/corpora/mine-{library_id}/files").json()["files"]
+                   if item["status"] == "indexed"}
+        uploaded = {ref["title"] for ref in library["refs"] if ref["corpus_id"] == f"mine-{library_id}"}
+        if all(item["state"] == "failed" for item in library["uploads"]) and indexed <= uploaded:
             return library
         time.sleep(0.05)
     raise AssertionError(library["uploads"])

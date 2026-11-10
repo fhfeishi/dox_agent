@@ -116,7 +116,13 @@ export const UPLOADS_PREFIX = "mine-";
 export type PersonalRef = { corpus_id: string; doc_id: string; title: string; library_missing?: boolean };
 /** An uploaded file not (yet) in the library: waiting, being parsed, or failed with the parser's reason. */
 export type PendingUpload = { name: string; state: "queued" | "parsing" | "failed"; error: string };
-export type PersonalLibrary = { id: string; name: string; description: string; revision: number; created_at: string; updated_at: string;
+/**
+ * The task a personal library is for is an existing task template (2026-11-06): ``task_id`` /
+ * ``task_version`` name it, ``report_template_id`` / ``report_template_version`` say which report
+ * it writes. Built-in tasks are version 0; a custom task names its published version.
+ */
+export type PersonalTask = { task_id?: string; task_version?: number; report_template_id?: string; report_template_version?: number };
+export type PersonalLibrary = PersonalTask & { id: string; name: string; description: string; revision: number; created_at: string; updated_at: string;
   corpus_ids: string[]; refs: PersonalRef[]; uploads?: PendingUpload[] };
 export type PersonalLibrarySummary = Omit<PersonalLibrary, "refs" | "uploads"> & { count: number; uploads: number };
 
@@ -128,14 +134,14 @@ export async function fetchPersonalLibrary(id: string, signal?: AbortSignal): Pr
   return jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { signal }), "个人资料库读取失败");
 }
 
-export async function createPersonalLibrary(name: string, refs: PersonalRef[] = [], description = ""): Promise<PersonalLibrary> {
+export async function createPersonalLibrary(name: string, refs: PersonalRef[] = [], description = "", task: PersonalTask = {}): Promise<PersonalLibrary> {
   const response = await fetch("/api/personal-libraries", { method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, description, refs: refs.map(({ corpus_id, doc_id, title }) => ({ corpus_id, doc_id, title })) }) });
+    body: JSON.stringify({ name, description, ...task, refs: refs.map(({ corpus_id, doc_id, title }) => ({ corpus_id, doc_id, title })) }) });
   return jsonOrThrow(response, "新建个人资料库失败");
 }
 
 export async function changePersonalLibrary(id: string, change: { revision: number; name?: string; description?: string;
-  add?: PersonalRef[]; remove?: PersonalRef[] }): Promise<PersonalLibrary> {
+  add?: PersonalRef[]; remove?: PersonalRef[] } & PersonalTask): Promise<PersonalLibrary> {
   const strip = (refs?: PersonalRef[]) => (refs ?? []).map(({ corpus_id, doc_id, title }) => ({ corpus_id, doc_id, title }));
   const response = await fetch(`/api/personal-libraries/${encodeURIComponent(id)}`, { method: "PATCH", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...change, add: strip(change.add), remove: strip(change.remove) }) });
@@ -151,6 +157,35 @@ export async function uploadPersonalFile(id: string, file: File): Promise<{ name
 
 export async function removeFailedUpload(id: string, name: string): Promise<void> {
   await jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}/files/${encodeURIComponent(name)}`, { method: "DELETE" }), "删除失败");
+}
+
+/**
+ * A personal library's task picture (2026-11-06), read from stored records only: each reference's
+ * four-dimension record and project row from the system library it lives in, plus the library's own
+ * uploads. Nothing here calls a model, and the counts are scope counts, not library-wide statistics.
+ */
+export type PersonalAnalysis = {
+  library_id: string; name: string; revision: number;
+  task_id: string; task_name: string; task_engine_id: string; task_version: number; report_template_id: string; report_template_version: number;
+  sources: { corpus_id: string; kind: "system" | "upload" | "personal"; name: string; state: "ready" | "partial" | "missing";
+    documents: number; readable: number }[];
+  extraction: { documents: number; current: number; missing: number; stale: number; invalid: number;
+    schema_version: number; prompt_version: number; unreadable: string[] };
+  counts: { projects: number; pending_identity: number; documents: number; corpora: number; cross_library_projects: number; unreadable: number };
+  years: { labels: number[]; by_year: Record<string, number>; reason: string };
+  funding: { projects: number; total_yuan: string; reason: string };
+  dimensions: Record<string, { evidence_projects: number; missing_projects: number;
+    items: { name: string; project_ids: string[]; count: number }[] }>;
+  projects: { project_id: string; number: string; title: string; identity_status: "identified" | "pending";
+    start_year: number | null; end_year: number | null; year_conflict: boolean; corpus_ids: string[]; extracted_files: number;
+    files: { corpus_id: string; doc_id: string; version: string; title: string; origin: string; state: string; notice: string }[] }[];
+  relations: { nodes: { project_id: string; title: string; number: string; year: number | null }[];
+    edges: { source: string; target: string; shared: string[]; count: number }[]; reason: string };
+  upload_corpus: string; notes: string[];
+};
+
+export async function fetchPersonalAnalysis(id: string, signal?: AbortSignal): Promise<PersonalAnalysis> {
+  return jsonOrThrow(await fetch(`/api/personal-libraries/${encodeURIComponent(id)}/analysis`, { signal }), "任务分析读取失败");
 }
 
 export async function deletePersonalLibrary(id: string): Promise<void> {

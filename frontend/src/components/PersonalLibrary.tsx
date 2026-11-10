@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
-import { changePersonalLibrary, createPersonalLibrary, deletePersonalLibrary, fetchPersonalLibraries, fetchPersonalLibrary,
+import { changePersonalLibrary, createPersonalLibrary, deletePersonalLibrary, fetchPersonalLibraries, fetchPersonalLibrary, fetchTasks, fetchTemplates,
   removeFailedUpload, uploadPersonalFile, UPLOADS_PREFIX, type PersonalLibrary, type PersonalLibrarySummary, type PersonalRef } from "../api";
 import { fundMetaFromPath } from "../fundMeta";
 import { useLayout } from "../layout";
 import { useApp } from "../store";
 import { fetchDocuments, type DocumentInfo } from "../useDocuments";
+import { PersonalAnalysisView, personalAnalysisQuery } from "./PersonalAnalysis";
 import { SlideOver } from "./SlideOver";
 import { Icon } from "./Icons";
-import { Button } from "./ui";
+import { Button, Segmented } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 export const personalLibrariesQuery = () => ({ queryKey: ["personal-libraries"], queryFn: ({ signal }: { signal: AbortSignal }) => fetchPersonalLibraries(signal) });
@@ -127,6 +128,14 @@ export function UploadToPersonal({ primary = false }: { primary?: boolean }) {
 }
 
 const UPLOAD_ACCEPT = ".pdf,.docx,.md,.markdown,.txt";
+// A personal library is for one task, so the scoped question uses that task's contract. task4 is
+// a report intake, not an answer contract: until report generation from a personal scope exists,
+// its direct question falls back to task1 rather than starting a parameter-collection turn.
+const ASK_QUESTIONS: Record<string, string> = {
+  task1: "请概括这些资料的研究目标、方法与主要结论，并逐条给出出处。",
+  task2: "请比较这些资料在研究对象、方法与应用上的异同，给出对比维度、差异结论与可比性前提，并逐条给出出处。",
+  task3: "请研判这些资料涉及的技术路线成熟程度与后续工作，区分事实与研判意见，标注样本范围与局限，并逐条给出出处。",
+};
 const fileName = (doc: DocumentInfo) => (doc.rel_path || doc.origin || "").split(/[\\/]/).pop() || doc.title;
 
 /**
@@ -218,6 +227,65 @@ function AddDocuments({ library, open, onClose, onAdded }: { library: PersonalLi
 type Sending = { name: string; error?: string };
 
 /**
+ * 任务模版 (2026-11-06): a personal library is for one task, and that task is an existing template —
+ * a built-in task (version 0) or a published custom task, with a report template the same way. Both
+ * lists come from the catalogues every session uses; nothing here defines a second set of templates.
+ */
+function TaskBinding({ library, open, onClose, onSaved }: { library: PersonalLibrary; open: boolean; onClose: () => void;
+  onSaved: (next: PersonalLibrary) => void }) {
+  const tasks = useQuery({ queryKey: ["tasks"], queryFn: ({ signal }: { signal: AbortSignal }) => fetchTasks(signal), enabled: open });
+  const templates = useQuery({ queryKey: ["templates"], queryFn: ({ signal }: { signal: AbortSignal }) => fetchTemplates(signal), enabled: open });
+  const [taskId, setTaskId] = useState(library.task_id ?? "task4");
+  const [templateId, setTemplateId] = useState(library.report_template_id ?? "comprehensive");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  useEffect(() => { if (open) { setTaskId(library.task_id ?? "task4"); setTemplateId(library.report_template_id ?? "comprehensive"); setError(""); } },
+    [open, library.task_id, library.report_template_id]);
+  // A custom template is usable once published; a draft has no version yet and is not offered.
+  // A custom template is usable once published; a draft has no version yet and is not offered.
+  const usable = (item: { kind?: string; status?: string; archived?: boolean; version?: number }) =>
+    !item.archived && (item.kind !== "custom" || item.status === "published" || Boolean(item.version));
+  const taskOptions = (tasks.data ?? []).filter(usable);
+  const templateOptions = (templates.data ?? []).filter(usable);
+  const chosenTask = taskOptions.find((task) => task.id === taskId);
+  const chosenTemplate = templateOptions.find((item) => item.id === templateId);
+  async function save() {
+    setBusy(true); setError("");
+    try {
+      onSaved(await changePersonalLibrary(library.id, { revision: library.revision,
+        task_id: taskId, task_version: chosenTask?.version ?? 0,
+        report_template_id: templateId, report_template_version: chosenTemplate?.version ?? 0 }));
+    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+  }
+  return <SlideOver open={open} onClose={onClose} sizeKey="personal-task" eyebrow={`「${library.name}」`} title="任务模版"
+    meta="个人资料库针对一次任务设置；分析页按所选任务汇总资料。任务模版与报告模版都来自现有模版库，不另建一套。"
+    footer={<div className="flex w-full flex-wrap items-center gap-2">
+      {error ? <p role="alert" className="w-full text-caption text-[var(--red)]">{error}</p> : null}
+      <Button variant="primary" disabled={busy || !taskId} onClick={() => void save()}>保存</Button>
+      <Button variant="ghost" onClick={onClose}>取消</Button>
+    </div>}>
+    <div className="space-y-4">
+      <label className="block text-caption text-[var(--steel)]">任务模版
+        <select aria-label="任务模版" value={taskId} onChange={(event) => setTaskId(event.target.value)}
+          className="mt-1 block w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body text-[var(--ink)]">
+          {taskOptions.map((task) => <option key={task.id} value={task.id}>{task.name}{task.version ? ` · v${task.version}` : ""}{task.kind === "custom" ? "（我或共享的自定义任务）" : ""}</option>)}
+        </select>
+      </label>
+      <p className="text-caption leading-6 text-[var(--text-3)]">{chosenTask?.description}</p>
+      <label className="block text-caption text-[var(--steel)]">报告模版
+        <select aria-label="报告模版" value={templateId} onChange={(event) => setTemplateId(event.target.value)}
+          className="mt-1 block w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body text-[var(--ink)]">
+          {templateOptions.map((item) => <option key={item.id} value={item.id}>{item.name}{item.version ? ` · v${item.version}` : ""}</option>)}
+        </select>
+      </label>
+      <p className="rounded-md bg-[var(--surface-soft)] px-2 py-1.5 text-caption leading-[1.6] text-[var(--text-3)]">
+        报告模版决定「专项报告」的章节结构；技术研判、对比分析等对话型任务暂不使用报告模版，保留设置以便切换任务。
+      </p>
+    </div>
+  </SlideOver>;
+}
+
+/**
  * One personal library: its documents grouped by where they come from — a system library, or the files
  * uploaded to this (or another of the account's) personal library. A reference opens
  * the document's preview. Each source is checked on its own (前端复审 P1-2, P1-3): while its document list
@@ -233,6 +301,9 @@ export function PersonalLibraryPage() {
   const { corpora, corporaLoaded, startResearch, sessionBusy } = useApp();
   const { openPreview, showToast } = useLayout();
   const personal = useQuery(personalLibrariesQuery());
+  // 资料 is the daily view; 分析 answers "what do I have for this task" from stored records (2026-11-06).
+  const [view, setView] = useState<"files" | "analysis">("files");
+  const analysis = useQuery(personalAnalysisQuery(libraryId));
   // While uploads wait or parse, the library is read every two seconds; each finished file appears in it.
   const library = useQuery({ queryKey: ["personal-libraries", libraryId], queryFn: ({ signal }) => fetchPersonalLibrary(libraryId, signal),
     refetchInterval: (query) => query.state.data?.uploads?.some((item) => item.state !== "failed") ? 2000 : false });
@@ -258,6 +329,7 @@ export function PersonalLibraryPage() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
+  const [binding, setBinding] = useState(false);
   const [sending, setSending] = useState<Sending[]>([]);
   const [q, setQ] = useState("");
   const [only, setOnly] = useState("");
@@ -265,11 +337,16 @@ export function PersonalLibraryPage() {
   const menuBox = useDismiss(menu, setMenu);
   const uploadedCount = data?.refs.filter((ref) => ref.corpus_id === ownUploads).length ?? 0;
   useEffect(() => { void queryClient.invalidateQueries({ queryKey: ["documents", ownUploads] }); }, [uploadedCount, ownUploads, queryClient]);
+  // A parsed or removed file changes the scope; the analysis is reread rather than kept stale.
+  useEffect(() => { if (uploadedCount) void queryClient.invalidateQueries({ queryKey: ["personal-libraries", libraryId, "analysis"] }); },
+    [uploadedCount, libraryId, queryClient]);
   const [dragging, setDragging] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   function settle(next: PersonalLibrary) {
     queryClient.setQueryData<PersonalLibrary>(["personal-libraries", libraryId], (old) => ({ ...next, uploads: next.uploads ?? old?.uploads }));
     void queryClient.invalidateQueries({ queryKey: ["personal-libraries"], exact: true });
+    // Adding, removing or rebinding changes the scope the analysis summarizes.
+    void queryClient.invalidateQueries({ queryKey: ["personal-libraries", libraryId, "analysis"] });
   }
   // Files are sent one after another; the server queues them and parses one at a time.
   async function upload(files: File[]) {
@@ -310,12 +387,17 @@ export function PersonalLibraryPage() {
   async function ask() {
     setError("");
     try {
-      await startResearch([...chosenSources], chosen.map((ref) => ref.doc_id), "task1", "请概括这些资料的研究目标、方法与主要结论，并逐条给出出处。");
+      await startResearch([...chosenSources], chosen.map((ref) => ref.doc_id), askTask, askQuestion);
       navigate("/chat");
     } catch (e) { setError((e as Error).message); }
   }
-  const dropped = data.refs.filter((ref) => docOf(ref) && unticked.has(key(ref)));
   const isUpload = (ref: PersonalRef) => ref.corpus_id === ownUploads;
+  const isPdf = (name: string) => /\.pdf$/i.test(name);
+  // 资料入库 checks page images against parsed blocks, so it only has work for PDFs; a Markdown or
+  // Word upload has no page to compare and the workbench would open empty. Only a PDF that is
+  // already indexed can be proofread; a queued or failed one has no parse yet (2026-11-06).
+  const hasPdfUpload = usable.some((ref) => isUpload(ref) && isPdf(ref.title));
+  const dropped = data.refs.filter((ref) => docOf(ref) && unticked.has(key(ref)));
   function remove(refs: PersonalRef[]) {
     const files = refs.filter(isUpload).length;
     if (files && !window.confirm(refs.length === 1 ? `移出「${refs[0].title}」？这是上传的文件，移出后文件一并删除。`
@@ -343,6 +425,9 @@ export function PersonalLibraryPage() {
     return { doc, meta, title: meta?.title || doc?.title || ref.title || ref.doc_id }; };
   const matches = (ref: PersonalRef) => { if (!needle) return true; const { meta, title } = titleOf(ref);
     return `${title} ${ref.title} ${meta ? `${meta.projectNo} ${meta.pi}` : ""}`.toLowerCase().includes(needle); };
+  const taskInfo = analysis.data;
+  const askTask = ["task1", "task2", "task3"].includes(taskInfo?.task_engine_id ?? "") ? taskInfo!.task_engine_id : "task1";
+  const askQuestion = ASK_QUESTIONS[askTask];
   const shownSources = corpusIds.filter((id) => !only || id === only);
   const facet = (active: boolean) => `flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-left text-body transition-colors duration-[var(--dur-quick)] ${active
     ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--text-2)] hover:bg-[var(--surface)]"}`;
@@ -353,6 +438,9 @@ export function PersonalLibraryPage() {
     onDrop={(e) => { if (!e.dataTransfer.files.length) return; e.preventDefault(); setDragging(false); void upload([...e.dataTransfer.files]); }}>
     {dragging ? <div aria-hidden="true" className="pointer-events-none fixed inset-4 z-50 grid place-items-center rounded-2xl border-2 border-dashed border-[var(--primary)] bg-[color-mix(in_srgb,var(--canvas)_85%,transparent)] text-emphasis font-semibold text-[var(--primary)]">
       松开即上传到「{data.name}」</div> : null}
+    <TaskBinding library={data} open={binding} onClose={() => setBinding(false)}
+      onSaved={(next) => { settle(next); setBinding(false); void queryClient.invalidateQueries({ queryKey: ["personal-libraries", libraryId, "analysis"] });
+        showToast("任务模版已更新"); }} />
     <AddDocuments library={data} open={adding} onClose={() => setAdding(false)}
       onAdded={(next, added) => { settle(next); setAdding(false); showToast(`已加入 ${added} 份资料`); }} />
     <input ref={fileInput} type="file" multiple accept={UPLOAD_ACCEPT} hidden aria-label="选择要上传的文件"
@@ -375,6 +463,8 @@ export function PersonalLibraryPage() {
             {menu ? <div role="menu" aria-label="管理个人资料库" className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[200px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
               <button type="button" role="menuitem" className="block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)]"
                 onClick={() => { setMenu(false); setName(data.name); setEditing(true); }}>重命名</button>
+              <button type="button" role="menuitem" className="block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)]"
+                onClick={() => { setMenu(false); setBinding(true); }}>任务模版</button>
               <button type="button" role="menuitem" className="block w-full rounded-md px-3 py-1.5 text-left text-body text-[var(--red)] hover:bg-[var(--surface)]" onClick={() => {
                 setMenu(false);
                 if (window.confirm(`删除个人资料库「${data.name}」？${data.refs.some(isUpload) ? "上传到这里的文件会一并删除；" : ""}系统资料库中的原文不受影响。`))
@@ -383,7 +473,13 @@ export function PersonalLibraryPage() {
             </div> : null}
           </div>
         </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <Segmented label="个人资料库视图" value={view} options={[["files", "资料"], ["analysis", `分析${taskInfo ? ` · ${taskInfo.counts.projects} 个项目` : ""}`]] as const} onChange={setView} />
+          {taskInfo ? <span className="text-caption text-[var(--steel)]">任务模版：{taskInfo.task_name || taskInfo.task_id}{taskInfo.task_version ? ` v${taskInfo.task_version}` : ""}</span> : null}
+        </div>
       </header>
+      {view === "analysis" ? <PersonalAnalysisView libraryId={libraryId} onAsk={() => setView("files")} />
+        : <>
       <div className="grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start">
         <aside aria-label="筛选资料" className="flex flex-col gap-5 lg:sticky lg:top-0">
           {corpusIds.length ? <div role="group" aria-label="来源">
@@ -397,8 +493,10 @@ export function PersonalLibraryPage() {
             <div className="flex flex-wrap gap-2 px-1">
               <Button size="sm" variant="outline" icon="plus" iconSize={12} onClick={() => setAdding(true)}>添加资料</Button>
               <Button size="sm" variant="outline" onClick={() => fileInput.current?.click()}>上传文件</Button>
+              {hasPdfUpload ? <Button size="sm" variant="outline"
+                onClick={() => void navigate(`/ingest?corpus=${encodeURIComponent(ownUploads)}`)}>审核 PDF 解析</Button> : null}
             </div>
-            <p className="mt-2 px-2 text-caption text-[var(--text-3)]">“添加资料”从系统资料库或其他个人资料库挑选；也可把 PDF、Word、Markdown、TXT 拖到页面上。</p>
+            <p className="mt-2 px-2 text-caption text-[var(--text-3)]">“添加资料”从系统资料库或其他个人资料库挑选；也可把 PDF、Word、Markdown、TXT 拖到页面上。PDF 上传后可在「资料入库」逐页核对解析。</p>
           </div>
         </aside>
         <div className="min-w-0 space-y-3">
@@ -423,7 +521,9 @@ export function PersonalLibraryPage() {
               <span className="min-w-0 flex-1 truncate">{item.name}</span>
               {item.state === "failed" ? <><span role="alert" className="min-w-0 truncate text-caption text-[var(--danger-fg)]" title={item.error}>解析失败：{item.error}</span>
                 <button type="button" onClick={() => void dropFailed(item.name)} className="shrink-0 text-caption text-[var(--link)] hover:underline">删除</button></>
-                : <span role="status" className="shrink-0 text-caption text-[var(--steel)]">{item.state === "parsing" ? "正在解析…（PDF 可能要几分钟，可以先离开）" : "排队等待解析"}</span>}
+                : <><span role="status" className="shrink-0 text-caption text-[var(--steel)]">{item.state === "parsing" ? "正在解析…（PDF 可能要几分钟，可以先离开）" : "排队等待解析"}</span>
+                  <button type="button" onClick={() => void navigate(`/ingest?corpus=${encodeURIComponent(ownUploads)}&rel=${encodeURIComponent(item.name)}`)}
+                    className="shrink-0 text-caption text-[var(--link)] hover:underline">查看</button></>}
             </li>)}
           </ul> : null}
           {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
@@ -454,6 +554,9 @@ export function PersonalLibraryPage() {
                       : `${state.state === "failed" ? "暂时无法读取 · " : ""}${meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : doc?.title ?? (state.state === "failed" ? "" : "正在核对…")}`}</span>
                   </button>
                   {doc ? <button type="button" onClick={() => openPreview(doc, null, corpusId)} className="shrink-0 text-caption text-[var(--link)] hover:underline">预览 ›</button> : null}
+                  {isUpload(ref) && doc && isPdf(ref.title) ? <button type="button" title="在资料入库中逐页核对这份文件的解析结果"
+                    onClick={() => void navigate(`/ingest?corpus=${encodeURIComponent(corpusId)}&rel=${encodeURIComponent(ref.title)}`)}
+                    className="shrink-0 text-caption text-[var(--link)] hover:underline">校对</button> : null}
                   <button type="button" aria-label={`移出 ${ref.title || ref.doc_id}`} onClick={() => remove([ref])}
                     className="shrink-0 text-caption text-[var(--steel)] hover:text-[var(--red)]">移出</button>
                 </li>;
@@ -463,11 +566,13 @@ export function PersonalLibraryPage() {
           {needle && !shownSources.some((id) => data.refs.some((ref) => ref.corpus_id === id && matches(ref))) ? <p className="text-body text-[var(--steel)]">没有匹配的资料。</p> : null}
         </div>
       </div>
+        </>}
     </div>
-    {data.refs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
+    {view === "files" && data.refs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
       <span className="whitespace-nowrap text-[var(--slate)]">已勾选 <b className="text-[var(--ink)]">{chosen.length}</b> / {usable.length} 份</span>
       {dropped.length ? <button type="button" onClick={() => remove(dropped)} className="whitespace-nowrap text-body text-[var(--steel)] hover:text-[var(--red)]">移出未勾选的 {dropped.length} 份</button> : null}
-      <Button variant="primary" className="rounded-full" disabled={Boolean(askProblem) || sessionBusy} title={askProblem} onClick={() => void ask()}>
+      <Button variant="primary" className="rounded-full" disabled={Boolean(askProblem) || sessionBusy}
+        title={askProblem || `按「${taskInfo?.task_name || "精准问答"}」提问`} onClick={() => void ask()}>
         {failed.length || chosen.length < usable.length ? `用已勾选的 ${chosen.length} 份提问` : "就此提问"}</Button>
     </div> : null}
   </main>;

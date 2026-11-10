@@ -28,8 +28,10 @@ from .agent.corpora import (
 )
 from .auth import CURRENT_USER
 from .core.db import connect, migrate
+from .custom_tasks import TaskMissing
 from .jobs import JobBusy
 from .parsers import forget_source, import_one
+from .prompts import list_tasks
 from .workspace import SCHEMA as WORKSPACE_SCHEMA  # one schema for the shared workspace.sqlite3
 
 router = APIRouter(prefix="/api/personal-libraries")
@@ -46,16 +48,32 @@ class Ref(BaseModel):
     title: str = Field(default="", max_length=300)
 
 
+# The task a personal library is for is an existing task template, reused rather than redefined:
+# ``task_id``/``task_version`` point at a built-in (version 0) or a published custom task version,
+# and ``report_template_id``/``report_template_version`` at a built-in or published report template.
+# Defaults keep older libraries working: task4 专项报告 with the comprehensive template.
+DEFAULT_TASK_ID = "task4"
+DEFAULT_TEMPLATE = "comprehensive"
+
+
 class LibraryCreate(BaseModel):
     name: str = Field(min_length=1, max_length=80)
     description: str = Field(default="", max_length=1000)
     refs: list[Ref] = Field(default_factory=list, max_length=MAX_REFS)
+    task_id: str = Field(default=DEFAULT_TASK_ID, min_length=1, max_length=80)
+    task_version: int = Field(default=0, ge=0)
+    report_template_id: str = Field(default=DEFAULT_TEMPLATE, max_length=80)
+    report_template_version: int = Field(default=0, ge=0)
 
 
 class LibraryChange(BaseModel):
     revision: int = Field(ge=0)
     name: str | None = Field(default=None, min_length=1, max_length=80)
     description: str | None = Field(default=None, max_length=1000)
+    task_id: str | None = Field(default=None, min_length=1, max_length=80)
+    task_version: int | None = Field(default=None, ge=0)
+    report_template_id: str | None = Field(default=None, max_length=80)
+    report_template_version: int | None = Field(default=None, ge=0)
     add: list[Ref] = Field(default_factory=list, max_length=MAX_REFS)
     remove: list[Ref] = Field(default_factory=list, max_length=MAX_REFS)
 
@@ -95,7 +113,10 @@ class PersonalLibraries:
     def create(self, owner: str, payload: LibraryCreate) -> dict:
         now = datetime.now(UTC).isoformat()
         library = {"id": uuid4().hex, "name": payload.name.strip(), "description": payload.description.strip(),
-                   "refs": merged([], payload.refs, []), "revision": 1, "created_at": now, "updated_at": now}
+                   "refs": merged([], payload.refs, []), "revision": 1, "created_at": now, "updated_at": now,
+                   "task_id": payload.task_id, "task_version": payload.task_version,
+                   "report_template_id": payload.report_template_id,
+                   "report_template_version": payload.report_template_version}
         if not library["name"]:
             raise HTTPException(422, "请输入个人资料库名称")
         with connect(self.path) as db:
@@ -119,6 +140,19 @@ class PersonalLibraries:
                 library["name"] = change.name.strip()
             if change.description is not None:
                 library["description"] = change.description.strip()
+            # Re-binding the task is a change like any other. A new template comes as a pair
+            # (id + version); sending only ``report_template_version`` bumps the version of the
+            # template the library already uses, so a published template can be re-pinned without
+            # resending its id.
+            setting = change.model_fields_set
+            for key in ("task_id", "task_version"):
+                if key in setting:
+                    library[key] = getattr(change, key)
+            if "report_template_id" in setting:
+                library["report_template_id"] = change.report_template_id
+                library["report_template_version"] = change.report_template_version
+            elif "report_template_version" in setting:
+                library["report_template_version"] = change.report_template_version
             library["refs"] = merged(library["refs"], change.add, change.remove)
             library["revision"] = row[0] + 1
             library["updated_at"] = datetime.now(UTC).isoformat()
@@ -191,11 +225,27 @@ def list_libraries(request: Request):
             for library in request.app.state.personal_libraries.list(owner(request))]
 
 
+def checked_task(app, task_id: str, task_version: int) -> None:
+    """Refuse an unknown or unpublished task binding before anything is saved."""
+    builtin = next((task for task in list_tasks() if task["id"] == task_id), None)
+    if builtin is not None:
+        if task_version != 0:
+            raise HTTPException(422, "内置任务没有自定义版本")
+        return
+    if task_version < 1:
+        raise HTTPException(422, "自定义任务必须指定已发布的版本")
+    try:
+        app.state.custom_tasks.version(task_id, task_version)
+    except (TaskMissing, ValueError) as exc:
+        raise HTTPException(422, "任务模版不存在或尚未发布") from exc
+
+
 @router.post("", status_code=201)
 def create_library(payload: LibraryCreate, request: Request):
     known = known_libraries(request)
     if any(ref.corpus_id not in known for ref in payload.refs):
         raise HTTPException(422, "引用的资料库不存在")
+    checked_task(request.app, payload.task_id, payload.task_version)
     return with_status(request.app.state.personal_libraries.create(owner(request), payload), known)
 
 
@@ -208,6 +258,27 @@ def read_library(library_id: str, request: Request):
     return {**with_status(library, known_libraries(request)), "uploads": upload_states(request.app, info, busy)}
 
 
+@router.get("/{library_id}/analysis")
+async def library_analysis(library_id: str, request: Request):
+    """This task's picture, read only from stored records (2026-11-06).
+
+    Everything is scoped to the library's own documents: system references reuse the four-dimension
+    records and project rows already stored in the system libraries, uploads reuse their own
+    library. Nothing here calls a model, writes into a system library, or counts toward the
+    system-wide figures. ``/analysis`` never generates a hierarchical synthesis; that is a
+    separate, user-triggered step so a small scope cannot pass an inferred scheme as evidence.
+    """
+    from .personal_analysis import analyze_library  # late: the analysis module reads the store's helpers
+
+    owner_name = owner(request)
+    try:
+        return await asyncio.to_thread(analyze_library, request.app, owner_name, library_id)
+    except HTTPException:
+        raise
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+
+
 @router.patch("/{library_id}")
 async def change_library(library_id: str, change: LibraryChange, request: Request):
     """Removing an uploaded document from the library it was uploaded to deletes the file too: it has no
@@ -215,6 +286,10 @@ async def change_library(library_id: str, change: LibraryChange, request: Reques
     known = await asyncio.to_thread(known_libraries, request)
     if any(ref.corpus_id not in known for ref in change.add):
         raise HTTPException(422, "引用的资料库不存在")
+    if change.task_id is not None or change.task_version is not None:
+        current = request.app.state.personal_libraries.get(owner(request), library_id)
+        checked_task(request.app, change.task_id or current.get("task_id", DEFAULT_TASK_ID),
+                     change.task_version if change.task_version is not None else current.get("task_version", 0))
     library = await asyncio.to_thread(request.app.state.personal_libraries.change, owner(request), library_id, change)
     own = [ref.doc_id for ref in change.remove if ref.corpus_id == MINE + library_id]
     if own:

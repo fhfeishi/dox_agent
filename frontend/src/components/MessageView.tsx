@@ -699,6 +699,7 @@ export function MessageView({
   onDraft,
   onExport,
   onSaveArtifact,
+  onReplyTo,
   compact = false,
 }: {
   attempt: Attempt;
@@ -709,9 +710,14 @@ export function MessageView({
   onDraft?: () => void;
   onExport?: (format: "md" | "word") => void;
   onSaveArtifact?: () => void;
+  /** P10b: "针对此答追问" — the answer text, or the fragment the reader selected, is handed back. */
+  onReplyTo?: (quote: string) => void;
   compact?: boolean;
 }) {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  // A selected fragment inside the answer offers "就这段追问"; it is cleared once used.
+  const [selection, setSelection] = useState("");
+  const answerRef = useRef<HTMLDivElement>(null);
   // Run records, token counts and timings are for administrators; others see elapsed time only while
   // an answer is being written (节点审查 D4).
   const { role } = useAuth();
@@ -786,10 +792,32 @@ export function MessageView({
         corpusName={(id) => (corpora.find((item) => item.id === id)?.name ?? id).replace(/^自然科学基金-/, "")}
         technical={role === "admin" ? <><Metrics attempt={attempt} startedTick={startedTick} /><StepList attempt={attempt} /><Telemetry attempt={attempt} /></> : undefined} /> : null}
       {attempt.answer ? (
-        <div className="markdown">
-          <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehypePlugins} components={components}>
-            {attempt.answer}
-          </Markdown>
+        <div ref={answerRef}
+          onMouseUp={() => {
+            // P10b: a fragment of this answer can become the quote of a follow-up. Too short is not
+            // a quote, and the server refuses more than 2000 characters.
+            if (!onReplyTo) return;
+            const picked = (window.getSelection()?.toString() ?? "").trim();
+            setSelection(picked.length >= 4 && picked.length <= 2000 ? picked : "");
+          }}>
+          {selection && onReplyTo ? <div className="mb-[4px] flex flex-wrap items-center gap-[6px]">
+            <button type="button" onClick={() => {
+              onReplyTo(selection);
+              window.getSelection()?.removeAllRanges();
+              setSelection("");
+            }}
+              className="font-app inline-flex h-[24px] items-center gap-[4px] rounded-md border border-[var(--hairline-strong)] px-[8px] text-caption text-[var(--primary)] hover:bg-[var(--surface)]">
+              <Icon name="chat" size={12} strokeWidth={1.9} />就这段追问
+            </button>
+            <span className="text-caption text-[var(--text-3)]">
+              已选 {selection.length} 字：{selection.slice(0, 40)}{selection.length > 40 ? "…" : ""}
+            </span>
+          </div> : null}
+          <div className="markdown">
+            <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehypePlugins} components={components}>
+              {attempt.answer}
+            </Markdown>
+          </div>
         </div>
       ) : (
         <p className="text-body leading-[1.72] text-[var(--charcoal)]">
@@ -817,6 +845,17 @@ export function MessageView({
             <Icon name="copy" size={13} strokeWidth={1.9} />
             {copyState === "copied" ? "已复制" : "复制答案"}
           </button>
+          {onReplyTo && attempt.answer && !running ? (
+            <button
+              type="button"
+              onClick={() => onReplyTo("")}
+              title="针对这条回答继续追问，而不是重新问一遍"
+              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-md px-[8px] text-caption text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
+            >
+              <Icon name="chat" size={13} strokeWidth={1.9} />
+              针对此答追问
+            </button>
+          ) : null}
           {onExport ? (
             <>
               <button

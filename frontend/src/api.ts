@@ -6,7 +6,9 @@ export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<stri
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[]; web_snapshot_ids?: string[] };
 /** W3-A: client-visible run parameters recorded with the server-side snapshot. */
 export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only" | "local_plus_urls"; output_intent?: string };
-export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
+export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext;
+  /** P10b (2026-11-06): this turn asks about one earlier answer; the server re-derives its text. */
+  reply_to?: { run_id: string; index?: number; quote?: string } };
 export class ApiError extends Error {
   readonly detail?: unknown;
   readonly status?: number;

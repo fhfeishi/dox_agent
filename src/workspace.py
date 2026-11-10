@@ -49,6 +49,14 @@ class Workspace:
             items = [json.loads(row[0]) for row in db.execute("SELECT payload FROM records WHERE kind=? ORDER BY rowid DESC", (kind,))]
         return items if owners is None else [item for item in items if item.get("created_by", "") in owners]
 
+    def get(self, kind, key):
+        """One record, or None. Reads the payload only; authorisation belongs to the caller."""
+        with self.connect() as db:
+            row = db.execute("SELECT kind, payload FROM records WHERE id=?", (key,)).fetchone()
+        if row is None or row[0] != kind:
+            return None
+        return json.loads(row[1])
+
     def put(self, kind, key, record):
         if kind == "sessions": record.data = report_references(record.data)
         payload = {"id": key, **record.model_dump(), "revision": record.revision + 1,
@@ -59,9 +67,17 @@ class Workspace:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             old = db.execute("SELECT revision, kind, payload FROM records WHERE id=?", (key,)).fetchone()
+            if old and old[1] == kind:
+                owner = json.loads(old[2]).get("created_by", "")
+                # High#2 (2026-11-05): an existing session belongs to the account that saved it. The
+                # check runs in the same transaction as the revision check, so a stale or racing
+                # request cannot claim it, and a request from another account cannot overwrite it.
+                if kind == "sessions" and owner and owner != CURRENT_USER.get():
+                    raise HTTPException(403, "这个会话属于其他账户")
             if (old and old[:2] != (record.revision, kind)) or (not old and record.revision != 0):
                 raise HTTPException(409, "内容已在其他页面更新，请刷新后继续，当前内容未覆盖")
-            # The account that first saved it, kept across later saves (节点审查: 我的工作).
+            # The account that first saved it, kept across later saves (节点审查: 我的工作). A first
+            # save binds the current account, so a new key can never be made to look like another's.
             payload["created_by"] = json.loads(old[2]).get("created_by", "") if old else CURRENT_USER.get()
             serialized = json.dumps(payload, ensure_ascii=False)
             db.execute("INSERT OR REPLACE INTO records VALUES (?, ?, ?, ?)", (key, kind, payload["revision"], serialized))
@@ -69,12 +85,21 @@ class Workspace:
 
 
     def delete(self, kind, key):
-        """Remove one session or note; unknown ids and kind mismatches are 404."""
+        """Remove one session or note; unknown ids and kind mismatches are 404.
+
+        A session is its author's to delete (High#2, 2026-11-05); notes stay shared, so their
+        deletion is unchanged. The payload is read in the same transaction as the delete, so the
+        check cannot be raced by a write in between.
+        """
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT kind FROM records WHERE id=?", (key,)).fetchone()
+            row = db.execute("SELECT kind, payload FROM records WHERE id=?", (key,)).fetchone()
             if row is None or row[0] != kind:
                 raise HTTPException(404, "记录不存在")
+            if kind == "sessions":
+                owner = json.loads(row[1]).get("created_by", "")
+                if owner and owner != CURRENT_USER.get():
+                    raise HTTPException(403, "这个会话属于其他账户")
             db.execute("DELETE FROM records WHERE id=?", (key,))
 
 

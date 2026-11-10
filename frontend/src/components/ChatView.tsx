@@ -120,6 +120,7 @@ export function ChatView() {
     setTurnReport,
     saveAnswerArtifact,
     exportChat,
+    setReplyTarget,
   } = useApp();
   const {
     inspectorOpen,
@@ -340,6 +341,13 @@ export function ChatView() {
                     <BrandMark size={14} />
                   </span>
                   <div className="min-w-0 flex-1 pt-[2px]">
+                    {turn.replyTo ? <div className="mb-[4px] flex flex-wrap items-center gap-[6px] text-caption text-[var(--primary)]">
+                      <span className="rounded-sm bg-[var(--primary-soft)] px-[6px] py-[1px]">
+                        追问 · 针对第 {turn.replyTo.index} 个回答
+                      </span>
+                      {turn.replyTo.quote ? <span className="max-w-[60ch] truncate text-[var(--text-3)]"
+                        title={turn.replyTo.quote}>引用：{turn.replyTo.quote}</span> : null}
+                    </div> : null}
                     <div className="mb-[6px] text-body font-semibold text-[var(--ink)]">
                       DoxAgent
                       <span className="ml-[8px] text-caption font-normal text-[var(--stone)]">
@@ -367,6 +375,10 @@ export function ChatView() {
                         )
                       }
                       onOpenSource={handleOpenSource}
+                      onReplyTo={connected && ready && turn.outcome === "completed"
+                        ? (quote) => setReplyTarget({ runId: turn.runId, question: turn.question,
+                          quote, index: i + 1 })
+                        : undefined}
                     />
                     {!!turn.previousAttempts.length ? (
                       <details className="mt-[16px] rounded-xl border border-[var(--hairline)] bg-[var(--surface-soft)] px-[14px] py-[11px]">

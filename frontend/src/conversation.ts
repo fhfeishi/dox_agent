@@ -2,6 +2,8 @@ import type { Event, Message, Source, Options, Policy, RunInfo, ReportInfo } fro
 
 export type Attempt = {
   runId: string;
+  /** P10b: the answer this turn follows up on, when it is a follow-up ("针对此答追问"). */
+  replyTo?: { runId: string; question: string; quote: string; index: number };
   steps: import("./api").Step[];
   telemetry?: import("./api").Telemetry;
   usage?: import("./api").Usage;

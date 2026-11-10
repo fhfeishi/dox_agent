@@ -9,9 +9,11 @@ parameter schemas, W6 adds network snapshots. The store is application-level
 
 import hashlib
 import json
+import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
+from .auth import CURRENT_USER
 from .core.db import connect, migrate
 
 CONTRACT_VERSION = 1
@@ -20,6 +22,10 @@ RESOURCE_POLICIES = ("local_only", "local_plus_urls")
 
 class RunConflict(RuntimeError):
     """Raised when a ``run_id`` is reused for a different request fingerprint."""
+
+
+class RunNotYours(RunConflict):
+    """Raised when a request reaches for a run another account started (High#2)."""
 
 
 def request_fingerprint(payload: dict) -> str:
@@ -32,6 +38,17 @@ def _now() -> str:
     return datetime.now(UTC).isoformat()
 
 
+def _add_created_by(db: sqlite3.Connection) -> None:
+    """High#2 (#5): a run belongs to the account that started it; recorded once, never overwritten.
+
+    Callable rather than a raw ALTER at a fixed index: an existing store's ``user_version`` skips
+    every step before it, and a fresh store already gets the column from CREATE TABLE.
+    """
+    columns = {row[1] for row in db.execute("PRAGMA table_info(runs)")}
+    if "created_by" not in columns:
+        db.execute("ALTER TABLE runs ADD COLUMN created_by TEXT NOT NULL DEFAULT ''")
+
+
 # Schema steps for runs.sqlite3, append-only (src/core/db.py).
 SCHEMA = [
     "CREATE TABLE IF NOT EXISTS runs ("
@@ -40,10 +57,16 @@ SCHEMA = [
     "session_key TEXT NOT NULL DEFAULT '', parent_run_id TEXT NOT NULL DEFAULT '', "
     "run_type TEXT NOT NULL, status TEXT NOT NULL, task_id TEXT NOT NULL DEFAULT '', "
     "model TEXT NOT NULL DEFAULT '', resource_policy TEXT NOT NULL DEFAULT '', "
-    "fingerprint TEXT NOT NULL, payload TEXT NOT NULL)",
+    "fingerprint TEXT NOT NULL, payload TEXT NOT NULL, created_by TEXT NOT NULL DEFAULT '')",
     # B1: the job runner asks for a library's latest import or extraction, and for unfinished runs.
     "CREATE INDEX IF NOT EXISTS runs_by_type ON runs(run_type, created_at);"
     "CREATE INDEX IF NOT EXISTS runs_by_status ON runs(status)",
+    # Appended, never inserted: stores made before authorship already have user_version=2.
+    _add_created_by,
+    # A store touched by the first version of this change reached user_version=3 without the
+    # column (the ALTER sat at index 1, which its version had already skipped). This repeated,
+    # idempotent step exists only to carry that store forward.
+    _add_created_by,
 ]
 
 
@@ -56,11 +79,17 @@ class RunStore:
     def connect(self):
         return connect(self.path)
 
-    def create(self, run_id: str, fingerprint: str, **fields) -> tuple[dict, bool]:
+    def create(self, run_id: str, fingerprint: str, *, owner: str | None = None, **fields) -> tuple[dict, bool]:
         """Create a snapshot, or return the existing one for the same fingerprint.
 
         A different fingerprint for the same ``run_id`` conflicts (409 at the API boundary), so
         one snapshot can never stand for two different executions.
+
+        High#2 (#5, 2026-11-05): the run records the account that created it (``owner``, defaulting to
+        the request's ``CURRENT_USER``). A second request for an existing run is checked against that
+        author *inside the same transaction* as the fingerprint comparison, so a client cannot take
+        over someone else's run by reusing its id. A run from before authorship was recorded has no
+        author; it is treated as the administrator's, like every other ownerless record.
         """
         timestamp = _now()
         snapshot = {
@@ -90,23 +119,33 @@ class RunStore:
             "metrics": {},
             "citations": [],
         }
+        author = CURRENT_USER.get() if owner is None else owner
         serialized = json.dumps(snapshot, ensure_ascii=False)
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT fingerprint, payload FROM runs WHERE run_id=?", (run_id,)).fetchone()
+            row = db.execute("SELECT fingerprint, payload, created_by FROM runs WHERE run_id=?", (run_id,)).fetchone()
             if row is not None:
                 if row[0] != fingerprint:
                     raise RunConflict(f"run_id「{run_id}」已被另一次不同请求使用")
+                # High#2 #5: the same request replayed by another account is a takeover, not a retry.
+                if row[2] and author and row[2] != author:
+                    raise RunNotYours(f"run_id「{run_id}」属于其他账户")
                 return json.loads(row[1]), False
             db.execute(
                 "INSERT INTO runs (run_id, contract_version, created_at, updated_at, session_key, "
-                "parent_run_id, run_type, status, task_id, model, resource_policy, fingerprint, payload) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "parent_run_id, run_type, status, task_id, model, resource_policy, fingerprint, payload, created_by) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (run_id, CONTRACT_VERSION, timestamp, timestamp, snapshot["session_key"],
                  snapshot["parent_run_id"], snapshot["run_type"], snapshot["status"],
                  snapshot["task_id"], snapshot["model"], snapshot["resource_policy"],
-                 fingerprint, serialized))
-        return snapshot, True
+                 fingerprint, serialized, author))
+        return {**snapshot, "created_by": author}, True
+
+    def owner(self, run_id: str) -> str | None:
+        """The account that created this run; None when it is not recorded (or not found)."""
+        with self.connect() as db:
+            row = db.execute("SELECT created_by FROM runs WHERE run_id=?", (run_id,)).fetchone()
+        return row[0] if row else None
 
     def update(self, run_id: str, **fields) -> dict:
         """Merge observable completion fields (status/ended_at/metrics/citations) into a run."""
@@ -125,10 +164,12 @@ class RunStore:
 
     def get(self, run_id: str) -> dict:
         with self.connect() as db:
-            row = db.execute("SELECT payload FROM runs WHERE run_id=?", (run_id,)).fetchone()
+            row = db.execute("SELECT payload, created_by FROM runs WHERE run_id=?", (run_id,)).fetchone()
         if row is None:
             raise KeyError("运行记录不存在")
-        return json.loads(row[0])
+        # The author lives in its own column (High#2), not inside the payload: without it every
+        # caller would look like it was reading an ownerless run.
+        return {**json.loads(row[0]), "created_by": row[1]}
 
     def latest(self, run_type: str, corpus_id: str) -> dict | None:
         """The newest run of a type for one library (imports, extractions: a handful per library)."""

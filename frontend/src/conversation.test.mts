@@ -161,3 +161,23 @@ test("editing a historical question creates a clean branch before that turn", as
   assert.deepEqual(branch.options.allowed_doc_ids, ["doc"]);
   assert.equal([first, second, third][2].answer, "three");
 });
+
+test('a follow-up continues the conversation and names the answer it is about', () => {
+  // Three completed turns; the third asks about the second. A follow-up continues the same
+  // conversation — the whole history is sent — and only *names* the answer it refers to, so the
+  // model can resolve "it" without the client copying that answer into the request.
+  const first = { ...newTurn('第一问', []), complete: true, outcome: 'completed' as const, answer: '第一问的回答' };
+  const second = { ...newTurn('第二问', [first]), complete: true, outcome: 'completed' as const, answer: '第二问的完整回答正文' };
+  const history = [first, second];
+  const replyTo = { runId: second.runId, question: second.question, quote: '完整回答', index: 2 };
+
+  const followUp = { ...newTurn('第三问', history), replyTo };
+  assert.deepEqual(followUp.replyTo, replyTo);
+  // The conversation is not truncated: the answered turn's question and answer stay in the history.
+  assert.deepEqual(followUp.requestMessages.map((m) => m.role), ['user', 'assistant', 'user', 'assistant', 'user']);
+  assert.equal(followUp.requestMessages[1].content, '第一问的回答');
+  assert.equal(followUp.requestMessages[3].content, '第二问的完整回答正文');
+  assert.equal(followUp.requestMessages[4].content, '第三问');
+  // A plain turn carries no target, so the server never sees a follow-up it did not get asked for.
+  assert.equal(newTurn('第三问', history).replyTo, undefined);
+});

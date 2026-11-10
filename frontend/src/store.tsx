@@ -50,7 +50,8 @@ import { useAuth } from "./auth";
 
 export type EditState = { index: number; text: string } | null;
 
-export type SendOverride = { question: string; history: Turn[]; options: Options };
+export type ReplyTarget = { runId: string; question: string; quote: string; index: number };
+export type SendOverride = { question: string; history: Turn[]; options: Options; replyTo?: ReplyTarget };
 
 export interface AppValue {
 
@@ -132,6 +133,9 @@ export interface AppValue {
   options: Options;
   setOptions: Dispatch<SetStateAction<Options>>;
   send: (regenerate?: boolean, override?: SendOverride) => Promise<void>;
+  /** P10b: which answer the next question continues; cleared when it is sent. */
+  replyTarget: ReplyTarget | null;
+  setReplyTarget: (target: ReplyTarget | null) => void;
   regenerateAt: (index: number) => Promise<void>;
   setTurnReport: (index: number, report: import("./api").ReportInfo) => void;
   /** W3-B: save a completed answer as a traceable artifact linked to its run. */
@@ -182,6 +186,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const rememberTargetJob = (corpus: string, job: string) => setTargetJobs((current) => ({ ...current, [corpus]: job }));
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
+  // P10b: the answer this next question follows up on; a reply clears it once it is sent.
+  const [replyTarget, setReplyTarget] = useState<ReplyTarget | null>(null);
   const returnFromWorkspace = useRef("");
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
@@ -407,6 +413,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function send(regenerate = false, override?: SendOverride) {
+    // P10b: a pending 追问 makes this send a follow-up. The conversation simply continues — the same
+    // history, the same scope — and the turn additionally names the answer it is about, so the model
+    // knows which earlier reply "it" refers to. Clearing the target here keeps one path only.
+    const replyTo = override?.replyTo ?? (regenerate ? null : replyTarget);
+    if (!override && replyTarget) setReplyTarget(null);
     // Auto library: rank libraries by the question, switch on a clear match, then send there.
     if (autoCorpus && !regenerate && !override && options.allowed_doc_ids === null && input.trim() && !controller.current && workspace.isSaved()) {
       const question = input.trim();
@@ -468,7 +479,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!question || controller.current || !ready || !workspace.loaded || sessionBusy) return;
     const turn = regenerate
       ? regenerateTurn(history[history.length - 1], history.slice(0, -1))
-      : newTurn(question, history, effectiveOptions);
+      : { ...newTurn(question, history, effectiveOptions), ...(replyTo ? { replyTo } : {}) };
     // A replay carries its original turn scope; ordinary sends use the current session scope.
     const requestOptions: ChatRequestOptions = {
       ...turn.options,
@@ -481,6 +492,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       // W3-A: the snapshot records the session and the client-visible defaults; the server still
       // resolves and stores the authoritative effective corpus/doc scope.
       session_key: workspace.active || undefined,
+      // P10b: the server validates the run and the quote; the client only names them.
+      ...(replyTo ? { reply_to: { run_id: replyTo.runId, index: replyTo.index, quote: replyTo.quote } } : {}),
       run_context: {
         resource_policy: scope.web_snapshot_ids?.length ? "local_plus_urls" : "local_only",
         output_intent: activeTask?.artifacts?.default ?? "text",
@@ -1108,6 +1121,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       options,
       setOptions: updateOptions,
       send,
+      replyTarget,
+      setReplyTarget,
       regenerateAt,
       setTurnReport,
       saveAnswerArtifact,

@@ -75,6 +75,21 @@ class RunContext(BaseModel):
     output_intent: str = Field(default="", max_length=200)
 
 
+class ReplyTo(BaseModel):
+    """P10a (2026-11-06): this turn continues the conversation from one earlier answer.
+
+    ``run_id`` names the answered run; ``index`` is the position the reader sees (第 N 个回答) and is
+    only echoed as a label; ``quote`` is an optional fragment the reader selected. The server
+    re-derives the answer text from its own replay, so a quote is checked against the record, not
+    trusted as client text.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+    run_id: str = Field(min_length=8, max_length=80)
+    index: int | None = Field(default=None, ge=1, le=500)
+    quote: str = Field(default="", max_length=2000)
+
+
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     messages: list[ChatMessage] = Field(min_length=1, max_length=20)
@@ -92,6 +107,8 @@ class ChatRequest(BaseModel):
     # W3-A: optional snapshot context; absent stays backward compatible (local_only / 未记录).
     session_key: str | None = Field(default=None, max_length=120)
     run_context: RunContext | None = None
+    # Absent keeps every existing caller unchanged; present marks the turn as a follow-up.
+    reply_to: ReplyTo | None = None
 
     @field_validator("corpus_ids")
     @classmethod

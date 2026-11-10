@@ -85,6 +85,8 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
     status,
     model,
     turns,
+    replyTarget,
+    setReplyTarget,
   } = useApp();
   const {
     setNewCorpusOpen,
@@ -138,6 +140,12 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
     el.style.height = "auto";
     el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
   }, [input]);
+
+  // P10b: choosing a follow-up target moves the caret to the composer, so the reader types the
+  // continuation immediately instead of hunting for the input.
+  useEffect(() => {
+    if (replyTarget) taRef.current?.focus();
+  }, [replyTarget]);
 
   useEffect(() => {
     if (!webOpen || webMode !== "search") return;
@@ -477,6 +485,22 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
         {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标资料库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标资料库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
           {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
           <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget, "files"); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
+        {/* P10b: while a follow-up is pending, the composer says which answer it is about, so the
+            question is not mistaken for a fresh one. */}
+        {replyTarget ? <div className="mb-[6px] flex items-start gap-[8px] rounded-lg border border-[var(--primary)] bg-[var(--primary-soft)] px-[10px] py-[6px]">
+          <div className="min-w-0 flex-1 text-caption text-[var(--text-2)]">
+            <p className="font-semibold text-[var(--heading)]">
+              追问 · 针对第 {replyTarget.index} 个回答
+              <span className="ml-[6px] font-normal text-[var(--text-3)]">
+                {replyTarget.question.slice(0, 40)}{replyTarget.question.length > 40 ? "…" : ""}
+              </span>
+            </p>
+            {replyTarget.quote ? <p className="mt-[2px] line-clamp-2 text-[var(--text-3)]"
+              title={replyTarget.quote}>引用：{replyTarget.quote}</p> : null}
+          </div>
+          <button type="button" aria-label="取消追问" onClick={() => setReplyTarget(null)}
+            className="shrink-0 rounded-md px-[6px] py-[2px] text-caption text-[var(--text-3)] hover:bg-[var(--canvas)]">×</button>
+        </div> : null}
         {/* input */}
         <div className="rounded-xl border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea

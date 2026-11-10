@@ -12,15 +12,18 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | 位置 | 内容 |
 |---|---|
 | [前端复审-20261027.md](前端复审-20261027.md) | 最新前端变更复审、个人库与筛选反馈问题、优化优先级 |
+| [个人资料库-任务工作台-20261106.md](个人资料库-任务工作台-20261106.md) | 工作文档：个人资料库定位为“一次任务的工作台”，范围化分析、任务模版复用与 P0–P2 方案（草案） |
+| [信息抽取重构-20261109.md](信息抽取重构-20261109.md) | 工作文档：默认四维模板、解析/抽取两段、元数据/资金字典、archive 档案记录与版本规则（草案，需求已确认） |
 | [query.md](query.md)、`query-archive/` | 用户原文；已关闭的条目按月归档 |
 | [PROJECT.md](PROJECT.md)、[ITERATION.md](ITERATION.md)、[DECISIONS.md](DECISIONS.md)、`DECISIONS-archive.md`、[cleanup-log.md](cleanup-log.md) | 正式要求、当前工作、决定、接入前的历史决定、删除登记 |
 | [design/系统.md](design/系统.md)、[design/界面.md](design/界面.md) | 现行设计载体 |
-| [tasks/](tasks/) | 任务记录：[02 谱系交互实施 1026](tasks/task-02-谱系交互实施-20261026.md)、[领导体验优化 1026](tasks/领导体验优化-20261026/README.md)、[收尾规划 1023](tasks/收尾规划-20261023/README.md)、[升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md)、[Q1 接续](tasks/upgrade-Q1-20261019.md)、[A1 验收](tasks/A1-验收-20261021/README.md)、[资料整理到对比报告](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系](tasks/lineage-task/README.md) |
+| [tasks/](tasks/) | 任务记录：[资料入库验收 1105](tasks/资料入库验收-20261105.md)、[02 谱系交互实施 1026](tasks/task-02-谱系交互实施-20261026.md)、[领导体验优化 1026](tasks/领导体验优化-20261026/README.md)、[收尾规划 1023](tasks/收尾规划-20261023/README.md)、[升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md)、[Q1 接续](tasks/upgrade-Q1-20261019.md)、[A1 验收](tasks/A1-验收-20261021/README.md)、[资料整理到对比报告](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系](tasks/lineage-task/README.md) |
 | `owner-首页-design/`、`owner-领域分析-design/`、`owner-问答-design/`、`资料库数据接口-design/`、`资料管理-design/`、`领域分析-分屏-design/` | 专题目录（本地保存、不入库）：首页、领域分析、对话工作台的设计迭代与候选，资料库数据接口（AI Native 补充链路）的方案探索，资料管理界面重构的两版原型，以及领域分析分屏重构 demo（[README](领域分析-分屏-design/README.md)）；领域分析的候选稿与口径约束见 [owner-领域分析-design/README.md](owner-领域分析-design/README.md)（当前为 wkbd-designer v3：场景 × 技术体系二维地图） |
 | `pipeline梳理和优化-20261103/` | 专题目录（本地保存、不入库）：数据线与任务线 pipeline 的总览、讨论稿、中间方案、审查和状态快照；入口 README 记录现行主稿、当前状态与时间线 |
-| `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_续测.md` | p3 续测：动态复现 selected profile 缺口，新增 3 个 xfail，补稀疏页与控制字符边界；仅指定笔记例外入库，不改主稿 |
+| `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_21-44窗_数据方案旁路审.md` | 两段式发布与 P0 恢复、校对读取与权限阶段门旁路审；提交版阶段切换测试、WIP 碰撞提醒及 Hermes 三问回报；本地草案 |
+| `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_续测.md` | 06:05 历史测试快照：当时复现 selected profile 缺口并新增 3 个 xfail，补稀疏页与控制字符边界；后续修复见提交 `756b7da`，现行回归见 `tests/test_parse_cache.py`；仅指定笔记例外入库，不改主稿 |
 | `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_产品静审.md` | 06:05 续窗静审：解析 profile 选优身份、方案档案缺口与下一窗测点；P1/High#2 无新增闭合。仅指定笔记例外入库，不改专题主稿 |
-| `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_修复面.md`、`2026-11-03_Codex-astra_19-55窗_测试与整理.md`、`2026-11-03_Codex-astra_14-55窗_测试补齐.md`（同目录） | 测试与整理索引（06:05 / 00:59 / 19:55 / 14:55）；06:05 补管理员边界、删除隔离、质量与重试边界，保留前窗 17 个缺口 xfail。按用户要求，仅各轮指定记录例外入库。跳过记录归 `reviews/archive-skips/`，专家旁审归 `reviews/experts/`，不改变专题主稿与其他文件的本地保存方式 |
+| `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_修复面.md`、`2026-11-03_Codex-astra_19-55窗_测试与整理.md`、`2026-11-03_Codex-astra_14-55窗_测试补齐.md`（同目录） | 历史测试与整理索引（06:05 / 00:59 / 19:55 / 14:55）；06:05 当时保留的 17 个缺口 xfail 不代表当前未决数量，现行覆盖以 `tests/` 和本次运行结果为准。按用户要求，仅各轮指定记录例外入库。跳过记录归 `reviews/archive-skips/`，专家旁审归 `reviews/experts/`，不改变专题主稿与其他文件的本地保存方式 |
 | [前端审查-20261027.md](前端审查-20261027.md) | 工作文档：全站前端审查与优化建议（草案） |
 | [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |

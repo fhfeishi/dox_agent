@@ -72,7 +72,7 @@ def atlas_domain(info, library: dict, tree: dict, outputs: dict) -> dict:
     kinds = {"期刊论文", "会议论文", "专利", "奖励", "专著"}
     records = outputs.get("projects") or {}
     projects = [{"id": p["project_id"], "title": p.get("title") or p["project_id"],
-                 "year": p.get("start_year"), "amount": amount(p, "awarded"),
+                 "year": p.get("start_year"), "amount": amount(p, "project_total"),
                  "outputs": sum(n for k, n in records[p["project_id"]].get("counts", {}).items() if k in kinds)
                  if p["project_id"] in records else None}
                 for p in library["projects"] if p.get("identity_status") == "identified"]
@@ -277,7 +277,7 @@ def install(app, ctx):
             scenes = await read_hierarchy(info, library)
             sources.append((info, library, tree, scenes, await asyncio.to_thread(read_json, info, "lineage_blanks.json")))
         # 01 and its page headline use the same approved-award measure; missing awards stay unknown.
-        scope = "awarded"
+        scope = "project_total"
         domains = [domain_payload(info, library, tree, scenes, blanks, scope)
                    for info, library, tree, scenes, blanks in sources]
         domains = [d for d in domains if d["projects"] and d["items"]]
@@ -313,7 +313,7 @@ def install(app, ctx):
             domains.append(atlas_domain(info, library, tree, outputs))
         if not domains:
             raise HTTPException(409, "还没有可浏览的领域资料：请先导入资料并生成技术谱系。")
-        return {"funding_label": FUNDING_LABELS["awarded"],
+        return {"funding_label": FUNDING_LABELS["project_total"],
                 "years": sorted({p["year"] for d in domains for p in d["projects"] if p["year"]}), "domains": domains}
 
     @router.get("/api/domains/{corpus_id}/tree")

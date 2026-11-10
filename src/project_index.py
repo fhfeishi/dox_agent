@@ -14,16 +14,49 @@ from datetime import UTC, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
+from . import records
 from .core.db import connect, migrate
 from .retrieval import metadata_from_filename
 from .targets import DIMENSIONS, PROMPT_VERSION, _load, _record_state
 
-INDEX_VERSION = 4
+INDEX_VERSION = 5
 SCOPES = {"批准资助金额": "awarded", "资助金额": "awarded", "直接费用": "direct", "总经费": "total"}
 MONEY = re.compile(
     r"(?m)^\s*(?:[|#>* ]*)(" + "|".join(SCOPES) + r")\s*[:：|]\s*([0-9]+(?:\.[0-9]+)?)\s*[（(]?\s*(万元|元)"
 )
 FIELD = re.compile(r"(?m)^(ratifyNo|projectName|projectAdmin|dependUnit|supportNum|code):\s*(.*?)\s*$")
+
+
+SCHEME_FAMILY = {"NSFC": "NSFC", "HORIZONTAL": "HORIZONTAL", "VERTICAL": "VERTICAL", "OTHER": "OTHER"}
+FUNDING_SCOPE = {"total": "total", "awarded": "awarded", "direct": "direct", "indirect": "indirect"}
+
+
+def _year(value: object) -> int | None:
+    """A year from a date fact or year value; only a 4-digit year is accepted."""
+    text = str(value or "").strip()
+    match = re.match(r"^(\d{4})", text)
+    return int(match.group(1)) if match else None
+
+
+def _metadata_funding(facts: dict, doc: dict) -> list[dict]:
+    """Funding facts as index money rows; amount is never computed beyond an explicit unit."""
+    out = []
+    for item in facts.get("funding") or []:
+        term = item.get("term")
+        scope = FUNDING_SCOPE.get(term)
+        amount = item.get("amount")
+        if not scope or amount in (None, ""):
+            continue
+        try:
+            value = Decimal(str(amount))
+        except InvalidOperation:
+            continue
+        value = value * (10000 if item.get("unit") == "万元" else 1)
+        evidence = item.get("evidence") or [{}]
+        out.append({"scope": scope, "amount_yuan": str(value), "currency": item.get("currency") or "CNY",
+                    "quote": evidence[0].get("quote", ""), "doc_id": doc["doc_id"],
+                    "version": doc["version"], "source": "metadata"})
+    return out
 
 
 def norm(value):
@@ -234,10 +267,10 @@ class ProjectIndex:
         current = knowledge.all()
         signatures = {}
         for doc in current:
-            target_path = info.root / "target" / (doc["doc_id"] + ".json")
-            stamp = (
-                (target_path.stat().st_mtime_ns, target_path.stat().st_size) if target_path.exists() else None
-            )
+            target_path = records.path(info, doc["doc_id"])
+            legacy_path = records.legacy_path(info, doc["doc_id"])
+            chosen = target_path if target_path.exists() else legacy_path
+            stamp = (chosen.stat().st_mtime_ns, chosen.stat().st_size) if chosen.exists() else None
             signatures[doc["doc_id"]] = hashlib.sha256(
                 json.dumps(
                     [
@@ -327,11 +360,18 @@ class ProjectIndex:
             number = ""  # A filename pattern alone does not identify a funding system.
         record, error = _load(info, doc["doc_id"])
         state, notice = _record_state(record, error, doc)
-        coverage = (record or {}).get("process", {}).get("coverage", {})
-        completed = state == "current" and (record or {}).get("process", {}).get("status") == "已完成"
+        extraction = records.extraction_of(record)
+        coverage = extraction.get("process", {}).get("coverage", {})
+        completed = state == "current" and extraction.get("process", {}).get("status") == "已完成"
+        # Project facts from the archive record win over the NSFC header/filename heuristics. The
+        # four-dimension section and the facts section are independent; a missing facts section
+        # keeps the old behaviour for every pre-2026-11-09 record.
+        archive, _archive_error = records.load(info, doc["doc_id"])
+        metadata = records.metadata_of(archive)
+        project_facts = metadata.get("project") or {}
         facets = {}
         for key in DIMENSIONS:
-            source = next((f for f in (record or {}).get("facets", []) if f["key"] == key), {})
+            source = next((f for f in extraction.get("facets", []) if f["key"] == key), {})
             # An incomplete file may contain partial evidence. Keep it explicitly partial;
             # only current-version quotes are eligible, never substitute an old file's result.
             items = []
@@ -384,23 +424,55 @@ class ProjectIndex:
                     "version": doc["version"],
                 }
             )
+        # 2026-11-09: one chart measure, 项目总金额 = 总经费 if stated, otherwise 批准资助金额.
+        # 直接费用 is a component, never a total; a conflicting 总经费 stays a conflict instead of
+        # silently falling back to another amount.
+        total_rows = [m for m in money if m["scope"] == "total" and m.get("amount_yuan") is not None]
+        total_values = {m["amount_yuan"] for m in total_rows}
+        awarded_rows = [m for m in money if m["scope"] == "awarded" and m.get("amount_yuan") is not None]
+        awarded_values = {m["amount_yuan"] for m in awarded_rows}
+        if len(total_values) == 1:
+            money.append({**total_rows[0], "scope": "project_total", "basis": "total"})
+        elif not total_rows and len(awarded_values) == 1:
+            money.append({**awarded_rows[0], "scope": "project_total", "basis": "awarded"})
         public_doc = {k: v for k, v in doc.items() if k not in ("pages", "markdown")}
         public_doc["pages"] = doc.get("page_count", 0)
         labelled_title = re.search(r"(?m)^\s*项目名称\s*[:：]\s*(.+)$", header)
         title = fields.get("projectName") or (labelled_title[1].strip() if labelled_title else doc["title"])
         if title == doc["title"] and meta.get("project_no") and len(title.split("_", 4)) == 5:
             title = title.split("_", 4)[4]
+        admin_value = str(fields.get("projectAdmin") or "").strip()
+        unit_value = str(fields.get("dependUnit") or "").strip()
+        start_year, end_year = meta.get("year_from"), meta.get("year_to")
+        # Facts layer overrides (2026-11-09). A value is only used when extraction found it; the
+        # header/filename value remains when the facts section is absent.
+        if project_facts:
+            scheme = project_facts.get("project_scheme", {}).get("value")
+            if scheme:
+                family = SCHEME_FAMILY.get(scheme, scheme)
+            number = project_facts.get("project_no", {}).get("value") or number
+            title = project_facts.get("project_name", {}).get("value") or title
+            admin_value = project_facts.get("principal_investigator", {}).get("value") or admin_value
+            unit_value = project_facts.get("lead_unit", {}).get("value") or unit_value
+            start = _year(project_facts.get("start_date", {}).get("value"))
+            end = _year(project_facts.get("end_date", {}).get("value"))
+            start_year = start if start is not None else start_year
+            end_year = end if end is not None else end_year
+            if number and meta.get("project_no") and number != meta.get("project_no"):
+                identity_conflict = True
+            if isinstance(metadata.get("funding"), list):
+                money = _metadata_funding(metadata, doc)
         return {
             "number": number,
             "family": family,
             "identity_conflict": identity_conflict,
             "title": title,
-            "start_year": meta.get("year_from"),
-            "end_year": meta.get("year_to"),
+            "start_year": start_year,
+            "end_year": end_year,
             # Archive header fields as written; empty when the file does not state them.
             "code": str(fields.get("code") or "").strip(),
-            "admin": str(fields.get("projectAdmin") or "").strip(),
-            "unit": str(fields.get("dependUnit") or "").strip(),
+            "admin": admin_value,
+            "unit": unit_value,
             "file": public_doc,
             "facets": facets,
             "funding": money,
@@ -498,7 +570,7 @@ class ProjectIndex:
                 ],
             }
         funds = {}
-        for scope in ("awarded", "direct", "total"):
+        for scope in ("awarded", "direct", "total", "project_total"):
             eligible = [
                 p
                 for p in identified

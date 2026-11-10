@@ -239,6 +239,30 @@ export type TargetDocument = {
   doc_id: string; title: string; origin: string; version: string; captured_at: string;
   kind: string; parser: string; pages: number;
 };
+/** Project identity and funding facts (2026-11-09): every value carries its own quote. */
+export type FactField = { value: string; source: "content" | "filename" | "manual" | "unknown";
+  confidence: "high" | "medium" | "low"; precision?: "year" | "month" | "day";
+  evidence: { quote: string; locator: { basis: string; page?: number; start_char?: number; end_char?: number } }[] };
+export type FundingFact = { term: "total" | "awarded" | "direct" | "indirect"; term_raw: string;
+  amount: string; unit: string; currency: string; tax: string; source: string; status: string;
+  confidence: string; evidence: { quote: string; locator: { basis: string; page?: number; start_char?: number; end_char?: number } }[] };
+export type ProjectFacts = {
+  status: "completed" | "partial" | "failed";
+  schema_version: number; dictionary_id: string; dictionary_version: number; prompt_version: number;
+  project: { identity?: string; project_name?: FactField; project_no?: FactField; project_scheme?: FactField;
+    project_category?: FactField; lead_unit?: FactField; participant_units?: FactField[];
+    principal_investigator?: FactField; start_date?: FactField; end_date?: FactField };
+  funding: FundingFact[];
+  candidates: Record<string, unknown>;
+  missing: string[];
+  rejected: { field: string; reason: string }[];
+  process: { model: string; started_at: string; ended_at: string; error: string };
+};
+export type ParseFacts = { status: string; parsed_rel: string; profile: string; parser: string;
+  text_sha256: string; corrections_hash: string; corrections_invalidated: boolean;
+  quality: { pages: number; coverage: number; sparse_pages: number; unreadable_chars: number } | null;
+  grade: string | null; parsed_at: string; error: string };
+
 export type TargetDetail = {
   doc_id: string; version: string; source_hash: string;
   schema_version: number; prompt_version: number;
@@ -248,6 +272,8 @@ export type TargetDetail = {
   relations: TargetRelation[];
   title: string; source_name: string;
   document: TargetDocument;
+  metadata?: ProjectFacts | null;
+  parse?: ParseFacts | null;
   error?: string;
 };
 
@@ -260,6 +286,18 @@ export async function fetchTargetReports(corpusId: string, signal?: AbortSignal)
 export async function fetchTargetDetail(corpusId: string, docId: string, signal?: AbortSignal): Promise<TargetDetail> {
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports/${encodeURIComponent(docId)}/target`, { signal });
   return await jsonOrThrow(response, "四维信息不可用") as Promise<TargetDetail>;
+}
+
+/** Project identity and funding extraction: its own job, independent from the four dimensions. */
+export async function extractFacts(corpusId: string, docIds: string[], force = false): Promise<TargetJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/facts`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ doc_ids: docIds, force }) });
+  return await jsonOrThrow(response, "项目事实抽取未开始") as Promise<TargetJob>;
+}
+
+export async function fetchFactsJob(corpusId: string, jobId: string, signal?: AbortSignal): Promise<TargetJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/facts/jobs/${encodeURIComponent(jobId)}`, { signal });
+  return await jsonOrThrow(response, "项目事实任务不可读") as Promise<TargetJob>;
 }
 
 export async function extractTargets(corpusId: string, docIds: string[], force = false): Promise<TargetJob> {
@@ -805,3 +843,67 @@ export async function fetchHealth(signal?: AbortSignal): Promise<Health> {
 export async function fileStatus(url: string, signal?: AbortSignal): Promise<number> {
   return (await fetch(url, { method: "HEAD", signal })).status;
 }
+
+/* 资料入库工作台 (2026-11-04): read-only parse dossier / page comparison / stage view. */
+export type ParseQuality = { pages: number; parsed_pages: number; pages_with_text: number; coverage: number;
+  chars: number; unreadable_chars: number; sparse_pages: number; page_count_checked: boolean };
+export type ParseAnchor = { anchor: string; kind: string; page?: number | null; found?: boolean };
+export type ParseAnchors = { checked: ParseAnchor[]; matched: number; missing: ParseAnchor[]; page_count: number };
+export type ParseCorrections = { active: boolean; invalidated: boolean; pages: number[] };
+export type ParseCorrection = { before: string; after: string; by?: string; at?: string;
+  blocks?: Record<string, ParseBlockCorrection> } | null;
+export type ParseBlockCorrection = { before: string; after: string; by?: string; at?: string; bbox?: number[] };
+export type ParseBlock = { id: string; type: string; bbox: number[] | null; text: string; no_text: boolean;
+  images?: string[]; caption?: string; attached_to?: string; page?: number };
+export type ParseBlocks = { page: number; page_count: number; blocks: ParseBlock[] };
+export type ParseDocument = { rel: string; page_count: number; pages: { page: number; blocks: ParseBlock[] }[] };
+export type ParseArchive = { rel: string; exists: boolean; cache: Record<string, unknown> | null; legacy: boolean;
+  profile: string; pages: number; attempts: Record<string, unknown>[]; quality: ParseQuality | null;
+  quality_grade?: string | null; anchors?: ParseAnchors; corrections?: ParseCorrections;
+  markdown_chars: number; images: string[]; page_lengths: number[]; has_middle_json: boolean };
+export type ParsePage = { rel: string; page: number; pages: number; text: string;
+  corrected_text?: string; corrections?: ParseCorrection; images: string[] };
+export type ParseStages = { corpus_id: string; name: string; documents: number;
+  counts: Record<string, Record<string, number>>;
+  rows: { rel_path: string; doc_id: string; status: string; last_error: string; source: string;
+    parse: string; parse_reason: string; search: string; extract: string;
+    lifecycle?: "处理中" | "待核对" | "已入库" | "失败"; lifecycle_reasons?: string[] }[] };
+
+export async function fetchParseArchive(corpusId: string, rel: string, signal?: AbortSignal): Promise<ParseArchive> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/archive?` +
+    new URLSearchParams({ rel }), { signal }), "解析档案暂不可读");
+}
+export async function fetchParsePage(corpusId: string, rel: string, page: number, signal?: AbortSignal): Promise<ParsePage> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/page/${page}?` +
+    new URLSearchParams({ rel }), { signal }), "该页解析暂不可读");
+}
+export async function fetchParseDocument(corpusId: string, rel: string, signal?: AbortSignal): Promise<ParseDocument> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/document?` +
+    new URLSearchParams({ rel }), { signal }), "整份解析暂不可读");
+}
+export function parseImageUrl(corpusId: string, rel: string, name: string): string {
+  return `/api/corpora/${encodeURIComponent(corpusId)}/parse/image?` + new URLSearchParams({ rel, name });
+}
+export async function fetchParseStages(corpusId: string, signal?: AbortSignal): Promise<ParseStages> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/stages`, { signal }), "阶段视图暂不可读");
+}
+/** PUT .../parse/corrections: one page's human correction, saved next to cache.json (2026-11-04).
+ *  It never republishes the document, so docs.version and cache.json stay as they were. */
+export async function saveParseCorrection(corpusId: string, rel: string, page: number, before: string, after: string,
+  block?: { block_id: string; bbox?: number[] | null }): Promise<ParseCorrections> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/corrections`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ rel, page, before, after, ...(block ? { block_id: block.block_id, bbox: block.bbox } : {}) }),
+  }), "校对保存失败");
+}
+/** GET .../parse/blocks: the parse's blocks of one page with their normalised bboxes (R10). */
+export async function fetchParseBlocks(corpusId: string, rel: string, page: number, signal?: AbortSignal): Promise<ParseBlocks> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/parse/blocks?` +
+    new URLSearchParams({ rel, page: String(page) }), { signal }), "逐块数据暂不可读");
+}
+/** GET .../parse/page-image: the original PDF page rendered as PNG (no MinerU, nothing written). */
+export function parsePageImageUrl(corpusId: string, rel: string, page: number, scale = 1.5): string {
+  return `/api/corpora/${encodeURIComponent(corpusId)}/parse/page-image?` +
+    new URLSearchParams({ rel, page: String(page), scale: String(scale) });
+}
+

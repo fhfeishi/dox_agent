@@ -5,16 +5,13 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
-import os
 import re
-import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from . import achievement_list
-from .agent.corpora import TARGET_DIRNAME
+from . import achievement_list, records
 from .agent.models import model_for
 from .prompts import target_instruction
 from .reports import review_segments
@@ -53,39 +50,14 @@ class TargetStale(ValueError):
     """The saved result no longer matches the current parsed document."""
 
 
-def _target_path(info, doc_id: str) -> Path:
-    return info.root / TARGET_DIRNAME / f"{doc_id}.json"
-
-
 def _load(info, doc_id: str) -> tuple[dict | None, str]:
-    path = _target_path(info, doc_id)
-    if not path.is_file():
-        return None, ""
-    try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(value, dict) or value.get("doc_id") != doc_id:
-            raise ValueError("结果身份不匹配")
-        if not isinstance(value.get("facets"), list) or not isinstance(value.get("process"), dict):
-            raise ValueError("结果结构不完整")
-        return value, ""
-    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
-        return None, f"四维结果文件损坏：{exc}"
+    """The archive record, with legacy ``target/<doc_id>.json`` read as the same envelope."""
+    return records.load(info, doc_id)
 
 
 def _save(info, record: dict) -> None:
-    directory = info.root / TARGET_DIRNAME
-    directory.mkdir(parents=True, exist_ok=True)
-    fd, temp_name = tempfile.mkstemp(prefix=".target-", suffix=".json", dir=directory)
-    temporary = Path(temp_name)
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
-            json.dump(record, handle, ensure_ascii=False, indent=2)
-            handle.write("\n")
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, _target_path(info, record["doc_id"]))
-    finally:
-        temporary.unlink(missing_ok=True)
+    """Low-level write; extraction goes through ``records.write_extraction`` to keep the envelope."""
+    records.save(info, record)
 
 
 def _record_state(record: dict | None, error: str, doc: dict) -> tuple[str, str]:
@@ -93,12 +65,18 @@ def _record_state(record: dict | None, error: str, doc: dict) -> tuple[str, str]
         return "invalid", error
     if record is None:
         return "missing", ""
-    if record.get("version") != doc["version"] or (
+    extraction = records.extraction_of(record)
+    # An archive record written by the facts stage has no ``extraction`` section at all; that is
+    # "not extracted yet", not a broken record. A legacy record with empty facets is still a record.
+    if not extraction:
+        return "missing", ""
+    doc_version = record.get("doc_version") or record.get("version")
+    if doc_version != doc["version"] or (
         record.get("source_hash") and doc.get("source_sha256")
         and record.get("source_hash") != doc.get("source_sha256")
     ):
         return "stale", "资料已更新"
-    if record.get("schema_version") != SCHEMA_VERSION or record.get("prompt_version") != PROMPT_VERSION:
+    if extraction.get("schema_version") != SCHEMA_VERSION or extraction.get("prompt_version") != PROMPT_VERSION:
         return "stale", "四维提取规则已更新"
     return "current", ""
 
@@ -110,12 +88,13 @@ def _empty_facets(state: str) -> dict:
 def _summary(info, doc: dict) -> dict:
     record, error = _load(info, doc["doc_id"])
     state, message = _record_state(record, error, doc)
+    extraction = records.extraction_of(record)
     if state == "current" and record is not None:
         # The list carries names/descriptions for filtering, never all document evidence.
         facets = {facet["key"]: {"state": facet["state"], "items": [
             {key: item[key] for key in ("id", "name", "desc", "status") if key in item}
-            for item in facet.get("items", [])]} for facet in record["facets"]}
-        process = record["process"]
+            for item in facet.get("items", [])]} for facet in extraction["facets"]}
+        process = extraction["process"]
     elif state == "invalid":
         facets = _empty_facets("异常")
         process = {"status": "未完成", "coverage": {"processed": 0, "total": 0}}
@@ -151,25 +130,50 @@ def target_detail(info, knowledge, doc_id: str) -> dict:
     record, error = _load(info, doc_id)
     state, message = _record_state(record, error, doc)
     if state == "missing":
+        # A record can exist for its project facts and parse before the four-dimension stage runs.
+        # Return that record rather than a 404 so the detail tabs still reach it.
+        if record and (records.metadata_of(record) or records.parse_of(record)):
+            extraction = {
+                "schema_version": SCHEMA_VERSION, "prompt_version": PROMPT_VERSION,
+                "process": {"status": "未处理", "coverage": {"processed": 0, "total": 0}},
+                "facets": [], "relations": [], "outputs": [], "events": [], "rejected": [],
+            }
+            return {
+                **record, **extraction, "lifecycle": records.lifecycle(record, doc),
+                "title": doc["title"], "source_name": Path(doc.get("origin", "")).name or doc["title"],
+                "metadata": records.metadata_of(record), "parse": records.parse_of(record),
+                "document": {"doc_id": doc_id, "title": doc["title"], "origin": doc.get("origin", ""),
+                             "version": doc["version"], "captured_at": doc.get("captured_at", ""),
+                             "kind": doc.get("kind", "text"), "parser": doc.get("parser", ""),
+                             "pages": doc.get("page_count", 0)},
+            }
         raise TargetMissing("尚未生成四维信息")
     if state == "stale":
         raise TargetStale(message)
     if state == "invalid":
         record = {
             "doc_id": doc_id,
+            "doc_version": doc["version"],
             "version": doc["version"],
             "source_hash": doc.get("source_sha256", ""),
-            "schema_version": SCHEMA_VERSION,
-            "prompt_version": PROMPT_VERSION,
-            "process": {"status": "未完成", "coverage": {"processed": 0, "total": 0}},
-            "facets": [{"key": key, "state": "异常", "items": []} for key in DIMENSIONS],
-            "relations": [],
-            "error": message,
+            "extraction": {
+                "schema_version": SCHEMA_VERSION,
+                "prompt_version": PROMPT_VERSION,
+                "process": {"status": "未完成", "coverage": {"processed": 0, "total": 0}},
+                "facets": [{"key": key, "state": "异常", "items": []} for key in DIMENSIONS],
+                "relations": [],
+                "error": message,
+            },
         }
+    extraction = records.extraction_of(record)
     return {
         **record,
+        **extraction,
+        "lifecycle": records.lifecycle(record, doc),
         "title": doc["title"],
         "source_name": Path(doc.get("origin", "")).name or doc["title"],
+        "metadata": records.metadata_of(record),
+        "parse": records.parse_of(record),
         "document": {
             "doc_id": doc_id,
             "title": doc["title"],
@@ -434,10 +438,11 @@ def item_evidence(info, doc_id: str, version: str, item_ids: set[str]) -> dict[s
     citation bound to the same file version the index reports (需求 §17 R-SCN-03/05).
     """
     record, error = _load(info, doc_id)
-    if error or not record or record.get("version") != version:
+    extraction = records.extraction_of(record)
+    if error or not record or (record.get("doc_version") or record.get("version")) != version:
         return {}
     found: dict[str, list[dict]] = {}
-    for facet in record.get("facets", []):
+    for facet in extraction.get("facets", []):
         for item in facet.get("items", []):
             if item.get("id") not in item_ids:
                 continue
@@ -572,7 +577,8 @@ class _Exhausted(Exception):
 def needs_extraction(record: dict | None, error: str, doc: dict) -> bool:
     """True unless a completed record of the current schema already matches this document."""
     state, _ = _record_state(record, error, doc)
-    return not (state == "current" and record["process"].get("status") == "已完成")
+    extraction = records.extraction_of(record)
+    return not (state == "current" and extraction.get("process", {}).get("status") == "已完成")
 
 
 async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool = False, llm=None,
@@ -586,7 +592,10 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
     if not force and not needs_extraction(previous, previous_error, doc):
         return previous
 
-    markdown = await asyncio.to_thread(knowledge.read_markdown, doc_id, doc["version"])
+    # Corrections are an overlay on the parse; extraction reads what a person confirmed, not the
+    # raw MinerU text. The record keeps both hashes so a later overlay change marks it stale.
+    markdown, _text_sha, _corrections_sha, _invalidated = await asyncio.to_thread(
+        records.corrected_text, info, knowledge, doc)
     pieces = review_segments(markdown)
     if not pieces:
         raise ValueError("解析正文为空，无法生成四维信息")
@@ -645,6 +654,8 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
         "source_hash": doc.get("source_sha256", ""),
         "schema_version": SCHEMA_VERSION,
         "prompt_version": PROMPT_VERSION,
+        "template_id": "project-report-four-facets",
+        "template_version": 1,
         "model": settings.model_name,
         "params": {"segment_chars": 6000, "model_calls": calls},
         "generated_at": datetime.now(UTC).isoformat(),
@@ -665,7 +676,8 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
             doc.get("source_sha256") and fresh.get("source_sha256") != doc.get("source_sha256")):
         raise TargetStale("资料已更新")
     # A failed run never replaces a readable record; a complete one always does.
-    keep_previous = previous_state == "current" and previous["process"].get("status") == "已完成"
+    previous_extraction = records.extraction_of(previous)
+    keep_previous = previous_state == "current" and previous_extraction.get("process", {}).get("status") == "已完成"
     if complete or not keep_previous:
-        await asyncio.to_thread(_save, info, record)
-    return record
+        await asyncio.to_thread(records.write_extraction, info, knowledge, doc, record, settings)
+    return {**record, "doc_id": doc_id, "doc_version": doc["version"], "version": doc["version"]}

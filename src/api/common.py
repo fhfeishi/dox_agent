@@ -403,7 +403,8 @@ def workspace_path(settings, knowledge) -> Path:
 
 
 # Funding measures in the order preferred on a tie (user, 2026-10-20: a 资助金额 without a unit is 万元).
-FUNDING_LABELS = {"awarded": "批准资助金额", "direct": "直接费用", "total": "总经费"}
+FUNDING_LABELS = {"awarded": "批准资助金额", "direct": "直接费用", "total": "总经费",
+                  "project_total": "项目总金额"}
 
 
 def model_failure_message(exc: BaseException, timeout_hint: str) -> str:

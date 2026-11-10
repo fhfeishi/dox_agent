@@ -865,7 +865,8 @@ def test_support_num_without_unit_counts_as_wan_yuan(tmp_path):
     doc = {"doc_id": "d1", "version": "v1", "title": "2021_2024_62173009_王强_巡检.md",
            "origin": "2021_2024_62173009_王强_巡检.md", "page_count": 1}
     row = index.document(SimpleNamespace(id="c", root=tmp_path, dir_name="自然科学基金-测试", name="自然科学基金-测试"), doc, "---\nratifyNo: 62173009\nsupportNum: 303.0\n---\n# 项目报告\n")
-    assert [(m["scope"], m["amount_yuan"], m["currency"]) for m in row["funding"]] == [("awarded", "3030000.0", "CNY")]
+    assert [(m["scope"], m["amount_yuan"], m["currency"]) for m in row["funding"]] == [
+        ("awarded", "3030000.0", "CNY"), ("project_total", "3030000.0", "CNY")]
     unreadable = index.document(SimpleNamespace(id="c", root=tmp_path, dir_name="自然科学基金-测试", name="自然科学基金-测试"), doc, "---\nsupportNum: 未知\n---\n")
     assert unreadable["funding"][0]["amount_yuan"] is None
 

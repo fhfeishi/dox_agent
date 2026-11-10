@@ -31,7 +31,7 @@ async def main():
         for i in range(45):
             name = f"2021_2025_A{i:02d}_某人_量子报告.md" if i < 2 else f"其他资料{i:02d}.md"
             body = "# 国家自然科学基金\n量子传感的光学方法与噪声抑制" if i < 2 else "# 农业材料\n土壤与灌溉"
-            if i < 2: body += f"\n批准资助金额：{100*(i+1)}万元\n直接费用：{10*(i+1)}万元"
+            if i < 2: body += f"\n批准资助金额：{100*(i+1)}万元\n直接费用：{10*(i+1)}万元\n总经费：{200*(i+1)}万元"
             (source/name).write_text(body)
         settings = Settings(_env_file=None, state_dir=root/"state", corpora_root=root/"corpora",
                             user_dir=root/"usr", model_api_key=SecretStr("fixture"), embedding_path="")
@@ -130,9 +130,7 @@ async def main():
                 await expect(page.get_by_role("heading",name=re.compile("^关联项目"))).to_have_count(0)
                 await page.get_by_role("button",name="2021 年：2 个项目，查看清单",exact=True).hover()
                 await expect(page.get_by_role("status").filter(has_text="2021 年")).to_contain_text("2 个项目立项")
-                await expect(page.get_by_role("button",name="2021 年已知批准资助金额合计 300 万元，2 个项目",exact=True)).to_be_visible()
-                await page.get_by_label("金额口径").select_option("direct")
-                await expect(page.get_by_role("button",name="2021 年已知直接经费合计 30 万元，2 个项目",exact=True)).to_be_visible()
+                await expect(page.get_by_role("button",name="2021 年已知项目总金额合计 600 万元，2 个项目",exact=True)).to_be_visible()
                 shots=Path(".logsdev/verification/query-20261015-1142");shots.mkdir(parents=True,exist_ok=True)
                 await page.screenshot(path=str(shots/"funding.png"),full_page=True)
                 await page.request.post(origin+"/api/auth/logout")
@@ -257,11 +255,11 @@ async def main():
                 await years.get_by_role("button",name=re.compile("^2021")).click()
                 await expect(projects.get_by_role("listitem")).to_have_count(2)
                 lacks=page.get_by_role("group",name="待核对",exact=True)
-                await expect(lacks.get_by_role("button")).to_have_text(["未记录批准资助金额0", "批准资助金额待核对0", "立项年待核对0", re.compile("^未列成果")])
-                await lacks.get_by_role("button",name=re.compile("^未记录批准资助金额")).click()
+                await expect(lacks.get_by_role("button")).to_have_text(["未记录项目总金额0", "项目总金额待核对0", "立项年待核对0", re.compile("^未列成果")])
+                await lacks.get_by_role("button",name=re.compile("^未记录项目总金额")).click()
                 await expect(projects).to_contain_text("没有符合筛选的项目。")
                 await expect(page).to_have_url(re.compile(r"lack=funding"))
-                await lacks.get_by_role("button",name=re.compile("^未记录批准资助金额")).click()
+                await lacks.get_by_role("button",name=re.compile("^未记录项目总金额")).click()
                 await years.get_by_role("button",name=re.compile("^全部")).click()
                 # Status is upkeep: only the administrator sees it.
                 await expect(page.get_by_role("group",name="筛选文档状态")).to_have_count(0)

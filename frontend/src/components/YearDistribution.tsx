@@ -24,7 +24,6 @@ const fmt = (v: number) => v.toLocaleString("zh-CN", { maximumFractionDigits: 1 
  */
 export function YearDistribution({ corpusId, year, onYear }: { corpusId: string; year?: string; onYear?: (year: string) => void }) {
   const { showInspector } = useLayout();
-  const [chosenScope, setScope] = useState("");
   const [hover, setHover] = useState<number | null>(null);
   const result = useQuery(projectQuery(corpusId));
   // query 2026-1013 2012: a bar opens the year's reports on the right, by mouse or keyboard.
@@ -37,10 +36,10 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
   if (!result.data) return <p role="status" className="text-body text-[var(--steel)]">正在读取项目…</p>;
   const projects = result.data.projects.filter((p) => p.identity_status === "identified");
   const dated = projects.filter((p) => p.start_year !== null);
-  // Open on the amount type most projects state (a library may have only 直接经费), never an empty chart.
-  const stated = (key: string) => dated.filter((p) => fundingWan(p, key) !== null).length;
-  const scope = chosenScope || ["awarded", "direct", "total"].reduce((best, key) => stated(key) > stated(best) ? key : best, "awarded");
-  const scopeName = scope === "awarded" ? "批准资助金额" : scope === "direct" ? "直接经费" : "总经费";
+  // 2026-11-09: one chart measure, 项目总金额 = 总经费, else 批准资助金额. 直接费用 is a component
+  // and is never used as the total. No per-library "most stated" switching.
+  const scope = "project_total";
+  const scopeName = "项目总金额";
   const known = dated.flatMap((p) => { const v = fundingWan(p, scope); return v === null ? [] : [{ p, year: p.start_year!, wan: v }]; });
   const allYears = dated.map((p) => p.start_year!);
   const years = allYears.length ? Array.from({ length: Math.max(...allYears) - Math.min(...allYears) + 1 }, (_, i) => Math.min(...allYears) + i) : [];
@@ -100,10 +99,8 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
       <section aria-label="年度分布-项目资金" className={card}>
         <div className="flex min-h-[38px] flex-wrap items-center gap-2"><h3 className="font-semibold">年度分布 · 项目资金</h3>
           <span className="flex-1" />
-          <select aria-label="金额口径" value={scope} onChange={(e) => setScope(e.target.value)} className="cursor-pointer rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1 text-body">
-            <option value="awarded">批准资助金额</option><option value="direct">直接经费</option><option value="total">总经费</option>
-          </select></div>
-        <p className="mt-1 min-h-[36px] text-caption leading-[18px] text-[var(--steel)]">{scopeName}（万元），按立项年归属。{known.length} 个项目给出金额，{dated.length - known.length} 个缺失或冲突；部分覆盖时合计不代表完整年度总额。</p>
+          <span className="rounded-md bg-[var(--surface-cool)] px-2 py-1 text-caption text-[var(--muted-cool)]">口径：总经费 / 批准资助</span></div>
+        <p className="mt-1 min-h-[36px] text-caption leading-[18px] text-[var(--steel)]">{scopeName}（万元），按立项年归属。{known.length} 个项目给出金额，{dated.length - known.length} 个缺失或冲突；部分覆盖时合计不代表完整年度总额。{!known.length ? "现有资料既没有写总经费、也没有写批准资助金额；直接费用是组成项，不作总额替代。" : ""}</p>
         {/* One chart (query 2026-1015 1142): the yearly total as bars with a line on the left axis, and
             each project's amount as a point over its year's bar on the right axis. */}
         {known.length ? <svg role="img" aria-label="年度资助合计柱状图、总金额折线与各项目金额" viewBox={`0 0 ${W} ${H}`} className="mt-1 w-full">

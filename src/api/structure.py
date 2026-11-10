@@ -74,7 +74,7 @@ def domain_report(row: dict, today: str) -> tuple[str, str]:
     funding = row.get("funding") or {}
     research = row.get("research_records")
     if research:
-        funding = {"projects": research["funded"], "total_yuan": research["funding_yuan"], "label": "批准资助金额"}
+        funding = {"projects": research["funded"], "total_yuan": research["funding_yuan"], "label": "项目总金额"}
     chart = lambda spec: ["```dox-chart", json.dumps(spec, ensure_ascii=False), "```", ""]
     lines = [f"# 领域分析 · {name}", "",
              f"{name}资料库共 {row['projects']} 个项目、{row['files']} 份资料，技术谱系 {lineage.get('items', 0)} 条技术、"
@@ -146,7 +146,8 @@ def install(app, ctx):
         identified = coverage["identified_projects"]
         output_records = library_outputs(info.id, library, knowledge_for(info))["projects"]
         project_ids = {p["project_id"] for p in library["projects"] if p.get("identity_status") == "identified"}
-        approved = coverage["funding"].get("awarded", {})
+        # 2026-11-09: charts use 项目总金额 (总经费, else 批准资助金额; never 直接费用).
+        approved = coverage["funding"].get("project_total", {})
         kinds = {"期刊论文", "会议论文", "专利", "奖励", "专著"}
         return {
             "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
@@ -204,9 +205,8 @@ def install(app, ctx):
                     by_field.setdefault(item["field"], set()).add(item.get("project_id"))
             row["fields"] = sorted(([name, len(ids)] for name, ids in by_field.items()), key=lambda f: -f[1])
             result.append(row)
-        # One funding measure for all libraries, the one most projects state (query 2026-1015 1142), so
-        # the leader's charts never add 批准资助金额 of one library to 直接费用 of another.
-        scope = max(FUNDING_LABELS, key=lambda s: sum(r["funding_scopes"][s]["projects"] for r in result)) if result else "awarded"
+        # 2026-11-09: one derived measure, 项目总金额; no per-library "most stated" switching.
+        scope = "project_total"
         for row in result:
             chosen = row.pop("funding_scopes")[scope]
             row["funding"] = {"total_yuan": chosen["total_yuan"], "projects": chosen["projects"],

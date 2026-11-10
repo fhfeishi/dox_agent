@@ -78,7 +78,7 @@ export function LibraryPreviewDrawer({ row: current, onClose, research }: { row:
       <button type="button" className="slide-action primary ui-page-link" onClick={() => { onClose(); openCorpus(row.corpus_id); }}>进入资料库</button>
     </>}>
       <div className="space-y-3">
-        {records ? <section className="terrain-card p-4"><b className="text-body text-[var(--heading)]">批准资助金额与成果列表</b><p className="mt-2 text-body">批准资助金额 {fmt(records.funding)} 万元（{records.funded}/{records.projects} 项有记录）；成果 {fmt(records.outputs)} 条（{records.listed}/{records.projects} 项列有成果）。</p><p className="mt-2 text-caption text-[var(--steel)]">{OUTPUT_MEANING}</p></section> : null}
+        {records ? <section className="terrain-card p-4"><b className="text-body text-[var(--heading)]">项目总金额与成果列表</b><p className="mt-2 text-body">项目总金额 {fmt(records.funding)} 万元（{records.funded}/{records.projects} 项有记录）；成果 {fmt(records.outputs)} 条（{records.listed}/{records.projects} 项列有成果）。</p><p className="mt-2 text-caption text-[var(--steel)]">{OUTPUT_MEANING}</p></section> : null}
         {years.length ? <section className="terrain-card p-4">
           <div className="mb-2.5 flex items-baseline justify-between gap-2">
             <b className="text-caption font-semibold text-[var(--heading)]">年度立项</b>

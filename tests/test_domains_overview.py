@@ -94,6 +94,10 @@ def test_atlas_route_keeps_project_records_outcome_coverage_and_duplicate_refere
                       preparation="ready", is_default=True)
     lib = library(project("p1", 2021, amount=100), project("p2", 2023), project("p3", None, amount=30))
     lib["projects"][0]["funding_conflicts"] = ["direct"]
+    lib["projects"][0]["funding"].append({"scope": "total", "amount_yuan": "1000000", "currency": "CNY"})
+    lib["projects"][2]["funding"].append({"scope": "total", "amount_yuan": "300000", "currency": "CNY"})
+    lib["projects"][0]["funding"].append({"scope": "project_total", "amount_yuan": "1000000", "currency": "CNY"})
+    lib["projects"][2]["funding"].append({"scope": "project_total", "amount_yuan": "300000", "currency": "CNY"})
     tree = {**TREE, "categories": [{"name": "体系甲", "children": [
         {"name": "方向一", "themes": [{"items": ["a", "b", "a"]}]},
         {"name": "方向二", "themes": [{"items": ["a", "c"]}]}]}]}
@@ -108,7 +112,7 @@ def test_atlas_route_keeps_project_records_outcome_coverage_and_duplicate_refere
         response = client.get("/api/domains/atlas")
     assert response.status_code == 200
     out = response.json()
-    assert out["funding_label"] == "批准资助金额" and out["years"] == [2021, 2023]
+    assert out["funding_label"] == "项目总金额" and out["years"] == [2021, 2023]
     d = out["domains"][0]
     records = {p["id"]: p for p in d["projects"]}
     assert records["p1"]["amount"] == 100 and records["p1"]["outputs"] == 3

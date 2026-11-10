@@ -384,8 +384,8 @@ function LensMap({ data, libraries, reveal, part }: Props & { data: AtlasData })
         funding: {
           total_yuan: String(full.funding * 10000),
           projects: full.funded,
-          scope: "awarded",
-          label: "批准资助金额",
+          scope: "project_total",
+          label: "项目总金额",
         },
       });
     }

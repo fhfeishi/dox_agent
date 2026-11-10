@@ -8,7 +8,7 @@ a source can be missing while its text stays readable. Reporting one merged word
 cases, so every stage gets its own value and the library reports counts per stage.
 
 Nothing here writes: no database, no cache, no ``mtime``. It reads the manifest, the published
-documents, ``parsed/`` and ``target/`` and derives the values. Values follow the P0-4 design
+documents, ``parsed/`` and ``archive/`` (with legacy ``target/``) and derives the values. Values follow the P0-4 design
 (``.logsdev/pipeline梳理和优化-20261103/reviews/2026-11-02_Opus_数据处理分析.md`` §4.1).
 """
 
@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from . import records
 from .agent.corpora import PARSED_DIRNAME
 from .knowledge import is_virtual_rel
 from .parse_cache import CACHE_FILE, cache_state
@@ -97,11 +98,12 @@ def _search_state(entry: dict, current_ids: set[str]) -> str:
     return "current" if entry["doc_id"] in current_ids else "superseded"
 
 
-def _extract_state(info, doc: dict | None) -> str:
+def _extract_state(info, doc: dict | None, record: dict | None = None, error: str = "") -> str:
     """``missing`` / ``current`` / ``stale`` / ``invalid``, from the four-facet record (``targets``)."""
     if doc is None:
         return "missing"
-    record, error = _load(info, doc["doc_id"])
+    if record is None and not error:
+        record, error = _load(info, doc["doc_id"])
     state, _ = _record_state(record, error, doc)
     return state
 
@@ -124,9 +126,14 @@ def stage_view(knowledge, info) -> dict:
         doc_id = entry["doc_id"] or ""
         parse, reason = _parse_state(entry, versions.get(doc_id), parsed_root)
         doc = published.get(doc_id)
-        extract = _extract_state(info, {**doc, "source_sha256": entry["sha256"]} if doc else None)
+        doc_row = {**doc, "source_sha256": entry["sha256"]} if doc else None
+        # One read per document: the stage view and the lifecycle answer from the same record.
+        record, record_error = (records.load(info, doc_id) if doc_id else (None, ""))
+        extract = _extract_state(info, doc_row, record, record_error)
         if extract == "current" and doc_id not in current_ids:
             extract = "stale"
+        # The one state a person reads: 处理中 / 待核对 / 已入库 / 失败, with its own reasons.
+        lifecycle = records.lifecycle(record, doc_row) if doc_row else {"state": "处理中", "reasons": []}
         rows.append({
             "rel_path": rel,
             "doc_id": doc_id,
@@ -137,6 +144,8 @@ def stage_view(knowledge, info) -> dict:
             "parse_reason": reason,
             "search": _search_state(entry, current_ids),
             "extract": extract,
+            "lifecycle": lifecycle["state"],
+            "lifecycle_reasons": lifecycle["reasons"],
         })
     counts = {stage: {} for stage in STAGES}
     for row in rows:

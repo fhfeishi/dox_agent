@@ -30,6 +30,7 @@ from ..jobs import JobBusy
 from ..knowledge import is_virtual_rel
 from ..parse_cache import rename_rel
 from ..parsers import collect_sources, forget_source, import_defaults, unsafe_name
+from ..project_facts import FactsMissing, extract_facts
 from ..targets import (
     TargetMissing,
     TargetStale,
@@ -259,6 +260,7 @@ def install(app, ctx):
                 else:
                     shutil.rmtree(info.db_dir, ignore_errors=True)
                     shutil.rmtree(info.vectordb_dir, ignore_errors=True)
+                    shutil.rmtree(info.root / "archive", ignore_errors=True)
                     shutil.rmtree(info.root / "target", ignore_errors=True)
                     if info.root.exists() and not any(info.root.iterdir()):
                         shutil.rmtree(info.root, ignore_errors=True)
@@ -410,8 +412,8 @@ def install(app, ctx):
             raise HTTPException(404, "资料库不存在")
         if info.missing:
             raise HTTPException(409, "资料库目录已缺失")
-        if request.app.state.jobs.busy("target", corpus_id):
-            raise HTTPException(409, "该资料库正在生成四维信息")
+        if request.app.state.jobs.busy("target", corpus_id) or request.app.state.jobs.busy("facts", corpus_id):
+            raise HTTPException(409, "该资料库正在抽取信息")
         knowledge = knowledge_for(info)
         current_ids = {doc["doc_id"] for doc in await asyncio.to_thread(knowledge.current)}
         missing = [doc_id for doc_id in payload.doc_ids if doc_id not in current_ids]
@@ -446,9 +448,68 @@ def install(app, ctx):
 
     @router.get("/api/corpora/{corpus_id}/target/jobs/{job_id}")
     async def target_job(corpus_id: str, job_id: str):
+        # High#2 (2026-11-05): the corpus decides who may see its job. ``find_corpus`` answers for
+        # ``mine-<id>`` only when the signed-in account owns that library, so another account's
+        # job reads as "no such corpus" (404) instead of leaking its progress.
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
         job = await asyncio.to_thread(app.state.jobs.get, job_id, "target", corpus_id)
         if job is None:
             raise HTTPException(404, "四维提取任务不存在")
+        return job
+
+    @router.post("/api/corpora/{corpus_id}/facts", dependencies=ADMIN_ONLY, status_code=202)
+    async def facts_extract(request: Request, corpus_id: str, payload: TargetExtractRequest):
+        """Extract project identity and funding facts (2026-11-09), separate from the four dimensions."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
+        if info.missing:
+            raise HTTPException(409, "资料库目录已缺失")
+        if request.app.state.jobs.busy("facts", corpus_id) or request.app.state.jobs.busy("target", corpus_id):
+            raise HTTPException(409, "该资料库正在抽取信息")
+        knowledge = knowledge_for(info)
+        current_ids = {doc["doc_id"] for doc in await asyncio.to_thread(knowledge.current)}
+        missing = [doc_id for doc_id in payload.doc_ids if doc_id not in current_ids]
+        if missing:
+            raise HTTPException(422, {"message": "所选资料已更新或不可用", "doc_ids": missing})
+        job = {"corpus_id": corpus_id, "status": "running",
+               "completed": 0, "total": len(payload.doc_ids), "errors": []}
+
+        async def run_facts_job(job, report):
+            for doc_id in payload.doc_ids:
+                try:
+                    result = await extract_facts(info, knowledge, settings, doc_id, force=payload.force)
+                    if result.get("status") == "completed":
+                        job["completed"] += 1
+                    else:
+                        job["errors"].append({"doc_id": doc_id,
+                                              "error": (result.get("process") or {}).get("error")
+                                              or "项目元数据/资金未完成"})
+                except (FactsMissing, ValueError) as exc:
+                    job["errors"].append({"doc_id": doc_id, "error": str(exc)})
+                except Exception as exc:
+                    logger.exception("Fact extraction failed for %s", doc_id)
+                    job["errors"].append({"doc_id": doc_id, "error": type(exc).__name__})
+                report(completed=job["completed"], errors=job["errors"])
+            request.app.state.project_index.request_refresh(info, knowledge)
+            return {"status": "done" if not job["errors"] else "partial" if job["completed"] else "error"}
+
+        try:
+            return request.app.state.jobs.start("facts", corpus_id, run_facts_job, job,
+                                                params={"doc_ids": payload.doc_ids, "force": payload.force})
+        except JobBusy as exc:
+            raise HTTPException(409, "该资料库正在抽取信息") from exc
+
+    @router.get("/api/corpora/{corpus_id}/facts/jobs/{job_id}")
+    async def facts_job(corpus_id: str, job_id: str):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
+        job = await asyncio.to_thread(app.state.jobs.get, job_id, "facts", corpus_id)
+        if job is None:
+            raise HTTPException(404, "项目事实抽取任务不存在")
         return job
 
     def source_file(info: CorpusInfo, rel_path: str) -> Path:

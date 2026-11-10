@@ -10,6 +10,7 @@ from types import SimpleNamespace
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, JSONResponse
 
+from . import records
 from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.corpora import (
     CorpusInfo,
@@ -194,19 +195,28 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 return info
         return None
 
+    def facts_for(info):
+        """Archive project facts for one document (2026-11-09), bound to its own library."""
+        return lambda doc_id: records.project_facts(info, doc_id)
+
     def knowledge_for(info: CorpusInfo) -> Knowledge:
         """Lazy per-corpus Knowledge; the default corpus reuses the lifespan instance."""
         db_path = (info.sqlite or info.db_dir / "knowledge.sqlite3").resolve()
         if info.is_default and db_path == app.state.knowledge.path.resolve():
-            return app.state.knowledge
-        cached = app.state.corpus_knowledge.get(info.id)
-        if cached is None:
-            # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
-            # in source/; a non-default corpus gets its own vector directory.
-            cached = Knowledge(db_path, settings=settings,
-                               vectordb_dir=info.vectordb_dir, source_root=info.source_dir)
-            app.state.corpus_knowledge[info.id] = cached
-        return cached
+            instance = app.state.knowledge
+        else:
+            cached = app.state.corpus_knowledge.get(info.id)
+            if cached is None:
+                # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
+                # in source/; a non-default corpus gets its own vector directory.
+                cached = Knowledge(db_path, settings=settings,
+                                   vectordb_dir=info.vectordb_dir, source_root=info.source_dir)
+                app.state.corpus_knowledge[info.id] = cached
+            instance = cached
+        # Retrieval prefers archive project facts and falls back to the filename for documents that
+        # predate the facts layer; the reader is bound to this library, so it cannot read another.
+        instance.project_facts = facts_for(info)
+        return instance
 
     async def knowledge_for_request(corpus: str | None) -> Knowledge:
         """Resolve the corpus for read/file; absent = the current first corpus (K0b)."""

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
-import { extractTargets, fetchTargetJob } from "../api";
+import { extractFacts, extractTargets, fetchFactsJob, fetchTargetJob } from "../api";
 import { DIMENSIONS, FILTER_KEYS, normalizeFacetName, targetReportsQuery, usableTarget } from "../libraryQueries";
 import { useApp } from "../store";
 import { Button, Pill } from "./ui";
@@ -18,6 +18,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [watch, setWatch] = useState(true);
+  const [factsJobId, setFactsJobId] = useState("");
   const jobId = targetJobs[corpusId];
   const job = useQuery({
     queryKey: ["target-job", corpusId, jobId],
@@ -31,6 +32,22 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
     void client.invalidateQueries({ queryKey: ["library", corpusId, "targets"] });
     void client.invalidateQueries({ queryKey: ["library", corpusId, "target"] });
   }, [client, corpusId, job.data?.completed, job.data?.status]);
+  const factsJob = useQuery({
+    queryKey: ["facts-job", corpusId, factsJobId],
+    queryFn: ({ signal }) => fetchFactsJob(corpusId, factsJobId, signal),
+    enabled: Boolean(factsJobId), retry: false,
+    refetchInterval: (query) => !query.state.error && query.state.data?.status === "running" ? 1000 : false,
+  });
+  useEffect(() => {
+    if (factsJob.data && factsJob.data.status !== "running") {
+      void client.invalidateQueries({ queryKey: ["library", corpusId, "target"] });
+      void client.invalidateQueries({ queryKey: ["library", corpusId, "targets"] });
+    }
+  }, [client, corpusId, factsJob.data?.status]);
+  const factsExtraction = useMutation({
+    mutationFn: (force: boolean) => extractFacts(corpusId, [...selected], force),
+    onSuccess: (value) => setFactsJobId(value.job_id),
+  });
   const extraction = useMutation({
     mutationFn: (force: boolean) => extractTargets(corpusId, [...selected], force),
     onSuccess: (value) => {
@@ -81,12 +98,18 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
       <h3 className="font-medium">技术研判 · 报告单元 {items.length} 份</h3>
       <span className="flex-1" />
       <Button size="sm" variant="quiet" onClick={() => void reports.refetch()}>刷新四维列表</Button>
+      <Button size="sm" disabled={busy || factsExtraction.isPending || !selected.size || Boolean(unavailable)}
+        onClick={() => factsExtraction.mutate(false)}>抽取元数据/资金{selected.size ? `（${selected.size}）` : ""}</Button>
       <Button size="sm" disabled={busy || !selected.size || Boolean(unavailable)} onClick={() => extraction.mutate(false)}>生成四维信息{selected.size ? `（${selected.size}）` : ""}</Button>
       <Button size="sm" variant="ghost" disabled={busy || !selected.size || Boolean(unavailable)} onClick={() => extraction.mutate(true)}>重新提取所选</Button>
     </div>
     <p className="mt-2 text-caption text-[var(--stone)]">四维方案 · 当前可用于筛选 {currentCount} 份；未处理 {items.filter((item) => !item.stale && item.process.status === "未处理").length}；未完成 {items.filter((item) => !item.stale && item.process.status === "未完成").length}；待更新 {items.filter((item) => item.stale).length}。提取会调用模型，普通浏览不会提取。</p>
     {reports.isPending ? <p role="status">正在读取四维列表…</p> : null}
     {error || reports.error || extraction.error ? <p role="alert" className="mt-2 text-[var(--red)]">{error || reports.error?.message || extraction.error?.message}{reports.data && reports.error ? "（显示上次读取内容）" : ""}</p> : null}
+    {factsJobId ? <p role="status" className="my-1 text-caption text-[var(--steel)]" aria-label="元数据抽取进度">
+      元数据/资金：{factsJob.data ? (factsJob.data.status === "running" ? "抽取中" : "已结束") + ` · 完成 ${factsJob.data.completed}/${factsJob.data.total} · 失败 ${factsJob.data.errors.length}` : "正在读取任务状态…"}
+      {factsJob.data?.errors.map((item) => <span key={item.doc_id}> · {item.doc_id}：{item.error}</span>)}
+    </p> : null}
     {jobId ? <div className="my-2 flex flex-wrap items-center gap-2 text-caption" aria-label="提取进度">
       {job.data ? <span role="status">{running ? "提取中" : "提取已结束"} · 已完成 {job.data.completed} / 共 {job.data.total} · 失败 {job.data.errors.length} 项</span> : null}
       {job.error ? <span role="alert">任务状态暂不可读；服务重启后任务记录可能不可用，请刷新已发布结果。{job.error.message}</span> : null}

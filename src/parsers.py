@@ -17,8 +17,9 @@ from urllib.parse import urlsplit
 
 import httpx
 
+from . import records
 from .agent.config import Settings
-from .agent.corpora import PARSED_DIRNAME, SOURCE_SUFFIXES, TARGET_DIRNAME
+from .agent.corpora import PARSED_DIRNAME, SOURCE_SUFFIXES
 from .knowledge import Document, Page, content_version_of, is_virtual_rel
 from .parse_cache import (
     CACHE_FILE,
@@ -72,6 +73,35 @@ def _block_text(block: dict) -> str:
         return ""
 
     return flatten(block).strip()
+
+
+def _block_images(block: dict) -> list[str]:
+    """Image file names referenced by one mineru block, in document order.
+
+    A figure block keeps its picture under ``content[].image_path`` (sometimes nested one level
+    deeper for charts/tables). Only the base name is returned: the reader serves it from the
+    parse's own ``images/`` directory, so a path from the JSON can never escape that directory.
+    """
+    names: list[str] = []
+
+    def walk(node: object) -> None:
+        if isinstance(node, list):
+            for item in node:
+                walk(item)
+            return
+        if not isinstance(node, dict):
+            return
+        path = node.get("image_path")
+        if isinstance(path, str) and path.strip():
+            name = path.replace("\\", "/").rsplit("/", 1)[-1]
+            if name and name not in names:
+                names.append(name)
+        for key in ("content", "image_body", "blocks"):
+            if key in node:
+                walk(node[key])
+
+    walk(block)
+    return names
 
 
 def _extract_archives(out_dir: Path) -> None:
@@ -433,7 +463,12 @@ def forget_source(knowledge, rel: str, corpus_root: Path | None) -> str | None:
     if corpus_root is not None and not is_virtual_rel(rel):
         drop_rel(Path(corpus_root) / PARSED_DIRNAME, rel)
     if corpus_root is not None and doc_id:
-        (Path(corpus_root) / TARGET_DIRNAME / f"{doc_id}.json").unlink(missing_ok=True)
+        # ``archive`` is the current record directory; ``target`` may still hold a pre-2026-11-09
+        # record until the one-time migration, so both names are removed.
+        # ``records.remove`` takes the library only for its root, so a bare root is enough here.
+        for directory in (records.ARCHIVE_DIRNAME, records.LEGACY_DIRNAME):
+            (Path(corpus_root) / directory / f"{doc_id}.json").unlink(missing_ok=True)
+        (Path(corpus_root) / records.ARCHIVE_DIRNAME / f"{doc_id}.lock").unlink(missing_ok=True)
     return doc_id
 
 

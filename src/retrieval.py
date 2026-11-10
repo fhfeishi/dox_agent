@@ -97,6 +97,9 @@ class ReportDoc:
     pi: str = ""
     rel_path: str = ""
     origin: str = ""
+    # 2026-11-09: which source the project fields came from, so a report can say so honestly.
+    scheme: str = ""
+    fact_basis: str = "filename"
 
 
 @dataclass
@@ -526,7 +529,8 @@ def report_header(doc: ReportDoc) -> str:
     if doc.pi:
         parts.append(f"负责人 {doc.pi}")
     if doc.year_from and doc.year_to:
-        parts.append(f"项目起止年份（按文件名推断） {doc.year_from}–{doc.year_to}")
+        basis = "按项目记录" if doc.fact_basis == "archive" else "按文件名推断"
+        parts.append(f"项目起止年份（{basis}） {doc.year_from}–{doc.year_to}")
     return "，".join(parts)
 
 

@@ -8,7 +8,7 @@ import { YearDistribution } from "./YearDistribution";
 import { useLayout } from "../layout";
 import { IndexNotice } from "./IndexNotice";
 
-const SCOPES: Record<string, string> = { awarded: "批准资助金额", direct: "直接费用", total: "总经费" };
+const SCOPES: Record<string, string> = { awarded: "批准资助金额", direct: "直接费用", total: "总经费", project_total: "项目总金额（总经费/批准资助）" };
 
 export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; corpusName?: string }) {
   const result = useQuery(projectQuery(corpusId));

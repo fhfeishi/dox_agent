@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { targetDetailQuery } from "../libraryQueries";
 import { type TargetDetail, type TargetEvidence } from "../api";
 import { Pill } from "./ui";
 import { useLayout } from "../layout";
+import { MetadataPanel, ParsePanel } from "./FactPanels";
 
 /** 报告详情：四个分区 + 原文明示关联 + 证据定位（版本不符显示“资料已更新”）。 */
 export function TargetReportView({ corpusId, docId }: { corpusId: string; docId: string }) {
@@ -12,12 +14,14 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
   const [search] = useSearchParams();
   const result = useQuery(targetDetailQuery(corpusId, docId, search.get("version") ?? undefined));
   const detail = result.data;
+  const navigate = useNavigate();
+  const [view, setView] = useState<"facets" | "metadata" | "parse">("facets");
   if (result.error) return <p role="alert" className="text-body text-[var(--red)]">{result.error.message}</p>;
   if (!detail) return <p className="text-body text-[var(--steel)]">正在读取四维信息…</p>;
 
   const active = detail.facets[index] ?? detail.facets[0];
-  const relations = detail.relations.filter((item) => item.from.dimension === active.key
-    || item.to.dimension === active.key);
+  const relations = active ? detail.relations.filter((item) => item.from.dimension === active.key
+    || item.to.dimension === active.key) : [];
 
   function openEvidenceAt(evidence: TargetEvidence) {
     const isPdf = evidence.locator.basis === "pdf_page";
@@ -51,6 +55,19 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
         </div>
       </div>
 
+      <div role="tablist" aria-label="文档记录视图" className="flex flex-wrap gap-[2px] rounded-lg bg-[var(--line-cool-soft)] p-[3px]">
+        {([["facets", "四维"], ["metadata", "元数据 / 资金"], ["parse", "解析"]] as const).map(([key, label]) =>
+          <button key={key} type="button" role="tab" aria-selected={view === key} onClick={() => setView(key)}
+            className={`rounded-md px-[10px] py-[4px] text-caption ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--heading)] shadow-sm" : "text-[var(--text-3)] hover:text-[var(--heading)]"}`}>{label}</button>)}
+      </div>
+
+      {view === "metadata" ? <MetadataPanel facts={detail.metadata} /> : null}
+      {view === "parse" ? <ParsePanel parse={detail.parse}
+        onOpenWorkbench={() => void navigate(`/ingest?corpus=${encodeURIComponent(corpusId)}&rel=${encodeURIComponent(detail.source_name)}`)} /> : null}
+      {view === "facets" && !active ? <p className="rounded-lg border border-dashed border-[var(--hairline)] px-3 py-2 text-body text-[var(--steel)]">
+        这份资料还没有生成四维信息；可以查看「元数据 / 资金」或「解析」，或在技术研判列表中选择它生成四维。
+      </p> : null}
+      {view === "facets" && active ? <>
       <div className="flex flex-wrap gap-[6px]">
         {detail.facets.map((facet, position) => (
           <button key={facet.key} type="button"
@@ -92,7 +109,9 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
         {active.state === "has" && !active.items.length ? <li className="text-caption text-[var(--stone)]">没有条目。</li> : null}
       </ul>
 
-      {relations.length ? (
+      </> : null}
+
+      {view === "facets" && relations.length ? (
         <div className="rounded-lg border border-[var(--hairline)] bg-[var(--surface-soft)] p-[10px]">
           <p className="text-caption font-medium text-[var(--charcoal)]">提取记录的原文关联（{active.key}）</p>
           <ul className="mt-[4px] space-y-[3px] text-caption text-[var(--steel)]">

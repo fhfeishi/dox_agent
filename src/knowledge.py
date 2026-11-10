@@ -146,6 +146,9 @@ class Knowledge:
             frozen._memory_uri = uri
             frozen._memory_anchor = anchor
             frozen._live_source = self
+            # The facts reader is bound to the live library's archive; the frozen copy reads the
+            # same records, so retrieval can still prefer project facts over the filename.
+            frozen.project_facts = getattr(self, "project_facts", None)
             # Compare the scope before copying, inside the copied DB, and after copying.
             # A source changed during backup must not silently disappear from the run.
             copied = {(doc["doc_id"], doc["version"], doc.get("source_sha256", ""))
@@ -348,14 +351,25 @@ class Knowledge:
             if row["doc_id"] in current_ids:
                 by_doc.setdefault(row["doc_id"], []).append(Chunk(**row))
         reports = []
+        # A caller may attach a reader for archive facts (``app.state.corpus_ctx.facts_for``); without
+        # one, only the filename is available, which is exactly the pre-2026-11-09 behaviour.
+        facts_reader = getattr(self, "project_facts", None)
         for doc in docs:
             chunks = by_doc.get(doc["doc_id"], [])
             headings = tuple(dict.fromkeys(chunk.heading for chunk in chunks if chunk.heading))
-            meta = metadata_from_filename(doc.get("origin", ""))
+            # Project facts first (2026-11-09); the filename is only the fallback for documents
+            # extracted before the facts layer existed.
+            facts = facts_reader(doc["doc_id"]) if facts_reader else {}
+            meta = {} if facts.get("has_facts") else metadata_from_filename(doc.get("origin", ""))
             reports.append(ReportDoc(doc_id=doc["doc_id"], version=doc["version"], title=doc["title"],
-                                     headings=headings, project_no=meta.get("project_no", ""),
-                                     year_from=meta.get("year_from"), year_to=meta.get("year_to"),
-                                     pi=meta.get("pi", ""), origin=doc.get("origin", "")))
+                                     headings=headings,
+                                     project_no=facts.get("number") or meta.get("project_no", ""),
+                                     year_from=facts.get("start_year") if facts.get("has_facts") else meta.get("year_from"),
+                                     year_to=facts.get("end_year") if facts.get("has_facts") else meta.get("year_to"),
+                                     pi=facts.get("pi") or meta.get("pi", ""),
+                                     scheme=facts.get("scheme", ""),
+                                     fact_basis="archive" if facts.get("has_facts") else "filename",
+                                     origin=doc.get("origin", "")))
         return select_reports(by_doc, reports, query, config=config, task_id=task_id,
                               allowed_doc_ids=allowed_doc_ids, extra_queries=extra_queries)
 

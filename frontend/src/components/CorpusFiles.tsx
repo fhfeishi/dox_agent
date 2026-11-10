@@ -2,17 +2,23 @@ import { AnalysisWorkspace } from "./AnalysisWorkspace";
 import { droppedFiles } from "../folderUpload";
 import { useAuth } from "../auth";
 import { AddToPersonal, UploadToPersonal } from "./PersonalLibrary";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, searchCorpus, uploadCorpusFile, type CorpusFile } from "../api";
+import { deleteCorpusFile, fetchCorpusFiles, fetchParseStages, renameCorpusFile, searchCorpus, uploadCorpusFile, type CorpusFile } from "../api";
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 import { fundMetaFromPath } from "../fundMeta";
 import { outputsQuery, projectQuery } from "../projects";
 import { ProjectList } from "./ProjectList";
 import { loadDocumentMarkdown } from "../documentText";
-import { Button, Segmented } from "./ui";
+import { Button, Pill, Segmented } from "./ui";
+
+// P0-4 stage values in a few characters; the tooltip carries the word (A3, 2026-11-04).
+const STAGE_SHORT: Record<string, string> = {
+  cached: "已缓存", parsed: "已解析", stale: "待更新", failed: "失败", none: "—",
+  current: "当前", superseded: "已被替代", missing: "无", invalid: "无效",
+};
 
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
@@ -50,10 +56,23 @@ export function CorpusFiles({
     queryFn: ({ signal }) => fetchCorpusFiles(corpusId, signal), enabled: connected });
   const listing = result.data;
   const files: CorpusFile[] = listing?.files ?? [];
+  // A3: the per-document stage view, read once per library. It is a hint beside the status column:
+  // a failed request or a document without a row simply shows nothing, never blocking the list.
+  const stagesResult = useQuery({ queryKey: ["library", corpusId, "parse-stages"],
+    queryFn: ({ signal }) => fetchParseStages(corpusId, signal), enabled: connected, staleTime: 60000,
+    retry: false });
+  const stageRows = new Map((stagesResult.data?.rows ?? []).map((row) => [row.rel_path, row]));
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState<{ rel: string; name: string } | null>(null);
   const [params, setParams] = useSearchParams();
+  // P7 (Owner query 2026-1106 1012): an upload leaves a way into 资料入库, where the parse is reviewed.
+  const navigate = useNavigate();
+  const reviewParse = (rel?: string) => {
+    const query = new URLSearchParams({ corpus: corpusId });
+    if (rel) query.set("rel", rel);
+    void navigate(`/ingest?${query.toString()}`);
+  };
   // Status is upkeep: only the administrator filters by it (前端审查 2026-1030).
   const filter = admin ? params.get("status") ?? "all" : "all";
   const search = params.get("q") ?? "";
@@ -94,8 +113,9 @@ export function CorpusFiles({
   const outputs = useQuery({ ...outputsQuery(corpusId), enabled: connected && !byFile });
   const identified = allProjects.filter((p) => p.identity_status === "identified");
   const lacking = {
-    funding: identified.filter((p) => !p.funding.some((m) => m.scope === "awarded" && m.amount_yuan !== null)),
-    conflict: identified.filter((p) => p.funding_conflicts.includes("awarded")),
+    // 2026-11-09: the funding chart's measure is 总经费; this admin todo follows the same measure.
+    funding: identified.filter((p) => !p.funding.some((m) => m.scope === "project_total" && m.amount_yuan !== null)),
+    conflict: identified.filter((p) => p.funding_conflicts.includes("project_total")),
     year: identified.filter((p) => p.start_year === null),
     outputs: outputs.data ? identified.filter((p) => !outputs.data.projects[p.project_id]) : [],
   };
@@ -225,7 +245,7 @@ export function CorpusFiles({
   const facet = (active: boolean) => `flex w-full items-center justify-between gap-2 rounded-md px-2 py-1 text-left text-body transition-colors duration-[var(--dur-quick)] ${active
     ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--text-2)] hover:bg-[var(--surface)]"}`;
   const railHead = "mb-1.5 px-2 text-caption font-semibold text-[var(--text-3)]";
-  const LACKS: [keyof typeof lacking, string][] = [["funding", "未记录批准资助金额"], ["conflict", "批准资助金额待核对"], ["year", "立项年待核对"], ["outputs", "未列成果"]];
+  const LACKS: [keyof typeof lacking, string][] = [["funding", "未记录项目总金额"], ["conflict", "项目总金额待核对"], ["year", "立项年待核对"], ["outputs", "未列成果"]];
   return (
     <div className={`relative mt-[14px] grid gap-5 lg:grid-cols-[232px_minmax(0,1fr)] lg:items-start ${dragging ? "rounded-xl outline-2 outline-dashed outline-[var(--primary)]" : ""}`}
       onDragOver={(e) => { if (busy || !connected || !admin) return; e.preventDefault(); setDragging(true); }}
@@ -245,6 +265,9 @@ export function CorpusFiles({
             <Button variant="primary" icon="upload" className="justify-center" disabled={busy || !connected} onClick={() => inputRef.current?.click()}>上传文件</Button>
             <Button variant="outline" className="justify-center" disabled={busy || !connected} onClick={() => folderRef.current?.click()}>上传文件夹</Button>
           </div>
+          <button type="button" onClick={() => reviewParse()}
+            className="mt-2 w-full text-left text-caption text-[var(--link)] hover:underline"
+            title="打开资料入库工作台，逐页核对刚上传资料的解析结果">审核解析结果 →</button>
           <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
             onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
               void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
@@ -310,6 +333,10 @@ export function CorpusFiles({
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>
             <span className="shrink-0 text-[var(--stone)]">{{ waiting: "等待", uploading: "上传并处理", indexed: "已入库", "parse-error": "已保存，解析失败", "upload-error": "上传失败", stopped: "已停止，未上传" }[item.state]}</span>
             {item.detail ? <span className="max-w-[180px] truncate text-[var(--red)]" title={item.detail}>{item.detail}</span> : null}
+            {item.state === "indexed" || item.state === "parse-error" ? <button type="button"
+              className="shrink-0 text-[var(--link)] hover:underline"
+              title={`在资料入库中核对 ${item.path} 的解析结果`}
+              onClick={() => reviewParse(item.path)}>审核解析结果 →</button> : null}
           </li>)}
         </ul> : null}
         <div className="flex flex-wrap items-center gap-2">
@@ -389,10 +416,36 @@ export function CorpusFiles({
                   <span className="shrink-0 text-[var(--stone)]">
                     {status === "error" ? "已保存，未入库 · 解析失败" : STATUS_LABEL[status] ?? status}
                   </span>
+                  {/* The one state a person reads (2026-11-09): 处理中 / 待核对 / 已入库 / 失败.
+                      The per-stage badges stay as the administrator's diagnostic detail. */}
+                  {(() => {
+                    const stages = stageRows.get(file.rel_path);
+                    if (!stages?.lifecycle) return null;
+                    const tone = stages.lifecycle === "已入库" ? "mint" : stages.lifecycle === "待核对" ? "yellow"
+                      : stages.lifecycle === "失败" ? "rose" : "gray";
+                    return <span className="shrink-0" title={(stages.lifecycle_reasons ?? []).join("；")}>
+                      <Pill tone={tone}>{stages.lifecycle}</Pill></span>;
+                  })()}
+                  {/* 解析 / 检索 / 提取: three independent stages, so one merged word cannot hide a
+                      parse that failed while its published text is still searchable. */}
+                  {admin ? (() => {
+                    const stages = stageRows.get(file.rel_path);
+                    return stages ? <span className="flex shrink-0 gap-1 text-caption">
+                      {([["解析", stages.parse, stages.parse_reason], ["检索", stages.search, ""],
+                        ["提取", stages.extract, ""]] as const).map(([label, value, reason]) =>
+                        <span key={label} className="rounded bg-[var(--line-cool-soft)] px-1.5 py-0.5 text-[var(--stone)]"
+                          title={`${label}：${value}${reason ? "（" + reason + "）" : ""}`}>
+                          {label} {STAGE_SHORT[value] ?? value}</span>)}
+                    </span> : null;
+                  })() : null}
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
                   {file.duplicate_of ? <span className="shrink-0 rounded bg-[var(--danger-bg)] px-1.5 py-0.5 text-caption text-[var(--danger-fg)]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
                   {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
+                  {status === "indexed" || status === "error"
+                    ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline"
+                      onClick={() => reviewParse(file.rel_path)} title={`在资料入库中核对 ${file.rel_path} 的解析结果`}>审核解析</button>
+                    : null}
                   {status === "error" && admin ? (
                     <Button size="sm" disabled={busy || !connected} onClick={() => void run(onRetryImport)}>重试本库待处理项</Button>
                   ) : null}

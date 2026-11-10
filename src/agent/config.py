@@ -1,11 +1,13 @@
 """Configuration shared by local parsing, API models and the agent."""
 
+import json
 import os
 from functools import lru_cache
 from pathlib import Path
+from typing import Annotated
 
 from pydantic import AliasChoices, Field, SecretStr, field_validator, model_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
 # 方案 A（每个直接子目录 = 一个自包含资料库）：
@@ -72,6 +74,16 @@ class Settings(BaseSettings):
     # only on a machine with the memory (or GPU) for the local VLM.
     mineru_fallback_tier: str = ""
     mineru_timeout: float = Field(default=1200, ge=30, le=7200)
+    # A2-b (2026-11-04): parse quality *grades* as a configurable hint, never a pass/fail verdict.
+    # The thresholds are NOT verified standards (B3): the default is empty, which means no grade is
+    # shown at all. Shape: ``{"grade": {"min_coverage": 0.8, "max_unreadable_chars": 0,
+    # "max_sparse_pages": 3}}`` — every key optional, a grade applies only when all its keys hold;
+    # the first grade whose keys all hold wins, so order the dict from the strictest to the loosest.
+    # An invalid entry is ignored (``quality_grade`` returns None) rather than refusing to start.
+    # ``NoDecode`` keeps pydantic-settings from JSON-decoding the env value itself, so an unusable
+    # value reaches the validator below (which turns it into "no grading") instead of raising.
+    parse_quality_grades: Annotated[dict, NoDecode] = Field(
+        default_factory=dict, validation_alias=AliasChoices("PARSE_QUALITY_GRADES"))
     # Removed 8 settings nothing read any more (F4/Q3, 2026-10-19): max_research_steps, max_rounds,
     # evidence_routing, max_searches, max_reads, model_context_tokens, answer_reserve_tokens,
     # research_timeout. Old .env values are ignored (extra="ignore"). See .logsdev/cleanup-log.md;
@@ -106,6 +118,19 @@ class Settings(BaseSettings):
         extra="ignore",
         populate_by_name=True,
     )
+
+    @field_validator("parse_quality_grades", mode="before")
+    @classmethod
+    def _parse_grades(cls, value):
+        """A JSON object from the environment; anything else is empty, i.e. no grading (A2-b)."""
+        if value is None or value == "":
+            return {}
+        if isinstance(value, str):
+            try:
+                value = json.loads(value)
+            except ValueError:
+                return {}
+        return value if isinstance(value, dict) else {}
 
     @field_validator("review_model_timeout", "review_run_timeout", "review_max_calls", "review_chunk_chars",
                      "review_max_document_chars", "review_max_output_tokens", mode="before")

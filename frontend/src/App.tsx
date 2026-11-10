@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import { TopNav } from "./components/TopNav";
 import { StatusBanner, Toast } from "./components/Overlays";
 import { Guide } from "./components/Guide";
@@ -18,6 +18,7 @@ const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => (
  * inspector and the overlays. No business logic lives here (see `store.tsx`).
  */
 export function App() {
+  const location = useLocation();
   const {
     effectiveCorpusId,
   } = useApp();
@@ -56,7 +57,9 @@ export function App() {
         <Suspense fallback={<div className="p-6 text-body text-[var(--muted)]">正在加载…</div>}>
           <Outlet />
         </Suspense>
-        <Guide area={nav} />
+        {/* The 资料入库 workbench is a working screen with its own header and steps; the floating
+            "三步上手" guide only covered its controls (R8, 2026-11-04). Other pages keep it. */}
+        {location.pathname.startsWith("/ingest") ? null : <Guide area={nav} />}
       </div>
 
       </div>

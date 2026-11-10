@@ -175,6 +175,43 @@ def parse_quality(page_texts: list[str], expected: int | None) -> dict:
             "page_count_checked": expected is not None}
 
 
+def quality_grade(quality: dict | None, grades: dict | None) -> str | None:
+    """A2-b (2026-11-04): the configured grade of one parse, or None when nothing applies.
+
+    ``grades`` maps a grade name to the objective facts it requires, for example
+    ``{"good": {"min_coverage": 0.8}, "fair": {"min_coverage": 0.5}}``. Keys understood:
+    ``min_coverage``, ``max_unreadable_chars``, ``max_sparse_pages`` (each optional; a grade applies
+    only when every key it lists holds). The first matching grade in the configured order wins.
+
+    The thresholds are NOT verified standards (B3): an empty ``grades`` means no grade at all, which
+    is the default, and nothing in the parse pipeline treats a grade as pass/fail. A missing fact or
+    an unusable entry yields None instead of raising, so a bad configuration cannot break a read.
+    """
+    if not grades or not isinstance(quality, dict):
+        return None
+    checks = (("min_coverage", lambda value, fact: fact >= value),
+              ("max_unreadable_chars", lambda value, fact: fact <= value),
+              ("max_sparse_pages", lambda value, fact: fact <= value))
+    for name, rule in grades.items():
+        if not isinstance(rule, dict):
+            continue
+        holds = True
+        for key, passes in checks:
+            if key not in rule:
+                continue
+            threshold, fact = rule[key], quality.get(key.removeprefix("min_").removeprefix("max_"))
+            if isinstance(threshold, bool) or not isinstance(threshold, (int, float)) \
+                    or isinstance(fact, bool) or not isinstance(fact, (int, float)):
+                holds = False
+                break
+            if not passes(threshold, fact):
+                holds = False
+                break
+        if holds:
+            return str(name)
+    return None
+
+
 def output_page_texts(directory: Path) -> list[str] | None:
     """Text of every page in the MinerU middle JSON (empty pages included); None without one."""
     from .parsers import _block_text

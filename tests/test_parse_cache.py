@@ -513,17 +513,21 @@ def test_profile_change_reuses_cache(lib):
     assert "--tier" not in lib.canonical()["profile"]
 
 
-@pytest.mark.parametrize("damage", ["null-version", "no-middle", "no-markdown"])
+@pytest.mark.parametrize("damage", ["null-version", "no-middle", "no-markdown", "rel-mismatch", "sha-mismatch"])
 def test_staging_without_version_or_required_products_is_incomplete(lib, damage):
     """B2 completeness: version null is only for an adopted canonical legacy cache; a staging parse
     needs its middle JSON and its markdown."""
     staging = staging_dir(lib.parsed, REL, lib.entry["sha256"])
     shutil.copytree(lib.parsed / REL, staging)
-    if damage == "null-version":
+    if damage in ("null-version", "rel-mismatch", "sha-mismatch"):
         data = json.loads((staging / CACHE_FILE).read_text())
-        (staging / CACHE_FILE).write_text(json.dumps({**data, "version": None, "profile": LEGACY}))
+        changes = {"null-version": {"version": None, "profile": LEGACY},
+                   "rel-mismatch": {"rel": "another.pdf"},
+                   "sha-mismatch": {"source_sha256": "f" * 64}}[damage]
+        (staging / CACHE_FILE).write_text(json.dumps({**data, **changes}))
     else:
         (staging / ("middle_json.json" if damage == "no-middle" else "full.md")).unlink()
+    assert lib.state() == "ok"
     assert lib.run()["skipped"] == 1
     assert lib.calls == 1
     lib.assert_settled("A")

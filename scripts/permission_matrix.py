@@ -66,6 +66,9 @@ CAPABILITIES = [
     # Topic summaries are analysis anyone may run; everything else that changes a system library is the
     # administrator's (D-20261027-1). Personal libraries are each account's own.
     ("主题综合（分析）", ALL, r"^/api/corpora/[^/]+/topic-summary"),
+    # A2/A5-d (2026-11-04): the parse workbench's correction write. It lives under /api/corpora/…
+    # so this line is the same capability as the rest of the system-library maintenance; the mine-
+    # case is the owner's, checked inside the handler (the probe cannot see that, like every record rule).
     ("系统资料库与资料维护", ADMIN, r"^/api/(corpora|corpus-groups|groups|ingest/text)"),
     ("个人资料库（本人）", ALL, r"^/api/personal-libraries"),
     # Every role may call these; the record decides (author or administrator, design/系统.md §5).

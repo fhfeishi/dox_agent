@@ -77,6 +77,7 @@ export const router = createBrowserRouter([{
       { path: "results", element: <Navigate to="/results" replace /> },
     ] },
     { path: "intelligence", lazy: async () => ({ Component: (await import("./components/IntelligenceView")).IntelligenceView }) },
+    { path: "ingest", lazy: async () => ({ Component: (await import("./components/IngestWorkbench")).IngestWorkbench }) },
     { path: "artifacts", element: <Navigate to="/results" replace /> },
     { path: "prompts", element: <Navigate to="/tasks" replace /> },
     { path: "review", Component: Outlet, children: [

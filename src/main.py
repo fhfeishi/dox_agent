@@ -21,6 +21,7 @@ from .agent.graph import build_graph
 from .api import assets as api_assets
 from .api import chat as api_chat
 from .api import domains as api_domains
+from .api import ingest_workbench as api_ingest_workbench
 from .api import library as api_library
 from .api import reports as api_reports
 from .api import structure as api_structure
@@ -240,7 +241,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     ctx = SimpleNamespace(settings=settings, knowledge=knowledge, graph_factory=graph_factory,
                           find_corpus=find_corpus, knowledge_for=knowledge_for, knowledge_for_request=knowledge_for_request)
     app.state.corpus_ctx = ctx  # personal-library uploads are indexed with the same per-library Knowledge
-    for domain in (api_system, api_assets, api_library, api_web, api_chat, api_structure, api_domains, api_reports):
+    for domain in (api_system, api_assets, api_library, api_ingest_workbench, api_web, api_chat,
+                   api_structure, api_domains, api_reports):
         domain.install(app, ctx)
 
     @app.get("/{asset_path:path}")
@@ -252,7 +254,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/mine/[^/.]+|/(?P<corpus>[^/.]+)(?:/(?:documents(?:/[^/.]+)?|targets/four-facets))?)?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|results(?:/[^/.]+)?|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|ingest|results(?:/[^/.]+)?|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             corpus_id = page_route.group("corpus")
             if corpus_id:

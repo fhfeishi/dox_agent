@@ -88,6 +88,14 @@ export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> 
 }
 
 /** POST /api/corpora/{id}/ingest (H2): import/refresh one corpus, bounded to its own root. */
+/** The corpus' current import job (``corpus.job`` from ``GET /api/corpora``); null when none ran.
+ *  R11c #5: the ingest endpoint returns when the run starts, so the caller polls this to see it end. */
+export async function fetchCorpusJob(corpusId: string, signal?: AbortSignal): Promise<CorpusJob> {
+  const listing = await fetchCorpora(signal);
+  const corpus = listing.find((item) => item.id === corpusId);
+  return corpus?.job ?? { status: "unknown", total: 0, completed: 0, imported: 0, changed: 0, errors: [] };
+}
+
 export async function ingestCorpus(corpusId: string, force = false): Promise<CorpusJob> {
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ingest${force ? "?force=true" : ""}`, { method: "POST" });
   const payload = await response.json().catch(() => null);

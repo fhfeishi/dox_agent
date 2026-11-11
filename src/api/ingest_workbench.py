@@ -284,36 +284,6 @@ def install(app, ctx):
             raise HTTPException(404, "该资料尚无解析产物")
         return await asyncio.to_thread(blocks_with_corrections, info, rel, directory, page)
 
-    @router.get("/api/corpora/{corpus_id}/parse/document")
-    async def parse_document(corpus_id: str, rel: str = Query(...)):
-        """Every page of one parse in one read, for the continuous reading view.
-
-        Same blocks and corrections as ``/parse/blocks``, grouped by page. It is read-only: the
-        continuous view is for reading the whole file, and editing still happens page by page so a
-        correction can name the page and block it belongs to.
-        """
-        info = await info_for(corpus_id)
-        directory = directory_for(info, rel)
-        if not directory.is_dir():
-            raise HTTPException(404, "该资料尚无解析产物")
-
-        def read() -> dict:
-            texts = output_page_texts(directory) or _markdown_pages(directory)
-            page_count = len(texts) or output_page_count(directory) or 0
-            pages = []
-            for page in range(page_count):
-                try:
-                    body = blocks_with_corrections(info, rel, directory, page)
-                except HTTPException:
-                    body = {"page": page, "page_count": page_count, "blocks": []}
-                blocks = []
-                for block in body.get("blocks", []):
-                    blocks.append({**block, "page": page})
-                pages.append({"page": page, "blocks": blocks})
-            return {"rel": rel, "page_count": page_count, "pages": pages}
-
-        return await asyncio.to_thread(read)
-
     @router.get("/api/corpora/{corpus_id}/parse/page-image")
     async def parse_page_image(corpus_id: str, rel: str = Query(...), page: int = Query(0, ge=0),
                                scale: float = Query(1.5, ge=0.5, le=3)):

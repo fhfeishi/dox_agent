@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent, type ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useSearchParams } from "react-router";
 import { useAuth } from "../auth";
 import {
-  UPLOADS_PREFIX, fetchCorpora, fetchCorpusFiles, fetchParseArchive, fetchParseBlocks, fetchParseDocument, fetchParsePage,
+  UPLOADS_PREFIX, fetchCorpora, fetchCorpusFiles, fetchParseArchive, fetchParseBlocks, fetchParsePage,
   fetchCorpusJob, fetchParseStages, fetchPersonalLibraries, ingestCorpus, parseImageUrl, parsePageImageUrl,
   saveParseCorrection, uploadCorpusFile, uploadPersonalFile,
   type CorpusFile, type CorpusInfo, type CorpusJob, type ParseArchive, type ParseBlock, type ParseBlocks,
-  type ParseDocument, type ParsePage, type ParseStages,
+  type ParsePage, type ParseStages,
 } from "../api";
 import { Icon } from "./Icons";
 import { ReportMarkdown } from "./ReportMarkdown";
@@ -25,9 +24,6 @@ const TYPE_LABEL: Record<string, string> = {
   header: "页眉", footer: "页脚", page_number: "页码", page_footnote: "脚注",
 };
 const TITLE_TYPES = new Set(["title", "doc_title", "paragraph_title"]);
-// Page furniture is drawn by the source page itself; the parsed list hides it unless asked.
-const DECORATIVE_TYPES = new Set(["header", "footer", "page_number", "page_footnote"]);
-
 /** Plain words for the stage view's machine states (src/stages.py); anything else is shown as is. */
 const STAGE_WORD: Record<string, string> = {
   present: "在", missing: "缺失", cached: "已解析", none: "未解析", current: "最新", stale: "待更新",
@@ -72,11 +68,10 @@ export function IngestWorkbench() {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  // P6 (Owner query 2026-1106 1001): 对齐 is the default view — the right pane places each block at
-  // its bbox, so the two panes line up; 排版 keeps the flowing list and 数据 the raw JSON.
-  // 排版 is the default: text flows, images keep their captions and nothing overlaps. 对齐 stays
-  // one click away for spatial comparison with the source page.
-  const [view, setView] = useState<"align" | "read" | "json">("read");
+  // 2026-1111 1543: one working view. 对齐 places every block at its bbox so the two panes line up;
+  // 数据 keeps the raw JSON for checking the parser's own fields. The flowing 排版 list is gone —
+  // it was a third way to read the same page and the main reason the toolbar kept growing.
+  const [view, setView] = useState<"align" | "json">("align");
   const [pageSize, setPageSize] = useState<{ w: number; h: number } | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -85,14 +80,8 @@ export function IngestWorkbench() {
   const [jumpTo, setJumpTo] = useState("");
   const [zoom, setZoom] = useState(1);
   const [split, setSplit] = useState(50);
-  // R11c #7: an empty block is part of the page and must be visible by default, not hidden behind
-  // an unchecked box — the list has to match the page block-for-block.
-  const [hideEmpty, setHideEmpty] = useState(false);
-  // 2026-1109 1113: the whole file can be read as one scroll; page-by-page remains the editing mode.
-  // Whole-file reading is the default; a click on any block opens that page for editing.
-  const [reading, setReading] = useState<"paged" | "continuous">("continuous");
-  const [showDecorative, setShowDecorative] = useState(false);
-  const [pendingJump, setPendingJump] = useState<{ page: number; id: string } | null>(null);
+  // 2026-1111 1543: page-by-page is the only reading mode. Every block on the page is shown —
+  // page furniture included — so the parsed side matches what the source page displays.
   // R11c #8: a failed read is an error state, not an endless "正在读取".
   const [loadError, setLoadError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -113,6 +102,7 @@ export function IngestWorkbench() {
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const boxRefs = useRef(new Map<string, HTMLElement>());
   const rowRefs = useRef(new Map<string, HTMLElement>());
+  const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let alive = true;
@@ -231,24 +221,54 @@ export function IngestWorkbench() {
   const selectedFile = files.find((item) => item.rel_path === rel);
   const docId = selectedFile?.doc_id ?? "";
   const pages = blocks?.page_count ?? pageData?.pages ?? archive?.pages ?? 0;
-  const continuous = useQuery({
-    queryKey: ["parse-document", corpusId, rel],
-    queryFn: ({ signal }) => fetchParseDocument(corpusId, rel, signal),
-    enabled: reading === "continuous" && Boolean(rel) && Boolean(archive?.exists),
-    staleTime: 30000,
-  });
   const quality = archive?.quality ?? null;
   const correctedByBlock = useMemo(() => pageData?.corrections?.blocks ?? {}, [pageData]);
   const allBlocks = useMemo(() => blocks?.blocks ?? [], [blocks]);
   const emptyCount = allBlocks.filter((block) => block.no_text).length;
-  const visible = useMemo(() => allBlocks.filter((block) =>
-    (showDecorative || !DECORATIVE_TYPES.has(block.type))
-    && !block.attached_to
-    && (!hideEmpty || !block.no_text || correctedByBlock[block.id])),
-    [allBlocks, hideEmpty, correctedByBlock, showDecorative]);
+  const visible = useMemo(() => allBlocks.filter((block) => !block.attached_to), [allBlocks]);
   // P6: the 对齐 canvas places every block that has a bbox; the rest fall back to a list below it.
   const alignedBlocks = visible.filter((block) => block.bbox);
   const unplaced = visible.filter((block) => !block.bbox);
+  // 2026-1111 1617: a block's words must fit the line box the parser recorded, so a title never
+  // wraps by accident and a page number never splits "第 3" / "页" across two lines. Each block is
+  // measured after render and its font size is reduced (never below 8px) until it fits its own
+  // bbox; titles and page numbers first try one line, then fall back to normal wrapping. The
+  // floor is 9px: below that a mini-page stops being readable and an honest overflow is better.
+  useEffect(() => {
+    if (view !== "align") return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const height = canvas.clientHeight;
+    for (const node of canvas.querySelectorAll<HTMLElement>("[data-fit]")) {
+      // Leave a sliver of the bbox empty so a heading never touches the paragraph below it.
+      const available = Math.max(9, Number(node.dataset.fitHeight || 0) * height - 2);
+      const base = Number(node.dataset.fitBase || 12);
+      // A bbox only one line tall is a heading, a list marker or page furniture. Keep it on one
+      // line and shrink the type to the box; only fall back to wrapping at the 9px floor.
+      const oneLine = available <= base * 1.95;
+      // A one-line box is a heading, a list marker or page furniture. It never wraps: "第 3 页"
+      // split into "第 3" / "页" is exactly the broken look this pass exists to prevent. If the
+      // type cannot shrink enough it may sit a few pixels wider than its box instead.
+      const nowrap = oneLine || node.dataset.fitNowrap === "1";
+      // Start from the largest type the box height can hold rather than the page default: a PDF
+      // page scaled to 560px has proportionally smaller line boxes, and keeping 12px everywhere
+      // shrank every block to the 8px floor.
+      let size = Math.min(base, Math.max(9, available / 1.4));
+      node.style.whiteSpace = nowrap ? "nowrap" : "normal";
+      // One-line boxes get a tighter leading, so "第 3 页" fits the same height as its neighbours.
+      node.style.lineHeight = nowrap ? "1.15" : "1.4";
+      node.style.fontSize = `${size}px`;
+      const fits = () => node.scrollHeight <= available + 1
+        && (!nowrap || node.scrollWidth <= node.clientWidth + 1);
+      while (size > 9 && !fits()) {
+        size -= 0.5;
+        node.style.fontSize = `${size}px`;
+      }
+      // A paragraph that still overflows at the 9px floor keeps growing: hiding words would defeat
+      // a proofreading tool. Only a one-line box is held to its own width.
+    }
+  }, [view, blocks, page, pageSize, split, correctedByBlock, editing]);
+
   const editingBlock = allBlocks.find((item) => item.id === editing);
   const dirty = editing !== null && draft !== (correctedByBlock[editing]?.after ?? editingBlock?.text ?? "");
   const file = describeFile(rel);
@@ -347,16 +367,6 @@ export function IngestWorkbench() {
     const target = (from === "page" ? rowRefs : boxRefs).current.get(id);
     target?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   };
-
-  // A block clicked in continuous reading opens its page and then focuses that block, once the
-  // page's blocks have actually arrived (the old page's refs would scroll to the wrong row).
-  useEffect(() => {
-    if (!pendingJump || !blocks || blocks.page !== pendingJump.page) return;
-    if (!blocks.blocks.some((block) => block.id === pendingJump.id)) return;
-    selectBlock(pendingJump.id, "list");
-    setPendingJump(null);
-  }, [pendingJump, blocks]);
-
 
   const startEdit = (block: ParseBlock) => {
     if (!canWrite || editing === block.id || loadError) return;
@@ -483,7 +493,6 @@ export function IngestWorkbench() {
             ? (block.images?.length ? null : <p className="text-body italic text-[var(--text-3)]" title={canWrite ? "双击可补录这一块" : "这一块解析没有文字"}>[NO TEXT]</p>)
             : <div className={`break-words text-pretty ${TITLE_TYPES.has(block.type) ? "font-semibold text-balance text-[var(--heading)]" : ""}`}><ReportMarkdown markdown={text} /></div>}
         </>}
-      {corrected?.before && view === "read" ? <p className="mt-[2px] text-caption text-[var(--text-3)] line-through">{corrected.before}</p> : null}
     </div>;
   };
 
@@ -587,8 +596,6 @@ export function IngestWorkbench() {
         </select>
         <Segmented label="工作台视图" value={mode} onChange={setMode} tabs
           options={[["proof", "逐页校对"], ["stages", "整库状态"]] as const} />
-        {mode === "proof" ? <Segmented label="阅读方式" value={reading} onChange={setReading}
-          options={[["paged", "分页校对"], ["continuous", "连续阅读"]] as const} /> : null}
         <div className="ml-auto flex items-center gap-[8px]">
           {busy ? <span className="text-caption text-[var(--text-3)]" role="status">{busy}…{jobProgress && jobProgress.total > 0
             ? ` ${jobProgress.completed}/${jobProgress.total}` : ""}</span> : null}
@@ -614,12 +621,7 @@ export function IngestWorkbench() {
         </div>
       ) : null}
 
-      {mode === "stages" ? <StagesView stages={stages} name={libraryName} onOpen={(path) => { setRel(path); setMode("proof"); }} /> : reading === "continuous" ? (
-        <ContinuousReading corpusId={corpusId} rel={rel} title={file.title}
-          data={continuous.data} loading={continuous.isLoading} error={continuous.error}
-          onJump={(page, id) => { setPage(page); setPendingJump({ page, id }); setReading("paged"); }}
-          onRetry={() => void continuous.refetch()} />
-      ) : (
+      {mode === "stages" ? <StagesView stages={stages} name={libraryName} onOpen={(path) => { setRel(path); setMode("proof"); }} /> : (
         <div className="grid min-h-0 flex-1 grid-cols-[280px_minmax(0,1fr)]">
           {/* 左：资料列表。 */}
           <aside className="flex min-h-0 flex-col border-r border-[var(--hairline)] bg-[var(--canvas)]">
@@ -782,17 +784,8 @@ export function IngestWorkbench() {
                     <span className="shrink-0 whitespace-nowrap text-body font-medium text-[var(--heading)]">解析结果</span>
                     <span className="shrink-0 whitespace-nowrap text-caption text-[var(--text-3)]">{page + 1}/{pages || "—"} · {visible.length} 段</span>
                     <div className="ml-auto flex items-center gap-[10px]">
-                      <label className="flex shrink-0 items-center gap-[3px] whitespace-nowrap text-caption text-[var(--text-3)]" title="页眉、页脚和页码由左侧原件页展示；勾选后在解析结果里也列出">
-                        <input type="checkbox" checked={showDecorative} onChange={(event) => setShowDecorative(event.target.checked)} />
-                        页眉/页码
-                      </label>
-                      {emptyCount ? <label className="flex shrink-0 items-center gap-[3px] whitespace-nowrap text-caption text-[var(--text-3)]" title={`隐藏无文字的块（${emptyCount}）`}>
-                        <input type="checkbox" checked={hideEmpty} onChange={(event) => setHideEmpty(event.target.checked)} />
-                        空块 {emptyCount}
-                      </label> : null}
                       <Segmented label="解析结果视图" value={view} onChange={setView}
-                        options={[["read", "排版"], ["align", "对齐"], ["json", "数据"]] as const} />
-                      {view === "align" ? <span className="hidden text-caption text-[var(--text-3)] 2xl:inline" title="按原文位置排列；窄窗口可横向滚动">按位置</span> : null}
+                        options={[["align", "对齐"], ["json", "数据"]] as const} />
                     </div>
                   </PaneBar>
                   <div ref={textScrollRef} className="min-h-0 flex-1 overflow-auto">
@@ -809,7 +802,7 @@ export function IngestWorkbench() {
                     {view === "align" ? <div className="p-[12px]">
                       {/* P6b: a page needs a readable width. Below it the pane scrolls sideways instead of
                           squeezing every block; cqw then resolves against this width, not the pane's. */}
-                      <div className="relative mx-auto border border-[var(--hairline)] bg-[var(--canvas)]"
+                      <div ref={canvasRef} className="relative mx-auto border border-[var(--hairline)] bg-[var(--canvas)]"
                         style={{ width: "100%", minWidth: "560px", position: "relative",
                           containerType: "inline-size",
                           aspectRatio: pageSize ? `${pageSize.w} / ${pageSize.h}` : "1 / 1.414" }}>
@@ -819,6 +812,10 @@ export function IngestWorkbench() {
                           const isEditing = editing === block.id;
                           const active = selected === block.id || hovered === block.id;
                           const title = TITLE_TYPES.has(block.type);
+                          // 2026-1111 1617: a PDF line break is not a paragraph break. Keeping the
+                          // parser's newlines made a title render as "（一）结" / "题部分"; the box
+                          // width, not the old line endings, decides where this view wraps.
+                          const alignText = (corrected ? corrected.after : block.text).replace(/\s*\n\s*/g, " ");
                           return <div key={block.id}
                             ref={(node) => { if (node) rowRefs.current.set(block.id, node); else rowRefs.current.delete(block.id); }}
                             onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
@@ -835,6 +832,8 @@ export function IngestWorkbench() {
                                 startEdit(block);
                               }
                             }}
+                            data-fit="1" data-fit-height={Math.max(0.005, y1 - y0)}
+                            data-fit-base={title ? 14 : 12}
                             style={{ position: "absolute", left: `${x0 * 100}%`, top: `${y0 * 100}%`,
                               width: `${Math.max(0.5, (x1 - x0) * 100)}%`,
                               minHeight: `${Math.max(0.5, (y1 - y0) * 100)}%`,
@@ -845,21 +844,23 @@ export function IngestWorkbench() {
                               // P6c: the base layer never rises above the active (40) or editing (50) one,
                               // so a page with more than 30 blocks cannot bury its own editor.
                               zIndex: isEditing ? 50 : active ? 40 : Math.min(30, 10 + index),
-                              fontSize: title ? "max(14px, 2.1cqw)" : "max(12px, 1.7cqw)",
-                              lineHeight: 1.35, padding: "1px 2px",
-                              // A title that is a few pixels wider than its bbox used to leave its last
-                              // character alone on a second line. Titles keep their words together and may
-                              // overflow the bbox; body text still breaks to fit.
-                              wordBreak: title ? "keep-all" : "break-word",
-                              whiteSpace: title ? "nowrap" : "normal",
-                              overflowWrap: title ? "normal" : "anywhere",
+                              fontSize: title ? "14px" : "12px",
+                              lineHeight: 1.4, padding: "1px 2px 2px",
+                              // 2026-1111 1543: text always wraps inside its bbox. A long title used to
+                              // be kept on one line, which pushed the right pane into horizontal
+                              // scrolling — the exact "排版" problem. Orphans are handled by balancing
+                              // the lines instead of forbidding the break.
+                              wordBreak: "normal",
+                              whiteSpace: "normal",
+                              overflowWrap: "anywhere",
+                              ...(title ? { textWrap: "balance" as const } : {}),
                               // P6b: text blocks paint their own background, so a block whose text
                               // outgrows its bbox cannot be read through the neighbour beneath it.
                               // Image blocks stay transparent: the page image is what they show.
                               ...(isEditing ? { background: "var(--surface)" }
                                 : block.images?.length ? {}
                                   : { background: "var(--canvas)" }) }}
-                            className={`rounded-xs border ${isEditing
+                            className={`rounded-xs border [&_p]:m-0 ${isEditing
                               ? "border-[var(--primary)]"
                               : active ? "border-[var(--primary)] bg-[var(--primary)]/8"
                                 : corrected ? "border-[var(--ok-fg)]"
@@ -872,16 +873,14 @@ export function IngestWorkbench() {
                                   style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }} />)}
                                 {/* P6c: an image block that was proofread still shows the corrected text
                                     under the image — leaving edit mode must not hide it. */}
-                                {corrected?.after ? <div className="mt-[2px] break-words">
-                                  <ReportMarkdown markdown={corrected.after} /></div>
-                                  : block.text ? <div className="mt-[2px] break-words text-[var(--text-2)]"
-                                    style={{ fontSize: "max(10px, 1.5cqw)", lineHeight: 1.35 }}>{block.text}</div> : null}
+                                {alignText ? <div className="mt-[2px] break-words">
+                                  <ReportMarkdown markdown={alignText} /></div> : null}
                               </div>
                               : block.no_text && !corrected
                                 ? <span className="block w-full text-[var(--text-3)]"
                                   style={{ fontSize: "max(10px, 1.2cqw)", fontStyle: "italic" }}>[NO TEXT]</span>
                                 : <div className={`break-words ${title ? "font-semibold text-[var(--heading)]" : ""}`}>
-                                  {(corrected ? corrected.after : block.text) ? <ReportMarkdown markdown={corrected ? corrected.after : block.text} />
+                                  {alignText ? <ReportMarkdown markdown={alignText} />
                                     : <span className="italic text-[var(--text-3)]">[NO TEXT]</span>}
                                 </div>}
                           </div>;
@@ -974,68 +973,6 @@ function ParseDetail({ archive }: { archive: ParseArchive }) {
         </tr>;
       })}</tbody>
     </table> : null}
-  </div>;
-}
-
-/**
- * 连续阅读 (2026-1109 1113): the whole file as one scroll, source pages on the left and the parsed
- * text in page order on the right. It is read-only; clicking a block opens that page in 分页校对,
- * where a correction can name the page and block it belongs to.
- */
-function ContinuousReading({ corpusId, rel, title, data, loading, error, onJump, onRetry }: {
-  corpusId: string; rel: string; title: string; data?: ParseDocument;
-  loading: boolean; error: Error | null; onJump: (page: number, id: string) => void; onRetry: () => void;
-}) {
-  if (loading) return <EmptyState title="正在读取整份解析…" body="" />;
-  if (error) return <div className="m-[16px] rounded-lg border border-[var(--danger-line)] bg-[var(--danger-bg)] p-[14px]">
-    <p role="alert" className="text-body text-[var(--danger-fg)]">整份解析读取失败：{error.message}</p>
-    <Button className="mt-[8px]" size="sm" variant="outline" onClick={onRetry}>重试</Button>
-  </div>;
-  if (!data) return <EmptyState title="这份资料还没有解析" body="" />;
-  return <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-    <div className="min-h-0 overflow-auto border-r border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
-      <p className="sticky top-0 z-10 mb-[8px] bg-[var(--surface)] py-[4px] text-caption text-[var(--text-3)]">
-        原文件 · {data.page_count} 页 · 连续滚动
-      </p>
-      {Array.from({ length: data.page_count }, (_, page) => <figure key={page} className="mb-[14px]">
-        <img src={parsePageImageUrl(corpusId, rel, page, 1.5)} alt={`原文件第 ${page + 1} 页`}
-          loading="lazy" draggable={false}
-          className="block w-full rounded-sm border border-[var(--hairline)] bg-[var(--canvas)] shadow-sm" />
-        <figcaption className="mt-[4px] text-center text-caption text-[var(--text-3)]">第 {page + 1} 页</figcaption>
-      </figure>)}
-    </div>
-    <div className="min-h-0 overflow-auto bg-[var(--canvas)]">
-      <div className="sticky top-0 z-10 flex flex-wrap items-center gap-[8px] border-b border-[var(--hairline)] bg-[var(--canvas)] px-[16px] py-[8px]">
-        <span className="min-w-0 flex-1 truncate text-body font-medium text-[var(--heading)]" title={rel}>{title}</span>
-        <span className="text-caption text-[var(--text-3)]">连续阅读 · 只读 · 点任意一段进入分页校对</span>
-      </div>
-      {data.pages.map(({ page, blocks }) => {
-        const shown = blocks.filter((block) => !block.attached_to && !DECORATIVE_TYPES.has(block.type));
-        if (!shown.length) return null;
-        return <section key={page} aria-label={`第 ${page + 1} 页`} className="border-b border-[var(--hairline-soft)] px-[16px] py-[10px]">
-          <h3 className="mb-[6px] text-caption font-semibold text-[var(--text-3)]">第 {page + 1} 页</h3>
-          <div className="space-y-[4px]">
-            {shown.map((block) => {
-              const caption = block.caption || (block.images?.length ? block.text : "");
-              const empty = !block.text && !block.images?.length;
-              return <button key={block.id} type="button" onClick={() => onJump(page, block.id)}
-                title="打开这一页的分页校对"
-                className={`block w-full rounded-md border border-transparent px-[6px] py-[4px] text-left transition-colors duration-[var(--dur-quick)] hover:border-[var(--primary)] hover:bg-[var(--surface)] ${empty ? "cursor-default opacity-60" : ""}`}>
-                {block.images?.length ? <div className="mb-[4px] flex flex-wrap gap-[6px]">
-                  {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
-                    alt={`解析图片 ${name}`} loading="lazy" draggable={false}
-                    className="max-h-[260px] w-auto max-w-full rounded-sm border border-[var(--hairline)]" />)}
-                </div> : null}
-                {caption ? <p className="mb-[3px] text-caption leading-[1.5] text-[var(--text-2)]">{caption}</p> : null}
-                {block.text && !block.images?.length ? <div className={`break-words text-pretty ${TITLE_TYPES.has(block.type) ? "font-semibold text-balance text-[var(--heading)]" : ""}`}>
-                  <ReportMarkdown markdown={block.text} /></div> : null}
-                {empty ? <span className="text-caption italic text-[var(--text-3)]">[NO TEXT]</span> : null}
-              </button>;
-            })}
-          </div>
-        </section>;
-      })}
-    </div>
   </div>;
 }
 

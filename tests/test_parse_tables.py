@@ -17,17 +17,23 @@ def test_a_simple_table_becomes_a_pipe_table():
     assert html_table_to_gfm(SIMPLE) == "| 编号 | 判别公式 |\n| --- | --- |\n| 1 | D1 |"
 
 
-def test_a_merged_cell_keeps_its_grid_position():
-    """``rowspan``/``colspan`` expand into a real grid, so no cell shifts into the wrong column."""
+def test_a_merged_cell_keeps_the_table_as_html():
+    """A merged or nested table stays HTML, exactly as MinerU does.
+
+    Expanding ``rowspan`` into repeated text invents cells the document does not have; a browser
+    renders the merge natively, so the table is passed through instead of being flattened.
+    """
     merged = ("<table><tr><td rowspan=\"2\">A</td><td>B</td></tr>"
               "<tr><td>C</td></tr></table>")
-    assert html_table_to_gfm(merged) == "| A | B |\n| --- | --- |\n| A | C |"
+    assert html_table_to_gfm(merged) is None
+    out = block_markdown(merged)
+    assert out.startswith("<table>") and 'rowspan="2"' in out
 
 
-def test_an_inline_formula_becomes_math_with_markdown_characters_escaped():
-    """``$…$`` is plain text without a math renderer, so ``*`` and ``_`` must not become emphasis."""
-    out = block_markdown("结果 <eq>0.291*HBB + a_b</eq> 结束")
-    assert out == r"结果 $0.291\*HBB + a\_b$ 结束"
+def test_an_inline_formula_becomes_math_and_keeps_its_latex_commands():
+    """The formula's LaTeX is passed through untouched: KaTeX owns what is inside ``$…$``."""
+    out = block_markdown("结果 <eq>\\mathrm{HBB} + a_b</eq> 结束")
+    assert out == "结果 $\\mathrm{HBB} + a_b$ 结束"
 
 
 def test_a_table_cell_keeps_its_words_and_escapes_the_pipe():

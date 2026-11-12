@@ -60,13 +60,21 @@ def _first_file(directory: Path, names: list[str]) -> Path | None:
 
 
 def _block_text(block: dict) -> str:
-    """Flatten mineru block content to plain text (content may nest lists/dicts)."""
+    """Flatten mineru block content to text (content may nest lists/dicts).
+
+    2026-11-12 1036: an ``equation_inline`` child is a formula, not prose. MinerU nests it inside a
+    text block's ``content`` list, so joining everything as plain text dropped the formula markers and
+    left ``\\mathrm{D}1>0`` as literal backslashes in the paragraph. Keeping the ``<eq>`` wrapper lets
+    the Markdown conversion turn it into ``$…$`` (src/parse_tables.py) and the reader render it.
+    """
     def flatten(node: object) -> str:
         if isinstance(node, str):
             return node
         if isinstance(node, list):
             return "".join(flatten(item) for item in node)
         if isinstance(node, dict):
+            if node.get("type") in ("equation_inline", "equation") and isinstance(node.get("content"), str):
+                return f"<eq>{node['content']}</eq>"
             if isinstance(node.get("text"), str):
                 return node["text"]
             return flatten(node.get("content", ""))

@@ -143,11 +143,20 @@
   --pink: #ff64c8;
   --red: #e03131;
 
-  /* Block-kind outlines in 资料入库 (2026-11-12 1036): a reader matches a table or a heading on the
-     source page to the same block on the right by its outline colour, the way MinerU tags them.
-     Both are muted so a page of thirty blocks does not read as a colour chart. */
-  --kind-figure: #7b3ff2;
-  --kind-title: #dd5b00;
+  /* Block-kind colours in 资料入库 (2026-11-12 1036): taken from MinerU's own layout palette
+     (docvortex ``visualization.py`` ``_BLOCK_COLORS``), so the source overlay and the parsed block
+     agree with the reference product. Data colours, like a chart's — one hue per block kind. */
+  --kind-text: #990d4c;
+  --kind-ref: #7333a6;
+  --kind-doc-title: #3333cc;
+  --kind-title: #3366e6;
+  --kind-equation: #00991a;
+  --kind-list: #1a9959;
+  --kind-figure: #4cd90d;
+  --kind-caption: #1a8ce6;
+  --kind-table-caption: #ffd91a;
+  --kind-table: #cccc00;
+  --kind-footnote: #008080;
 
   --tint-peach: #ffe8d4;
   --tint-rose: #fde0ec;
@@ -307,8 +316,11 @@
   padding-left: 12px;
   color: var(--slate);
 }
-.markdown .md-table-wrap {
+.markdown .md-table-wrap,
+.parse-markdown .md-table-wrap {
+  /* The wrapper owns the horizontal scroll; the table keeps its natural column widths (2026-11-12). */
   overflow-x: auto;
+  max-width: 100%;
 }
 .markdown table {
   width: max-content;
@@ -908,11 +920,8 @@ button.ui-page-link { text-decoration: none; }
   color: var(--heading);
 }
 .parse-markdown table {
-  display: block;
   width: max-content;
   min-width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
   border-collapse: collapse;
   line-height: 1.45;
 }

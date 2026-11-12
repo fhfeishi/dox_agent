@@ -1,5 +1,9 @@
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
+import "katex/dist/katex.min.css";
 import type { ArtifactInfo, Source } from "../api";
 import { rehypeCitations } from "../citation";
 import { ChartBlock } from "./Charts";
@@ -16,8 +20,15 @@ export function ReportMarkdown({ markdown, figures = [], reportId, artifact, sou
     ...source, title: source.title ?? "", url: source.url ?? "", snippet: "",
     page: source.page ?? undefined, citation: source.citation ?? index + 1,
   }));
-  return <Markdown remarkPlugins={[remarkGfm]}
-    rehypePlugins={onOpenSource ? [rehypeCitations({ sources: references, onCite: onOpenSource })] : []}
+  // 2026-11-12 1036: a parsed formula is ``$…$`` (src/parse_tables.py), and a formula shown as its
+  // own LaTeX source is worse than no formula at all — MinerU's reader renders it with KaTeX, so this
+  // one does too. Citation handling still wraps the same pipeline.
+  // 2026-11-12 1036: a merged or nested table stays HTML (src/parse_tables.py follows MinerU here),
+  // so raw HTML must reach the renderer — but only for that: the parser's own output is the only
+  // source of these strings, never a user's message.
+  const rehype = [rehypeRaw, rehypeKatex,
+    ...(onOpenSource ? [rehypeCitations({ sources: references, onCite: onOpenSource })] : [])];
+  return <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={rehype}
     components={{ a: ({ href, children, ...props }) => {
       const match = /^#cite-(\d+)$/.exec(href ?? "");
       const source = match && references.find((item) => item.citation === Number(match[1]));
@@ -35,6 +46,11 @@ export function ReportMarkdown({ markdown, figures = [], reportId, artifact, sou
     return <a href={pdfUrl} target="_blank" rel="noreferrer" title={`查看原 PDF 第 ${figure.page} 页`}>
       <img src={imageUrl} alt={alt ?? figure.caption} className="max-w-full" />
     </a>;
+  }, table: ({ children }) => {
+    // 2026-11-12 1036: a wide table scrolls inside its own box instead of squeezing every column to
+    // fit — a formula column squeezed to 40px is unreadable. The wrapper (not the table) owns the
+    // overflow, so the table keeps its natural column widths.
+    return <div className="md-table-wrap"><table>{children}</table></div>;
   }, pre: ({ children, ...props }) => {
     // A ```dox-chart block is drawn as a chart (period summaries, query 2026-1013 1801).
     const child = Array.isArray(children) ? children[0] : children;

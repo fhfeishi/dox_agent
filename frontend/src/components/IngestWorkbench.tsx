@@ -24,6 +24,22 @@ const TYPE_LABEL: Record<string, string> = {
   header: "页眉", footer: "页脚", page_number: "页码", page_footnote: "脚注",
 };
 const TITLE_TYPES = new Set(["title", "doc_title", "paragraph_title"]);
+// 2026-11-12 1036: the block palette MinerU itself uses (docvortex ``visualization.py``
+// ``_BLOCK_COLORS``), kept as CSS tokens so a reader finds the same table or heading on both panes by
+// its colour. The values live in globals.css with the other colour roles.
+const KIND_COLOR: Record<string, string> = {
+  text: "var(--kind-text)", ref_text: "var(--kind-ref)",
+  doc_title: "var(--kind-doc-title)", paragraph_title: "var(--kind-title)", title: "var(--kind-title)",
+  equation: "var(--kind-equation)", interline_equation: "var(--kind-equation)",
+  list: "var(--kind-list)",
+  image: "var(--kind-figure)", image_body: "var(--kind-figure)", figure: "var(--kind-figure)",
+  chart: "var(--kind-figure)",
+  image_caption: "var(--kind-caption)", chart_caption: "var(--kind-caption)",
+  table_caption: "var(--kind-table-caption)",
+  table: "var(--kind-table)", table_body: "var(--kind-table)",
+  page_footnote: "var(--kind-footnote)",
+};
+const kindColor = (type: string) => KIND_COLOR[type] ?? "var(--primary)";
 /** Plain words for the stage view's machine states (src/stages.py); anything else is shown as is. */
 const STAGE_WORD: Record<string, string> = {
   present: "在", missing: "缺失", cached: "已解析", none: "未解析", current: "最新", stale: "待更新",
@@ -226,48 +242,6 @@ export function IngestWorkbench() {
   const allBlocks = useMemo(() => blocks?.blocks ?? [], [blocks]);
   const emptyCount = allBlocks.filter((block) => block.no_text).length;
   const visible = useMemo(() => allBlocks.filter((block) => !block.attached_to), [allBlocks]);
-  // P6: the 对齐 canvas places every block that has a bbox; the rest fall back to a list below it.
-  const alignedBlocks = visible.filter((block) => block.bbox);
-  const unplaced = visible.filter((block) => !block.bbox);
-  // 2026-1111 1617: a block's words must fit the line box the parser recorded, so a title never
-  // wraps by accident and a page number never splits "第 3" / "页" across two lines. Each block is
-  // measured after render and its font size is reduced (never below 8px) until it fits its own
-  // bbox; titles and page numbers first try one line, then fall back to normal wrapping. The
-  // floor is 9px: below that a mini-page stops being readable and an honest overflow is better.
-  useEffect(() => {
-    if (view !== "align") return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const height = canvas.clientHeight;
-    for (const node of canvas.querySelectorAll<HTMLElement>("[data-fit]")) {
-      // Leave a sliver of the bbox empty so a heading never touches the paragraph below it.
-      const available = Math.max(9, Number(node.dataset.fitHeight || 0) * height - 2);
-      const base = Number(node.dataset.fitBase || 12);
-      // A bbox only one line tall is a heading, a list marker or page furniture. Keep it on one
-      // line and shrink the type to the box; only fall back to wrapping at the 9px floor.
-      const oneLine = available <= base * 1.95;
-      // A one-line box is a heading, a list marker or page furniture. It never wraps: "第 3 页"
-      // split into "第 3" / "页" is exactly the broken look this pass exists to prevent. If the
-      // type cannot shrink enough it may sit a few pixels wider than its box instead.
-      const nowrap = oneLine || node.dataset.fitNowrap === "1";
-      // Start from the largest type the box height can hold rather than the page default: a PDF
-      // page scaled to 560px has proportionally smaller line boxes, and keeping 12px everywhere
-      // shrank every block to the 8px floor.
-      let size = Math.min(base, Math.max(9, available / 1.4));
-      node.style.whiteSpace = nowrap ? "nowrap" : "normal";
-      // One-line boxes get a tighter leading, so "第 3 页" fits the same height as its neighbours.
-      node.style.lineHeight = nowrap ? "1.15" : "1.4";
-      node.style.fontSize = `${size}px`;
-      const fits = () => node.scrollHeight <= available + 1
-        && (!nowrap || node.scrollWidth <= node.clientWidth + 1);
-      while (size > 9 && !fits()) {
-        size -= 0.5;
-        node.style.fontSize = `${size}px`;
-      }
-      // A paragraph that still overflows at the 9px floor keeps growing: hiding words would defeat
-      // a proofreading tool. Only a one-line box is held to its own width.
-    }
-  }, [view, blocks, page, pageSize, split, correctedByBlock, editing]);
 
   const editingBlock = allBlocks.find((item) => item.id === editing);
   const dirty = editing !== null && draft !== (correctedByBlock[editing]?.after ?? editingBlock?.text ?? "");
@@ -746,17 +720,21 @@ export function IngestWorkbench() {
                           onClick={() => selectBlock(block.id, "page")}
                           onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
                           aria-label={`定位到解析块：${(block.text || TYPE_LABEL[block.type] || block.type).slice(0, 30)}`}
-                          // 2026-11-12 1036: the outline says what the block is, so a reader can match
-                          // a table on the page to the table on the right without hovering every box.
+                          // 2026-11-12 1036: the outline takes the block's own kind colour (MinerU's
+                          // palette), so a table on the page matches the table on the right without
+                          // hovering every box. Selected keeps the strong primary outline.
                           title={TYPE_LABEL[block.type] ?? block.type}
+                          data-kind={block.type}
                           className={`absolute rounded-xs border transition-colors duration-[var(--dur-quick)] ${lit
-                            ? "border-2 border-[var(--primary)] bg-[var(--primary)]/8"
-                            : fixed ? "border border-[var(--ok-fg)] bg-[var(--ok-fg)]/5"
-                            : block.images?.length ? "border border-[var(--kind-figure)]/70 hover:bg-[var(--kind-figure)]/8"
-                              : TITLE_TYPES.has(block.type) ? "border border-[var(--kind-title)]/60 hover:bg-[var(--kind-title)]/8"
-                                : "border border-[var(--primary)] hover:bg-[var(--primary)]/5"}`}
+                            ? "border-2 border-[var(--primary)] bg-[var(--primary)]/10"
+                            : fixed ? "border border-[var(--ok-fg)] bg-[var(--ok-fg)]/6"
+                              : "hover:bg-[var(--primary)]/6"}`}
                           style={{ left: `${x0 * 100}%`, top: `${y0 * 100}%`,
-                            width: `${Math.max(0.5, (x1 - x0) * 100)}%`, height: `${Math.max(0.5, (y1 - y0) * 100)}%` }} />;
+                            width: `${Math.max(0.5, (x1 - x0) * 100)}%`,
+                            height: `${Math.max(0.5, (y1 - y0) * 100)}%`,
+                            borderColor: lit ? undefined : kindColor(block.type),
+                            borderWidth: lit ? undefined : 1,
+                            borderStyle: block.no_text && !block.images?.length ? "dashed" : "solid" }} />;
                       })}
                     </div> : <div className="rounded-lg border border-dashed border-[var(--line-cool-strong)] bg-[var(--canvas)] p-[14px]">
                       <p className="text-body text-[var(--text-2)]">这份文件还没有入库，读不到原文页。</p>
@@ -803,113 +781,66 @@ export function IngestWorkbench() {
                         onClick={() => { setLoadError(""); setReloadToken((token) => token + 1); }}>重试</Button>
                     </div> : null}
                     {blocks && !visible.length ? <p className="p-[16px] text-body text-[var(--text-3)]">这一页没有解析出文字。{canWrite && emptyCount ? "空块以 [NO TEXT] 列出，双击它即可补录。" : ""}</p> : null}
-                    {/* P6 对齐视图: each block sits at its own bbox on a canvas with the page's aspect
-                        ratio, so the right pane lines up with the left page instead of flowing. */}
-                    {view === "align" ? <div className="p-[12px]">
-                      {/* P6b: a page needs a readable width. Below it the pane scrolls sideways instead of
-                          squeezing every block; cqw then resolves against this width, not the pane's. */}
-                      <div ref={canvasRef} className="relative mx-auto border border-[var(--hairline)] bg-[var(--canvas)]"
-                        style={{ width: "100%", minWidth: "560px", position: "relative",
-                          containerType: "inline-size",
-                          aspectRatio: pageSize ? `${pageSize.w} / ${pageSize.h}` : "1 / 1.414" }}>
-                        {alignedBlocks.map((block, index) => {
-                          const [x0, y0, x1, y1] = block.bbox as number[];
-                          const corrected = correctedByBlock[block.id];
-                          const isEditing = editing === block.id;
-                          const active = selected === block.id || hovered === block.id;
-                          const title = TITLE_TYPES.has(block.type);
-                          // 2026-1111 1617: a PDF line break is not a paragraph break. Keeping the
-                          // parser's newlines made a title render as "（一）结" / "题部分"; the box
-                          // width, not the old line endings, decides where this view wraps.
-                          // 2026-11-12 1036: a table is the exception — its newlines are the row
-                          // boundaries of a GFM pipe table, so flattening them collapsed the table
-                          // into one run of text. Only prose is re-flowed.
-                          const source = corrected ? corrected.after : block.text;
-                          const alignText = /(^|\n)\s*\|/.test(source)
-                            ? source.trim()
-                            : source.replace(/\s*\n\s*/g, " ");
-                          return <div key={block.id}
-                            ref={(node) => { if (node) rowRefs.current.set(block.id, node); else rowRefs.current.delete(block.id); }}
-                            onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
-                            // P6c/P6d: the whole bbox is the target — its padding and blank area included,
-                            // and it is the one keyboard stop (Tab reaches it; Enter/Space opens the editor).
-                            role={isEditing || !canWrite ? undefined : "button"}
-                            tabIndex={isEditing || !canWrite ? undefined : 0}
-                            onClick={isEditing || !canWrite ? undefined : () => selectBlock(block.id, "list")}
-                            onDoubleClick={isEditing || !canWrite ? undefined : () => { selectBlock(block.id, "list"); startEdit(block); }}
-                            onKeyDown={isEditing || !canWrite ? undefined : (event) => {
-                              if (event.key === "Enter" || event.key === " ") {
-                                event.preventDefault();
-                                selectBlock(block.id, "list");
-                                startEdit(block);
-                              }
-                            }}
-                            data-fit="1" data-fit-height={Math.max(0.005, y1 - y0)}
-                            data-fit-base={title ? 14 : 12}
-                            style={{ position: "absolute", left: `${x0 * 100}%`, top: `${y0 * 100}%`,
-                              width: `${Math.max(0.5, (x1 - x0) * 100)}%`,
-                              minHeight: `${Math.max(0.5, (y1 - y0) * 100)}%`,
-                              // An image block is bounded by its own bbox, so a tall figure cannot paint
-                              // over the text below it; text blocks still grow to fit their words.
-                              height: block.images?.length ? `${Math.max(0.5, (y1 - y0) * 100)}%` : "auto",
-                              overflow: "visible",
-                              // P6c: the base layer never rises above the active (40) or editing (50) one,
-                              // so a page with more than 30 blocks cannot bury its own editor.
-                              zIndex: isEditing ? 50 : active ? 40 : Math.min(30, 10 + index),
-                              fontSize: title ? "14px" : "12px",
-                              lineHeight: 1.4, padding: "1px 2px 2px",
-                              // 2026-1111 1543: text always wraps inside its bbox. A long title used to
-                              // be kept on one line, which pushed the right pane into horizontal
-                              // scrolling — the exact "排版" problem. Orphans are handled by balancing
-                              // the lines instead of forbidding the break.
-                              wordBreak: "normal",
-                              whiteSpace: "normal",
-                              overflowWrap: "anywhere",
-                              ...(title ? { textWrap: "balance" as const } : {}),
-                              // P6b: text blocks paint their own background, so a block whose text
-                              // outgrows its bbox cannot be read through the neighbour beneath it.
-                              // Image blocks stay transparent: the page image is what they show.
-                              ...(isEditing ? { background: "var(--surface)" }
-                                : block.images?.length ? {}
-                                  : { background: "var(--canvas)" }) }}
-                            className={`rounded-xs border [&_p]:m-0 ${isEditing
-                              ? "border-[var(--primary)]"
-                              : active ? "border-[var(--primary)] bg-[var(--primary)]/8"
-                                : corrected ? "border-[var(--ok-fg)]"
-                                  : block.no_text ? "border-dashed border-[var(--line-cool-strong)]"
-                                    : "border-transparent hover:border-[var(--primary)] hover:bg-[var(--primary)]/5"}${canWrite && !isEditing ? " cursor-text" : ""}`}>
-                            {/* 2026-11-12 1036: the same tag MinerU shows on hover, so a reader can
-                                tell a table from a paragraph without opening it. */}
-                            {!isEditing && active && (TYPE_LABEL[block.type] || block.type) ? <span
-                              className="pointer-events-none absolute -top-[9px] left-[-1px] z-10 rounded-t-sm bg-[var(--primary)] px-[4px] text-caption leading-[12px] text-white">
-                              {TYPE_LABEL[block.type] ?? block.type}</span> : null}
-                            {isEditing ? renderEditor(block)
-                              : block.images?.length ? <div style={{ maxWidth: "100%" }}>
-                                {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
-                                  alt={`解析图片 ${name}`} loading="lazy" draggable={false}
-                                  style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }} />)}
-                                {/* P6c: an image block that was proofread still shows the corrected text
-                                    under the image — leaving edit mode must not hide it. */}
-                                {alignText ? <div className="parse-markdown mt-[2px] break-words">
-                                  <ReportMarkdown markdown={alignText} /></div> : null}
-                              </div>
-                              : block.no_text && !corrected
-                                ? <span className="block w-full text-[var(--text-3)]"
-                                  style={{ fontSize: "max(10px, 1.2cqw)", fontStyle: "italic" }}>[NO TEXT]</span>
-                                : <div className={`parse-markdown break-words ${title ? "font-semibold text-[var(--heading)]" : ""}`}>
-                                  {alignText ? <ReportMarkdown markdown={alignText} />
-                                    : <span className="italic text-[var(--text-3)]">[NO TEXT]</span>}
-                                </div>}
-                          </div>;
-                        })}
-                      </div>
-                      {unplaced.length ? <div className="mt-[12px]">
-                        <p className="mb-[4px] text-caption text-[var(--text-3)]">无坐标块（{unplaced.length}）</p>
-                        <ol>{unplaced.map((block) => <li key={block.id}
-                          className="border-l-2 border-transparent px-[12px] py-[6px] text-caption">
-                          {editing === block.id ? renderEditor(block) : renderBlockBody(block)}
-                        </li>)}</ol>
-                      </div> : null}
+                    {/* 2026-11-12 1036: the right pane is a flowing document, not a bbox canvas.
+                        MinerU's reader renders the parse as text a person can read at the pane's own
+                        width; absolute placement squeezed a table into its narrow column box and let
+                        a long paragraph overlap the block below. The left pane keeps the bboxes —
+                        they are what ties a block to its place on the page. */}
+                    {view === "align" ? <div ref={canvasRef} className="px-[16px] py-[10px]">
+                      {visible.map((block) => {
+                        const corrected = correctedByBlock[block.id];
+                        const isEditing = editing === block.id;
+                        const active = selected === block.id || hovered === block.id;
+                        const title = TITLE_TYPES.has(block.type);
+                        // A PDF line break is not a paragraph break (2026-1111 1617), but a table's
+                        // newlines are its row boundaries (2026-11-12 1036): only prose is re-flowed.
+                        const source = corrected ? corrected.after : block.text;
+                        const body = /(^|\n)\s*\|/.test(source) || /^\s*<table/i.test(source)
+                          ? source.trim()
+                          : source.replace(/\s*\n\s*/g, " ");
+                        const kind = kindColor(block.type);
+                        return <div key={block.id}
+                          ref={(node) => { if (node) rowRefs.current.set(block.id, node); else rowRefs.current.delete(block.id); }}
+                          data-block-id={block.id}
+                          onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
+                          role={isEditing || !canWrite ? undefined : "button"}
+                          tabIndex={isEditing || !canWrite ? undefined : 0}
+                          onClick={isEditing || !canWrite ? undefined : () => selectBlock(block.id, "list")}
+                          onDoubleClick={isEditing || !canWrite ? undefined : () => { selectBlock(block.id, "list"); startEdit(block); }}
+                          onKeyDown={isEditing || !canWrite ? undefined : (event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              selectBlock(block.id, "list");
+                              startEdit(block);
+                            }
+                          }}
+                          // The left edge carries the block's kind colour, the same colour as its
+                          // overlay on the source page: that is the alignment cue.
+                          style={{ borderLeftColor: active ? "var(--primary)" : kind }}
+                          className={`group relative border-l-2 py-[5px] pl-[10px] pr-[6px] transition-colors duration-[var(--dur-quick)] ${isEditing
+                            ? "bg-[var(--surface)]"
+                            : active ? "bg-[var(--primary-soft)]"
+                              : "hover:bg-[var(--surface)]"}${canWrite && !isEditing ? " cursor-text" : ""}`}>
+                          {active && (TYPE_LABEL[block.type] || block.type) ? <span
+                            style={{ background: kind }}
+                            className="pointer-events-none absolute -top-[1px] left-0 z-10 rounded-br-sm px-[5px] text-caption leading-[14px] text-white">
+                            {TYPE_LABEL[block.type] ?? block.type}</span> : null}
+                          {isEditing ? renderEditor(block)
+                            : block.images?.length ? <div>
+                              {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
+                                alt={`解析图片 ${name}`} loading="lazy" draggable={false}
+                                className="mb-[4px] block max-h-[360px] w-auto max-w-full rounded-sm border border-[var(--hairline)]" />)}
+                              {body ? <div className="parse-markdown break-words">
+                                <ReportMarkdown markdown={body} /></div> : null}
+                            </div>
+                            : block.no_text && !corrected
+                              ? <span className="block text-caption italic text-[var(--text-3)]">[NO TEXT]</span>
+                              : <div className={`parse-markdown break-words ${title ? "font-semibold text-[var(--heading)]" : ""}`}>
+                                {body ? <ReportMarkdown markdown={body} />
+                                  : <span className="italic text-[var(--text-3)]">[NO TEXT]</span>}
+                              </div>}
+                        </div>;
+                      })}
                     </div> : <ol>
                       {visible.map((block) => {
                         const corrected = correctedByBlock[block.id];

@@ -44,6 +44,8 @@ from ..stages import stage_view
 IMAGE_NAME = re.compile(r"^page_\d+_[a-z]+(?:_[a-z]+)*_\d+(?:_\d+)*\.(?:jpg|jpeg|png|webp)$",
                         re.IGNORECASE)
 CAPTION_START = re.compile(r"^(图|表|Figure|Table)\s*\d", re.IGNORECASE)
+# A table's structured content replaces its cropped picture (see ``build_parse_blocks``).
+TABLE_TYPES = frozenset({"table", "table_body"})
 
 
 class CorrectionRequest(BaseModel):
@@ -157,9 +159,18 @@ def build_parse_blocks(directory: Path, page: int) -> dict:
         # without HTML support printed that markup under the table and overlapped the next block,
         # so the block's ``text`` is Markdown: pipe tables, $…$ formulas, no stray tags. The raw
         # form stays available as ``raw_text`` for 数据 and for a correction's own record.
-        blocks.append({"id": f"p{page}-b{index}", "type": str(block.get("type") or "text"),
-                       "bbox": bbox, "text": block_markdown(text), "raw_text": text,
-                       "no_text": not text, "images": _block_images(block)})
+        kind = str(block.get("type") or "text")
+        markdown = block_markdown(text)
+        images = _block_images(block)
+        # MinerU's own rule (docvortex ``_render_table_body``): a table with structured content is
+        # rendered as that content and its cropped picture is **not** shown — showing both is the
+        # duplicate the reader saw. A chart or a figure is the opposite (``_render_chart_body``):
+        # the picture is the block, so it stays and the recognised text sits with it.
+        if kind in TABLE_TYPES and markdown:
+            images = []
+        blocks.append({"id": f"p{page}-b{index}", "type": kind,
+                       "bbox": bbox, "text": markdown, "raw_text": text,
+                       "no_text": not text, "images": images})
     # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
     blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
                                   item["bbox"][0] if item["bbox"] else 1e9))

@@ -33,10 +33,11 @@ MAX_TABLE_CELLS = 4000
 _TABLE_RE = re.compile(r"<table\b.*?</table>", re.IGNORECASE | re.DOTALL)
 _EQ_RE = re.compile(r"<eq>(.*?)</eq>", re.IGNORECASE | re.DOTALL)
 _TAG_RE = re.compile(r"</?[a-zA-Z][^<>]*>")
-# Characters Markdown would act on inside a formula. Without a math renderer ``$…$`` is plain text,
-# so ``0.291*\mathrm{HBB}`` would pair its asterisks and turn half the formula italic. Escaping them
-# keeps the formula literal now and still reads as a formula if a math renderer is added later.
-_MATH_ESCAPE_RE = re.compile(r"([*_~`\[\]])")
+# Characters Markdown would act on inside a formula. The formula is delimited by ``$…$`` and rendered
+# by KaTeX, which reads LaTeX commands such as ``\mathrm`` itself — so an escape must not touch a
+# backslash that starts a command. Only a literal ``_``/``*``/``~``/``[``/``]`` outside a command is
+# escaped, which keeps ``a_b`` literal while ``\mathrm{HBB}`` still reaches the renderer intact.
+_MATH_ESCAPE_RE = re.compile(r"(?<!\\)([*~`\[\]])")
 
 
 def _cell_text(node: Tag | NavigableString) -> str:
@@ -69,43 +70,34 @@ def _cell_text(node: Tag | NavigableString) -> str:
     return text.replace("|", "\\|")
 
 
-def _expand_grid(table: Tag) -> list[list[str]]:
-    """The table as a rectangular grid, ``rowspan``/``colspan`` filled in.
+def _is_complex_table(table: Tag) -> bool:
+    """Whether GFM cannot carry this table without losing structure (MinerU's own rule).
 
-    A merged cell occupies every grid position it covers, so a two-column merged cell shows its
-    words once and leaves the covered position blank instead of shifting the row.
+    A merged cell (``rowspan``/``colspan``), a nested table or a cell holding block content is not
+    expressible as a pipe table. Expanding a merged cell into repeated text invents cells that the
+    document does not have, which is why MinerU keeps such a table as HTML instead.
     """
-    rows = table.find_all("tr")
+    if table.find("table") is not None:
+        return True
+    for cell in table.find_all(("th", "td")):
+        if cell.has_attr("rowspan") or cell.has_attr("colspan"):
+            return True
+        if cell.find(("table", "div", "p", "ul", "ol", "pre", "img")) is not None:
+            return True
+    return False
+
+
+def _expand_grid(table: Tag) -> list[list[str]]:
+    """The table as a rectangular grid for the *simple* case (no merged cells).
+
+    Merged cells are handled by keeping the table as HTML; this grid therefore only fills the shape
+    a pipe table can carry, and a row shorter than the widest one is padded with empty cells.
+    """
     grid: list[list[str]] = []
-    pending: dict[tuple[int, int], str] = {}  # (row, column) filled by an earlier rowspan
-    for row_index, row in enumerate(rows):
+    for row in table.find_all("tr"):
         cells = row.find_all(("th", "td"), recursive=False)
-        if not cells:
-            continue
-        line: list[str] = []
-        column = 0
-        for cell in cells:
-            while (row_index, column) in pending:
-                line.append(pending.pop((row_index, column)))
-                column += 1
-            text = _cell_text(cell)
-            try:
-                colspan = max(1, int(cell.get("colspan") or 1))
-                rowspan = max(1, int(cell.get("rowspan") or 1))
-            except (TypeError, ValueError):
-                colspan = rowspan = 1
-            line.append(text)
-            column += 1
-            for _ in range(1, colspan):
-                line.append("")
-                column += 1
-            for down in range(1, rowspan):
-                pending[(row_index + down, column - colspan)] = text
-        # A rowspan from an earlier row may extend past this row's own cells.
-        while (row_index, column) in pending:
-            line.append(pending.pop((row_index, column)))
-            column += 1
-        grid.append(line)
+        if cells:
+            grid.append([_cell_text(cell) for cell in cells])
     width = max((len(line) for line in grid), default=0)
     for line in grid:
         line.extend([""] * (width - len(line)))
@@ -113,10 +105,12 @@ def _expand_grid(table: Tag) -> list[list[str]]:
 
 
 def html_table_to_gfm(markup: str) -> str | None:
-    """One ``<table>`` as a GFM pipe table, or None when it has no usable cell."""
+    """One ``<table>`` as GFM when it is simple; None when it must stay HTML (see the caller)."""
     soup = BeautifulSoup(markup, "html.parser")
     table = soup.find("table")
     if table is None:
+        return None
+    if _is_complex_table(table):
         return None
     grid = _expand_grid(table)
     if not grid or not any(any(cell for cell in line) for line in grid):
@@ -131,8 +125,13 @@ def html_table_to_gfm(markup: str) -> str | None:
 
 
 def _math(latex: str) -> str:
-    """One formula as ``$…$`` with Markdown-active characters escaped (see ``_MATH_ESCAPE_RE``)."""
-    return f"${_MATH_ESCAPE_RE.sub(r'\\\1', html.unescape(latex).strip())}$"
+    """One formula as ``$…$``, its LaTeX passed through untouched.
+
+    ``remark-math`` claims a ``$…$`` span before Markdown sees its contents, so ``*`` and ``_`` inside
+    a formula are not emphasis and must not be escaped — escaping them would hand KaTeX a broken
+    formula (``a\\_b`` instead of the subscript ``a_b``).
+    """
+    return f"${html.unescape(latex).strip()}$"
 
 
 def block_markdown(text: str) -> str:
@@ -146,15 +145,34 @@ def block_markdown(text: str) -> str:
         return ""
 
     def replace_table(match: re.Match[str]) -> str:
-        converted = html_table_to_gfm(match.group(0))
+        markup = match.group(0)
+        converted = html_table_to_gfm(markup)
         if converted is not None:
             return "\n\n" + converted + "\n\n"
-        # No usable grid (an empty or image-only table): keep its words, drop the markup.
-        soup = BeautifulSoup(match.group(0), "html.parser")
-        return "\n\n" + soup.get_text(" ", strip=True) + "\n\n"
+        # A merged or nested table keeps its HTML, exactly as MinerU does: a browser renders the
+        # rowspan/colspan natively, where expanding it would repeat a merged cell's words. Only the
+        # formulas inside are rewritten to math delimiters.
+        soup = BeautifulSoup(markup, "html.parser")
+        table = soup.find("table")
+        if table is None:
+            return "\n\n" + soup.get_text(" ", strip=True) + "\n\n"
+        for cell in table.find_all("eq"):
+            cell.replace_with(_math(cell.get_text()))
+        return "\n\n" + str(table) + "\n\n"
 
-    converted = _TABLE_RE.sub(replace_table, text)
+    # Tables are converted first and then set aside, so the stray-tag strip below cannot eat the
+    # HTML a complex table deliberately keeps.
+    kept: list[str] = []
+
+    def hold_table(match: re.Match[str]) -> str:
+        kept.append(replace_table(match))
+        return f"\u0000TABLE{len(kept) - 1}\u0000"
+
+    converted = _TABLE_RE.sub(hold_table, text)
     converted = _EQ_RE.sub(lambda match: _math(match.group(1)), converted)
     # A stray tag that is not part of a table (a lone <span>, a leftover </p>).
     converted = _TAG_RE.sub("", converted)
-    return html.unescape(converted).strip()
+    converted = html.unescape(converted)
+    for index, table in enumerate(kept):
+        converted = converted.replace(f"\u0000TABLE{index}\u0000", table)
+    return converted.strip()

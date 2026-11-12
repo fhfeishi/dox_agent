@@ -190,7 +190,10 @@ def build_parse_blocks(directory: Path, page: int) -> dict:
         # the Markdown pane line up with the source page instead of left-aligning everything.
         blocks.append({"id": f"p{page}-b{index}", "type": kind,
                        "bbox": bbox, "text": markdown, "raw_text": text,
-                       "align": _text_align(bbox), "no_text": not text, "images": images})
+                       "align": _text_align(bbox), "no_text": not text, "images": images,
+                       # 2026-11-12 1036: MinerU marks a block that starts on the previous page; the
+                       # reader says so instead of presenting half a paragraph as a whole one.
+                       "continues_prev": bool(block.get("continues_prev"))})
     # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
     blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
                                   item["bbox"][0] if item["bbox"] else 1e9))

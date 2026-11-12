@@ -942,6 +942,8 @@ button.ui-page-link { text-decoration: none; }
   overflow-y: hidden;
   max-width: 100%;
 }
+/* A figure keeps its own box: ``object-contain`` letterboxes a wide picture inside the bbox width
+   instead of stretching it, and the height cap stops a full-page figure from pushing the text away. */
 .parse-markdown th,
 .parse-markdown td {
   border: 1px solid var(--hairline-strong);

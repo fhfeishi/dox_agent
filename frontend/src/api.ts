@@ -912,6 +912,8 @@ export type ParseBlockCorrection = { before: string; after: string; by?: string;
 export type ParseBlock = { id: string; type: string; bbox: number[] | null; text: string; raw_text?: string;
   /** The alignment read from the block's own box, so the pane lines up with the source page. */
   align?: "left" | "center" | "right";
+  /** True when this block starts on the previous page (MinerU's ``continues_prev``). */
+  continues_prev?: boolean;
   no_text: boolean; images?: string[]; caption?: string; attached_to?: string; page?: number };
 export type ParseBlocks = { page: number; page_count: number; blocks: ParseBlock[] };
 export type ParseArchive = { rel: string; exists: boolean; cache: Record<string, unknown> | null; legacy: boolean;

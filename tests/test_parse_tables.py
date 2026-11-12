@@ -102,3 +102,37 @@ def test_a_table_block_drops_its_cropped_picture(tmp_path):
     block = build_parse_blocks(directory, 0)["blocks"][0]
     assert block["images"] == []
     assert block["text"].startswith("| 编号 | 判别公式 |")
+
+
+def test_a_block_records_whether_it_continues_the_previous_page(tmp_path):
+    """MinerU marks a block that starts on the previous page; the reader must not present half a
+    paragraph as a whole one (2026-11-12 1036)."""
+    from src.api.ingest_workbench import build_parse_blocks
+
+    directory = tmp_path / "parsed"
+    directory.mkdir()
+    (directory / "middle_json.json").write_text(json.dumps({"pages": [{"blocks": [
+        {"type": "text", "bbox": [0.1, 0.1, 0.9, 0.3], "continues_prev": True,
+         "content": [{"type": "text", "content": "从上一页接续的段落"}]},
+        {"type": "text", "bbox": [0.1, 0.31, 0.9, 0.4],
+         "content": [{"type": "text", "content": "本页新段落"}]},
+    ]}]}), encoding="utf-8")
+    blocks = build_parse_blocks(directory, 0)["blocks"]
+    assert blocks[0]["continues_prev"] is True
+    assert blocks[1]["continues_prev"] is False
+
+
+def test_an_inline_formula_child_keeps_its_math_marker():
+    """MinerU nests a formula as an ``equation_inline`` child; joining it as plain text left the
+    reader with literal ``\\mathrm{D}1>0`` in the paragraph (2026-11-12 1036)."""
+    from src.parse_tables import block_markdown
+    from src.parsers import _block_text
+
+    block = {"type": "text", "content": [
+        {"type": "text", "content": "结果判读: "},
+        {"type": "equation_inline", "content": "\\mathrm{D}1>0, \\mathrm{D}2<0"},
+        {"type": "text", "content": "，判别为月经血样本。"},
+    ]}
+    out = block_markdown(_block_text(block))
+    assert "$\\mathrm{D}1>0, \\mathrm{D}2<0$" in out
+    assert "，判别为月经血样本。" in out

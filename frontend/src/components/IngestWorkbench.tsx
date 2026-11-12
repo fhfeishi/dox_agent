@@ -40,6 +40,15 @@ const KIND_COLOR: Record<string, string> = {
   page_footnote: "var(--kind-footnote)",
 };
 const kindColor = (type: string) => KIND_COLOR[type] ?? "var(--primary)";
+
+/** A figure's width from its own bbox share, capped so a full-width figure is not a wall of pixels.
+ *  2026-11-12 1036: ``40cqw`` would be 40 % of the *pane*, not of the page, so a small figure grew
+ *  with the window. A pixel cap keeps the picture at a readable size at every window width. */
+function figureSize(bbox: number[] | null): { width?: string; maxWidth?: string } {
+  if (!bbox) return {};
+  const share = Math.min(100, Math.max(8, (bbox[2] - bbox[0]) * 100));
+  return { width: `${share}%`, maxWidth: `${Math.max(160, Math.round(share * 6))}px` };
+}
 /** Plain words for the stage view's machine states (src/stages.py); anything else is shown as is. */
 const STAGE_WORD: Record<string, string> = {
   present: "在", missing: "缺失", cached: "已解析", none: "未解析", current: "最新", stale: "待更新",
@@ -196,34 +205,52 @@ export function IngestWorkbench() {
     if (textScrollRef.current) textScrollRef.current.scrollTop = 0;
   }, [page, view]);
 
-  // P6: in the 对齐 view both panes scroll together by proportion. Only scrollTop is mirrored: the
-  // wheel-to-page gesture above still decides when a page turns, so a sync never turns a page.
+  // 2026-11-12 1036: the two panes follow the *same block*, not the same scroll ratio.
+  // A page's blocks are laid out top to bottom on both sides, but a table occupies far more of the
+  // right pane than of the left, so mirroring ``scrollTop`` by proportion drifts: after one table the
+  // reader is looking at different content on each side. MinerU solves this by anchoring on a block,
+  // and so does this: whichever block is nearest the top of the scrolling pane decides where the
+  // other pane goes.
   useEffect(() => {
     if (view !== "align" || !archive?.exists || !blocks) return;
     const left = pageScrollRef.current;
     const right = textScrollRef.current;
     if (!left || !right) return;
-    const mirror = (from: HTMLDivElement, to: HTMLDivElement) => () => {
+    // The block nearest the top edge of a pane, measured on its own scroll box.
+    const topBlock = (pane: HTMLDivElement, refs: Map<string, HTMLElement>) => {
+      const box = pane.getBoundingClientRect();
+      let best: { id: string; offset: number } | null = null;
+      for (const [id, node] of refs) {
+        const rect = node.getBoundingClientRect();
+        if (rect.bottom < box.top || rect.top > box.bottom) continue;
+        const offset = rect.top - box.top;
+        if (!best || Math.abs(offset) < Math.abs(best.offset)) best = { id, offset };
+      }
+      return best;
+    };
+    const follow = (from: HTMLDivElement, fromRefs: Map<string, HTMLElement>,
+                    to: HTMLDivElement, toRefs: Map<string, HTMLElement>) => () => {
       if (syncing.current) return;
-      const fromRange = from.scrollHeight - from.clientHeight;
-      const toRange = to.scrollHeight - to.clientHeight;
-      if (fromRange <= 0 || toRange <= 0) return;
+      const anchor = topBlock(from, fromRefs);
+      if (!anchor) return;
+      const target = toRefs.get(anchor.id);
+      if (!target) return;
       syncing.current = true;
-      to.scrollTop = (from.scrollTop / fromRange) * toRange;
-      // Release on the next frame, after the mirrored scroll event has fired.
+      // Put the anchor's top at the same distance from the pane's top on both sides.
+      const delta = target.getBoundingClientRect().top - to.getBoundingClientRect().top;
+      to.scrollTop += delta - anchor.offset;
       requestAnimationFrame(() => { syncing.current = false; });
     };
-    const leftHandler = mirror(left, right);
-    const rightHandler = mirror(right, left);
+    const leftHandler = follow(left, boxRefs.current, right, rowRefs.current);
+    const rightHandler = follow(right, rowRefs.current, left, boxRefs.current);
     left.addEventListener("scroll", leftHandler, { passive: true });
     right.addEventListener("scroll", rightHandler, { passive: true });
     return () => {
       left.removeEventListener("scroll", leftHandler);
       right.removeEventListener("scroll", rightHandler);
     };
-    // P6d: ``archive?.exists`` and ``blocks?.page`` are stable values that become available only
-    // after the async loads, so the handlers bind when the panes actually exist — not once against
-    // empty refs. (The block array itself is a fresh object each render; its page is not.)
+    // Bind when the panes exist: ``archive?.exists`` and the block page only become available after
+    // the async loads, so binding once against empty refs would never fire.
   }, [view, page, rel, split, archive?.exists, blocks?.page, pageSize]);
 
   const pdfs = useMemo(() => files.filter((item) => item.rel_path.toLowerCase().endsWith(".pdf")), [files]);
@@ -824,6 +851,9 @@ export function IngestWorkbench() {
                             ? "bg-[var(--surface)]"
                             : active ? "bg-[var(--primary-soft)]"
                               : "hover:bg-[var(--surface)]"}${canWrite && !isEditing ? " cursor-text" : ""}`}>
+                          {block.continues_prev ? <span
+                            className="mb-[2px] inline-flex items-center gap-[3px] rounded-sm bg-[var(--surface-cool)] px-[5px] text-caption text-[var(--text-3)]"
+                            title="这一段从上一页接续过来">↖ 接上页</span> : null}
                           {active && (TYPE_LABEL[block.type] || block.type) ? <span
                             style={{ background: kind }}
                             className="pointer-events-none absolute -top-[1px] left-0 z-10 rounded-br-sm px-[5px] text-caption leading-[14px] text-white">
@@ -836,8 +866,8 @@ export function IngestWorkbench() {
                                   as large as the source shows it. */}
                               {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
                                 alt={`解析图片 ${name}`} loading="lazy" draggable={false}
-                                style={{ width: block.bbox ? `${Math.min(100, Math.max(8, (block.bbox[2] - block.bbox[0]) * 100))}%` : undefined }}
-                                className="mb-[4px] block h-auto max-h-[420px] max-w-full rounded-sm border border-[var(--hairline)]" />)}
+                                style={figureSize(block.bbox)}
+                                className="mb-[4px] block h-auto max-w-full rounded-sm border border-[var(--hairline)] object-contain" />)}
                               {body ? <div className="parse-markdown break-words">
                                 <ReportMarkdown markdown={body} /></div> : null}
                             </div>

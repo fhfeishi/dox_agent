@@ -68,9 +68,9 @@ export function IngestWorkbench() {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  // 2026-1111 1543: one working view. 对齐 places every block at its bbox so the two panes line up;
-  // 数据 keeps the raw JSON for checking the parser's own fields. The flowing 排版 list is gone —
-  // it was a third way to read the same page and the main reason the toolbar kept growing.
+  // 2026-1112 1036: the two views are named for what they show — Markdown (the page as rendered
+  // text, each block at its own bbox) and JSON (the parser's own fields). 对齐/数据 were the same
+  // two things under internal names.
   const [view, setView] = useState<"align" | "json">("align");
   const [pageSize, setPageSize] = useState<{ w: number; h: number } | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
@@ -482,7 +482,8 @@ export function IngestWorkbench() {
       className={canWrite ? "cursor-text" : ""}>
       {view === "json"
         ? <pre className="whitespace-pre-wrap break-all font-code text-caption text-[var(--text-2)]">{JSON.stringify(
-          { id: block.id, type: block.type, bbox: block.bbox, text, images: block.images }, null, 1)}</pre>
+          { id: block.id, type: block.type, bbox: block.bbox, text: block.raw_text ?? text,
+            images: block.images }, null, 1)}</pre>
         : <>
           {block.images?.length ? <div className="mb-[6px] flex flex-wrap gap-[6px]">
             {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
@@ -491,7 +492,7 @@ export function IngestWorkbench() {
           </div> : null}
           {block.no_text && !corrected
             ? (block.images?.length ? null : <p className="text-body italic text-[var(--text-3)]" title={canWrite ? "双击可补录这一块" : "这一块解析没有文字"}>[NO TEXT]</p>)
-            : <div className={`break-words text-pretty ${TITLE_TYPES.has(block.type) ? "font-semibold text-balance text-[var(--heading)]" : ""}`}><ReportMarkdown markdown={text} /></div>}
+            : <div className={`parse-markdown break-words text-pretty ${TITLE_TYPES.has(block.type) ? "font-semibold text-balance text-[var(--heading)]" : ""}`}><ReportMarkdown markdown={text} /></div>}
         </>}
     </div>;
   };
@@ -745,10 +746,15 @@ export function IngestWorkbench() {
                           onClick={() => selectBlock(block.id, "page")}
                           onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
                           aria-label={`定位到解析块：${(block.text || TYPE_LABEL[block.type] || block.type).slice(0, 30)}`}
+                          // 2026-11-12 1036: the outline says what the block is, so a reader can match
+                          // a table on the page to the table on the right without hovering every box.
+                          title={TYPE_LABEL[block.type] ?? block.type}
                           className={`absolute rounded-xs border transition-colors duration-[var(--dur-quick)] ${lit
                             ? "border-2 border-[var(--primary)] bg-[var(--primary)]/8"
                             : fixed ? "border border-[var(--ok-fg)] bg-[var(--ok-fg)]/5"
-                            : "border border-[var(--primary)] hover:bg-[var(--primary)]/5"}`}
+                            : block.images?.length ? "border border-[var(--kind-figure)]/70 hover:bg-[var(--kind-figure)]/8"
+                              : TITLE_TYPES.has(block.type) ? "border border-[var(--kind-title)]/60 hover:bg-[var(--kind-title)]/8"
+                                : "border border-[var(--primary)] hover:bg-[var(--primary)]/5"}`}
                           style={{ left: `${x0 * 100}%`, top: `${y0 * 100}%`,
                             width: `${Math.max(0.5, (x1 - x0) * 100)}%`, height: `${Math.max(0.5, (y1 - y0) * 100)}%` }} />;
                       })}
@@ -785,7 +791,7 @@ export function IngestWorkbench() {
                     <span className="shrink-0 whitespace-nowrap text-caption text-[var(--text-3)]">{page + 1}/{pages || "—"} · {visible.length} 段</span>
                     <div className="ml-auto flex items-center gap-[10px]">
                       <Segmented label="解析结果视图" value={view} onChange={setView}
-                        options={[["align", "对齐"], ["json", "数据"]] as const} />
+                        options={[["align", "Markdown"], ["json", "JSON"]] as const} />
                     </div>
                   </PaneBar>
                   <div ref={textScrollRef} className="min-h-0 flex-1 overflow-auto">
@@ -815,7 +821,13 @@ export function IngestWorkbench() {
                           // 2026-1111 1617: a PDF line break is not a paragraph break. Keeping the
                           // parser's newlines made a title render as "（一）结" / "题部分"; the box
                           // width, not the old line endings, decides where this view wraps.
-                          const alignText = (corrected ? corrected.after : block.text).replace(/\s*\n\s*/g, " ");
+                          // 2026-11-12 1036: a table is the exception — its newlines are the row
+                          // boundaries of a GFM pipe table, so flattening them collapsed the table
+                          // into one run of text. Only prose is re-flowed.
+                          const source = corrected ? corrected.after : block.text;
+                          const alignText = /(^|\n)\s*\|/.test(source)
+                            ? source.trim()
+                            : source.replace(/\s*\n\s*/g, " ");
                           return <div key={block.id}
                             ref={(node) => { if (node) rowRefs.current.set(block.id, node); else rowRefs.current.delete(block.id); }}
                             onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
@@ -866,6 +878,11 @@ export function IngestWorkbench() {
                                 : corrected ? "border-[var(--ok-fg)]"
                                   : block.no_text ? "border-dashed border-[var(--line-cool-strong)]"
                                     : "border-transparent hover:border-[var(--primary)] hover:bg-[var(--primary)]/5"}${canWrite && !isEditing ? " cursor-text" : ""}`}>
+                            {/* 2026-11-12 1036: the same tag MinerU shows on hover, so a reader can
+                                tell a table from a paragraph without opening it. */}
+                            {!isEditing && active && (TYPE_LABEL[block.type] || block.type) ? <span
+                              className="pointer-events-none absolute -top-[9px] left-[-1px] z-10 rounded-t-sm bg-[var(--primary)] px-[4px] text-caption leading-[12px] text-white">
+                              {TYPE_LABEL[block.type] ?? block.type}</span> : null}
                             {isEditing ? renderEditor(block)
                               : block.images?.length ? <div style={{ maxWidth: "100%" }}>
                                 {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
@@ -873,13 +890,13 @@ export function IngestWorkbench() {
                                   style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }} />)}
                                 {/* P6c: an image block that was proofread still shows the corrected text
                                     under the image — leaving edit mode must not hide it. */}
-                                {alignText ? <div className="mt-[2px] break-words">
+                                {alignText ? <div className="parse-markdown mt-[2px] break-words">
                                   <ReportMarkdown markdown={alignText} /></div> : null}
                               </div>
                               : block.no_text && !corrected
                                 ? <span className="block w-full text-[var(--text-3)]"
                                   style={{ fontSize: "max(10px, 1.2cqw)", fontStyle: "italic" }}>[NO TEXT]</span>
-                                : <div className={`break-words ${title ? "font-semibold text-[var(--heading)]" : ""}`}>
+                                : <div className={`parse-markdown break-words ${title ? "font-semibold text-[var(--heading)]" : ""}`}>
                                   {alignText ? <ReportMarkdown markdown={alignText} />
                                     : <span className="italic text-[var(--text-3)]">[NO TEXT]</span>}
                                 </div>}

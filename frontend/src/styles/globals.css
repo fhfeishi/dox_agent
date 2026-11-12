@@ -71,7 +71,10 @@
   --surface-cool: #f6f8fb;
   --page-cool: #f5f7fa;
   --selected-cool: #eef3f9;
-  --muted-cool: #8a98aa;
+  /* Counts, units and other third-rank notes inside a control. A lighter grey than --steel cannot clear
+     4.5:1 on the segmented track (--line-cool-soft) they sit on, so the third rank is carried by size and
+     weight instead of a paler colour: #8a98aa reached only 2.6–2.9:1. */
+  --muted-cool: #5f6b7e;
   --muted-cool-soft: #b4bdc9;
   --bar: #7f97b1;
   --bar-soft: #9fb3c8;
@@ -119,8 +122,11 @@
   --ink: #1a1a1a;
   --charcoal: #3d4b5c;
   --slate: #3d4b5c;
-  --steel: #6b7a8c;
-  --stone: #6b7a8c;
+  /* Secondary notes sit on --canvas, --surface-soft, --surface, --surface-cool, --surface-sink and
+     --surface-press; #5f6b7e keeps ≥4.5:1 on all six (WCAG AA for body text), where the former #6b7a8c
+     reached 4.39:1 on white and 3.66:1 on a pressed row. Same hue, one step darker. */
+  --steel: #5f6b7e;
+  --stone: #5f6b7e;
   --muted: #b4bdc9;
 
   --primary: #345a78;
@@ -137,6 +143,12 @@
   --pink: #ff64c8;
   --red: #e03131;
 
+  /* Block-kind outlines in 资料入库 (2026-11-12 1036): a reader matches a table or a heading on the
+     source page to the same block on the right by its outline colour, the way MinerU tags them.
+     Both are muted so a page of thirty blocks does not read as a colour chart. */
+  --kind-figure: #7b3ff2;
+  --kind-title: #dd5b00;
+
   --tint-peach: #ffe8d4;
   --tint-rose: #fde0ec;
   --tint-mint: #d9f3e1;
@@ -148,7 +160,7 @@
 
   /* Text on cool surfaces (领导体验优化 §4.3): body and secondary notes, alongside --heading. */
   --text-2: #3d4b5c;
-  --text-3: #6b7a8c;
+  --text-3: #5f6b7e;
   /* The one data-focus colour (selected circle, focused bar), apart from the interactive --primary. */
   --focus-data: #2e8b7a;
 
@@ -865,3 +877,57 @@ button.ui-page-link { text-decoration: none; }
 .gap-card .opp-chart { min-height: 300px; }
 .slide-inline { margin-left: 6px; padding: 1px 8px; border-radius: var(--radius-md); background: var(--terrain-amber); color: var(--canvas); font-size: var(--text-caption); }
 .slide-saved { font-size: var(--text-caption); color: var(--terrain-dot-on); }
+
+/* 资料入库 · 解析结果 (2026-11-12 1036).
+   A parse block renders Markdown without the report's prose scale: its font size comes from the
+   bbox fit pass, so these rules only add what a proofreader needs — a real table that scrolls
+   inside its own block instead of widening the page, and no inherited prose margins that would
+   push a block past its box. */
+.parse-markdown {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+.parse-markdown > :first-child { margin-top: 0; }
+.parse-markdown > :last-child { margin-bottom: 0; }
+.parse-markdown p,
+.parse-markdown ul,
+.parse-markdown ol,
+.parse-markdown pre,
+.parse-markdown table,
+.parse-markdown blockquote {
+  margin: 0.35em 0;
+}
+.parse-markdown h1,
+.parse-markdown h2,
+.parse-markdown h3,
+.parse-markdown h4 {
+  margin: 0.4em 0 0.2em;
+  font-weight: 600;
+  color: var(--heading);
+}
+.parse-markdown table {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  line-height: 1.45;
+}
+.parse-markdown th,
+.parse-markdown td {
+  border: 1px solid var(--hairline-strong);
+  padding: 2px 5px;
+  text-align: left;
+  vertical-align: top;
+}
+.parse-markdown th {
+  background: var(--surface-sink);
+  font-weight: 600;
+}
+.parse-markdown code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.94em;
+}

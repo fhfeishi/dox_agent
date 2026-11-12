@@ -32,6 +32,7 @@ from ..parse_cache import (
     quality_grade,
     read_cache,
 )
+from ..parse_tables import block_markdown
 from ..parsers import _block_images, _block_text, sha256_file
 from ..personal_libraries import MINE
 from ..personal_libraries import owner as personal_owner
@@ -121,6 +122,51 @@ def _markdown_pages(directory: Path) -> list[str]:
     return ["".join(chunk) for chunk in pages]
 
 
+def build_parse_blocks(directory: Path, page: int) -> dict:
+    """One page of a MinerU parse as the blocks a reader sees (R10, 2026-11-12 1036).
+
+    Module level rather than a closure inside ``install`` so the block contract can be tested without
+    a running app: a block keeps its stable id, its normalised bbox and its text, and a block with no
+    text is reported with ``no_text=True`` rather than dropped — a blank block is exactly what a
+    proofreader has to see (a figure, an empty cell, a failed OCR line).
+
+    ``text`` is Markdown a reader can render (pipe tables, ``$…$``); ``raw_text`` keeps the parser's
+    own string (an HTML table, ``<eq>``), which is what JSON view and a correction record show.
+    """
+    path = directory / "middle_json.json"
+    if not path.is_file():
+        raise HTTPException(404, "这份解析没有逐块数据（缺 middle_json.json）")
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise HTTPException(422, "逐块数据无法读取") from exc
+    pages = data.get("pages") if isinstance(data, dict) else None
+    if not isinstance(pages, list) or not pages:
+        raise HTTPException(422, "逐块数据为空")
+    if page < 0 or page >= len(pages):
+        raise HTTPException(404, "页码超出解析范围")
+    raw = pages[page].get("blocks") if isinstance(pages[page], dict) else None
+    blocks = []
+    for index, block in enumerate(raw or []):
+        if not isinstance(block, dict):
+            continue
+        bbox = block.get("bbox")
+        bbox = [float(value) for value in bbox] if isinstance(bbox, list) and len(bbox) == 4 else None
+        text = _block_text(block)
+        # 2026-11-12 1036: MinerU keeps a table as an HTML string and a formula as <eq>. A reader
+        # without HTML support printed that markup under the table and overlapped the next block,
+        # so the block's ``text`` is Markdown: pipe tables, $…$ formulas, no stray tags. The raw
+        # form stays available as ``raw_text`` for 数据 and for a correction's own record.
+        blocks.append({"id": f"p{page}-b{index}", "type": str(block.get("type") or "text"),
+                       "bbox": bbox, "text": block_markdown(text), "raw_text": text,
+                       "no_text": not text, "images": _block_images(block)})
+    # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
+    blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
+                                  item["bbox"][0] if item["bbox"] else 1e9))
+    _attach_captions(blocks)
+    return {"page": page, "page_count": len(pages), "blocks": blocks}
+
+
 def install(app, ctx):
     find_corpus = ctx.find_corpus
     knowledge_for = ctx.knowledge_for
@@ -175,34 +221,7 @@ def install(app, ctx):
         a block with no text is reported with ``no_text=True`` rather than dropped, because a blank
         block is exactly what a proofreader has to see (a figure, an empty cell, a failed OCR line).
         """
-        path = directory / "middle_json.json"
-        if not path.is_file():
-            raise HTTPException(404, "这份解析没有逐块数据（缺 middle_json.json）")
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as exc:
-            raise HTTPException(422, "逐块数据无法读取") from exc
-        pages = data.get("pages") if isinstance(data, dict) else None
-        if not isinstance(pages, list) or not pages:
-            raise HTTPException(422, "逐块数据为空")
-        if page < 0 or page >= len(pages):
-            raise HTTPException(404, "页码超出解析范围")
-        raw = pages[page].get("blocks") if isinstance(pages[page], dict) else None
-        blocks = []
-        for index, block in enumerate(raw or []):
-            if not isinstance(block, dict):
-                continue
-            bbox = block.get("bbox")
-            bbox = [float(value) for value in bbox] if isinstance(bbox, list) and len(bbox) == 4 else None
-            text = _block_text(block)
-            blocks.append({"id": f"p{page}-b{index}", "type": str(block.get("type") or "text"),
-                           "bbox": bbox, "text": text, "no_text": not text,
-                           "images": _block_images(block)})
-        # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
-        blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
-                                      item["bbox"][0] if item["bbox"] else 1e9))
-        _attach_captions(blocks)
-        return {"page": page, "page_count": len(pages), "blocks": blocks}
+        return build_parse_blocks(directory, page)
 
     def source_sha_for(info, rel: str, directory: Path) -> str | None:
         """The current source sha for reading, computed only when an overlay exists.

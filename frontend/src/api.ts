@@ -907,8 +907,10 @@ export type ParseCorrections = { active: boolean; invalidated: boolean; pages: n
 export type ParseCorrection = { before: string; after: string; by?: string; at?: string;
   blocks?: Record<string, ParseBlockCorrection> } | null;
 export type ParseBlockCorrection = { before: string; after: string; by?: string; at?: string; bbox?: number[] };
-export type ParseBlock = { id: string; type: string; bbox: number[] | null; text: string; no_text: boolean;
-  images?: string[]; caption?: string; attached_to?: string; page?: number };
+/** ``text`` is Markdown the reader can render (pipe tables, ``$…$``); ``raw_text`` is the parser's own
+ *  string (HTML table, ``<eq>``) and is what JSON view and a correction record show (2026-11-12). */
+export type ParseBlock = { id: string; type: string; bbox: number[] | null; text: string; raw_text?: string;
+  no_text: boolean; images?: string[]; caption?: string; attached_to?: string; page?: number };
 export type ParseBlocks = { page: number; page_count: number; blocks: ParseBlock[] };
 export type ParseArchive = { rel: string; exists: boolean; cache: Record<string, unknown> | null; legacy: boolean;
   profile: string; pages: number; attempts: Record<string, unknown>[]; quality: ParseQuality | null;

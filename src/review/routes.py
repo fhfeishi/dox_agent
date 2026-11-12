@@ -730,14 +730,31 @@ def runs(request: Request, scope: str = "mine"):
     return [_list_row(r) for r in db.all_items("run") if owners is None or (r.get("created_by") or "") in owners]
 
 
+def readable_run(id: str, request: Request) -> dict:
+    """A review run after authorisation (High#2, 2026-11-05).
+
+    ``require`` only answers "does this record exist"; it is shared with rules, documents and
+    templates, whose visibility differs, so it is deliberately left alone. A run is readable by the
+    account recorded on it or by an administrator, and a run from before authorship was recorded
+    belongs to the administrator — the same ownerless rule the rest of the application follows.
+    """
+    run = require("run", id)
+    username, role = request.state.user[:2]
+    owner = run.get("created_by") or ""
+    if not (owner == username or (role == "admin" and not owner) or role == "admin" and owner == username):
+        raise HTTPException(403, "这次审查属于其他账户。")
+    return run
+
+
 @router.get("/runs/{id}")
-def run(id: str):
-    return present_report(require("run", id))
+def run(id: str, request: Request):
+    return present_report(readable_run(id, request))
 
 
 @router.get("/runs/{id}/export/{kind}")
-def download(id: str, kind: str):
-    run = require("run", id)
+def download(id: str, kind: str, request: Request):
+    # Authorisation first: a refused export must not create the output directory or write a file.
+    run = readable_run(id, request)
     if run["status"] != "completed":
         raise HTTPException(409, "审核尚未完成。")
     output = db.DATA / "reports" / id

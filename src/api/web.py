@@ -23,13 +23,32 @@ def install(app, ctx):
     settings = ctx.settings
     router = APIRouter()
 
+    def owner(request: Request) -> str:
+        """The signed-in account. It is never taken from the request body (High#2, 2026-11-05)."""
+        return request.state.user[0]
+
+    def may_use(request: Request, author: str) -> bool:
+        """A cached search, preview or snapshot belongs to the account that made it.
+
+        An entry with no recorded author predates authorship and belongs to the administrator,
+        the same rule every ownerless record follows. The client's own fields prove nothing.
+        """
+        username, role = request.state.user[:2]
+        if not author:
+            return role == "admin"
+        return role == "admin" and author == username or author == username
+
+    def require_use(request: Request, entry: dict, message: str) -> None:
+        if not may_use(request, entry.get("created_by", "")):
+            raise HTTPException(403, message)
+
     @router.get("/api/web/search/capability")
     async def web_search_capability():
         return {"provider": "firecrawl", "available": bool(settings.firecrawl_api_key),
                 "max_domains": 3, "max_results": 5, "max_selected": 3}
 
     @router.post("/api/web/search")
-    async def web_search(payload: WebSearchRequest):
+    async def web_search(payload: WebSearchRequest, request: Request):
         if not settings.firecrawl_api_key:
             raise HTTPException(409, "网络搜索需要配置 FIRECRAWL_API_KEY")
         try:
@@ -62,19 +81,24 @@ def install(app, ctx):
                 "query": payload.query, "domains": payload.domains,
                 "time_filter": payload.time_filter, "results": {item["result_id"]: item for item in results},
                 "selected": set(), "expires_at": expires_at,
+                # The cache carries who made it, so nobody else can preview its results.
+                "created_by": owner(request),
             }
         return {"search_id": search_id, "expires_at": expires_at.isoformat(),
                 "query": payload.query, "domains": payload.domains,
                 "time_filter": payload.time_filter, "provider": "firecrawl", "results": results}
 
     @router.post("/api/web/search/{search_id}/preview/{result_id}")
-    async def preview_search_result(search_id: str, result_id: str):
+    async def preview_search_result(search_id: str, result_id: str, request: Request):
         now = datetime.now(UTC)
         async with app.state.import_lock:
             app.state.searches = prune_web_entries(app.state.searches, now)
             search = app.state.searches.get(search_id)
             if search is None:
                 raise HTTPException(409, "搜索结果已过期，请重新搜索")
+            # #3: checked under the same lock as the selection, so another account can neither spend
+            # this search's three preview slots nor trigger a fetch on it.
+            require_use(request, search, "这次搜索属于其他账户")
             result = search["results"].get(result_id)
             if result is None:
                 raise HTTPException(404, "搜索结果不存在")
@@ -98,11 +122,12 @@ def install(app, ctx):
         async with app.state.import_lock:
             app.state.previews = prune_web_entries(app.state.previews, fetched_at)
             app.state.previews[preview_id] = {"doc": doc, "fetched_at": fetched_at.isoformat(),
-                                              "expires_at": expires_at, "search": search_meta}
+                                              "expires_at": expires_at, "search": search_meta,
+                                              "created_by": owner(request)}
         return {"preview_id": preview_id, "expires_at": expires_at.isoformat(), **doc.model_dump()}
 
     @router.post("/api/web/preview")
-    async def preview(payload: WebRequest):
+    async def preview(payload: WebRequest, request: Request):
         try:
             doc = await parse_web(payload.url, settings)
             now = datetime.now(UTC)
@@ -111,7 +136,7 @@ def install(app, ctx):
             async with app.state.import_lock:
                 app.state.previews = prune_web_entries(app.state.previews, now)
                 app.state.previews[preview_id] = {"doc": doc, "fetched_at": now.isoformat(),
-                                                  "expires_at": expires_at}
+                                                  "expires_at": expires_at, "created_by": owner(request)}
             return {"preview_id": preview_id, "expires_at": expires_at.isoformat(), **doc.model_dump()}
         except HTTPException:
             raise
@@ -134,6 +159,9 @@ def install(app, ctx):
             current = app.state.previews.get(preview_id)
             if current is None or current["expires_at"] <= datetime.now(UTC):
                 raise HTTPException(409, "预览已失效，请重新抓取")
+            # #4: the preview belongs to the account that fetched it. Checked before the library
+            # write and before the preview is dropped, so a refused confirm changes nothing.
+            require_use(request, current, "这个预览属于其他账户")
             result = {}
             if payload.target_corpus_id:
                 info = await asyncio.to_thread(find_corpus, payload.target_corpus_id)
@@ -142,15 +170,19 @@ def install(app, ctx):
                 result = await asyncio.to_thread(knowledge_for(info).put, current["doc"])
             snapshot = await asyncio.to_thread(app.state.web_snapshots.save, current["doc"],
                                                fetched_at=current["fetched_at"],
-                                               search=current.get("search"))
+                                               search=current.get("search"), created_by=owner(request))
             del app.state.previews[preview_id]
             return {**result, "web_snapshot_id": snapshot["web_snapshot_id"]}
 
     @router.get("/api/web/snapshots/{snapshot_id}")
-    async def read_web_snapshot(snapshot_id: str):
+    async def read_web_snapshot(snapshot_id: str, request: Request):
+        """A snapshot is readable by its author or an administrator; ownerless ones are the
+        administrator's. Chat consumption uses the same rule via ``read_snapshot``."""
         try:
-            return await asyncio.to_thread(app.state.web_snapshots.get, snapshot_id)
+            snapshot = await asyncio.to_thread(app.state.web_snapshots.get, snapshot_id)
         except KeyError as exc:
             raise HTTPException(404, "网页快照不存在") from exc
+        require_use(request, snapshot, "这个网页快照属于其他账户")
+        return snapshot
 
     app.include_router(router)

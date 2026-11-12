@@ -140,6 +140,15 @@ class ArtifactStore:
                 raise HTTPException(410, {"lifecycle": "purged", "message": "报告已永久删除"})
         raise KeyError("报告不存在")
 
+    def owner_of(self, artifact_id: str, *, include_trashed=False) -> str:
+        """The account that created this artifact (``""`` when it predates authorship)."""
+        with self.connect() as db:
+            self._guard(db, artifact_id, include_trashed=include_trashed)
+            row = db.execute("SELECT created_by FROM artifacts WHERE id=?", (artifact_id,)).fetchone()
+        if row is None:
+            raise KeyError("报告中心没有这条记录")
+        return row[0]
+
     def report_artifact(self, run_id):
         if not run_id:
             return None
@@ -174,7 +183,13 @@ class ArtifactStore:
             else None
         )
 
-    def list_reports(self, *, session_key=None, run_id=None, limit=20, offset=0):
+    def list_reports(self, *, session_key=None, run_id=None, limit=20, offset=0, owners=None):
+        """Report metadata for a session, newest first (High#2 #1, 2026-11-05).
+
+        ``owners`` keeps the reports of those accounts (``""``: recorded before authorship); the
+        filter runs in SQL **before** LIMIT/OFFSET, so a page cannot be filled with records the
+        reader may not see and then emptied.
+        """
         with self.connect() as db:
             clauses = ["type='report'", "trashed_at IS NULL", "generated_version IS NOT NULL"]
             args = []
@@ -182,6 +197,9 @@ class ArtifactStore:
                 if value is not None:
                     clauses.append(field + "=?")
                     args.append(value)
+            if owners is not None:
+                clauses.append(f"created_by IN ({','.join('?' * len(owners))})")
+                args.extend(owners)
             rows = db.execute(
                 "SELECT report_id FROM artifacts WHERE "
                 + " AND ".join(clauses)

@@ -46,6 +46,8 @@ IMAGE_NAME = re.compile(r"^page_\d+_[a-z]+(?:_[a-z]+)*_\d+(?:_\d+)*\.(?:jpg|jpeg
 CAPTION_START = re.compile(r"^(图|表|Figure|Table)\s*\d", re.IGNORECASE)
 # A table's structured content replaces its cropped picture (see ``build_parse_blocks``).
 TABLE_TYPES = frozenset({"table", "table_body"})
+# Page furniture: a page's first body block is what a cross-page paragraph continues from.
+DECORATIVE_TYPES = frozenset({"header", "footer", "page_number", "page_footnote"})
 
 
 def _text_align(bbox: list[float] | None) -> str:
@@ -141,6 +143,27 @@ def _markdown_pages(directory: Path) -> list[str]:
     return ["".join(chunk) for chunk in pages]
 
 
+def _continues_from(pages: list, page: int) -> int:
+    """The first page of a run that continues across pages (2026-11-12 1036).
+
+    ``continues_prev`` on page N says the text started on N-1; if N-1's first block also continues,
+    the run started even earlier. Walking back gives the reader the page to jump to.
+    """
+    first = page
+    while first > 0:
+        previous = pages[first - 1].get("blocks") if isinstance(pages[first - 1], dict) else None
+        # The run starts one page earlier by definition: ``continues_prev`` on page N means the text
+        # began on N-1. Walk further back only while that earlier page's own first body block also
+        # continues; its header is page furniture and never carries the flag.
+        first -= 1
+        leading = next((block for block in (previous or [])
+                        if isinstance(block, dict) and str(block.get("type") or "") not in DECORATIVE_TYPES),
+                       None)
+        if not leading or not leading.get("continues_prev"):
+            break
+    return first
+
+
 def build_parse_blocks(directory: Path, page: int) -> dict:
     """One page of a MinerU parse as the blocks a reader sees (R10, 2026-11-12 1036).
 
@@ -193,7 +216,11 @@ def build_parse_blocks(directory: Path, page: int) -> dict:
                        "align": _text_align(bbox), "no_text": not text, "images": images,
                        # 2026-11-12 1036: MinerU marks a block that starts on the previous page; the
                        # reader says so instead of presenting half a paragraph as a whole one.
-                       "continues_prev": bool(block.get("continues_prev"))})
+                       "continues_prev": bool(block.get("continues_prev")),
+                       # Which page this paragraph really starts on. MinerU marks only "continues the
+                       # previous page"; a paragraph running over three pages needs the first of them,
+                       # so walk back while the earlier page's first block also continues.
+                       "continues_from": _continues_from(pages, page) if block.get("continues_prev") else None})
     # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
     blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
                                   item["bbox"][0] if item["bbox"] else 1e9))

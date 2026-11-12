@@ -197,8 +197,9 @@ export function IngestWorkbench() {
     return () => { alive = false; };
   }, [corpusId, rel, page, archive, clearPage, reloadToken]);
 
-  // P6c: a new page starts at the top of both panes; carrying the previous page's offset into a
-  // different page would line the two panes up against the wrong rows.
+  // 2026-11-12 1036: turning a page starts both panes at that page's first block. It does **not**
+  // reset the zoom — a reader who zoomed in to read a table keeps that zoom for the next page, which
+  // is what MinerU's viewer does; the old code left the zoom alone but always jumped to the top.
   useEffect(() => {
     if (view !== "align") return;
     if (pageScrollRef.current) pageScrollRef.current.scrollTop = 0;
@@ -830,7 +831,10 @@ export function IngestWorkbench() {
                           ref={(node) => { if (node) rowRefs.current.set(block.id, node); else rowRefs.current.delete(block.id); }}
                           data-block-id={block.id}
                           onMouseEnter={() => setHovered(block.id)} onMouseLeave={() => setHovered(null)}
-                          role={isEditing || !canWrite ? undefined : "button"}
+                          // 2026-11-12 1036: a div with role="button" wrapping real buttons made the
+                          // nested controls unreachable by pointer (the parent swallowed the click).
+                          // The block stays keyboard-activatable but its own buttons win the pointer.
+                          role={isEditing || !canWrite ? undefined : "group"}
                           tabIndex={isEditing || !canWrite ? undefined : 0}
                           onClick={isEditing || !canWrite ? undefined : () => selectBlock(block.id, "list")}
                           onDoubleClick={isEditing || !canWrite ? undefined : () => { selectBlock(block.id, "list"); startEdit(block); }}
@@ -851,9 +855,30 @@ export function IngestWorkbench() {
                             ? "bg-[var(--surface)]"
                             : active ? "bg-[var(--primary-soft)]"
                               : "hover:bg-[var(--surface)]"}${canWrite && !isEditing ? " cursor-text" : ""}`}>
-                          {block.continues_prev ? <span
-                            className="mb-[2px] inline-flex items-center gap-[3px] rounded-sm bg-[var(--surface-cool)] px-[5px] text-caption text-[var(--text-3)]"
-                            title="这一段从上一页接续过来">↖ 接上页</span> : null}
+                          {/* 2026-11-12 1036: a paragraph that runs across pages says which page it
+                              starts on, and clicking it goes there — the source-page control MinerU
+                              puts beside a merged paragraph. */}
+                          {block.continues_prev ? <button type="button"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              const from = block.continues_from;
+                              if (typeof from === "number") jump(from);
+                            }}
+                            disabled={typeof block.continues_from !== "number"}
+                            className="mb-[2px] inline-flex items-center gap-[3px] rounded-sm bg-[var(--surface-cool)] px-[5px] text-caption text-[var(--text-3)] enabled:hover:bg-[var(--primary-soft)] enabled:hover:text-[var(--primary)]"
+                            title={typeof block.continues_from === "number"
+                              ? `这一段从第 ${block.continues_from + 1} 页接续过来，点击前往`
+                              : "这一段从上一页接续过来"}>
+                            ↖ 接上页{typeof block.continues_from === "number" ? ` · 第 ${block.continues_from + 1} 页` : ""}
+                          </button> : null}
+                          {/* 2026-11-12 1036: the block's own way back to the page. Hovering only
+                              tints the frame; this button scrolls the source pane to that bbox and
+                              selects it, which is the "locate in original" MinerU offers per block. */}
+                          {!isEditing && canWrite && block.bbox ? <button type="button"
+                            onClick={(event) => { event.stopPropagation(); selectBlock(block.id, "page"); }}
+                            className="absolute right-[4px] top-[4px] z-10 hidden rounded-sm border border-[var(--hairline)] bg-[var(--canvas)] px-[4px] text-caption text-[var(--text-3)] hover:border-[var(--primary)] hover:text-[var(--primary)] group-hover:block"
+                            title="在左侧原文中定位这一块">定位原文</button> : null}
                           {active && (TYPE_LABEL[block.type] || block.type) ? <span
                             style={{ background: kind }}
                             className="pointer-events-none absolute -top-[1px] left-0 z-10 rounded-br-sm px-[5px] text-caption leading-[14px] text-white">

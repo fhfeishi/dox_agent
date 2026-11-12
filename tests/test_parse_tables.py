@@ -136,3 +136,28 @@ def test_an_inline_formula_child_keeps_its_math_marker():
     out = block_markdown(_block_text(block))
     assert "$\\mathrm{D}1>0, \\mathrm{D}2<0$" in out
     assert "，判别为月经血样本。" in out
+
+
+def test_a_run_that_spans_pages_reports_where_it_starts(tmp_path):
+    """``continues_prev`` says "from the previous page"; a three-page run needs the first of them."""
+    from src.api.ingest_workbench import build_parse_blocks
+
+    directory = tmp_path / "parsed"
+    directory.mkdir()
+    body = lambda text, cont=False: {  # noqa: E731 - a fixture builder, not a public helper
+        "type": "text", "bbox": [0.1, 0.1, 0.9, 0.3],
+        **({"continues_prev": True} if cont else {}),
+        "content": [{"type": "text", "content": text}],
+    }
+    header = {"type": "header", "bbox": [0.1, 0.03, 0.9, 0.05], "content": []}
+    (directory / "middle_json.json").write_text(json.dumps({"pages": [
+        {"blocks": [header, body("第一页开始")]},
+        {"blocks": [header, body("第二页接续", cont=True)]},
+        {"blocks": [header, body("第三页接续", cont=True)]},
+    ]}), encoding="utf-8")
+    # Page 2 (index 1) continues page 0; page 2's own run starts there.
+    assert build_parse_blocks(directory, 1)["blocks"][1]["continues_from"] == 0
+    # Page 3 (index 2) walks back through page 1 (whose first body block also continues) to page 0.
+    assert build_parse_blocks(directory, 2)["blocks"][1]["continues_from"] == 0
+    # A block that does not continue reports nothing.
+    assert build_parse_blocks(directory, 0)["blocks"][1]["continues_from"] is None

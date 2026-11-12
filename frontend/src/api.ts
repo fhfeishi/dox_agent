@@ -914,6 +914,8 @@ export type ParseBlock = { id: string; type: string; bbox: number[] | null; text
   align?: "left" | "center" | "right";
   /** True when this block starts on the previous page (MinerU's ``continues_prev``). */
   continues_prev?: boolean;
+  /** The first page of a run that spans pages: where this paragraph actually begins. */
+  continues_from?: number | null;
   no_text: boolean; images?: string[]; caption?: string; attached_to?: string; page?: number };
 export type ParseBlocks = { page: number; page_count: number; blocks: ParseBlock[] };
 export type ParseArchive = { rel: string; exists: boolean; cache: Record<string, unknown> | null; legacy: boolean;

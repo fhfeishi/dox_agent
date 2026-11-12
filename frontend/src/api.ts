@@ -910,6 +910,8 @@ export type ParseBlockCorrection = { before: string; after: string; by?: string;
 /** ``text`` is Markdown the reader can render (pipe tables, ``$…$``); ``raw_text`` is the parser's own
  *  string (HTML table, ``<eq>``) and is what JSON view and a correction record show (2026-11-12). */
 export type ParseBlock = { id: string; type: string; bbox: number[] | null; text: string; raw_text?: string;
+  /** The alignment read from the block's own box, so the pane lines up with the source page. */
+  align?: "left" | "center" | "right";
   no_text: boolean; images?: string[]; caption?: string; attached_to?: string; page?: number };
 export type ParseBlocks = { page: number; page_count: number; blocks: ParseBlock[] };
 export type ParseArchive = { rel: string; exists: boolean; cache: Record<string, unknown> | null; legacy: boolean;

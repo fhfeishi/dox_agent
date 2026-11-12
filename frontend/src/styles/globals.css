@@ -919,11 +919,28 @@ button.ui-page-link { text-decoration: none; }
   font-weight: 600;
   color: var(--heading);
 }
+/* 2026-11-12 1036 follow-up: a parsed table fits the window instead of demanding a horizontal
+   scroll. MinerU's own reader does the same (``docvortex.css``: ``table{display:block;width:100%;
+   overflow-x:auto}``); a table you must scroll sideways to read is the bad experience reported.
+   Columns share the width, and a cell wraps rather than pushing the row wider. */
 .parse-markdown table {
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   line-height: 1.45;
+}
+.parse-markdown th,
+.parse-markdown td {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+/* A formula that is still wider than its cell scrolls inside the cell, never the whole table. */
+.parse-markdown td .katex-display,
+.parse-markdown td .katex {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
 .parse-markdown th,
 .parse-markdown td {

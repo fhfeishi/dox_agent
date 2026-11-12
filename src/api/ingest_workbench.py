@@ -48,6 +48,23 @@ CAPTION_START = re.compile(r"^(图|表|Figure|Table)\s*\d", re.IGNORECASE)
 TABLE_TYPES = frozenset({"table", "table_body"})
 
 
+def _text_align(bbox: list[float] | None) -> str:
+    """Left, centre or right, read from the block's own box (2026-11-12 1036).
+
+    The parser records no alignment, but the box does: a title spanning 0.34–0.66 of the page is
+    centred, one ending at the right margin is right-aligned. A margin of 0.06 is wider than any
+    ordinary paragraph's left indent, so body text stays left.
+    """
+    if not bbox:
+        return "left"
+    left, right = bbox[0], bbox[2]
+    if left > 0.2 and right < 0.8 and abs((left + right) / 2 - 0.5) < 0.04:
+        return "center"
+    if right > 0.9 and left > 0.3:
+        return "right"
+    return "left"
+
+
 class CorrectionRequest(BaseModel):
     """One page's correction: the text as the parse has it, and the text it should read as.
 
@@ -168,9 +185,12 @@ def build_parse_blocks(directory: Path, page: int) -> dict:
         # the picture is the block, so it stays and the recognised text sits with it.
         if kind in TABLE_TYPES and markdown:
             images = []
+        # 2026-11-12 1036 follow-up: the parse does not record an alignment, but the bbox says it —
+        # a heading whose box is centred on the page is a centred heading. Recovering it is what makes
+        # the Markdown pane line up with the source page instead of left-aligning everything.
         blocks.append({"id": f"p{page}-b{index}", "type": kind,
                        "bbox": bbox, "text": markdown, "raw_text": text,
-                       "no_text": not text, "images": images})
+                       "align": _text_align(bbox), "no_text": not text, "images": images})
     # Reading order: rows top-down, then left-to-right; a block without a bbox keeps its own order.
     blocks.sort(key=lambda item: (item["bbox"][1] if item["bbox"] else 1e9,
                                   item["bbox"][0] if item["bbox"] else 1e9))

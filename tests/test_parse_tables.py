@@ -72,3 +72,33 @@ def test_the_block_reader_serves_markdown_and_keeps_the_raw_text(tmp_path):
     assert block["text"].startswith("| 编号 | 判别公式 |")
     assert "<table" in block["raw_text"]
     assert block["raw_text"] != block["text"]
+
+
+def test_alignment_is_recovered_from_the_block_box():
+    """The parse records no alignment; the box does, and it is what lines the panes up.
+
+    A heading whose box is centred on the page is a centred heading, a block ending at the right
+    margin is right-aligned, and ordinary body text stays left.
+    """
+    from src.api.ingest_workbench import _text_align
+
+    assert _text_align([0.336, 0.233, 0.665, 0.267]) == "center"
+    assert _text_align([0.1, 0.09, 0.9, 0.3]) == "left"
+    assert _text_align([0.4, 0.1, 0.95, 0.15]) == "right"
+    assert _text_align(None) == "left"
+
+
+def test_a_table_block_drops_its_cropped_picture(tmp_path):
+    """MinerU's rule (docvortex ``_render_table_body``): content replaces the picture, not both."""
+    from src.api.ingest_workbench import build_parse_blocks
+
+    directory = tmp_path / "parsed"
+    directory.mkdir()
+    (directory / "middle_json.json").write_text(json.dumps({"pages": [{"blocks": [
+        {"type": "table", "bbox": [0.1, 0.1, 0.9, 0.4],
+         "content": [{"type": "table_body", "bbox": [0.1, 0.1, 0.9, 0.4],
+                      "image_path": "images/page_0_table_1.jpg", "content": SIMPLE}]},
+    ]}]}), encoding="utf-8")
+    block = build_parse_blocks(directory, 0)["blocks"][0]
+    assert block["images"] == []
+    assert block["text"].startswith("| 编号 | 判别公式 |")

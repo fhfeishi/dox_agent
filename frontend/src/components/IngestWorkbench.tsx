@@ -816,7 +816,10 @@ export function IngestWorkbench() {
                           }}
                           // The left edge carries the block's kind colour, the same colour as its
                           // overlay on the source page: that is the alignment cue.
-                          style={{ borderLeftColor: active ? "var(--primary)" : kind }}
+                          style={{ borderLeftColor: active ? "var(--primary)" : kind,
+                            // The block keeps the source page's alignment (centred title, right-aligned
+                            // page number), which is what makes the two panes line up when read.
+                            textAlign: block.align ?? "left" }}
                           className={`group relative border-l-2 py-[5px] pl-[10px] pr-[6px] transition-colors duration-[var(--dur-quick)] ${isEditing
                             ? "bg-[var(--surface)]"
                             : active ? "bg-[var(--primary-soft)]"
@@ -827,9 +830,14 @@ export function IngestWorkbench() {
                             {TYPE_LABEL[block.type] ?? block.type}</span> : null}
                           {isEditing ? renderEditor(block)
                             : block.images?.length ? <div>
+                              {/* 2026-11-12 1036: a figure keeps the share of the page it occupies —
+                                  a 12 %-wide logo must not be blown up to the pane's full width. The
+                                  width comes from the block's own bbox, so the picture sits where and
+                                  as large as the source shows it. */}
                               {block.images.map((name) => <img key={name} src={parseImageUrl(corpusId, rel, name)}
                                 alt={`解析图片 ${name}`} loading="lazy" draggable={false}
-                                className="mb-[4px] block max-h-[360px] w-auto max-w-full rounded-sm border border-[var(--hairline)]" />)}
+                                style={{ width: block.bbox ? `${Math.min(100, Math.max(8, (block.bbox[2] - block.bbox[0]) * 100))}%` : undefined }}
+                                className="mb-[4px] block h-auto max-h-[420px] max-w-full rounded-sm border border-[var(--hairline)]" />)}
                               {body ? <div className="parse-markdown break-words">
                                 <ReportMarkdown markdown={body} /></div> : null}
                             </div>

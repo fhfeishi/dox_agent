@@ -50,18 +50,39 @@ def connect(path: Path | str, *, timeout: float = TIMEOUT, readonly: bool = Fals
     return db
 
 
+def _recover(path: Path) -> None:
+    """Let SQLite roll back a journal a crashed writer left behind (2026-11-13).
+
+    A process killed mid-transaction leaves ``<db>-journal`` with a valid header. SQLite rolls it
+    back the next time it opens the file *for writing*; the rollback is itself a write. Probing
+    such a file through a read-only connection failed with "attempt to write a readonly
+    database", and because every store probes in ``migrate`` during startup the app never came up.
+    Every read-only helper below recovers first, so any of them may be the first to touch the file.
+    """
+    path = Path(path)
+    journal = path.with_name(path.name + "-journal")
+    if not path.exists() or not journal.exists():
+        return
+    with connect(path) as db:
+        # A read takes the lock that makes SQLite notice and roll back the hot journal.
+        db.execute("SELECT 1 FROM sqlite_master LIMIT 1").fetchone()
+
+
 def version(path: Path | str) -> int:
+    _recover(Path(path))
     with connect(path, readonly=True) as db:
         return db.execute("PRAGMA user_version").fetchone()[0]
 
 
 def _has_tables(path: Path) -> bool:
+    _recover(path)
     with connect(path, readonly=True) as db:
         return db.execute("SELECT 1 FROM sqlite_master WHERE type='table' LIMIT 1").fetchone() is not None
 
 
 def _copy(source: Path, dest: Path):
     """A consistent copy through SQLite's backup API (safe while other readers are open)."""
+    _recover(Path(source))
     with connect(source, readonly=True) as old, connect(dest) as new:
         old.backup(new)
 
@@ -91,6 +112,7 @@ def migrate(path: Path | str, steps: Sequence[Step], *, backups: Path | None = N
     """Bring ``path`` to ``len(steps)``; returns the version it started from."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    _recover(path)
     target = len(steps)
     if not path.exists() or not _has_tables(path):
         start = version(path) if path.exists() else 0

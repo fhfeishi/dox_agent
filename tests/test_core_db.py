@@ -183,3 +183,42 @@ def test_every_pre_migration_file_reaches_the_latest_version_with_its_rows(tmp_p
         assert len(rows(path, table)) == 1, filename
         record = json.loads(path.with_name(filename + ".migration.json").read_text())
         assert rows(record["backup"], table) == rows(path, table), filename
+
+
+def test_a_file_crashed_mid_transaction_still_opens_and_migrates(tmp_path):
+    """A killed writer leaves a hot journal; SQLite must roll it back, which is a write.
+
+    Probing the file read-only first raised "attempt to write a readonly database" and the app
+    refused to start (2026-11-13). Every store migrates during startup, so the probe recovers the
+    journal first.
+    """
+    path = tmp_path / "crashed.sqlite3"
+    con = sqlite3.connect(path, isolation_level=None)
+    con.execute("CREATE TABLE t (x BLOB)")
+    con.execute("CREATE INDEX i ON t (x)")
+    con.execute("BEGIN IMMEDIATE")
+    con.execute("PRAGMA cache_size = 5")  # force dirty pages into the journal
+    con.executemany("INSERT INTO t VALUES (?)", [(b"y" * 2000,) for _ in range(500)])
+    # Snapshot the half-written file the way a killed process leaves it on disk.
+    journal = path.with_name(path.name + "-journal")
+    assert journal.read_bytes()[:4] == bytes.fromhex("d9d505f9"), "journal must be hot"
+    con.rollback()
+    con.close()
+    assert journal.exists() is False
+
+    # Recreate the crash: copy the hot pair aside before the live connection rolls it back.
+    crashed = tmp_path / "hot.sqlite3"
+    con = sqlite3.connect(path, isolation_level=None)
+    con.execute("BEGIN IMMEDIATE")
+    con.execute("PRAGMA cache_size = 5")
+    con.executemany("INSERT INTO t VALUES (?)", [(b"z" * 2000,) for _ in range(500)])
+    crashed.write_bytes(path.read_bytes())
+    crashed.with_name(crashed.name + "-journal").write_bytes(
+        path.with_name(path.name + "-journal").read_bytes())
+    con.rollback()
+    con.close()
+
+    assert db._has_tables(crashed) is True
+    assert version(crashed) == 0
+    assert migrate(crashed, ["CREATE TABLE IF NOT EXISTS extra (y TEXT)"]) == 0
+    assert crashed.with_name(crashed.name + "-journal").exists() is False

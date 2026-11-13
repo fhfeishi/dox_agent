@@ -57,7 +57,9 @@ service.log
 # Agent skill installs via `npx skills add`: 7 MB per skill and copied into every agent
 # directory, so they stay local (user, 2026-10-21). Reinstall with
 # `npx skills add JimLiu/baoyu-design -s baoyu-design -y --copy` when needed.
-.claude/skills/
+# 2026-11-13: `.claude/` held two agent worktrees (6.8 GB) plus a skills copy; the whole directory
+# is local agent state, never part of the product. Worktrees are gone, the rule keeps them out.
+.claude/
 .hermes/
 .kiro/
 skills-lock.json

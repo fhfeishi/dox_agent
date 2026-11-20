@@ -201,3 +201,12 @@ def test_a_judgment_template_is_asked_for_one():
     problems = expert_checks.check_report(markdown, "", template_id="future_directions",
                                           task_type="report")
     assert any("研判章节" in problem for problem in problems)
+
+
+def test_a_review_that_answers_in_prose_remembers_nothing_rather_than_guessing(root):
+    """A flash model occasionally answers in prose despite the JSON instruction. Guessing at what it
+    meant would write a wrong entry; treating it as "nothing to save" loses one pass and no data."""
+    reply = '这次任务没有值得长期记住的内容，因为它只是一次简单的算术问题。'
+    assert expert_review.parse_reply(reply) == {"profile": [], "practice": []}
+    assert expert_review.apply(root, "alice", expert_review.parse_reply(reply)) == {"profile": 0, "practice": 0}
+    assert expert_memory.block(root, "alice") == ""

@@ -26,6 +26,9 @@ export const TERMS = {
   saveAnswer: { name: "保存到报告中心", retired: [] },
   savedAnswer: { name: "保存的回答", retired: ["回答快照"] },
   periodSummary: { name: "周期总结", retired: [] },
+  // 专家 (2026-11-13): one expert per account, two bounded texts learned in the background.
+  experts: { name: "专家", retired: ["专家系统"] },
+  expertsAudit: { name: "专家审计", retired: ["专家配置", "专家设置"] },
   panel: { name: "右侧面板", retired: ["检查器"] },
 } as const satisfies Record<string, { name: string; retired: readonly string[] }>;
 

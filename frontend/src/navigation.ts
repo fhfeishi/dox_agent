@@ -58,6 +58,9 @@ export const NAV: NavEntry[] = [
     card: { title: TERMS.intelligence.name, text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
   // 报告中心 (named 成果 until query 2026-1019 2021) is a page of its own after the work areas.
   { key: "results", label: TERMS.results.name, to: "/results", hint: "我的报告、周期总结与回收站", roles: ALL },
+  // 专家 (2026-11-13): one expert per account, learned in the background after each task. The
+  // page exists to audit and correct it, which is why ordinary accounts do not see it.
+  { key: "experts", label: TERMS.expertsAudit.name, to: "/experts", hint: "后台在每次任务后自动积累的偏好与做法；仅管理员可见", roles: ["admin"] },
 ];
 
 /** A bar item: an entry, or for a leader the one 工作台 menu that holds the work areas. */

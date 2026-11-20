@@ -914,7 +914,10 @@ def test_only_the_author_or_an_administrator_may_delete_a_report(tmp_path):
         assert act("DELETE", "/api/artifacts/by-owner") == 200
         as_user("user")
         assert act("DELETE", "/api/artifacts/by-owner/purge") == 403
-        assert act("POST", "/api/artifacts/by-owner/restore") == 200  # restoring removes nothing
+        # High#2: restore is a lifecycle write and follows the same author/admin rule.
+        assert act("POST", "/api/artifacts/by-owner/restore") == 403
+        as_user("owner")
+        assert act("POST", "/api/artifacts/by-owner/restore") == 200  # the author may restore
         as_user("admin")
         assert act("DELETE", "/api/artifacts/no-author") == 200
         assert act("DELETE", "/api/artifacts/no-author/purge") == 200
@@ -988,3 +991,29 @@ def test_preview_serves_only_the_corpus_manifest_file_not_the_stored_origin(tmp_
             stale = method(f"/api/documents/{listed['doc_id']}/file", params={"version": listed["version"]})
             assert stale.status_code == 409
     assert served.status_code == 200 and served.text == "own file"
+
+
+def test_expert_memory_is_the_administrators_page_only(tmp_path):
+    """2026-11-13: the expert layer works in the background, so its reading surface belongs to the
+    one role that audits it. Other accounts keep accumulating memory (the review pass and the prompt
+    block never go through these routes), they just have no page for it."""
+    from pydantic import SecretStr
+
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
+                        user_dir=tmp_path / "usr", model_api_key=SecretStr("fixture"), embedding_path="")
+    with TestClient(create_app(settings)) as client:
+        for name, expected in (("admin", 200), ("user", 403), ("owner", 403)):
+            client.cookies.clear()
+            assert client.post("/api/auth/login", json={"username": name, "password": "123456"}).status_code == 200
+            assert client.get("/api/expert/memory").status_code == expected, name
+            assert client.put("/api/expert/memory/profile", json={"items": ["x"]}).status_code == expected, name
+            assert client.delete("/api/expert/memory/practice").status_code == expected, name
+
+        client.cookies.clear()
+        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
+        written = client.put("/api/expert/memory/profile", json={"items": ["报告用「一、二、三」编号"]})
+        assert written.status_code == 200
+        assert written.json()["profile"]["items"] == ["报告用「一、二、三」编号"]
+        # A conclusion about the material is refused at the API boundary too, with a reason.
+        refused = client.put("/api/expert/memory/profile", json={"items": ["医疗领域共有 300 个项目"]})
+        assert refused.status_code == 422 and "结论" in refused.json()["detail"]

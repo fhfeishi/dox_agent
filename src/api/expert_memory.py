@@ -1,17 +1,21 @@
-"""The signed-in account's own expert memory: read it, correct it, delete it (2026-11-13).
+"""The expert memory's only reading surface: the administrator's page (2026-11-13).
 
-Every route answers for ``request.state.user[0]`` and only for it — the store's directory is built
-from that id, so there is no cross-account view for anyone, the administrator included.
+Admin-only, and still only ever that account's own text — the store's directory is built from the
+signed-in id, so there is no cross-account view. The reason for ``ADMIN_ONLY`` is the product rule
+rather than secrecy: the expert layer works in the background and ordinary accounts must not be
+asked to think about it, so the page (and the API behind it) belongs to the one role that audits
+the system. The review pass writes and every task loads through ``src.expert_memory`` directly, so
+a normal account's memory still accumulates and still takes effect with no route access at all.
 
 This replaces the fourteen-route seat/preference/candidate/skill API: with two bounded texts there
-is nothing to approve, no version to promote and no seat to choose. The page shows the two texts
-and lets the person delete a line or empty a store, which is the only correction the design needs.
+is nothing to approve, no version to promote and no seat to choose.
 """
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field
 
 from .. import expert_memory
+from ..auth import ADMIN_ONLY
 
 
 class Entries(BaseModel):
@@ -20,7 +24,8 @@ class Entries(BaseModel):
 
 
 def install(app, ctx):
-    router = APIRouter()
+    # Admin-only for the whole surface: the page behind these routes is the auditor's.
+    router = APIRouter(dependencies=ADMIN_ONLY)
     settings = ctx.settings
 
     def owner(request: Request) -> str:

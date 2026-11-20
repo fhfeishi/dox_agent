@@ -156,7 +156,12 @@ def test_timeout_run_is_marked_timed_out(tmp_path):
     assert snapshot["status"] == "timed_out"
 
 
-def test_snapshot_write_failure_does_not_block_the_answer(tmp_path, monkeypatch):
+def test_snapshot_write_failure_stops_the_answer_before_it_starts(tmp_path, monkeypatch):
+    """High#2: a run whose author cannot be recorded must not start billing the model.
+
+    The old behaviour answered anyway and left an unowned run behind; the plan requires author
+    registration to succeed *before* the task starts (Codex review, 2026-11-05).
+    """
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         def boom(*_args, **_kwargs):
@@ -164,7 +169,8 @@ def test_snapshot_write_failure_does_not_block_the_answer(tmp_path, monkeypatch)
 
         monkeypatch.setattr(app.state.runs, "create", boom)
         response = client.post("/api/chat", json=chat_body(cid, "chat-run-nosnap"))
-        assert response.status_code == 200 and "event: token" in response.text
+        assert response.status_code == 503
+        assert "event: token" not in response.text
         # No snapshot was persisted, so the run reads back as "not recorded" rather than failing.
         assert client.get("/api/runs/chat-run-nosnap").status_code == 404
 
@@ -190,7 +196,8 @@ def test_cancelled_run_backfills_interrupted_status(tmp_path):
 
 
 def test_user_report_run_is_a_child_of_the_intake_run(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None,
+                            expert_block=None):
         return "# 报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -224,7 +231,8 @@ def test_user_report_run_records_server_verified_brief_origins(tmp_path, monkeyp
             yield {"event": "token", "data": {"text": "可以生成"}}
             yield {"event": "done", "data": {"ok": True}}
 
-    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None,
+                            expert_block=None):
         return "# 报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)

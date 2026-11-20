@@ -3,6 +3,7 @@
 import asyncio
 import hashlib
 import json
+import logging
 import re
 from itertools import pairwise
 from pathlib import Path
@@ -11,8 +12,11 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .agent.evidence import validate_citations
 from .agent.models import model_for
+from .expert_checks import check_report
 from .prompts import report_template, task_instruction
 from .retrieval import ReportDoc, assemble_reports, estimate_tokens, metadata_from_filename
+
+logger = logging.getLogger(__name__)
 
 COLUMNS = ("session_key", "run_id", "corpus_id")
 
@@ -204,10 +208,16 @@ def preflight_report(knowledge, params: dict) -> dict:
             "reasons": reasons, "observed_years": observed_years, "hint": hint}
 
 
+# 2026-11-13: the block carries its own fence and boundary sentence (src/expert_memory.block), so
+# the caller passes it through unchanged instead of wrapping it here.
+EXPERT_DATA_NOTE = ""
+
+
 async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                             template_content: str | None = None,
                             task_definition: dict | None = None,
-                            visible_sources: list[dict] | None = None) -> str:
+                            visible_sources: list[dict] | None = None,
+                            expert_block: str | None = None) -> str:
     """Generate report Markdown from the selected reports and the template instruction.
 
     ``template_content`` lets a published custom template's Markdown replace the built-in
@@ -217,6 +227,9 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     """
     hierarchy_record = params.pop("hierarchy_record", None)
     template_id = params["template_id"]
+    # The structural checks care whether this is a judgment-bearing task; the template decides it,
+    # which is the same rule the seat used to follow.
+    report_task_type = "intelligence" if str(template_id).startswith("intelligence") else "report"
     # Focus adds retrieval candidates inside the confirmed year/document scope; it is not a scope filter.
     query = params.get("domain", "")
     preflight = await asyncio.to_thread(preflight_report, knowledge, params)
@@ -349,8 +362,11 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
             "scenes": len(hierarchy_record.get("scenes", [])),
             "coverage": hierarchy_record.get("coverage", {}).get("targets", {}),
         }
+    # P5 (2026-11-05): the expert block is data prepended to the system message, never an instruction
+    # of its own — the sentence after it says so, and the task rules stay authoritative.
+    expert_prefix = expert_block + "\n" if expert_block else ""
     messages = [
-        SystemMessage(content=task_instruction("task4", phase="report") + custom_instruction
+        SystemMessage(content=expert_prefix + task_instruction("task4", phase="report") + custom_instruction
                       + "\n\n直接完成最终 Markdown，由你在内部组织章节与执行摘要，无需用户审批大纲。"
                         "先写有来源的核心发现，说明筛选边界、相互冲突的证据和局限。"
                         "每个关键事实用下方存在的 [n] 编号引用；不能编造来源、数据或应用成效。"
@@ -391,10 +407,17 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
             if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
                 raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
             content = response.content if isinstance(response.content, str) else str(response.content)
-            if valid(content):
+            # 2026-11-13: the structural checks say *what* is missing, which the old "标题、章节或来源
+            # 编号问题" could not. Real data: five of seven comprehensive reports were missing a
+            # template section while every requirement was already in the prompt.
+            complaints = check_report(content, template_content or "", task_type=report_task_type,
+                                      template_id=template_id)
+            if valid(content) and not complaints:
                 return with_sources(content)
-            repair = HumanMessage(content="上一个报告存在标题、章节或来源编号问题。请依据同一批证据重写完整最终报告；"
-                                          "标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
+            problems = complaints or ["标题、章节或来源编号不符合要求"]
+            repair = HumanMessage(content="上一个报告有以下问题，请依据同一批证据重写完整最终报告：\n"
+                                          + "\n".join(f"- {problem}" for problem in problems)
+                                          + "\n标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
                                           "上一稿仅作待修复草稿：\n" + content)
             response = await model.ainvoke([*messages, repair])
             if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
@@ -404,4 +427,10 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
         raise ValueError("报告超过本次运行时限，未保存未完成正文；请缩小资料范围") from exc
     if not valid(content):
         raise ValueError("报告引用或结构校验失败，请检查来源与模型输出后重试")
+    remaining = check_report(content, template_content or "", task_type=report_task_type,
+                                      template_id=template_id)
+    if remaining:
+        # The repair turn already had its chance; the report is still saved, with the complaint
+        # stated plainly, because a usable report with a missing section beats no report at all.
+        logger.warning("report saved with structural problems: %s", remaining)
     return with_sources(content)

@@ -964,85 +964,24 @@ export function parsePageImageUrl(corpusId: string, rel: string, page: number, s
     new URLSearchParams({ rel, page: String(page), scale: String(scale) });
 }
 
-/* --------------------------------------------------------------- 专家 (2026-11-05, P4)
- * One account's own expert layer: preferences (written, revoked, versioned), candidates proposed
- * from that account's explicit feedback, and approved skills. There is no cross-account view. */
-export type ExpertSeatCounts = { seat: string; label: string; preferences: number; candidates: number; skills: number };
-export type ExpertScope = { task_type: string | string[]; seat?: string; corpus_ids?: string[]; project_ids?: string[];
-  excludes?: string[]; priority?: number };
-export type ExpertPreference = { id: number; key: string; value: Record<string, unknown>; scope: ExpertScope;
-  status: "active" | "revoked"; version: number; evidence: string; created_at: string; revoked_at: string };
-export type ExpertPreferenceVersion = { version: number; value: Record<string, unknown>; scope: ExpertScope;
-  status: "active" | "revoked"; evidence: string; changed_by: string; changed_at: string };
-export type ExpertCandidate = { id: number; seat: string; source_run_id: string; source_artifact_id: string;
-  source_artifact_version: number | null; source_hash: string; feedback_id: string; summary: string;
-  steps: string[]; scope: ExpertScope; evidence_refs: string; fingerprint: string;
-  status: "pending" | "approved" | "quarantined"; explicit: boolean; created_at: string;
-  reviewed_by: string; reviewed_at: string; decision_reason: string };
-export type ExpertSkill = { id: number; seat: string; candidate_id: number; version: number;
-  content_path: string; content_hash: string; scope: ExpertScope; enabled: boolean;
-  created_at: string; disabled_at: string };
+/* --------------------------------------------------------------- 专家 (2026-11-13)
+ * One expert per account, remembered as two short texts. There is no seat to choose, no candidate
+ * to approve and no version to promote: the review pass writes, the person deletes what is wrong. */
+export type ExpertText = { items: string[]; limit: number };
+export type ExpertMemory = { profile: ExpertText; practice: ExpertText };
 
-export async function fetchExpertSeats(signal?: AbortSignal): Promise<ExpertSeatCounts[]> {
-  return jsonOrThrow(await fetch("/api/experts", { signal }), "专家席位读取失败");
+export async function fetchExpertMemory(signal?: AbortSignal): Promise<ExpertMemory> {
+  return jsonOrThrow(await fetch("/api/expert/memory", { signal }), "专家记忆读取失败");
 }
-export async function fetchExpertPreferences(seat: string, signal?: AbortSignal): Promise<ExpertPreference[]> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/preferences`, { signal }), "偏好读取失败");
-}
-export async function saveExpertPreference(seat: string, key: string, value: Record<string, unknown>,
-  scope: ExpertScope, evidence = ""): Promise<ExpertPreference> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/preferences/${encodeURIComponent(key)}`, {
+
+/** Rewrite one text. ``target`` is "profile" (output preferences) or "practice" (how to do it). */
+export async function saveExpertMemory(target: "profile" | "practice", items: string[]): Promise<ExpertMemory> {
+  return jsonOrThrow(await fetch(`/api/expert/memory/${target}`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ value, scope, evidence }),
-  }), "偏好保存失败");
-}
-export async function revokeExpertPreference(seat: string, key: string): Promise<ExpertPreference> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/preferences/${encodeURIComponent(key)}/revoke`, {
-    method: "POST",
-  }), "偏好撤销失败");
-}
-export async function fetchExpertPreferenceVersions(seat: string, key: string,
-  signal?: AbortSignal): Promise<ExpertPreferenceVersion[]> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/preferences/${encodeURIComponent(key)}/versions`,
-    { signal }), "偏好历史读取失败");
-}
-export async function fetchExpertCandidates(seat: string, signal?: AbortSignal): Promise<ExpertCandidate[]> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/candidates`, { signal }), "候选读取失败");
-}
-export async function decideExpertCandidate(seat: string, candidateId: number, decision: "approve" | "reject",
-  reason = ""): Promise<ExpertCandidate> {
-  return jsonOrThrow(await fetch(
-    `/api/experts/${encodeURIComponent(seat)}/candidates/${candidateId}/${decision}`,
-    { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reason }) }),
-    decision === "approve" ? "候选批准失败" : "候选拒绝失败");
-}
-export async function fetchExpertSkills(seat: string, signal?: AbortSignal): Promise<ExpertSkill[]> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/skills`, { signal }), "技能读取失败");
-}
-export async function createExpertSkill(seat: string, candidateId: number, contentPath: string,
-  contentHash: string, scope: ExpertScope): Promise<ExpertSkill> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/skills`, {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ candidate_id: candidateId, content_path: contentPath, content_hash: contentHash, scope }),
-  }), "技能生成失败");
-}
-export async function setExpertSkillEnabled(seat: string, skillId: number, enabled: boolean): Promise<ExpertSkill> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/skills/${skillId}/${enabled ? "enable" : "disable"}`,
-    { method: "POST" }), enabled ? "技能启用失败" : "技能停用失败");
+    body: JSON.stringify({ items }),
+  }), "专家记忆保存失败");
 }
 
-/* --------------------------------------------------------------- 专家审计 (P9, 2026-11-06)
- * The audit view of one seat: what a seat starts with (the built-in baseline), what the system has
- * learned, what a person wrote, and what is recorded but not loaded. Always the caller's own rows. */
-export type ExpertAuditEntry = { key: string; summary: string; value: Record<string, unknown>;
-  status: "active" | "revoked"; version: number; evidence: string; last_used_at: string;
-  confidence?: number; loaded?: boolean };
-export type ExpertAudit = { seat: string; label: string;
-  baseline: { version: number; rules: string[] };
-  learned: ExpertAuditEntry[]; manual: ExpertAuditEntry[];
-  ignored: { key: string; reason: string }[];
-  counts: { preferences: number; candidates: number; skills: number } };
-
-export async function fetchExpertAudit(seat: string, signal?: AbortSignal): Promise<ExpertAudit> {
-  return jsonOrThrow(await fetch(`/api/experts/${encodeURIComponent(seat)}/audit`, { signal }), "专家审计读取失败");
+export async function clearExpertMemory(target: "profile" | "practice"): Promise<ExpertMemory> {
+  return jsonOrThrow(await fetch(`/api/expert/memory/${target}`, { method: "DELETE" }), "专家记忆清空失败");
 }

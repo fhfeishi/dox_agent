@@ -136,7 +136,7 @@ def test_user_artifact_uses_null_for_unrecorded_versions_and_retries_preserve_pr
     attempts = 0
 
     async def generate_once_failed(knowledge, settings, params, *, llm=None, template_content=None,
-                                   task_definition=None, visible_sources=None):
+                                   task_definition=None, visible_sources=None, expert_block=None):
         nonlocal attempts
         attempts += 1
         if attempts == 1:
@@ -270,7 +270,8 @@ def test_migrated_report_keeps_its_address_and_unrecorded_provenance(tmp_path):
 
 
 def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None,
+                            expert_block=None):
         return "# 报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -294,7 +295,8 @@ def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
 
 
 def test_user_report_retry_finishes_the_same_failed_entity(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None,
+                            expert_block=None):
         return "# 报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -327,7 +329,8 @@ def test_user_report_retry_finishes_the_same_failed_entity(tmp_path, monkeypatch
 def test_user_failed_report_is_visible_and_retry_keeps_the_failed_version(tmp_path, monkeypatch):
     attempts = 0
 
-    async def generate_once_failed(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def generate_once_failed(knowledge, settings, params, *, llm=None, visible_sources=None,
+                                   expert_block=None):
         nonlocal attempts
         attempts += 1
         if attempts == 1:
@@ -359,7 +362,8 @@ def test_user_failed_report_is_visible_and_retry_keeps_the_failed_version(tmp_pa
 
 
 def test_user_sees_a_safe_failed_report_status_without_provider_details(tmp_path, monkeypatch):
-    async def generate_failed(knowledge, settings, params, *, llm=None, visible_sources=None):
+    async def generate_failed(knowledge, settings, params, *, llm=None, visible_sources=None,
+                              expert_block=None):
         raise RuntimeError("private provider token")
 
     monkeypatch.setattr("src.api.reports.generate_markdown", generate_failed)

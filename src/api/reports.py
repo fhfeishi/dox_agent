@@ -13,6 +13,7 @@ from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, ValidationError
 
+from .. import expert_memory
 from ..agent.corpora import (
     default_corpus_info,
     scan_corpora,
@@ -29,11 +30,12 @@ from ..custom_templates import (
     render_template,
 )
 from ..docx_export import markdown_to_docx
+from ..expert_schedule import schedule_review
 from ..hierarchy import read as read_hierarchy
 from ..prompts import REPORT_TEMPLATES, list_tasks
 from ..report_figures import change_figure, insert_figures, select_figures
 from ..reports import ScopeChanged, generate_markdown, preflight_report
-from ..runs import RunConflict, request_fingerprint
+from ..runs import RunConflict, RunNotYours, request_fingerprint
 from .common import (
     ArtifactCreate,
     ArtifactVersionCreate,
@@ -51,9 +53,15 @@ def install(app, ctx):
     router = APIRouter()
 
     async def record_report_failure(run_id: str, params: dict, reason: str) -> None:
+        # A1 (2026-11-04): the two bookkeeping steps are independent. When the run snapshot could not
+        # be written there is no run row to update, yet the failed artifact record must still be
+        # written — otherwise a stopped generation leaves an invisible "generating" record.
         try:
             await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
                                     ended_at=datetime.now(UTC).isoformat())
+        except Exception:  # noqa: BLE001 - bookkeeping cannot mask the generation error
+            logger.warning("failed report status unavailable for run: %s", run_id)
+        try:
             await asyncio.to_thread(app.state.artifacts.record_failed_report,
                                     run_id=run_id, title=report_title(params),
                                     session_key=params.get("session_key", ""),
@@ -63,13 +71,46 @@ def install(app, ctx):
                                     task_version=params.get("task_version"),
                                     template_version=params.get("template_version"), reason=reason)
         except Exception:  # noqa: BLE001 - bookkeeping cannot mask the generation error
-            logger.warning("failed report status unavailable for run: %s", run_id)
+            logger.warning("failed report artifact record unavailable for run: %s", run_id)
+
+    def may_read(request: Request, owner: str) -> bool:
+        """High#2 (2026-11-05): a record is readable by its author or an administrator.
+
+        A record with no recorded author predates authorship and belongs to the administrator,
+        the same rule deletion already follows (user, 2026-10-20). The signed-in account is the
+        only source of identity here: session keys and run ids sent by the client prove nothing.
+        """
+        username, role = request.state.user[:2]
+        if not owner:
+            return role == "admin"
+        return role == "admin" or owner == username
+
+    def require_read(request: Request, owner: str, message: str = "这条记录属于其他账户") -> None:
+        if not may_read(request, owner):
+            raise HTTPException(403, message)
+
+    def may_write(request: Request, owner: str) -> bool:
+        """Writing (a new version, a figure change) is the author's or an administrator's.
+
+        Same rule deletion already follows (user, 2026-10-20); an ownerless record predates
+        authorship and belongs to the administrator.
+        """
+        username, role = request.state.user[:2]
+        if not owner:
+            return role == "admin"
+        return role == "admin" or owner == username
+
+    def require_write(request: Request, owner: str) -> None:
+        if not may_write(request, owner):
+            raise HTTPException(403, "只有这条记录的生成人可以修改")
 
     @router.get("/api/reports")
-    async def list_reports(session_key: str | None = None, run_id: str | None = None, limit: int = 20):
+    async def list_reports(request: Request, session_key: str | None = None, run_id: str | None = None,
+                           limit: int = 20):
         """#10: report metadata for a session (no markdown), newest first."""
+        owners = visible_owners(request, "mine")  # High#2 #1: filtered in SQL, before LIMIT/OFFSET
         return await asyncio.to_thread(app.state.artifacts.list_reports,
-                                       session_key=session_key, run_id=run_id, limit=limit)
+                                       session_key=session_key, run_id=run_id, limit=limit, owners=owners)
 
     class SummaryRequest(BaseModel):
         period: Literal["week", "month", "quarter", "half", "year"]
@@ -143,10 +184,25 @@ def install(app, ctx):
             return {"completed": completed, "active": active, "failed": failed, "recent_completed": recent}
         return await asyncio.to_thread(count)
 
+    async def check_report_links(payload: ReportRequest, request: Request) -> None:
+        """#4: a report may only be built on the caller's own session and parent run.
+
+        An authorisation failure stops here; it must not fall into the "historical run without a
+        snapshot" path, which is about data that never existed, not about someone else's data.
+        """
+        if payload.parent_run_id:
+            try:
+                parent = await asyncio.to_thread(app.state.runs.get, payload.parent_run_id)
+            except KeyError:
+                parent = None  # a run id that never existed stays the historical-compatibility case
+            if parent is not None:
+                require_read(request, parent.get("created_by", ""), "父运行属于其他账户，不能据此生成报告")
+
     @router.post("/api/reports/preflight")
-    async def report_preflight(payload: ReportRequest):
+    async def report_preflight(payload: ReportRequest, request: Request):
         if payload.year_from > payload.year_to:
             raise HTTPException(422, "起始年份不能晚于结束年份")
+        await check_report_links(payload, request)
         kn = await knowledge_for_request(payload.corpus_id)
         if payload.doc_ids:
             available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.current)}
@@ -161,9 +217,10 @@ def install(app, ctx):
             raise HTTPException(409, str(exc)) from exc
 
     @router.post("/api/reports")
-    async def create_report(payload: ReportRequest):
+    async def create_report(payload: ReportRequest, request: Request):
         if payload.year_from > payload.year_to:
             raise HTTPException(422, "起始年份不能晚于结束年份")
+        await check_report_links(payload, request)
         kn = await knowledge_for_request(payload.corpus_id)
         if payload.doc_ids:
             available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.current)}
@@ -284,6 +341,7 @@ def install(app, ctx):
                 session_key=session_key, parent_run_id=payload.parent_run_id or "",
                 run_type="report", task_id=task_id, task_version=task_version, engine_task_id="task4",
                 model=settings.model_name,
+                owner=request.state.user[0],
                 resource_policy="local_only",
                 requested_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
@@ -294,15 +352,31 @@ def install(app, ctx):
                 param_sources={**report_sources, **{f"task_params.{key}": value
                                                     for key, value in task_sources.items()}},
                 output_intent="document")
+        except RunNotYours as exc:
+            raise HTTPException(403, str(exc)) from exc
         except RunConflict as exc:
             raise HTTPException(409, str(exc)) from exc
-        except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block report generation
-            logger.warning("run snapshot create failed: %s", run_id)
-            snapshot, created = {}, True
+        except Exception as exc:  # noqa: BLE001 - a report without its run snapshot must not be generated
+            # A1 (2026-11-04): the run snapshot is the record of what produced a report (scope,
+            # task/template versions, param provenance). Recording it failed, so the report is not
+            # generated at all; the reason stays on the run and on a failed artifact record.
+            reason = f"运行快照记录失败，已停止生成：{type(exc).__name__}"
+            logger.warning("run snapshot create failed, report generation stopped: %s (%s)",
+                           run_id, type(exc).__name__)
+            failed_params = {**report_params, "session_key": session_key,
+                             "corpus_id": payload.corpus_id or ""}
+            try:
+                # Leave a traceable failed record instead of a silent absence: begin_report creates the
+                # artifact in ``generating`` and record_report_failure closes it with the reason.
+                await asyncio.to_thread(app.state.artifacts.begin_report, run_id, failed_params)
+            except Exception:  # noqa: BLE001 - the 503 below is the answer either way
+                logger.warning("failed report record unavailable for run: %s", run_id)
+            await record_report_failure(run_id, failed_params, reason)
+            raise HTTPException(503, reason) from exc
         if payload.run_id:  # M3: idempotent per (session_key, run_id), same fingerprint only
             existing = await asyncio.to_thread(app.state.artifacts.find_report, session_key, payload.run_id)
             if existing is not None:
-                return JSONResponse({**await get_report(existing["report_id"]), "idempotent": True}, status_code=200)
+                return JSONResponse({**await get_report(existing["report_id"], request), "idempotent": True}, status_code=200)
         if not created and snapshot.get("status") == "running":
             # A1: a second request while this report run is still generating must not race it.
             raise HTTPException(409, "该报告正在生成中")
@@ -322,13 +396,20 @@ def install(app, ctx):
             # Passed inside the run params so the call signature stays stable; generate_markdown
             # replaces it with the small snapshot that is persisted with the artifact.
             report_params["hierarchy_record"] = hierarchy_record
+        # 2026-11-13: one expert, two bounded texts per account (src/expert_memory). No seat is
+        # chosen — the old four-seat model had two seats with no production caller at all.
+        expert_store = await asyncio.to_thread(
+            expert_memory.load, settings.state_dir, request.state.user[0])
+        expert_block = await asyncio.to_thread(
+            expert_memory.block, settings.state_dir, request.state.user[0])
         try:
             visible_sources: list[dict] = []
             markdown = await generate_markdown(
                 kn, settings, report_params,
                 **({"template_content": template_content} if template_content is not None else {}),
                 **({"task_definition": task_definition} if task_definition is not None else {}),
-                visible_sources=visible_sources)
+                visible_sources=visible_sources,
+                expert_block=expert_block or None)
         except asyncio.CancelledError:
             await record_report_failure(run_id, report_params, "报告生成已中断")
             raise
@@ -366,8 +447,19 @@ def install(app, ctx):
             await record_report_failure(run_id, report_params, "保存到报告中心失败")
             raise HTTPException(500, "保存到报告中心失败，请重试") from None
         try:
-            await asyncio.to_thread(app.state.runs.update, run_id, status="completed", ended_at=datetime.now(UTC).isoformat(), metrics={"report_id": saved["report_id"]})
+            # What this report actually ran under: the entries themselves, so a later change to
+            # the remembered text cannot rewrite the history of an already-delivered report.
+            await asyncio.to_thread(app.state.runs.update, run_id, status="completed",
+                                    ended_at=datetime.now(UTC).isoformat(),
+                                    metrics={"report_id": saved["report_id"]},
+                                    expert={"profile": expert_store["profile"],
+                                            "practice": expert_store["practice"]})
         except Exception: logger.exception("report run update failed")
+        # 2026-11-13: the task is over, so this is when the review pass runs. It is scheduled, not
+        # awaited — a slow or failing review must never delay the report the person is waiting for.
+        schedule_review(app, settings, request.state.user[0],
+                         f"生成《{report_params.get('domain') or '报告'}》",
+                         markdown)
         return JSONResponse({**saved, "idempotent": False}, status_code=201)
 
     @router.post("/api/artifacts/{artifact_id}/retry", status_code=201)
@@ -380,6 +472,8 @@ def install(app, ctx):
             item = await asyncio.to_thread(app.state.artifacts.get, artifact_id)
         except KeyError as exc:
             raise HTTPException(404, "报告中心没有这条记录") from exc
+        # #13: refused before a retry request is built or a run is created.
+        require_write(request, item.get("created_by", ""))
         if item["type"] != "report" or item["status"] != "failed":
             raise HTTPException(409, "只有未完成的报告可以重新生成")
         if item.get("task_id") == "intelligence":
@@ -399,18 +493,30 @@ def install(app, ctx):
                 pass  # someone changed or removed the failed record meanwhile; leave it as it is
         return response
 
-    @router.get("/api/reports/{report_id}")
-    async def get_report(report_id: str):
+    async def report_for(request: Request, report_id: str) -> dict:
+        """The report, after checking the caller may read it (High#2 #2/#3).
+
+        Every reader of a report by id goes through here, so a direct read, a figure and an export
+        cannot disagree about who may see it.
+        """
         try:
             report = await asyncio.to_thread(app.state.artifacts.get_report, report_id)
         except KeyError as exc:
             raise HTTPException(404, "报告不存在") from exc
+        except HTTPException:
+            raise
+        require_read(request, report.get("created_by", ""), "这份报告属于其他账户")
         return report
 
+    @router.get("/api/reports/{report_id}")
+    async def get_report(report_id: str, request: Request):
+        return await report_for(request, report_id)
+
     @router.get("/api/reports/{report_id}/figures/{figure_id}")
-    async def report_figure(report_id: str, figure_id: str):
-        report = await get_report(report_id)
-        return await artifact_figure(report["artifact_id"], report["generated_version"], figure_id)
+    async def report_figure(report_id: str, figure_id: str, request: Request):
+        report = await report_for(request, report_id)
+        # #3: the figure of a report is read through the same authorisation and keeps its version.
+        return await artifact_figure(request, report["artifact_id"], report["generated_version"], figure_id)
 
     @router.get("/api/runs/{run_id}")
     async def get_run(run_id: str):
@@ -420,12 +526,18 @@ def install(app, ctx):
         except KeyError as exc:
             raise HTTPException(404, "运行记录未记录") from exc
 
-    async def resolve_artifact(artifact_id: str, version: int | None = None, include_trashed=False) -> dict:
+    async def resolve_artifact(artifact_id: str, version: int | None = None, include_trashed=False,
+                               request: Request | None = None) -> dict:
+        """The artifact after authorisation (High#2 #6): ``report:`` aliases, an explicit version and
+        trashed records all resolve through this one path, and the author is checked on the
+        normalised id before anything is read from the version tables."""
         try:
             if artifact_id.startswith("report:"):
                 artifact_id = await asyncio.to_thread(app.state.artifacts.report_identity, artifact_id[7:])
             item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, version, include_trashed=include_trashed)
         except KeyError as exc: raise HTTPException(404, "报告中心没有这条记录") from exc
+        if request is not None:
+            require_read(request, item.get("created_by", ""), "这条记录属于其他账户")
         available = await asyncio.to_thread(app.state.runs.existing_ids, [item.get("run_id", "")])
         return {**item, "run_available": item.get("run_id", "") in available}
 
@@ -452,7 +564,7 @@ def install(app, ctx):
         return role == "admin" or (bool(item.get("created_by")) and item["created_by"] == username)
 
     async def lifecycle_change(artifact_id, action, request):
-        if action in ("trash", "purge"):
+        if action in ("trash", "purge", "restore"):
             try:
                 item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, include_trashed=True)
             except KeyError as exc:
@@ -462,7 +574,7 @@ def install(app, ctx):
                     raise
                 item = None  # already purged: the store answers that itself
             if item is not None and not may_delete(request, item):
-                raise HTTPException(403, "只有报告的生成人或管理员可以删除")
+                raise HTTPException(403, "只有报告的生成人或管理员可以还原或删除")
         try:
             result=await asyncio.to_thread(app.state.artifacts.transition,artifact_id,action,match_revision(request))
         except KeyError as exc: raise HTTPException(404,"报告中心没有这条记录") from exc
@@ -479,12 +591,15 @@ def install(app, ctx):
         return await lifecycle_change(artifact_id,"purge",request)
 
     @router.post("/api/artifacts", status_code=201)
-    async def create_artifact(payload: ArtifactCreate):
+    async def create_artifact(payload: ArtifactCreate, request: Request):
         """Save only the exact completed chat output as an original answer snapshot."""
         try:
             snapshot = await asyncio.to_thread(app.state.runs.get, payload.run_id)
         except KeyError as exc:
             raise HTTPException(422, "该次回答没有运行记录，不能保存到报告中心") from exc
+        # #9: the source run must be the caller's own. A matching hash proves the text, never the right
+        # to save it under someone else's run.
+        require_read(request, snapshot.get("created_by", ""), "该次回答属于其他账户，不能保存")
         if payload.type != "answer_snapshot" or snapshot.get("run_type") != "chat":
             raise HTTPException(422, "此入口只能保存问答运行的回答快照")
         if snapshot.get("status") != "completed":
@@ -511,18 +626,19 @@ def install(app, ctx):
         return created
 
     @router.get("/api/artifacts/{artifact_id}")
-    async def get_artifact(artifact_id: str, version: int | None = None, include_trashed: bool = False):
-        item=await resolve_artifact(artifact_id,version,include_trashed)
+    async def get_artifact(artifact_id: str, request: Request, version: int | None = None, include_trashed: bool = False):
+        item = await resolve_artifact(artifact_id, version, include_trashed, request=request)
         return JSONResponse(item,headers={"ETag":f'"{item["revision"]}"',"Cache-Control":"no-store"})
 
     @router.get("/api/artifacts/{artifact_id}/versions")
-    async def list_artifact_versions(artifact_id: str, include_trashed: bool = False):
-        item=await resolve_artifact(artifact_id,include_trashed=include_trashed)
+    async def list_artifact_versions(artifact_id: str, request: Request, include_trashed: bool = False):
+        item = await resolve_artifact(artifact_id, include_trashed=include_trashed, request=request)
         return await asyncio.to_thread(app.state.artifacts.list_versions,item["artifact_id"],include_trashed=include_trashed)
 
     @router.post("/api/artifacts/{artifact_id}/versions", status_code=201)
     async def add_artifact_version(artifact_id: str, payload: ArtifactVersionCreate, request: Request):
-        current = await resolve_artifact(artifact_id)
+        current = await resolve_artifact(artifact_id, request=request)
+        require_write(request, current.get("created_by", ""))
         artifact_id = current["artifact_id"]
         if current["status"] == "generating":
             raise HTTPException(409, "报告生成中，不能编辑")
@@ -535,8 +651,10 @@ def install(app, ctx):
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    async def figure_candidates_for_artifact(artifact_id: str) -> list[dict]:
-        item = await resolve_artifact(artifact_id)
+    async def figure_candidates_for_artifact(artifact_id: str, request: Request | None = None) -> list[dict]:
+        item = await resolve_artifact(artifact_id, request=request)
+        if request is not None:
+            require_write(request, item.get("created_by", ""))
         if item["type"] != "report" or item.get("legacy") or len(item["corpus_ids"]) != 1:
             raise HTTPException(422, "该报告没有可替换的原 PDF 图片")
         reports = await asyncio.to_thread(app.state.artifacts.list_reports, run_id=item["run_id"], limit=1)
@@ -551,12 +669,15 @@ def install(app, ctx):
         return await asyncio.to_thread(select_figures, knowledge, info, visible, report["markdown"], 12, False)
 
     @router.get("/api/artifacts/{artifact_id}/figure-candidates")
-    async def artifact_figure_candidates(artifact_id: str):
-        candidates = await figure_candidates_for_artifact(artifact_id)
+    async def artifact_figure_candidates(artifact_id: str, request: Request):
+        candidates = await figure_candidates_for_artifact(artifact_id, request)
         return [{key: value for key, value in figure.items() if key != "bytes"} for figure in candidates]
 
-    async def change_artifact_figure(artifact_id: str, figure_id: str, replacement: dict | None, revision: int):
-        item = await resolve_artifact(artifact_id)
+    async def change_artifact_figure(artifact_id: str, figure_id: str, replacement: dict | None, revision: int,
+                                     request: Request | None = None):
+        item = await resolve_artifact(artifact_id, request=request)
+        if request is not None:
+            require_write(request, item.get("created_by", ""))
         if item["type"] != "report" or item.get("legacy") or item["status"] == "generating":
             raise HTTPException(409, "当前报告不能修改图片")
         old = next((figure for figure in item["figures"] if figure["figure_id"] == figure_id), None)
@@ -579,24 +700,27 @@ def install(app, ctx):
 
     @router.delete("/api/artifacts/{artifact_id}/figures/{figure_id}", status_code=201)
     async def remove_artifact_figure(artifact_id: str, figure_id: str, request: Request):
-        return await change_artifact_figure(artifact_id, figure_id, None, match_revision(request))
+        return await change_artifact_figure(artifact_id, figure_id, None, match_revision(request), request=request)
 
     @router.post("/api/artifacts/{artifact_id}/figures/{figure_id}/replace", status_code=201)
     async def replace_artifact_figure(artifact_id: str, figure_id: str, payload: FigureReplaceRequest, request: Request):
-        current = await resolve_artifact(artifact_id)
+        current = await resolve_artifact(artifact_id, request=request)
+        require_write(request, current.get("created_by", ""))
         old = next((item for item in current.get("figures", []) if item["figure_id"] == figure_id), None)
         if not old:
             raise HTTPException(404, "图片不属于当前报告版本")
-        candidates = await figure_candidates_for_artifact(artifact_id)
+        candidates = await figure_candidates_for_artifact(artifact_id, request)
         replacement = next((item for item in candidates if item["figure_id"] == payload.figure_id
                             and item["doc_id"] == old["doc_id"] and item["citation"] == old["citation"]), None)
         if not replacement:
             raise HTTPException(422, "候选图片必须来自该处论点引用的同一份资料")
-        return await change_artifact_figure(artifact_id, figure_id, replacement, match_revision(request))
+        return await change_artifact_figure(artifact_id, figure_id, replacement, match_revision(request),
+                                            request=request)
 
     @router.get("/api/artifacts/{artifact_id}/export")
-    async def export_artifact(artifact_id: str, format: str = "md", version: int | None = None):
-        item = await resolve_artifact(artifact_id, version)
+    async def export_artifact(request: Request, artifact_id: str, format: str = "md",
+                              version: int | None = None):
+        item = await resolve_artifact(artifact_id, version, request=request)
         artifact_id = item["artifact_id"]
         filename = artifact_id.replace(":", "-")
         images = {}
@@ -645,7 +769,13 @@ def install(app, ctx):
                         headers={"Content-Disposition": 'attachment; filename="export.docx"'})
 
     @router.get("/api/artifacts/{artifact_id}/versions/{version}/figures/{figure_id}")
-    async def artifact_figure(artifact_id: str, version: int, figure_id: str, include_trashed: bool = False):
+    async def artifact_figure(request: Request, artifact_id: str, version: int, figure_id: str,
+                              include_trashed: bool = False):
+        # #8: only fixing resolve_artifact would leave this direct image read unguarded, so it
+        # resolves the same way (alias, version, trash) and uses the normalised artifact id.
+        if request is not None:
+            item = await resolve_artifact(artifact_id, version, include_trashed=include_trashed, request=request)
+            artifact_id = item["artifact_id"]
         try:
             data, media_type = await asyncio.to_thread(app.state.artifacts.image, artifact_id, version, figure_id, include_trashed=include_trashed)
         except KeyError as exc:
@@ -653,9 +783,9 @@ def install(app, ctx):
         return Response(data, media_type=media_type, headers={"Cache-Control": "no-store"})
 
     @router.get("/api/reports/{report_id}/export")
-    async def export_report(report_id: str, format: str = "md"):
-        report = await get_report(report_id)
-        return await export_artifact(report["artifact_id"],format,report["generated_version"])
+    async def export_report(report_id: str, request: Request, format: str = "md"):
+        report = await report_for(request, report_id)
+        return await export_artifact(request, report["artifact_id"], format, report["generated_version"])
 
 
     app.include_router(router)

@@ -23,6 +23,7 @@ from ..custom_tasks import (
     TaskMissing,
     resolve_task_params,
 )
+from ..expert_schedule import schedule_review
 from ..knowledge import KnowledgeGroup
 from ..prompt_skills import render_skill
 from ..prompts import list_tasks
@@ -515,6 +516,17 @@ def install(app, ctx):
                         await asyncio.to_thread(app.state.runs.update, payload.run_id, replay=answer_replay(log.chunks))
                 except Exception:  # noqa: BLE001 - the live log still serves pages for a while
                     logger.warning("answer replay not saved: %s", payload.run_id)
+                # 2026-11-13: the answer is finished, so the expert review pass may look at it. It
+                # runs in the background; the reply the person already has is unaffected.
+                try:
+                    answer = _replay_text(log.chunks)
+                    question = next((item.content for item in reversed(payload.messages)
+                                     if item.role == "user"), "")
+                    if answer.strip() and question:
+                        schedule_review(app, settings, request.state.user[0],
+                                                     question, answer)
+                except Exception as exc:  # noqa: BLE001 - background bookkeeping
+                    logger.warning("expert review not scheduled: %s", type(exc).__name__)
                 asyncio.get_running_loop().call_later(ANSWER_KEEP_SECONDS, app.state.answers.pop, payload.run_id, None)
 
         app.state.answer_tasks[payload.run_id] = asyncio.create_task(produce())

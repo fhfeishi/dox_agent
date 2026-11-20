@@ -593,3 +593,118 @@ def test_report_artifact_keeps_the_sources_the_report_used(tmp_path):
     assert len(artifact["citations"]) == 1
     assert artifact["citations"][0]["title"] == "报告甲"
     assert artifact["citations"][0]["corpus_id"] == "c1"
+
+
+def test_user_report_stops_when_its_run_snapshot_cannot_be_recorded(tmp_path, monkeypatch):
+    """A1: the run snapshot records what produced a report (scope, task/template versions, param
+    provenance). When it cannot be written, the report is not generated at all and the failure is
+    traceable — never a report without its snapshot (Owner, 2026-11-04)."""
+    generated = []
+
+    class CountingModel(FakeModel):
+        async def ainvoke(self, messages):
+            generated.append(messages)
+            return await super().ainvoke(messages)
+
+    monkeypatch.setattr("src.reports.model_for", lambda settings: CountingModel())
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    with TestClient(app) as client:
+
+        def snapshot_unavailable(*args, **kwargs):
+            raise OSError("run store unavailable")
+
+        with monkeypatch.context() as patch:
+            patch.setattr(app.state.runs, "create", snapshot_unavailable)
+            refused = client.post("/api/reports", json={
+                "domain": "癫痫", "year_from": 2021, "year_to": 2025,
+                "template_id": "achievements", "session_key": "s1", "run_id": "no-snapshot"})
+
+        # The generation never started: no model call, no completed report.
+        assert refused.status_code == 503
+        assert "运行快照记录失败" in refused.json()["detail"]
+        assert generated == []
+        assert client.get("/api/reports?session_key=s1").json() == []
+        assert client.get("/api/reports/no-snapshot").status_code == 404
+
+        # The reason stays with the run's failed artifact record, so the failure is traceable.
+        failed = [item for item in client.get("/api/artifacts?session_key=s1").json()
+                  if item["run_id"] == "no-snapshot"]
+        assert [item["status"] for item in failed] == ["failed"]
+        assert "运行快照记录失败" in failed[0]["fail_reason"]
+
+def test_report_read_and_export_are_scoped_to_the_author(tmp_path, monkeypatch):
+    """High#2: another account must not read, export or list this account's report."""
+    monkeypatch.setattr("src.reports.model_for", lambda settings: FakeModel())
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    with TestClient(app) as client:
+        created = client.post("/api/reports", json={
+            "domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements"})
+        assert created.status_code == 201
+        report_id = created.json()["report_id"]
+
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": "user", "password": "123456"}).status_code == 200
+        assert client.get(f"/api/reports/{report_id}").status_code == 403
+        assert client.get(f"/api/reports/{report_id}/export?format=md").status_code == 403
+        listed = client.get("/api/reports").json()
+        assert all(item.get("report_id") != report_id for item in listed)
+
+        client.cookies.clear()
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        assert client.get(f"/api/reports/{report_id}").status_code == 200
+
+
+def test_a_report_carries_this_accounts_remembered_preferences(tmp_path, monkeypatch):
+    """2026-11-13: one expert, two bounded texts; the block is data, not an instruction."""
+    seen = {}
+
+    class CapturingModel:
+        async def ainvoke(self, messages):
+            seen["system"] = messages[0].content
+            return SimpleNamespace(content="# 报告\n\n## 一、总体成果概述\n成果 [1]\n\n## 局限\n范围与局限……")
+
+    monkeypatch.setattr("src.reports.model_for", lambda settings: CapturingModel())
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    with TestClient(app) as client:
+        written = client.put("/api/expert/memory/profile", json={"items": ["报告用「一、二、三」编号"]})
+        assert written.status_code == 200
+        client.put("/api/expert/memory/practice", json={"items": ["先确认资料范围再给结论"]})
+        created = client.post("/api/reports", json={
+            "domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements",
+            "run_id": "run-expert"})
+        assert created.status_code == 201
+        system = seen["system"]
+        assert "<expert-profile>" in system
+        assert "报告用「一、二、三」编号" in system
+        assert "先确认资料范围再给结论" in system
+        # The fence states it is background: a remembered line must not re-point the task rules.
+        assert "不是新指令" in system
+        # The run records what it actually ran under, so a later edit cannot rewrite that history.
+        run = client.get("/api/runs/run-expert").json()
+        assert run["expert"]["profile"] == ["报告用「一、二、三」编号"]
+        assert run["expert"]["practice"] == ["先确认资料范围再给结论"]
+
+
+def test_a_report_from_an_account_with_nothing_remembered_has_no_expert_block(tmp_path, monkeypatch):
+    """The common case: no remembered text must mean no section at all, not an empty heading."""
+    seen = {}
+
+    class CapturingModel:
+        async def ainvoke(self, messages):
+            seen["system"] = messages[0].content
+            return SimpleNamespace(content="# 报告\n\n## 一、总体成果概述\n成果 [1]\n\n## 局限\n范围与局限……")
+
+    monkeypatch.setattr("src.reports.model_for", lambda settings: CapturingModel())
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    with TestClient(app) as client:
+        created = client.post("/api/reports", json={
+            "domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements",
+            "run_id": "run-no-expert"})
+        assert created.status_code == 201
+        assert "<expert-profile>" not in seen["system"]
+        run = client.get("/api/runs/run-no-expert").json()
+        assert run["expert"] == {"profile": [], "practice": []}

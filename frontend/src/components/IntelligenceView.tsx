@@ -109,7 +109,9 @@ export function IntelligenceView() {
       </section>
       {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-body text-red-800">{error}</p> : null}
       {busy ? <GenerationProgress status="generating" stage_label={busy} /> : null}
-      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-body text-[var(--steel)]">{busy || "完成后自动保存到报告中心"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
+      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-body text-[var(--steel)]">{busy || (!inputs.length
+        // The button is disabled from the first visit; say what is missing instead of only what happens after.
+        ? "先选择外部材料，再生成报告。" : !template.trim() ? "请先确认报告模版。" : "完成后自动保存到报告中心")}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
     </div>
   </section>;
 }

@@ -444,7 +444,9 @@ export function ReviewWorkbench() {
       </div>
       <input ref={fileInput} aria-label="上传申请书文件" type="file" accept={ACCEPT} className="hidden"
         onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void upload(file); }} />
-      {blockers.length && doc ? <p className="mt-2 text-caption text-[var(--stone)]">尚需：{blockers.join("；")}</p> : null}
+      {/* Why it is disabled has to show before the application is uploaded too: the button is disabled
+          from the first visit, and “尚需：尚未上传申请书” is the answer the person is looking for. */}
+      {blockers.length ? <p className="mt-2 text-caption text-[var(--stone)]">尚需：{blockers.join("；")}</p> : null}
 
       {panel === "template" ? (
         <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-body leading-6 text-[var(--slate)]">

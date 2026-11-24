@@ -72,36 +72,13 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
     """Select captioned, PDF-matched single figures only from model-input documents."""
     manifest = {entry["doc_id"]: entry for entry in knowledge.files().values()
                 if entry["status"] == "indexed" and entry["doc_id"]}
-    import sys as _sys
-    def _l(fmt, *a):
-        try:
-            text = fmt % a if a else fmt
-        except Exception:
-            text = fmt + " " + repr(a)
-        _sys.stderr.write("FIGDBG " + text + "\n"); _sys.stderr.flush()
-    _l("in docs=%r manifest=%r versions=%r",
-        [(d.get("doc_id"), d.get("version")) for d in visible_docs],
-        list(manifest.keys()), {d["doc_id"]: d["version"] for d in knowledge.all()})
     versions = {doc["doc_id"]: doc["version"] for doc in knowledge.all()}
     ranked = []
     body = markdown.split("## 来源附录（系统记录）", 1)[0]
-    _l("loop enter n=%d", len(visible_docs))
     for source in visible_docs:
-        _l("iter doc=%r", source.get("doc_id"))
         entry = manifest.get(source["doc_id"])
         if not entry or source["version"] != versions.get(source["doc_id"]):
-            _l("skip entry=%r vcmp=%r/%r", bool(entry), source["version"], versions.get(source["doc_id"]))
             continue
-        _l("entry ok rel=%r", entry.get("rel_path"))
-        _pd = (corpus.root / "parsed" / entry["rel_path"]).resolve()
-        _l("paths pdf_rel=%r parsed_rel=%r suffix=%r file=%r sha_ok=%r cache=%r",
-           (corpus.source_dir / entry["rel_path"]).resolve().is_relative_to(corpus.source_dir.resolve()),
-           _pd.is_relative_to((corpus.root / "parsed").resolve()),
-           (corpus.source_dir / entry["rel_path"]).suffix.lower(),
-           (corpus.source_dir / entry["rel_path"]).is_file(),
-           sha256_file(corpus.source_dir / entry["rel_path"]) == entry["sha256"] if (corpus.source_dir / entry["rel_path"]).is_file() else None,
-           (read_cache(_pd) or {}).get("version"))
-        _l("sha cache=%r entry=%r", (read_cache(_pd) or {}).get("source_sha256"), entry["sha256"])
         pdf_path = (corpus.source_dir / entry["rel_path"]).resolve()
         parsed_dir = (corpus.root / "parsed" / entry["rel_path"]).resolve()
         # P0-1: figures come only from the canonical parse whose cache.json names this source sha and
@@ -112,26 +89,18 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
                 or cache is None or cache["source_sha256"] != entry["sha256"]
                 or cache["version"] is None or cache["version"] != source["version"]
                 or not pdf_path.is_file() or sha256_file(pdf_path) != entry["sha256"]):
-            _l("gate1 pdf=%r rel=%r cache=%r srcver=%r sha=%r",
-                str(pdf_path), pdf_path.is_relative_to(corpus.source_dir.resolve()),
-                (cache or {}).get("version"), source["version"], sha256_file(pdf_path) == entry["sha256"])
             continue
         middle = parsed_dir / "middle_json.json"
-        _l("middle exists=%r path=%r", middle.is_file(), str(middle))
         if not middle.is_file():
-            _l("gate2 middle missing %r", str(middle))
             continue
         try:
             pages = json.loads(middle.read_text(encoding="utf-8"))["pages"]
-        except (OSError, ValueError, KeyError, TypeError) as _e:
-            _l("parse failed %r", repr(_e))
+        except (OSError, ValueError, KeyError, TypeError):
             continue
-        _l("pages=%d", len(pages))
         for page in pages:
             if not isinstance(page, dict):
                 continue
             page_idx = page.get("page_idx")
-            _l("page_idx=%r blocks=%r", page_idx, len(page.get("blocks") or []))
             if not isinstance(page_idx, int) or page_idx < 1:
                 continue  # Cover logos and signatures are unsafe automatic report figures.
             blocks = page.get("blocks", [])
@@ -141,7 +110,6 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
                 if not isinstance(block, dict):
                     continue
                 if block.get("type") not in {"chart", "image"}:
-                    _l("skip type=%r", block.get("type"))
                     continue
                 bbox, caption = block.get("bbox"), _caption(block)
                 if (not isinstance(bbox, list) or len(bbox) != 4 or
@@ -168,7 +136,6 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
                 terms -= {"基于", "方法", "模型", "研究", "功能", "系统", "技术", "流程", "结果"}
                 relevance = sum(body.lower().count(term) for term in terms)
                 if (require_relevance and relevance <= 0) or f"[{source['citation']}]" not in body:
-                    _l("skip relevance=%r cite=%r", relevance, f"[{source['citation']}]" in body)
                     continue
                 score = relevance
                 near_text = " ".join(_block_text(other) for other in blocks[max(0, block_index_in_page - 2):block_index_in_page]

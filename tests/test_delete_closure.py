@@ -51,7 +51,7 @@ class Corpus:
         self.parsed = root / "parsed"
         self.db = root / "datadb" / "knowledge.sqlite3"
         self.calls_file = root.parent / f"{root.name}-calls"
-        self.calls_file.write_text("0")
+        self.calls_file.write_text("0", encoding="utf-8")
         script = root.parent / f"{root.name}-mineru.py"
         script.write_text(FAKE.format(calls=str(self.calls_file)), encoding="utf-8")
         self.settings = Settings(_env_file=None, mineru_cmd=f"{sys.executable} {script} {{pdf}} {{out}}")

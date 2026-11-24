@@ -28,7 +28,7 @@ def test_chroma_sync_reuses_and_removes_versions(tmp_path):
 
     model = tmp_path / "model"
     model.mkdir()
-    (model / "config.json").write_text("{}")
+    (model / "config.json").write_text("{}", encoding="utf-8")
     index = DenseIndex(tmp_path / "vectors", str(model), "cpu", "")
     index.store = Chroma(collection_name="test-sync", embedding_function=LocalTestEmbeddings(), persist_directory=str(tmp_path / "vectors"))
     assert index.search("foundation", ["foundation"], [{"version": "old"}], 6) == [0]

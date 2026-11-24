@@ -34,7 +34,7 @@ def main():
         item = {"case": name, "question": question, "seconds": round(time.monotonic() - started, 2), "events": events}
         results = [result for result in results if result["case"] != name] + [item]
         print(json.dumps({"case": name, "seconds": item["seconds"], "policy": [e["data"] for e in events if e["event"] == "policy"], "answer": "".join(e["data"]["text"] for e in events if e["event"] == "token"), "errors": [e for e in events if e["event"] == "error"]}, ensure_ascii=False), flush=True)
-        report.write_text(json.dumps(results, ensure_ascii=False, indent=2))
+        report.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ from src import launcher
 def test_install_only_when_manifest_changes(tmp_path, monkeypatch):
     root = tmp_path / "app"
     root.mkdir()
-    (root / "pyproject.toml").write_text("first")
+    (root / "pyproject.toml").write_text("first", encoding="utf-8")
     monkeypatch.setattr(launcher.sys, "prefix", str(tmp_path))
     monkeypatch.delenv("UPDATE_DEPS", raising=False)
     calls = []
@@ -15,7 +15,7 @@ def test_install_only_when_manifest_changes(tmp_path, monkeypatch):
     launcher.install(root, "web")
     launcher.install(root, "web")
     assert len(calls) == 1
-    (root / "pyproject.toml").write_text("changed")
+    (root / "pyproject.toml").write_text("changed", encoding="utf-8")
     launcher.install(root, "web")
     assert len(calls) == 2
 
@@ -30,19 +30,19 @@ def test_foreign_port_is_not_replaced():
 def test_frontend_builds_only_when_sources_change(tmp_path, monkeypatch):
     web = tmp_path / "frontend"
     (web / "src").mkdir(parents=True)
-    (web / "src/main.tsx").write_text("a")
-    (web / "package.json").write_text("{}")
+    (web / "src/main.tsx").write_text("a", encoding="utf-8")
+    (web / "package.json").write_text("{}", encoding="utf-8")
     monkeypatch.delenv("REBUILD_FRONTEND", raising=False)
     assert launcher.frontend(web, "check") == 1  # never built
     (web / "dist").mkdir()
-    (web / "dist/index.html").write_text("")
+    (web / "dist/index.html").write_text("", encoding="utf-8")
     assert launcher.frontend(web, "check") == 1  # built, but not recorded
     launcher.frontend(web, "stamp")
     assert launcher.frontend(web, "check") == 0
     monkeypatch.setenv("REBUILD_FRONTEND", "1")
     assert launcher.frontend(web, "check") == 1
     monkeypatch.delenv("REBUILD_FRONTEND")
-    (web / "src/main.tsx").write_text("b")
+    (web / "src/main.tsx").write_text("b", encoding="utf-8")
     assert launcher.frontend(web, "check") == 1
     launcher.frontend(web, "stamp")
     (web / "dist/index.html").unlink()
@@ -108,7 +108,7 @@ def test_serve_stops_without_waiting_for_background_jobs(tmp_path):
     (tmp_path / "jobapp.py").write_text(
         "import time\nfrom concurrent.futures import ThreadPoolExecutor\nfrom fastapi import FastAPI\n"
         "executor = ThreadPoolExecutor(max_workers=1)\napp = FastAPI()\n"
-        "@app.post('/job')\ndef job():\n    executor.submit(time.sleep, 30)\n    return {}\n")
+        "@app.post('/job')\ndef job():\n    executor.submit(time.sleep, 30)\n    return {}\n", encoding="utf-8")
     with socket.socket() as probe:
         probe.bind(("127.0.0.1", 0))
         port = probe.getsockname()[1]

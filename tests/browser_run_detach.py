@@ -84,7 +84,7 @@ def prepare(root: Path) -> str:
     corpus = root / "corpora" / "自然科学基金-机器人"
     source = corpus / "source"
     source.mkdir(parents=True)
-    (source / "2021_2024_62173009_王强_巡检机器人.md").write_text("# 项目报告\n国家自然科学基金\n批准号：62173009\n巡检机器人。")
+    (source / "2021_2024_62173009_王强_巡检机器人.md").write_text("# 项目报告\n国家自然科学基金\n批准号：62173009\n巡检机器人。", encoding="utf-8")
     settings = Settings(_env_file=None, state_dir=root / "state", corpora_root=root / "corpora", user_dir=root / "usr",
                         model_api_key=SecretStr("fixture"), embedding_path="")
     import_defaults(Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings, source_root=source),
@@ -124,9 +124,9 @@ async def main():
     with TemporaryDirectory(prefix="dox-run-detach-") as directory:
         root = Path(directory)
         corpus_id = prepare(root)
-        (root / "delay").write_text("4")
-        (root / "import_delay").write_text("0")
-        (root / "answer_delay").write_text("1")
+        (root / "delay").write_text("4", encoding="utf-8")
+        (root / "import_delay").write_text("0", encoding="utf-8")
+        (root / "answer_delay").write_text("1", encoding="utf-8")
         child, origin = start(root)
         try:
             async with async_playwright() as p:
@@ -152,12 +152,12 @@ async def main():
                 await expect(page.get_by_role("region", name="我的工作")).to_contain_text("巡检机器人研究进展")
 
                 # 2. A report still being written when the service is killed comes back as 已中断，可重试.
-                (root / "delay").write_text("120")
+                (root / "delay").write_text("120", encoding="utf-8")
                 await request_report(page, origin, corpus_id, "中断后重试的报告")
                 await page.wait_for_timeout(1500)
                 child.kill()
                 child.wait(timeout=10)
-                (root / "delay").write_text("2")
+                (root / "delay").write_text("2", encoding="utf-8")
                 child, origin = start(root)
                 page = await context.new_page()
                 page.on("pageerror", lambda e: errors.append(str(e)))
@@ -180,7 +180,7 @@ async def main():
                 await page.screenshot(path=str(ROOT / ".logsdev/verification/upgrade-B1/results-retried.png"))
 
                 # 3. A library refresh cut off by a restart is reported as such, not forgotten.
-                (root / "import_delay").write_text("120")
+                (root / "import_delay").write_text("120", encoding="utf-8")
                 # Refreshing a system library is the administrator's (D-20261027-1); the user then sees the outcome.
                 await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
                 assert (await page.request.post(f"{origin}/api/corpora/{quote(corpus_id)}/ingest")).ok
@@ -188,7 +188,7 @@ async def main():
                 await page.wait_for_timeout(1000)
                 child.kill()
                 child.wait(timeout=10)
-                (root / "import_delay").write_text("0")
+                (root / "import_delay").write_text("0", encoding="utf-8")
                 child, origin = start(root)
                 page = await context.new_page()
                 await sign_in(page, origin)

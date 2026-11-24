@@ -25,10 +25,10 @@ def test_launch_selects_environment_with_uv(tmp_path, mode):
     commands.mkdir()
     log = tmp_path / "calls"
     fake_python = tmp_path / "fake-python"
-    fake_python.write_text('#!/bin/bash\nif [[ "$*" == *embedding_path* ]]; then echo 0; fi\nif [[ "$*" == "src/launcher.py web" ]]; then uv pip install --python "$0" -e ".[web]"; fi\n', newline='\n')
+    fake_python.write_text('#!/bin/bash\nif [[ "$*" == *embedding_path* ]]; then echo 0; fi\nif [[ "$*" == "src/launcher.py web" ]]; then uv pip install --python "$0" -e ".[web]"; fi\n', newline='\n', encoding="utf-8")
     fake_python.chmod(0o755)
     uv = commands / "uv"
-    uv.write_text('#!/bin/bash\nprintf "%s\\n" "$*" >> "$CALL_LOG"\nif [[ "$1" == venv ]]; then mkdir -p "${@: -1}/bin"; cp "$FAKE_PYTHON" "${@: -1}/bin/python"; fi\n', newline='\n')
+    uv.write_text('#!/bin/bash\nprintf "%s\\n" "$*" >> "$CALL_LOG"\nif [[ "$1" == venv ]]; then mkdir -p "${@: -1}/bin"; cp "$FAKE_PYTHON" "${@: -1}/bin/python"; fi\n', newline='\n', encoding="utf-8")
     uv.chmod(0o755)
     env = {**os.environ, "PATH": str(commands) + os.pathsep + os.environ["PATH"], "CALL_LOG": shell_path(log), "FAKE_PYTHON": shell_path(fake_python), "OPEN_BROWSER": "0"}
     env.pop("VIRTUAL_ENV", None)

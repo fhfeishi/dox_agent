@@ -53,7 +53,7 @@ def test_stage_report_cli_does_not_initialize_or_migrate_sqlite(tmp_path, schema
     settings = Settings(_env_file=None, corpora_root=corpora, state_dir=tmp_path / "state", corpora=[])
     if schema == "legacy_registry":
         settings.state_dir.mkdir()
-        (settings.state_dir / "corpora.json").write_text(json.dumps({"fixture": {"name": "Old alias"}}))
+        (settings.state_dir / "corpora.json").write_text(json.dumps({"fixture": {"name": "Old alias"}}), encoding="utf-8")
     elif schema != "unregistered":
         scan_corpora(settings)
     before = {path.relative_to(tmp_path): (path.read_bytes(), path.stat().st_mtime_ns)

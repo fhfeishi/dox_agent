@@ -45,7 +45,7 @@ async def main():
         root = Path(directory)
         corpus = root/"corpora"/"自然科学基金-机器人验收"
         source = corpus/"source"; source.mkdir(parents=True)
-        (source/"2021_2024_62173009_王强_既有的巡检机器人项目.md").write_text("# 项目报告\n批准号：62173009\n巡检机器人。")
+        (source/"2021_2024_62173009_王强_既有的巡检机器人项目.md").write_text("# 项目报告\n批准号：62173009\n巡检机器人。", encoding="utf-8")
         settings = Settings(_env_file=None, state_dir=root/"state", corpora_root=root/"corpora", user_dir=root/"usr",
                             model_api_key=SecretStr("fixture"), embedding_path="")
         import_defaults(Knowledge(corpus/"datadb"/"knowledge.sqlite3", settings=settings, source_root=source), settings,

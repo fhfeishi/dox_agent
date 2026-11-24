@@ -32,7 +32,7 @@ async def main():
             name = f"2021_2025_A{i:02d}_某人_量子报告.md" if i < 2 else f"其他资料{i:02d}.md"
             body = "# 国家自然科学基金\n量子传感的光学方法与噪声抑制" if i < 2 else "# 农业材料\n土壤与灌溉"
             if i < 2: body += f"\n批准资助金额：{100*(i+1)}万元\n直接费用：{10*(i+1)}万元\n总经费：{200*(i+1)}万元"
-            (source/name).write_text(body)
+            (source/name).write_text(body, encoding="utf-8")
         settings = Settings(_env_file=None, state_dir=root/"state", corpora_root=root/"corpora",
                             user_dir=root/"usr", model_api_key=SecretStr("fixture"), embedding_path="")
         knowledge = Knowledge(corpus/"datadb"/"knowledge.sqlite3", settings=settings, source_root=source)
@@ -115,7 +115,7 @@ async def main():
                 upload_dir = root/"新资料"
                 (upload_dir/"甲").mkdir(parents=True); (upload_dir/"乙").mkdir()
                 for folder in ("甲", "乙"):
-                    (upload_dir/folder/"same.md").write_text("# 补充材料\n量子传感补充资料")
+                    (upload_dir/folder/"same.md").write_text("# 补充材料\n量子传感补充资料", encoding="utf-8")
                 await page.get_by_label("上传文件夹",exact=True).set_input_files(str(upload_dir))
                 await expect(page.get_by_role("list",name="本次添加进度").get_by_text("已入库",exact=True)).to_have_count(2)
                 files=(await (await page.request.get(origin+f"/api/corpora/{quote(cid)}/files")).json())["files"]

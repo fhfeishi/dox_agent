@@ -17,7 +17,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
-from src.parse_cache import write_cache
+from src.parse_cache import read_cache, write_cache
 from src.parsers import sha256_file
 from tests.browser_artifacts_live import start_server
 
@@ -77,6 +77,15 @@ async def main():
                     "illustrated": True})
                 assert response.status == 201, await response.text()
                 report = await response.json()
+                if len(report["figures"]) != 1:
+                    import sys as _s
+                    _s.stderr.write(f"DEBUG figures={report['figures']!r}\n")
+                    _s.stderr.write(f"DEBUG manifest={knowledge.files()!r}\n")
+                    _s.stderr.write(f"DEBUG cache={read_cache(parsed)!r}\n")
+                    _s.stderr.write(f"DEBUG docver={doc['version']!r}\n")
+                    _s.stderr.write(f"DEBUG visible={report.get('report_params', {}).get('visible_sources')!r}\n")
+                    _s.stderr.write(f"DEBUG put_doc_id={doc['doc_id']!r} manifest_ids={[v['doc_id'] for v in knowledge.files().values()]!r}\n")
+                    _s.stderr.write(f"DEBUG origin={str(source)!r}\n")
                 assert len(report["figures"]) == 1 and report["figures"][0]["page"] == 2
                 figure_id = report["figures"][0]["figure_id"]
                 figure_response = await page.request.get(

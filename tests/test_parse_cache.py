@@ -58,7 +58,7 @@ text = "" if cfg.get("empty") else label
 pages = [{{"page_idx": i, "blocks": [{{"type": "text", "content": [{{"type": "text", "content": (text + " page text long enough to count, p" + str(i + 1)) if i >= cfg.get("blank", 0) else ""}}]}}]}}
          for i in range(cfg["pages"])] if not cfg.get("empty") else [{{"page_idx": i, "blocks": []}} for i in range(cfg["pages"])]
 if cfg.get("no_middle"):
-    (out / "x_content_list.json").write_text(json.dumps([{{"type": "text", "text": label, "page_idx": 0}}]))
+    (out / "x_content_list.json").write_text(json.dumps([{{"type": "text", "text": label, "page_idx": 0}}]), encoding="utf-8")
 else:
     (out / "middle_json.json").write_text(json.dumps({{"pages": pages}}), encoding="utf-8")
 """
@@ -72,7 +72,7 @@ class Lib:
         self.db = tmp_path / "db" / "knowledge.sqlite3"
         self.cfg = tmp_path / "mineru.json"
         self.calls_file = tmp_path / "calls"
-        self.calls_file.write_text("0")
+        self.calls_file.write_text("0", encoding="utf-8")
         script = tmp_path / "fake_mineru.py"
         script.write_text(FAKE.format(cfg=str(self.cfg), calls=str(self.calls_file)), encoding="utf-8")
         self.settings = Settings(_env_file=None, mineru_cmd=f"{sys.executable} {script} {{pdf}} {{out}}")
@@ -82,7 +82,7 @@ class Lib:
         self.open()
 
     def mineru(self, **cfg):
-        self.cfg.write_text(json.dumps({"pages": 2, **cfg}))
+        self.cfg.write_text(json.dumps({"pages": 2, **cfg}), encoding="utf-8")
 
     def open(self):
         self.store = Knowledge(self.db, source_root=self.source)
@@ -354,10 +354,10 @@ def test_cache_mismatch_without_staging_flags_and_ignores_cache(lib, damage):
     marker = lib.parsed / REL / CACHE_FILE
     data = json.loads(marker.read_text())
     if damage == "corrupt":
-        marker.write_text("{not json")
+        marker.write_text("{not json", encoding="utf-8")
     else:
         data[{"version": "version", "sha": "source_sha256", "rel": "rel"}[damage]] = "0" * 20
-        marker.write_text(json.dumps(data))
+        marker.write_text(json.dumps(data), encoding="utf-8")
     before = marker.read_text()
     calls, version = lib.calls, lib.doc["version"]
     assert lib.run()["skipped"] == 1
@@ -456,12 +456,12 @@ def test_incomplete_staging_is_swept(lib):
     sha = lib.entry["sha256"]
     missing = staging_dir(lib.parsed, REL, sha)
     missing.mkdir(parents=True)
-    (missing / "full.md").write_text("# half")
+    (missing / "full.md").write_text("# half", encoding="utf-8")
     lib.run()
     assert lib.leftovers() == []
     # A marker whose products no longer match its version is incomplete too.
     shutil.copytree(lib.parsed / REL, missing)
-    (missing / "full.md").write_text("# edited")
+    (missing / "full.md").write_text("# edited", encoding="utf-8")
     lib.run()
     assert lib.leftovers() == []
     lib.assert_settled("A")
@@ -524,7 +524,7 @@ def test_staging_without_version_or_required_products_is_incomplete(lib, damage)
         changes = {"null-version": {"version": None, "profile": LEGACY},
                    "rel-mismatch": {"rel": "another.pdf"},
                    "sha-mismatch": {"source_sha256": "f" * 64}}[damage]
-        (staging / CACHE_FILE).write_text(json.dumps({**data, **changes}))
+        (staging / CACHE_FILE).write_text(json.dumps({**data, **changes}), encoding="utf-8")
     else:
         (staging / ("middle_json.json" if damage == "no-middle" else "full.md")).unlink()
     assert lib.state() == "ok"

@@ -227,7 +227,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
     from src import main as main_module
     dist = tmp_path / "frontend" / "dist"
     dist.mkdir(parents=True)
-    (dist / "index.html").write_text("research shell")
+    (dist / "index.html").write_text("research shell", encoding="utf-8")
     monkeypatch.setattr(main_module, "DOX_AGENT_ROOT", tmp_path)
     body = "# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。2022年发表《深度学习病灶识别》，2023年完成医院试验。"
     saved = put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",

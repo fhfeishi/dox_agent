@@ -74,7 +74,7 @@ async def main():
         ]:
             body = f"# 国家自然科学基金\n项目名称：{title}\n直接费用：{money}（万元）\n临床诊疗场景，采用深度学习解决病灶识别困难，形成原型系统。"
             path = source / filename
-            path.write_text(body)
+            path.write_text(body, encoding="utf-8")
             documents.append(
                 put_listed(knowledge,
                     Document(

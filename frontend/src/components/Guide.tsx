@@ -10,7 +10,7 @@ import { Button } from "./ui";
 export const GUIDES: Record<string, { title: string; steps: string[] }> = {
   home: { title: "首页", steps: ["选择资料查阅、存量分析或资料审查，开始一项工作", "最近报告可直接打开；生成过程中可以继续使用其他功能", "“报告中心”统一查看已完成报告和生成进度"] },
   // The leader's 概览 is 领域分析 alone; the administrator's also holds 资料库建设 (OVERVIEW_ADMIN below).
-  overview: { title: "概览", steps: ["01 研究领域总览：单击圆选中，再点一次进入下一层；从一个圆拖到另一个圆可并排对比", "02 技术谱系：单击节点展开或收起；双击图内空白进入缩放与拖动，Esc 退出", "03 缺口与机会：先看“先做”的条目，点开看依据；生成的报告在“报告中心”"] },
+  overview: { title: "概览", steps: ["01 研究领域总览：单击圆选中，再点一次进入下一层；从一个圆拖到另一个圆可并排对比", "02 技术谱系：单击节点展开或收起；单击图内空白进入缩放与拖动，Esc 退出", "03 缺口与机会：先看“先做”的条目，点开看依据；生成的报告在“报告中心”"] },
   chat: { title: "对话工作台", steps: ["直接提问，系统按问题自动选择资料库", "也可在输入框上方自行选择资料库", "回答中的编号可在右侧打开原文核对"] },
   // Shown to everyone but the administrator, who maintains system libraries (LIBRARY_ADMIN below).
   library: { title: "资料库", steps: ["打开系统资料库浏览项目与原文，点项目名即可预览", "新建个人资料库，从系统资料库挑选资料或上传自己的文件，把一项工作用到的资料集中在一处", "在个人资料库点“就此提问”，回答只依据这些资料"] },
@@ -24,7 +24,7 @@ const LIBRARY_ADMIN = { title: "资料库", steps: ["系统资料库由管理员
   "勾选项目可加入自己的个人资料库，提问时只用这些资料"] };
 
 const OVERVIEW_ADMIN = { title: "概览", steps: ["顶部“概览 ▾”切换资料库建设与领域分析", "资料库建设：先处理“需要处理”的事项，再看各库的读取状态",
-  "领域分析：01 单击圆选中再进入、拖到另一圆对比；02 单击节点展开，双击图内空白缩放"] };
+  "领域分析：01 单击圆选中再进入、拖到另一圆对比；02 单击节点展开，单击图内空白缩放"] };
 
 export const GUIDE_EVENT = "dox-guide";
 

@@ -232,7 +232,6 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
   const scrollSnapshot = useRef<{ node: HTMLElement; top: number; windowTop: number } | null>(null);
   const modePress = useRef<{ id: number; x: number; y: number; scroll: number; engaged: boolean } | null>(null);
   const touchHandled = useRef(false);
-  const blankClicks = useRef(0);
   const [active, setActive] = useState("root");
   const [hover, setHover] = useState("");
   const [detailTarget, setDetail] = useState<Node | null>(null);
@@ -550,8 +549,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
         if (!isLarge && e.target === e.currentTarget && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); changeMode(!engaged); return; }
         map.key(e);
       }} onPointerDown={map.down}
-      onClickCapture={e => { if (!isLarge) blankClicks.current = (e.target as Element).closest(".roads-node") ? 0 : Math.min(2, blankClicks.current + 1); }}
-      onDoubleClick={e => { if (!isLarge && blankClicks.current === 2 && !(e.target as Element).closest(".roads-node")) { e.preventDefault(); changeMode(!engaged); } }}>
+      onClick={e => { if (!isLarge && !(e.target as Element).closest(".roads-node")) { e.preventDefault(); changeMode(!engaged); } }}>
       <g transform={`translate(${view.x},${view.y}) scale(${view.k})`}>
         {now.rings.slice(1).map((r, i) => <circle key={i} r={r} className="roads-ring" />)}
         {nodes.filter((p) => p.node.parent).map((p) => {
@@ -610,7 +608,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
             onClick={e => { if (e.detail && touchHandled.current) { touchHandled.current = false; return; } touchHandled.current = false; changeMode(!engaged); }}>
             {engaged ? "✓ 图谱操作中" : "↕ 浏览页面"}
           </button>
-          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。展开只向外生长：子节点从名称末尾分叉，图框随之加高，名称不重叠。<br />默认滚轮浏览页面；双击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
+          <Hint align="end" text={<>单击节点展开 / 收起，可同时打开多支；详情在节点下方。展开只向外生长：子节点从名称末尾分叉，图框随之加高，名称不重叠。<br />默认滚轮浏览页面；单击图内空白进入 / 退出图谱操作，操作中可滚轮缩放、拖动平移；Esc 或点击图外退出。<br />路宽 = 技术条目数 · 路色 = 资料库；节点颜色 = 报告所述平均阶段：
             {MATURITY_NAMES.slice(1).map((name, i) => <span key={name} className="hint-swatch"><i style={{ background: `var(--m-${i + 1})` }} />{i + 1} {name}</span>)}
           </>}>图例与操作</Hint>
           <button type="button" onClick={expandSystems}>展开全部技术体系</button>
@@ -620,7 +618,7 @@ export function LineageRoads({ data, reveal }: { data: DomainsOverview; reveal?:
         </div>
       </div>
       {mapSvg(false)}
-      <div className="roads-interaction-hint" role="status">{engaged ? "图谱操作中 · 再双击空白 / Esc 退出" : "双击图内空白可操作 · 滚轮浏览页面"}</div>
+      <div className="roads-interaction-hint" role="status">{engaged ? "图谱操作中 · 单击图内空白 / Esc 退出" : "单击图内空白可操作 · 滚轮浏览页面"}</div>
       {hoverCard(false)}
     </div>
     {createPortal(<dialog ref={dialog} className="roads-large-dialog" aria-label="技术谱系大图"

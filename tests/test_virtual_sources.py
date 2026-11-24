@@ -81,6 +81,10 @@ def test_import_prune_keeps_virtual_sources(tmp_path):
     assert set(store.files()) == {"web:" + web["doc_id"], "manual:" + manual["doc_id"]}
 
 
+# Windows cannot create a file whose name contains ``:`` (NTFS treats it as a stream separator), so
+# the input this test needs cannot exist there. The rule itself is platform-independent and is
+# covered by ``collect_sources``'s refusal list, which other tests exercise on every platform.
+@pytest.mark.skipif(sys.platform == "win32", reason="Windows cannot create a file named manual:x.md")
 def test_file_name_with_colon_is_reported_not_indexed(tmp_path):
     source = tmp_path / "source"
     source.mkdir()

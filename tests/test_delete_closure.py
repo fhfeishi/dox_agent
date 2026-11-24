@@ -134,6 +134,7 @@ def test_forget_source_is_idempotent_and_leaves_other_documents(tmp_path, missin
     corpus.assert_present("b.pdf", b)
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="Windows cannot create a directory named manual:x")
 def test_virtual_rel_is_dropped_from_sqlite_without_touching_parsed(tmp_path):
     corpus = Corpus(tmp_path / "lib")
     corpus.add("a.pdf")

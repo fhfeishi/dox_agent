@@ -115,9 +115,13 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {/* One row of views, one shown at a time in this page (query 2026-1013 2012); views and the
               menu stay together on the right, so a narrow page wraps them as one group. */}
           <div className="ml-auto flex items-center gap-[10px]">
-          {!corpus.missing ? <nav aria-label="库内视图">
+          {!corpus.missing ? <nav aria-label="库内视图" className="flex items-center gap-[8px]">
             {/* One label for every role (query 2026-1030); what each role may change is decided inside the view. */}
             <Segmented label="库内视图" value={view} onChange={showView} options={VIEWS} />
+            {/* 资料入库工作台 (2026-11-04): a separate page, opened with this corpus preselected. */}
+            <button type="button" onClick={() => void navigate(`/ingest?corpus=${encodeURIComponent(corpusId)}`)}
+              title="打开资料入库工作台：上传、解析预览、人工校对后发布"
+              className="rounded-md border border-[var(--hairline-strong)] px-3 py-1.5 text-body hover:bg-[var(--surface)]">资料入库</button>
           </nav> : null}
           {/* After reload the local flag resets, but a server-side import may still be running. */}
           {admin ? <ManageMenu corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"}

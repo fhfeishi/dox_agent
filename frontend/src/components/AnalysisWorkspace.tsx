@@ -63,6 +63,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
     workspace,
     connected,
     ready,
+    setReplyTarget,
   } = useApp();
   const {
     inspectorOpen,
@@ -194,7 +195,10 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
             onRegenerate={connected && ready && !busy ? () => void regenerateAt(i) : undefined}
             onReport={(report) => setTurnReport(i, report)}
             onSaveArtifact={turn.outcome === "completed" ? () => void saveAnswerArtifact(turn.runId, turn.answer, turn.question.slice(0, 60)) : undefined}
-            onExport={(format) => void downloadTurn({ question: turn.question, corpusName, taskName: WORKSPACE_TASK_LABEL }, turn, format)} />
+            onExport={(format) => void downloadTurn({ question: turn.question, corpusName, taskName: WORKSPACE_TASK_LABEL }, turn, format)}
+            onReplyTo={connected && ready && !busy && turn.outcome === "completed"
+              ? (quote) => setReplyTarget({ runId: turn.runId, question: turn.question, quote, index: i + 1 })
+              : undefined} />
           {turn.answer && turn.outcome === "completed" ? <div className="mt-1 flex justify-end">
             <button type="button" disabled={reporting} onClick={() => setForm({ topic: turn.question, template: form?.template ?? "" })}
               className="text-caption text-[var(--link)] hover:underline disabled:opacity-40">以此生成报告</button></div> : null}

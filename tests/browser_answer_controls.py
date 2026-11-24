@@ -271,7 +271,7 @@ async def main():
             async with page.expect_download() as download_info:
                 await page.get_by_role("button", name="导出诊断 JSON").click()
             download = await download_info.value
-            exported = json.loads(Path(await download.path()).read_text())
+            exported = json.loads(Path(await download.path()).read_text(encoding="utf-8"))
             failed = exported["turns"][-1]
             assert failed["totalMs"] is None and failed["firstTokenMs"] >= 0
             assert failed["outcome"] == "failed" and len(failed["previousAttempts"]) == 2

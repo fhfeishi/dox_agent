@@ -18,7 +18,7 @@ def main():
         ("specific", "解释这个API页面 https://docs.langchain.com/oss/python/integrations/retrievers/a-batch-nonexistent", None),
     ]
     report = Path("reports/a_live_smoke.json")
-    results = json.loads(report.read_text()) if report.exists() else []
+    results = json.loads(report.read_text(encoding="utf-8")) if report.exists() else []
     for name, question, scope in cases:
         if sys.argv[1:] and name not in sys.argv[1:]:
             continue

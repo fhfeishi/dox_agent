@@ -64,6 +64,11 @@ async def main():
         write_cache(parsed, rel=source.name, source_sha=source_digest, version=doc["version"],
                     profile="test", pages=3)
         reports.model_for = lambda settings: FigureModel()
+        # The figure selector reads the corpus from disk, not from the Knowledge passed to the app:
+        # a corpus the scanner does not list has no parsed/ directory to look in.
+        from src.agent.corpora import scan_corpora
+        _scanned = [c.rel_path for c in scan_corpora(settings)]
+        assert "fixture" in _scanned, f"scanner does not list the fixture corpus: {_scanned}"
         origin, server, thread, listener = start_server(create_app(settings, knowledge))
         try:
             async with async_playwright() as playwright:
@@ -77,7 +82,11 @@ async def main():
                     "illustrated": True})
                 assert response.status == 201, await response.text()
                 report = await response.json()
-                assert len(report["figures"]) == 1 and report["figures"][0]["page"] == 2
+                # The failure this asserts against: a captioned chart on page 2 that the PDF pixel
+                # comparison accepts. Naming what came back makes a platform difference visible
+                # instead of a bare assertion.
+                assert len(report["figures"]) == 1 and report["figures"][0]["page"] == 2, \
+                    f"figures={report['figures']!r} note={report.get('markdown', '')[-200:]!r}"
                 figure_id = report["figures"][0]["figure_id"]
                 figure_response = await page.request.get(
                     f"{origin}/api/reports/{report['report_id']}/figures/{figure_id}")

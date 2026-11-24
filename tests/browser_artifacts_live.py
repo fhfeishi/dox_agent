@@ -207,7 +207,13 @@ async def main():
                 await expect(page.get_by_role("button",name="保存到报告中心",exact=True)).to_have_count(1)  # current turn only
                 await page.get_by_role("button",name="保存到报告中心",exact=True).click()
                 await expect(page.get_by_text(re.compile("已保存到报告中心")).last).to_be_visible()
-                snapshots=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
+                # The success toast renders before the list endpoint sees the new row on a slower
+                # machine (Windows here): poll the same way a person would refresh, instead of
+                # asserting on the first read.
+                for _ in range(20):
+                    snapshots=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
+                    if len(snapshots)==2: break
+                    await page.wait_for_timeout(250)
                 assert len(snapshots)==2,snapshots
                 doomed=snapshots[0]["artifact_id"]  # active view sorts created_at DESC; card 0 is the newest snapshot
                 await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()

@@ -63,7 +63,7 @@ def test_a_file_with_data_is_backed_up_staged_checked_and_replaced(tmp_path):
     legacy(path, STEPS[0], [("INSERT INTO notes VALUES (?,?)", ("n1", "正文"))])
     assert migrate(path, STEPS) == 0
     assert version(path) == 2 and rows(path, "notes") == [("n1", "正文", "")]
-    record = json.loads((tmp_path / "old.sqlite3.migration.json").read_text())
+    record = json.loads((tmp_path / "old.sqlite3.migration.json").read_text(encoding="utf-8"))
     backup = record["backup"]
     assert record["from"] == 0 and record["to"] == 2 and version(backup) == 0
     assert rows(backup, "notes") == [("n1", "正文")]
@@ -193,7 +193,7 @@ def test_every_pre_migration_file_reaches_the_latest_version_with_its_rows(tmp_p
         path = state / filename
         assert version(path) >= 1, filename
         assert len(rows(path, table)) == 1, filename
-        record = json.loads(path.with_name(filename + ".migration.json").read_text())
+        record = json.loads(path.with_name(filename + ".migration.json").read_text(encoding="utf-8"))
         # The backup is the pre-migration structure; the migration may have added a column (runs
         # gained created_by). What must hold is that every stored value survived.
         kept = [name for name in columns(path, table) if name in columns(record["backup"], table)]

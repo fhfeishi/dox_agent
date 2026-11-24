@@ -110,14 +110,6 @@ export async function ingestCorpus(corpusId: string, force = false): Promise<Cor
 export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null; reason?: string; duplicate_of?: string };
 export type CorpusFileListing = { source_dir: string; files: CorpusFile[]; misplaced_files: string[] };
 
-export async function sendRunFeedback(runId: string, kind: "explicit_memory" | "comment",
-  payload: Record<string, unknown> = {}, explicit = false): Promise<void> {
-  const response = await fetch(`/api/runs/${encodeURIComponent(runId)}/feedback`, {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ kind, payload, explicit }),
-  });
-  if (!response.ok) await jsonOrThrow(response, "反馈未记录");
-}
 
 async function jsonOrThrow(response: Response, fallback: string) {
   const payload = await response.json().catch(() => null);

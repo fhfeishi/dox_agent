@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { artifactExportUrl, fetchArtifact } from "../api";
 import { downloadText } from "../exportFormat";
+import { copyToClipboard } from "../clipboard";
 import { useApp } from "../store";
 import { ReportMarkdown } from "./ReportMarkdown";
 import { reportTag } from "./ResultsPage";
@@ -16,6 +18,14 @@ export function ReportPage() {
   const { handleOpenSource, corpora } = useApp();
   const report = useQuery({ queryKey: ["report-page", artifactId], queryFn: () => fetchArtifact(artifactId) });
   const item = report.data;
+  // The answer view already had a copy state and a fallback; this page copied directly and said nothing
+  // when the browser refused (an insecure origin, a denied permission), so the click looked dead.
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const copy = async () => {
+    if (!item) return;
+    const ok = await copyToClipboard(item.markdown);
+    setCopyState(ok ? "copied" : "failed");
+  };
   const link = "text-body text-[var(--link)] hover:underline";
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[var(--surface-soft)]">
     <article className="mx-auto my-6 w-full max-w-[920px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-6 py-7 sm:px-10">
@@ -27,8 +37,11 @@ export function ReportPage() {
               item.corpus_ids.map((id) => corpora.find((c) => c.id === id)?.name ?? id).join("、")].filter(Boolean).join(" · ")}</p>
             {/* Most reports open with their own title as a heading; the page names it only when they do not. */}
             {/^#\s/.test(item.markdown.trimStart()) ? null : <h1 className="mt-1 text-page font-semibold text-[var(--ink)]">{item.title}</h1>}
-            <nav aria-label="导出" className="mt-3 flex flex-wrap gap-4">
-              <button type="button" className={link} onClick={() => void navigator.clipboard.writeText(item.markdown)}>复制正文</button>
+            <nav aria-label="导出" className="mt-3 flex flex-wrap items-center gap-4">
+              <button type="button" className={link} onClick={() => void copy()}>
+                {copyState === "copied" ? "已复制" : "复制正文"}
+              </button>
+              {copyState === "failed" ? <span role="status" className="text-caption text-[var(--red)]">复制失败，请手动选择正文，或下载 .md</span> : null}
               {item.figures?.length ? <a className={link} href={artifactExportUrl(item.artifact_id, "zip", item.version)}>下载图文 ZIP</a>
                 : <button type="button" className={link} onClick={() => downloadText(item.markdown, `${item.title}.md`)}>下载 .md</button>}
               <a className={link} href={artifactExportUrl(item.artifact_id, "docx", item.version)}>导出 .docx</a>

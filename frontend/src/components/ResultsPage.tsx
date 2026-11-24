@@ -133,6 +133,13 @@ export function ResultsPage() {
   const open = (row: Row) => row.runId ? void navigate(`/review/runs/${encodeURIComponent(row.runId)}?return=${encodeURIComponent("/results?" + search.toString())}`)
     : showInspector({ kind: "artifact", artifactId: row.key });
   const link = "text-body text-[var(--link)] hover:underline disabled:opacity-40";
+// Records with the same title and the same day are otherwise indistinguishable: "技术背景分析" twice on
+// 2026-10-08, "自然科学基金-AI与医疗" five times. The time of day is what tells them apart.
+const stamp = (iso: string) => {
+  const at = new Date(iso);
+  if (Number.isNaN(at.getTime())) return iso.slice(0, 10);
+  return `${at.toLocaleDateString("zh-CN", { year: "numeric", month: "2-digit", day: "2-digit" })} ${at.toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit", hour12: false })}`;
+};
 
   // The page scrolls on its own, like the other pages: the app frame is one screen high (query 2026-1015 1700).
   return <main className="min-h-0 flex-1 overflow-y-auto">
@@ -224,7 +231,7 @@ export function ResultsPage() {
             <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-caption text-[var(--steel)]">
               <Pill tone={KIND_TONE[row.kind]}>{KIND_LABEL[row.kind]}</Pill>
               <span className={row.status === "failed" ? "text-[var(--red)]" : ""}>{row.artifact?.interrupted ? "已中断，可重试" : STATUS_LABEL[row.status] ?? row.status}</span>
-              <span className="tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
+              <span className="tabular-nums text-[var(--stone)]">{stamp(row.date)}</span>
               <span>{row.detail}</span>
               {row.corpusIds.length ? <span className="min-w-0 max-w-full truncate">{corpusNames(row.corpusIds)}</span> : null}
               {scope === "all" ? <span className="text-[var(--stone)]">生成人 {row.author || "未记录"}</span> : null}

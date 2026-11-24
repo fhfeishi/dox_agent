@@ -17,21 +17,24 @@ const ACTIVE = new Set(["queued", "running", "generating"]);
  * This is a view of one's own work, not a visibility rule: other accounts can still open them.
  */
 export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
-  const { username } = useAuth();
+  const { username, role } = useAuth();
   const { workspace, switchSession } = useApp();
   const { showInspector } = useLayout();
   const navigate = useNavigate();
+  // The server decides whose records these are (auth.visible_owners): an account's own, plus — for the
+  // administrator — the ones saved before authorship was recorded. Filtering again here would hide those
+  // and make 首页 say "还没有报告" while 报告中心's 我的 tab, under the same word, lists them.
   const reports = useQuery({
     queryKey: ["mine", "reports", username],
-    queryFn: ({ signal }) => fetchArtifacts({ type: "report", limit: 20, created_by: username }, signal),
+    queryFn: ({ signal }) => fetchArtifacts({ type: "report", limit: 20 }, signal),
     refetchInterval: (query) => query.state.data?.some((r) => ACTIVE.has(r.status)) ? 5000 : false,
   });
   const reviews = useQuery({
     queryKey: ["mine", "reviews", username],
-    queryFn: async () => (await fetchReviewRuns()).filter((run) => run.created_by === username).slice(0, 20),
+    queryFn: async () => (await fetchReviewRuns()).slice(0, 20),
     refetchInterval: (query) => query.state.data?.some((r) => ACTIVE.has(r.status)) ? 5000 : false,
   });
-  const sessions = workspace.sessions.filter((s) => s.created_by === username && !s.data.archived).slice(0, 8);
+  const sessions = workspace.sessions.filter((s) => !s.data.archived).slice(0, 8);
   const working = [...(reviews.data ?? []).filter((r) => ACTIVE.has(r.status)), ...(reports.data ?? []).filter((r) => ACTIVE.has(r.status))].length;
   const box = "rounded-xl border border-[var(--line-cool)] bg-white p-4";
   const row = "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-body hover:bg-[var(--surface-cool)]";
@@ -42,15 +45,24 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
     {bare ? (working ? <p className="mb-2 text-caption text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
       : <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
       <h2 className="text-emphasis font-semibold text-[var(--heading)]">我的工作</h2>
-      <span className="text-caption text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
+      <span className="text-caption text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : role === "admin"
+        ? "本账户发起的对话、报告与审查（含未记录生成人的早期记录）；更早的内容在“报告中心”中"
+        : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
     </div>}
     <div className="grid gap-3 lg:grid-cols-3">
       <section aria-label="我的对话" className={box}>
         <h3 className="mb-2 text-body font-semibold">我的对话</h3>
-        {sessions.length ? sessions.map((s) => <button key={s.id} type="button" onClick={() => void switchSession(s.id)} className={row}>
-          <span className="min-w-0 flex-1 truncate">{s.title}</span>
-          {s.data.origin === "workspace" ? <span className="shrink-0 text-caption text-[var(--steel)]">{TERMS.workspaceAnalysis.name}</span> : null}
-          <span className="shrink-0 text-caption text-[var(--stone)]">{s.updated_at?.slice(5, 10)}</span></button>) : empty("还没有对话。")}
+        {sessions.length ? sessions.map((s) => {
+          // 资料分析（精准问答） is 9 characters wide on its own; sharing one 370 px row with the title and
+          // the date cut every title down to “场景、问题…”. The source and the date get their own line.
+          const source = s.data.origin === "workspace" ? TERMS.workspaceAnalysis.name : "";
+          const date = s.updated_at?.slice(5, 10) ?? "";
+          return <button key={s.id} type="button" onClick={() => void switchSession(s.id)} className={`${row} items-start`}>
+            <span className="min-w-0 flex-1">
+              <span className="block truncate">{s.title}</span>
+              {source || date ? <span className="mt-0.5 block truncate text-caption text-[var(--stone)]">{source}{source && date ? " · " : ""}{date}</span> : null}
+            </span></button>;
+        }) : empty("还没有对话。")}
       </section>
       <section aria-label="我的报告" className={box}>
         <h3 className="mb-2 text-body font-semibold">我的报告</h3>

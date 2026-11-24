@@ -514,7 +514,7 @@ async def check_roads(page,shots):
     frame=page.locator('.roads:not(.roads-large-content)')
     mode=frame.get_by_role('button',name='进入图谱操作',exact=True)
     await expect(mode).to_have_attribute('aria-pressed','false')
-    await road.dblclick(position={'x':24,'y':24})
+    await road.click(position={'x':24,'y':24})
     await expect(frame).to_have_attribute('data-engaged','true')
     box=await road.bounding_box()
     scroll_before=await scroller.evaluate('e=>e.scrollTop')
@@ -523,7 +523,7 @@ async def check_roads(page,shots):
     await page.wait_for_function('(old)=>document.querySelector(".roads > .roads-svg > g").getAttribute("transform")!==old',arg=before_view)
     assert await scroller.evaluate('e=>e.scrollTop')==scroll_before
     changed=await group.get_attribute('transform')
-    await road.dblclick(position={'x':24,'y':24})
+    await road.click(position={'x':24,'y':24})
     await expect(frame).to_have_attribute('data-engaged','false')
     await expect(group).to_have_attribute('transform',changed)
     tools = frame.locator(".roads-tools .roads-zoom")

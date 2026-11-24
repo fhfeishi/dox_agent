@@ -34,7 +34,7 @@ def copy_template(client, source="comprehensive"):
 def test_custom_template_draft_publish_and_report_binding(tmp_path, monkeypatch):
     captured: dict = {}
 
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, visible_sources=None, expert_block=None):
         captured["template_content"] = template_content
         captured["params"] = params
         return "# 自定义报告"
@@ -82,7 +82,7 @@ def test_custom_template_rejects_undeclared_or_unused_variables(tmp_path):
 
 
 def test_report_type_custom_task_records_task_and_template_versions(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None, expert_block=None):
         return "# 报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -116,7 +116,7 @@ def test_report_type_custom_task_records_task_and_template_versions(tmp_path, mo
 
 def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_path, monkeypatch):
     # Given a published report task bound to the built-in comprehensive template
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None, expert_block=None):
         return "# 内置模版报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -145,7 +145,7 @@ def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_pat
 
 
 def test_user_report_requires_explicit_task_version_and_rejects_parameter_bypass(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None, expert_block=None):
         assert task_definition["background"] == "只依据资料"
         assert params["task_params"] == {"topic": "医疗"}
         return "# 报告"
@@ -253,7 +253,7 @@ def test_user_copies_custom_template_and_archives_without_changing_version(tmp_p
 
 def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None,
-                            task_definition=None, visible_sources=None):
+                            task_definition=None, visible_sources=None, expert_block=None):
         return "# 固定版本报告"
 
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
@@ -277,7 +277,7 @@ def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, 
 
 
 def test_user_cannot_publish_report_task_without_authoritative_template_binding(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None, expert_block=None):
         return "# 报告"
     monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, _ = ready_app(tmp_path)

@@ -55,6 +55,9 @@ ROLES = (("user", "普通用户"), ("owner", "领导"), ("admin", "管理员"))
 ALL, ADMIN = {"user", "owner", "admin"}, {"admin"}
 # (capability, who may, path pattern); the first match wins. Mirrors design/系统.md §5.
 CAPABILITIES = [
+    # 2026-11-13: the expert memory page is the auditor's; ordinary accounts accumulate and load
+    # their own memory in the background without any route access, so they need none of these.
+    ("专家记忆（审计）", ADMIN, r"^/api/expert/memory"),
     ("账户管理", ADMIN, r"^/api/auth/accounts"),
     ("本人登录、口令与指南", ALL, r"^/api/auth/"),
     ("资料库结构重新生成与目录重新关联", ADMIN, r"^/api/corpora/[^/]+/(reassociate|target|topics|lineage|hierarchy)"),

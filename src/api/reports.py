@@ -485,7 +485,9 @@ def install(app, ctx):
             payload = ReportRequest(**fields)
         except ValidationError as exc:
             raise HTTPException(422, "原报告的设置不完整，请从分析页重新发起") from exc
-        response = await create_report(payload)
+        # The retry runs as the account that asked for it: create_report authorises the run owner
+        # and records created_by, so it needs the same request the outer route received.
+        response = await create_report(payload, request)
         if may_delete(request, item):  # someone else's failed record is theirs to remove
             try:
                 await asyncio.to_thread(app.state.artifacts.transition, artifact_id, "trash", item["revision"])

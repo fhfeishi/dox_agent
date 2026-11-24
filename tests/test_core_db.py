@@ -14,6 +14,18 @@ def rows(path, table):
         return con.execute(f"SELECT * FROM {table} ORDER BY 1").fetchall()
 
 
+def columns(path, table):
+    with connect(path, readonly=True) as con:
+        return [row[1] for row in con.execute(f"PRAGMA table_info({table})")]
+
+
+def shared_rows(path, table, names):
+    """The named columns only. A migration may add a column, so comparing ``SELECT *`` against the
+    pre-migration backup would fail on a change that loses nothing."""
+    with connect(path, readonly=True) as con:
+        return con.execute(f"SELECT {','.join(names)} FROM {table} ORDER BY 1").fetchall()
+
+
 def legacy(path, sql, inserts=()):
     """A file as earlier code left it: tables and rows, user_version 0."""
     con = sqlite3.connect(path)
@@ -182,7 +194,11 @@ def test_every_pre_migration_file_reaches_the_latest_version_with_its_rows(tmp_p
         assert version(path) >= 1, filename
         assert len(rows(path, table)) == 1, filename
         record = json.loads(path.with_name(filename + ".migration.json").read_text())
-        assert rows(record["backup"], table) == rows(path, table), filename
+        # The backup is the pre-migration structure; the migration may have added a column (runs
+        # gained created_by). What must hold is that every stored value survived.
+        kept = [name for name in columns(path, table) if name in columns(record["backup"], table)]
+        assert kept, filename
+        assert shared_rows(record["backup"], table, kept) == shared_rows(path, table, kept), filename
 
 
 def test_a_file_crashed_mid_transaction_still_opens_and_migrates(tmp_path):

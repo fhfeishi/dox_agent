@@ -38,7 +38,7 @@ class OfflineGraph:
 
 
 async def offline_report(knowledge, settings, params, *, llm=None, template_content=None,
-                         task_definition=None, visible_sources=None):
+                         task_definition=None, visible_sources=None, expert_block=None):
     doc = knowledge.current()[0]
     if visible_sources is not None:
         visible_sources.append({"citation": 1, "doc_id": doc["doc_id"], "title": doc["title"],
@@ -74,7 +74,10 @@ async def main():
                                      markdown="填表日期：2025年\n资助类别：面上项目\n证据正文"))
         for name in ("zz-b", "zz-c"):
             other=Knowledge(corpus_root/name/"datadb"/"knowledge.sqlite3",settings=settings)
-            other.put(Document(title=name,origin=f"2021_2025_P2_李四_{name}.md",kind="text",parser="text",pages=[Page(number=1,text="独立库资料")],markdown="独立库资料"))
+            # P0-3 B1: every real import publishes through a manifest entry; a bare put() is refused.
+            put_listed(other, Document(title=name, origin=f"2021_2025_P2_李四_{name}.md", kind="text",
+                                       parser="text", pages=[Page(number=1, text="独立库资料")],
+                                       markdown="独立库资料"))
         corpus_id = corpus_id_for("fixture")
         reports_api.generate_markdown = offline_report
 

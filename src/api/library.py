@@ -125,9 +125,8 @@ def install(app, ctx):
 
     @router.get("/api/corpora")
     async def corpora():
-        """H1: corpus registry — disk scan + config/override names, read-only."""
+        """H1: corpus registry — disk scan + names, read-only; file counts stay off the loop (KM-S2)."""
         items = await asyncio.to_thread(scan_corpora, settings)
-        # KM-S2: file counts read the source dir + manifest, so keep them off the event loop.
         return await asyncio.to_thread(lambda: [corpus_payload(info) for info in items])
 
     @router.post("/api/corpora", status_code=201, dependencies=ADMIN_ONLY)
@@ -766,8 +765,7 @@ def install(app, ctx):
 
     @router.get("/api/documents/{doc_id}/file")
     async def document_file(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
-        """D2: raw PDF/Markdown/txt for the browser reader; Range is handled by FileResponse."""
-        # Inline so the raw reader (iframe/PDF viewer) renders instead of downloading.
+        """D2: raw PDF/Markdown/txt for the reader; Range via FileResponse, inline so it renders."""
         path, media_type = await resolve_document_file(request, doc_id, version, corpus)
         return FileResponse(path, media_type=media_type, filename=path.name, content_disposition_type="inline")
 

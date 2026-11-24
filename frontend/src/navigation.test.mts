@@ -8,7 +8,8 @@ const bar = (role: 'admin' | 'leader' | 'user') =>
   barFor(role).map((item) => item.kind === 'entry' ? `${item.entry.label}${item.entry.pages ? '▾' : ''}` : `${item.label}▾`);
 
 test('each role sees its bar in the order of query 2026-1019 2021', () => {
-  assert.deepEqual(bar('admin'), ['首页', '概览▾', '资料库', '对话工作台', '存量分析▾', '资料审查▾', '情报分析', '报告中心']);
+  // 2026-11-06: the expert layer is invisible to normal accounts; only the administrator audits it.
+  assert.deepEqual(bar('admin'), ['首页', '概览▾', '资料库', '对话工作台', '存量分析▾', '资料审查▾', '情报分析', '报告中心', '专家审计']);
   assert.deepEqual(bar('user'), ['首页', '资料库', '对话工作台', '存量分析▾', '资料审查▾', '情报分析', '报告中心']);
   assert.deepEqual(bar('leader'), ['首页', '领域分析', '资料库', '工作台▾', '报告中心']);
   const bench = barFor('leader').find((item) => item.kind === 'workbench');

@@ -3,7 +3,7 @@ import { useLocation, useMatch, useNavigate } from "react-router";
 import type { DocumentInfo } from "./useDocuments";
 import { usePanelSize, type PanelSize } from "./panelSize";
 
-export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence" | "results";
+export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence" | "results" | "experts";
 /** What the right-hand panel shows. "answer" is the 对话工作台's own view of the latest answer and is shown only there. */
 export type InspectorTarget = { kind: "answer" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
@@ -100,10 +100,11 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence", results: "/results" };
-  const nav: NavKey = location.pathname === "/home" ? "home" : location.pathname.startsWith("/overview") ? "overview" : location.pathname.startsWith("/library") ? "library"
+  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence", results: "/results", experts: "/experts" };
+  const nav: NavKey = location.pathname === "/home" ? "home" : location.pathname.startsWith("/overview") ? "overview" : location.pathname.startsWith("/library") || location.pathname.startsWith("/ingest") ? "library"
     : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/results") ? "results"
-      : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
+      : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/experts") ? "experts"
+        : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
   const corpusView = location.pathname.includes("/documents") ? "files" : "target";
   const setCorpusView = (view: "files" | "target") => {

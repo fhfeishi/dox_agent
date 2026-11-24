@@ -12,7 +12,11 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 mode="${1:-quick}"
-python=.venv/bin/python
+# The virtualenv layout differs by platform: POSIX puts the interpreter in .venv/bin, Windows in
+# .venv\Scripts. Picking it here is what lets the same script run on both (2026-11-13).
+if [ -x .venv/bin/python ]; then python=.venv/bin/python
+elif [ -x .venv/Scripts/python.exe ]; then python=.venv/Scripts/python.exe
+else echo "check.sh: no interpreter in .venv (bin or Scripts)" >&2; exit 2; fi
 failed=()
 
 step() {  # step <name> <command...>

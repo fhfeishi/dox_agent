@@ -118,7 +118,7 @@ export function TopNav() {
     ? <MenuTab key={entry.label} label={entry.label} sections={entry.pages} active={isOn(entry)} current={current} />
     : <Link key={entry.label} to={entry.to!} title={entry.hint} aria-current={isOn(entry) ? "page" : undefined} className={tab(isOn(entry))}>{entry.label}</Link>;
   return <header className="flex h-[60px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
-    {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" && nav !== "results" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
+    {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" && nav !== "results" && nav !== "experts" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
     <Link to="/home" aria-label="回到工作首页" className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>

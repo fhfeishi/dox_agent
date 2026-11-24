@@ -47,7 +47,8 @@ export function SidePanel() {
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   // The top bar keeps the primary entries reachable while the panel is hidden.
   // Task pages keep their context in the main flow; a second task list obscures that flow.
-  if (sidebarCollapsed || ["home", "overview", "library", "review", "tasks", "intelligence", "results"].includes(nav)) return null;
+  // 专家审计 is a read-only audit page with no conversations: a session list there is noise.
+  if (sidebarCollapsed || ["home", "overview", "library", "review", "tasks", "intelligence", "results", "experts"].includes(nav)) return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;

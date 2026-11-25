@@ -12,6 +12,11 @@ export function ModelMenu({ label, tone }: { label: string; tone: string }) {
   const [info, setInfo] = useState<ModelInfo | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState("");
+  // Which models this session has proven: switch a model and its light tells whether it answered.
+  // Persisted nowhere — a provider can go down between sessions, and a stale green light is worse
+  // than none.
+  const [reachable, setReachable] = useState<Record<string, boolean>>({});
+  const [lastError, setLastError] = useState("");
   const box = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,10 +42,15 @@ export function ModelMenu({ label, tone }: { label: string; tone: string }) {
   const choose = async (provider: string, model: string) => {
     setBusy(`${provider}/${model}`);
     setError("");
+    setLastError("");
     try {
-      setInfo(await saveModel(provider, model));
+      const next = await saveModel(provider, model);
+      setInfo(next);
+      setReachable((current) => ({ ...current, [`${provider}/${model}`]: next.reachable !== false }));
+      if (next.reachable === false) setLastError(next.check_error || "这个模型没有响应");
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
+      setReachable((current) => ({ ...current, [`${provider}/${model}`]: false }));
     } finally { setBusy(""); }
   };
 
@@ -58,13 +68,17 @@ export function ModelMenu({ label, tone }: { label: string; tone: string }) {
       className="absolute right-0 top-[calc(100%+8px)] z-30 w-[300px] rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] shadow-lg">
       <p className="mb-[8px] text-caption font-semibold text-[var(--ink)]">选择模型</p>
       {error ? <p role="alert" className="mb-[8px] text-caption text-[var(--red)]">{error}</p> : null}
+      {lastError ? <p role="alert" className="mb-[8px] text-caption text-[var(--red)]">{lastError}</p> : null}
       {info?.available ? info.available.map((provider) => <div key={provider.id} className="mb-[10px]">
         <p className="mb-[4px] text-caption text-[var(--stone)]">{provider.label}</p>
         {provider.models.map((model) => {
           const picked = current?.provider === provider.id && current?.model === model.name;
           return <button key={model.name} type="button" disabled={Boolean(busy)} onClick={() => void choose(provider.id, model.name)}
             className={`flex w-full items-baseline justify-between gap-2 rounded px-[6px] py-[4px] text-left text-caption ${picked ? "bg-[var(--primary-soft)] text-[var(--primary)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"} disabled:opacity-50`}>
-            <span>{model.label}{picked ? " ✓" : ""}</span>
+            <span className="flex items-center gap-[5px]">
+              <Light state={reachable[`${provider.id}/${model.name}`]} />
+              {model.label}{picked ? " ✓" : ""}
+            </span>
             <span className="tabular-nums text-[var(--stone)]">{model.context ? `${Math.round(model.context / 1000)}k` : "窗口未知"}</span>
           </button>;
         })}
@@ -74,4 +88,11 @@ export function ModelMenu({ label, tone }: { label: string; tone: string }) {
       </p> : null}
     </div> : null}
   </div>;
+}
+
+/** A connection light: unknown (hollow), answered (green), refused (red). */
+function Light({ state }: { state?: boolean }) {
+  if (state === undefined) return <span aria-hidden="true" className="size-[6px] shrink-0 rounded-full border border-[var(--hairline-strong)]" />;
+  return <span aria-hidden="true" title={state ? "连通" : "无响应"}
+    className={`size-[6px] shrink-0 rounded-full ${state ? "bg-[var(--ok-fg)]" : "bg-[var(--red)]"}`} />;
 }

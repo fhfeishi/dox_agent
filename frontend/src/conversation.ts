@@ -74,10 +74,15 @@ export function newAttempt(options: Options = { allowed_doc_ids: null }): Attemp
 }
 
 export function newTurn(question: string, history: Turn[], options?: Options): Turn {
-  const previous = history.filter(t => t.complete && t.outcome === "completed").slice(-9).flatMap(t => [
-    { role: "user" as const, content: t.question },
-    { role: "assistant" as const, content: t.answer },
-  ]);
+  // 2026-11-25: an empty answer must not become history. The server requires every message to carry
+  // text, so replaying a turn that produced nothing made the *next* question fail with 422 — the
+  // failure of one turn took the following ones down with it.
+  const previous = history
+    .filter(t => t.complete && t.outcome === "completed" && t.answer.trim())
+    .slice(-9).flatMap(t => [
+      { role: "user" as const, content: t.question },
+      { role: "assistant" as const, content: t.answer },
+    ]);
   return { ...newAttempt(options), question, requestMessages: [...previous, { role: "user", content: question }], previousAttempts: [] };
 }
 

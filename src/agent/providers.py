@@ -27,6 +27,12 @@ class Model:
     name: str          # the provider's own id, sent verbatim
     label: str         # what the interface shows
     context: int | None  # verified context window in tokens; None = unknown, do not draw a ratio
+    # 2026-11-25: some hosted models reason before answering and stream that reasoning as a separate
+    # channel. Measured on this project's own report-sized prompt (20k tokens in): thinking on took
+    # 346 s with the first visible character at 267 s and 26k chars of reasoning burned against a
+    # 4096-token output budget, so the answer arrived empty; thinking off took 42 s, first character
+    # at 3.6 s. ``quiet`` marks a model that must be asked not to think by default.
+    quiet: bool = False
 
 
 @dataclass(frozen=True)
@@ -63,10 +69,10 @@ PROVIDERS: tuple[Provider, ...] = (
         models=(
             # The 27B entries are the user's baseline candidates (query 2026-1125 1100); the two
             # smaller hosted models are here so a cheaper comparison is one click away.
-            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 131_072),
-            Model("qwen3.6-27b", "Qwen3.6 27B", 131_072),
-            Model("qwen3.5-27b", "Qwen3.5 27B", 131_072),
-            Model("qwen3.8-flash", "Qwen3.8 Flash", None),
+            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 131_072, quiet=True),
+            Model("qwen3.6-27b", "Qwen3.6 27B", 131_072, quiet=True),
+            Model("qwen3.5-27b", "Qwen3.5 27B", 131_072, quiet=True),
+            Model("qwen3.8-flash", "Qwen3.8 Flash", None, quiet=True),
         ),
     ),
 )
@@ -112,3 +118,13 @@ def window(provider_id: str | None, model_name: str | None) -> int | None:
     """The context window of a choice, or ``None`` when it is not verified."""
     found = resolve(provider_id, model_name)
     return found[1].context if found else None
+
+
+def quiet_body(provider_id: str | None, model_name: str | None) -> dict:
+    """Extra request fields that turn a reasoning model's thinking off, or ``{}``.
+
+    Kept here rather than in the client so the reason travels with the catalogue entry: a model is
+    marked quiet because of how it behaved on this project's own prompts, not because of its name.
+    """
+    found = resolve(provider_id, model_name)
+    return {"enable_thinking": False} if found and found[1].quiet else {}

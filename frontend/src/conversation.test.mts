@@ -181,3 +181,17 @@ test('a follow-up continues the conversation and names the answer it is about', 
   // A plain turn carries no target, so the server never sees a follow-up it did not get asked for.
   assert.equal(newTurn('第三问', history).replyTo, undefined);
 });
+
+test('a turn that produced no answer is not replayed as history', () => {
+  // The server rejects an empty message ("String should have at least 1 character"), so carrying a
+  // silent turn forward made the *next* question fail with 422 — one empty answer took the rest of
+  // the conversation down. Only completed turns with text may become history.
+  const empty = { ...newTurn('没答出来', []), complete: true, outcome: 'completed' as const, answer: '' };
+  const good = { ...newTurn('答出来了', []), complete: true, outcome: 'completed' as const, answer: '正文' };
+  const next = newTurn('新问题', [empty, good]);
+  assert.deepEqual(next.requestMessages, [
+    { role: 'user', content: '答出来了' },
+    { role: 'assistant', content: '正文' },
+    { role: 'user', content: '新问题' },
+  ]);
+});

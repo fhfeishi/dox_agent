@@ -821,7 +821,10 @@ export type ModelInfo = { model: string; base_url: string; api_key_configured: b
   review_override: Record<string, string>;
   /** This account's choice, and what it may pick (2026-11-25). */
   current?: { provider: string; model: string; context: number | null };
-  available?: ModelProvider[] };
+  available?: ModelProvider[];
+  /** Only on a switch response: whether the model just answered, and why not when it did not. */
+  reachable?: boolean;
+  check_error?: string };
 export type ModelStatus = { status: "untested" | "connected" | "failed"; checked_at: string | null;
   latency_ms: number | null; error: string; source?: string | null };
 export const MODEL_STATUS_EVENT = "dox-model-status-changed";

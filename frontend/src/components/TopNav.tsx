@@ -79,7 +79,7 @@ function tab(active: boolean) {
 export function TopNav() {
   const { role } = useAuth();
   const { pathname } = useLocation();
-  const { llmTone, llmText, model } = useApp();
+  const { llmTone, llmText } = useApp();
   const { nav, sidebarCollapsed, toggleSidebar, setDrawerOpen } = useLayout();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   // The full bar folds into one menu only when its entries do not fit (query 2026-1016: a laptop
@@ -135,10 +135,9 @@ export function TopNav() {
     </nav> : null}
     {/* 2026-11-25: every role picks its own model here. The name, address and connection test stay
         the administrator's (节点审查 B2) — this button only chooses among the served catalogue. */}
+    {/* 2026-11-25: 模型 is the switch (it tests on switch), 设置 is the one entry for everything else.
+        The old 状态 button only ran the test that the switch now runs, so it was removed. */}
     <ModelMenu label={role === "admin" ? "模型" : llmText !== "正常" ? `分析服务${llmText}` : "模型"} tone={llmTone} />
-    {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
-      className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-caption text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
-      <span className={`size-2 rounded-full ${llmTone}`} />状态</button> : null}
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;

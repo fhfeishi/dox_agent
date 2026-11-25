@@ -75,30 +75,44 @@ def _provider_key(settings: Settings, provider: providers.Provider):
     return None
 
 
-def check_model(settings: Settings, *, source: str = "system") -> dict:
-    result = _check_model(settings)
+def check_model(settings: Settings, *, source: str = "system",
+                choice: tuple[str, str] | None = None) -> dict:
+    """``choice`` checks one catalogue entry (the model menu's switch test); absent keeps the
+    configured-default behaviour used by the launch preflight."""
+    result = _check_model(settings, choice)
     state = record_model_status(settings, result, source=source)
     # Never persist or return a provider error that echoes the configured credential.
     return {**result, **({"error": state["error"]} if "error" in result else {}), "model_status": state}
 
 
-def _check_model(settings: Settings) -> dict:
+def _check_model(settings: Settings, choice: tuple[str, str] | None = None) -> dict:
     """One minimal completion; proves address, key and model name together.
 
     A model-list request is not enough: a retired or misspelled model name still lists fine but fails
     every later call, which shows up as a broken demo instead of a configuration error.
+
+    ``choice`` checks one catalogue entry instead of the configured default — what the model menu
+    does right after a switch, so a green light means *this* model answered, not some other one.
     """
-    if not settings.model_api_key:
-        return {"ok": False, "error": "未配置 MODEL_API_KEY"}
-    base = settings.model_base_url.rstrip("/")
+    base, model_name, api_key = settings.model_base_url.rstrip("/"), settings.model_name, settings.model_api_key
+    extra: dict = {}
+    if choice is not None:
+        found = providers.resolve(*choice)
+        if found is None:
+            return {"ok": False, "error": "模型不在目录里"}
+        base, model_name = found[0].base_url.rstrip("/"), found[1].name
+        api_key = _provider_key(settings, found[0])
+        extra = providers.quiet_body(found[0].id, found[1].name)
+    if not api_key:
+        return {"ok": False, "error": f"未配置 {('DASHSCOPE_API_KEY' if choice and choice[0] == 'dashscope' else 'MODEL_API_KEY')}"}
     started = time.monotonic()
-    payload = {"model": settings.model_name, "messages": [{"role": "user", "content": "ping"}],
-               "max_tokens": 8, "stream": False}
+    payload = {"model": model_name, "messages": [{"role": "user", "content": "ping"}],
+               "max_tokens": 8, "stream": False, **extra}
     try:
         # Short timeout: this runs as a launch preflight and must not hold the start for 20 s.
         with httpx.Client(trust_env=False, timeout=8) as http:
             response = http.post(base + "/chat/completions",
-                                 headers={"Authorization": "Bearer " + settings.model_api_key.get_secret_value()},
+                                 headers={"Authorization": "Bearer " + api_key.get_secret_value()},
                                  json=payload)
     except httpx.TimeoutException:
         return {"ok": False, "error": "连接超时：网络不可达（模型调用始终直连，不经代理）",
@@ -135,6 +149,7 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
     behaviour and a removed catalogue entry degrades instead of failing.
     """
     base_url, model_name, api_key = settings.model_base_url, settings.model_name, settings.model_api_key
+    extra_body: dict = {}
     # A graph built from a settings copy carries its provider here, so the same resolution happens
     # without widening the graph factory's signature (2026-11-25).
     choice = choice or getattr(settings, "model_provider_choice", None)
@@ -144,6 +159,9 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
             provider, model = found
             base_url, model_name = provider.base_url, model.name
             api_key = _provider_key(settings, provider)
+            # A reasoning model spends the output budget thinking before it writes anything; on this
+            # project's prompts that produced an empty answer (see providers.Model.quiet).
+            extra_body = providers.quiet_body(provider.id, model.name)
     if not api_key:
         raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY），或在 .env 设置对应平台的密钥")
     http_client, http_async_client = _http_clients()
@@ -159,6 +177,7 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
         max_retries=1,
         max_tokens=4096,
         stream_usage=True,
+        **({"extra_body": extra_body} if extra_body else {}),
     )
 
 

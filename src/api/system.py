@@ -113,7 +113,13 @@ def install(app, ctx):
                                payload.provider, payload.model)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
-        return model_payload(request)
+        # 2026-11-25: switching tests the model in the same round trip. The old separate 状态 button
+        # existed only to run this check; folding it in here removes a button and answers the question
+        # the person actually has ("does this model work?") at the moment they ask it.
+        check = await asyncio.to_thread(check_model, settings,
+                                        choice=(payload.provider, payload.model))
+        return {**model_payload(request), "reachable": bool(check.get("ok")),
+                "check_error": check.get("error", "")}
 
     @router.post("/api/model/check")
     async def check_model_connection():

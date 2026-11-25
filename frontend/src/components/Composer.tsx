@@ -643,6 +643,10 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
 
             <span className="flex-1" />
 
+            {/* 2026-11-25: the context block sits between 点选提问 and the task name, as asked —
+                the task name is a run setting, this is a run reading, and they belong together. */}
+            <ContextRing usage={latest?.usage} context={latest?.context} />
+
             <span
               className="font-app hidden h-[30px] items-center gap-[6px] rounded-md px-[9px] text-body text-[var(--stone)] sm:inline-flex"
               aria-label="本次运行配置"
@@ -685,8 +689,6 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 <Icon name="send" size={15} strokeWidth={2.1} />
               </button>
             )}
-            {/* 2026-11-25: how much of the window this turn used; sits with the send button. */}
-            <ContextRing usage={latest?.usage} context={latest?.context} />
           </div>
         </div>
 

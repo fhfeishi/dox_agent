@@ -28,7 +28,6 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_修复面.md`、`2026-11-03_Codex-astra_19-55窗_测试与整理.md`、`2026-11-03_Codex-astra_14-55窗_测试补齐.md`（同目录） | 历史测试与整理索引（06:05 / 00:59 / 19:55 / 14:55）；06:05 当时保留的 17 个缺口 xfail 不代表当前未决数量，现行覆盖以 `tests/` 和本次运行结果为准。按用户要求，仅各轮指定记录例外入库。跳过记录归 `reviews/archive-skips/`，专家旁审归 `reviews/experts/`，不改变专题主稿与其他文件的本地保存方式 |
 | [前端审查-20261027.md](前端审查-20261027.md) | 工作文档：全站前端审查与优化建议（草案） |
 | [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
-| [Hermes飞书常用命令-20261105/](Hermes飞书常用命令-20261105/README.md) | 工作文档：Hermes 飞书机器人常用斜杠命令速查与“不回复”排查（草案） |
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |
 | [design/](design/)、[requirements/](requirements/)、[reviews/](reviews/)、[DeepResearch-products/](DeepResearch-products/README.md)、`interactions/` | 接入本规范前的分类目录，原位保留、不再新增文件（见 DECISIONS 的 D-20261022-2）；其中仍作参考的有 [机关界面设计语言](design/机关界面设计语言.md)、[总体交互与展示设计 1015](design/dox_agent总体交互与展示设计-20261015.md)、[通用模板审查与资料归纳 1008](design/通用模板审查与资料归纳设计实施方案-20261008.md)、[需求文档](requirements/需求文档-资料管理与分析审查.md) |
 | `archive/` | 本地查阅的过时材料，清单见 [archive/README.md](archive/README.md)；[2026-10-19 节点快照](archive/2026-10-19-节点/) 入库 |

@@ -13,6 +13,8 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 |---|---|
 | [前端复审-20261027.md](前端复审-20261027.md) | 最新前端变更复审、个人库与筛选反馈问题、优化优先级 |
 | [个人资料库-任务工作台-20261106.md](个人资料库-任务工作台-20261106.md) | 工作文档：个人资料库定位为“一次任务的工作台”，范围化分析、任务模版复用与 P0–P2 方案（草案） |
+| [专家系统runtime审查-20261106/](专家系统runtime审查-20261106/README.md) | 工作文档：专家系统运行时的实测审查，5 个 P0 断点（学习偏好永不加载、审计页误报、explicit 闸门可绕过、技能正文不进 prompt）与分三批的修复顺序（草案） |
+| [专家系统收益梳理-20261106/](专家系统收益梳理-20261106/README.md) | 工作文档：用真实运行库量化“专家系统除 RAG 之外能带来什么”，结论是“让输出可验收”而非“让模型更聪明”（草案） |
 | [信息抽取重构-20261109.md](信息抽取重构-20261109.md) | 工作文档：默认四维模板、解析/抽取两段、元数据/资金字典、archive 档案记录与版本规则（草案，需求已确认） |
 | [query.md](query.md)、`query-archive/` | 用户原文；已关闭的条目按月归档 |
 | [PROJECT.md](PROJECT.md)、[ITERATION.md](ITERATION.md)、[DECISIONS.md](DECISIONS.md)、`DECISIONS-archive.md`、[cleanup-log.md](cleanup-log.md) | 正式要求、当前工作、决定、接入前的历史决定、删除登记 |
@@ -26,6 +28,8 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | `pipeline梳理和优化-20261103/reviews/2026-11-04_Codex-astra_06-05窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_测试与整理.md`、`2026-11-04_Codex-astra_00-59窗_修复面.md`、`2026-11-03_Codex-astra_19-55窗_测试与整理.md`、`2026-11-03_Codex-astra_14-55窗_测试补齐.md`（同目录） | 历史测试与整理索引（06:05 / 00:59 / 19:55 / 14:55）；06:05 当时保留的 17 个缺口 xfail 不代表当前未决数量，现行覆盖以 `tests/` 和本次运行结果为准。按用户要求，仅各轮指定记录例外入库。跳过记录归 `reviews/archive-skips/`，专家旁审归 `reviews/experts/`，不改变专题主稿与其他文件的本地保存方式 |
 | [前端审查-20261027.md](前端审查-20261027.md) | 工作文档：全站前端审查与优化建议（草案） |
 | [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
+| [Hermes飞书常用命令-20261105/](Hermes飞书常用命令-20261105/README.md) | 工作文档：Hermes 飞书机器人常用斜杠命令速查与“不回复”排查（草案） |
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |
 | [design/](design/)、[requirements/](requirements/)、[reviews/](reviews/)、[DeepResearch-products/](DeepResearch-products/README.md)、`interactions/` | 接入本规范前的分类目录，原位保留、不再新增文件（见 DECISIONS 的 D-20261022-2）；其中仍作参考的有 [机关界面设计语言](design/机关界面设计语言.md)、[总体交互与展示设计 1015](design/dox_agent总体交互与展示设计-20261015.md)、[通用模板审查与资料归纳 1008](design/通用模板审查与资料归纳设计实施方案-20261008.md)、[需求文档](requirements/需求文档-资料管理与分析审查.md) |
 | `archive/` | 本地查阅的过时材料，清单见 [archive/README.md](archive/README.md)；[2026-10-19 节点快照](archive/2026-10-19-节点/) 入库 |
+| [`资料库-ui/`](资料库-ui/README.md) | 专题目录（本地保存、不入库）：资料库界面重设计，管理员视角单份 HTML 原型，含源码功能与权限对照、实施映射（草案） |

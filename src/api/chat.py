@@ -23,6 +23,7 @@ from ..custom_tasks import (
     TaskMissing,
     resolve_task_params,
 )
+from ..expert_memory import block as expert_block
 from ..expert_schedule import schedule_review
 from ..knowledge import KnowledgeGroup
 from ..prompt_skills import render_skill
@@ -397,6 +398,9 @@ def install(app, ctx):
                         frozen_knowledge = await asyncio.to_thread(chat_knowledge.freeze)
                         frozen_at = datetime.now(UTC).isoformat()
                     graph = graph_factory(frozen_knowledge or chat_knowledge, settings)
+                    # Read off the loop like every other file read on this path.
+                    remembered = await asyncio.to_thread(expert_block, settings.state_dir,
+                                                         request.state.user[0])
                     with tracing(settings):
                         async for event in graph.astream(
                             {
@@ -413,6 +417,10 @@ def install(app, ctx):
                                 "corpus_domain": chat_domain,
                                 "web_snapshots": web_snapshots,
                                 "task_id": engine_task_id,
+                                # 2026-11-13: what this account has come to expect, as background
+                                # data. Loaded per turn because a review pass may have written
+                                # between turns of the same conversation.
+                                "expert_block": remembered,
                                 "custom_task": ({**{key: task_definition.get(key, "") for key in (
                                     "background", "category", "goal", "requirements", "outline")},
                                     "requirements": "\n".join(

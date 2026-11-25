@@ -210,3 +210,22 @@ def test_a_review_that_answers_in_prose_remembers_nothing_rather_than_guessing(r
     assert expert_review.parse_reply(reply) == {"profile": [], "practice": []}
     assert expert_review.apply(root, "alice", expert_review.parse_reply(reply)) == {"profile": 0, "practice": 0}
     assert expert_memory.block(root, "alice") == ""
+
+
+def test_an_empty_page_can_tell_never_ran_from_found_nothing(root):
+    """"Nothing remembered" has two causes and a person needs them apart: the review never ran, or
+    it ran and found nothing worth keeping. Collapsing them hides a broken review forever."""
+    assert expert_review.status(root, "alice")["outcome"] == "never"
+    asyncio.run(expert_review.run(root, "alice", "问题", "答案", ask=None))
+    assert expert_review.status(root, "alice")["outcome"] == "not_configured"
+
+    async def nothing(_messages):
+        return '{"profile": [], "practice": []}'
+    asyncio.run(expert_review.run(root, "alice", "问题", "答案", ask=nothing))
+    state = expert_review.status(root, "alice")
+    assert state["outcome"] == "reviewed" and state["added"] == {"profile": 0, "practice": 0}
+
+    async def boom(_messages):
+        raise RuntimeError("限流")
+    asyncio.run(expert_review.run(root, "alice", "问题", "答案", ask=boom))
+    assert expert_review.status(root, "alice")["outcome"] == "failed"

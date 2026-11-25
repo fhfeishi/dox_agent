@@ -960,7 +960,9 @@ export function parsePageImageUrl(corpusId: string, rel: string, page: number, s
  * One expert per account, remembered as two short texts. There is no seat to choose, no candidate
  * to approve and no version to promote: the review pass writes, the person deletes what is wrong. */
 export type ExpertText = { items: string[]; limit: number };
-export type ExpertMemory = { profile: ExpertText; practice: ExpertText };
+export type ExpertLastReview = { outcome: "never" | "not_configured" | "reviews" | "reviewed" | "failed";
+  at?: string; added?: { profile?: number; practice?: number }; reason?: string };
+export type ExpertMemory = { profile: ExpertText; practice: ExpertText; last_review: ExpertLastReview };
 
 export async function fetchExpertMemory(signal?: AbortSignal): Promise<ExpertMemory> {
   return jsonOrThrow(await fetch("/api/expert/memory", { signal }), "专家记忆读取失败");

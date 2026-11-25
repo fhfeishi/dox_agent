@@ -14,7 +14,7 @@ is nothing to approve, no version to promote and no seat to choose.
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field
 
-from .. import expert_memory
+from .. import expert_memory, expert_review
 from ..auth import ADMIN_ONLY
 
 
@@ -36,6 +36,9 @@ def install(app, ctx):
         return {
             "profile": {"items": stored["profile"], "limit": expert_memory.PROFILE_LIMIT},
             "practice": {"items": stored["practice"], "limit": expert_memory.PRACTICE_LIMIT},
+            # When the last pass ran and what it did: an empty page must not be indistinguishable
+            # from a review that never ran (2026-11-13).
+            "last_review": expert_review.status(settings.state_dir, owner(request)),
         }
 
     @router.get("/api/expert/memory")

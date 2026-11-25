@@ -111,14 +111,49 @@ async def run(root: Path, owner_id: str, question: str, answer: str, *, ask=None
     """Review one finished task. ``ask`` is the model call (messages -> reply text), injected so the
     whole pass can be tested without a provider."""
     if ask is None:
+        await asyncio.to_thread(record, root, owner_id, {"outcome": "not_configured", "added": {}})
         return {"profile": 0, "practice": 0}
     store = expert_memory.load(root, owner_id)
     try:
         reply = await ask(build_messages(question, answer, store))
     except Exception as exc:  # noqa: BLE001 - a review must never surface as a task failure
         logger.warning("expert review failed: %s", type(exc).__name__)
+        await asyncio.to_thread(record, root, owner_id,
+                                {"outcome": "failed", "reason": type(exc).__name__, "added": {}})
         return {"profile": 0, "practice": 0}
-    return await asyncio.to_thread(apply, root, owner_id, parse_reply(reply))
+    added = await asyncio.to_thread(apply, root, owner_id, parse_reply(reply))
+    await asyncio.to_thread(record, root, owner_id, {"outcome": "reviewed", "added": added})
+    return added
+
+
+# Why the last pass ended the way it did, so "nothing was learned" can be told apart from "the review
+# never ran": a person looking at an empty page needs that difference (2026-11-13).
+STATUS_FILE = ".last_review.json"
+
+
+def record(root: Path, owner_id: str, result: dict) -> None:
+    """Remember the outcome of one pass. Best effort: a failure to write this must not fail a review
+    that already succeeded."""
+    try:
+        path = expert_memory.directory(root, owner_id) / STATUS_FILE
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({**result, "at": _now()}, ensure_ascii=False), encoding="utf-8")
+    except OSError as exc:
+        logger.warning("expert review status not saved: %s", type(exc).__name__)
+
+
+def status(root: Path, owner_id: str) -> dict:
+    """The last pass, or ``{"outcome": "never"}`` when none has run for this account."""
+    try:
+        path = expert_memory.directory(root, owner_id) / STATUS_FILE
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"outcome": "never"}
+
+
+def _now() -> str:
+    from datetime import UTC, datetime
+    return datetime.now(UTC).isoformat()
 
 
 def model_asker(settings):

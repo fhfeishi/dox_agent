@@ -633,3 +633,35 @@ def test_intelligence_local_material_skips_reports_without_a_source():
                (("甲", ["x"]), ("乙", []), ("丙", ["y"]))]
     text = local_material([{"citation": 2}, {"citation": 3}], reports)
     assert "[2] 甲" in text and "[3] 丙" in text and "乙" not in text
+
+
+def test_intelligence_analysis_carries_this_accounts_remembered_preferences(tmp_path, monkeypatch):
+    """2026-11-13: the third generation path gets the same memory as chat and reports.
+
+    Without this assertion the intelligence path silently stops loading remembered preferences while
+    the other two keep working — the kind of gap that is invisible until someone compares outputs.
+    """
+    from types import SimpleNamespace
+
+    seen = {}
+
+    class Model:
+        async def ainvoke(self, messages):
+            seen["system"] = messages[0].content
+            return SimpleNamespace(content="# 外部材料分析\n\n## 技术背景\n材料声明尚待验证 [1]。\n\n## 资料局限\n未覆盖。")
+
+    monkeypatch.setattr("src.intelligence.model_for", lambda settings: Model())
+    app, cid = ready_app(tmp_path)
+    from pydantic import SecretStr
+    with TestClient(app) as client:
+        app.state.settings.model_api_key = SecretStr("offline-test")
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        client.put("/api/expert/memory/profile", json={"items": ["报告用「一、二、三」编号"]})
+        uploaded = client.post("/api/intelligence/inputs",
+                               files={"file": ("proposal.md", b"# Input", "text/markdown")})
+        generated = client.post("/api/intelligence/analyze",
+                                json={"input_ids": [uploaded.json()["input_id"]], "corpus_id": cid,
+                                      "purpose": "background"})
+        assert generated.status_code == 201, generated.text
+        assert "<expert-profile>" in seen["system"]
+        assert "报告用「一、二、三」编号" in seen["system"]

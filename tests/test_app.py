@@ -1017,3 +1017,32 @@ def test_expert_memory_is_the_administrators_page_only(tmp_path):
         # A conclusion about the material is refused at the API boundary too, with a reason.
         refused = client.put("/api/expert/memory/profile", json={"items": ["医疗领域共有 300 个项目"]})
         assert refused.status_code == 422 and "结论" in refused.json()["detail"]
+
+
+def test_a_chat_turn_carries_this_accounts_remembered_preferences(tmp_path):
+    """2026-11-13: the memory is read on every chat turn, so a review pass between turns counts.
+
+    Removing the injection would leave the block empty and this assertion catches it — the account
+    would keep learning preferences that never reach a conversation.
+    """
+    states = []
+
+    class Graph:
+        async def astream(self, state, **kwargs):
+            states.append(state)
+            yield {"event": "token", "data": {"text": "answer"}}
+
+    app, store = setup(tmp_path, lambda *args: Graph())
+    put_listed(store, Document(title="seed", origin="seed", kind="text", parser="text",
+                               pages=[Page(number=1, text="seed")]))
+    message = {"role": "user", "content": "问题"}
+    with TestClient(app) as client:
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        # Nothing remembered yet: the prompt block is empty, not an empty fence.
+        assert "event: done" in client.post("/api/chat", json={"messages": [message]}).text
+        assert states[-1]["expert_block"] == ""
+        written = client.put("/api/expert/memory/practice", json={"items": ["先确认资料范围再给结论"]})
+        assert written.status_code == 200
+        assert "event: done" in client.post("/api/chat", json={"messages": [message]}).text
+        assert "<expert-profile>" in states[-1]["expert_block"]
+        assert "先确认资料范围再给结论" in states[-1]["expert_block"]

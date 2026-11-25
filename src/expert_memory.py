@@ -42,7 +42,7 @@ class ExpertMemoryError(ValueError):
     """A write that would break a budget or store something that is not a preference."""
 
 
-def _directory(root: Path, owner_id: str) -> Path:
+def directory(root: Path, owner_id: str) -> Path:
     """One account's own directory. The id is used verbatim, so it must not be able to escape."""
     if not owner_id or "/" in owner_id or "\\" in owner_id or owner_id in (".", ".."):
         raise ExpertMemoryError("账户标识不能用作目录名")
@@ -51,7 +51,7 @@ def _directory(root: Path, owner_id: str) -> Path:
 
 def _path(root: Path, owner_id: str, target: str) -> Path:
     name, _ = TARGETS[target]
-    return _directory(root, owner_id) / name
+    return directory(root, owner_id) / name
 
 
 def entries(text: str) -> list[str]:

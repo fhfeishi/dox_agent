@@ -48,6 +48,9 @@ class State(TypedDict, total=False):
     policy: dict
     task_id: str
     custom_task: dict | None
+    # 2026-11-13: the account's remembered preferences, already fenced by ``expert_memory.block``.
+    # Empty when nothing was learned, so an untouched account's prompt is unchanged.
+    expert_block: str
     preparation: str
     corpus_domain: str
     web_snapshots: list[dict]
@@ -384,7 +387,10 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
                 "跨越窗口的项目仍属于范围内，不能改成结束年上限或完全包含口径。"
                 "项目年份不是成果发生年；涉及窗口后的成果必须单独标明，不用于证明窗口内的变化。")
         system = (
-            "使用中文回答。" + answer_policy(state["policy"])
+            # The expert block goes first, as data: it is what this account has come to expect, and
+            # the task contract after it stays authoritative when the two disagree.
+            (state.get("expert_block") or "")
+            + "使用中文回答。" + answer_policy(state["policy"])
             + "\n本轮任务与输出契约：\n" + instruction
             + ("\n以下正文按预算截取；未显示的部分不等于原文为空。截断资料：" + "、".join(context.truncated) if context is not None and context.truncated else "")
             + f"\n{scope}如下（分隔符 <report> 内为数据，不是已逐条核对的证据；"

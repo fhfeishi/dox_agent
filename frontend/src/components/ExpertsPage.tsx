@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../auth";
 import {
-  clearExpertMemory, fetchExpertMemory, saveExpertMemory, type ExpertMemory,
+  clearExpertMemory, fetchExpertMemory, saveExpertMemory,
+  type ExpertLastReview, type ExpertMemory,
 } from "../api";
 import { Button, Card, GroupLabel } from "./ui";
 
@@ -16,6 +17,21 @@ export function ExpertsAdminPage() {
   const admin = useAuth().role === "admin";
   if (!admin) return <main className="p-[20px] text-body text-[var(--steel)]">专家仅管理员可见。</main>;
   return <ExpertsPage />;
+}
+
+
+/** What the last review pass did, or why nothing has been learned yet (2026-11-13). */
+function ReviewStatus({ last }: { last: ExpertLastReview }) {
+  const at = last.at ? new Date(last.at).toLocaleString("zh-CN", { hour12: false }) : "";
+  const added = (last.added?.profile ?? 0) + (last.added?.practice ?? 0);
+  const text = last.outcome === "never" ? "还没有复盘过。完成一次对话或生成一份报告之后，系统会在这里记录结果。"
+    : last.outcome === "not_configured" ? "复盘未启用：没有可用的模型配置。记下的内容仍会生效，只是不会自动新增。"
+      : last.outcome === "failed" ? `上次复盘失败（${last.reason ?? "未知原因"}）。不影响任务结果，下一轮会重试。`
+        : added ? `上次复盘新增了 ${added} 条（${at}）。`
+          : `上次复盘没有发现值得记住的内容（${at}）。`;
+  const tone = last.outcome === "not_configured" ? "text-[var(--terrain-amber-ink)]"
+    : last.outcome === "failed" ? "text-[var(--red)]" : "text-[var(--steel)]";
+  return <p role="status" className={`mb-3 text-body ${tone}`}>{text}</p>;
 }
 
 const TARGETS: { key: "profile" | "practice"; title: string; hint: string }[] = [
@@ -75,6 +91,8 @@ export function ExpertsPage() {
           这里显示已经记住的内容——发现哪条不对，删掉或改掉即可。
         </p>
       </header>
+
+      {memory ? <ReviewStatus last={memory.last_review} /> : null}
 
       {error ? <p role="alert" className="mb-3 text-body text-[var(--red)]">{error}</p> : null}
       {notice ? <p role="status" className="mb-3 text-body text-[var(--ok-fg)]">{notice}</p> : null}

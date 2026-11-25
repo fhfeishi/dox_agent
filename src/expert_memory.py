@@ -27,6 +27,29 @@ PRACTICE_LIMIT = 1500
 
 TARGETS = {"profile": ("profile.md", PROFILE_LIMIT), "practice": ("practice.md", PRACTICE_LIMIT)}
 
+# Built-in baseline: every account starts with these, because a person should not have to teach the
+# system what "objective" means before it is useful (user, 2026-11-25: 评价需要客观科学). They are
+# what the task prompts do NOT already say — those already demand citations, fact/inference separation
+# and no invented numbers, so repeating them here would be a third copy that drifts.
+#
+# Kept short on purpose: these are injected on every task, so a long list would crowd out the material.
+BASELINE_PROFILE = (
+    "评价用可比较的维度，不用「好/差」「领先/落后」这类没有刻度的词",
+    "评价一个对象时写明基准：跟什么比、比哪一项、在什么条件下",
+    "给出的比例、倍数、排名必须能由材料算出；算不出就只写材料说了什么",
+    "样本量、时间窗、口径不同的对象不放在同一句话里比较",
+    "不确定的地方写成「材料未覆盖」或「需要补充哪类证据」，不用模糊措辞带过",
+)
+
+BASELINE_PRACTICE = (
+    "下结论前先问：这条结论如果换一个人拿同一批材料，会不会得出同样的结果",
+    "把「材料说的」和「我认为」分开写；后者必须带依据，且能被前者的句子支撑",
+    "遇到反例或不利证据要写出来，不因为结论好看而略过",
+    "被问「好不好」「行不行」时，先给判断标准，再给判断",
+)
+
+
+
 # A profile entry says what output should look like; a practice entry says how to do the task.
 # Neither may state a fact about the material, a rule about permissions, or a conclusion about a
 # domain: those belong to the documents and to the task prompts, and a remembered one would
@@ -74,8 +97,17 @@ def read(root: Path, owner_id: str, target: str) -> str:
 
 
 def load(root: Path, owner_id: str) -> dict[str, list[str]]:
-    """Both texts as entry lists, which is what the prompt block and the page both render."""
+    """This account's own entries, without the baseline: what the page shows and lets them edit.
+
+    The baseline is kept apart on purpose — a person deleting a line they disagree with must not be
+    deleting something they never wrote, and ``block`` decides what actually reaches the prompt.
+    """
     return {target: entries(read(root, owner_id, target)) for target in TARGETS}
+
+
+def baseline(target: str) -> list[str]:
+    """The built-in rules every account starts with."""
+    return list(BASELINE_PROFILE if target == "profile" else BASELINE_PRACTICE)
 
 
 def check_entry(text: str) -> str:
@@ -157,12 +189,12 @@ def block(root: Path, owner_id: str) -> str:
     """
     stored = load(root, owner_id)
     lines = []
-    if stored["profile"]:
-        lines.append("我的输出偏好：")
-        lines += [f"- {item}" for item in stored["profile"]]
-    if stored["practice"]:
-        lines.append("我的做法：")
-        lines += [f"- {item}" for item in stored["practice"]]
+    # Baseline first, then what this account added: a personal rule refines the built-in ones, and
+    # neither replaces the task rules that come after this block.
+    for target, label in (("profile", "评价与输出偏好"), ("practice", "做法")):
+        items = baseline(target) + [item for item in stored[target] if item not in baseline(target)]
+        lines.append(f"{label}：")
+        lines += [f"- {item}" for item in items]
     if not lines:
         return ""
     return ("<expert-profile>\n"

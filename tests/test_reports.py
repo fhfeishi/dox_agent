@@ -688,8 +688,8 @@ def test_a_report_carries_this_accounts_remembered_preferences(tmp_path, monkeyp
         assert run["expert"]["practice"] == ["先确认资料范围再给结论"]
 
 
-def test_a_report_from_an_account_with_nothing_remembered_has_no_expert_block(tmp_path, monkeypatch):
-    """The common case: no remembered text must mean no section at all, not an empty heading."""
+def test_a_report_from_an_account_with_nothing_remembered_gets_only_the_baseline(tmp_path, monkeypatch):
+    """The built-in rules are always there; only the personal part can be absent."""
     seen = {}
 
     class CapturingModel:
@@ -705,6 +705,7 @@ def test_a_report_from_an_account_with_nothing_remembered_has_no_expert_block(tm
             "domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements",
             "run_id": "run-no-expert"})
         assert created.status_code == 201
-        assert "<expert-profile>" not in seen["system"]
+        assert "<expert-profile>" in seen["system"]
+        assert "评价用可比较的维度" in seen["system"]
         run = client.get("/api/runs/run-no-expert").json()
         assert run["expert"] == {"profile": [], "practice": []}

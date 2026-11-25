@@ -15,9 +15,13 @@ def root(tmp_path):
     return tmp_path / "state"
 
 
-def test_an_account_with_nothing_remembered_injects_nothing(root):
-    """The common case: a new account must not receive an empty expert block."""
-    assert expert_memory.block(root, "alice") == ""
+def test_an_account_with_nothing_remembered_still_gets_the_baseline(root):
+    """A new account must be useful before it has taught the system anything (user 2026-11-25)."""
+    block = expert_memory.block(root, "alice")
+    assert "<expert-profile>" in block
+    assert "评价用可比较的维度" in block
+    # What the account itself added is separate, so the page can show only that.
+    assert expert_memory.load(root, "alice") == {"profile": [], "practice": []}
 
 
 def test_a_preference_is_stored_and_injected_as_data(root):
@@ -209,7 +213,7 @@ def test_a_review_that_answers_in_prose_remembers_nothing_rather_than_guessing(r
     reply = '这次任务没有值得长期记住的内容，因为它只是一次简单的算术问题。'
     assert expert_review.parse_reply(reply) == {"profile": [], "practice": []}
     assert expert_review.apply(root, "alice", expert_review.parse_reply(reply)) == {"profile": 0, "practice": 0}
-    assert expert_memory.block(root, "alice") == ""
+    assert expert_memory.load(root, "alice") == {"profile": [], "practice": []}
 
 
 def test_an_empty_page_can_tell_never_ran_from_found_nothing(root):

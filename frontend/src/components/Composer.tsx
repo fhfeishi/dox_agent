@@ -10,6 +10,7 @@ import { useAuth } from "../auth";
 import { useLayout } from "../layout";
 import { Button } from "./ui";
 import { CORPORA_COPY } from "../copy";
+import { ContextRing } from "./ContextRing";
 
 function PopItem({
   title,
@@ -97,6 +98,8 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
   // 点选提问 belongs to the start of a conversation; afterwards it is one button away, so the answers
   // keep the screen (query 2026-1020 1719: the composer took half the page while reading).
   const empty = turns.length === 0;
+  // The newest turn is what the context ring describes: an older turn's sizes no longer apply.
+  const latest = turns[turns.length - 1];
   const [panel, setPanel] = useState<"quick" | "corpus" | "scope" | null>(null);
   const quickOpen = panel === "quick", corpusOpen = panel === "corpus", scopeOpen = panel === "scope";
   const setQuickOpen = (open: boolean | ((value: boolean) => boolean)) => setPanel((current) =>
@@ -682,6 +685,8 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
                 <Icon name="send" size={15} strokeWidth={2.1} />
               </button>
             )}
+            {/* 2026-11-25: how much of the window this turn used; sits with the send button. */}
+            <ContextRing usage={latest?.usage} context={latest?.context} />
           </div>
         </div>
 

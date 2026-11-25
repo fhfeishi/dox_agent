@@ -32,6 +32,7 @@ from ..custom_templates import (
 from ..docx_export import markdown_to_docx
 from ..expert_schedule import schedule_review
 from ..hierarchy import read as read_hierarchy
+from ..model_choice import current as model_choice_current
 from ..prompts import REPORT_TEMPLATES, list_tasks
 from ..report_figures import change_figure, insert_figures, select_figures
 from ..reports import ScopeChanged, generate_markdown, preflight_report
@@ -398,6 +399,10 @@ def install(app, ctx):
             report_params["hierarchy_record"] = hierarchy_record
         # 2026-11-13: one expert, two bounded texts per account (src/expert_memory). No seat is
         # chosen — the old four-seat model had two seats with no production caller at all.
+        # This account's model for the writing pass; the review pass keeps its own fixed model
+        # (src/review/model_client.py) so two runs of the same material stay comparable.
+        chosen = await asyncio.to_thread(model_choice_current, settings.state_dir,
+                                         request.state.user[0])
         expert_store = await asyncio.to_thread(
             expert_memory.load, settings.state_dir, request.state.user[0])
         expert_block = await asyncio.to_thread(
@@ -409,7 +414,8 @@ def install(app, ctx):
                 **({"template_content": template_content} if template_content is not None else {}),
                 **({"task_definition": task_definition} if task_definition is not None else {}),
                 visible_sources=visible_sources,
-                expert_block=expert_block or None)
+                expert_block=expert_block or None,
+                llm=model_for(settings, choice=chosen))
         except asyncio.CancelledError:
             await record_report_failure(run_id, report_params, "报告生成已中断")
             raise

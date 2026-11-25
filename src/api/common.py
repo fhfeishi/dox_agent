@@ -211,6 +211,13 @@ class WebSearchRequest(BaseModel):
         return normalized
 
 
+class ModelChoice(BaseModel):
+    """Which catalogue entry to use. Two strings only — no endpoint, no credential (2026-11-25)."""
+    model_config = ConfigDict(extra="forbid")
+    provider: str = Field(min_length=1, max_length=40)
+    model: str = Field(min_length=1, max_length=80)
+
+
 class ComposeRequest(BaseModel):
     task: Literal["精准问答", "对比分析", "技术研判", "专项报告生成"]
     elements: list[str] = Field(default_factory=list, max_length=8)

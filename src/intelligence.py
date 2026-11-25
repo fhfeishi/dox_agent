@@ -25,6 +25,7 @@ from .expert_schedule import schedule_review
 from .hierarchy import read as read_hierarchy
 from .hierarchy import render_section
 from .knowledge import Knowledge, KnowledgeGroup
+from .model_choice import current as model_choice_current
 from .prompts import REPORT_TEMPLATES, report_template
 from .retrieval import assemble_reports, estimate_tokens
 from .review.parser import parse_document
@@ -291,7 +292,9 @@ async def analyze(payload: AnalysisRequest, request: Request):
             + payload.template
         )
         async with asyncio.timeout(settings.answer_timeout):
-            response = await model_for(settings).ainvoke(
+            chosen = await asyncio.to_thread(model_choice_current, settings.state_dir,
+                                              request.state.user[0])
+            response = await model_for(settings, choice=chosen).ainvoke(
                 [
                     SystemMessage(content=system),
                     HumanMessage(content=external + "\n\n库内证据：\n" + (local or "本次没有检索到匹配资料")),

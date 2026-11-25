@@ -12,6 +12,7 @@ from langchain_openai import ChatOpenAI
 from langsmith import Client, tracing_context
 
 from ..core.db import connect, migrate
+from . import providers
 from .config import Settings
 
 
@@ -59,6 +60,19 @@ def _http_clients():
     # Model calls always connect directly (user, 2026-10-20): trust_env=False keeps httpx from reading
     # HTTP(S)_PROXY, ALL_PROXY or a .netrc, so a proxy set for the rest of the machine is never used.
     return httpx.Client(trust_env=False, timeout=60), httpx.AsyncClient(trust_env=False, timeout=60)
+
+
+def _provider_key(settings: Settings, provider: providers.Provider):
+    """The configured key for a provider, read from settings only.
+
+    The catalogue names an environment variable; nothing about the key ever comes from a request, so
+    an account can choose a model but cannot point the server at its own endpoint or credential.
+    """
+    if provider.key_env == "MODEL_API_KEY":
+        return settings.model_api_key
+    if provider.key_env == "DASHSCOPE_API_KEY":
+        return settings.dashscope_api_key
+    return None
 
 
 def check_model(settings: Settings, *, source: str = "system") -> dict:
@@ -111,17 +125,32 @@ def _check_model(settings: Settings) -> dict:
     return {"ok": True, "latency_ms": latency, "model": settings.model_name}
 
 
-def model_for(settings: Settings, timeout: float | None = None):
+def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple[str, str] | None = None):
     """A chat model client. Without an explicit timeout it waits as long as an answer may take
     (``answer_timeout``): a question over whole reports can wait over a minute for its first token,
-    which the former fixed 60 s cut off as a failed answer (query 2026-1015 1518)."""
-    if not settings.model_api_key:
-        raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY）")
+    which the former fixed 60 s cut off as a failed answer (query 2026-1015 1518).
+
+    ``choice`` is ``(provider_id, model_name)`` from the catalogue in ``providers``. Absent — or no
+    longer in the catalogue — the configured ``MODEL_*`` is used, so every existing caller keeps its
+    behaviour and a removed catalogue entry degrades instead of failing.
+    """
+    base_url, model_name, api_key = settings.model_base_url, settings.model_name, settings.model_api_key
+    # A graph built from a settings copy carries its provider here, so the same resolution happens
+    # without widening the graph factory's signature (2026-11-25).
+    choice = choice or getattr(settings, "model_provider_choice", None)
+    if choice is not None:
+        found = providers.resolve(*choice)
+        if found is not None:
+            provider, model = found
+            base_url, model_name = provider.base_url, model.name
+            api_key = _provider_key(settings, provider)
+    if not api_key:
+        raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY），或在 .env 设置对应平台的密钥")
     http_client, http_async_client = _http_clients()
     return ChatOpenAI(
-        model=settings.model_name,
-        base_url=settings.model_base_url,
-        api_key=settings.model_api_key.get_secret_value(),
+        model=model_name,
+        base_url=base_url,
+        api_key=api_key.get_secret_value(),
         http_client=http_client,
         http_async_client=http_async_client,
         http_socket_options=(),  # our own direct clients are used as given; keep langchain from replacing them

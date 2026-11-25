@@ -573,7 +573,7 @@ def test_external_inputs_stay_versioned_until_the_last_artifact_is_purged(tmp_pa
     class Model:
         async def ainvoke(self, messages):
             return SimpleNamespace(content="# 外部材料分析\n\n## 技术背景\n材料声明尚待验证 [1]。\n\n## 资料局限\n本库未检索到相近项目，不据此认定原创。")
-    monkeypatch.setattr("src.intelligence.model_for", lambda settings: Model())
+    monkeypatch.setattr("src.intelligence.model_for", lambda settings, **_: Model())
     app, cid = ready_app(tmp_path)
     from pydantic import SecretStr
     with TestClient(app) as client:
@@ -600,7 +600,7 @@ def test_external_inputs_stay_versioned_until_the_last_artifact_is_purged(tmp_pa
         class Interrupted:
             async def ainvoke(self, messages):
                 raise RuntimeError("connection interrupted")
-        monkeypatch.setattr("src.intelligence.model_for", lambda settings: Interrupted())
+        monkeypatch.setattr("src.intelligence.model_for", lambda settings, **_: Interrupted())
         failed = client.post("/api/intelligence/analyze", json={"input_ids": [revised["input_id"]], "corpus_id": cid, "purpose": "background"})
         assert failed.status_code == 502
         records = client.get("/api/artifacts").json()
@@ -650,7 +650,7 @@ def test_intelligence_analysis_carries_this_accounts_remembered_preferences(tmp_
             seen["system"] = messages[0].content
             return SimpleNamespace(content="# 外部材料分析\n\n## 技术背景\n材料声明尚待验证 [1]。\n\n## 资料局限\n未覆盖。")
 
-    monkeypatch.setattr("src.intelligence.model_for", lambda settings: Model())
+    monkeypatch.setattr("src.intelligence.model_for", lambda settings, **_: Model())
     app, cid = ready_app(tmp_path)
     from pydantic import SecretStr
     with TestClient(app) as client:

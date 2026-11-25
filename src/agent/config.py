@@ -39,6 +39,11 @@ class Settings(BaseSettings):
     model_api_key: SecretStr | None = Field(
         default=None, validation_alias=AliasChoices("MODEL_API_KEY", "DEEPSEEK_API_KEY")
     )
+    # 2026-11-25: a second provider. Only the key lives here; the endpoint and the model names come
+    # from the static catalogue in agent/providers.py, so a request can never redirect them.
+    dashscope_api_key: SecretStr | None = Field(
+        default=None, validation_alias=AliasChoices("DASHSCOPE_API_KEY")
+    )
     # Model calls always connect directly and never use the system proxy (HTTP(S)_PROXY); there is
     # no switch (user, 2026-10-20). An old MODEL_USE_PROXY line in .env is ignored.
     # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.

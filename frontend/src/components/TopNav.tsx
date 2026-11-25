@@ -4,6 +4,7 @@ import { useAuth } from "../auth";
 import { barFor, foldedFor, isCurrent, type NavEntry } from "../navigation";
 import { useApp } from "../store";
 import { BrandMark, Icon } from "./Icons";
+import { ModelMenu } from "./ModelMenu";
 import { UserMenu } from "./UserMenu";
 import { useLayout } from "../layout";
 
@@ -132,13 +133,12 @@ export function TopNav() {
     {folded ? <nav aria-label="工作导航" className="min-w-0 flex-1">
       <MenuTab label="工作导航" sections={foldedFor(role)} active={false} current={current} />
     </nav> : null}
-    {/* Model name, address and connection test are the administrator's (节点审查 B2); others see whether analysis is available. */}
+    {/* 2026-11-25: every role picks its own model here. The name, address and connection test stay
+        the administrator's (节点审查 B2) — this button only chooses among the served catalogue. */}
+    <ModelMenu label={role === "admin" ? "模型" : llmText !== "正常" ? `分析服务${llmText}` : "模型"} tone={llmTone} />
     {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
       className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-caption text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
-      <span className={`size-2 rounded-full ${llmTone}`} />模型</button>
-      // Others are told about the analysis service only when it is not available.
-      : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-caption text-[var(--steel)] sm:flex">
-        <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
+      <span className={`size-2 rounded-full ${llmTone}`} />状态</button> : null}
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;

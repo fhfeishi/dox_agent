@@ -1,5 +1,25 @@
 export type Source = { input_id?: string; locations?: { page?: number; heading: string; snippet: string; chunk_id: string }[]; title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
+/** 2026-11-25: the model catalogue and this account's choice. ``context`` is null when the window
+ * is not verified, and the interface then draws no proportion. */
+export type ModelEntry = { name: string; label: string; context: number | null };
+export type ModelProvider = { id: string; label: string; models: ModelEntry[] };
+
+export async function fetchModel(signal?: AbortSignal): Promise<ModelInfo> {
+  return jsonOrThrow(await fetch("/api/model", { signal }), "模型信息读取失败");
+}
+
+/** Only a catalogue pair is accepted; the endpoint and the credential are never sent from here. */
+export async function saveModel(provider: string, model: string): Promise<ModelInfo> {
+  return jsonOrThrow(await fetch("/api/model", {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ provider, model }),
+  }), "模型切换失败");
+}
+
+/** 2026-11-25: how the prompt divides up. ``system``/``material``/``history`` are estimates by
+ * origin; the model's own reported total is the true size (see the usage event). */
+export type ContextBreakdown = { system: number; material: number; history: number; model?: string; window?: number | null };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
@@ -562,6 +582,7 @@ export type Event =
   | { event: "run"; data: RunInfo }
   | { event: "trace"; data: TraceItem }
   | { event: "usage"; data: Usage }
+  | { event: "context"; data: ContextBreakdown }
   | { event: "step"; data: Step }
   | { event: "telemetry"; data: Telemetry }
   | { event: "policy"; data: Policy }
@@ -758,7 +779,7 @@ async function readEvents(response: Response, receive: (event: Event) => void) {
           if (!payload.ok) throw new Error("回答未完成");
           finished = true;
         }
-        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "step", "run", "trace"].includes(event)) {
+        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "context", "step", "run", "trace"].includes(event)) {
           receive({ event, data: payload } as Event);
         }
         if (finished) return;
@@ -796,7 +817,11 @@ export async function changeArtifactLifecycle(item: ArtifactSummary, action: "tr
   return result as ArtifactInfo;
 }
 
-export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean; review_override: Record<string, string> };
+export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean;
+  review_override: Record<string, string>;
+  /** This account's choice, and what it may pick (2026-11-25). */
+  current?: { provider: string; model: string; context: number | null };
+  available?: ModelProvider[] };
 export type ModelStatus = { status: "untested" | "connected" | "failed"; checked_at: string | null;
   latency_ms: number | null; error: string; source?: string | null };
 export const MODEL_STATUS_EVENT = "dox-model-status-changed";

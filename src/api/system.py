@@ -5,12 +5,15 @@ import os
 
 from fastapi import APIRouter, HTTPException, Request
 
+from .. import model_choice
+from ..agent import providers
 from ..agent.corpora import default_corpus_info
 from ..agent.models import check_model, read_model_status
 from ..compose_question import compose as compose_question
 from ..compose_question import library_vocabulary, vocabulary_slice
 from .common import (
     ComposeRequest,
+    ModelChoice,
     logger,
     model_failure_message,
 )
@@ -74,15 +77,43 @@ def install(app, ctx):
                  if name in question and name != payload.scene.strip()]
         return {"question": question, "added": added}
 
-    @router.get("/api/model")
-    async def model_info():
+    def model_payload(request: Request) -> dict:
         # F6/Q4: exported variables first, then the project .env (via Settings).
         review = {k: v for k, v in (("REVIEW_MODEL_NAME", os.environ.get("REVIEW_MODEL_NAME") or settings.review_model_name),
                                     ("REVIEW_MODEL_BASE_URL", os.environ.get("REVIEW_MODEL_BASE_URL")
                                      or settings.review_model_base_url)) if v}
-        return {"model": settings.model_name, "base_url": settings.model_base_url,
-                "api_key_configured": bool(settings.model_api_key),
-                "review_override": review}
+        provider_id, model_name = model_choice.current(settings.state_dir, request.state.user[0])
+        return {
+            # The configured default stays visible: it is what every background pass uses (the
+            # review, the fact extraction) and what an account with no choice gets.
+            "model": settings.model_name, "base_url": settings.model_base_url,
+            "api_key_configured": bool(settings.model_api_key),
+            "review_override": review,
+            # What this account may pick and what it picked. ``context`` is None when the window is
+            # not verified — the interface then shows the used count without drawing a proportion.
+            "current": {"provider": provider_id, "model": model_name,
+                        "context": providers.window(provider_id, model_name)},
+            "available": providers.catalogue(),
+        }
+
+    @router.get("/api/model")
+    async def model_info(request: Request):
+        return model_payload(request)
+
+    @router.put("/api/model")
+    async def choose_model(payload: ModelChoice, request: Request):
+        """Set this account's model. Only a catalogue pair is accepted.
+
+        Deliberately no base_url or api_key field: those come from the catalogue and from .env, so a
+        signed-in account can choose *which* model answers but never *where* the request is sent or
+        with whose credential.
+        """
+        try:
+            model_choice.write(settings.state_dir, request.state.user[0],
+                               payload.provider, payload.model)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return model_payload(request)
 
     @router.post("/api/model/check")
     async def check_model_connection():

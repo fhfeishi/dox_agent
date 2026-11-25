@@ -94,7 +94,7 @@ class ExtraTargetModel:
 
 
 def _prepared(tmp_path, monkeypatch, target_model=None, body=BODY):
-    monkeypatch.setattr("src.targets.model_for", lambda settings: target_model or TargetModel())
+    monkeypatch.setattr("src.targets.model_for", lambda settings, **_: target_model or TargetModel())
     app, store = setup(tmp_path)
     saved = put_listed(store, Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text",
                               parser="markdown", pages=[Page(number=1, text=body)], markdown=body))
@@ -287,7 +287,7 @@ def test_hierarchy_is_stale_when_the_four_dimension_topics_change(tmp_path, monk
         assert uploaded.status_code == 201, uploaded.text
         doc_id = next(item["doc_id"] for item in client.get(f"/api/corpora/{corpus_id}/files").json()["files"]
                       if item["rel_path"].endswith("李四_report.md"))
-        monkeypatch.setattr("src.targets.model_for", lambda settings: ExtraTargetModel())
+        monkeypatch.setattr("src.targets.model_for", lambda settings, **_: ExtraTargetModel())
         job_id = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [doc_id]}).json()["job_id"]
         deadline = time.monotonic() + 5
         while time.monotonic() < deadline:
@@ -361,7 +361,7 @@ def test_intelligence_report_appends_the_same_library_hierarchy(tmp_path, monkey
     (corpus / "hierarchy.json").write_text(json_module.dumps(record, ensure_ascii=False), encoding="utf-8")
 
     model = Model()
-    monkeypatch.setattr("src.intelligence.model_for", lambda settings: model)
+    monkeypatch.setattr("src.intelligence.model_for", lambda settings, **_: model)
     app = create_app(settings, store, lambda *_: FakeGraph(cid))
     with TestClient(app) as client:
         # The external input names the seeded report so retrieval actually reads it; the

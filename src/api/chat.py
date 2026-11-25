@@ -9,6 +9,7 @@ from datetime import UTC, datetime
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse
 
+from ..agent import providers
 from ..agent.corpora import (
     CorpusInfo,
     default_corpus_info,
@@ -26,6 +27,7 @@ from ..custom_tasks import (
 from ..expert_memory import block as expert_block
 from ..expert_schedule import schedule_review
 from ..knowledge import KnowledgeGroup
+from ..model_choice import current as model_choice_current
 from ..prompt_skills import render_skill
 from ..prompts import list_tasks
 from ..retrieval import fit_history
@@ -397,7 +399,15 @@ def install(app, ctx):
                     if engine_task_id != "task4":
                         frozen_knowledge = await asyncio.to_thread(chat_knowledge.freeze)
                         frozen_at = datetime.now(UTC).isoformat()
-                    graph = graph_factory(frozen_knowledge or chat_knowledge, settings)
+                    # This account's model, resolved from the catalogue; falls back to MODEL_* when
+                    # it has no choice or the stored one is gone (2026-11-25).
+                    chosen = model_choice_current(settings.state_dir, request.state.user[0])
+                    # The graph factory keeps its two-argument shape (many call sites and test
+                    # doubles rely on it); the account's model travels on the settings the graph is
+                    # built with, so nothing downstream needs a new parameter.
+                    graph = graph_factory(frozen_knowledge or chat_knowledge,
+                                          settings.model_copy(update={"model_name": chosen[1],
+                                                                      "model_provider_choice": chosen}))
                     # Read off the loop like every other file read on this path.
                     remembered = await asyncio.to_thread(expert_block, settings.state_dir,
                                                          request.state.user[0])
@@ -421,6 +431,8 @@ def install(app, ctx):
                                 # data. Loaded per turn because a review pass may have written
                                 # between turns of the same conversation.
                                 "expert_block": remembered,
+                                "model_name": chosen[1],
+                                "context_window": providers.window(*chosen),
                                 "custom_task": ({**{key: task_definition.get(key, "") for key in (
                                     "background", "category", "goal", "requirements", "outline")},
                                     "requirements": "\n".join(

@@ -330,7 +330,7 @@ def _store(tmp_path):
 
 
 def test_api_report_create_get_and_export(tmp_path, monkeypatch):
-    monkeypatch.setattr("src.reports.model_for", lambda settings: FakeModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: FakeModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     with TestClient(app) as client:
@@ -354,7 +354,7 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
         async def ainvoke(self, messages):
             return SimpleNamespace(content="# 报告\n\n## 架构\n云边协同架构 [1]。")
 
-    monkeypatch.setattr("src.reports.model_for", lambda settings: FigureModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: FigureModel())
     app, store = setup(tmp_path)
     source = tmp_path / ".knowledge" / "fixture" / "source" / "2025_2025_P1_张三_study.pdf"
     parsed = tmp_path / ".knowledge" / "fixture" / "parsed" / source.name
@@ -471,7 +471,7 @@ def test_report_store_migrates_legacy_schema(tmp_path):
 
 
 def test_api_report_idempotency_and_listing(tmp_path, monkeypatch):
-    monkeypatch.setattr("src.reports.model_for", lambda settings: FakeModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: FakeModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     body = {"domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements",
@@ -606,7 +606,7 @@ def test_user_report_stops_when_its_run_snapshot_cannot_be_recorded(tmp_path, mo
             generated.append(messages)
             return await super().ainvoke(messages)
 
-    monkeypatch.setattr("src.reports.model_for", lambda settings: CountingModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: CountingModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     with TestClient(app) as client:
@@ -635,7 +635,7 @@ def test_user_report_stops_when_its_run_snapshot_cannot_be_recorded(tmp_path, mo
 
 def test_report_read_and_export_are_scoped_to_the_author(tmp_path, monkeypatch):
     """High#2: another account must not read, export or list this account's report."""
-    monkeypatch.setattr("src.reports.model_for", lambda settings: FakeModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: FakeModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     with TestClient(app) as client:
@@ -665,7 +665,7 @@ def test_a_report_carries_this_accounts_remembered_preferences(tmp_path, monkeyp
             seen["system"] = messages[0].content
             return SimpleNamespace(content="# 报告\n\n## 一、总体成果概述\n成果 [1]\n\n## 局限\n范围与局限……")
 
-    monkeypatch.setattr("src.reports.model_for", lambda settings: CapturingModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: CapturingModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     with TestClient(app) as client:
@@ -697,7 +697,7 @@ def test_a_report_from_an_account_with_nothing_remembered_gets_only_the_baseline
             seen["system"] = messages[0].content
             return SimpleNamespace(content="# 报告\n\n## 一、总体成果概述\n成果 [1]\n\n## 局限\n范围与局限……")
 
-    monkeypatch.setattr("src.reports.model_for", lambda settings: CapturingModel())
+    monkeypatch.setattr("src.api.reports.model_for", lambda settings, **_: CapturingModel())
     app, store = setup(tmp_path)
     add_report_doc(store)
     with TestClient(app) as client:

@@ -51,6 +51,10 @@ class State(TypedDict, total=False):
     # 2026-11-13: the account's remembered preferences, already fenced by ``expert_memory.block``.
     # Empty when nothing was learned, so an untouched account's prompt is unchanged.
     expert_block: str
+    # 2026-11-25: which model is answering and how large its window is, for the usage ring. Both
+    # absent when the caller does not know them; the interface then shows no proportion.
+    model_name: str
+    context_window: int | None
     preparation: str
     corpus_domain: str
     web_snapshots: list[dict]
@@ -399,6 +403,21 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
               "资料不足、冲突或未覆盖的主题必须明确说明，不编造日期、数字或来源。"
         )
         messages = [SystemMessage(content=system), *state["messages"]]
+        # 2026-11-25: how the prompt divides up. The total the model reports is the true size; these
+        # are estimates by origin, so the interface can answer "how much of this is the material"
+        # without claiming precision the estimator does not have.
+        # The three parts must add up to the prompt, so the material's size is taken out of the
+        # system text (the system message embeds it) rather than counted twice. ``history`` is the
+        # conversation turns; the system message is not one of them.
+        material_tokens = estimate_tokens(markdown)
+        system_tokens = max(0, estimate_tokens(system) - material_tokens)
+        writer({"event": "context", "data": {
+            "system": system_tokens,
+            "material": material_tokens,
+            "history": sum(estimate_tokens(str(item.get("content", ""))) for item in state["messages"]),
+            "model": state.get("model_name", ""),
+            "window": state.get("context_window"),
+        }})
         text = ""
         async with asyncio.timeout(settings.answer_timeout):
             async for chunk in llm.astream(messages):

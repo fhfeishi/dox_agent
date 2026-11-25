@@ -7,6 +7,8 @@ export type Attempt = {
   steps: import("./api").Step[];
   telemetry?: import("./api").Telemetry;
   usage?: import("./api").Usage;
+  /** 2026-11-25: prompt size by origin, for the context ring. */
+  context?: import("./api").ContextBreakdown;
   runInfo?: RunInfo;
   options: Options;
   policy: Policy | null;
@@ -109,6 +111,7 @@ export function receiveEvent(turn: Turn, event: Event, elapsedMs: number): Turn 
     if (turn.usage && turn.usage.reported_calls > event.data.reported_calls) return turn;
     return { ...turn, usage: event.data };
   }
+  if (event.event === "context") return { ...turn, context: event.data };
   if (event.event === "policy") return { ...turn, policy: event.data };
   if (event.event === "trace") return { ...turn, trace: [...(turn.trace ?? []), event.data] };
   if (event.event === "sources") return { ...turn, sources: event.data };

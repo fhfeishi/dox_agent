@@ -4,7 +4,6 @@ import { useAuth } from "../auth";
 import { barFor, foldedFor, isCurrent, type NavEntry } from "../navigation";
 import { useApp } from "../store";
 import { BrandMark, Icon } from "./Icons";
-import { ModelMenu } from "./ModelMenu";
 import { UserMenu } from "./UserMenu";
 import { useLayout } from "../layout";
 
@@ -135,9 +134,12 @@ export function TopNav() {
     </nav> : null}
     {/* 2026-11-25: every role picks its own model here. The name, address and connection test stay
         the administrator's (节点审查 B2) — this button only chooses among the served catalogue. */}
-    {/* 2026-11-25: 模型 is the switch (it tests on switch), 设置 is the one entry for everything else.
-        The old 状态 button only ran the test that the switch now runs, so it was removed. */}
-    <ModelMenu label={role === "admin" ? "模型" : llmText !== "正常" ? `分析服务${llmText}` : "模型"} tone={llmTone} />
+    {/* 2026-11-26: the model switch lives in the composer's context block now — one model surface
+        instead of two. Only an unavailable analysis service still shows here, because that is a
+        workspace-wide problem the person cannot fix from the menu. */}
+    {role !== "admin" && llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`}
+      className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-caption text-[var(--text-2)] sm:flex">
+      <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;

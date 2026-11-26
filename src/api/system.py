@@ -13,6 +13,7 @@ from ..compose_question import compose as compose_question
 from ..compose_question import library_vocabulary, vocabulary_slice
 from .common import (
     ComposeRequest,
+    ModelCheck,
     ModelChoice,
     logger,
     model_failure_message,
@@ -122,7 +123,13 @@ def install(app, ctx):
                 "check_error": check.get("error", "")}
 
     @router.post("/api/model/check")
-    async def check_model_connection():
-        return await asyncio.to_thread(check_model, settings)
+    async def check_model_connection(request: Request, payload: ModelCheck | None = None):
+        """Probe the configured default, or one catalogue entry when asked.
+
+        The model menu probes the current model when it opens (2026-11-26), so a person sees whether
+        the model they are on actually answers instead of finding out mid-answer.
+        """
+        choice = (payload.provider, payload.model) if payload else None
+        return await asyncio.to_thread(check_model, settings, choice=choice)
 
     app.include_router(router)

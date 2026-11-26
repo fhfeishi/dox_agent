@@ -10,7 +10,7 @@ import { useAuth } from "../auth";
 import { useLayout } from "../layout";
 import { Button } from "./ui";
 import { CORPORA_COPY } from "../copy";
-import { ContextRing } from "./ContextRing";
+import { ModelStatus } from "./ModelStatus";
 
 function PopItem({
   title,
@@ -645,7 +645,7 @@ export function Composer({ guideTarget }: { guideTarget?: string }) {
 
             {/* 2026-11-25: the context block sits between 点选提问 and the task name, as asked —
                 the task name is a run setting, this is a run reading, and they belong together. */}
-            <ContextRing usage={latest?.usage} context={latest?.context} />
+            <ModelStatus usage={latest?.usage} context={latest?.context} />
 
             <span
               className="font-app hidden h-[30px] items-center gap-[6px] rounded-md px-[9px] text-body text-[var(--stone)] sm:inline-flex"

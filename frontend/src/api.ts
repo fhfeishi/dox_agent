@@ -10,6 +10,7 @@ export async function fetchModel(signal?: AbortSignal): Promise<ModelInfo> {
 }
 
 /** Only a catalogue pair is accepted; the endpoint and the credential are never sent from here. */
+
 export async function saveModel(provider: string, model: string): Promise<ModelInfo> {
   return jsonOrThrow(await fetch("/api/model", {
     method: "PUT", headers: { "Content-Type": "application/json" },
@@ -834,9 +835,18 @@ export async function fetchModelInfo(): Promise<ModelInfo> {
   return jsonOrThrow(await fetch("/api/model"), "模型信息读取失败") as Promise<ModelInfo>;
 }
 
-export async function checkModel(): Promise<ModelCheck> {
-  try { return await jsonOrThrow(await fetch("/api/model/check", { method: "POST" }), "连接测试失败") as ModelCheck; }
-  finally { window.dispatchEvent(new Event(MODEL_STATUS_EVENT)); }
+/** Probe the configured default, or one catalogue entry when both are named (2026-11-26).
+ *
+ * The model menu probes the model it is showing as it opens, so "is my model working?" is answered
+ * before the person asks — and a switch probes the new model in the same round trip. */
+export async function checkModel(provider?: string, model?: string): Promise<ModelCheck> {
+  const named = Boolean(provider && model);
+  try {
+    return await jsonOrThrow(await fetch("/api/model/check", {
+      method: "POST",
+      ...(named ? { headers: { "Content-Type": "application/json" }, body: JSON.stringify({ provider, model }) } : {}),
+    }), "连接测试失败") as ModelCheck;
+  } finally { window.dispatchEvent(new Event(MODEL_STATUS_EVENT)); }
 }
 
 /**

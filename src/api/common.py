@@ -211,6 +211,13 @@ class WebSearchRequest(BaseModel):
         return normalized
 
 
+class ModelCheck(BaseModel):
+    """Which catalogue entry to probe; absent means the configured default."""
+    model_config = ConfigDict(extra="forbid")
+    provider: str = Field(min_length=1, max_length=40)
+    model: str = Field(min_length=1, max_length=80)
+
+
 class ModelChoice(BaseModel):
     """Which catalogue entry to use. Two strings only — no endpoint, no credential (2026-11-25)."""
     model_config = ConfigDict(extra="forbid")

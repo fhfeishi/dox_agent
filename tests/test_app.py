@@ -1047,3 +1047,32 @@ def test_a_chat_turn_carries_this_accounts_remembered_preferences(tmp_path):
         assert "event: done" in client.post("/api/chat", json={"messages": [message]}).text
         assert "<expert-profile>" in states[-1]["expert_block"]
         assert "先确认资料范围再给结论" in states[-1]["expert_block"]
+
+
+def test_every_account_can_probe_its_own_model(tmp_path, monkeypatch):
+    """The model block probes as it opens, so every role needs this route — and only for a model in
+    the catalogue, never for an arbitrary endpoint (2026-11-26)."""
+    from pydantic import SecretStr
+
+    seen = []
+
+    def fake_check(settings, choice=None):
+        seen.append(choice)
+        return {"ok": True, "latency_ms": 1}
+
+    monkeypatch.setattr("src.api.system.check_model", fake_check)
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
+                        user_dir=tmp_path / "usr", model_api_key=SecretStr("fixture"), embedding_path="")
+    with TestClient(create_app(settings)) as client:
+        for name in ("admin", "user", "owner"):
+            client.cookies.clear()
+            assert client.post("/api/auth/login", json={"username": name, "password": "123456"}).status_code == 200
+            # The configured default (the old call shape, no body) still works.
+            assert client.post("/api/model/check").status_code == 200
+            named = client.post("/api/model/check", json={"provider": "dashscope", "model": "qwen3.8-27b"})
+            assert named.status_code == 200, name
+        # Only the two catalogue names travel; an extra field is refused rather than ignored.
+        extra = client.post("/api/model/check",
+                            json={"provider": "dashscope", "model": "qwen3.8-27b", "base_url": "http://evil"})
+        assert extra.status_code == 422
+    assert ("dashscope", "qwen3.8-27b") in seen

@@ -831,10 +831,6 @@ export type ModelStatus = { status: "untested" | "connected" | "failed"; checked
 export const MODEL_STATUS_EVENT = "dox-model-status-changed";
 export type ModelCheck = { ok: boolean; latency_ms?: number; error?: string; model_status?: ModelStatus };
 
-export async function fetchModelInfo(): Promise<ModelInfo> {
-  return jsonOrThrow(await fetch("/api/model"), "模型信息读取失败") as Promise<ModelInfo>;
-}
-
 /** Probe the configured default, or one catalogue entry when both are named (2026-11-26).
  *
  * The model menu probes the model it is showing as it opens, so "is my model working?" is answered

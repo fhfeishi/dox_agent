@@ -31,4 +31,5 @@ query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION �
 | `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |
 | [design/](design/)、[requirements/](requirements/)、[reviews/](reviews/)、[DeepResearch-products/](DeepResearch-products/README.md)、`interactions/` | 接入本规范前的分类目录，原位保留、不再新增文件（见 DECISIONS 的 D-20261022-2）；其中仍作参考的有 [机关界面设计语言](design/机关界面设计语言.md)、[总体交互与展示设计 1015](design/dox_agent总体交互与展示设计-20261015.md)、[通用模板审查与资料归纳 1008](design/通用模板审查与资料归纳设计实施方案-20261008.md)、[需求文档](requirements/需求文档-资料管理与分析审查.md) |
 | `archive/` | 本地查阅的过时材料，清单见 [archive/README.md](archive/README.md)；[2026-10-19 节点快照](archive/2026-10-19-节点/) 入库 |
+| [权限系统-design/](权限系统-design/README.md) | 专题目录（本地保存、不入库）：阅读权限的组匹配模型、锁定资料的申请入口与审批台原型（草案） |
 | [`资料库-ui/`](资料库-ui/README.md) | 专题目录（本地保存、不入库）：资料库界面重设计，管理员视角单份 HTML 原型，含源码功能与权限对照、实施映射（草案） |

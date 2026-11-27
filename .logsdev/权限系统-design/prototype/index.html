@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阅读权限申请 · 交互原型</title>
+<style>
+  :root{
+    --canvas:#ffffff; --surface:#f5f7fa; --surface-soft:#fafbfc; --surface-sink:#edf1f5;
+    --hairline:#e2e7ee; --hairline-soft:#edf0f4; --hairline-strong:#cfd7e2;
+    --heading:#1f3147; --text-2:#3d4b5c; --text-3:#5f6b7e;
+    --primary:#345a78; --primary-pressed:#25435c; --primary-soft:#eaf0f5;
+    --warn-bg:#fdf6e3; --warn-fg:#7a5a00; --warn-line:#e8c98a;
+    --ok-bg:#edf7f0; --ok-fg:#0e7a28; --ok-line:#b7dfc3;
+    --danger-fg:#9b2c2c; --danger-bg:#fdecea;
+    --lav-bg:#e3defa; --lav-fg:#4a2a8f;
+    --radius-md:6px; --radius-lg:8px; --radius-xl:12px; --radius-2xl:16px;
+    --dur-quick:120ms; --dur-small:200ms; --dur-panel:320ms;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:var(--surface); color:var(--text-2);
+    font:14px/20px "PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{font:inherit;color:inherit}
+  .app{display:flex;flex-direction:column;height:100vh;background:var(--canvas)}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;gap:14px;padding:0 20px;height:52px;border-bottom:1px solid var(--hairline);background:var(--canvas);flex:none}
+  .brand{font-weight:600;color:var(--heading);letter-spacing:.2px}
+  .crumb{color:var(--text-3)}
+  .spacer{flex:1}
+  .seg{display:inline-flex;border:1px solid var(--hairline-strong);border-radius:var(--radius-lg);padding:2px;background:var(--surface-soft)}
+  .seg button{border:0;background:transparent;padding:5px 14px;border-radius:var(--radius-md);cursor:pointer;color:var(--text-3);transition:background var(--dur-quick),color var(--dur-quick)}
+  .seg button[aria-pressed="true"]{background:var(--canvas);color:var(--heading);box-shadow:0 1px 2px rgba(31,49,71,.08);font-weight:600}
+  .bell{position:relative;border:1px solid var(--hairline);background:var(--canvas);border-radius:var(--radius-lg);padding:5px 10px;cursor:pointer;color:var(--text-3)}
+  .bell b{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;border-radius:9px;background:var(--danger-fg);color:#fff;font-size:11px;line-height:17px;text-align:center;font-weight:600}
+
+  /* page */
+  .page{flex:1;min-height:0;display:block;position:relative}
+  .main{min-width:0;overflow:auto;padding:22px 26px 60px}
+  .wrap{max-width:900px}
+
+  h1{font-size:22px;line-height:30px;margin:0 0 4px;color:var(--heading);font-weight:600}
+  .sub{color:var(--text-3);margin:0 0 16px}
+  .counts{display:flex;gap:18px;margin:0 0 16px;padding:12px 14px;background:var(--surface-soft);border:1px solid var(--hairline);border-radius:var(--radius-xl)}
+  .counts div{display:flex;flex-direction:column;gap:2px}
+  .counts b{font-size:20px;line-height:24px;color:var(--heading);font-weight:600}
+  .counts span{font-size:12px;line-height:16px;color:var(--text-3)}
+  .counts .hint{margin-left:auto;align-self:center;max-width:330px;font-size:12px;line-height:18px;color:var(--text-3)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+  .chip{border:1px solid var(--hairline-strong);background:var(--canvas);border-radius:999px;padding:3px 11px;font-size:12px;line-height:18px;color:var(--text-3);cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--primary-soft);border-color:#c3d3e2;color:var(--primary);font-weight:600}
+  .chip em{font-style:normal;color:var(--muted,#b4bdc9);margin-left:4px}
+
+  .toolbar{display:flex;gap:8px;align-items:center;margin:0 0 10px}
+  .search{flex:1;display:flex;align-items:center;gap:8px;border:1px solid var(--hairline-strong);border-radius:var(--radius-lg);background:var(--canvas);padding:0 10px;height:34px}
+  .search input{border:0;outline:0;flex:1;background:transparent;font:inherit;color:var(--heading)}
+  .search input::placeholder{color:var(--text-3)}
+
+  .list{border:1px solid var(--hairline);border-radius:var(--radius-xl);overflow:hidden;background:var(--canvas)}
+  .row{display:grid;grid-template-columns:18px minmax(0,1fr) 92px 92px 118px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid var(--hairline-soft);cursor:pointer;transition:background var(--dur-quick)}
+  .row:first-child{border-top:0}
+  .row:hover{background:var(--surface-soft)}
+  .row .ic{color:var(--text-3);font-size:13px;text-align:center}
+  .t{min-width:0}
+  .t .name{color:var(--heading);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t .meta{font-size:12px;line-height:16px;color:var(--text-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t .meta i{font-style:normal;color:var(--hairline-strong);margin:0 5px}
+  .no{font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums}
+  .grp{font-size:12px;color:var(--text-3)}
+  .act{display:flex;justify-content:flex-end}
+
+  .btn{border:1px solid var(--hairline-strong);background:var(--canvas);color:var(--primary);border-radius:var(--radius-md);padding:5px 12px;font-size:13px;line-height:18px;cursor:pointer;transition:background var(--dur-quick),border-color var(--dur-quick)}
+  .btn:hover{background:var(--primary-soft);border-color:#c3d3e2}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:600}
+  .btn.primary:hover{background:var(--primary-pressed)}
+  .btn.ghost{border-color:transparent;background:transparent;color:var(--text-3)}
+  .btn.ghost:hover{background:var(--surface-sink);color:var(--heading)}
+  .btn.sm{padding:3px 9px;font-size:12px;line-height:16px}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:12px;line-height:18px;white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok-fg);border:1px solid var(--ok-line)}
+  .pill.wait{background:var(--warn-bg);color:var(--warn-fg);border:1px solid var(--warn-line)}
+  .pill.lock{background:var(--surface-sink);color:var(--text-3);border:1px solid var(--hairline-strong)}
+  .pill.lav{background:var(--lav-bg);color:var(--lav-fg);border:1px solid #d5cdf7}
+
+  .row.locked .name{color:var(--text-2);font-weight:400}
+  .row.locked .ic{color:#9aa7b8}
+  .row.pending{background:#fffdf5}
+  .row.granted .ic{color:var(--ok-fg)}
+
+  /* drawer */
+  .drawer{position:fixed;top:52px;right:0;bottom:0;width:420px;border-left:1px solid var(--hairline);background:var(--canvas);display:flex;flex-direction:column;min-height:0;box-shadow:-18px 0 40px rgba(31,49,71,.10);z-index:20;animation:slidein var(--dur-panel) var(--ease)}
+  .drawer[hidden]{display:none}
+  @keyframes slidein{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+  .dhead{padding:18px 20px 12px;border-bottom:1px solid var(--hairline-soft);position:relative}
+  .x{position:absolute;top:12px;right:14px;border:0;background:transparent;color:var(--text-3);font-size:14px;cursor:pointer;padding:4px 6px;border-radius:var(--radius-md)}
+  .x:hover{background:var(--surface-sink);color:var(--heading)}
+  .dhead .kicker{font-size:12px;color:var(--text-3);margin:0 0 6px}
+  .dhead h2{font-size:16px;line-height:24px;margin:0;color:var(--heading);font-weight:600}
+  .dbody{padding:16px 20px;overflow:auto;flex:1;min-height:0}
+  .kv{display:grid;grid-template-columns:72px 1fr;gap:6px 12px;margin:0 0 16px;font-size:13px}
+  .kv dt{color:var(--text-3)}
+  .kv dd{margin:0;color:var(--text-2)}
+  .explain{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-fg);border-radius:var(--radius-lg);padding:10px 12px;font-size:13px;line-height:20px;margin:0 0 18px}
+  .explain b{color:#5c4400}
+  .label{font-size:12px;color:var(--text-3);margin:0 0 6px;letter-spacing:.3px}
+  .seg2{display:inline-flex;border:1px solid var(--hairline-strong);border-radius:var(--radius-lg);padding:2px;background:var(--surface-soft);margin:0 0 16px}
+  .seg2 button{border:0;background:transparent;padding:5px 12px;border-radius:var(--radius-md);cursor:pointer;color:var(--text-3);font-size:13px}
+  .seg2 button[aria-pressed="true"]{background:var(--canvas);color:var(--heading);font-weight:600;box-shadow:0 1px 2px rgba(31,49,71,.08)}
+  .quick{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+  textarea{width:100%;min-height:84px;resize:vertical;border:1px solid var(--hairline-strong);border-radius:var(--radius-lg);padding:9px 10px;font:inherit;color:var(--heading);background:var(--canvas)}
+  textarea:focus{outline:2px solid var(--primary-soft);border-color:var(--primary)}
+  .path{display:flex;align-items:center;gap:8px;margin:18px 0;padding:10px 12px;border:1px dashed var(--hairline-strong);border-radius:var(--radius-lg);font-size:12px;color:var(--text-3)}
+  .path b{color:var(--text-2);font-weight:600}
+  .path .dot{width:6px;height:6px;border-radius:50%;background:var(--hairline-strong)}
+  .dfoot{border-top:1px solid var(--hairline-soft);padding:12px 20px;display:flex;gap:8px;align-items:center}
+  .dfoot .spacer{flex:1}
+
+  /* admin */
+  .admin .main{padding-top:20px}
+  .req{border:1px solid var(--hairline);border-radius:var(--radius-xl);padding:14px 16px;margin:0 0 12px;background:var(--canvas)}
+  .req .top{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+  .req .who{font-weight:600;color:var(--heading)}
+  .req .doc{font-size:13px;color:var(--text-2);margin:0 0 4px}
+  .req .why{font-size:13px;color:var(--text-3);margin:8px 0 12px;padding-left:10px;border-left:2px solid var(--hairline-strong)}
+  .req .foot{display:flex;align-items:center;gap:8px}
+  .req .foot .spacer{flex:1}
+  .impact{font-size:12px;color:var(--text-3);margin:10px 0 0}
+  .empty{padding:40px 0;text-align:center;color:var(--text-3);border:1px dashed var(--hairline-strong);border-radius:var(--radius-xl)}
+
+  .scrim{position:fixed;inset:52px 0 0 0;background:rgba(31,49,71,.14);z-index:15;animation:fade var(--dur-small) var(--ease)}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(8px);background:var(--heading);color:#fff;border-radius:var(--radius-lg);padding:9px 16px;font-size:13px;opacity:0;pointer-events:none;transition:opacity var(--dur-small),transform var(--dur-small);z-index:30}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .rule{font-size:12px;line-height:19px;color:var(--text-3);background:var(--surface-soft);border:1px solid var(--hairline);border-radius:var(--radius-xl);padding:12px 14px;margin:0 0 16px}
+  .rule b{color:var(--text-2)}
+  .rule ul{margin:6px 0 0;padding-left:16px}
+  .mine{border:1px solid var(--hairline);border-radius:var(--radius-xl);overflow:hidden}
+  .mine .m{display:grid;grid-template-columns:minmax(0,1fr) 120px 96px;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--hairline-soft);font-size:13px}
+  .mine .m:first-child{border-top:0}
+  .mine .m .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--heading)}
+  .mine .m .d{font-size:12px;color:var(--text-3)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <span class="brand">dox_agent</span>
+    <span class="crumb">资料库 › 阅读权限</span>
+    <span class="spacer"></span>
+    <div class="seg" role="group" aria-label="切换视角">
+      <button id="tabUser" aria-pressed="true" onclick="setView('user')">用户视角</button>
+      <button id="tabAdmin" aria-pressed="false" onclick="setView('admin')">审批视角</button>
+    </div>
+    <button class="bell" onclick="toast('2 条审批结果、1 条即将到期')">通知<b id="bellN">2</b></button>
+  </header>
+
+  <div class="page">
+    <!-- ============ 用户视角 ============ -->
+    <section class="main" id="viewUser">
+      <div class="wrap">
+        <h1>AI 与机器人自动化</h1>
+        <p class="sub">科室资料库 · 4 个技术组 + 1 个宣传管理组。你属于「感知与视觉」组，可读本组资料；其余组只显示登记信息。</p>
+
+        <div class="counts">
+          <div><b id="cTotal">510</b><span>库内资料</span></div>
+          <div><b id="cRead">157</b><span>你可读</span></div>
+          <div><b id="cLock">353</b><span>仅登记信息</span></div>
+          <div><b id="cWait">1</b><span>申请待审</span></div>
+          <span class="hint">看不到的资料仍可检索到条目并申请，但摘要、正文、成果都不可见。</span>
+        </div>
+
+        <div class="chips" role="group" aria-label="按组筛选">
+          <button class="chip" aria-pressed="true">全部 <em>510</em></button>
+          <button class="chip" aria-pressed="false">感知与视觉 <em>157</em></button>
+          <button class="chip" aria-pressed="false">学习与决策 <em>167</em></button>
+          <button class="chip" aria-pressed="false">控制与系统 <em>115</em></button>
+          <button class="chip" aria-pressed="false">机构与人机 <em>70</em></button>
+        </div>
+
+        <div class="toolbar">
+          <label class="search">
+            <span aria-hidden="true">⌕</span>
+            <input id="q" placeholder="搜索项目名、批准号、负责人（不搜正文）" oninput="renderRows()">
+          </label>
+          <button class="btn ghost" onclick="toast('按年份、组、批准号筛选')">筛选</button>
+        </div>
+
+        <div class="list" id="list"></div>
+
+        <h2 style="font-size:15px;line-height:22px;margin:26px 0 10px;color:var(--heading)">我的申请</h2>
+        <div class="mine" id="mine"></div>
+      </div>
+    </section>
+
+    <!-- ============ 审批视角 ============ -->
+    <section class="main admin" id="viewAdmin" hidden>
+      <div class="wrap">
+        <h1>阅读权限审批</h1>
+        <p class="sub">授权管理员 · 只处理“谁能读哪份资料”，不改资料、不看正文。</p>
+
+        <div class="rule">
+          <b>审批口径</b>
+          <ul>
+            <li>只批“资料 + 期限”，不批“整组权限”。单次最多 20 份。</li>
+            <li>同库跨组：科室负责人批即生效；跨库：两个科室负责人 + 授权管理员。</li>
+            <li>期限默认 30 天，最长 90 天；到期自动回收，不续期即失效。</li>
+          </ul>
+        </div>
+
+        <div id="queue"></div>
+      </div>
+    </section>
+
+    <!-- ============ 申请抽屉 ============ -->
+    <aside class="drawer" id="drawer" hidden>
+      <div class="dhead">
+        <button class="x" onclick="closeDrawer()" aria-label="关闭">✕</button>
+        <p class="kicker">申请阅读权限</p>
+        <h2 id="dTitle">—</h2>
+      </div>
+      <div class="dbody">
+        <dl class="kv" id="dMeta"></dl>
+        <div class="explain" id="dWhy"></div>
+
+        <p class="label">申请期限</p>
+        <div class="seg2" role="group" aria-label="期限">
+          <button data-days="14" aria-pressed="false">14 天</button>
+          <button data-days="30" aria-pressed="true">30 天</button>
+          <button data-days="90" aria-pressed="false">90 天</button>
+        </div>
+
+        <p class="label">申请理由（审批人只看这一段）</p>
+        <div class="quick">
+          <button class="chip" onclick="fill('做技术研判，需要对照该项目的实验方法。')">技术研判</button>
+          <button class="chip" onclick="fill('写专项报告，需要引用该项目的结论与数据。')">专项报告</button>
+          <button class="chip" onclick="fill('同一条技术路线，需要看相邻组的实现细节。')">相邻路线</button>
+          <button class="chip" onclick="fill('项目评审，需要核对同领域的对照材料。')">评审对照</button>
+        </div>
+        <textarea id="reason" placeholder="一句话说明用途、要引用哪部分，便于审批人判断最小范围。"></textarea>
+
+        <div class="path">
+          <span class="dot"></span><span>科室负责人 <b>王××</b></span>
+          <span>›</span>
+          <span>批准后立即生效</span>
+          <span class="spacer" style="flex:1"></span>
+          <span>通常 1 个工作日</span>
+        </div>
+      </div>
+      <div class="dfoot">
+        <button class="btn" onclick="closeDrawer()">取消</button>
+        <span class="spacer"></span>
+        <button class="btn primary" id="submitBtn" onclick="submitRequest()">提交申请</button>
+      </div>
+    </aside>
+  </div>
+</div>
+<div class="scrim" id="scrim" hidden onclick="closeDrawer()"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DOCS = [
+  {id:1, title:"基于软体机器人的水下环境感知与目标抓取", no:"61633004", year:"2017–2021", unit:"北京航空航天大学", group:"感知与视觉", mine:true},
+  {id:2, title:"服务机器人广域环境感知和场景认知理论及应用", no:"61633020", year:"2017–2021", unit:"中国科学院自动化研究所", group:"感知与视觉", mine:true},
+  {id:3, title:"基于分层强化学习的无人驾驶车避障策略研究", no:"51775016", year:"2018–2021", unit:"北京理工大学", group:"学习与决策"},
+  {id:4, title:"四足仿生机器人骨骼肌肉协调跳跃机理及类生物刚度规划", no:"51775323", year:"2018–2021", unit:"北京航空航天大学", group:"机构与人机"},
+  {id:5, title:"协作机器人视—力觉反馈控制系统研究", no:"51805477", year:"2019–2021", unit:"华南理工大学", group:"控制与系统"},
+  {id:6, title:"基于交互强化学习的水下机器人自主学习与控制方法研究", no:"51809246", year:"2019–2021", unit:"大连海事大学", group:"学习与决策"},
+  {id:7, title:"船舶主动干扰下的水面无人艇脱逃机理研究", no:"51809203", year:"2019–2021", unit:"上海交通大学", group:"控制与系统"},
+  {id:8, title:"面向软体多指手的抓持刚度分配机理与稳定性评价", no:"51775499", year:"2018–2021", unit:"浙江工业大学", group:"机构与人机"},
+];
+const state = {
+  view:"user",
+  // {id, docId, days, reason, at, status:'pending'|'granted'|'rejected'}
+  requests:[{id:1, docId:6, days:30, reason:"同一条技术路线，需要看相邻组的实现细节。", at:"今天 09:20", status:"pending"}],
+  drawerDoc:null,
+  days:30,
+};
+let seq = 100;
+
+function statusOf(doc){
+  const r = state.requests.filter(x => x.docId === doc.id).sort((a,b)=>b.id-a.id)[0];
+  return r || null;
+}
+
+function renderRows(){
+  const q = (document.getElementById('q').value || "").trim();
+  const list = document.getElementById('list');
+  const rows = DOCS.filter(d => !q || (d.title + d.no + d.unit).includes(q));
+  list.innerHTML = rows.map(d => {
+    const r = statusOf(d);
+    const LOCK = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>';
+  const OPEN = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 2.5h5l3 3v8h-8z"/><path d="M9 2.5v3h3"/><path d="M6 9h4M6 11.5h4"/></svg>';
+  let cls = "", ic = LOCK, act = "";
+    if (r && r.status === "pending"){
+      cls = "locked pending"; ic = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.6"/></svg>';
+      act = `<span class="pill wait">审批中</span>`;
+    } else if (r && r.status === "granted" && d.mine === undefined){
+      cls = "granted"; ic = OPEN;
+      act = `<button class="btn sm" onclick="event.stopPropagation();toast('打开正文（原型不展示）')">打开 ›</button>`;
+    } else if (d.mine){
+      cls = "granted"; ic = OPEN;
+      act = `<button class="btn sm" onclick="event.stopPropagation();toast('打开正文（原型不展示）')">打开 ›</button>`;
+    } else {
+      cls = "locked";
+      act = `<button class="btn sm" onclick="event.stopPropagation();openDrawer(${d.id})">申请阅读</button>`;
+    }
+    return `<div class="row ${cls}" onclick="rowClick(${d.id})">
+      <span class="ic" aria-hidden="true">${ic}</span>
+      <span class="t"><span class="name">${d.title}</span>
+        <span class="meta">${d.year}<i>·</i>${d.unit}</span></span>
+      <span class="no">${d.no}</span>
+      <span class="grp">${d.group}</span>
+      <span class="act">${act}</span>
+    </div>`;
+  }).join("");
+  const granted = state.requests.filter(r => r.status === "granted").length;
+  const waiting = state.requests.filter(r => r.status === "pending").length;
+  const readable = 157 + granted;
+  document.getElementById("cTotal").textContent = "510";
+  document.getElementById("cRead").textContent = String(readable);
+  document.getElementById("cLock").textContent = String(510 - readable);
+  document.getElementById("cWait").textContent = String(waiting);
+  renderMine();
+}
+
+function renderMine(){
+  const box = document.getElementById('mine');
+  if (!state.requests.length){
+    box.innerHTML = `<div class="m"><span class="n" style="color:var(--text-3)">还没有申请。被锁的资料点「申请阅读」即可发起。</span><span></span><span></span></div>`;
+    return;
+  }
+  box.innerHTML = state.requests.slice().reverse().map(r => {
+    const d = DOCS.find(x => x.id === r.docId);
+    const label = r.status === "pending" ? `<span class="pill wait">待审批</span>`
+      : r.status === "granted" ? `<span class="pill ok">已开通 ${r.days} 天</span>`
+      : `<span class="pill lock">已驳回</span>`;
+    return `<div class="m"><span class="n">${d.title}</span><span class="d">${r.at}</span><span>${label}</span></div>`;
+  }).join("");
+}
+
+function rowClick(id){
+  const d = DOCS.find(x => x.id === id);
+  const r = statusOf(d);
+  if (r && r.status === "granted") return toast("打开正文（原型不展示）");
+  if (r && r.status === "pending") return toast("已提交，等待王××审批");
+  openDrawer(id);
+}
+
+function openDrawer(id){
+  const d = DOCS.find(x => x.id === id);
+  state.drawerDoc = d; state.days = 30;
+  document.getElementById('drawer').hidden = false; document.getElementById('scrim').hidden = false;
+  document.getElementById('dTitle').textContent = d.title;
+  document.getElementById('dMeta').innerHTML = `
+    <dt>批准号</dt><dd>${d.no}</dd>
+    <dt>项目年份</dt><dd>${d.year}</dd>
+    <dt>依托单位</dt><dd>${d.unit}</dd>
+    <dt>所属组</dt><dd>${d.group}</dd>`;
+  document.getElementById('dWhy').innerHTML =
+    `这份资料归属 <b>${d.group}</b> 组，你在 <b>感知与视觉</b> 组。同库不同组默认不可读，可申请有时限的阅读权限。`;
+  document.querySelectorAll('.seg2 button').forEach(b => b.setAttribute('aria-pressed', b.dataset.days === "30" ? "true" : "false"));
+  document.getElementById('reason').value = "";
+}
+
+function closeDrawer(){ document.getElementById('drawer').hidden = true; document.getElementById('scrim').hidden = true; state.drawerDoc = null; }
+
+function fill(text){ document.getElementById('reason').value = text; }
+
+document.querySelectorAll('.seg2 button').forEach(b => b.onclick = () => {
+  state.days = Number(b.dataset.days);
+  document.querySelectorAll('.seg2 button').forEach(x => x.setAttribute('aria-pressed', x === b ? "true" : "false"));
+});
+
+function submitRequest(){
+  const reason = document.getElementById('reason').value.trim();
+  if (!reason) return toast("请写一句申请理由");
+  const d = state.drawerDoc;
+  state.requests.push({id: ++seq, docId: d.id, days: state.days, reason, at: "今天 11:42", status: "pending"});
+  closeDrawer(); renderRows(); renderQueue();
+const demo = new URLSearchParams(location.search).get("demo");
+if (demo === "admin") { setView("admin"); state.requests.push(
+  {id: ++seq, docId: 3, days: 30, reason: "同一条技术路线，需要看相邻组的实现细节。", at: "今天 09:20", status: "pending"},
+  {id: ++seq, docId: 5, days: 14, reason: "写专项报告，需要引用该项目的结论与数据。", at: "昨天 16:05", status: "pending"});
+  renderQueue(); renderRows(); }
+if (demo === "drawer") openDrawer(3);
+if (demo === "approved") {
+  state.requests.push({id: ++seq, docId: 3, days: 30, reason: "同一条技术路线，需要看相邻组的实现细节。", at: "今天 11:42", status: "granted"});
+  renderRows();
+}
+  toast("已提交，等待王××审批");
+  document.getElementById('bellN').textContent = "3";
+}
+
+function renderQueue(){
+  const q = document.getElementById('queue');
+  const pending = state.requests.filter(r => r.status === "pending");
+  if (!pending.length){
+    q.innerHTML = `<div class="empty">没有待办。新申请会出现在这里。</div>`;
+    return;
+  }
+  q.innerHTML = pending.map(r => {
+    const d = DOCS.find(x => x.id === r.docId);
+    return `<div class="req">
+      <div class="top"><span class="who">李××</span><span class="pill lav">感知与视觉</span>
+        <span class="spacer" style="flex:1"></span><span class="d" style="font-size:12px;color:var(--text-3)">${r.at}</span></div>
+      <p class="doc">${d.title}　<span style="color:var(--text-3)">${d.no} · ${d.group}</span></p>
+      <p class="why">${r.reason}</p>
+      <div class="foot">
+        <span class="pill wait">申请 ${r.days} 天</span>
+        <span class="impact">该组另有 12 份同类资料未开放</span>
+        <span class="spacer"></span>
+        <button class="btn sm" onclick="decide(${r.id}, false)">驳回</button>
+        <button class="btn sm primary" onclick="decide(${r.id}, true)">通过</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function decide(id, ok){
+  const r = state.requests.find(x => x.id === id);
+  r.status = ok ? "granted" : "rejected";
+  renderQueue(); renderRows();
+  toast(ok ? `已开通 ${r.days} 天，申请人收到通知` : "已驳回，申请人可见理由");
+  document.getElementById('bellN').textContent = "2";
+}
+
+function setView(v){
+  state.view = v;
+  document.getElementById('viewUser').hidden = v !== "user";
+  document.getElementById('viewAdmin').hidden = v !== "admin";
+  document.getElementById('tabUser').setAttribute('aria-pressed', v === "user");
+  document.getElementById('tabAdmin').setAttribute('aria-pressed', v === "admin");
+  document.getElementById('drawer').hidden = true;
+}
+
+let timer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(timer); timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+renderRows(); renderQueue();
+const demo = new URLSearchParams(location.search).get("demo");
+if (demo === "admin") { setView("admin"); state.requests.push(
+  {id: ++seq, docId: 3, days: 30, reason: "同一条技术路线，需要看相邻组的实现细节。", at: "今天 09:20", status: "pending"},
+  {id: ++seq, docId: 5, days: 14, reason: "写专项报告，需要引用该项目的结论与数据。", at: "昨天 16:05", status: "pending"});
+  renderQueue(); renderRows(); }
+if (demo === "drawer") openDrawer(3);
+if (demo === "approved") {
+  state.requests.push({id: ++seq, docId: 3, days: 30, reason: "同一条技术路线，需要看相邻组的实现细节。", at: "今天 11:42", status: "granted"});
+  renderRows();
+}
+</script>
+</body>
+</html>

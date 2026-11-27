@@ -15,8 +15,24 @@ The Qwen names below are the ones dashscope actually serves, read from its own
 ``/compatible-mode/v1/models`` list on 2026-11-25 — not from the open-weight release notes, which
 name different models (the hosted Qwen3.8 line has a 27B entry the open weights do not). A name
 typed from memory failed with "Model not exist", which is why this list is taken from the provider.
-Windows: 128K unless noted; dashscope does not publish a per-model figure through that endpoint, so
-a model whose window is unverified stays ``None`` rather than borrowing a neighbour's number.
+
+Windows (corrected 2026-11-26). The first version of this table said "128K unless noted", which was
+wrong for every entry — the figure had been carried over from the DeepSeek V3 era and then copied
+to the Qwen rows. Measured two ways, both agreeing:
+
+- DeepSeek publishes it: ``GET /models`` returns ``context_window: 1048576`` and
+  ``max_output_tokens: 393216`` per model. A 380k-token request with a unique word at the start
+  came back with that word, so the window is real and not just advertised.
+- DashScope does not publish it through that endpoint, so the model pages do (help.aliyun.com,
+  上下文限制 table, read 2026-11-26). ``qwen3.8-27b`` and ``qwen3.8-flash``: 1M. ``qwen3.6-27b``
+  and ``qwen3.5-27b``: 262144. A 380k-token needle test on qwen3.8-27b also answered correctly.
+
+``context`` is the model's *context length* — the capacity the ring's denominator stands for — not
+its maximum input length, which is smaller and differs under thinking mode (qwen3.8-27b takes
+991808 in, 983616 with thinking on, against a 1M window).
+
+``deepseek-v4-flash`` is an alias the API still accepts and echoes back as ``deepseek-flash``; the
+``/models`` list carries the short id. Both work, so the established name is kept.
 """
 
 from dataclasses import dataclass, field
@@ -55,8 +71,8 @@ PROVIDERS: tuple[Provider, ...] = (
         key_env="MODEL_API_KEY",
         models=(
             # DeepSeek retired the chat/reasoner names on 2026-07-24; the V4 names are current.
-            Model("deepseek-v4-flash", "DeepSeek V4 Flash", 128_000),
-            Model("deepseek-v4-pro", "DeepSeek V4 Pro", 128_000),
+            Model("deepseek-v4-flash", "DeepSeek V4 Flash", 1_048_576),
+            Model("deepseek-v4-pro", "DeepSeek V4 Pro", 1_048_576),
         ),
     ),
     Provider(
@@ -69,10 +85,10 @@ PROVIDERS: tuple[Provider, ...] = (
         models=(
             # The 27B entries are the user's baseline candidates (query 2026-1125 1100); the two
             # smaller hosted models are here so a cheaper comparison is one click away.
-            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 131_072, quiet=True),
-            Model("qwen3.6-27b", "Qwen3.6 27B", 131_072, quiet=True),
-            Model("qwen3.5-27b", "Qwen3.5 27B", 131_072, quiet=True),
-            Model("qwen3.8-flash", "Qwen3.8 Flash", None, quiet=True),
+            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 1_000_000, quiet=True),
+            Model("qwen3.6-27b", "Qwen3.6 27B", 262_144, quiet=True),
+            Model("qwen3.5-27b", "Qwen3.5 27B", 262_144, quiet=True),
+            Model("qwen3.8-flash", "Qwen3.8 Flash", 1_000_000, quiet=True),
         ),
     ),
 )

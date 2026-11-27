@@ -29,11 +29,35 @@ def test_an_unset_model_means_the_providers_first_entry():
 
 
 def test_every_catalogue_model_reports_a_verified_window():
-    """The ring's denominator must be a real number or absent — never guessed. Every entry here was
-    checked against the provider's release notes; a model added without one keeps ``None``."""
+    """The ring's denominator must be a real number or absent — never guessed."""
     for provider in providers.PROVIDERS:
         for model in provider.models:
             assert model.context is None or model.context > 0
+
+
+def test_the_windows_are_the_measured_ones_not_carried_over_from_an_older_model():
+    """Pinned because the first version of this table was wrong for *every* entry (2026-11-26).
+
+    It said "128K unless noted" — a figure from the DeepSeek V3 era — and the Qwen rows copied it.
+    The true windows are 2 to 8 times larger, which matters more than the number itself: a
+    denominator that is too small draws a ring that looks nearly full when 2% is used. Each value
+    below has a source: DeepSeek's own ``GET /models`` (``context_window``), and the provider's
+    model page (上下文限制) for the Qwen rows.
+    """
+    expected = {
+        ("deepseek", "deepseek-v4-flash"): 1_048_576,
+        ("deepseek", "deepseek-v4-pro"): 1_048_576,
+        ("dashscope", "qwen3.8-27b"): 1_000_000,
+        ("dashscope", "qwen3.6-27b"): 262_144,
+        ("dashscope", "qwen3.5-27b"): 262_144,
+        ("dashscope", "qwen3.8-flash"): 1_000_000,
+    }
+    actual = {(p.id, m.name): m.context for p in providers.PROVIDERS for m in p.models}
+    assert actual == expected
+    # No entry may borrow a neighbour's number, and "unknown" must stay distinguishable from a
+    # number: the interface draws no ratio at all for None.
+    for pair, window in actual.items():
+        assert window is not None, f"{pair} lost its measured window"
 
 
 def test_the_catalogue_carries_no_credential_and_no_per_request_endpoint():

@@ -43,6 +43,11 @@ class Model:
     name: str          # the provider's own id, sent verbatim
     label: str         # what the interface shows
     context: int | None  # verified context window in tokens; None = unknown, do not draw a ratio
+    # The most this model is allowed to *write* in one reply, from the provider's own figure. This
+    # is a separate limit from the window: a 1M-context model may still cap output at 131k. It was
+    # wrong before (a flat 4096 for every model) and that is what made an illustrated report fail
+    # with "报告达到模型输出长度上限" — 4096 is 3% of what qwen3.8-27b can write (2026-11-27).
+    max_output: int | None = None
     # 2026-11-25: some hosted models reason before answering and stream that reasoning as a separate
     # channel. Measured on this project's own report-sized prompt (20k tokens in): thinking on took
     # 346 s with the first visible character at 267 s and 26k chars of reasoning burned against a
@@ -71,8 +76,8 @@ PROVIDERS: tuple[Provider, ...] = (
         key_env="MODEL_API_KEY",
         models=(
             # DeepSeek retired the chat/reasoner names on 2026-07-24; the V4 names are current.
-            Model("deepseek-v4-flash", "DeepSeek V4 Flash", 1_048_576),
-            Model("deepseek-v4-pro", "DeepSeek V4 Pro", 1_048_576),
+            Model("deepseek-v4-flash", "DeepSeek V4 Flash", 1_048_576, max_output=393_216),
+            Model("deepseek-v4-pro", "DeepSeek V4 Pro", 1_048_576, max_output=393_216),
         ),
     ),
     Provider(
@@ -85,10 +90,10 @@ PROVIDERS: tuple[Provider, ...] = (
         models=(
             # The 27B entries are the user's baseline candidates (query 2026-1125 1100); the two
             # smaller hosted models are here so a cheaper comparison is one click away.
-            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 1_000_000, quiet=True),
-            Model("qwen3.6-27b", "Qwen3.6 27B", 262_144, quiet=True),
-            Model("qwen3.5-27b", "Qwen3.5 27B", 262_144, quiet=True),
-            Model("qwen3.8-flash", "Qwen3.8 Flash", 1_000_000, quiet=True),
+            Model("qwen3.8-27b", "Qwen3.8 27B（基线）", 1_000_000, max_output=131_072, quiet=True),
+            Model("qwen3.6-27b", "Qwen3.6 27B", 262_144, max_output=65_536, quiet=True),
+            Model("qwen3.5-27b", "Qwen3.5 27B", 262_144, max_output=65_536, quiet=True),
+            Model("qwen3.8-flash", "Qwen3.8 Flash", 1_000_000, max_output=131_072, quiet=True),
         ),
     ),
 )
@@ -123,7 +128,8 @@ def catalogue() -> list[dict]:
         {
             "id": item.id,
             "label": item.label,
-            "models": [{"name": model.name, "label": model.label, "context": model.context}
+            "models": [{"name": model.name, "label": model.label, "context": model.context,
+                        "max_output": model.max_output}
                        for model in item.models],
         }
         for item in PROVIDERS
@@ -134,6 +140,12 @@ def window(provider_id: str | None, model_name: str | None) -> int | None:
     """The context window of a choice, or ``None`` when it is not verified."""
     found = resolve(provider_id, model_name)
     return found[1].context if found else None
+
+
+def max_output(provider_id: str | None, model_name: str | None) -> int | None:
+    """How much a choice may write in one reply, or ``None`` when the provider does not say."""
+    found = resolve(provider_id, model_name)
+    return found[1].max_output if found else None
 
 
 def quiet_body(provider_id: str | None, model_name: str | None) -> dict:

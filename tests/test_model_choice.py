@@ -100,3 +100,52 @@ def test_a_choice_whose_catalogue_entry_was_removed_falls_back_instead_of_failin
 def test_one_account_cannot_reach_another_or_escape_its_directory(tmp_path):
     with pytest.raises(ValueError, match="目录名"):
         model_choice.read(tmp_path, "../etc")
+
+
+def test_the_output_budget_is_the_models_own_maximum_not_a_shared_constant():
+    """A flat ``max_tokens=4096`` made an illustrated report fail with
+    "报告达到模型输出长度上限" (2026-11-27): 4096 is 3% of what qwen3.8-27b may write.
+
+    Each figure below is the provider's own published maximum output — a different number from the
+    context window, and a different number per model, which is exactly why it cannot be a constant.
+    """
+    expected = {
+        ("deepseek", "deepseek-v4-flash"): 393_216,
+        ("deepseek", "deepseek-v4-pro"): 393_216,
+        ("dashscope", "qwen3.8-27b"): 131_072,
+        ("dashscope", "qwen3.6-27b"): 65_536,
+        ("dashscope", "qwen3.5-27b"): 65_536,
+        ("dashscope", "qwen3.8-flash"): 131_072,
+    }
+    actual = {(p.id, m.name): m.max_output for p in providers.PROVIDERS for m in p.models}
+    assert actual == expected
+    # Nowhere may the budget exceed the window it has to fit inside.
+    for provider in providers.PROVIDERS:
+        for model in provider.models:
+            assert model.max_output < model.context, (provider.id, model.name)
+
+
+def test_the_budget_follows_the_chosen_model_and_falls_back_for_an_unknown_one(tmp_path):
+    """``model_for`` must ask for the chosen model's budget, and must not assume an uncatalogued
+    model tolerates a large ``max_tokens``."""
+    from pydantic import SecretStr
+
+    from src.agent import models
+    from src.agent.config import Settings
+
+    settings = Settings(_env_file=None, model_api_key=SecretStr("fixture"), state_dir=tmp_path / "state")
+    cases = [
+        (("dashscope", "qwen3.8-27b"), 131_072),
+        (("dashscope", "qwen3.6-27b"), 65_536),
+        (("deepseek", "deepseek-v4-pro"), 393_216),
+    ]
+    from src.agent.config import Settings as S
+
+    bare = S(_env_file=None, model_api_key=SecretStr("fixture"), state_dir=tmp_path / "state",
+             model_name="not-in-the-catalogue")
+    # An uncatalogued model keeps the conservative default instead of borrowing a neighbour's max.
+    client = models.model_for(bare)
+    assert client.max_tokens == 4096
+    for choice, budget in cases:
+        chosen = settings.model_copy(update={"model_provider_choice": choice})
+        assert models.model_for(chosen).max_tokens == budget, choice

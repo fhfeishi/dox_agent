@@ -150,6 +150,11 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
     """
     base_url, model_name, api_key = settings.model_base_url, settings.model_name, settings.model_api_key
     extra_body: dict = {}
+    # Output budget follows the model, not a constant. A flat 4096 was 3% of what qwen3.8-27b can
+    # write and is why an illustrated report died with "报告达到模型输出长度上限" (2026-11-27).
+    # A model outside the catalogue keeps the old 4096: nothing here may assume an unknown provider
+    # tolerates a large ``max_tokens``.
+    max_tokens = 4096
     # A graph built from a settings copy carries its provider here, so the same resolution happens
     # without widening the graph factory's signature (2026-11-25).
     choice = choice or getattr(settings, "model_provider_choice", None)
@@ -162,6 +167,9 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
             # A reasoning model spends the output budget thinking before it writes anything; on this
             # project's prompts that produced an empty answer (see providers.Model.quiet).
             extra_body = providers.quiet_body(provider.id, model.name)
+    budget = providers.max_output(*(choice or (providers.DEFAULT_PROVIDER, settings.model_name)))
+    if budget:
+        max_tokens = budget
     if not api_key:
         raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY），或在 .env 设置对应平台的密钥")
     http_client, http_async_client = _http_clients()
@@ -175,7 +183,7 @@ def model_for(settings: Settings, timeout: float | None = None, *, choice: tuple
         temperature=0.1,
         timeout=timeout if timeout is not None else settings.answer_timeout,
         max_retries=1,
-        max_tokens=4096,
+        max_tokens=max_tokens,
         stream_usage=True,
         **({"extra_body": extra_body} if extra_body else {}),
     )

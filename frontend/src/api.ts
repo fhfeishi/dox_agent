@@ -1,8 +1,11 @@
 export type Source = { input_id?: string; locations?: { page?: number; heading: string; snippet: string; chunk_id: string }[]; title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 /** 2026-11-25: the model catalogue and this account's choice. ``context`` is null when the window
- * is not verified, and the interface then draws no proportion. */
-export type ModelEntry = { name: string; label: string; context: number | null };
+ * is not verified, and the interface then draws no proportion.
+ *
+ * ``max_output`` (2026-11-27) is a different limit: how much the model may write in one reply. The
+ * server asks for it, so the interface only needs it to explain a truncated reply. */
+export type ModelEntry = { name: string; label: string; context: number | null; max_output?: number | null };
 export type ModelProvider = { id: string; label: string; models: ModelEntry[] };
 
 export async function fetchModel(signal?: AbortSignal): Promise<ModelInfo> {

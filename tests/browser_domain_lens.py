@@ -290,12 +290,16 @@ async def check_simplified(page,origin,shots):
     return reports
 
 async def check_screens(page,origin,shots):
-    """领域分析分屏: 总览 by default, one screen at a time from the fixed bar, each screen in the address."""
+    """领域分析分屏: 领域总览 by default, one screen at a time from the fixed bar, each screen in the
+    address. Since query 2026-1127 1532 技术谱系 is the first screen and 领域总览 the second."""
     await page.set_viewport_size({'width':1440,'height':900})
     await page.goto(origin+'/overview/domains')
     screens=page.get_by_role('navigation',name='领域分析分屏')
-    await expect(screens.get_by_role('button',name='总览',exact=True)).to_have_attribute('aria-pressed','true')
+    await expect(screens.get_by_role('button',name='领域总览',exact=True)).to_have_attribute('aria-pressed','true')
     await expect(screens.get_by_role('button')).to_have_count(6)
+    # The bar is a scheme (query 2026-1127 1532): 技术谱系 first, then the screens that read it.
+    labels=await screens.get_by_role('button').evaluate_all('es=>es.map(e=>e.textContent.trim())')
+    assert labels==['技术谱系','领域总览','领域格局','年度投入','关键技术','缺口与机会'],labels
     findings=page.get_by_role('list',name='先给结论').get_by_role('button')
     await expect(findings).to_have_count(3)
     await expect(page.get_by_role('region',name='各领域').get_by_role('button')).to_have_count(11)
@@ -312,7 +316,7 @@ async def check_screens(page,origin,shots):
     bar=await page.locator('.atlas-bar').bounding_box();main=await page.locator('main').bounding_box()
     assert abs(bar['y']-main['y'])<2,(bar,main)
     await page.go_back()
-    await expect(screens.get_by_role('button',name='总览',exact=True)).to_have_attribute('aria-pressed','true')
+    await expect(screens.get_by_role('button',name='领域总览',exact=True)).to_have_attribute('aria-pressed','true')
     # 结论三 leads to 缺口与机会; GapBoard's own checks live in browser_gap_board.
     await findings.nth(2).click()
     await expect(screens.get_by_role('button',name='缺口与机会',exact=True)).to_have_attribute('aria-pressed','true')
@@ -711,7 +715,7 @@ async def main():
                 (shots/'results.json').write_text(json.dumps(values,ensure_ascii=False,indent=2),encoding='utf-8')
                 assert not errors,errors
                 await browser.close()
-                print('PASS 分屏 bar, 总览, 关键技术; 01 single-click state machine, back steps, siblings, hover isolation, comparison, visuals and legacy URLs')
+                print('PASS 分屏 bar (技术谱系 first), 领域总览, 关键技术; 01 single-click state machine, back steps, siblings, hover isolation, comparison, visuals and legacy URLs')
         finally:
             server.should_exit=True;thread.join(timeout=15);listener.close()
 

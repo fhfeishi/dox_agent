@@ -13,7 +13,7 @@ from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
-from tests.browser_support import FrontendHandler
+from tests.browser_support import FrontendHandler, open_chat
 
 
 async def main():
@@ -81,7 +81,7 @@ async def main():
                 await expect(page.get_by_text("回答:" + question, exact=False)).to_be_visible()
 
             await page.goto(origin)
-            await page.get_by_role("link", name="对话工作台", exact=True).click()
+            await open_chat(page)
             # New sessions auto-select the first corpus directory; no confirmation gate.
             await expect(page.get_by_role("button", name=re.compile("^对话资料库：.*演示库"))).to_be_visible()
             await ask("第一问")

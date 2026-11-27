@@ -10,7 +10,7 @@ from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
-from tests.browser_support import FrontendHandler
+from tests.browser_support import FrontendHandler, open_chat
 
 CORPUS = {"id": "fund", "name": "基金演示库", "kind": "fund", "domain": "基金",
           "rel_path": "fund", "docs_count": 1, "preparation": "ready", "is_default": True,
@@ -103,7 +103,7 @@ async def main():
                 await preview.get_by_role("button", name="关闭 ✕").click()
             preview_file_status = 200
 
-            await page.get_by_role("link", name="对话工作台", exact=True).click()
+            await open_chat(page)
             await page.get_by_role("textbox", name="问题", exact=True).fill("这个项目的结论是什么？")
             await page.get_by_role("button", name="发送 ↑").click()
             stale_citation = page.get_by_role("button", name="[2]", exact=True).last

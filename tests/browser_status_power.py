@@ -9,6 +9,8 @@ from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
+from tests.browser_support import open_chat
+
 
 def session(index: int):
     return {"id": f"s{index}", "revision": 1, "title": f"会话 {index:02d}", "updated_at": "2026-09-21T08:00:00Z",
@@ -57,7 +59,7 @@ async def main():
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
 
             await page.goto(origin)
-            await page.get_by_role("link", name="对话工作台", exact=True).click()
+            await open_chat(page)
             # The model status sits in the rail (query 2026-1013 1520); its title names the model.
             status = page.get_by_role("button", name=re.compile("^模型状态"))
             await expect(status).to_have_attribute("title", re.compile("offline-test"))

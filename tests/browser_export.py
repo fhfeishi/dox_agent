@@ -17,6 +17,8 @@ from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
+from tests.browser_support import open_chat
+
 SOURCE = {"title": "示例来源", "url": "", "snippet": "片段", "page": 3, "citation": 1,
           "doc_id": "d1", "version": "v1"}
 ANSWER = "结论 [1]\n\n| A | B |\n| --- | --- |\n| 1 | 2 |"
@@ -54,7 +56,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
-            await page.get_by_role("link", name="对话工作台", exact=True).click()
+            await open_chat(page)
             await page.get_by_role("textbox", name="问题", exact=True).fill("导出测试")
             await page.get_by_role("button", name="发送 ↑").click()
 

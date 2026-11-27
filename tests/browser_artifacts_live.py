@@ -21,7 +21,7 @@ import src.main as main_module
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
-from tests.browser_support import login
+from tests.browser_support import login, open_chat
 from tests.helpers import put_listed
 
 
@@ -123,7 +123,7 @@ async def main():
                     except OSError: pass
                     await asyncio.sleep(0.1)
                 else: raise AssertionError("uploaded.txt 未在 10 秒内落盘")
-                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
+                await open_chat(page)
                 await expect(page.get_by_role("button",name=re.compile("^对话资料库：fixture"))).to_be_visible()
                 await expect(page.get_by_role("button",name=re.compile("^对话资料库：.*zz-b"))).to_be_visible()
                 await expect(page.get_by_role("button", name=re.compile("^对话资料库：.*zz-c"))).to_have_count(0)
@@ -201,7 +201,7 @@ async def main():
                 await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(page.get_by_role("button",name="离线回答 [1]",exact=True)).to_be_visible()
                 # P1: a second snapshot is purged through the browser confirm path; the chat answer survives.
-                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
+                await open_chat(page)
                 await page.get_by_role("textbox",name="问题",exact=True).fill("第二次查询样本")
                 await page.get_by_role("button",name="发送 ↑",exact=True).click()
                 await expect(page.get_by_role("button",name="保存到报告中心",exact=True)).to_have_count(1)  # current turn only
@@ -238,7 +238,7 @@ async def main():
                 assert [item["artifact_id"] for item in remaining]==[snapshots[1]["artifact_id"]]
                 await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(cards).to_have_count(1)
-                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
+                await open_chat(page)
                 await expect(page.get_by_text("离线回答 [1]").last).to_be_visible()  # the chat answer outlives its purged snapshot
                 await page.get_by_role("navigation").get_by_role("link",name="资料库",exact=True).click()
                 page.once("dialog",lambda dialog: dialog.accept("研究组"))
@@ -262,7 +262,7 @@ async def main():
                 await group.get_by_role("button",name="解散",exact=True).click()
                 await expect(group).to_have_count(0)
                 assert len(await (await page.request.get(f"{origin}/api/corpora")).json()) == 3
-                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
+                await open_chat(page)
                 await page.set_viewport_size({"width":720,"height":900})
                 await expect(page.get_by_role("button",name=re.compile("^对话资料库："))).to_be_visible()
                 shots=Path(".logsdev/verification/upgrade-20261019-q1")

@@ -66,14 +66,17 @@ function MenuTab({ label, sections, active, current }: { label: string; sections
 }
 
 function tab(active: boolean) {
-  return `relative shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-body font-medium transition-colors ${active
-    ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--slate)] hover:bg-[var(--surface)] hover:text-[var(--ink)]"}`;
+  // 2026-1127 1532: the bar is the map of the product, so an entry is read at a glance — 16 px semibold,
+  // and the current area is a solid primary chip rather than a tint that vanishes beside the brand.
+  return `relative shrink-0 whitespace-nowrap rounded-lg px-3.5 py-2 text-emphasis font-semibold transition-colors ${active
+    ? "bg-[var(--primary)] text-[var(--canvas)] shadow-sm" : "text-[var(--text-2)] hover:bg-[var(--surface)] hover:text-[var(--heading)]"}`;
 }
 
 /**
- * The top navigation bar (query 2026-1013 1522, 2026-1014 1516, 2026-1019 2021): one row with the
- * main areas in a fixed order — 首页, 资料库, 对话工作台, then 存量分析 and 资料审查 as menus — and on
- * the right the analysis status, settings and the account; 成果 is the last main entry.
+ * The top navigation bar (query 2026-1013 1522, 2026-1014 1516, 2026-1019 2021, 2026-1127 1532): one row
+ * with the main areas in a fixed order — 首页, 概览, 资料库 ‖ 存量分析, 资料审查, 情报分析 ‖ 报告中心 — and
+ * on the right the settings and the account. 存量分析 is a menu holding 对话工作台 first (2026-1127 1532);
+ * the thin rules between groups come from the entry table (`divider`).
  */
 export function TopNav() {
   const { role } = useAuth();
@@ -106,13 +109,11 @@ export function TopNav() {
   useEffect(() => { setFolded(false); }, [role]);
   const { search } = useLocation();
   const current = (to: string) => isCurrent(to, pathname, search);
-  // One entry lit at a time (前端审查 V4). A menu page with a query (/chat?task=task2) is that menu's
-  // only when the query matches; while it does, the plain entry for the same path (对话工作台) yields.
+  // One entry lit at a time (前端审查 V4). A menu page with a query (/chat?task=task2) lights only
+  // when the query matches; its menu still lights through the plain page for the same path (/chat).
   const hits = (page: { to: string }) => { const url = new URL(page.to, "http://local");
     return url.search ? current(page.to) : pathname.startsWith(url.pathname); };
-  const menuQuery = barFor(role).some((item) => (item.kind === "entry" ? [item.entry] : item.entries)
-    .some((entry) => entry.pages?.some((page) => new URL(page.to, "http://local").search && current(page.to))));
-  const isOn = (entry: NavEntry) => entry.pages ? nav === entry.key || entry.pages.some(hits) : nav === entry.key && !menuQuery;
+  const isOn = (entry: NavEntry) => entry.pages ? nav === entry.key || entry.pages.some(hits) : nav === entry.key;
   // One entry, whatever the role: a link, or a menu of its pages.
   const entryTab = (entry: NavEntry) => entry.pages
     ? <MenuTab key={entry.label} label={entry.label} sections={entry.pages} active={isOn(entry)} current={current} />
@@ -125,7 +126,9 @@ export function TopNav() {
       <span className="hidden text-emphasis font-semibold text-[var(--ink)] md:inline">资料工作台</span>
     </Link>
     <nav ref={navRef} aria-label="主导航" className={`min-w-0 flex-1 items-center gap-1 overflow-hidden ${folded ? "hidden" : "flex"}`}>
-      {barFor(role).map((item) => item.kind === "entry" ? entryTab(item.entry)
+      {barFor(role).map((item) => item.kind === "entry"
+        ? [item.entry.divider ? <span key={item.entry.label + "·divider"} aria-hidden="true"
+            className="mx-1.5 h-5 w-px shrink-0 bg-[var(--hairline)]" /> : null, entryTab(item.entry)]
         : <MenuTab key={item.label} label={item.label} active={item.entries.some(isOn)} current={current}
             sections={item.entries.map((entry) => entry.pages ? { label: entry.label, children: entry.pages } : { to: entry.to!, label: entry.label })} />)}
     </nav>

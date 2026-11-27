@@ -40,18 +40,22 @@ function conclusions(data: DomainsOverview): { text: string; library?: string }[
 }
 
 export type AtlasScreen = "summary" | "landscape" | "years" | "tech" | "lineage" | "gaps";
-// Buttons sit in groups (总览 · 研究领域 · 谱系 · 缺口); since 1747 the groups carry no 01/02/03 label.
+// Since query 2026-1127 1532 the bar reads as a hierarchy: 技术谱系 stands apart as the trunk, and the
+// screens that read it are the branches — 领域总览 (the whole), 领域格局 / 年度投入 / 关键技术 (one domain),
+// 缺口与机会 (what it lacks). The groups carry no 01/02/03 label (1747); the arrangement carries the order.
 const SCREENS: { group: string; items: [AtlasScreen, string, string][] }[] = [
-  { group: "summary", items: [["summary", "总览", "M4 13h4v7H4zM10 4h4v16h-4zM16 9h4v11h-4z"]] },
+  { group: "lineage", items: [["lineage", "技术谱系", "M12 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3"]] },
+  { group: "summary", items: [["summary", "领域总览", "M4 13h4v7H4zM10 4h4v16h-4zM16 9h4v11h-4z"]] },
   { group: "domains", items: [["landscape", "领域格局", "M4 20h16M4 20V4M9 15a2 2 0 1 0 0-.01M15 9a3 3 0 1 0 0-.01"],
     ["years", "年度投入", "M5 20V12M10 20V6M15 20v-9M20 20V9"], ["tech", "关键技术", "M12 4v5M12 9l-6 5M12 9l6 5M6 14v5M18 14v5M12 9v10"]] },
-  { group: "lineage", items: [["lineage", "技术谱系", "M12 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3"]] },
   { group: "gaps", items: [["gaps", "缺口与机会", "M4 6h16M4 12h10M4 18h6M17 15l3 3-3 3"]] },
 ];
 const RADIAL = "M12 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4M12 3v5M12 16v5M3 12h5M16 12h5M5.6 5.6l3.5 3.5M14.9 14.9l3.5 3.5M18.4 5.6l-3.5 3.5M9.1 14.9l-3.5 3.5";
 const TREE = "M3 10h5v4H3zM14 3h7v4h-7zM14 10h7v4h-7zM14 17h7v4h-7zM8 12h3M11 5v14M11 5h3M11 12h3M11 19h3";
 const SCREEN_KEYS = SCREENS.flatMap((g) => g.items.map(([k]) => k));
-const HEADS: Record<AtlasScreen, [string, string]> = {
+/** 技术谱系: the trunk the other screens read (the bar draws them as its branches). */
+const TRUNK = SCREENS[0];
+const BRANCHES = SCREENS.slice(1);const HEADS: Record<AtlasScreen, [string, string]> = {
   summary: ["", ""],
   landscape: ["领域格局", "三个视角的四象限：分界线是各领域的中位数，圆面积是项目数。点一个领域看它落在哪一格，再点一次进入它的技术体系。"],
   years: ["年度投入", "按项目立项年归属，每根柱子由各领域叠成。点柱子或拖选几年，右侧分析与领域格局都只看这几年。"],
@@ -105,10 +109,16 @@ export function DomainAtlas() {
       <div className="atlas-bar-in">
         <h1>领域分析<small>{data.totals.domains} 个领域 · {data.totals.projects.toLocaleString("zh-CN")} 个项目</small></h1>
         <nav aria-label="领域分析分屏" className="atlas-screens">
-          {SCREENS.map((g) => <div key={g.group} className="atlas-screen-group">
-            <div>{g.items.map(([key, label, d]) => <button key={key} type="button" aria-pressed={screen === key} onClick={() => show(key)}>
+          <div className="atlas-screen-group atlas-screen-trunk">
+            <div>{TRUNK.items.map(([key, label, d]) => <button key={key} type="button" aria-pressed={screen === key} onClick={() => show(key)}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d={d} /></svg>{label}</button>)}</div>
-          </div>)}
+          </div>
+          <div className="atlas-screen-branches">
+            {BRANCHES.map((g) => <div key={g.group} className="atlas-screen-group">
+              <div>{g.items.map(([key, label, d]) => <button key={key} type="button" aria-pressed={screen === key} onClick={() => show(key)}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={d} /></svg>{label}</button>)}</div>
+            </div>)}
+          </div>
         </nav>
       </div>
     </div>

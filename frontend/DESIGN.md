@@ -129,6 +129,7 @@ Tone 联合类型：`"mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yello
 来源：`.logsdev/tasks/领导体验优化-20261026/README.md` §4、`.logsdev/前端审查-20261027.md`。
 
 - **按钮**：`Button variant="primary"` 每个区域最多一个（主操作）；`outline` 用于打开、导出、展开（冷色描边，悬停变主色）；`ghost` 用于工具栏和图标操作。
+- **顶部导航**（2026-11-27）：导航栏是产品的全图，条目用 16 px 半粗（`text-emphasis`），当前板块为实心 `--primary` + `--canvas` 字，其余 `--text-2`；板块之间用 1 px `--hairline` 竖线分组。入口、顺序与分组只在 `navigation.ts` 一处（`divider` 标记分组），不写在 `TopNav.tsx` 里。
 - **切换**：视图、列表方式、分类一律用 `Segmented`（`ui.tsx`），改变下方内容的用 `tabs`；不要在页面里手写轨道加白底按钮。
 - **可点卡片**：整张可点，末尾 `打开 ›`，悬停边框变主色加轻阴影；附加信息用角落 ⓘ，不在卡片底部再放一排按钮。
 - **中性色**：只有一套冷灰。正文 `--text-2`，说明 `--text-3`，线 `--line-cool*`，底 `--surface*`；旧名 `--slate`、`--steel`、`--stone`、`--charcoal` 已改为同样的冷色值，新代码直接用新名。

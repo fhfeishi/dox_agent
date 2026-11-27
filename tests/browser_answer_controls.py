@@ -11,7 +11,7 @@ from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
-from tests.browser_support import FrontendHandler
+from tests.browser_support import FrontendHandler, open_chat
 
 CORPUS = {"id": "c1", "name": "演示库", "kind": "demo", "domain": "x", "rel_path": "c1",
           "docs_count": 1, "source_count": 1, "indexed_count": 1, "pending_count": 0, "failed_count": 0,
@@ -200,7 +200,7 @@ async def main():
                 };
             })();""")
             await page.goto(origin)
-            await page.get_by_role("link", name="对话工作台", exact=True).click()
+            await open_chat(page)
             await check_workspace_panels(page, origin)
             field = page.get_by_role("textbox", name="问题", exact=True)
             await field.fill("第一问")

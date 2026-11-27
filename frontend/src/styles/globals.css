@@ -516,15 +516,26 @@ button.ui-page-link { text-decoration: none; }
 /* 领域分析 reads across a wide field of charts rather than a paragraph column, so it is not held to
    --page-max (2240 px): at 4K that left a third of the screen empty beside the drawing. */
 .atlas-page > div:last-child { max-width: clamp(1280px, 90vw, 3600px); }
-/* 领域分析分屏 (query 2026-1030 1624): one row of screen buttons that stays on top while a screen scrolls. */
+/* 领域分析分屏 (query 2026-1030 1624): one row of screen buttons that stays on top while a screen scrolls.
+   Since query 2026-1127 1532 the row is drawn as a scheme: 技术谱系 is the trunk — filled, set apart —
+   and the screens that read it hang off a bracket to its right (领域总览 · 领域格局 年度投入 关键技术 ·
+   缺口与机会). The arrangement carries the order; no caption explains it. */
 .atlas-bar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--hairline); background: color-mix(in srgb, var(--canvas) 95%, transparent); backdrop-filter: blur(8px); }
 .atlas-bar-in { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; max-width: clamp(1280px, 90vw, 3600px); margin-inline: auto; padding: 10px 20px 8px; }
 @media (min-width: 640px) { .atlas-bar-in { padding-inline: 32px; } }
 .atlas-bar h1 { display: grid; font-size: var(--text-group); line-height: 24px; font-weight: 600; color: var(--heading); }
 .atlas-bar h1 small { font-size: var(--text-caption); line-height: 18px; font-weight: 400; color: var(--steel); }
-.atlas-screens { display: flex; gap: 6px 10px; overflow-x: auto; scrollbar-width: none; }
+.atlas-screens { display: flex; align-items: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
 .atlas-screen-group { flex-shrink: 0; }
 .atlas-screen-group > div { display: flex; gap: 2px; padding: 3px; border-radius: var(--radius-lg); background: var(--surface-sink); }
+/* 技术谱系: the trunk — the tallest plate in the row, filled, with a spine on its left. */
+.atlas-screen-trunk > div { padding: 9px 3px; background: var(--primary-soft); box-shadow: inset 3px 0 0 var(--primary); }
+.atlas-screen-trunk button { font-weight: 600; color: var(--primary-pressed); }
+.atlas-screen-trunk button[aria-pressed="true"] { font-weight: 700; }
+/* The screens that read it hang off the trunk: a stem out of its middle, then a spine the tracks sit on. */
+/* The screens that read it hang off the trunk: a stem out of its side, then the rail they sit on. */
+.atlas-screen-branches { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; flex-shrink: 0; margin-left: 14px; padding-left: 12px; border-left: 1px solid var(--line-cool-strong); }
+.atlas-screen-branches::before { content: ""; position: absolute; left: -14px; top: 50%; width: 14px; border-top: 1px solid var(--line-cool-strong); }
 .atlas-screen-group button { display: flex; align-items: center; gap: 6px; white-space: nowrap; padding: 5px 12px; border-radius: var(--radius-lg); font-size: var(--text-body); color: var(--slate); }
 .atlas-screen-group button svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .atlas-screen-group button:hover { color: var(--heading); background: color-mix(in srgb, var(--canvas) 60%, transparent); }

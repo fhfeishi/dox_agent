@@ -19,20 +19,23 @@ export type NavEntry = {
   roles: Role[];
   /** A leader's bar stays short (query 2026-1014 1703): these sit together in one 工作台 menu. */
   workbench?: boolean;
+  /** A thin rule before this entry: the bar reads as 首页 · 概览 · 资料库 ‖ 工作区 ‖ 报告中心 (query 2026-1127 1532). */
+  divider?: boolean;
   /** The work card on 首页, for the four work areas. */
   card?: { title: string; text: string; to: string; icon: IconName; accent: string };
 };
 
 const ALL: Role[] = ["admin", "leader", "user"];
 
-// 存量分析 opens on 任务模版 and the four built-in tasks are one click away: each opens 对话工作台 on that
-// task with its walkthrough (query 2026-1020 1719).
+// 存量分析 holds 对话工作台 and every task in it (query 2026-1127 1532: 对话工作台 is no longer an entry of
+// its own); a task opens 对话工作台 on that task with its walkthrough (query 2026-1020 1719).
 export const TASK_PAGES: NavPage[] = [
-  { to: "/tasks", label: TERMS.taskTemplates.name },
+  { to: "/chat", label: TERMS.chat.name },
   { to: "/chat?task=task1", label: "精准问答" },
   { to: "/chat?task=task2", label: "对比分析" },
   { to: "/chat?task=task3", label: "技术研判" },
   { to: "/chat?task=task4", label: "专项报告" },
+  { to: "/tasks", label: TERMS.taskTemplates.name },
 ];
 export const REVIEW_PAGES: NavPage[] = [
   { to: "/review/formal", label: "形式审查" },
@@ -49,18 +52,18 @@ export const NAV: NavEntry[] = [
   { key: "overview", label: TERMS.domains.name, to: "/overview/domains", roles: ["leader"] },
   { key: "library", label: TERMS.library.name, to: "/library", roles: ALL,
     card: { title: TERMS.libraryBrowse.name, text: "按领域浏览项目资料与原文", to: "/library", icon: "library", accent: "var(--area-library)" } },
-  { key: "chat", label: TERMS.chat.name, to: "/chat", roles: ALL, workbench: true },
-  { key: "tasks", label: TERMS.tasks.name, pages: TASK_PAGES, hint: "任务模版：精准问答、对比分析、技术研判、专项报告", roles: ALL, workbench: true,
+  { key: "tasks", label: TERMS.tasks.name, pages: TASK_PAGES,
+    hint: "对话工作台与四个任务：精准问答、对比分析、技术研判、专项报告；另有任务模版", roles: ALL, workbench: true, divider: true,
     card: { title: TERMS.tasks.name, text: "对比项目、研判趋势、形成报告", to: "/tasks", icon: "tasks", accent: "var(--area-analysis)" } },
   { key: "review", label: TERMS.review.name, pages: REVIEW_PAGES, roles: ALL, workbench: true,
     card: { title: TERMS.review.name, text: "按模版核对申请书、开展技术评议", to: "/review/formal", icon: "review", accent: "var(--area-review)" } },
   { key: "intelligence", label: TERMS.intelligence.name, to: "/intelligence", hint: "上传外部材料进行分析", roles: ALL, workbench: true,
     card: { title: TERMS.intelligence.name, text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
   // 报告中心 (named 成果 until query 2026-1019 2021) is a page of its own after the work areas.
-  { key: "results", label: TERMS.results.name, to: "/results", hint: "我的报告、周期总结与回收站", roles: ALL },
+  { key: "results", label: TERMS.results.name, to: "/results", hint: "我的报告、周期总结与回收站", roles: ALL, divider: true },
   // 专家 (2026-11-13): one expert per account, learned in the background after each task. The
   // page exists to audit and correct it, which is why ordinary accounts do not see it.
-  { key: "experts", label: TERMS.expertsAudit.name, to: "/experts", hint: "后台在每次任务后自动积累的偏好与做法；仅管理员可见", roles: ["admin"] },
+  { key: "experts", label: TERMS.expertsAudit.name, to: "/experts", hint: "后台在每次任务后自动积累的偏好与做法；仅管理员可见", roles: ["admin"], divider: true },
 ];
 
 /** A bar item: an entry, or for a leader the one 工作台 menu that holds the work areas. */
